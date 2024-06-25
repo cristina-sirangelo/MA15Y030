@@ -76,11 +76,6 @@ While there is no official textbook for the course, we will be assigning reading
 
 -   [R for Data Science](https://r4ds.had.co.nz/) by Garret Grolemund and Hadley Wickham
 
--   [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) by Mine Çetinkaya-Rundel and Johanna Hardin
-
--   [Tidy modeling with R](https://www.tmwr.org/) by Max Kuhn and Julia Silge
-
--   [Beyond Multiple Linear Regression](https://bookdown.org/roback/bookdown-BeyondMLR/) by Paul Roback and Julie Legler
 
 ## Lectures and labs
 
