@@ -1,0 +1,880 @@
+---
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: true
+    code-fold: false
+    toc: false
+    output-file: td10.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données \\\\ TD 10}}"
+  html:
+    standalone: true
+    code-fold: true
+    output-file: td10.html
+params:
+    year: 2023 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+---
+
+
+```{r}
+#| include: false
+```
+
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](./img/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+
+
+
+
+### Exercice
+
+Soit $\mathcal{A}=\left\{A,B,C,D,E\right\}$ un schéma et soit $\mathcal{A}_1=\left\{A,B,C\right\}$.
+Pour chaque ensemble $\Sigma$ de dépendances fonctionnelles ci-dessous, déterminer un ensemble de DF
+équivalent à $\pi_{\mathcal{A}_1}(\Sigma)$.
+
+
+
+- $\Sigma=\left\{AB\to DE, C\to E, D\to C, E\to A\right\}$
+- $\Sigma=\left\{A\to D, BD\to E, AC\to E, DE\to B\right\}$
+- $\Sigma=\left\{AB\to D, AC\to E, BC\to D, D\to A, E\to B\right\}$
+- $\Sigma=\left\{A\to B, B\to C, C\to D, D\to E, E\to A\right\}$
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+
+Rappelons que $\pi_{\mathcal{A}_1}(\Sigma)$ est l'ensemble des DF de la forme $X\to Y$, avec
+$X\subset\mathcal{A}_1$ et $Y\subset\mathcal{A}_1$, qui sont impliquées par $\Sigma$. Un ensemble de DF équivalent à $\pi_{\mathcal{A}_1}(\Sigma)$ est l'ensemble des DF $X\to (X^+\cap\mathcal{A}_1)\setminus X$ où $X\subset\mathcal{A}_1$, $X\not=\emptyset$ et $X\not=\mathcal{A}_1$.
+
+
+- $A^+=A$, $B^+=B$, $C^+=CEA$ donc on ajoute $\boxed{C\to A}$\\
+$AB^+=ABDEC$ donc on ajoute $\boxed{AB\to C}$\\
+$AC^+=ACE$, $BC^+=BCEAD$ donc on ajoute $\boxed{BC\to A}$\\
+Donc $\pi_{\mathcal{A}_1}(\Sigma)$ est équivalent à
+$\left\{C\to A, AB\to C, BC\to A\right\}$ lui-même équivalent à
+$\left\{AB\to C, C\to A\right\}$.
+
+- $A^+=AD$, $B^+=B$, $C^+=C$ rien à ajouter\\
+$AB^+=ABDE$, $AC^+=ACDEB$ donc on ajoute $\boxed{AC \to B}$\\
+$BC^+=BC$\\
+Donc $\pi_{\mathcal{A}_1}(\Sigma)$ est équivalent à $\left\{aC \to B\right\}$.
+
+- $A^+=A$, $B^+=B$, $C^+=C$ rien à ajouter\\
+$AB^+=ABD$, $AC^+=ACEBD$ donc on ajoute $\boxed{AC \to B}$\\
+$BC^+=BCDAE$ donc on ajoute $\boxed{BC \to A}$ \\
+Donc $\pi_{\mathcal{A}_1}(\Sigma)$ est équivalent à $\left\{aC \to B, BC\to A\right\}$.
+
+- Tout attribut est une clef, donc c'est aussi le cas pour $\mathcal{A}_1$.
+$\pi_{\mathcal{A}_1}(\Sigma)$ est donc équivalent à $\left\{a\to B, B\to C, C\to A\right\}$.
+
+
+:::
+
+:::
+
+
+### Exercice
+
+Soit $\mathcal{A}=\left\{A,B,C,D,E\right\}$ un schéma et soit la décomposition $\left\{\mathcal{A}_1,\mathcal{A}_2,\mathcal{A}_3\right\}$ où
+$$\mathcal{A}_1=\left\{A,B,C\right\}\quad \mathcal{A}_2=\left\{B,C,D\right\}\quad \mathcal{A}_3=\left\{A,C,E\right\}$$
+Pour chaque ensemble $\Sigma$ de dépendances fonctionnelles ci-dessous, déterminer quelles dépendances
+sont préservées par cette décomposition, c'est-à-dire quelles DF de $\Sigma$ sont impliquées par
+$\bigcup_{i=1}^3 \pi_{\mathcal{A}_i}(\Sigma)$.
+
+
+- $\Sigma=\left\{b\rightarrow E, CE\rightarrow A\right\}$
+- $\Sigma=\left\{aC\rightarrow E, BC\to D\right\}$
+- $\Sigma=\left\{a\rightarrow D, D\to E, B\to D\right\}$
+- $\Sigma=\left\{a\rightarrow D, CD\to E, E\to D\right\}$
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+La DF $X\to Y$ est préservée si et seulement la fermeture de $X$ par rapport aux DF locales
+$\bigcup_{i=1}^3 \pi_{\mathcal{A}_i}(\Sigma)$ contient $Y$.
+Pour calculer la fermeture de $X$ par rapport aux DF locales
+$\bigcup_{i=1}^3 \pi_{\mathcal{A}_i}(\Sigma)$ on peut utiliser l'algorithme suivant~:
+
+
+- Initialisation $Z \leftarrow X$
+- Tant que $Z$ grandit : pour $i=1,2,3$, $Z \leftarrow Z \cup\bigl( (Z\cap \mathcal{A}_i)^+_\Sigma\cap \mathcal{A}_i\bigr)$
+  
+L'ensemble $Z$ obtenu est la fermeture recherchée
+
+L'intérêt de cet algorithme est qu'on ne calcule pas toutes les DF locales.
+Si au cours du calcul on obtient que $Y\subset Z$, on peut conclure immédiatement que $X\to Y$ est préservée.
+
+
+
+- $\Sigma=\left\{B\rightarrow E, CE\rightarrow A\right\}$
+  + $CE\to A$ est préservée puisqu'elle est locale à $\mathcal{A}_3$.
+  + $B\to E$ n'est pas préservée puisque  
+$(B\cap\mathcal{A}_1)^+\cap\mathcal{A}_1=B^+\cap\mathcal{A}_1=BE\cap\mathcal{A}_1=B$  
+$(B\cap\mathcal{A}_2)^+\cap\mathcal{A}_2=B^+\cap\mathcal{A}_2=BE\cap\mathcal{A}_2=B$  
+$(B\cap\mathcal{A}_3)^+\cap\mathcal{A}_3=\emptyset$
+
+- $\Sigma=\left\{AC\rightarrow E, BC\to D\right\}$ est préservé puisqu'il ne contient que des DF locales.
+- $\Sigma=\left\{A\rightarrow D, D\to E, B\to D\right\}$  
+$B\to D$ est préservée
+- $\Sigma=\left\{A\rightarrow D, CD\to E, E\to D\right\}$  
+Aucune DF n'est préservée
+
+
+:::
+
+:::
+
+
+
+
+### Exercice
+
+On considère le schéma de relation suivant concernant la gestion de rendez-vous d'un service d'intervention hospitaliers.
+$$
+\mathcal{A}=\left\{\texttt{IdM,NomM,PrenomM,DateRV,HeureRV,IdP,NomP,PrenomP,IdInterV}\right\}
+$$
+
+
+
+Chaque rendez-vous implique un médecin et  un patient. Chaque médecin est identifié par un numéro, `IdM`, un nom `NomM` et un prénom `PrenomM`. Le rendez-vous est à une date, `DateRV`, et à une heure,  `HeureRV` données. Chaque patient  est identifié par un numéro, `IdP`, un nom `NomP` et un prénom `PrenomP`. Chaque rv est programmé pour un type d'intervention médical, `IdInterV`. On suppose que chaque jour, un médecin ne peut pratiquer qu'un seul type d'intervention médicale (consultation, type de chirurgie donnée).
+
+On a les dépendances fonctionnelles $\Sigma$ suivantes:
+
+```
+IdM, DateRV,HeureRV, IdInterV → IdP
+IdM, DateRV →  IdInterV
+IdM → NomM, PrenomM
+IdP → NomP, PrenomP
+IdP,DateRV,HeureRV → IdInterV
+IdP,DateRV,HeureRV →  IdM,NomM
+```	
+
+
+
+- Quels sont les inconvénients d'une telle modélisation par une seule table en terme d'anomalies d'insertion ou de suppression ?
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+A chaque nouveau rv inséré dans $R$, il faut rappeler les noms, prénoms des médecins et patients. Ce qui peut se traduire par des incohérences si cela n'est pas respecté. En cas de suppression d'un groupe de rv, on peut faire disparaitre l'ensemble des informations concernant un patient ou un médecin.
+
+:::
+
+:::
+
+
+- Calculer $[\texttt{IdM}]^+_{\Sigma}$
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+$[IdM]^+_{\Sigma}= \{  \texttt{IdM, NomM, PrenomM}\}$
+:::
+
+:::
+
+
+- Proposez un ensemble d'attributs formant une clé de la relation.
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+Il y a plusieurs clés possibles. Par exemple, `{IdM, DateRV, HeureRV}` mais aussi  `{IdP, DateRV, HeureRV}`.
+
+:::
+
+:::
+
+- Donner un ensemble de dépendances fonctionnelles $\Sigma'$ équivalent à $\Sigma$ qui soit minimal (i.e. sans règles redondantes, notamment). Justifiez
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+```
+IdM, DateRV, HeureRV → IdP
+IdP, DateRV, HeureRV → IdM
+IdM, DateRV → IdInterV
+IdM → NomM
+IdM → PrenomM
+IdP → NomP
+IdP → PrenomP
+```
+
+<!-- `IdP,DateRV,HeureRV → IdInterV` se déduit de -->
+<!--  IdP, DateRV, HeureRV → IdM` et `IdM, DateRV → IdInterV`-->
+
+
+:::
+
+:::
+
+On se donne la décomposition de $\mathcal{A}$ suivante~:
+$$
+\begin{array}{l}
+	\mathcal{A}_1=\left\{\texttt{IdM,HeureRV,DateRV,IdP,NomP,PrenomP}\right\},\\
+	 \mathcal{A}_2=\left\{\texttt{IdM,DateRV,IdInterV}\right\},\\ 
+	 \mathcal{A}_3=\left\{\texttt{IdM,NomM,PrenomM}\right\}
+\end{array}
+$$
+
+- Toutes les dépendances fonctionnelles sont-elles préservées par cette décomposition ?
+
+- Est-elle sans perte d'information ?
+
+- Pour $i=1,2,3$, déterminer si $\mathcal{A}_i$ est en forme normale de Boyce-Codd.
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+*Préservation des DF*
+
+Les dépendances de  Σ' sont locales aux $\mathcal{A}_i$, elles sont 
+donc préservées. 
+
+
+<!-- (b), (c), (d) sont préservées puisque locales.
+
+Est-ce que (e) est préservée~? 
+
+Initialisation $Z:=\left\{idP,DateRV,HeureRV\right\}$\\
+$(Z\cap\mathcal{A}_1)^+\cap\mathcal{A}_1=\left\{idP,DateRV,HeureRV\right\}^+\cap\mathcal{A}_1=\mathcal{A}\cap\mathcal{A}_1=\mathcal{A}_1$, donc $Z:=\mathcal{A}_1$.\\
+$(Z\cap\mathcal{A}_2)^+\cap\mathcal{A}_2=\left\{idM,DateRV\right\}^+\cap\mathcal{A}_2=\mathcal{A}_2$ qui contient $IdInterV$.
+On conclut que (e) est préservée.\\
+
+Est-ce que (f) est préservée~? 
+
+Initialisation $Z:=\left\{idP,DateRV,HeureRV\right\}$\\
+$(Z\cap\mathcal{A}_1)^+\cap\mathcal{A}_1=\left\{idP,DateRV,HeureRV\right\}^+\cap\mathcal{A}_1=\mathcal{A}\cap\mathcal{A}_1=\mathcal{A}_1$, donc $Z:=\mathcal{A}_1$.\\
+$(Z\cap\mathcal{A}_3)^+\cap\mathcal{A}_3=\left\{idM\right\}^+\cap\mathcal{A}_3=\mathcal{A}_3$, donc $Z=\mathcal{A}_1\cup\mathcal{A}_3$ qui contient $\left\{idM,NomM\right\}$.
+Donc (f) est préservée.\\
+
+Est-ce que (a) est préservée~?\\
+
+Initialisation $Z:=\left\{idM,DateRV,HeureRV, IdInterV\right\}$\\
+$(Z\cap \mathcal{A}_1)^+\cap\mathcal{A}_1=\left\{idM,DateRV,HeureRV\right\}^+\cap\mathcal{A}_1=\mathcal{A}_1$\\ donc
+$Z:=\left\{idM,DateRV,HeureRV, IdInterV, IdP, NomP, PrenomP\right\}$\\
+$Z$ contient $IdP$ donc (a) est préservée.\\ -->
+
+*Décomposition SPI ?*
+
+Oui, en utilisant seulement (b) et (c) dans l'algorithme de poursuite\\
+
+*$\mathcal{A}_i$ est en FNBC~?*\\
+
+Rappelons que, par définition, $\mathcal{A}_i$ est en FNBC si et seulement pour toute DF $X\to Y$ dans un ensemble équivalent à $\pi_{\mathcal{A}_i}(\Sigma)$, soit $Y\subset X$ (DF triviale) soit $Y$ est une super-clef pour $\mathcal{A}_i$ relativement à $\pi_{\mathcal{A}_i}(\Sigma)$. 
+
+Donc $\mathcal{A}_i$ est en FNBC si et seulement si pour tout $X\subset \mathcal{A}_i$, pour la DF locale
+$X\to (X\cap\mathcal{A}_i)^+\cap \mathcal{A}_i$ on a $(X\cap\mathcal{A}_i)^+\cap \mathcal{A}_i = X$ (DF triviale) ou $(X\cap\mathcal{A}_i)^+\cap \mathcal{A}_i=\mathcal{A}_i$
+ (càd $X$ est une super-clef pour $\mathcal{A}_i$).
+
+De plus, on n'a pas besoin d'examiner les cas $X=\emptyset$ ou $X=\mathcal{A}_i$ ou $cardinal(X)=cardinal(\mathcal{A}_i)-1$
+(dans le dernier cas $(X\cap\mathcal{A}_i)^+\cap \mathcal{A}_i=X$ ou $(X\cap\mathcal{A}_i)^+\cap \mathcal{A}_i=\mathcal{A}_i$)
+
+
+*$\mathcal{A}_1$ n'est pas en FNBC* car `IdP → NomP, PrenomP` est locale à $\mathcal{A}_1$ et `IdP` n'est pas une super-clef de $\mathcal{A}_1$.
+
+*$\mathcal{A}_2$ est en FNBC* car:
+
+
+- `IdM^+ ∩ \mathcal{A}_2 = {idM, NomM, PrenomM} ∩ \mathcal{A}_2 =IdM` 
+- $DateRV^+\cap\mathcal{A}_2=\left\{dateRV\right\}\cap\mathcal{A}_2=DateRV$
+- $IdInterV^+\cap\mathcal{A}_2=\left\{idInterV\right\}\cap\mathcal{A}_2=IdInterV$\\
+
+*$\mathcal{A}_3$ est en FNBC* car :
+
+- $IdM^+\cap\mathcal{A}_3=\left\{idM,NomM,PrenomM\right\}\cap\mathcal{A}_3=\mathcal{A}_3$\\
+- $NomM^+\cap\mathcal{A}_3=\left\{nomM\right\}\cap\mathcal{A}_3=NomM$\\
+- $PrenomM^+\cap\mathcal{A}_3=\left\{prenomM\right\}\cap\mathcal{A}_3=PrenomM$
+
+:::
+
+:::
+
+
+- Mêmes questions pour la décomposition :
+
+$$
+\begin{array}{rl}
+\mathcal{A}_1 &=\left\{\texttt{IdM,HeureRV,DateRV,IdP}\right\}\\
+\mathcal{A}_2 &=\left\{\texttt{IdP,NomP,PrenomP}\right\}, \\
+\mathcal{A}_3 &=\left\{\texttt{IdM,DateRV,IdInterV}\right\},\\
+\mathcal{A}_4 &=\left\{\texttt{IdM,NomM,PrenomM}\right\}
+\end{array}
+$$
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+La décomposition est SPI.
+$$
+\begin{array}{|c|c|c|c|c|c|c|c|c|c|}
+\hline  & IdM & NomM & PrenomM & DateRV & HeureRV & IdP & NomP & PrenomP & IdInterV \\\hline
+\hline \mathcal{A}_1  & a & b_1 &  c_1& d & e & f & g_1 & h_1 & i_1 \\
+\hline  \mathcal{A}_2 & a_2 & b_2 & c_2 & d_2 & e_2 & f & g & h & i_2 \\
+\hline \mathcal{A}_3 & a & b_3 & c_3 & d & e_3 & f_3 & g_3 & h_3 & i \\
+\hline \mathcal{A}_4 & a & b & c & d_4 & e_4 & f_4 & g_4 & h_4 & i_4\\
+\hline
+\end{array}
+$$
+(c) donne $b_1=b$ et $c_1=c$. (d) donne $g_1=g$ et $h_1=h$. (b) donne $i_1=i$.
+La première ligne est $(a,b,\dots,i)$.\\
+\textit{Préservation des DF}\\
+(b), (c), (d) sont préservées puisque locales.\\
+Est-ce que (e) est préservée~? Initialisation $Z:=\left\{idP,DateRV,HeureRV\right\}$\\
+$(Z\cap\mathcal{A}_1)^+\cap\mathcal{A}_1=\left\{idP,DateRV,HeureRV\right\}^+\cap\mathcal{A}_1=\mathcal{A}\cap\mathcal{A}_1=\mathcal{A}_1$, donc $Z:=\mathcal{A}_1$.\\
+$(Z\cap\mathcal{A}_3)^+\cap\mathcal{A}_3=\left\{idM,DateRV\right\}^+\cap\mathcal{A}_3=\mathcal{A}_3$ qui contient $IdInterV$.
+On conclut que (e) est préservée.\\
+(f) est préservée car (f) est impliquée par $IdP,DateRV,HeureRV\to IdM$ (locale à $\mathcal{A}_1$) et (c).
+Est-ce que (a) est préservée~? Initialisation $Z:=\left\{idM,DateRV,HeureRV,IdInterV\right\}$\\
+$(Z\cap\mathcal{A}_1)^+\cap\mathcal{A}_1=\left\{idM,DateRV,HeureRV\right\}^+\cap\mathcal{A}_1=ALL\cap\mathcal{A}_1=\mathcal{A}_1$ qui contient $IdP$.
+Donc (a) est préservée.\\
+\textit{Montrons que tous les $\mathcal{A}_i$ sont en FNBC.}\\
+\textit{$\mathcal{A}_1$ est en FNBC} car\\
+$IdM^+\cap\mathcal{A}_1=IdM$, $HeureRV^+\cap\mathcal{A}_1=HeureRV$, $DateRV^+\cap\mathcal{A}_1=DateRV$, $IdP^+\cap\mathcal{A}_1=IdP$\\
+$\left\{idM,HeureRV\right\}^+\cap\mathcal{A}_1=\left\{idM,HeureRV\right\}$, $\left\{idM,DateRV\right\}^+\cap\mathcal{A}_1=\left\{idM,DateRV\right\}$,
+$\left\{idM,IdP\right\}^+\cap\mathcal{A}_1=\left\{idM,IdP\right\}$, $\left\{heureRV,DateRV\right\}^+\cap\mathcal{A}_1=\left\{heureRV,DateRV\right\}$, $\left\{heureRV,IdP\right\}^+\cap\mathcal{A}_1=\left\{heureRV,IdP\right\}$, $\left\{dateRV, IdP\right\}^+\cap\mathcal{A}_1=\left\{dateRV, IdP\right\}$\\
+\textit{$\mathcal{A}_2$ est en FNBC} car\\
+$IdP^+\cap\mathcal{A}_2=\mathcal{A}_2$, $NomP^+\cap\mathcal{A}_2=NomP$, $PrenomP^+\cap\mathcal{A}_2=PrenomP$\\
+\textit{$\mathcal{A}_3$ est en FNBC} car\\
+$IdM^+\cap\mathcal{A}_3=IdM$, $DateRV^+\cap\mathcal{A}_3=DateRV$, $IdInterV^+\cap\mathcal{A}_3=IdInterV$\\
+\textit{$\mathcal{A}_4$ est en FNBC} car\\
+$IdM^+\cap\mathcal{A}_4=\mathcal{A}_4$, $NomM^+\cap\mathcal{A}_4=NomM$, $PrenomM^+\cap\mathcal{A}_4=PrenomM$
+
+:::
+
+:::
+
+
+### Exercice
+
+Soit une relation concernant des personnes résidant en France avec les attributs suivants:
+```
+Nom, Numéro de sécurité sociale, Commune, Département, Code postal, Numéro de téléphone
+```
+avec l'ensemble $\Sigma$ de DF suivantes~:
+
+```
+Numéro de sécurité sociale → Nom, Commune, Département, Code postal, Numéro de téléphone 
+Commune → Département 
+Code postal → Commune, Département
+```
+
+- Ce schéma est-il en forme normale de Boyce-Codd ?
+
+Soit la décomposition
+$$\mathcal{A}_1=\left\{\texttt{Code postal}, \texttt{Commune}, \texttt{Département}\right\}$$
+et
+$$\mathcal{A}_2=\left\{\texttt{Numéro de sécurité sociale}, \texttt{Nom}, \texttt{Code postal},\texttt{Numéro de téléphone}\right\}$$
+
+- Chaque $\mathcal{A}_i$ est-elle en forme normale de Boyce-Codd ?
+- Cette décomposition préserve-t-elle les dépendances fonctionnelles ?
+- Cette décomposition est-elle sans perte d'information ?
+
+- Mêmes questions pour la décomposition
+$$\mathcal{A}_1=\left\{\texttt{Commune}, \texttt{Département}\right\}$$
+
+$$\mathcal{A}_2=\left\{\texttt{Numéro de sécurité sociale}, \texttt{Nom}, \texttt{Commune}, \texttt{Code postal},\texttt{Numéro de téléphone}\right\}$$
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+
+
+- Non, car on a $\texttt{Commune} \to \texttt{Département}$ et $\texttt{Commune}$ n'est pas une clef.
+- $\mathcal{A}_1$ n'est pas en FNBC car $\texttt{Commune} \to \texttt{Département}$ est locale à $\mathcal{A}_1$ et $\texttt{Commune}$ n'est pas une clef de $\mathcal{A}_1$.\\
+$\mathcal{A}_2$ est en FNBC puisque $\pi_{\mathcal{A}_2}(\Sigma)$ est équivalent à\\
+$\left\{\texttt{Numéro de sécurité sociale}\to \texttt{Nom, Code postal, Numéro de téléphone }\right\}$\\
+Les DF sont préservées car $\Sigma$ est équivalent à\\
+$$\{\texttt{Numéro de sécurité sociale}\to \texttt{Nom, Code postal, Numéro de téléphone }\};$$
+$$\texttt{Commune}\to\texttt{Département} ;\texttt{Code postal}\to\{\texttt{Commune, Département}\}$$
+qui ne contient que des DF locales.\\
+La décomposition est SPI.
+- $\mathcal{A}_1$ est en FNBC car $\mathcal{A}_2$ est de cardinal 2.\\
+$\mathcal{A}_2$ n'est pas en FNBC car $\texttt{CodePostal} \to \texttt{Département}, \texttt{Commune}$ est locale et $\texttt{CodePostal}$ n'est pas une clé de $\mathcal{A}_2$\\
+La décomposition est SPI et préserve les DF.
+
+
+:::
+
+:::
+
+
+
+### Exercice
+
+Soit un schéma d'attributs $A_1, A_2,\dots A_n$ et un ensemble de dépendances fonctionnelles.
+Calculer le nombre de super-clefs (en fonction de $n$) dans les cas suivants~:
+
+
+- La seule clef est $\left\{A_1\right\}$.
+- Les seules clefs sont $\left\{A_1\right\}$ et $\left\{A_2\right\}$.
+- Les seules clefs sont $\left\{A_1,A_2\right\}$ et $\left\{A_3,A_4\right\}$.
+- Les seules clefs sont $\left\{A_1,A_2\right\}$ et $\left\{A_1,A_3\right\}$.
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+
+
+- $2^{n-1}$
+- $2^{n-2} + 2^{n-2} + 2^{n-2}$
+- $2^{n-4}Titremes 3Titremes 2 + 2^{n-4}$
+- $3Titremes 2^{n-3}$
+
+:::
+
+:::
+
+
+
+
+### Exercice
+
+Soit le schéma $\mathcal{A}=\{A,B,C,D\}$ et l'ensemble de dépendances fonctionnelles
+$$\Sigma = \{ A \to B, B \to C\} $$
+
+
+
+- Quelle est la fermeture $\{A\}^+$ de $\{A\}$ ?
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+Initialisation :  $X  =\{A\}$
+
+Etape 1 : Il existe une DF dont la partie gauche est incluse dans $ X$ : $A \to B$.  On rajoute les attributs en partie droite.
+
+D'où $X  = \{A, B\}$
+
+Etape 2: Il existe une DF dont la partie gauche est incluse dans  $ X$ : $B \to C$.  On rajoute les attributs en partie droite.
+
+D'où $X  = \{A,B,C\}$.
+
+C'est fini, plus de DF à utiliser. Conclusion $\left\{A\right\}^+=\left\{A,B,C\right\}$
+:::
+
+:::
+
+
+-  Quelles sont les super-clés ? Les clés ?
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+Une clef doit contenir $\left\{A,D\right\}$ puis ces deux attributs ne sont à droite d'aucune DF de $\Sigma$.
+De plus $\left\{A,D\right\}^+=\left\{A,B,C,D\right\}$.
+La seule clef est donc $\{A,D\}$.
+
+:::
+
+:::
+
+
+
+### Exercice
+
+Soit le schéma $\mathcal{A}=\{A,B,C,D,E,F\}$ et l'ensemble de dépendances fonctionnelles
+$$\Sigma = \Bigl\{ \left\{A,B\right\}\to C, \left\{B,C\right\}\to \left\{A,D\right\}, D\to E, \left\{C,F\right\}\to B \Bigr\}$$
+
+
+- Calculer la fermeture $\left\{A,B\right\}^+$ de $\left\{A,B\right\}$.
+- Est-ce que $\Sigma$ implique la dépendance fonctionnelle $\left\{A,B\right\}\to D$~?
+- Est-ce que $\Sigma$ implique la dépendance fonctionnelle $D\to A$~?
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+
+
+- On obtient $\left\{A,B\right\}^+=\left\{A,B,C,D,E\right\}$.
+- Oui car $D\in\left\{A,B\right\}^+$
+- Non car $\left\{D\right\}^+=\left\{D,E\right\}$ ne contient pas $A$.
+
+:::
+
+:::
+
+
+
+
+
+
+
+
+
+<!-- %\iffalse
+%\subsection{Exercice 5 : Normalisation avancée}
+%
+%Nous voulons mettre en forme la base de données \lstinline|UFR| dont le schéma est :
+%\begin{verbatim}
+%UFR(NoTD, Salle, Jour, Heure,
+%    NoEnseignant, Nom_Enseignant, Prenom_Enseignant,
+%    COD_MOD, Diplome, Matiere, NoEtudiant,
+%    Nom_Etudiant, PreNom_Etudiant, Adresse, Date_Inscription)
+%\end{verbatim}
+%
+%Sachant que :
+%\begin{itemize}
+%	- Un code module (\lstinline|COD_MOD|) précise à la fois un diplôme et une matière.
+%	- Les TD sont annuels et il y a un et un seul TD par semaine dans chaque module.
+%	- Un TD est assuré par un seul enseignant.
+%	- Un numéro de TD est relatif à un module.
+%	- Un enseignant peut assurer plusieurs TD.
+%	- Un étudiant peut être inscrit dans plusieurs modules, mais dans un seul TD par module.
+%	- \lstinline|Date_Inscription| est la date d'inscription d'un étudiant à un module.
+%\end{itemize}
+%
+%Les dépendances fonctionnelles associées à ce schéma sont :
+%
+
+%	- \lstinline|NoEtudiant| $\rightarrow$ \lstinline|Nom_Etudiant, PreNom_Etudiant, Adresse|
+%	- \lstinline|NoEnseignant|$\rightarrow$\lstinline|Nom_Enseignant, Prenom_Enseignant|
+%	- \lstinline|COD_MOD| $\rightarrow$\lstinline|Diplome,Matiere|
+%	- \lstinline|Diplome, matiere| $\rightarrow$\lstinline|COD_MOD|
+%	- \lstinline|Salle, Jour, Heure| $\rightarrow$\lstinline|NoTD, COD_MOD|
+%	- \lstinline|COD_MOD,NoTD|$\rightarrow$\lstinline|Salle, Jour, Heure, NoEnseignant|
+%	- \lstinline|COD_MOD,NoEtudiant|$\rightarrow$\lstinline|NoTD, Date_Inscription|
+%	- \lstinline|NoEnseignant, Jour, Heure|$\rightarrow$\lstinline|Salle|
+%	- \lstinline|NoEtudiant, Jour, Heure|$\rightarrow$\lstinline|Salle|
+%	- \lstinline|Salle, Jour, Heure| $\rightarrow$ \lstinline|NoEnseignant|
+%	- \lstinline|NoEnseignant, COD_MOD, NoTD|$\rightarrow$\lstinline|Salle, Jour, Heure|
+%
+%
+%
+
+%	- Ce schéma a plusieurs anomalies. Donnez des exemples de redondances et de valeurs qui doivent être \lstinline|NULL| à certains endroits.
+%	- L'ensemble des dépendances est long. Peut-être trop ?
+%	\begin{parts}
+%		Paysrt Calculer les clôtures transitives de \lstinline|NoEnseignant| et du triplet \lstinline|Diplome, NoEtudiant, matiere|.
+%		::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+%				\lstinline|[NoEnseignant]|$_+ = \{\, $\lstinline|NoEnseignant,Nom_Enseignant, Prenom_Enseignant|$\,\}$
+%
+%				\lstinline|[Diplome, NoEtudiant, matiere]|$_+ = \{\, $\lstinline|Diplome, NoEtudiant, matiere,COD_MOD,NoTD,| \\
+%				\lstinline|Date_Inscription,Nom_Etudiant, PreNom_Etudiant,adresse|$\,\}$
+%		:::
+%		Paysrt Les dépendances
+%		\begin{itemize}
+%			- \lstinline|Salle, Jour, Heure| $\rightarrow$ \lstinline|NoEnseignant|,
+%			- \lstinline|NoEnseignant, COD_MOD, NoTD|$\rightarrow$\lstinline|Salle, Jour, Heure|
+%			- \lstinline|COD_MOD,NoTD|$\rightarrow$\lstinline|Salle|
+%		\end{itemize}	sont-elles redondantes ? En déduire un ensemble minimal de dépendances fonctionnelles.
+%		::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+%	 	Les deux premières sont redondantes. La première est déductible de la $(e)$ et $(f)$. La deuxième de la $(f)$.	Il suffit de les enlever pour trouver un ensemble minimal.
+%		:::
+%		Paysrt Donnez au moins trois clefs différentes de cette relation.
+%		::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+%			\begin{verbatim}
+%				(NoEtudiant,COD_MOD)
+%				(NoEtudiant,Diplome,Matiere)
+%				(NoEtudiant,Jour,Heure)
+%			\end{verbatim}
+%		:::
+%	\end{parts}
+%
+%%	\newpage
+%	On veut maintenant couper le schéma pour éviter ces anomalies. On veut que cette découpe vérifie les conditions suivantes :
+%	
+[(i)]
+%		- Qu'elle se fasse sans pertes d'informations.
+%		- Qu'elle préserve les dépendances fonctionnelles.
+%		- Qu'elle n'ait plus besoin de \lstinline|NULL|.
+%		- Qu'elle minimise les redondances.
+%		- Et idéalement qu'elle respecte l'une des formes normales.
+%	
+%
+%	-
+%	Donnez des clefs pour ces relations. Dites lesquelles des 5 conditions la décomposition suivante respecte. Dessinez les pattes de corbeaux associées.
+%	\begin{verbatim}
+%		TD(NoTD, COD_MOD, Jour, Heure, Salle, No_Enseignant,
+%		   Nom_Enseignant, Prenom_Enseignant)
+%
+%		INSCRIPTION(NoEtudiant, Nom_Etudiant, PreNom_Etudiant, Adresse,
+%		            COD_MOD, Diplome, Matiere, Date_Inscription, NoTD)
+%	\end{verbatim}
+%	::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+%		Une clef de \lstinline|TD| est \lstinline|(COD_MOD, NoTD)|. Une de \lstinline|Inscription| est \lstinline|(NoEtudiant,COD_MOD)|
+%		
+
+%			- Sans perte d'information : oui, cf. algo
+%			- Préserve les DF : non. La dépendance $(i)$, \lstinline|NoEtudiant, Jour, Heure| $\rightarrow$ \lstinline|Salle| n'est pas conservée. Les dépendances fonctionnelles dont tous les arguments sont dans une même table sont conservées. Les autres doivent pouvoir se déduire de celles conservées.
+%			- Non. si on veut parler d'un enseignant qui n'a pas de cours par exemple
+%			- Non :  pour chaque module d'un étudiant on doit répéter l'adresse de l'étudiant.
+%			- 1er FN oui. Pas en FN 2 (\lstinline|TD| oui mais \lstinline|INSCRIPTION| non car \lstinline|Diplome, Matiere| ne font pas partie d'une clef mais dépendent de \lstinline|COD_MOD|, qui est une partie stricte d'une clef). Pas en FN 3 (\lstinline|COD_MOD| $\rightarrow$ \lstinline|Diplome, matiere| la partie gauche ne contient pas de clef, et la partie droite n'est pas contenue dans une clef.)
+%		
+%	:::
+%	-
+%	Donnez des clefs pour ces relations. Dites lesquelles des 5 conditions la décomposition suivante respecte. Dessinez les pattes de corbeaux associées.
+%	\begin{verbatim}
+%		ENSEIGNEMENT(NoTD, COD_MOD, Jour, Heure, Salle,
+%		             No_Enseignant, Nom_Enseignant, Prenom_Enseignant)
+%		ETUDIANT(NoEtudiant, Nom_Etudiant, PreNom_Etudiant, Adresse)
+%		INSCRIPTION(NoEtudiant, COD_MOD, Date_Inscription, NoTD)
+%		MODULE(COD_MOD, Diplome, Matiere)
+%	\end{verbatim}
+%	::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+%
+%		
+
+%			- Sans perte d'information : oui, cf. algo
+%			- Préserve les DF : non.
+%			- Non. si on veut parler d'un enseignant qui n'a pas de cours par exemple
+%			- Non :  pour chaque module on doit répéter le nom et le prénom d'un enseignant.
+%			- 1er FN oui. Pas en FN 2 Pas en FN 3
+%		
+%	:::
+%	-
+%	Donnez des clefs pour ces relations. Dites lesquelles des  5 conditions la décomposition suivante respecte. Dessinez les pattes de corbeaux associées.
+%	\begin{verbatim}
+%		ENSEIGNEMENT_PLANNING(NoEnseignant, Nom_Enseignant,
+%		            Prenom_Enseignant, Jour, Heure, NoTD, COD_MOD)
+%
+%		ENSEIGNEMENT_SALLE(NoEnseignant, Jour, Heure, Salle)
+%
+%		ETUDIANT_INSCRIPTION(NoEtudiant, Nom_Etudiant, PreNom_Etudiant,
+%		            Adresse, NoTD, COD_MOD, Date_Inscription, Diplome, Matiere)
+%
+%		Etudiant_Planning(NoEtudiant, Jour, Heure, COD_MOD)
+%	\end{verbatim}
+%
+%	- Proposez une décomposition qui satisfait les 5 conditions. Donnez les clefs et les pattes de corbeaux.
+%
+%\fi
+ -->
+
+### Exercice
+
+On considère une schéma $\mathcal{A}$ avec les attributs
+```
+Propriétaire, Occupant, Adresse, Noapt, Nbpièces, Nbpersonnes
+```
+Un nuplet/tuple  `(p, o, a, n, nb1, nb2)` ayant la signification suivante : La personne `o` habite avec `nb2` personnes l'appartement de numéro `n` ayant `nb1` pièces dont le propriétaire est `p`.
+
+Une analyse de cette relation nous fournit un ensemble initial $\Sigma$ de dépendances fonctionnelles 
+
+```
+Occupant → Adresse
+Occupant → Noapt
+Occupant → Nbpersonnes
+Adresse, Noapt → Proprietaire
+Adresse, Noapt → Occupant
+Adresse, Noapt → Nbpieces
+```
+
+- Déterminer les clés du schémas
+- Les schéma est-il en FN3 ?
+- Si la réponse est Non, décomposer sans perte d'information et sans perte de dépendances fonctionnelles.
+
+
+### Exercice
+
+
+
+<!-- \newcommand{IdLivre}{\mathsf{IdLivre}}
+\newcommand{Titre}{\mathsf{Titre}}
+\newcommand{IdTraducteur}{\mathsf{IdTraducteur}}
+\newcommand{Langue}{\mathsf{Langue}}
+\newcommand{Pays}{\mathsf{Pays}}
+\newcommand{Nom}{\mathsf{Nom}}
+\newcommand{Date}{\mathsf{Date}} -->
+
+
+Soit le schéma
+$$\mathcal{A}=\{\texttt{IdLivre, Titre, Langue, Pays, IdTraducteur, Nom, Date}\}$$
+et l'ensemble de DF
+
+```
+IdLivre → Titre 
+Langue → Pays 
+IdTraducteur → Nom 
+IdLivre, IdTraducteur, Langue → Date
+IdLivre, IdTraducteur → Langue
+```
+Appliquer l'algorithme de décomposition vu en cours pour obtenir une décomposition de $\mathcal{A}$
+qui respecte la FNBC et est sans perte d'information. Déterminer quelles DF sont préservées.
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+$\texttt{IdLivre}^+=\texttt{IdLivre, Titre}$
+$$ \mathcal{A}_1=\texttt{IdLivre,Titre} \quad \mathcal{A}_2=\texttt{IdLivre, Langue, Pays, IdTraducteur, Nom, Date}$$
+$\texttt{Langue}^+= \texttt{Langue, Pays}$
+$$ \mathcal{A}_{2,1}=\texttt{Langue, Pays} \quad \mathcal{A}_{2,2}=\texttt{IdLivre, Langue, IdTraducteur, Nom, Date} $$
+$\texttt{IdTraducteur}^+=\texttt{IdTraducteur, Nom}$
+$$ \mathcal{A}_{221}=\texttt{IdTraducteur, Nom} \quad \mathcal{A}_{222}=\texttt{IdLivre,Langue, IdTraducteur, Date}$$
+La décomposition FNBC obtenue est
+$$ \{\texttt{IdLivre,Titre} \}\quad \{\texttt{Langue, Pays}\} \quad \{\texttt{IdTraducteur, Nom}\} \quad \{\texttt{IdLivre,Langue, IdTraducteur, Date}\}$$
+qui préserve toutes les DF.
+
+:::
+
+:::
+
+
+### Exercice 
+
+Soit le schéma
+$$\mathcal{A}=\left\{\texttt{A,B,C,D,E,F,G,H}\right\}$$
+et l'ensemble de DF
+```
+BE → AC  
+B → H  
+F → CD  
+D → G
+```
+
+
+- Appliquer l'algorithme de décomposition vu en cours pour obtenir une décomposition de $\mathcal{A}$
+qui respecte la FNBC et est sans perte d'information. Déterminer quelles DF sont préservées.
+- Peut-on, en ajoutant un sous-schéma à la décomposition, obtenir une décomposition FNBC sans perte d'information et sans perte de DF ?
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+Rappelons l'algorithme pour décomposer un schéma $\mathcal{A}$~:
+
+- On considère la décomposition initiale $\rho=\{\mathcal{A}\}$.
+- Tant qu'il existe un sous-schéma $\mathcal{B}\in\rho$ et $X\subset \mathcal{B}$ tels que
+$X^+\cap\mathcal{B}\not=X$ et $X^+\cap\mathcal{B}\not=\mathcal{B}$ (ce qui signifie que la DF locale $X\to X^+\cap\mathcal{B}$ est une violation de FNBC pour $\mathcal{B}$), on remplace $\mathcal{B}$ par les deux sous-schémas
+$$\mathcal{B}_1=X^+\cap\mathcal{B} \text{ et } \mathcal{B}_2=(\mathcal{B}\setminus X^+)\cup X$$
+De plus il n'y a pas besoin de considérer les parties $X\subset\mathcal{B}$ telles que $card(X)=card(\mathcal{B})-1$
+puisque dans ce cas on $X^+\cap \mathcal{B}=X$ ou $X^+\cap\mathcal{B}=\mathcal{B}$.
+
+Il est garanti que la décomposition finale est en FNBC et SPI. Par contre toutes les DF ne sont pas préservées en général. De plus on obtient, en général, des décompositions différentes si on change les DF (violant FNBC) utilisées.
+}
+- $BE^+=BEACH$ donc on remplace $\mathcal{A}$ par
+$$ \mathcal{A}_1=BEACH \quad \mathcal{A}_2=BDEFG$$
+$B^+=BH$ donc on remplace $\mathcal{A}_1$ par
+$$\mathcal{A}_{11}=BH \quad \mathcal{A}_{12}=BEAC$$
+$\mathcal{A}_{11}$ est en FNBC car de cardinal 2. $\mathcal{A}_{12}$ est en FNBC car
+$$B^+\cap\mathcal{A}_{12}=B, E^+\cap\mathcal{A}_{12}=E, A^+\cap\mathcal{A}_{12}=A, C^+\cap\mathcal{A}_{12}=C $$
+$$BE^+\cap\mathcal{A}_{12}=BEAC, BA^+\cap\mathcal{A}_{12}=BA, BC^+\cap\mathcal{A}_{12}=BC, EA^+\cap\mathcal{A}_{12}=EA, EC^+\cap\mathcal{A}_{12}=EC$$
+$$ AC^+\cap\mathcal{A}_{12}=AC$$
+$D^+=DG$ donc on remplace $\mathcal{A}_2$ par
+$$\mathcal{A}_{21}=DG \quad \mathcal{A}_{22}=BDEF$$
+$\mathcal{A}_{21}$ est en FNBC car de cardinal 2.
+$F^+=CD$ donc on remplace $\mathcal{A}_{22}$ par
+$$\mathcal{A}_{221}=FD \quad \mathcal{A}_{222}=BEF$$
+qui sont tous deux en FNBC
+
+Décomposition obtenue~:
+```
+BH  BEAC  DG  FD  BEF
+```
+
+La seule DF qui n'est pas préservée est $F\to C$.
+Toutes les variantes (en changeant les DF utilisées) que j'ai testées,
+donne une décomposition qui ne préserve pas toutes les DF. Bien sûr ce n'est pas une preuve que l'algorithme ne peut pas donner une décomposition sans perte de DF.
+- En ajoutant $FC$ à la décomposition précédente, on obtient
+```
+BH   BEAC   DG   FD   BEF   FC
+```
+qui est en FNBC et préserve les DF. De plus elle est SPI puisque la décomposition initiale est SPI.
+($R \bowtie \pi_{FC}(R)=R$ pour toute relation $R$)
+
+:::
+
+:::
+
+
+
+### Exercice
+Reprendre les questions de l'exercice précédent pour le schéma
+$$\mathcal{A}=\left\{\texttt{A,B,C,D,E,F,G,H}\right\}$$
+et l'ensemble de DF
+```
+BE → AC  
+B → H
+F → CD
+D → G
+A→ E
+```
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
+
+
+- De manière similaire à l'exercice précédent on arrive à
+```
+BH   BEAC   DG   FD   BEF
+```
+mais, ici, `BEAC` n'est pas en FNBC (les autres le sont).
+`A^+=AE` donc on remplace `BEAC` par `AE` et `ABC`.
+Une décomposition FNBC est donc
+`BH   AE   ABC   DG   FD   BEF`
+Les DF `BE → AC` et `F → C` ne sont pas préservées. Les autres sont préservées.
+
+- Il n'existe de décomposition FNBC qui préserve `BE → A`. En effet, si `BE → A`
+est préservée, il existe une DF locale à un sous-schéma $\mathcal{B}$ de la forme `X → A`.
+Cela implique que `BE ⊂ X` et donc `BEA ⊂ B`. Par suite $\mathcal{B}$ n'est pas en FNBC à cause de $A^+=AE$.
+
+:::
+
+:::
+
+

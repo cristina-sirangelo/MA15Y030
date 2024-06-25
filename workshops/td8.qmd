@@ -1,0 +1,152 @@
+---
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: true
+    code-fold: false
+    toc: false
+    output-file: td11.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données \\\\ TD 11}}"
+  html:
+    standalone: true
+    code-fold: true
+    output-file: td11.html
+params:
+    year: 2023 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+---
+
+
+```{r}
+#| include: false
+```
+
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](./img/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+
+### Exercice 
+
+Soit le schéma
+$$\mathcal{A}=\left\{\texttt{A,B,C,D,E,F,G,H}\right\}$$
+et l'ensemble de DF
+```
+BE → AC  
+B → H  
+F → CD  
+D → G
+```
+
+
+- Appliquer l'algorithme de décomposition vu en cours pour obtenir une décomposition de $\mathcal{A}$
+qui respecte la FNBC et est sans perte d'information. Déterminer quelles DF sont préservées.
+- Peut-on, en ajoutant un sous-schéma à la décomposition, obtenir une décomposition FNBC sans perte d'information et sans perte de DF ?
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+Rappelons l'algorithme pour décomposer un schéma $\mathcal{A}$~:
+
+- On considère la décomposition initiale $\rho=\{\mathcal{A}\}$.
+- Tant qu'il existe un sous-schéma $\mathcal{B}\in\rho$ et $X\subset \mathcal{B}$ tels que
+$X^+\cap\mathcal{B}\not=X$ et $X^+\cap\mathcal{B}\not=\mathcal{B}$ (ce qui signifie que la DF locale $X\to X^+\cap\mathcal{B}$ est une violation de FNBC pour $\mathcal{B}$), on remplace $\mathcal{B}$ par les deux sous-schémas
+$$\mathcal{B}_1=X^+\cap\mathcal{B} \text{ et } \mathcal{B}_2=(\mathcal{B}\setminus X^+)\cup X$$
+De plus il n'y a pas besoin de considérer les parties $X\subset\mathcal{B}$ telles que $card(X)=card(\mathcal{B})-1$
+puisque dans ce cas on $X^+\cap \mathcal{B}=X$ ou $X^+\cap\mathcal{B}=\mathcal{B}$.
+
+Il est garanti que la décomposition finale est en FNBC et SPI. Par contre toutes les DF ne sont pas préservées en général. De plus on obtient, en général, des décompositions différentes si on change les DF (violant FNBC) utilisées.
+}
+- $BE^+=BEACH$ donc on remplace $\mathcal{A}$ par
+$$ \mathcal{A}_1=BEACH \quad \mathcal{A}_2=BDEFG$$
+$B^+=BH$ donc on remplace $\mathcal{A}_1$ par
+$$\mathcal{A}_{11}=BH \quad \mathcal{A}_{12}=BEAC$$
+$\mathcal{A}_{11}$ est en FNBC car de cardinal 2. $\mathcal{A}_{12}$ est en FNBC car
+$$B^+\cap\mathcal{A}_{12}=B, E^+\cap\mathcal{A}_{12}=E, A^+\cap\mathcal{A}_{12}=A, C^+\cap\mathcal{A}_{12}=C $$
+$$BE^+\cap\mathcal{A}_{12}=BEAC, BA^+\cap\mathcal{A}_{12}=BA, BC^+\cap\mathcal{A}_{12}=BC, EA^+\cap\mathcal{A}_{12}=EA, EC^+\cap\mathcal{A}_{12}=EC$$
+$$ AC^+\cap\mathcal{A}_{12}=AC$$
+$D^+=DG$ donc on remplace $\mathcal{A}_2$ par
+$$\mathcal{A}_{21}=DG \quad \mathcal{A}_{22}=BDEF$$
+$\mathcal{A}_{21}$ est en FNBC car de cardinal 2.
+$F^+=CD$ donc on remplace $\mathcal{A}_{22}$ par
+$$\mathcal{A}_{221}=FD \quad \mathcal{A}_{222}=BEF$$
+qui sont tous deux en FNBC
+
+Décomposition obtenue~:
+```
+BH  BEAC  DG  FD  BEF
+```
+
+La seule DF qui n'est pas préservée est $F\to C$.
+Toutes les variantes (en changeant les DF utilisées) que j'ai testées,
+donne une décomposition qui ne préserve pas toutes les DF. Bien sûr ce n'est pas une preuve que l'algorithme ne peut pas donner une décomposition sans perte de DF.
+- En ajoutant $FC$ à la décomposition précédente, on obtient
+```
+BH   BEAC   DG   FD   BEF   FC
+```
+qui est en FNBC et préserve les DF. De plus elle est SPI puisque la décomposition initiale est SPI.
+($R \bowtie \pi_{FC}(R)=R$ pour toute relation $R$)
+
+:::::
+
+:::
+
+
+### Exercice
+Reprendre les questions de l'exercice précédent pour le schéma
+$$\mathcal{A}=\left\{\texttt{A,B,C,D,E,F,G,H}\right\}$$
+et l'ensemble de DF
+```
+BE → AC  
+B → H
+F → CD
+D → G
+A→ E
+```
+
+
+::: {.content-visible when-profile="solution"} 
+
+::::: {.callout-tip title="Solution"}
+
+- De manière similaire à l'exercice précédent on arrive à
+```
+BH   BEAC   DG   FD   BEF
+```
+mais, ici, `BEAC` n'est pas en FNBC (les autres le sont).
+`A^+=AE` donc on remplace `BEAC` par `AE` et `ABC`.
+Une décomposition FNBC est donc
+`BH   AE   ABC   DG   FD   BEF`
+Les DF `BE → AC` et `F → C` ne sont pas préservées. Les autres sont préservées.
+
+- Il n'existe de décomposition FNBC qui préserve `BE → A`. En effet, si `BE → A`
+est préservée, il existe une DF locale à un sous-schéma $\mathcal{B}$ de la forme `X → A`.
+Cela implique que `BE ⊂ X` et donc `BEA ⊂ B`. Par suite $\mathcal{B}$ n'est pas en FNBC à cause de $A^+=AE$.
+
+:::::
+
+:::
+

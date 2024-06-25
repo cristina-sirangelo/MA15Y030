@@ -1,0 +1,340 @@
+---
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: true
+    code-fold: false
+    toc: false
+    output-file: td-fonction1.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données \\\\ TD Fonctions 1}}"
+  html:
+    standalone: true
+    code-fold: true
+    output-file: td-fonction1.html
+params:
+    year: 2023 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+---
+
+
+```{r}
+#| include: false
+```
+
+
+```{r}
+#| include: false
+```
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+{{< meta title >>}}
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](./img/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+
+Dans Postgres, il est possible de définir des fonctions. Ces fonctions deviennent des objets permanents d'un schéma (comme les tables, vues, utilisateurs, etc). Elles permettent de regrouper un traitement complexe en un seul programme que l'on peut appeler à tout moment. La syntaxe (simplifiée) d'une fonction est la suivante:
+
+
+```{sql}
+#| eval: false
+#| echo: true
+
+CREATE FUNCTION function_name(p1 type, ..., pk type)
+RETURNS type AS $$
+DECLARE
+-- declaration de variables locales (facultatif)
+BEGIN
+-- corps de la fonction
+END;
+$$ LANGUAGE plpgsql;
+```
+
+
+
+Une particularité intéressante des fonctions est qu'elles permettent d'utiliser des paramètres. Les types de ces paramètres peuvent être des types classiques de SQL  (`TEXT,INT(n), VARCHAR(n)`,...) mais aussi des références à des types de colonnes de tables (par exemple: `country.countrycode%TYPE`) ou des types de tuples (exemple: `country%ROWTYPE`).
+
+Les fonctions renvoient des résultats dont le type est spécifié en en-tête. Il peut s'agit des types ci-dessus ou même de type complexe comme des tables (cf exemple plus bas).
+
+Le corps d'une fonction peut contenir une ou plusieurs requêtes mais aussi d'autres instructions que l'on verra par la suite (comme des affectations, test, boucles etc) formant un programme complexe. L'extension de SQL en un véritable langage de programmation impératif s'appelle PGPLSQL. Un exemple (simple) :
+
+
+```{sql}
+#| eval: false
+#| echo: true
+CREATE 
+	integer, y integer) RETURNS INTEGER AS $$
+DECLARE
+q INTEGER := 0;
+BEGIN
+q := x+y;
+RETURN q;
+END
+$$ LANGUAGE plpgsql;
+```
+
+
+
+
+## Exemples simples
+
+Dans cette partie, on se contente de construire des fonctions contenant simplement des requêtes avec paramètres.
+
+Considérons par exemple,  une fonction SQL `film_id_cat` qui prend en paramètre une chaîne de caractère *s* et renvoie la liste des films de catégorie *s*. La forme générale (plus simple) sera :
+
+```{sql}
+#| eval: false
+#| echo: true
+CREATE OR RE
+	entid.film_id_cat(s TEXT)
+RETURNS TABLE(film_id INTEGER)
+AS
+$$
+requete
+$$ LANGUAGE sql;
+```
+
+
+
+
+
+- Préciser le corps de la fonction ci-dessus pour qu'elle renvoie  la liste des films de catégorie *s*. Créez cette fonction dans votre schéma.
+
+
+::: {.content-visible when-profile="solution"}
+
+Attention, dans certaines implémentations de sakila, il y a un champs `last_update` qui du coup rend impossible l'utilisation de la jointure naturelle.
+
+```{sql}
+#| eval: false
+#| echo: true
+
+CREATE OR RE
+durand.film_id_cat(s text)
+RETURNS TABLE(film_id smallint)
+AS $$
+SELECT fc.film_id
+FROM sakila.film_category  fc,  sakila.category c
+WHERE  c.category_id = fc.category_id AND  c.name=s;
+$$ language sql;
+```
+:::
+
+- Utilisez cette fonction pour déterminer dans une requête les acteurs qui ont déjà joué dans un film d'horreur (catégorie `Horror`) ?
+
+::: {.content-visible when-profile="solution"}
+
+
+```{sql}
+#| eval: false
+#| echo: true
+SELECT
+
+         FROM sakila.actor ac  JOIN
+         (SELECT * FROM sakila.film_actor
+         WHERE film_id IN (SELECT * FROM durand.film_id_cat('Horror') )) fa
+using(actor_id);
+```
+
+ou
+```{sql}
+#| eval: false
+#| echo: true
+SELECT
+FROM sakila.actor ac NATURAL JOIN
+sakila.film_actor NATURAL JOIN
+film_id_cat('Horror') ;
+```
+:::
+
+- De même pour connaitre les acteurs qui n'ont jamais joué dans une comédie
+
+::: {.content-visible when-profile="solution"}
+
+
+```{sql}
+#| eval: false
+#| echo: true
+
+SELECT DISTINCT 
+, ac_first_name
+FROM sakila.actor ac
+WHERE NOT EXISTS
+(SELECT * FROM sakila.film_actor fa
+WHERE film_id IN (SELECT * FROM entid.film_id_cat('Comedy'))
+AND fa.actor_id = ac.actor_id);
+```
+
+:::
+
+
+
+- Écrire une fonction `actor_category(nom character varying(49), prenom character varying(49))` qui prend en argument le nom et le prénom d'un acteur (d'une actrice)
+et renvoie la liste des noms des catégories de films dans lesquels il/elle a joué (schéma : `sakila`).
+
+-  Écrire une fonction `co_actors(nom character varying(49), prenom character varying(49))` qui renvoie les noms et prénoms des acteurs qui jouent dans un film où apparaît un acteur ou une actrice dont le nom et le prénom sont donnés en argument (schéma : `sakila`).
+
+## Fonctions plpgsql
+
+On considère maintenant des fonctions un tout petit peu plus évoluées contenant des requêtes et des structures de contrôle pgplsql.
+
+
+- Ecrire une fonction `inventory_in_stock(p_inventory_id integer)` prenant en entrée un numéro d'inventaire de DVD et renvoyant vrai si le DVD est en stock et faux sinon. Un DVD est en stock s'il n'a jamais été loué ou si toutes les lignes le concernant dans la table d'emprunt ont des champs de retour d'emprunt (`return_date`) renseignés.
+
+
+::: {.content-visible when-profile="solution"}
+
+```{sql}
+CREATE OR RE
+#| eval: false
+#| echo: true
+ inventory_in_stock(p_inventory_id integer)
+RETURNS boolean
+LANGUAGE plpgsql
+AS $$
+DECLARE
+v_rentals INTEGER;
+v_out     INTEGER;
+BEGIN
+SELECT count(*) INTO v_rentals
+FROM rental
+WHERE inventory_id = p_inventory_id;
+
+IF v_rentals = 0 THEN RETURN TRUE;
+END IF;
+
+SELECT COUNT(rental_id) INTO v_out
+FROM inventory LEFT JOIN rental USING(inventory_id)
+WHERE inventory.inventory_id = p_inventory_id
+AND rental.return_date IS NULL;
+
+IF v_out > 0 THEN
+RETURN FALSE;
+ELSE
+RETURN TRUE;
+END IF;
+END $$;
+```
+
+:::
+
+
+
+- Écrire une fonction `film_in_stock(f_id sakila.film.film_id%TYPE)` prenant en paramètre l'identifiant d'un film et renvoyant le nombre d'exemplaires en stock. On se servira de la fonction de la question précédente.
+
+
+::: {.content-visible when-profile="solution"}
+
+```{sql}
+#| eval: false
+#| echo: true
+CREATE OR RE
+ film_in_stock(f_id sakila.film.film_id%TYPE)
+RETURNS INTEGER
+LANGUAGE plpgsql
+AS $$
+DECLARE
+nb INTEGER;
+BEGIN
+SELECT count(*) into nb
+from film JOIN inventory USING(film_id)
+WHERE film_id=f_id AND inventory_in_stock(inventory.inventory_id)=TRUE;
+
+return NB;
+END $$;
+```
+
+:::
+
+
+- Écrire une fonction `stock_total()` renvoyant pour chaque film le nombre d'exemplaires en stock. On donnera deux versions :
+
+- Une première renvoyant une table avec deux colonnes :  une pour l'identifiant de film et une autre pour le nombre d'exemplaires en stock.
+- Une renvoyant, pour chaque film, une phrase du genre : "le film A a N exemplaires en stock"
+
+Pour s'aider, regarder la documentation des instructions  `RETURN NOTICE` et `RAISE NOTICE`.
+
+::: {.content-visible when-profile="solution"}
+
+```{sql}
+#| eval: false
+#| echo: true
+
+CREATE OR RE
+
+ stock_total()
+RETURNS TABLE(f_id sakila.film.film_id%TYPE, nb INTEGER)
+LANGUAGE plpgsql
+AS $$
+BEGIN
+
+For f_id in select film_id from film
+LOOP
+SELECT count(*) into nb
+from film JOIN inventory USING(film_id)
+WHERE film_id=f_id AND inventory_in_stock(inventory.inventory_id)=TRUE;
+RETURN NEXT;
+END LOOP;
+END $$
+;
+
+
+CREATE OR REPLACE FUNCTION stock_total_bis()
+RETURNS void
+LANGUAGE plpgsql
+AS $$
+DECLARE
+f_id sakila.film.film_id%TYPE;
+nb INTEGER;
+BEGIN
+
+For f_id in select film_id from film
+LOOP
+SELECT count(*) into nb
+from film JOIN inventory USING(film_id)
+WHERE film_id=f_id AND inventory_in_stock(inventory.inventory_id)=TRUE;
+RAISE NOTICE 'le film % a % exemplaires en stock',f_id,nb;
+END LOOP;
+END $$;
+```
+
+:::
+
+
+
+- Comment trouver le nombre total d'exemplaires en stock, tous films confondus  ? donner une requête.
+
+
+::: {.content-visible when-profile="solution"}
+
+```{sql}
+#| eval: false
+#| echo: true
+ from stock_total();
+```
+
+:::
+
+
+
+
+
+

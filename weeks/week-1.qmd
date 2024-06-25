@@ -1,0 +1,36 @@
+---
+title: "Semaine 1"
+subtitle: "TBA"
+editor: source
+---
+
+::: callout-important
+-   Due date: Lab 2 - Fri, Feb 4, 5pm ET
+-   Exam 1 released on Fri, Feb 4, due Mon, Feb 7 at 11:59pm
+:::
+
+## Préparer
+
+
+
+## Cours
+
+[Introduction aux Bases de Données](/slides/BD_Intro.html)
+
+[Introduction à l'algèbre relationnelle](/slides/BD_Intro.html)
+
+## Exercices : TD 1
+
+[html](/workshops/td1.html)  [pdf](/workshops/td1.pdf)
+
+## Perform
+
+ [Lab 3 - Coffee ratings](labs/lab-3.html)
+
+[Exam 1](/exams/exam-1.html)
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+retour à [Agenda](/ "Agenda du cours") ⏎
+:::

@@ -1,0 +1,587 @@
+<svg xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'   width='1072' height='910' viewBox='0 0 1072 910' >
+  <script type='text/ecmascript'>
+  <![CDATA[
+  function hghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','highlight');  }  }
+  function uhghl(el) { for ( var i in el ){ var elem = document.getElementById(el[i]); if ( elem != null ) elem.setAttribute('class','unhighlight'); }  } 
+  ]]>
+  </script> 
+
+<style type='text/css'>
+  text                { fill:#1c1d1f; font-weight:normal;stroke:#2a2b2c;stroke-width:.1px; font-family: Trebuchet MS, 'Segoe UI', Dialog; font-size:14.083333015441895px; }
+  a text:hover        { font-weight:500; }
+  text.highlight      { font-weight:500; }
+  text.white          { fill:#ffffff; }
+  text.colType        { fill:#b3b3b3; }
+  text.relName        { fill:#9c9a9a; stroke-width:0; }
+  text.legendTitle    { fill:#2b3b64; font-weight:500; }
+  text.legendSubTitle { fill:#616161; font-size:12px; }
+  path, circle        { stroke:#939391; stroke-width:1.65; fill:none; stroke-linecap:round; stroke-linejoin:round; }
+  .filled             { fill:#939391; }
+  path.virtual        { stroke:#6e377e; }
+  path.logo           { fill:#fbeac0;fill-opacity:1;stroke-width:0.3;stroke:#222222; }
+  path.dotted         { stroke-dasharray:3,3; }
+  path.unhighlight    { stroke-width:5; opacity:0; pointer-events:all; }
+  path.highlight      { stroke-width:3; stroke:#a19f9b; opacity:0.8; pointer-events:all; }
+  path.line           { stroke-width:10; stroke-linecap:round; stroke-linejoin:round; }
+  rect.entity         { fill:#ffffff; stroke-width:0; shape-rendering:crispEdges;  filter:url(#shadow); }
+  line.delim          { stroke-width:1px; shape-rendering:crispEdges; }
+  line.topLine        { stroke-width:2.5px; shape-rendering:crispEdges; }
+  text.callout        { fill:#201a10; font-family: Trebuchet MS, 'Segoe UI', Dialog; font-size:14.083333015441895px; }
+  rect.callout        { fill:url(#calloutGradient); stroke-width:1px; stroke:#b0b0b0; }
+  rect.shape          { stroke:#bebdbd; stroke-width:0.5; }
+  text.grp            { fill:#b1b1b1; }
+  rect.grp            { stroke:#919171; stroke-width:3; opacity:0.34; }
+  path.bgPattern      { fill:none;stroke-width:0.6;stroke:#e5e9ee; }
+  path.eval           { fill:#ececec;fill-opacity:1;stroke-width:0.6;stroke:#dddddd; }
+  rect.palpable       { fill:#fffbe5; }
+</style>
+<defs>
+  <pattern id="layoutBgA" width="60" height="34.64" patternUnits="userSpaceOnUse">
+    <rect x="0" y="0"  width="60" height="34.64" fill="#f2f2f4" />
+  </pattern>
+  <pattern id='layoutBgEval'  width='300' height='300' x='0' y='0' patternUnits="userSpaceOnUse">
+    <path class='eval' d='m 62.011835,91.267143 c 3.536475,3.175214 2.262669,8.705999 -1.637711,11.015197 -3.594697,5.8423 -6.34682,-2.892623 -9.715478,-4.653898 -5.609222,-2.838926 2.050802,-6.680123 4.77004,-8.319046 2.334696,-0.724067 4.935143,0.312302 6.583149,1.957747 z m -2.720492,2.538595 c -2.698397,-3.517732 -9.282815,1.269287 -3.69635,3.568637 2.765331,5.605665 7.052809,-0.56184 3.69635,-3.568637 z' />
+    <path class='eval' d='m 72.25864,84.624638 c 4.108046,3.143003 -0.737059,6.895259 -1.994918,8.323564 -3.586718,5.561143 -6.495079,-4.197379 -10.07759,-5.582178 -4.443422,-1.088878 1.349298,-7.249213 2.503526,-2.503449 2.464639,4.517161 2.304019,-3.70697 6.291113,-1.995914 1.280083,0.137865 2.410691,0.864819 3.277869,1.757977 z m -2.646109,2.323242 c -4.797162,-3.078383 -2.810517,6.305507 0.515161,1.990646 0.296432,-0.688582 0.01209,-1.493412 -0.515161,-1.990646 z' />
+    <path class='eval' d='m 78.230641,79.436735 c 4.142121,3.027466 -2.020102,10.435276 -3.450543,5.477315 3.306312,-5.248112 -9.186019,-2.220094 -5.805994,-8.77679 -0.544141,-3.93011 6.797826,-2.102227 3.386015,0.245477 -0.181085,2.915838 4.637371,1.019311 5.870522,3.053982 z' />
+    <path class='eval' d='m 82.744502,72.597397 c -4.901605,1.926521 1.146497,6.285555 2.559694,2.225783 6.21817,3.539297 -6.640186,8.416664 -7.590325,1.997457 -2.24365,-2.914883 4.026676,-10.148618 5.030631,-4.22324 z' />
+    <path class='eval' d='m 90.727458,64.259158 c 1.583987,1.690029 3.321317,3.2696 4.81267,5.026353 -2.535706,6.849794 -6.445583,-5.918773 -8.388458,-0.167017 0.782768,2.03426 5.877405,3.752079 2.670979,5.711199 -3.315119,1.519161 -5.782422,-5.157931 -8.858893,-6.780537 -4.229842,-1.139816 1.510134,-7.074128 2.586227,-2.385939 3.141198,5.495193 1.840537,-5.598295 7.177489,-1.404062 z' />
+    <path class='eval' d='m 99.622027,58.374253 c 1.493293,1.9548 -6.281936,7.024659 -0.885258,4.740447 0.386238,-4.434477 6.131941,-1.133173 2.175851,1.618005 -4.421491,6.12739 -13.666659,-3.151506 -7.058299,-7.136537 1.785129,-1.119329 4.348209,-0.743179 5.767706,0.778085 z m -2.900824,1.89746 c -3.608188,-2.208543 -2.280489,5.00803 -0.12563,0.329531 z' />
+    <path class='eval' d='m 115.18023,50.570441 c -1.61703,5.201678 -4.6204,-0.364502 -7.01598,-1.749619 -4.40977,2.122562 4.89641,4.913939 1.89606,7.018157 -2.48061,3.877635 -4.11404,-4.060614 -7.01192,-2.6391 -1.76318,3.107252 7.28394,6.252304 0.87346,7.876177 -1.74515,-2.956649 -9.055498,-5.610518 -3.950378,-8.66062 1.696478,1.897023 1.770418,-5.43503 5.347308,-3.072411 -0.44014,-5.474701 6.11995,-4.950882 7.7846,-0.815355 0.69076,0.682329 1.39587,1.351469 2.07685,2.042771 z' />
+    <path class='eval' d='m 120.54891,39.417125 c 2.50681,1.334124 4.80466,4.941837 0.75044,5.297362 -0.46414,1.89865 -5.25369,5.602652 -8.01742,1.815475 -3.87345,-2.809139 -0.0676,-7.603869 2.3036,-8.133924 1.6795,-3.853018 3.16703,-1.199465 4.96338,1.021087 z m -2.2464,2.175828 c -4.8049,-2.992167 -3.08987,6.380358 0.42374,2.036159 0.33052,-0.677508 0.12099,-1.525836 -0.42374,-2.036159 z' />
+    <path class='eval' d='m 128.50836,24.06821 c -5.10403,3.035506 3.20535,6.383175 5.05938,9.450276 -0.91853,2.95886 -4.06493,3.650723 -5.34691,0.265618 -2.25715,-2.089033 -4.65672,-6.948595 -7.07024,-2.584686 -4.71758,-3.764394 3.81217,-5.812054 5.12382,-9.226328 0.75738,0.677487 1.38637,1.498638 2.23389,2.095175 z' />
+    <path class='eval' d='m 137.14366,22.299812 c -3.09615,2.259885 0.71537,4.412454 1.99042,6.435866 -3.08975,5.080354 -5.91384,-2.98648 -8.92144,-4.094939 1.44369,-3.219573 3.3497,-1.335928 4.27156,-4.41058 0.97822,-0.894325 1.75044,1.871047 2.65946,2.069653 z' />
+    <path class='eval' d='m 136.85093,14.890174 c 2.31562,5.283511 -7.17975,1.771993 -1.29675,-0.475107 l 0.7108,0.08973 z m 4.867,5.317354 c 2.56912,1.439678 4.26517,4.725219 0.30678,5.233637 -1.56592,-3.098864 -9.51683,-5.749448 -3.64502,-8.633714 1.17746,0.325095 2.15375,2.591149 3.33824,3.400077 z' />
+    <path class='eval' d='m 149.95578,11.976423 c 2.50679,1.334142 4.80455,4.94192 0.75041,5.297394 -0.4641,1.898604 -5.25368,5.602645 -8.0174,1.81545 -3.87347,-2.80918 -0.0676,-7.603844 2.30366,-8.133968 1.67949,-3.8530525 3.16695,-1.1993573 4.96333,1.021124 z m -2.24641,2.175828 c -4.80489,-2.992177 -3.08986,6.380343 0.42374,2.036167 0.33055,-0.677518 0.121,-1.52585 -0.42374,-2.036167 z' />
+    <path class='eval' d='m 153.26135,7.538431 c 2.60497,1.5799548 6.03999,5.944272 1.08117,6.050232 -2.53319,-3.231828 -7.20316,-6.4304525 -8.84748,-9.4582682 1.89121,-2.8664883 3.78452,-2.247699 5.38514,0.8929426 0.78017,0.8503859 1.57195,1.6911437 2.38118,2.5150667 z' />
+  </pattern>
+  <!-- https://norbat.de/svg-pattern-3d-webmuster/ -->
+  <radialGradient id='calloutGradient' cx='25%' cy='20%' r='80%' fx='10%' fy='10%'>
+    <stop offset='0%' stop-color='#fefdf7aa' />
+    <stop offset='100%' stop-color='#fcf9e7aa' />
+  </radialGradient>
+  <filter id="shadow">
+    <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="#707070" flood-opacity="0.6" />
+  </filter>
+  <!--
+  <filter id='shadow2' width='120%' height='120%'>
+    <feOffset result='offOut' in='SourceGraphic' dx='0' dy='0' />
+    <feColorMatrix result='matrixOut' in='offOut'
+                   values='0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0 0 0 0 0 0.5 0' />
+    <feGaussianBlur result='blurOut' in='matrixOut' stdDeviation='3' />
+    <feBlend in='SourceGraphic' in2='blurOut' />
+  </filter>
+  -->
+  <filter id='fkShadow' height='130%'>
+    <feGaussianBlur in='SourceAlpha' stdDeviation='1.5'/> <!-- stdDeviation is how much to blur -->
+    <feOffset dx='1.2' dy='1.2' result='offsetblur'/> <!-- how much to offset -->
+    <feMerge>
+      <feMergeNode/> <!-- this contains the offset blurred image -->
+      <feMergeNode in='SourceGraphic'/> <!-- this contains the element that the filter is applied to -->
+    </feMerge>
+  </filter>
+  <radialGradient id='legendGradient' cx='5%' cy='5%' r='100%' >
+    <stop offset='0%' stop-color='#fdfeff' stop-opacity='1'/>
+    <stop offset='100%' stop-color='#e1eafa' stop-opacity='1' />
+  </radialGradient>
+  <symbol id='calloutArrowDown' >
+    <path d='M 0,0 L 8,12 L 16,0 z' style='fill:#f8f6d1;stroke:none; filter: url(#shadow);' />
+    <path d='M 0,0 L 8,12 L 16,0' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='calloutArrowUp' >
+    <path d='M 0,16 L 8,4 L 16,16 z' style='fill:#ffffff; stroke:none; filter: url(#shadow);' />
+    <path d='M 0,16 L 8,4 L 16,16' style='stroke:#bebdbd; stroke-width:0.5;' />
+  </symbol>
+  <symbol id='pk' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <path style='fill:#f0d938;stroke:#906b25;stroke-width:0.6;stroke-linecap:round;stroke-linejoin:round;'
+            d='M 9.3678877,3.5695485 C 9.1030218,3.2729386 9.0796382,2.7628519 9.3396185,2.4517097 9.5449651,2.1956495 9.9040386,2.0980533 10.199638,2.2169415 10.533525,2.3415459 10.775153,2.706942 10.750675,3.0842709 10.737029,3.3980003 10.541153,3.699122 10.258248,3.8066067 9.966649,3.9250429 9.6169668,3.8418805 9.4008073,3.6062324 9.3894892,3.5943518 9.3785264,3.582104 9.3678886,3.5695487 z M 11.226617,6.9916004 C 11.888137,6.3548946 12.293488,5.4172188 12.311087,4.442353 12.378144,2.7379364 11.248678,1.0541269 9.7322318,0.44767357 8.3887112,-0.1280313 6.7865012,0.26822889 5.8918395,1.4007929 5.080823,2.3839145 4.9336815,3.8452096 5.3635544,5.101615 L 4.3670905,5.315913 C 4.0664984,5.3682645 4.0967703,5.6316724 4.2574957,5.8208829 L 4.9124,6.5655244 4.1543436,7.2512357 3.2136002,7.2163506 3.1674775,8.5586827 2.0406832,8.5086512 1.5965306,8.9299953 1.5471661,10.179833 0.75616674,10.195223 0.2112857,10.758575 0.15354288,11.735988 0.07199052,12.765553 c 0.36440953,0.238225 0.79006967,0.195492 1.44938278,-0.02675 L 6.3033562,8.1282037 6.8217102,8.6765688 C 6.9985465,8.8799427 7.3003699,8.7497574 7.358381,8.5016252 L 7.4938877,7.5084164 c 0.8537488,0.3985387 1.8303125,0.4711541 2.6851793,0.1427713 0.393927,-0.1407258 0.746858,-0.3701772 1.04755,-0.6595873 z'/>
+      <path d='M 6.8014948,6.3102123 0.15369063,13.024481 0.21560535,12.141962 6.0062342,6.2683782 z'
+            style='fill:#ffe5a5;fill-opacity:1;stroke:#906b25;stroke-width:0.06912433;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:3.00300009'/>
+    </g>
+  </symbol>
+  <symbol id='idx1' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect width='4' height='4' x='7' y='1' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.83'/>
+      <rect width='4' height='4' x='1' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+      <rect width='4' height='4' x='7' y='7' style='fill:#ffff3f;stroke:#b48333;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='idx2' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect width='4' height='3' x='6' y='1' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.83'/>
+      <rect width='7' height='3' x='3' y='6' style='fill:#7fc8e9;stroke:#2f6f8c;stroke-width:0.6;' ry='0.832'/>
+    </g>
+  </symbol>
+  <symbol id='unq' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect style='fill:none;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+            width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+            transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+      <text x='5.4' y='7.2' style='font-size:7px;fill:#655c59;'>U</text>
+    </g>
+  </symbol>
+  <symbol id='idx' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <rect style='fill:none;stroke:#7e4d31;stroke-width:0.71934468;stroke-linecap:round;stroke-linejoin:round;'
+            width='2.29' height='8.43' x='7.48' y='-0.76' ry='1.14' transform='matrix(0.701,0.713,-0.727,0.685,0,0)' />
+      <path style='fill:white;stroke:#858585;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='m 26.04,8.64 a 4.13,4.13 0 1 1 -8.26,0 4.13,4.13 0 1 1 8.26,0 z'
+            transform='matrix(1.025,0,0,0.987,-14.690,-3.862)' />
+    </g>
+  </symbol>
+  <symbol id='fk' width="13" height="13">
+    <g transform='scale(0.87)'>
+      <path style='fill:#6a88cd;stroke:#5a72a8;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 12.48,0.33 7.07,0.89 9.067,2.974 0.329,11.731 1.073,12.597 9.811,3.841 11.77,5.78 z' />
+    </g>
+  </symbol>
+  <symbol id='ref' width="13" height="13">
+    <g transform='scale(0.87)'>
+      <path style='fill:#f0d938;stroke:#906b25;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.10,12.70 5.31,12.15 3.40,10.06 11.82,1.32 11.11,0.45 2.68,9.19 0.80,7.24 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag0' width="13" height="13">
+    <g transform='scale(0.92)'>
+      <path style='fill:#b7d0f6;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag1' width="13" height="13">
+    <g transform='scale(0.92)'>
+      <path style='fill:#f4a393;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='flag2' width="13" height="13">
+    <g transform='scale(0.92)'>
+      <path style='fill:#77ec8b;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+            d='M 0.12,12.67 0.16,7.22 C 2.59,7.22 4.13,8.78 9.22,4.22 5.68,4.98 2.53,4.50 0.09,1.80 z'/>
+    </g>
+  </symbol>
+  <symbol id='nn' width="3" height="3">
+    <path style='stroke:#9b3e50;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 0,0 3,3 M 0,3 3,0 z'/>
+  </symbol>
+  <symbol id='virtual' width="13" height="13">
+    <circle cx='6' cy='6.5' r='5.5' fill='#a3dda3' stroke='#4c6a4c' stroke-width='0.5'/>
+    <path style='stroke:#ffffff;stroke-width:1.5;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;'
+          d='M 3,4 6,10 9,4'/>
+  </symbol>
+  <symbol id='view' width="13" height="13">
+    <g transform='scale(0.99)'>
+      <line x1='12' y1='6' x2='19' y2='0' stroke='black' stroke-width='0.5' />
+      <line x1='0' y1='6' x2='7' y2='0' stroke='black' stroke-width='0.5' />
+      <circle cx='3' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+      <circle cx='10' cy='6' r='3' fill='#f9ebbc' stroke='black' stroke-width='0.5'/>
+    </g>
+  </symbol>
+  <symbol id='logo' width="100" height="100">
+    <path style='stroke:none;fill:#5d5d5d' d='M2.41,6.80 17.39,0.35 26.83,7.21 28.32,24.45 12.62,29.77 1.74,23.96'/>
+    <path style='stroke:none;fill:#efefef' d='M 2.21, 6.45  9.36, 3.49  9.42,11.63  2.04,14.42'/>
+    <path style='stroke:none;fill:#efefef' d='M10.23, 3.14 17.39, 0.17 17.68, 8.59 10.29,11.28'/>
+    <path style='stroke:none;fill:#d2d2d2' d='M17.44, 0.17 21.59, 3.55 22.36,11.43 17.76,8.63'/>
+    <path style='stroke:none;fill:#d2d2d2' d='M22.67, 4.33 26.98, 7.06 27.65,14.77 23.20,11.77'/>
+    <path style='stroke:none;fill:#efefef' d='M1.89,15.58  9.39,12.65  9.48,21.14  1.57,24.10'/>
+    <path style='stroke:none;fill:#17afde' d='M10.38,12.36 17.70, 9.51 18.11,18.37 10.32 20.96'/>
+    <path style='stroke:none;fill:#1389ad' d='M17.73, 9.59 22.41,12.47 22.82,21.14 18.05,18.34'/>
+    <path style='stroke:none;fill:#d2d2d2' d='M23.26,12.94 27.62,15.70 28.42,24.54 23.69,21.60'/>
+    <path style='stroke:none;fill:#828282' d='M1.57,24.19  9.45,21.22 14.30,24.40  6.80,26.80'/>
+    <path style='stroke:none;fill:#0c485c' d='M10.47,20.90 18.11,18.32 22.82,21.19 15.20,23.81'/>
+    <path style='stroke:none;fill:#828282' d='M23.69,21.63 28.32,24.65 20.87,27.07 15.84,24.30'/>
+    <path style='stroke:none;fill:#828282' d='M14.94,24.68 19.80,27.41 12.59,29.97  7.73,27.21'/>
+  </symbol>
+
+</defs>
+
+<defs>  <marker id='ZeroMore' viewBox='0 0 8.00 8.00' refX='4.00' refY='4.00' markerWidth='8.00' markerHeight='8.00' orient='auto-start-reverse'>
+    <circle cx='2.00' cy='4.00' r='2.00' style='stroke-width:1;' />
+    <path d='M 8.00,0.00 L 4.00,4.00 L 8.00,8.00' style='stroke-width:1;'/>
+    <path d='M 0.00,4.00 L 8.00,4.00 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='ZeroOne' viewBox='0 0 8.00 8.00' refX='4.00' refY='4.00' markerWidth='8.00' markerHeight='8.00' orient='auto-start-reverse'>
+    <path d='M 0.00,4.00 L 8.00,4.00 z' style='stroke-width:1;'/>
+    <circle cx='2.00' cy='4.00' r='2.00' style='stroke-width:1;' />
+    <path d='M 4.00,0.00 L 4.00, 8.00 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='OneMore' viewBox='0 0 8.00 8.00' refX='4.00' refY='4.00' markerWidth='8.00' markerHeight='8.00' orient='auto-start-reverse'>
+    <path d='M 0.00,4.00 L 8.00,4.00 z' style='stroke-width:1;'/>
+    <path d='M 4.00,0.00 L 4.00, 8.00 z' style='stroke-width:1;'/>
+    <path d='M 8.00,0.00 L 4.00,4.00 L 8.00,8.00' style='stroke-width:1;'/>
+    <path d='M 0.00,4.00 L 8.00,4.00 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='One' viewBox='0 0 8.00 8.00' refX='4.00' refY='4.00' markerWidth='8.00' markerHeight='8.00' orient='auto-start-reverse'>
+    <path d='M 0.00,4.00 L 8.00,4.00 z' style='stroke-width:1;'/>
+    <path d='M 4.00,0.00 L 4.00, 8.00 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='Range' viewBox='0 0 8.00 8.00' refX='4.00' refY='4.00' markerWidth='8.00' markerHeight='8.00' orient='auto-start-reverse'>
+    <path d='M 0.00,4.00 L 8.00,4.00 z' style='stroke-width:1;'/>
+  </marker>
+  <marker id='Arrow' viewBox='0 0 8.00 8.00' refX='4.00' refY='4.00' markerWidth='8.00' markerHeight='8.00' orient='auto-start-reverse'>
+    <path d='M 4.000,2.000 L 8.000,4.000 L 4.000,6.000 z' style='stroke-width:1;' class='filled'/>
+  </marker>
+  <linearGradient id='tbg_3986C1' x1='0%' y1='0%' x2='0%' y2='100%' >
+     <stop offset='0%' stop-color='#FEFEFF' /> 
+     <stop offset='75%' stop-color='#DFEFFD' /> 
+     <stop offset='100%' stop-color='#BAE0FE' /> 
+  </linearGradient>
+</defs>
+
+<!-- == Shape Colors == -->
+<!-- == Desktop == -->
+<rect x='1' y='1' width='1070' height='908' rx='8' ry='8' style='fill:url(#layoutBgA); stroke:#ccc; stroke-width:.7px; cursor:move;' />
+
+<!-- == Legend == -->
+<g transform='translate(10,10)'>
+  <rect x='10' y='10' width='310' height='70' rx='6' ry='6' style='fill:url(#legendGradient);filter:url(#shadow);'/> 
+  <use id='logo' x='20' y='40' xlink:href='#logo'><title>DbSchema Database Designer </title></use>  <text x='20' y='30' class='legendTitle' >pagila_rental_layout</text> 
+  <text x='57' y='47' class='legendSubTitle'><tspan>Comments as mouse-over tips, zoom and pan.<title>Read column and table comments by hovering the columns and tables.
+Zoom with CTRL+whell mouse button, pan by dragging the diagram with the right-mouse button</title></tspan></text> 
+  <a xlink:href='https%3A%2F%2Fdbschema.com'><text x='57' y='61' class='legendSubTitle'><tspan>by DbSchema.com - Wise Coders<title>DbSchema is an universal database designer.
+DbSchema has a free Community Edition.</title></tspan></text></a> 
+</g>
+
+<g transform='translate(0,110)'>
+<!-- == Fk 'customer_customer_store_id_fkey' == -->
+<path id='customer_customer_store_id_fkey'  onmouseover="hghl(['customer_customer_store_id_fkey','pagila.customer.store_id','pagila.store.store_id'])" onmouseout="uhghl(['customer_customer_store_id_fkey','pagila.customer.store_id','pagila.store.store_id'])" transform='translate(8,0)' class='unhighlight' d='M 880,320L 440,320Q 432,320 432,312L 432,192' >
+	<title>&#x1F517;  Foreign Key customer_store_id_fkey
+customer ref store ( store_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 880,320L 440,320Q 432,320 432,312L 432,192' ><title>&#x1F517;  Foreign Key customer_store_id_fkey
+customer ref store ( store_id )</title></path>
+<text x='839' y='315' transform='rotate(0 839,315)' class='relName'>store&#95;id</text>
+<!-- == Fk 'customer_customer_address_id_fkey' == -->
+<path id='customer_customer_address_id_fkey'  onmouseover="hghl(['customer_customer_address_id_fkey','pagila.customer.address_id','pagila.address.address_id'])" onmouseout="uhghl(['customer_customer_address_id_fkey','pagila.customer.address_id','pagila.address.address_id'])" transform='translate(8,0)' class='unhighlight' d='M 880,416L 704,416' >
+	<title>&#x1F517;  Foreign Key customer_address_id_fkey
+customer ref address ( address_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 880,416L 704,416' ><title>&#x1F517;  Foreign Key customer_address_id_fkey
+customer ref address ( address_id )</title></path>
+<text x='824' y='411' transform='rotate(0 824,411)' class='relName'>address&#95;id</text>
+<!-- == Fk 'payment_payment_staff_id_fkey' == -->
+<path id='payment_payment_staff_id_fkey'  onmouseover="hghl(['payment_payment_staff_id_fkey','pagila.payment.staff_id','pagila.staff.staff_id'])" onmouseout="uhghl(['payment_payment_staff_id_fkey','pagila.payment.staff_id','pagila.staff.staff_id'])" transform='translate(8,0)' class='unhighlight' d='M 640,192L 640,360Q 640,368 632,368L 472,368Q 464,368 464,376L 464,424Q 464,432 456,432L 448,432' >
+	<title>&#x1F517;  Foreign Key payment_staff_id_fkey
+payment ref staff ( staff_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 640,192L 640,360Q 640,368 632,368L 472,368Q 464,368 464,376L 464,424Q 464,432 456,432L 448,432' ><title>&#x1F517;  Foreign Key payment_staff_id_fkey
+payment ref staff ( staff_id )</title></path>
+<text x='653' y='194' transform='rotate(90 653,194)' class='relName'>staff&#95;id</text>
+<!-- == Fk 'payment_payment_customer_id_fkey' == -->
+<path id='payment_payment_customer_id_fkey'  onmouseover="hghl(['payment_payment_customer_id_fkey','pagila.payment.customer_id','pagila.customer.customer_id'])" onmouseout="uhghl(['payment_payment_customer_id_fkey','pagila.payment.customer_id','pagila.customer.customer_id'])" transform='translate(8,0)' class='unhighlight' d='M 752,192L 752,296Q 752,304 760,304L 880,304' >
+	<title>&#x1F517;  Foreign Key payment_customer_id_fkey
+payment ref customer ( customer_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 752,192L 752,296Q 752,304 760,304L 880,304' ><title>&#x1F517;  Foreign Key payment_customer_id_fkey
+payment ref customer ( customer_id )</title></path>
+<text x='765' y='194' transform='rotate(90 765,194)' class='relName'>customer&#95;id</text>
+<!-- == Fk 'inventory_inventory_store_id_fkey' == -->
+<path id='inventory_inventory_store_id_fkey'  onmouseover="hghl(['inventory_inventory_store_id_fkey','pagila.inventory.store_id','pagila.store.store_id'])" onmouseout="uhghl(['inventory_inventory_store_id_fkey','pagila.inventory.store_id','pagila.store.store_id'])" transform='translate(8,0)' class='unhighlight' d='M 192,80L 272,80' >
+	<title>&#x1F517;  Foreign Key inventory_store_id_fkey
+inventory ref store ( store_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 192,80L 272,80' ><title>&#x1F517;  Foreign Key inventory_store_id_fkey
+inventory ref store ( store_id )</title></path>
+<text x='202' y='75' transform='rotate(0 202,75)' class='relName'>store&#95;id</text>
+<!-- == Fk 'inventory_inventory_film_id_fkey' == -->
+<path id='inventory_inventory_film_id_fkey'  onmouseover="hghl(['inventory_inventory_film_id_fkey','pagila.inventory.film_id','pagila.film.film_id'])" onmouseout="uhghl(['inventory_inventory_film_id_fkey','pagila.inventory.film_id','pagila.film.film_id'])" transform='translate(8,0)' class='unhighlight' d='M 80,176L 80,288' >
+	<title>&#x1F517;  Foreign Key inventory_film_id_fkey
+inventory ref film ( film_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 80,176L 80,288' ><title>&#x1F517;  Foreign Key inventory_film_id_fkey
+inventory ref film ( film_id )</title></path>
+<text x='93' y='178' transform='rotate(90 93,178)' class='relName'>film&#95;id</text>
+<!-- == Fk 'store_store_manager_staff_id_fkey' == -->
+<path id='store_store_manager_staff_id_fkey'  onmouseover="hghl(['store_store_manager_staff_id_fkey','pagila.store.manager_staff_id','pagila.staff.staff_id'])" onmouseout="uhghl(['store_store_manager_staff_id_fkey','pagila.store.manager_staff_id','pagila.staff.staff_id'])" transform='translate(8,0)' class='unhighlight' d='M 352,192L 352,400' >
+	<title>&#x1F517;  Foreign Key store_manager_staff_id_fkey
+store ref staff ( manager_staff_id -&gt; staff_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroOne)' marker-end='url(#Arrow)'    d='M 352,192L 352,400' ><title>&#x1F517;  Foreign Key store_manager_staff_id_fkey
+store ref staff ( manager_staff_id -&gt; staff_id )</title></path>
+<text x='365' y='194' transform='rotate(90 365,194)' class='relName'>manager&#95;staff&#95;id</text>
+<!-- == Fk 'store_store_address_id_fkey' == -->
+<path id='store_store_address_id_fkey'  onmouseover="hghl(['store_store_address_id_fkey','pagila.store.address_id','pagila.address.address_id'])" onmouseout="uhghl(['store_store_address_id_fkey','pagila.store.address_id','pagila.address.address_id'])" transform='translate(8,0)' class='unhighlight' d='M 448,176L 584,176Q 592,176 592,184L 592,384' >
+	<title>&#x1F517;  Foreign Key store_address_id_fkey
+store ref address ( address_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 448,176L 584,176Q 592,176 592,184L 592,384' ><title>&#x1F517;  Foreign Key store_address_id_fkey
+store ref address ( address_id )</title></path>
+<text x='458' y='171' transform='rotate(0 458,171)' class='relName'>address&#95;id</text>
+<!-- == Fk 'address_address_city_id_fkey' == -->
+<path id='address_address_city_id_fkey'  onmouseover="hghl(['address_address_city_id_fkey','pagila.address.city_id','pagila.city.city_id'])" onmouseout="uhghl(['address_address_city_id_fkey','pagila.address.city_id','pagila.city.city_id'])" transform='translate(8,0)' class='unhighlight' d='M 592,576L 592,624' >
+	<title>&#x1F517;  Foreign Key address_city_id_fkey
+address ref city ( city_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 592,576L 592,624' ><title>&#x1F517;  Foreign Key address_city_id_fkey
+address ref city ( city_id )</title></path>
+<text x='605' y='578' transform='rotate(90 605,578)' class='relName'>city&#95;id</text>
+<!-- == Fk 'staff_staff_store_id_fkey' == -->
+<path id='staff_staff_store_id_fkey'  onmouseover="hghl(['staff_staff_store_id_fkey','pagila.staff.store_id','pagila.store.store_id'])" onmouseout="uhghl(['staff_staff_store_id_fkey','pagila.staff.store_id','pagila.store.store_id'])" transform='translate(8,0)' class='unhighlight' d='M 336,400L 336,192' >
+	<title>&#x1F517;  Foreign Key staff_store_id_fkey
+staff ref store ( store_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 336,400L 336,192' ><title>&#x1F517;  Foreign Key staff_store_id_fkey
+staff ref store ( store_id )</title></path>
+<text x='339' y='398' transform='rotate(270 339,398)' class='relName'>store&#95;id</text>
+<!-- == Fk 'staff_staff_address_id_fkey' == -->
+<path id='staff_staff_address_id_fkey'  onmouseover="hghl(['staff_staff_address_id_fkey','pagila.staff.address_id','pagila.address.address_id'])" onmouseout="uhghl(['staff_staff_address_id_fkey','pagila.staff.address_id','pagila.address.address_id'])" transform='translate(8,0)' class='unhighlight' d='M 448,448L 560,448' >
+	<title>&#x1F517;  Foreign Key staff_address_id_fkey
+staff ref address ( address_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 448,448L 560,448' ><title>&#x1F517;  Foreign Key staff_address_id_fkey
+staff ref address ( address_id )</title></path>
+<text x='458' y='443' transform='rotate(0 458,443)' class='relName'>address&#95;id</text>
+<!-- == Fk 'city_city_country_id_fkey' == -->
+<path id='city_city_country_id_fkey'  onmouseover="hghl(['city_city_country_id_fkey','pagila.city.country_id','pagila.country.country_id'])" onmouseout="uhghl(['city_city_country_id_fkey','pagila.city.country_id','pagila.country.country_id'])" transform='translate(8,0)' class='unhighlight' d='M 704,656L 800,656' >
+	<title>&#x1F517;  Foreign Key city_country_id_fkey
+city ref country ( country_id )</title>
+</path>
+<path transform='translate(8,0)' marker-start='url(#ZeroMore)' marker-end='url(#Arrow)'    d='M 704,656L 800,656' ><title>&#x1F517;  Foreign Key city_country_id_fkey
+city ref country ( country_id )</title></path>
+<text x='714' y='651' transform='rotate(0 714,651)' class='relName'>country&#95;id</text>
+<!-- == Table 'customer' == -->
+<rect id='depict_pagila&#46;customer' class='entity' style='stroke:#769BB9' x='896' y='296' width='128' height='208' />
+<rect x='896' y='296' width='128' height='28' style='stroke-width:0; fill:#F1F6FA'/>
+<line class='topLine' style='stroke:#176098;' stroke-linecap='round' x1='896' y1='296' x2='1024' y2='296'/>
+<a xlink:href='#pagila.customer'><text x='927' y='315' >customer</text><title>Table pagila.customer</title></a>
+  <use id='nn' x='898' y='333' xlink:href='#nn'/><use id='pk' x='898' y='332' xlink:href='#pk'><title>&#x1F511;  Pk customer_pkey ( customer_id ) </title></use><a xlink:href='#pagila.customer_customer_id'><text id='pagila&#46;customer&#46;customer&#95;id' x='915' y='343' onmouseover="hghl(['rental_rental_customer_id_fkey','pagila.rental.customer_id','payment_payment_customer_id_fkey','pagila.payment.customer_id'])" onmouseout="uhghl(['rental_rental_customer_id_fkey','pagila.rental.customer_id','payment_payment_customer_id_fkey','pagila.payment.customer_id'])">customer&#95;id</text><title>&#10697;  customer_id
+     * integer default nextval(&apos;pagila.customer_customer_id_seq&apos;::regclass)
+ &#8601; rental( customer_id )
+ &#8601; payment( customer_id )</title></a>
+<a xlink:href='#pagila.customer.customer_id'><use id='ref' x='1012' y='332' xlink:href='#ref'/><title>&#x1F517;  Referred by rental ( customer_id ) 
+Referred by payment ( customer_id ) </title></a>
+  <use id='nn' x='898' y='349' xlink:href='#nn'/><use id='idx' x='898' y='348' xlink:href='#idx'><title>&#x1F50D;  idx_fk_store_id ( store_id ) </title></use><a xlink:href='#pagila.customer_store_id'><text id='pagila&#46;customer&#46;store&#95;id' x='915' y='359' onmouseover="hghl(['customer_customer_store_id_fkey','pagila.store.store_id'])" onmouseout="uhghl(['customer_customer_store_id_fkey','pagila.store.store_id'])">store&#95;id</text><title>&#10697;  store_id
+     * smallint
+ &#8599; customer( store_id )</title></a>
+<a xlink:href='#pagila.customer.store_id'><use id='fk' x='1012' y='348' xlink:href='#fk'/><title>&#x1F517;  References store ( store_id ) </title></a>
+  <use id='nn' x='898' y='365' xlink:href='#nn'/><a xlink:href='#pagila.customer_first_name'><text id='pagila&#46;customer&#46;first&#95;name' x='915' y='375'>first&#95;name</text><title>&#10697;  first_name
+     * varchar(45)</title></a>
+<text x='1021' y='372' text-anchor='end' class='colType'>t</text>  <use id='nn' x='898' y='381' xlink:href='#nn'/><use id='idx' x='898' y='380' xlink:href='#idx'><title>&#x1F50D;  idx_last_name ( last_name ) </title></use><a xlink:href='#pagila.customer_last_name'><text id='pagila&#46;customer&#46;last&#95;name' x='915' y='391'>last&#95;name</text><title>&#10697;  last_name
+     * varchar(45)</title></a>
+<text x='1021' y='388' text-anchor='end' class='colType'>t</text>  <a xlink:href='#pagila.customer_email'><text id='pagila&#46;customer&#46;email' x='915' y='407'>email</text><title>&#10697;  email
+     varchar(50)</title></a>
+<text x='1021' y='404' text-anchor='end' class='colType'>t</text>  <use id='nn' x='898' y='413' xlink:href='#nn'/><use id='idx' x='898' y='412' xlink:href='#idx'><title>&#x1F50D;  idx_fk_address_id ( address_id ) </title></use><a xlink:href='#pagila.customer_address_id'><text id='pagila&#46;customer&#46;address&#95;id' x='915' y='423' onmouseover="hghl(['customer_customer_address_id_fkey','pagila.address.address_id'])" onmouseout="uhghl(['customer_customer_address_id_fkey','pagila.address.address_id'])">address&#95;id</text><title>&#10697;  address_id
+     * smallint
+ &#8599; customer( address_id )</title></a>
+<a xlink:href='#pagila.customer.address_id'><use id='fk' x='1012' y='412' xlink:href='#fk'/><title>&#x1F517;  References address ( address_id ) </title></a>
+  <use id='nn' x='898' y='429' xlink:href='#nn'/><a xlink:href='#pagila.customer_activebool'><text id='pagila&#46;customer&#46;activebool' x='915' y='439'>activebool</text><title>&#10697;  activebool
+     * boolean default true</title></a>
+<text x='1021' y='436' text-anchor='end' class='colType'>b</text>  <use id='nn' x='898' y='445' xlink:href='#nn'/><a xlink:href='#pagila.customer_create_date'><text id='pagila&#46;customer&#46;create&#95;date' x='915' y='455'>create&#95;date</text><title>&#10697;  create_date
+     * date default (&apos;now&apos;::text)::date</title></a>
+<text x='1021' y='452' text-anchor='end' class='colType'>d</text>  <a xlink:href='#pagila.customer_last_update'><text id='pagila&#46;customer&#46;last&#95;update' x='915' y='471'>last&#95;update</text><title>&#10697;  last_update
+     timestamp default now()</title></a>
+<text x='1021' y='468' text-anchor='end' class='colType'>d</text>  <a xlink:href='#pagila.customer_active'><text id='pagila&#46;customer&#46;active' x='915' y='487'>active</text><title>&#10697;  active
+     integer</title></a>
+<text x='1021' y='484' text-anchor='end' class='colType'>&#35;</text>
+<!-- == Table 'film' == -->
+<rect id='depict_pagila&#46;film' class='entity' style='stroke:#769BB9' x='48' y='296' width='176' height='256' />
+<rect x='48' y='296' width='176' height='28' style='stroke-width:0; fill:#F1F6FA'/>
+<line class='topLine' style='stroke:#176098;' stroke-linecap='round' x1='48' y1='296' x2='224' y2='296'/>
+<a xlink:href='#pagila.film'><text x='120' y='315' >film</text><title>Table pagila.film</title></a>
+  <use id='nn' x='50' y='333' xlink:href='#nn'/><use id='pk' x='50' y='332' xlink:href='#pk'><title>&#x1F511;  Pk film_pkey ( film_id ) </title></use><a xlink:href='#pagila.film_film_id'><text id='pagila&#46;film&#46;film&#95;id' x='67' y='343' onmouseover="hghl(['film_category_film_category_film_id_fkey','pagila.film_category.film_id','inventory_inventory_film_id_fkey','pagila.inventory.film_id','film_actor_film_actor_film_id_fkey','pagila.film_actor.film_id'])" onmouseout="uhghl(['film_category_film_category_film_id_fkey','pagila.film_category.film_id','inventory_inventory_film_id_fkey','pagila.inventory.film_id','film_actor_film_actor_film_id_fkey','pagila.film_actor.film_id'])">film&#95;id</text><title>&#10697;  film_id
+     * integer default nextval(&apos;pagila.film_film_id_seq&apos;::regclass)
+ &#8601; film_category( film_id )
+ &#8601; inventory( film_id )
+ &#8601; film_actor( film_id )</title></a>
+<a xlink:href='#pagila.film.film_id'><use id='ref' x='212' y='332' xlink:href='#ref'/><title>&#x1F517;  Referred by film_category ( film_id ) 
+Referred by inventory ( film_id ) 
+Referred by film_actor ( film_id ) </title></a>
+  <use id='nn' x='50' y='349' xlink:href='#nn'/><use id='idx' x='50' y='348' xlink:href='#idx'><title>&#x1F50D;  idx_title ( title ) </title></use><a xlink:href='#pagila.film_title'><text id='pagila&#46;film&#46;title' x='67' y='359'>title</text><title>&#10697;  title
+     * varchar(255)</title></a>
+<text x='221' y='356' text-anchor='end' class='colType'>t</text>  <a xlink:href='#pagila.film_description'><text id='pagila&#46;film&#46;description' x='67' y='375'>description</text><title>&#10697;  description
+     text</title></a>
+<text x='221' y='372' text-anchor='end' class='colType'>t</text>  <a xlink:href='#pagila.film_release_year'><text id='pagila&#46;film&#46;release&#95;year' x='67' y='391'>release&#95;year</text><title>&#10697;  release_year
+     integer</title></a>
+<text x='221' y='388' text-anchor='end' class='colType'>&#35;</text>  <use id='nn' x='50' y='397' xlink:href='#nn'/><use id='idx' x='50' y='396' xlink:href='#idx'><title>&#x1F50D;  idx_fk_language_id ( language_id ) </title></use><a xlink:href='#pagila.film_language_id'><text id='pagila&#46;film&#46;language&#95;id' x='67' y='407' onmouseover="hghl(['film_film_language_id_fkey','pagila.language.language_id'])" onmouseout="uhghl(['film_film_language_id_fkey','pagila.language.language_id'])">language&#95;id</text><title>&#10697;  language_id
+     * smallint
+ &#8599; film( language_id )</title></a>
+<a xlink:href='#pagila.film.language_id'><use id='fk' x='212' y='396' xlink:href='#fk'/><title>&#x1F517;  References language ( language_id ) </title></a>
+  <use id='idx' x='50' y='412' xlink:href='#idx'><title>&#x1F50D;  idx_fk_original_language_id ( original_language_id ) </title></use><a xlink:href='#pagila.film_original_language_id'><text id='pagila&#46;film&#46;original&#95;language&#95;id' x='67' y='423' onmouseover="hghl(['film_film_original_language_id_fkey','pagila.language.language_id'])" onmouseout="uhghl(['film_film_original_language_id_fkey','pagila.language.language_id'])">original&#95;language&#95;id</text><title>&#10697;  original_language_id
+     smallint
+ &#8599; film( language_id )</title></a>
+<a xlink:href='#pagila.film.original_language_id'><use id='fk' x='212' y='412' xlink:href='#fk'/><title>&#x1F517;  References language ( original_language_id -&gt; language_id ) </title></a>
+  <use id='nn' x='50' y='429' xlink:href='#nn'/><a xlink:href='#pagila.film_rental_duration'><text id='pagila&#46;film&#46;rental&#95;duration' x='67' y='439'>rental&#95;duration</text><title>&#10697;  rental_duration
+     * smallint default 3</title></a>
+<text x='221' y='436' text-anchor='end' class='colType'>&#35;</text>  <use id='nn' x='50' y='445' xlink:href='#nn'/><a xlink:href='#pagila.film_rental_rate'><text id='pagila&#46;film&#46;rental&#95;rate' x='67' y='455'>rental&#95;rate</text><title>&#10697;  rental_rate
+     * varchar(4) default 4.99</title></a>
+<text x='221' y='452' text-anchor='end' class='colType'>t</text>  <a xlink:href='#pagila.film_length'><text id='pagila&#46;film&#46;length' x='67' y='471'>length</text><title>&#10697;  length
+     smallint</title></a>
+<text x='221' y='468' text-anchor='end' class='colType'>&#35;</text>  <use id='nn' x='50' y='477' xlink:href='#nn'/><a xlink:href='#pagila.film_replacement_cost'><text id='pagila&#46;film&#46;replacement&#95;cost' x='67' y='487'>replacement&#95;cost</text><title>&#10697;  replacement_cost
+     * varchar(5) default 19.99</title></a>
+<text x='221' y='484' text-anchor='end' class='colType'>t</text>  <a xlink:href='#pagila.film_rating'><text id='pagila&#46;film&#46;rating' x='67' y='503'>rating</text><title>&#10697;  rating
+     mpaa_rating default &apos;G&apos;::pagila.mpaa_rating</title></a>
+<text x='221' y='500' text-anchor='end' class='colType'>t</text>  <use id='nn' x='50' y='509' xlink:href='#nn'/><a xlink:href='#pagila.film_last_update'><text id='pagila&#46;film&#46;last&#95;update' x='67' y='519'>last&#95;update</text><title>&#10697;  last_update
+     * timestamp default now()</title></a>
+<text x='221' y='516' text-anchor='end' class='colType'>d</text>  <a xlink:href='#pagila.film_special_features'><text id='pagila&#46;film&#46;special&#95;features' x='67' y='535'>special&#95;features</text><title>&#10697;  special_features
+     text[]</title></a>
+<text x='221' y='532' text-anchor='end' class='colType'>&#91;&#93;</text>
+<!-- == Table 'payment' == -->
+<rect id='depict_pagila&#46;payment' class='entity' style='stroke:#769BB9' x='624' y='40' width='144' height='144' />
+<rect x='624' y='40' width='144' height='28' style='stroke-width:0; fill:#F1F6FA'/>
+<line class='topLine' style='stroke:#176098;' stroke-linecap='round' x1='624' y1='40' x2='768' y2='40'/>
+<a xlink:href='#pagila.payment'><text x='665' y='59' >payment</text><title>Table pagila.payment</title></a>
+  <use id='nn' x='626' y='77' xlink:href='#nn'/><use id='pk' x='626' y='76' xlink:href='#pk'><title>&#x1F511;  Pk payment_pkey ( payment_id ) </title></use><a xlink:href='#pagila.payment_payment_id'><text id='pagila&#46;payment&#46;payment&#95;id' x='643' y='87'>payment&#95;id</text><title>&#10697;  payment_id
+     * integer default nextval(&apos;pagila.payment_payment_id_seq&apos;::regclass)</title></a>
+<text x='765' y='84' text-anchor='end' class='colType'>&#35;</text>  <use id='nn' x='626' y='93' xlink:href='#nn'/><use id='idx' x='626' y='92' xlink:href='#idx'><title>&#x1F50D;  idx_fk_customer_id ( customer_id ) </title></use><a xlink:href='#pagila.payment_customer_id'><text id='pagila&#46;payment&#46;customer&#95;id' x='643' y='103' onmouseover="hghl(['payment_payment_customer_id_fkey','pagila.customer.customer_id'])" onmouseout="uhghl(['payment_payment_customer_id_fkey','pagila.customer.customer_id'])">customer&#95;id</text><title>&#10697;  customer_id
+     * smallint
+ &#8599; payment( customer_id )</title></a>
+<a xlink:href='#pagila.payment.customer_id'><use id='fk' x='756' y='92' xlink:href='#fk'/><title>&#x1F517;  References customer ( customer_id ) </title></a>
+  <use id='nn' x='626' y='109' xlink:href='#nn'/><use id='idx' x='626' y='108' xlink:href='#idx'><title>&#x1F50D;  idx_fk_staff_id ( staff_id ) </title></use><a xlink:href='#pagila.payment_staff_id'><text id='pagila&#46;payment&#46;staff&#95;id' x='643' y='119' onmouseover="hghl(['payment_payment_staff_id_fkey','pagila.staff.staff_id'])" onmouseout="uhghl(['payment_payment_staff_id_fkey','pagila.staff.staff_id'])">staff&#95;id</text><title>&#10697;  staff_id
+     * smallint
+ &#8599; payment( staff_id )</title></a>
+<a xlink:href='#pagila.payment.staff_id'><use id='fk' x='756' y='108' xlink:href='#fk'/><title>&#x1F517;  References staff ( staff_id ) </title></a>
+  <use id='nn' x='626' y='125' xlink:href='#nn'/><a xlink:href='#pagila.payment_rental_id'><text id='pagila&#46;payment&#46;rental&#95;id' x='643' y='135' onmouseover="hghl(['payment_payment_rental_id_fkey','pagila.rental.rental_id'])" onmouseout="uhghl(['payment_payment_rental_id_fkey','pagila.rental.rental_id'])">rental&#95;id</text><title>&#10697;  rental_id
+     * integer
+ &#8599; payment( rental_id )</title></a>
+<a xlink:href='#pagila.payment.rental_id'><use id='fk' x='756' y='124' xlink:href='#fk'/><title>&#x1F517;  References rental ( rental_id ) </title></a>
+  <use id='nn' x='626' y='141' xlink:href='#nn'/><a xlink:href='#pagila.payment_amount'><text id='pagila&#46;payment&#46;amount' x='643' y='151'>amount</text><title>&#10697;  amount
+     * numeric(5,2)</title></a>
+<text x='765' y='148' text-anchor='end' class='colType'>&#35;</text>  <use id='nn' x='626' y='157' xlink:href='#nn'/><a xlink:href='#pagila.payment_payment_date'><text id='pagila&#46;payment&#46;payment&#95;date' x='643' y='167'>payment&#95;date</text><title>&#10697;  payment_date
+     * timestamp</title></a>
+<text x='765' y='164' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'inventory' == -->
+<rect id='depict_pagila&#46;inventory' class='entity' style='stroke:#769BB9' x='64' y='56' width='128' height='112' />
+<rect x='64' y='56' width='128' height='28' style='stroke-width:0; fill:#F1F6FA'/>
+<line class='topLine' style='stroke:#176098;' stroke-linecap='round' x1='64' y1='56' x2='192' y2='56'/>
+<a xlink:href='#pagila.inventory'><text x='95' y='75' >inventory</text><title>Table pagila.inventory</title></a>
+  <use id='nn' x='66' y='93' xlink:href='#nn'/><use id='pk' x='66' y='92' xlink:href='#pk'><title>&#x1F511;  Pk inventory_pkey ( inventory_id ) </title></use><a xlink:href='#pagila.inventory_inventory_id'><text id='pagila&#46;inventory&#46;inventory&#95;id' x='83' y='103' onmouseover="hghl(['rental_rental_inventory_id_fkey','pagila.rental.inventory_id'])" onmouseout="uhghl(['rental_rental_inventory_id_fkey','pagila.rental.inventory_id'])">inventory&#95;id</text><title>&#10697;  inventory_id
+     * integer default nextval(&apos;pagila.inventory_inventory_id_seq&apos;::regclass)
+ &#8601; rental( inventory_id )</title></a>
+<a xlink:href='#pagila.inventory.inventory_id'><use id='ref' x='180' y='92' xlink:href='#ref'/><title>&#x1F517;  Referred by rental ( inventory_id ) </title></a>
+  <use id='nn' x='66' y='109' xlink:href='#nn'/><use id='idx' x='66' y='108' xlink:href='#idx'><title>&#x1F50D;  idx_store_id_film_id ( store_id, film_id ) </title></use><a xlink:href='#pagila.inventory_film_id'><text id='pagila&#46;inventory&#46;film&#95;id' x='83' y='119' onmouseover="hghl(['inventory_inventory_film_id_fkey','pagila.film.film_id'])" onmouseout="uhghl(['inventory_inventory_film_id_fkey','pagila.film.film_id'])">film&#95;id</text><title>&#10697;  film_id
+     * smallint
+ &#8599; inventory( film_id )</title></a>
+<a xlink:href='#pagila.inventory.film_id'><use id='fk' x='180' y='108' xlink:href='#fk'/><title>&#x1F517;  References film ( film_id ) </title></a>
+  <use id='nn' x='66' y='125' xlink:href='#nn'/><use id='idx' x='66' y='124' xlink:href='#idx'><title>&#x1F50D;  idx_store_id_film_id ( store_id, film_id ) </title></use><a xlink:href='#pagila.inventory_store_id'><text id='pagila&#46;inventory&#46;store&#95;id' x='83' y='135' onmouseover="hghl(['inventory_inventory_store_id_fkey','pagila.store.store_id'])" onmouseout="uhghl(['inventory_inventory_store_id_fkey','pagila.store.store_id'])">store&#95;id</text><title>&#10697;  store_id
+     * smallint
+ &#8599; inventory( store_id )</title></a>
+<a xlink:href='#pagila.inventory.store_id'><use id='fk' x='180' y='124' xlink:href='#fk'/><title>&#x1F517;  References store ( store_id ) </title></a>
+  <use id='nn' x='66' y='141' xlink:href='#nn'/><a xlink:href='#pagila.inventory_last_update'><text id='pagila&#46;inventory&#46;last&#95;update' x='83' y='151'>last&#95;update</text><title>&#10697;  last_update
+     * timestamp default now()</title></a>
+<text x='189' y='148' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'store' == -->
+<rect id='depict_pagila&#46;store' class='entity' style='stroke:#769BB9' x='288' y='72' width='160' height='112' />
+<rect x='288' y='72' width='160' height='28' style='stroke-width:0; fill:#F1F6FA'/>
+<line class='topLine' style='stroke:#176098;' stroke-linecap='round' x1='288' y1='72' x2='448' y2='72'/>
+<a xlink:href='#pagila.store'><text x='349' y='91' >store</text><title>Table pagila.store</title></a>
+  <use id='nn' x='290' y='109' xlink:href='#nn'/><use id='pk' x='290' y='108' xlink:href='#pk'><title>&#x1F511;  Pk store_pkey ( store_id ) </title></use><a xlink:href='#pagila.store_store_id'><text id='pagila&#46;store&#46;store&#95;id' x='307' y='119' onmouseover="hghl(['staff_staff_store_id_fkey','pagila.staff.store_id','inventory_inventory_store_id_fkey','pagila.inventory.store_id','customer_customer_store_id_fkey','pagila.customer.store_id'])" onmouseout="uhghl(['staff_staff_store_id_fkey','pagila.staff.store_id','inventory_inventory_store_id_fkey','pagila.inventory.store_id','customer_customer_store_id_fkey','pagila.customer.store_id'])">store&#95;id</text><title>&#10697;  store_id
+     * integer default nextval(&apos;pagila.store_store_id_seq&apos;::regclass)
+ &#8601; staff( store_id )
+ &#8601; inventory( store_id )
+ &#8601; customer( store_id )</title></a>
+<a xlink:href='#pagila.store.store_id'><use id='ref' x='436' y='108' xlink:href='#ref'/><title>&#x1F517;  Referred by staff ( store_id ) 
+Referred by inventory ( store_id ) 
+Referred by customer ( store_id ) </title></a>
+  <use id='nn' x='290' y='125' xlink:href='#nn'/><use id='unq' x='290' y='124' xlink:href='#unq'><title>&#x1F50D;  Unq idx_unq_manager_staff_id ( manager_staff_id ) </title></use><a xlink:href='#pagila.store_manager_staff_id'><text id='pagila&#46;store&#46;manager&#95;staff&#95;id' x='307' y='135' onmouseover="hghl(['store_store_manager_staff_id_fkey','pagila.staff.staff_id'])" onmouseout="uhghl(['store_store_manager_staff_id_fkey','pagila.staff.staff_id'])">manager&#95;staff&#95;id</text><title>&#10697;  manager_staff_id
+     * smallint
+ &#8599; store( staff_id )</title></a>
+<a xlink:href='#pagila.store.manager_staff_id'><use id='fk' x='436' y='124' xlink:href='#fk'/><title>&#x1F517;  References staff ( manager_staff_id -&gt; staff_id ) </title></a>
+  <use id='nn' x='290' y='141' xlink:href='#nn'/><a xlink:href='#pagila.store_address_id'><text id='pagila&#46;store&#46;address&#95;id' x='307' y='151' onmouseover="hghl(['store_store_address_id_fkey','pagila.address.address_id'])" onmouseout="uhghl(['store_store_address_id_fkey','pagila.address.address_id'])">address&#95;id</text><title>&#10697;  address_id
+     * smallint
+ &#8599; store( address_id )</title></a>
+<a xlink:href='#pagila.store.address_id'><use id='fk' x='436' y='140' xlink:href='#fk'/><title>&#x1F517;  References address ( address_id ) </title></a>
+  <use id='nn' x='290' y='157' xlink:href='#nn'/><a xlink:href='#pagila.store_last_update'><text id='pagila&#46;store&#46;last&#95;update' x='307' y='167'>last&#95;update</text><title>&#10697;  last_update
+     * timestamp default now()</title></a>
+<text x='445' y='164' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'address' == -->
+<rect id='depict_pagila&#46;address' class='entity' style='stroke:#769BB9' x='576' y='392' width='128' height='176' />
+<rect x='576' y='392' width='128' height='28' style='stroke-width:0; fill:#F1F6FA'/>
+<line class='topLine' style='stroke:#176098;' stroke-linecap='round' x1='576' y1='392' x2='704' y2='392'/>
+<a xlink:href='#pagila.address'><text x='613' y='411' >address</text><title>Table pagila.address</title></a>
+  <use id='nn' x='578' y='429' xlink:href='#nn'/><use id='pk' x='578' y='428' xlink:href='#pk'><title>&#x1F511;  Pk address_pkey ( address_id ) </title></use><a xlink:href='#pagila.address_address_id'><text id='pagila&#46;address&#46;address&#95;id' x='595' y='439' onmouseover="hghl(['staff_staff_address_id_fkey','pagila.staff.address_id','store_store_address_id_fkey','pagila.store.address_id','customer_customer_address_id_fkey','pagila.customer.address_id'])" onmouseout="uhghl(['staff_staff_address_id_fkey','pagila.staff.address_id','store_store_address_id_fkey','pagila.store.address_id','customer_customer_address_id_fkey','pagila.customer.address_id'])">address&#95;id</text><title>&#10697;  address_id
+     * integer default nextval(&apos;pagila.address_address_id_seq&apos;::regclass)
+ &#8601; staff( address_id )
+ &#8601; store( address_id )
+ &#8601; customer( address_id )</title></a>
+<a xlink:href='#pagila.address.address_id'><use id='ref' x='692' y='428' xlink:href='#ref'/><title>&#x1F517;  Referred by staff ( address_id ) 
+Referred by store ( address_id ) 
+Referred by customer ( address_id ) </title></a>
+  <use id='nn' x='578' y='445' xlink:href='#nn'/><a xlink:href='#pagila.address_address'><text id='pagila&#46;address&#46;address' x='595' y='455'>address</text><title>&#10697;  address
+     * varchar(50)</title></a>
+<text x='701' y='452' text-anchor='end' class='colType'>t</text>  <a xlink:href='#pagila.address_address2'><text id='pagila&#46;address&#46;address2' x='595' y='471'>address2</text><title>&#10697;  address2
+     varchar(50)</title></a>
+<text x='701' y='468' text-anchor='end' class='colType'>t</text>  <use id='nn' x='578' y='477' xlink:href='#nn'/><a xlink:href='#pagila.address_district'><text id='pagila&#46;address&#46;district' x='595' y='487'>district</text><title>&#10697;  district
+     * varchar(20)</title></a>
+<text x='701' y='484' text-anchor='end' class='colType'>t</text>  <use id='nn' x='578' y='493' xlink:href='#nn'/><use id='idx' x='578' y='492' xlink:href='#idx'><title>&#x1F50D;  idx_fk_city_id ( city_id ) </title></use><a xlink:href='#pagila.address_city_id'><text id='pagila&#46;address&#46;city&#95;id' x='595' y='503' onmouseover="hghl(['address_address_city_id_fkey','pagila.city.city_id'])" onmouseout="uhghl(['address_address_city_id_fkey','pagila.city.city_id'])">city&#95;id</text><title>&#10697;  city_id
+     * smallint
+ &#8599; address( city_id )</title></a>
+<a xlink:href='#pagila.address.city_id'><use id='fk' x='692' y='492' xlink:href='#fk'/><title>&#x1F517;  References city ( city_id ) </title></a>
+  <a xlink:href='#pagila.address_postal_code'><text id='pagila&#46;address&#46;postal&#95;code' x='595' y='519'>postal&#95;code</text><title>&#10697;  postal_code
+     varchar(10)</title></a>
+<text x='701' y='516' text-anchor='end' class='colType'>t</text>  <use id='nn' x='578' y='525' xlink:href='#nn'/><a xlink:href='#pagila.address_phone'><text id='pagila&#46;address&#46;phone' x='595' y='535'>phone</text><title>&#10697;  phone
+     * varchar(20)</title></a>
+<text x='701' y='532' text-anchor='end' class='colType'>t</text>  <use id='nn' x='578' y='541' xlink:href='#nn'/><a xlink:href='#pagila.address_last_update'><text id='pagila&#46;address&#46;last&#95;update' x='595' y='551'>last&#95;update</text><title>&#10697;  last_update
+     * timestamp default now()</title></a>
+<text x='701' y='548' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'staff' == -->
+<rect id='depict_pagila&#46;staff' class='entity' style='stroke:#769BB9' x='320' y='408' width='128' height='224' />
+<rect x='320' y='408' width='128' height='28' style='stroke-width:0; fill:#F1F6FA'/>
+<line class='topLine' style='stroke:#176098;' stroke-linecap='round' x1='320' y1='408' x2='448' y2='408'/>
+<a xlink:href='#pagila.staff'><text x='366' y='427' >staff</text><title>Table pagila.staff</title></a>
+  <use id='nn' x='322' y='445' xlink:href='#nn'/><use id='pk' x='322' y='444' xlink:href='#pk'><title>&#x1F511;  Pk staff_pkey ( staff_id ) </title></use><a xlink:href='#pagila.staff_staff_id'><text id='pagila&#46;staff&#46;staff&#95;id' x='339' y='455' onmouseover="hghl(['rental_rental_staff_id_fkey','pagila.rental.staff_id','store_store_manager_staff_id_fkey','pagila.store.manager_staff_id','payment_payment_staff_id_fkey','pagila.payment.staff_id'])" onmouseout="uhghl(['rental_rental_staff_id_fkey','pagila.rental.staff_id','store_store_manager_staff_id_fkey','pagila.store.manager_staff_id','payment_payment_staff_id_fkey','pagila.payment.staff_id'])">staff&#95;id</text><title>&#10697;  staff_id
+     * integer default nextval(&apos;pagila.staff_staff_id_seq&apos;::regclass)
+ &#8601; rental( staff_id )
+ &#8601; store( staff_id )
+ &#8601; payment( staff_id )</title></a>
+<a xlink:href='#pagila.staff.staff_id'><use id='ref' x='436' y='444' xlink:href='#ref'/><title>&#x1F517;  Referred by rental ( staff_id ) 
+Referred by store ( manager_staff_id -&gt; staff_id ) 
+Referred by payment ( staff_id ) </title></a>
+  <use id='nn' x='322' y='461' xlink:href='#nn'/><a xlink:href='#pagila.staff_first_name'><text id='pagila&#46;staff&#46;first&#95;name' x='339' y='471'>first&#95;name</text><title>&#10697;  first_name
+     * varchar(45)</title></a>
+<text x='445' y='468' text-anchor='end' class='colType'>t</text>  <use id='nn' x='322' y='477' xlink:href='#nn'/><a xlink:href='#pagila.staff_last_name'><text id='pagila&#46;staff&#46;last&#95;name' x='339' y='487'>last&#95;name</text><title>&#10697;  last_name
+     * varchar(45)</title></a>
+<text x='445' y='484' text-anchor='end' class='colType'>t</text>  <use id='nn' x='322' y='493' xlink:href='#nn'/><a xlink:href='#pagila.staff_address_id'><text id='pagila&#46;staff&#46;address&#95;id' x='339' y='503' onmouseover="hghl(['staff_staff_address_id_fkey','pagila.address.address_id'])" onmouseout="uhghl(['staff_staff_address_id_fkey','pagila.address.address_id'])">address&#95;id</text><title>&#10697;  address_id
+     * smallint
+ &#8599; staff( address_id )</title></a>
+<a xlink:href='#pagila.staff.address_id'><use id='fk' x='436' y='492' xlink:href='#fk'/><title>&#x1F517;  References address ( address_id ) </title></a>
+  <a xlink:href='#pagila.staff_email'><text id='pagila&#46;staff&#46;email' x='339' y='519'>email</text><title>&#10697;  email
+     varchar(50)</title></a>
+<text x='445' y='516' text-anchor='end' class='colType'>t</text>  <use id='nn' x='322' y='525' xlink:href='#nn'/><a xlink:href='#pagila.staff_store_id'><text id='pagila&#46;staff&#46;store&#95;id' x='339' y='535' onmouseover="hghl(['staff_staff_store_id_fkey','pagila.store.store_id'])" onmouseout="uhghl(['staff_staff_store_id_fkey','pagila.store.store_id'])">store&#95;id</text><title>&#10697;  store_id
+     * smallint
+ &#8599; staff( store_id )</title></a>
+<a xlink:href='#pagila.staff.store_id'><use id='fk' x='436' y='524' xlink:href='#fk'/><title>&#x1F517;  References store ( store_id ) </title></a>
+  <use id='nn' x='322' y='541' xlink:href='#nn'/><a xlink:href='#pagila.staff_active'><text id='pagila&#46;staff&#46;active' x='339' y='551'>active</text><title>&#10697;  active
+     * boolean default true</title></a>
+<text x='445' y='548' text-anchor='end' class='colType'>b</text>  <use id='nn' x='322' y='557' xlink:href='#nn'/><a xlink:href='#pagila.staff_username'><text id='pagila&#46;staff&#46;username' x='339' y='567'>username</text><title>&#10697;  username
+     * varchar(16)</title></a>
+<text x='445' y='564' text-anchor='end' class='colType'>t</text>  <a xlink:href='#pagila.staff_password'><text id='pagila&#46;staff&#46;password' x='339' y='583'>password</text><title>&#10697;  password
+     varchar(40)</title></a>
+<text x='445' y='580' text-anchor='end' class='colType'>t</text>  <use id='nn' x='322' y='589' xlink:href='#nn'/><a xlink:href='#pagila.staff_last_update'><text id='pagila&#46;staff&#46;last&#95;update' x='339' y='599'>last&#95;update</text><title>&#10697;  last_update
+     * timestamp default now()</title></a>
+<text x='445' y='596' text-anchor='end' class='colType'>d</text>  <a xlink:href='#pagila.staff_picture'><text id='pagila&#46;staff&#46;picture' x='339' y='615'>picture</text><title>&#10697;  picture
+     bytea</title></a>
+<text x='445' y='612' text-anchor='end' class='colType'>&#126;</text>
+<!-- == Table 'city' == -->
+<rect id='depict_pagila&#46;city' class='entity' style='stroke:#769BB9' x='576' y='632' width='128' height='112' />
+<rect x='576' y='632' width='128' height='28' style='stroke-width:0; fill:#F1F6FA'/>
+<line class='topLine' style='stroke:#176098;' stroke-linecap='round' x1='576' y1='632' x2='704' y2='632'/>
+<a xlink:href='#pagila.city'><text x='625' y='651' >city</text><title>Table pagila.city</title></a>
+  <use id='nn' x='578' y='669' xlink:href='#nn'/><use id='pk' x='578' y='668' xlink:href='#pk'><title>&#x1F511;  Pk city_pkey ( city_id ) </title></use><a xlink:href='#pagila.city_city_id'><text id='pagila&#46;city&#46;city&#95;id' x='595' y='679' onmouseover="hghl(['address_address_city_id_fkey','pagila.address.city_id'])" onmouseout="uhghl(['address_address_city_id_fkey','pagila.address.city_id'])">city&#95;id</text><title>&#10697;  city_id
+     * integer default nextval(&apos;pagila.city_city_id_seq&apos;::regclass)
+ &#8601; address( city_id )</title></a>
+<a xlink:href='#pagila.city.city_id'><use id='ref' x='692' y='668' xlink:href='#ref'/><title>&#x1F517;  Referred by address ( city_id ) </title></a>
+  <use id='nn' x='578' y='685' xlink:href='#nn'/><a xlink:href='#pagila.city_city'><text id='pagila&#46;city&#46;city' x='595' y='695'>city</text><title>&#10697;  city
+     * varchar(50)</title></a>
+<text x='701' y='692' text-anchor='end' class='colType'>t</text>  <use id='nn' x='578' y='701' xlink:href='#nn'/><use id='idx' x='578' y='700' xlink:href='#idx'><title>&#x1F50D;  idx_fk_country_id ( country_id ) </title></use><a xlink:href='#pagila.city_country_id'><text id='pagila&#46;city&#46;country&#95;id' x='595' y='711' onmouseover="hghl(['city_city_country_id_fkey','pagila.country.country_id'])" onmouseout="uhghl(['city_city_country_id_fkey','pagila.country.country_id'])">country&#95;id</text><title>&#10697;  country_id
+     * smallint
+ &#8599; city( country_id )</title></a>
+<a xlink:href='#pagila.city.country_id'><use id='fk' x='692' y='700' xlink:href='#fk'/><title>&#x1F517;  References country ( country_id ) </title></a>
+  <use id='nn' x='578' y='717' xlink:href='#nn'/><a xlink:href='#pagila.city_last_update'><text id='pagila&#46;city&#46;last&#95;update' x='595' y='727'>last&#95;update</text><title>&#10697;  last_update
+     * timestamp default now()</title></a>
+<text x='701' y='724' text-anchor='end' class='colType'>d</text>
+<!-- == Table 'country' == -->
+<rect id='depict_pagila&#46;country' class='entity' style='stroke:#769BB9' x='816' y='600' width='128' height='96' />
+<rect x='816' y='600' width='128' height='28' style='stroke-width:0; fill:#F1F6FA'/>
+<line class='topLine' style='stroke:#176098;' stroke-linecap='round' x1='816' y1='600' x2='944' y2='600'/>
+<a xlink:href='#pagila.country'><text x='853' y='619' >country</text><title>Table pagila.country</title></a>
+  <use id='nn' x='818' y='637' xlink:href='#nn'/><use id='pk' x='818' y='636' xlink:href='#pk'><title>&#x1F511;  Pk country_pkey ( country_id ) </title></use><a xlink:href='#pagila.country_country_id'><text id='pagila&#46;country&#46;country&#95;id' x='835' y='647' onmouseover="hghl(['city_city_country_id_fkey','pagila.city.country_id'])" onmouseout="uhghl(['city_city_country_id_fkey','pagila.city.country_id'])">country&#95;id</text><title>&#10697;  country_id
+     * integer default nextval(&apos;pagila.country_country_id_seq&apos;::regclass)
+ &#8601; city( country_id )</title></a>
+<a xlink:href='#pagila.country.country_id'><use id='ref' x='932' y='636' xlink:href='#ref'/><title>&#x1F517;  Referred by city ( country_id ) </title></a>
+  <use id='nn' x='818' y='653' xlink:href='#nn'/><a xlink:href='#pagila.country_country'><text id='pagila&#46;country&#46;country' x='835' y='663'>country</text><title>&#10697;  country
+     * varchar(50)</title></a>
+<text x='941' y='660' text-anchor='end' class='colType'>t</text>  <use id='nn' x='818' y='669' xlink:href='#nn'/><a xlink:href='#pagila.country_last_update'><text id='pagila&#46;country&#46;last&#95;update' x='835' y='679'>last&#95;update</text><title>&#10697;  last_update
+     * timestamp default now()</title></a>
+<text x='941' y='676' text-anchor='end' class='colType'>d</text>
+</g></svg>

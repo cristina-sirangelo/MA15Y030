@@ -1,0 +1,111 @@
+project:
+  type: website
+
+website:
+  page-navigation: true
+  title: "MA15Y030 - Automne 2024"
+  description: "Page maison for MA15Y030 - Bases de données, Licence MIASHS Automne  2024."
+  site-url: "https://s-v-b.github.io/MA15Y030/"
+
+  repo-url: https://github.com/s-v-b/MA15Y030
+  repo-actions: [edit, issue]
+
+  open-graph: true
+
+  page-footer:
+    right: "This page is built with[Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2022, Stéphane Boucheron"
+    background: "#D9E3E4"
+
+  sidebar:
+    background: "#D9E3E4"
+    logo: "images/logo.png"
+    pinned: true
+    align: center
+    tools:
+      - icon: github
+        href: https://github.com/s-v-b/MA15Y030
+        text: "GitHub organization"
+      - icon: person-fill
+        text: "Moodle"
+        menu:
+          - text: Discussion forum
+            url: https://moodle.u-paris.fr/course/view.php?id=2313
+          - text: Dépot 
+            url: https://moodle.u-paris.fr/course/view.php?id=2313
+          - text: Notes
+            url: https://moodle.u-paris.fr/course/view.php?id=2313
+
+    style: "docked"
+    search: true
+    collapse-level: 1
+    contents:
+      - section: "Course information"
+        contents:
+          - href: cours-apercu.qmd
+            text: Aperçu
+          - href: cours-syllabus.qmd
+            text: Syllabus
+          - href: cours-support.qmd
+            text: Support
+          - href: cours-equipe.qmd
+            text: Équipe
+          - href: index.qmd
+            text: Agenda
+          - href: cours-liens.qmd
+            text: Liens
+          - href: cours-faq.qmd
+            text: FAQ
+      - section: "Computing"
+        contents:
+          - href: computing-access.qmd
+            text: Access
+          - href: computing-troubleshooting.qmd
+            text: Troubleshooting
+      - section: "Project"
+        contents:
+          - href: project-description.qmd
+            text: Description
+          - href: project-tips-resources.qmd
+            text: Tips + resources
+      - section: "Weekly materials"
+        contents:
+          - href: weeks/week-1.qmd
+            text: "Week 1"
+          - href: weeks/week-2.qmd
+            text: "Week 2"
+          - href: weeks/week-3.qmd
+            text: "Week 3"
+          - href: weeks/week-4.qmd
+            text: "Week 4"
+          - href: weeks/week-5.qmd
+            text: "Week 5"
+          - href: weeks/week-6.qmd
+            text: "Week 6"
+          - href: weeks/week-7.qmd
+            text: "Week 7"
+          - href: weeks/week-8.qmd
+            text: "Week 8"
+          - href: weeks/week-9.qmd
+            text: "Week 9"
+          - href: weeks/week-10.qmd
+            text: "Week 10"
+          - href: weeks/week-11.qmd
+            text: "Week 11"
+          - href: weeks/week-12.qmd
+            text: "Week 12"
+
+
+format:
+  html:
+    theme:
+      light: [cosmo, theme.scss]
+      dark: [cosmo, theme-dark.scss]
+    mainfont: "Atkinson Hyperlegible"
+    code-copy: true
+    code-overflow: wrap
+    toc: true
+
+freeze: auto
+
+editor: visual

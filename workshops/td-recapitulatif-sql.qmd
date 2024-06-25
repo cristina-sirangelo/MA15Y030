@@ -1,0 +1,339 @@
+---
+title: ""
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: true
+    code-fold: false
+    toc: false
+    output-file: td-recap-sql.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données \\\\ TD Récapitulatif SQL }}"
+  html:
+    standalone: true
+    code-fold: true
+    output-file: td-recap-sql.html
+params:
+    year: 2023 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+---
+
+
+```{r}
+#| include: false
+```
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+{{< meta title >>}}
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](./img/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+
+
+# Recapitulatif SQL
+
+Utiliser les outils les plus adaptés parmi ceux vus depuis le début de l'année pour répondre aux questions suivantes.
+
+## Schéma `world`
+
+::: {.callout-note title="Question"}
+
+Quel est le pays qui a le plus de villes recensées dans la table `world.city`? Combien de villes ? (363 villes)
+
+:::
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{sql}
+WITH country_city AS
+	(SELECT name_country , COUNT(name_city) nbrcity
+	FROM world.country NATURAL JOIN world.city
+	GROUP BY name_country)
+
+SELECT name_country, nbrcity
+FROM country_city
+WHERE nbrcity = (SELECT MAX(nbrcity) 
+				 FROM country_city) ;
+```
+
+::::: 
+:::
+
+::: {.callout-note title="Question"}
+
+Quels sont les pays qui ont $3$ ou plus langues officielles ? (8 lignes)
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{sql}
+SELECT name_country
+FROM world.country NATURAL JOIN world.countrylanguage
+WHERE isofficial
+GROUP BY name_country HAVING COUNT(*) > 2 ;
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note title="Question"}
+
+Quels sont les pays dont plus de $1.000.000$ d'habitants parlent une langue non officielle ? (72 lignes)
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{sql}
+SELECT DISTINCT name_country
+FROM world.country NATURAL JOIN world.countrylanguage
+WHERE (NOT isofficial) AND 
+	  (percentage / 100) * population_country >= 1000000 ;
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note title="Question"}
+
+Quelles sont les langues qui sont officielles dans tous les continents où au moins une langue est parlée ? (1 ligne)
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+
+```{sql}
+WITH R AS
+	(SELECT count(DISTINCT continent)
+	FROM world.country NATURAL JOIN world.countrylanguage)
+SELECT language, count(DISTINCT continent) as nbcon
+FROM world.country NATURAL JOIN world.countrylanguage WHERE isofficial
+GROUP BY language
+	HAVING count(DISTINCT continent) in (SELECT * FROM R)
+ORDER BY nbcon DESC ;
+```
+
+:::::
+
+ou
+
+::::: {.callout-tip title="Solution"}
+
+```{sql}
+WITH continent_language AS
+	(SELECT DISTINCT language , continent
+	FROM country NATURAL JOIN countrylanguage
+	WHERE isofficial),
+all_continent_language AS
+	(SELECT DISTINCT l.language , c.continent
+	FROM countrylanguage l , continent_language c),
+not_continent_language AS
+	((SELECT * FROM all_continent_language)
+	EXCEPT
+	(SELECT * FROM continent_language))
+SELECT DISTINCT language
+FROM countrylanguage
+WHERE language NOT IN (SELECT language FROM not_continent_language) ;
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note title="Question"} 
+
+Quels sont les pays pour lesquels une langue non officielle est parlée par strictement plus de monde (dans le pays) qu'il n'y a d'habitants dans la capitale ? (118 lignes)
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{sql}
+SELECT DISTINCT name_country
+FROM (country c JOIN city ON id = capital)
+	JOIN countrylanguage l ON c.countrycode = l.countrycode
+WHERE NOT isofficial
+AND percentage / 100 * population_country > population_city ;
+```
+
+:::::
+
+:::
+
+::: {.callout-note title="Question"}
+
+Quels est le nombre de villes par ` region` ?
+
+:::
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{sql}
+SELECT region , COUNT(id) AS nbr_city
+FROM country NATURAL JOIN city
+GROUP BY region ;
+```
+
+:::::
+
+:::
+
+
+
+## Schéma `pagila`
+
+
+
+
+::: {.callout-note title="Question"}
+
+Quel est l'acteur (`actor_id`) présent sur le plus de DVD (`inventory_id`) ?
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{sql}
+WITH actor_dvd AS
+	(SELECT actor_id , count(inventory_id) nbrdvd
+	FROM actor NATURAL JOIN film_actor NATURAL JOIN inventory
+	GROUP BY actor_id)
+SELECT first_name , last_name
+FROM actor NATURAL JOIN actor_dvd
+WHERE nbrdvd = (SELECT MAX(nbrdvd) FROM actor_dvd) ;
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note title="Question"}
+
+Quel est le prix moyen d'une location de DVD ?
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{sql}
+SELECT AVG(amount) 
+FROM payment ;
+```
+
+:::::
+
+:::
+
+::: {.callout-note title="Question"}
+
+Quel est le DVD qui a rapporté le plus d'argent ? Le film  (`film_id`)?
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+Pour le DVD:
+
+```{sql}
+WITH inventory_amount AS
+	(SELECT inventory_id , SUM(amount) AS dollar
+	FROM inventory NATURAL JOIN rental NATURAL JOIN payment
+	GROUP BY inventory_id)
+SELECT inventory_id , dollar
+FROM  inventory_amount
+WHERE dollar >= ALL (SELECT dollar FROM inventory_amount) ;
+```
+
+:::::
+
+
+::::: {.callout-tip title="Solution"}
+
+Et pour le film:
+
+
+```{sql}
+WITH film_amount AS
+	(SELECT film_id , SUM(amount) AS dollar
+	FROM inventory NATURAL JOIN rental NATURAL JOIN payment
+	GROUP BY film_id)
+SELECT film_id , dollar
+FROM  inventory_amount
+WHERE dollar >= ALL (SELECT dollar FROM film_amount) ;
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note title="Question"}
+
+Quels sont les employés (`staff_id`) qui travaillent dans une autre ville que celle dans laquelle ils vivent ? (4 lignes)
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{sql}
+WITH staff_maison AS
+	(SELECT staff_id , city_id
+	FROM (staff NATURAL JOIN address)),
+staff_travail AS
+	(SELECT staff_id , city_id
+	FROM (staff p JOIN store s ON p.store_id = s.store_id) , address a
+	WHERE a.address_id = s.address_id)
+SELECT staff_id FROM staff_travail NATURAL JOIN staff_maison ;
+```
+
+:::::
+
+:::
