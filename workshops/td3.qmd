@@ -2,7 +2,7 @@
 format:
   pdf:
     code-annotations: below
-    keep-tex: true
+    keep-tex: false
     code-fold: false
     toc: false
     output-file: td3.pdf
@@ -41,7 +41,7 @@ params:
 ::: 
 
 ::: {#second-column}
-![](./img/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+![](../images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
 :::
 
 :::

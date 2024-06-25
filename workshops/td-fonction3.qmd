@@ -3,18 +3,18 @@ title: Fonctions PL/PgSQL
 format:
   pdf:
     code-annotations: below
-    keep-tex: true
+    keep-tex: false
     code-fold: false
     toc: false
     output-file: td-fonction3.pdf
     include-in-header:
       - text: "\\lhead{{\\sf  Base de données \\\\ TD Fonctions 3}}"
   html:
-    standalone: true
+    embed-resources: true
     code-fold: true
     output-file: td-fonction3.html
 params:
-    year: 2023 
+    year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
@@ -29,7 +29,7 @@ params:
 
 # {{< meta title >>}}
 
-![](./img/UniversiteParis_monogramme_couleur_RVB.png){style="float:right; size: 75px;"
+![](../images/UniversiteParis_monogramme_couleur_RVB.png){style="float:right; size: 75px;"
 width="132"}
 
 
@@ -50,7 +50,7 @@ stringr::str_glue('### {params$curriculum}\n\n',
 
 On donne ci-dessous une requête renvoyant les paires d'acteurs ayant joué dans un même film.
 
-```{sql}
+```{.sql}
 select DISTINCT a.actor_id, b.actor_id from sakila.actor a , sakila.actor b where
 exists (
 select * from sakila.film_actor c where c.actor_id = a.actor_id and
@@ -68,7 +68,7 @@ Donc la distance entre deux acteurs différents est $1$ s'ils ont joué dans un 
 
 - Écrire une fonction pl/pgsql prenant en entrée deux numéros d'acteurs et renvoyant leur distance si celle-ci est inférieure  à $5$ et renvoyant $5$ sinon. L'en-tête de la fonction sera la suivante:
 
-```{sql}
+```{.sql}
 create or replace function nb_co_actors (act1 int,act2 int)
 returns int as $plpgsql$
 ...
@@ -79,7 +79,7 @@ $plpgsql$ language plpgsql ;
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
+```{.sql}
 -- Creer dans une table
 create or replace table avigny59.co_actors as (
 select DISTINCT a.actor_id actor1, b.actor_id actor2 from sakila.actor a , sakila.actor b where
