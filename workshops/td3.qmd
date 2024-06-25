@@ -9,11 +9,11 @@ format:
     include-in-header:
       - text: "\\lhead{{\\sf  Base de données \\\\ TD 3}}"
   html:
-    standalone: true
+    embed-resources: true
     code-fold: true
     output-file: td3.html
 params:
-    year: 2023 
+    year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
@@ -61,7 +61,7 @@ Le schéma est visible sur Moodle ou [ici](./layout-pagila-film.html).
 
 Sous `psql` ou `pgli`, vous pouvez aussi inspecter les tables comme d'habitude avec
 
-```{sql}
+```{.sql}
 bd_2023-24> \d pagila.film
 bd_2023-24> \d pagila.actor
 ```
@@ -79,7 +79,7 @@ On utilisera essentiellement les opérateurs suivants: `IN, EXISTS, ALL, ANY`.
 
 
 
-```{sql}
+```{.sql}
 SELECT DISTINCT region 
 FROM world.country
 WHERE region NOT IN (SELECT region
@@ -91,7 +91,7 @@ WHERE region NOT IN (SELECT region
 Pour connaître les régions qui ont au moins une langue officielle, on pourra écrire:
 
 
-```{sql}
+```{.sql}
 SELECT DISTINCT region 
 FROM world.country AS co
 WHERE EXISTS (SELECT *
@@ -105,7 +105,7 @@ Remarquez que dans ce dernier exemple, la sous-requête fait intervenir des attr
 
 `ANY` et `ALL` sont deux autres opérateurs. Par exemple
 
-```{sql}
+```{.sql}
 SELECT * 
 FROM table 
 WHERE col < ALL(requete)
@@ -113,7 +113,7 @@ WHERE col < ALL(requete)
 
 sélectionnera les lignes de `table` telles que la valeur de `col` est plus petite que toutes les valeurs retournées par la requête `requete`. Ainsi, la requête
 
-```{sql}
+```{.sql}
 SELECT * 
 FROM world.country
 WHERE population_country >= ALL(
@@ -124,7 +124,7 @@ WHERE population_country >= ALL(
 
 retournera la liste des pays les plus peuplés.\\
 
-```{sql}
+```{.sql}
 SELECT * 
 FROM table 
 WHERE col < ANY(requete)
@@ -136,7 +136,7 @@ Pour connaître les régions où l'on ne trouve qu'une seule forme de gouverneme
 
 
 
-```{sql}
+```{.sql}
 SELECT DISTINCT region 
 FROM world.country as c1
 WHERE c1.governmentform = ALL(
@@ -147,7 +147,7 @@ WHERE c1.governmentform = ALL(
 
 On remarque que dans `EXISTS` ou `IN` on peut utiliser des attributs de notre requête globale, ce qui les rend plus *puissants* que 
 
-```{sql}
+```{.sql}
 WITH ... AS (
   ...
 )
@@ -163,7 +163,7 @@ On utilisera `LEFT JOIN` et `RIGHT JOIN`. Par exemple, la requête suivante renv
 
 
 
-```{sql}
+```{.sql}
 SELECT * 
 FROM world.country AS p LEFT JOIN 
      world.countrylanguage AS l ON 
@@ -173,7 +173,7 @@ FROM world.country AS p LEFT JOIN
 On peut utiliser cette requête pour trouver les pays qui n'ont pas de langue officielle par exemple:
 
 
-```{sql}
+```{.sql}
 SELECT * 
 FROM world.country as p LEFT JOIN 
      world.countrylanguage AS l ON 
@@ -195,7 +195,7 @@ Quels sont les langues qui ne sont officielles dans aucun pays ? (355 lignes)
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT DISTINCT language 
 FROM  world.countrylanguage
 EXCEPT 
@@ -214,7 +214,7 @@ EXCEPT
 Première  version
 
 
-```{sql}
+```{.sql}
 SELECT DISTINCT language 
 FROM world.countrylanguage
 WHERE language NOT IN
@@ -228,7 +228,7 @@ Deuxième version:
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT DISTINCT l1.language 
 FROM world.countrylanguage AS l1
      LEFT JOIN world.countrylanguage AS l
@@ -243,7 +243,7 @@ WHERE l.language IS NULL;
 Troisième version:
 
 
-```{sql}
+```{.sql}
 SELECT DISTINCT cl.language 
 FROM world.countrylanguage cl
 WHERE  NOT EXISTS
@@ -272,7 +272,7 @@ Quelles sont les régions où au moins deux pays ont la même forme de gouvernem
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT DISTINCT region 
 FROM world.country AS c1
 WHERE c1.governmentform = ANY(
@@ -287,7 +287,7 @@ WHERE c1.governmentform = ANY(
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT DISTINCT c1.region 
 FROM world.country AS c1 JOIN world.country AS c2
   ON c1.region=c2.region AND 
@@ -310,7 +310,7 @@ Quels sont les films qui n'ont jamais été loués ? (42 lignes)
 
 Là encore, plusieurs possibilités. Avec ce que l'on sait déjà  :
 
-```{sql}
+```{.sql}
 WITH DejaLoue AS (
   SELECT film_id 
   FROM pagila.rental JOIN pagila.inventory USING (inventory_id)
@@ -329,7 +329,7 @@ FROM pagila.film NATURAL JOIN NonLoue;
 Avec les requêtes imbriquées :
 
 
-```{sql}
+```{.sql}
 SELECT title,film_id FROM pagila.film
                      WHERE film_id NOT IN (
                       SELECT film_id 
@@ -362,7 +362,7 @@ Quels sont les acteurs qui ont joué dans toutes les catégories de film ? (11 l
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH ActCat AS (SELECT actor_id, category_id FROM pagila.film_actor fa
                  JOIN pagila.film_category fc ON (fa.film_id=fc.film_id)),
 ActNot AS (SELECT actor_id FROM pagila.actor,pagila.category
@@ -390,7 +390,7 @@ suit fidèlement le plan d'exécution le plus élémentaire pour réaliser la di
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH 
   ActCat AS (
     SELECT actor_id, category_id 
@@ -427,7 +427,7 @@ Existe-t-il des acteurs qui ne jouent avec aucun autre acteur ? (3 lignes ????)
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH Copain AS
 (SELECT R1.actor_id FROM pagila.film_actor as R1
        JOIN pagila.film_actor as R2
@@ -440,7 +440,7 @@ SELECT actor_id FROM pagila.actor
 ou avec `NOT EXISTS`
 
 
-```{sql}
+```{.sql}
 SELECT actor_id FROM pagila.actor a
 WHERE NOT EXISTS (
   SELECT fa2.actor_id
@@ -461,7 +461,7 @@ Nom, prénom  des clients  installés dans des villes sans magasin ? (599 lignes
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH CustomerCity AS
 (SELECT cu.first_name, cu.last_name,cu.customer_id, ad.city_id
 FROM pagila.customer cu JOIN pagila.address ad ON (cu.address_id=ad.address_id)),
@@ -482,7 +482,7 @@ WHERE city_id NOT IN (SELECT * FROM StoreCity);
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT country_id from pagila.country C 
 WHERE NOT EXISTS (
   SELECT * 
@@ -531,7 +531,7 @@ Par exemple, dans le schéma `World`, on pourrait créer une vue `VillesRepublic
 On crée une vue avec `CREATE VIEW nom AS requete`. Étant donné que vous ne pouvez écrire que dans votre schéma personnel, il faudra nommer vos vues `entid.nom` où `entid` est votre identifiant ENT. Ainsi
 
 
-```{sql}
+```{.sql}
 CREATE VIEW entid.VillesRepublic AS
   SELECT B.* 
   FROM world.country as A NATURAL JOIN world.city as B
@@ -540,7 +540,7 @@ CREATE VIEW entid.VillesRepublic AS
 
 crée une vue dans votre schéma personnel. Désormais, si on veut sélectionner les villes qui sont dans une république et dont la population est supérieure à $1000000$, on pourra simplement écrire :
 
-```{sql}
+```{.sql}
 SELECT * 
 FROM entid.VillesRepublic 
 WHERE population_city>=1000000;
@@ -558,7 +558,7 @@ peut être aussi désignée par `entid.villesrepublic`.
 
 Pour supprimer une vue existante on utilise la commande `DROP VIEW` suivie du nom de la vue à supprimer. Par exemple l'instruction
 
-```{sql}
+```{.sql}
 DROP VIEW entid.VillesRepublic ;
 ```
 
@@ -571,7 +571,7 @@ Dans votre schéma personnel (qui porte le nom de votre identifiant ENT), écrir
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 CREATE VIEW entid.film_id_horror
 AS
 ( SELECT pagila.film_id 
@@ -596,7 +596,7 @@ Dans votre schéma personnel (qui porte le nom de votre identifiant ENT), écrir
 
 
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION entid.film_id_cat(s TEXT)
 RETURNS TABLE(film_id INTEGER)
 LANGUAGE 'sql' AS
@@ -607,7 +607,7 @@ $$
 
 et l'usage 
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION entid.film_id_cat(s text)
  RETURNS TABLE(film_id smallint) LANGUAGE sql
 AS $$
@@ -631,7 +631,7 @@ Quels sont les acteurs qui ont déjà joué dans un film d'horreur (catégorie '
 Les solutions sont données en utilisant la fonction suivante
 
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION entid.film_id_cat(s text)
  RETURNS TABLE(film_id smallint) LANGUAGE sql
 AS $$
@@ -649,7 +649,7 @@ $$ ;
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT DISTINCT ac.* FROM pagila.actor ac
      NATURAL JOIN
         (SELECT * FROM pagila.film_actor
@@ -666,7 +666,7 @@ ou
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT DISTINCT ac.*
 FROM pagila.actor ac JOIN
      pagila.film_actor NATURAL JOIN
@@ -683,7 +683,7 @@ Quels sont les acteurs qui n'ont jamais joué dans une comédie (`Comedy`) ? (53
 
 ### Attention !  Cette requête ne répond pas à la question :
 
-```{sql}
+```{.sql}
 SELECT DISTINCT ac.*
 FROM pagila.actor ac NATURAL JOIN
      (SELECT * FROM pagila.film_actor
@@ -702,7 +702,7 @@ Elle répond à la question : *Quels sont les acteurs qui ont  joué dans un fil
 
 Une réponse correcte est
 
-```{sql}
+```{.sql}
 SELECT DISTINCT last_name, first_name
 FROM pagila.actor A1 
  WHERE NOT EXISTS 
@@ -718,7 +718,7 @@ FROM pagila.actor A1
 
 ou encore
 
-```{sql}
+```{.sql}
 SELECT DISTINCT ac.last_name, ac_first_name
 FROM pagila.actor ac
 WHERE NOT EXISTS
@@ -770,7 +770,7 @@ Quels sont les acteurs qui ont joué dans un film d'horreur ('Horror') et dans u
 Ici l'erreur la plus fréquente consiste à  écrire
 
 
-```{sql}
+```{.sql}
 SELECT actor_id 
 FROM pagila.film_actor AS fa
 WHERE fa.film_id IN (
@@ -818,7 +818,7 @@ En algèbre relationnelle
 En SQL, cela peut donner
 
 
-```{sql}
+```{.sql}
 SELECT DISTINCT a.first_name, a.last_name  FROM pagila.actor a
 WHERE EXISTS (SELECT film_id
               FROM film_actor AS fa1 NATURAL JOIN

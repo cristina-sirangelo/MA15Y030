@@ -1,0 +1,90 @@
+---
+title: ''
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: false
+    code-fold: false
+    toc: false
+    output-file: nycflights-schema.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données \\\\ NYCFlights}}"
+  html:
+    embed-resources: true
+    code-fold: true
+    output-file: nycflights-schema.html
+params:
+    year: 2024 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+engine: knitr
+---
+
+
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+<!-- {{< meta title >>}} -->
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](../images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+
+`NYCFlights`  est mis en œuvre sur le serveur `etu-pgsql` dans 
+la base `bd_2023-24` dans le schéma `nycflights_bis`.
+
+::: {.callout-important}
+
+Sur le serveur, `nycflights_bis` n'est pas *peuplé* (toutes les tables sont vides). 
+
+:::
+
+
+
+{{< include nycflights_bis_sql_ddl.qmd >}}
+
+### Dépendances fonctionnelles
+
+En plus des contraintes de clé primaire ou d'unicité, 
+les dépendances fonctionnelles suivantes pourraient être mises en place grâce à des contraintes `EXCLUDE`. 
+
+Table `weather`
+
+- `time_hour → year, month, day, hour`
+- `year, month, day, hour  → time_hour`
+
+Table `planes`
+
+- `model → manufacturer, engines, engine, type`
+
+Table `flights`
+
+- `tailnum, time_hour → carrier`
+- `time_hour → sched_dep_time`
+- `sched_dep_time, dep_time → dep_delay`
+- `sched_arr_time, arr_time → arr_delay`
+- `origin, dest, dep_time, arr_time → airtime`
+- `time_hour → year, month, day, hour, minute`
+- `year, month, day, hour, minute → time_hour`
+- `origin, dest → distance`
+
+{{< pagebreak >}}
+
+**Présentation graphique du schéma relationnel**
+
+![NYC Flights (pattes de corbeaux)](../images/nycflights_layout.svg){width="75%"}

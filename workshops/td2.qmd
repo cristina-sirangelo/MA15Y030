@@ -9,11 +9,11 @@ format:
     include-in-header:
       - text: "\\lhead{{\\sf  Base de données \\\\ TD 2}}"
   html:
-    standalone: true
+    embed-resources: true
     code-fold: true
     output-file: td2.html
 params:
-    year: 2023 
+    year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
@@ -53,7 +53,7 @@ params:
 Utiliser les commandes suivantes pour retrouver les schémas de tables `country`, `countrylanguage` et `city`.
 
 
-```{sql}
+```{.sql}
 bd_2023> \d world."nom de table"
 ```
 
@@ -86,7 +86,7 @@ Cette opération est très courante dans les requêtes. Cela vient du fait que l
 
 Prenons l'exemple du schéma `world` et des tables `world.country` et `world.city`. La table `world.country` possède une colonne `capital` qui contient le numéro d'identification d'une ville de la table `world.city`. Par exemple, pour la France, la colonne `capital` vaut 2974 et la ville numéro 2974 est Paris:
 
-```{sql}
+```{.sql}
 bd_2023-24> SELECT capital 
 FROM world.country 
 WHERE countrycode='FRA';
@@ -97,7 +97,7 @@ WHERE id = 2974;
 
 Pour lister les noms des capitales mondiales, on va avoir besoin de recoller les deux tables en prenant soin de respecter la condition d'égalité entre la capitale et le numéro d'identification de la ville. Cela peut s'écrire en SQL comme suit:
 
-```{sql}
+```{.sql}
 SELECT name
 FROM world.city AS V JOIN 
      world.country AS P ON 
@@ -106,7 +106,7 @@ FROM world.city AS V JOIN
 
 Parfois, on veut recoller deux tables avec la condition que les colonnes qui ont le même nom doivent être égales. Cela arrive souvent si la base de données a bien été conçue. On appelle cette jointure une jointure *naturelle*, qu'on peut écrire avec `NATURAL JOIN`. La requête
 
-```{sql}
+```{.sql}
 SELECT name 
 FROM world.city NATURAL JOIN world.country
 WHERE continent = 'Oceania';
@@ -128,7 +128,7 @@ communs, on peut utiliser `JOIN ... USING (a1,...,ak)`.
 
 Lorsque les requêtes se compliquent, il est parfois commode de la découper en plusieurs requêtes qu'on manipulera par la suite. Par exemple, trouver le nom des capitales européennes ayant plus d'un million d'habitants peut se découper ainsi: on résout la requête `CAP` qui contient le nom, le continent et la population des capitales. Puis on résout la requête finale en filtrant `CAP`. Cela peut s'écrire avec l'opérateur `WITH`:
 
-```{sql}
+```{.sql}
 WITH CAP AS (
 SELECT name, continent, population
 FROM world.city AS V JOIN 
@@ -147,7 +147,7 @@ WHERE continent = 'Europe' AND population > 1000000;
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT name
   FROM world.city JOIN world.country ON capital=id
  WHERE continent = 'South America';
@@ -160,7 +160,7 @@ SELECT name
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT name_country
 FROM world.country NATURAL JOIN world.countrylanguage
 WHERE isofficial AND language='French';
@@ -173,7 +173,7 @@ WHERE isofficial AND language='French';
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT name_country 
 FROM world.country 
 WHERE governmentform LIKE '%Monarchy%';
@@ -186,7 +186,7 @@ WHERE governmentform LIKE '%Monarchy%';
 
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
-```{sql}
+```{.sql}
 WITH T1 AS (
   SELECT *
   FROM world.country
@@ -203,7 +203,7 @@ WHERE population < 1000000;
 
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
-```{sql}
+```{.sql}
 WITH monarchy AS (
   SELECT region
   FROM world.country
@@ -222,7 +222,7 @@ EXCEPT
 
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
-```{sql}
+```{.sql}
 WITH R AS (
   SELECT language 
   FROM world.countrylanguage 
@@ -242,7 +242,7 @@ FROM R);
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH R AS (
   SELECT countrycode 
   FROM world.countrylanguage
@@ -263,7 +263,7 @@ FROM world.country NATURAL JOIN S;
 
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
-```{sql}
+```{.sql}
 WITH R AS(
   SELECT DISTINCT T1.countrycode 
   FROM world.countrylanguage as T1 JOIN
@@ -285,7 +285,7 @@ FROM world.country NATURAL JOIN S;
 
 
 En utilisant `EXCEPT` :
-```{sql}
+```{.sql}
 WITH OnlyFrench AS (
   (SELECT countrycode
   FROM countrylanguage
@@ -306,7 +306,7 @@ FROM world.country NATURAL JOIN OnlyFrench;
 
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
-```{sql}
+```{.sql}
 WITH R AS (
 SELECT DISTINCT T1.countrycode FROM world.countrylanguage as T1
                      JOIN world.countrylanguage as T2
@@ -319,7 +319,7 @@ WHERE T1.language <> T2.language AND
 SELECT name_country FROM R NATURAL JOIN world.country;
 ```
 En utilisant `INTERSECT` :
-```{sql}
+```{.sql}
 WITH AlsoFrench AS (
   (SELECT countrycode
   FROM world.countrylanguage
@@ -342,7 +342,7 @@ FROM world.country NATURAL JOIN
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH R AS (
   SELECT T1.region 
   FROM world.country AS T1 JOIN 
@@ -365,7 +365,7 @@ FROM R;
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT DISTINCT language
 FROM world.countrylanguage NATURAL JOIN 
      world.city JOIN world.country ON capital=id
@@ -379,7 +379,7 @@ WHERE population > 5000000 and isofficial;
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH R AS (
   SELECT T1.countrycode 
   FROM  world.countrylanguage AS T1 JOIN 
@@ -399,7 +399,7 @@ FROM world.country NATURAL JOIN R;
 
 ou 
 
-```{sql}
+```{.sql}
 WITH tpc AS (
   SELECT *
   FROM world.countrylanguage
@@ -422,7 +422,7 @@ FROM world.country co NATURAL JOIN three ;
 
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
-```{sql}
+```{.sql}
 SELECT DISTINCT T1.region
 FROM world.country AS T1 JOIN 
      world.country AS T2 ON T1.region = T2.region
@@ -438,7 +438,7 @@ WHERE T1.countrycode <> T2.countrycode AND
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH R AS (
   SELECT T1.countrycode
   FROM world.countrylanguage AS T1 JOIN 
@@ -465,20 +465,20 @@ Si `R`  et `S` sont deux tables de même schéma, une jointure naturelle des
 deux tables devrait (en première approximation) calculer l'intersection des deux tables. 
 
 Pourtant
-```{sql}
+```{.sql}
 (SELECT * FROM R)
 INTERSECT
 (SELECT * FROM S)	;
 ```
 ne donne pas toujours le même résultat que
-```{sql}
+```{.sql}
 SELECT *
 FROM 	R NATURAL JOIN S ;
 ```
 
 Essayez par exemple pour l'intersection de la table `country`
 avec elle-même :
-```{sql}
+```{.sql}
 (SELECT * FROM country) 
 INTERSECT 
 (SELECT * FROM country);
@@ -486,7 +486,7 @@ INTERSECT
 retourne la table `country`, soit 239 lignes.
 
 La jointure naturelle
-```{sql}
+```{.sql}
 SELECT * 
 FROM country AS c1 NATURAL JOIN 
      country AS c2;
@@ -498,7 +498,7 @@ prend la valeur `NULL`.
 En vérifiant quels attributs peuvent prendre la valeur `NULL` dans le schéma, 
 on peut tester cela par la requête
 
-```{sql}
+```{.sql}
 SELECT * 
 FROM world.country
 WHERE indepyear IS NOT NULL AND 

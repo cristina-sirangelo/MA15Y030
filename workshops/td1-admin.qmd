@@ -9,11 +9,11 @@ format:
     include-in-header:
       - text: "\\lhead{{\\sf  Base de données \\\\ TD Admin}}"
   html:
-    standalone: true
+    embed-resources: true
     code-fold: true
     output-file: td-admin.html
 params:
-    year: 2023 
+    year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
@@ -72,7 +72,7 @@ Lister juste les noms de toutes les tables.
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
+```{.sql}
 select table_name 
 from information_schema.tables
 ```
@@ -85,7 +85,7 @@ from information_schema.tables
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
+```{.sql}
 select table_name 
 from information_schema.tables
 where table_schema='world';
@@ -105,7 +105,7 @@ Examiner cette table et en déduire une liste de tous les schémas de la base
 ::: {.content-visible when-profile="solution"}
 
 
-```{sql}
+```{.sql}
 select schema_name 
 from information_schema.schemata
 ```
@@ -120,7 +120,7 @@ from information_schema.schemata
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
+```{.sql}
 
 select column_name as Column, data_type as Type, is_nullable as Modifiers
 from information_schema.columns
@@ -130,7 +130,7 @@ where table_name='country' and table_schema='world'
 
 Alternativement
 
-```{sql}
+```{.sql}
 select column_name as Column, data_type as Type, (CASE
  WHEN is_nullable='NO'
  THEN 'not null'
@@ -148,7 +148,7 @@ select column_name as Column, data_type as Type, (CASE
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
+```{.sql}
 select t.table_name, q.table_schema, t.table_schema
 from information_schema.tables t, information_schema.tables q
 where t.table_schema<>q.table_schema and t.table_name=q.table_name;
@@ -161,7 +161,7 @@ where t.table_schema<>q.table_schema and t.table_name=q.table_name;
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
+```{.sql}
 select t1.column_name as Column, t1.table_name as table1,
 t2.table_name as table2, t1.table_schema as schema
 from information_schema.columns t1, information_schema.columns t2
@@ -178,7 +178,7 @@ t1.table_schema<>'information_schema';
 
 ::: {.content-visible when-profile="solution"}
 
-	```{sql}
+	```{.sql}
 select schemaname, definition from pg_views
 where schemaname=current_USER;
 
@@ -197,7 +197,7 @@ where schemaname=current_USER and viewname like 'q%';
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
+```{.sql}
 select rolname,oid  from pg_roles where rolname='isifar2022'
 ```
 
@@ -211,7 +211,7 @@ select rolname,oid  from pg_roles where rolname='isifar2022'
 
 Attention, nécessite de changer les droits de consultation de ces tables pour les utilisateurs standards.
 
-```{sql}
+```{.sql}
 select schema_name from information_schema.schemata, pg_roles
 where schemata.schema_name=pg_roles.rolname and
 pg_roles.oid in (select member from pg_auth_members where roleid=78094)
@@ -244,7 +244,7 @@ On peut prendre temporairement l'identité d'un utilisateur `x` par : `set role 
 
 % la table datatpadmin contient deux colonnes : identifiant et écart. Identifiant prend ses valeurs dans la liste des schémas d'étudiants ISIFAR2022. La table a été obtenue à partir de celle des résultats du contrôle continu.
 
-```{sql}
+```{.sql}
 create view student_view as select * from durand.datatpadmin
 where identifiant=current_user;
 grant usage on schema durand  to isifar2022;

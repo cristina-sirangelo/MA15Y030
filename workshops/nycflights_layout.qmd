@@ -1,0 +1,112 @@
+
+
+![NYC Flights (pattes de corbeaux)
+](../images/nycflights_layout.svg)
+
+
+
+### Table nycflights.airlines 
+
+| | | |
+|---|---|---|
+| * &#128273;  &#11019; | carrier| text  |
+| &#128269; | name| text  |
+
+
+
+
+### Table nycflights.airports 
+| | | |
+|---|---|---|
+| * &#128273;  &#11019; | faa| text  |
+| &#128269; | name| text  |
+| &#128269; | lat| double precision  |
+| &#128269; | lon| double precision  |
+|  | alt| double precision  |
+|  | tz| double precision  |
+|  | dst| text  |
+|  | tzone| text  |
+
+
+
+
+### Table nycflights.flights 
+| | | |
+|---|---|---|
+|  | year| integer  |
+|  | month| integer  |
+|  | day| integer  |
+|  | dep\_time| integer  |
+|  | sched\_dep\_time| integer  |
+|  | dep\_delay| double precision  |
+|  | arr\_time| integer  |
+|  | sched\_arr\_time| integer  |
+|  | arr\_delay| double precision  |
+| &#11016; | carrier| text  |
+|  | flight| integer  |
+| * &#128273;  &#11016; | tailnum| text  |
+| * &#128273;  &#11016; | origin| text  |
+| &#11016; | dest| text  |
+|  | air\_time| double precision  |
+|  | distance| double precision  |
+|  | hour| double precision  |
+|  | minute| double precision  |
+| * &#128273;  | time\_hour| timestamptz  |
+
+
+##### Foreign Keys
+| | | |
+|---|---|---|
+|  | flights_fk | ( carrier ) ref [nycflights\_bis.airlines](#airlines) (carrier) |
+|  | flights_fk_planes | ( tailnum ) ref [nycflights\_bis.planes](#planes) (tailnum) |
+|  | flights_fk_origin | ( origin ) ref [nycflights\_bis.airports](#airports) (faa) |
+|  | flights_fk_dest | ( dest ) ref [nycflights\_bis.airports](#airports) (faa) |
+
+
+
+
+### Table nycflights.planes 
+| | | |
+|---|---|---|
+| * &#128273;  &#11019; | tailnum| text  |
+|  | year| integer  |
+|  | type| text  |
+|  | manufacturer| text  |
+|  | model| text  |
+|  | engines| integer  |
+|  | seats| integer  |
+|  | speed| integer  |
+|  | engine| text  |
+
+
+
+
+### Table nycflights.weather 
+| | | |
+|---|---|---|
+| * &#128273;  &#11016; | origin| text  |
+|  | year| integer  |
+|  | month| integer  |
+|  | day| integer  |
+|  | hour| integer  |
+|  | temp| double precision  |
+|  | dewp| double precision  |
+|  | humid| double precision  |
+|  | wind\_dir| double precision  |
+|  | wind\_speed| double precision  |
+|  | wind\_gust| double precision  |
+|  | precip| double precision  |
+|  | pressure| double precision  |
+|  | visib| double precision  |
+| * &#128273;  | time\_hour| timestamptz  |
+
+
+##### Foreign Keys
+| | | |
+|---|---|---|
+|  | weather_fk | ( origin ) ref [nycflights\_bis.airports](#airports) (faa) |
+
+
+
+
+

@@ -10,11 +10,11 @@ format:
     include-in-header:
       - text: "\\lhead{{\\sf  Base de données \\\\ TD Récapitulatif SQL }}"
   html:
-    standalone: true
+    embed-resources: true
     code-fold: true
     output-file: td-recap-sql.html
 params:
-    year: 2023 
+    year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
@@ -30,7 +30,6 @@ params:
 
 ::: {#first-column}
 
-{{< meta title >>}}
 
 - **`r stringr::str_glue('{params$curriculum}')`**
 - **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
@@ -65,7 +64,7 @@ Quel est le pays qui a le plus de villes recensées dans la table `world.city`? 
 
 ::::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH country_city AS
 	(SELECT name_country , COUNT(name_city) nbrcity
 	FROM world.country NATURAL JOIN world.city
@@ -90,7 +89,7 @@ Quels sont les pays qui ont $3$ ou plus langues officielles ? (8 lignes)
 
 ::::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT name_country
 FROM world.country NATURAL JOIN world.countrylanguage
 WHERE isofficial
@@ -112,7 +111,7 @@ Quels sont les pays dont plus de $1.000.000$ d'habitants parlent une langue non 
 
 ::::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT DISTINCT name_country
 FROM world.country NATURAL JOIN world.countrylanguage
 WHERE (NOT isofficial) AND 
@@ -135,7 +134,7 @@ Quelles sont les langues qui sont officielles dans tous les continents où au mo
 ::::: {.callout-tip title="Solution"}
 
 
-```{sql}
+```{.sql}
 WITH R AS
 	(SELECT count(DISTINCT continent)
 	FROM world.country NATURAL JOIN world.countrylanguage)
@@ -152,7 +151,7 @@ ou
 
 ::::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH continent_language AS
 	(SELECT DISTINCT language , continent
 	FROM country NATURAL JOIN countrylanguage
@@ -184,7 +183,7 @@ Quels sont les pays pour lesquels une langue non officielle est parlée par stri
 
 ::::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT DISTINCT name_country
 FROM (country c JOIN city ON id = capital)
 	JOIN countrylanguage l ON c.countrycode = l.countrycode
@@ -207,7 +206,7 @@ Quels est le nombre de villes par ` region` ?
 
 ::::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT region , COUNT(id) AS nbr_city
 FROM country NATURAL JOIN city
 GROUP BY region ;
@@ -234,7 +233,7 @@ Quel est l'acteur (`actor_id`) présent sur le plus de DVD (`inventory_id`) ?
 
 ::::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH actor_dvd AS
 	(SELECT actor_id , count(inventory_id) nbrdvd
 	FROM actor NATURAL JOIN film_actor NATURAL JOIN inventory
@@ -259,7 +258,7 @@ Quel est le prix moyen d'une location de DVD ?
 
 ::::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 SELECT AVG(amount) 
 FROM payment ;
 ```
@@ -280,7 +279,7 @@ Quel est le DVD qui a rapporté le plus d'argent ? Le film  (`film_id`)?
 
 Pour le DVD:
 
-```{sql}
+```{.sql}
 WITH inventory_amount AS
 	(SELECT inventory_id , SUM(amount) AS dollar
 	FROM inventory NATURAL JOIN rental NATURAL JOIN payment
@@ -298,7 +297,7 @@ WHERE dollar >= ALL (SELECT dollar FROM inventory_amount) ;
 Et pour le film:
 
 
-```{sql}
+```{.sql}
 WITH film_amount AS
 	(SELECT film_id , SUM(amount) AS dollar
 	FROM inventory NATURAL JOIN rental NATURAL JOIN payment
@@ -323,7 +322,7 @@ Quels sont les employés (`staff_id`) qui travaillent dans une autre ville que c
 
 ::::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH staff_maison AS
 	(SELECT staff_id , city_id
 	FROM (staff NATURAL JOIN address)),

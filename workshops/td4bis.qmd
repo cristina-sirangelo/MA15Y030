@@ -9,11 +9,11 @@ format:
     include-in-header:
       - text: "\\lhead{{\\sf  Base de données \\\\ TD 4 Bis}}"
   html:
-    standalone: true
+    embed-resources: true
     code-fold: true
     output-file: td4bis.html
 params:
-    year: 2023 
+    year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
@@ -72,14 +72,14 @@ Cette construction peut être combinée avec n'importe quelle fonction d'aggrég
 Cette requête indique pour chaque ville, la "population moyenne" des villes de ce pays
 (cette moyenne n'a aucun sens).
 
-```{sql}
+```{.sql}
 SELECT id, name_city, population_city, 
        avg(population_city) OVER (PARTITION BY countrycode)  AS avg_pop
 FROM world.city;  
 ```
 
 Sans le mécanisme de fenêtrage, on pourrait obtenir le résultat au prix d'une jointure
-```{sql}
+```{.sql}
  WITH tmp AS (
   SELECT c.countrycode, AVG(c.population_city) AS avg_pop
   FROM world.city c
@@ -98,7 +98,7 @@ Cette construction est très pratique pour ranger les tuples d'un sous-groupe.
 Dans `world`, si on veut ranger les langues parlées dans un pays par popularité décroissante, 
 on peut procéder ainsi. 
 
-```{sql}
+```{.sql}
 SELECT countrycode, LANGUAGE, 
 RANK() OVER (PARTITION BY countrycode ORDER BY percentage DESC)  AS rnk
 FROM world.countrylanguage ;
@@ -109,7 +109,7 @@ FROM world.countrylanguage ;
 On peut ne pas partitionner en utilisant l'expression `OVER ()`. Par exemple, si on veut obtenir 
 le rang des tuples d'une table sur un tri particulier.
 
-```{sql}
+```{.sql}
 SELECT countrycode, name_country, 
        RANK() OVER (ORDER BY population_country DESC)  AS rnk
 FROM world.country ;  
@@ -131,7 +131,7 @@ et `WHERE`.
 ## Forme générale
 
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION  schema_name.func_name(p_arg1 p_arg1_datatype, ..., [OUT o_arg1 o_arg1_datatype, ...])
 RETURNS some type | RECORD | SETOF some type | TABLE (..) 
 LANGUAGE SQL AS
@@ -150,7 +150,7 @@ $$ ;
 Dans le schéma `world`, on veut écrire une fonction qui prend en argument une région et 
 renvoie la population maximale parmi les capitales de la région (voir td2 requête 1). 
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION username.taille_max_capitale_region(p_region text)
 RETURNS INTEGER LANGUAGE SQL AS
 $$
@@ -166,7 +166,7 @@ Dans le schéma `world`, on veut écrire une fonction qui prend en argument une 
 
 On peut utiliser le *qualifiant* `OUT` pour désigner des paramètres de sortie.
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION username.capitale(p_region text, OUT o_name_capital TEXT, OUT o_population_capital INTEGER)
 RETURNS RECORD  LANGUAGE SQL AS
 $$
@@ -186,7 +186,7 @@ $$ ;
 Dans le schéma `world`, on veut écrire une fonction qui prend en argument une région et 
 renvoie la description de la capitale la plus peuplée de cette région (voir td2 requête 1). 
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION username.capitale(p_region text)
 RETURNS world.city  LANGUAGE SQL AS
 $$
@@ -211,7 +211,7 @@ renvoie la table des capitales de la région (voir td2 requête 1).
 
 On se contente d'abord de renvoyer le nom de la capitale. On explicite le schéma 
 de la table résultat
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION username.capitales_region(p_region text)
 RETURNS TABLE (name_capital text) LANGUAGE SQL AS
 $$
@@ -234,7 +234,7 @@ La solution est très simple. On profite de ce qu'à chaque table correspond  un
 
 :::
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION username.capitales_region_large(p_region text)
 RETURNS SETOF world.city  LANGUAGE SQL AS
 $$
@@ -255,7 +255,7 @@ Un aperçu de l'ensemble des travaux peut être trouvé dans *L'archipel frança
 
 [https://www.seuil.com/ouvrage/l-archipel-francais-jerome-fourquet/9782021406023](https://www.seuil.com/ouvrage/l-archipel-francais-jerome-fourquet/9782021406023).
 
-```{sql}
+```{.sql}
 SET search_path TO babynames ;
 
 \d  bebes
@@ -277,7 +277,7 @@ mis au monde durant l'année `annee` en France.
 
 - Pour chaque année, chaque sexe, donner les dix prénoms les plus populaires et leur rang  de popularité. 
 
-```{sql}
+```{.sql}
 #| unilur-solution: true
 
 WITH R AS (
@@ -296,7 +296,7 @@ WHERE rnk <= 10 ;
 ::: {.callout-tip title="Solution"}
 
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE VIEW babynames.top_10 AS   -- <1>
   WITH R AS (
     SELECT annee, sexe, prenom, RANK() OVER(PARTITION BY (annee, sexe) ORDER BY nombre DESC) AS rnk
@@ -321,7 +321,7 @@ et indique le rang du prénom pour chaque année et chaque sexe.
 ::: {.callout-tip title="Solution"}
 
 
-```{sql}
+```{.sql}
 
 CREATE OR REPLACE FUNCTION babynames.fonc_td4bis_1(p_prenom TEXT) 
 RETURNS TABLE(annee INT4, sexe TEXT, rang INT4)
@@ -348,7 +348,7 @@ Remplacer `babynames.fonc_td4bis_1`  par `username.fonc_td4bis_1`.
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 # unilur-solution: true
 
 SELECT b.annee, b.sexe, SUM(nombre) AS nb
@@ -366,7 +366,7 @@ le résultat de la requête précédente
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 # unilur-solution: true
 
 CREATE OR REPLACE VIEW babynames.naissances_sexe_annee AS(
@@ -387,7 +387,7 @@ On effectue avec les outils SQL une opération qui s'appelle un *pivot en forme 
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 WITH R AS (
  SELECT b.annee, b.sexe, SUM(nombre)  AS nb
  FROM babynames.bebes b
@@ -407,7 +407,7 @@ le résultat de la requête précédente.
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE VIEW babynames.naissances_f_h_annee AS (
 SELECT r1.annee, r1.nb AS nb_f, r2.nb AS nb_h
 FROM babynames.naissances_sexe_annee r1 JOIN babynames.naissances_sexe_annee r2 ON(r1.annee=r2.annee)
@@ -423,7 +423,7 @@ WHERE r1.sexe='2' AND r2.sexe='1'
 ::: {.callout-tip title="Solution"}
 
 
-```{sql}
+```{.sql}
 WITH R AS (
  SELECT b.annee, b.sexe, SUM(nombre)  AS nb
  FROM babynames.bebes b
@@ -444,7 +444,7 @@ le résultat de la requête précédente
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE VIEW babynames.naissances_sexe_annee AS (
 	SELECT b.annee, b.sexe, SUM(nombre)  AS nb
  	FROM babynames.bebes b
@@ -466,7 +466,7 @@ Tenez compte du fait que certains noms peuvent avoir une occurrence nulle pendan
 ::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
-```{sql}
+```{.sql}
 CREATE OR REPLACE FUNCTION babynames.fonc_td4bis_2(p_annee int4)
 RETURNS TABLE(annee int4, sexe TEXT, prenom TEXT, prop float4) LANGUAGE SQL AS
 $$

@@ -9,11 +9,11 @@ format:
     include-in-header:
       - text: "\\lhead{{\\sf  Base de données \\\\ TD Fonctions 1}}"
   html:
-    standalone: true
+    embed-resources: true
     code-fold: true
     output-file: td-fonction1.html
 params:
-    year: 2023 
+    year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
@@ -21,20 +21,12 @@ params:
 ---
 
 
-```{r}
-#| include: false
-```
-
-
-```{r}
-#| include: false
-```
 
 ::: {layout="[80,20]"}
 
 ::: {#first-column}
 
-{{< meta title >>}}
+# {{< meta title >>}}
 
 - **`r stringr::str_glue('{params$curriculum}')`**
 - **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
@@ -54,7 +46,7 @@ params:
 Dans Postgres, il est possible de définir des fonctions. Ces fonctions deviennent des objets permanents d'un schéma (comme les tables, vues, utilisateurs, etc). Elles permettent de regrouper un traitement complexe en un seul programme que l'on peut appeler à tout moment. La syntaxe (simplifiée) d'une fonction est la suivante:
 
 
-```{sql}
+```{.sql}
 #| eval: false
 #| echo: true
 
@@ -77,9 +69,7 @@ Les fonctions renvoient des résultats dont le type est spécifié en en-tête. 
 Le corps d'une fonction peut contenir une ou plusieurs requêtes mais aussi d'autres instructions que l'on verra par la suite (comme des affectations, test, boucles etc) formant un programme complexe. L'extension de SQL en un véritable langage de programmation impératif s'appelle PGPLSQL. Un exemple (simple) :
 
 
-```{sql}
-#| eval: false
-#| echo: true
+```{.sql}
 CREATE 
 	integer, y integer) RETURNS INTEGER AS $$
 DECLARE
@@ -100,9 +90,7 @@ Dans cette partie, on se contente de construire des fonctions contenant simpleme
 
 Considérons par exemple,  une fonction SQL `film_id_cat` qui prend en paramètre une chaîne de caractère *s* et renvoie la liste des films de catégorie *s*. La forme générale (plus simple) sera :
 
-```{sql}
-#| eval: false
-#| echo: true
+```{.sql}
 CREATE OR RE
 	entid.film_id_cat(s TEXT)
 RETURNS TABLE(film_id INTEGER)
@@ -123,10 +111,7 @@ $$ LANGUAGE sql;
 
 Attention, dans certaines implémentations de sakila, il y a un champs `last_update` qui du coup rend impossible l'utilisation de la jointure naturelle.
 
-```{sql}
-#| eval: false
-#| echo: true
-
+```{.sql}
 CREATE OR RE
 durand.film_id_cat(s text)
 RETURNS TABLE(film_id smallint)
@@ -143,9 +128,7 @@ $$ language sql;
 ::: {.content-visible when-profile="solution"}
 
 
-```{sql}
-#| eval: false
-#| echo: true
+```{.sql}
 SELECT
 
          FROM sakila.actor ac  JOIN
@@ -155,9 +138,7 @@ using(actor_id);
 ```
 
 ou
-```{sql}
-#| eval: false
-#| echo: true
+```{.sql}
 SELECT
 FROM sakila.actor ac NATURAL JOIN
 sakila.film_actor NATURAL JOIN
@@ -170,10 +151,7 @@ film_id_cat('Horror') ;
 ::: {.content-visible when-profile="solution"}
 
 
-```{sql}
-#| eval: false
-#| echo: true
-
+```{.sql}
 SELECT DISTINCT 
 , ac_first_name
 FROM sakila.actor ac
@@ -202,10 +180,8 @@ On considère maintenant des fonctions un tout petit peu plus évoluées contena
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
-CREATE OR RE
-#| eval: false
-#| echo: true
+```{.sql}
+CREATE OR REPLACE FUNCTION
  inventory_in_stock(p_inventory_id integer)
 RETURNS boolean
 LANGUAGE plpgsql
@@ -243,10 +219,8 @@ END $$;
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
-#| eval: false
-#| echo: true
-CREATE OR RE
+```{.sql}
+CREATE OR REPLACE FUNCTION
  film_in_stock(f_id sakila.film.film_id%TYPE)
 RETURNS INTEGER
 LANGUAGE plpgsql
@@ -274,12 +248,8 @@ Pour s'aider, regarder la documentation des instructions  `RETURN NOTICE` et `RA
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
-#| eval: false
-#| echo: true
-
-CREATE OR RE
-
+```{.sql}
+CREATE OR REPLACE FUNCTION
  stock_total()
 RETURNS TABLE(f_id sakila.film.film_id%TYPE, nb INTEGER)
 LANGUAGE plpgsql
@@ -325,10 +295,8 @@ END $$;
 
 ::: {.content-visible when-profile="solution"}
 
-```{sql}
-#| eval: false
-#| echo: true
- from stock_total();
+```{.sql}
+select *  from stock_total();
 ```
 
 :::

@@ -2,7 +2,7 @@
 title: "Computing troubleshooting"
 ---
 
-If you're having difficulty launching an RStudio session from your reserved container, go to [status.oit.duke.edu](https://status.oit.duke.edu/) and scroll down to **Teaching and Learning Tools**.
+If you're having difficulty launching a dbeaver session from your reserved container, go to []() and scroll down to **Teaching and Learning Tools**.
 Under this heading you'll find an entry called *Container Manager (CMGR Coursework Containers)*.
 
 -   If the status shows something other than `Operational`, this means there is a known incident with the containers.
@@ -15,5 +15,5 @@ Under this heading you'll find an entry called *Container Manager (CMGR Coursewo
     Check your internet connection, if need be, restart your computer to ensure a fresh new connection.
     If your issue persists, post on the course forum with details on what you've tried and the errors you see (including verbatim errors and/or screenshots).
 
--   Either way you can also fill out the form [here](https://duke.qualtrics.com/jfe/form/SV_6s3DOsiCIzNya9w), which will notify our the R TA for the department as well as our undergraduate coordinator.
+-   Either way you can also fill out the form [here](), which will notify us
     They'll be able to help diagnose the issue.

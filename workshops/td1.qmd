@@ -9,11 +9,11 @@ format:
     include-in-header:
       - text: "\\lhead{{\\sf  Base de données \\\\ TD 1}}"
   html:
-    standalone: true
+    embed-resources: true
     code-fold: true
     output-file: td1.html
 params:
-    year: 2023 
+    year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
@@ -58,7 +58,7 @@ Dans ce TP, nous allons nous concentrer sur le schéma `world` qui contient des 
 
 Pour lister et modifier  les schémas de votre environnement de travail:
 
-```{sql}
+```{.sql}
 bd_2023-24> SHOW search_path ;                  -- lister
 bd_2023-24> SET search_path TO world, public ;  -- modifier
 bd_2023-24> SHOW search_path ;       -- visualiser 
@@ -66,13 +66,13 @@ bd_2023-24> SHOW search_path ;       -- visualiser
 
 Lister les schémas du catalogue `bd_2023-24`.
 
-```{sql}
+```{.sql}
 \dn
 ```
 
 Pour lister les tables des schemas inscrits sur votre `search_path`.
 
-```{sql}
+```{.sql}
 bd_2023-24> \d
 +----------+---------------------+--------+----------+
 | Schema   | Name                | Type   | Owner    |
@@ -95,7 +95,7 @@ Si vous travaillez avec `pgcli`/`psql`, utilisez en local votre éditeur préfé
   
 Pour voir la définition (c'est-à-dire les différentes colonnes) d'une table:
 
-```{sql}
+```{.sql}
 bd_2023-24> \d world.country
 
 +--------------------+---------------+-------------+
@@ -139,7 +139,7 @@ L'*algèbre relationnelle* est un ensemble d'opération sur les tables. Chaque o
 
 Ces deux opérations peuvent être écrites en SQL ainsi :
 
-```{sql}
+```{.sql}
 SELECT colonne1, colonne2, ... 
 FROM table 
 WHERE condition;
@@ -153,7 +153,7 @@ $${\Pi}_{\texttt{colonne1, colonne2}}\left({\Large \sigma}_{\texttt{condition}}\
 
 Par exemple:
 
-```{sql}
+```{.sql}
 SELECT name_country, lifeexpectancy
 FROM world.country
 WHERE lifeexpectancy < 50 and continent = 'Asia';
@@ -174,7 +174,7 @@ Ecrivez des requêtes en algèbre relationnelle et en SQL (dans `pgcli/psql, ...
 
 $\Pi_{\texttt{region}} (\texttt{world.country})$
 
-```{sql}
+```{.sql}
 SELECT DISTINCT region
 FROM world.country ;
 ```
@@ -191,7 +191,7 @@ FROM world.country ;
 
 $\Pi_{\texttt{region}} \big( \sigma_{\texttt{continent = 'Europe'}}(\texttt{world.country})\big)$
 
-```{sql}
+```{.sql}
 SELECT DISTINCT region
 FROM world.country
 WHERE continent = 'Europe' ;
@@ -209,7 +209,7 @@ WHERE continent = 'Europe' ;
 
 $\Pi_{\texttt{name\_country}} \big( {\Large \sigma}_{\texttt{region = 'Southern Europe'}}(\texttt{world.country})\big)$
 
-```{sql}
+```{.sql}
 SELECT name_country
 FROM world.country
 WHERE region = 'Southern Europe' ;
@@ -228,7 +228,7 @@ WHERE region = 'Southern Europe' ;
 
 $$\Pi_{\texttt{capital}} \big( {\Large \sigma}_{\texttt{region = 'Western Europe'}}(\texttt{world.country})\big)$$
 
-```{sql}
+```{.sql}
 SELECT capital
 FROM world.country
 WHERE region = 'Western Europe' ;
@@ -245,7 +245,7 @@ WHERE region = 'Western Europe' ;
 
 $\Pi_{\texttt{language}} \big( {\Large \sigma}_{\texttt{isofficial}}(\texttt{world.countrylanguage})\big)$
 
-```{sql}
+```{.sql}
 SELECT DISTINCT language 
 FROM world.countrylanguage 
 WHERE isofficial ;
@@ -264,7 +264,7 @@ La variante de l'algèbre relationnelle vue en cours opérant sur les ensembles,
 
 $\Pi_{\texttt{countrycode}} \big( {\Large \sigma}_{ \texttt{language = 'French'} \wedge \texttt{isofficial}}(\texttt{world.countrylanguage})\big)$
 
-```{sql}
+```{.sql}
 SELECT countrycode
 FROM world.countrylanguage
 WHERE language = 'French' AND isofficial ;
@@ -282,7 +282,7 @@ WHERE language = 'French' AND isofficial ;
 
 $\Pi_{\texttt{indepyear}} \big( {\Large \sigma}_{ \texttt{name\_country = 'French'}}(\texttt{world.country})\big)$
 
-```{sql}
+```{.sql}
 SELECT indepyear
 FROM world.country
 WHERE name_country = 'France' ;
@@ -300,7 +300,7 @@ WHERE name_country = 'France' ;
 
 $\Pi_{\texttt{name\_country, indepyear}} \big( {\Large \sigma}_{ \texttt{continent = 'Europe' }}(\texttt{world.country})\big)$
 
-```{sql}
+```{.sql}
 SELECT name_country , indepyear
 FROM world.country
 WHERE continent = 'Europe' ;
@@ -318,7 +318,7 @@ WHERE continent = 'Europe' ;
 
 $\Pi_{\texttt{name, population}} \big( {\Large \sigma}_{ \texttt{countrycode = 'FRA' }\wedge \texttt{population > 200000}}(\texttt{world.city})\big)$
 
-```{sql}
+```{.sql}
 SELECT name , population
 FROM world.city
 WHERE countrycode = 'FRA' AND population > 200000 ;
@@ -338,7 +338,7 @@ et l'espérance de vie, ordonner par densité décroissante. (46 lignes)
 $${\Large \rho}_{\texttt{population\_country} / \texttt{surfacearea} \mapsto \texttt{density}, \texttt{gnp} / \texttt{population\_country} \mapsto \texttt{gnp\_per\_hab}}(\\
 \Pi_{\texttt{name\_country, population\_country / surfacearea}} \big( {\Large \sigma}_{ \texttt{continent = 'Europe' }}(\texttt{world.country})\big))$$
 
-```{sql}
+```{.sql}
 SELECT name_country , population_country / surfacearea as density ,
        gnp / population_country as gnp_per_hab , lifeexpectancy
 FROM country 
@@ -363,7 +363,7 @@ $$\Pi_{\texttt{name\_country}} \big( {\Large \sigma}_{ \neg \texttt{lifeexpectan
 ou, de manière équivalente \\
 $$\Pi_{\texttt{name\_country}} \big( \sigma_{\texttt{lifeexpectancy >= 77}\wedge \texttt{(gnp / population\_country) >= 0.01}}(\texttt{world.country})\big)$$
 
-```{sql}
+```{.sql}
 SELECT name_country 
 FROM world.country
 WHERE NOT (lifeexpectancy < 77) AND 
@@ -387,7 +387,7 @@ ou, de manière équivalente
 $$\Pi_{\texttt{name\_country}} \big( {\Large \sigma}_{\texttt{lifeexpectancy < 77}\wedge \texttt{(gnp / population\_country) >= 0.01}}(\texttt{world.country})\big)$$
 
 
-```{sql}
+```{.sql}
 SELECT name_country
 FROM world.country
 WHERE NOT (lifeexpectancy >= 77 OR (gnp / population_country) < 0.01) ;
@@ -406,7 +406,7 @@ au moins la moitié de la population ? (92 lignes)
 
 $$\Pi_{\texttt{countrycode}} \big( {\Large \sigma}_{\texttt{isofficial}\wedge\texttt{percentage < 50}}(\texttt{world.countrylanguage})\big)$$    
 
-```{sql}
+```{.sql}
 SELECT DISTINCT countrycode
 FROM world.countrylanguage
 WHERE isofficial AND percentage < 50 ;
@@ -424,7 +424,7 @@ WHERE isofficial AND percentage < 50 ;
 
 $$\Pi_{\texttt{countrycode}} \big( {\Large \sigma}_{\texttt{isofficial}}(\texttt{world.countrylanguage})\big)$$   
 
-```{sql}
+```{.sql}
 SELECT DISTINCT countrycode 
 FROM world.countrylanguage 
 WHERE isofficial ;
@@ -443,7 +443,7 @@ d'habitants ? (10 lignes)
 
 $$\Pi_{\texttt{name\_country}} \big( {\Large \sigma}_{\texttt{population\_country > 100000000}}(\texttt{world.country})\big)$$ 
 
-```{sql}
+```{.sql}
 SELECT name_country 
 FROM world.country
 WHERE population_country > 100000000 ;
@@ -461,7 +461,7 @@ WHERE population_country > 100000000 ;
 
 On peut aussi combiner plusieurs tables. Pour ce TP, nous allons seulement présenter le produit cartésien de deux tables: $T \times S$ est la table dont les colonnes sont les colonnes de $S$ et les colonnes de $T$. Ces lignes contient tous les couples $(l_1,l_2)$ où $l_1$ est une ligne de $T$ et $l_2$ est une ligne de $S$. En SQL, on écrira:
 
-```{sql}
+```{.sql}
 SELECT col1,col2 
 FROM table1,table2 
 WHERE condition;
@@ -469,7 +469,7 @@ WHERE condition;
 
 Par exemple,
 
-```{sql}
+```{.sql}
 SELECT language
 FROM world.country as c, world.countrylanguage as l
 WHERE c.countrycode = l.countrycode and c.continent = 'Europe';
@@ -486,7 +486,7 @@ Avec ça, écrivez des requêtes pour les questions suivantes:
 
 $$\Pi_{\texttt{name}} \big( \sigma_{\texttt{capital = id}\wedge \texttt{region = 'South America'}}(\rho_{\texttt{countrycode} \mapsto {city\_countrycode}}(\texttt{world.city}) \times \texttt{world.country})\big)$$
 
-```{sql}
+```{.sql}
 SELECT name
 FROM world.country , world.city
 WHERE capital = id AND region = 'South America' ;
@@ -517,7 +517,7 @@ officielle ? (18 lignes)
 
 $$\Pi_{\texttt{name\_country}} \big( \sigma_{\texttt{isofficial}\wedge \texttt{language = 'French'}}(\texttt{world.country} \bowtie \texttt{world.countrylanguage})\big)$$
 
-```{sql}
+```{.sql}
 SELECT name_country
 FROM world.country NATURAL JOIN world.countrylanguage
 WHERE isofficial AND 
@@ -540,7 +540,7 @@ de gouvernement est `Federal Republic` ? (3 lignes)
 
 $$\Pi_{\texttt{name\_country}} \big( \sigma_{\texttt{ttisofficial}\wedge \texttt{language = 'Spanish'}\wedge \texttt{governmentform = 'Federal Republic'}}(\texttt{world.country} \bowtie \texttt{world.countrylanguage})\big)$$
 
-```{sql}
+```{.sql}
 SELECT name_country
 FROM country NATURAL JOIN countrylanguage
 WHERE isofficial AND 
@@ -564,7 +564,7 @@ $$\big( \sigma_{\texttt{c1.isofficial}\wedge \texttt{c2.isofficial} \wedge \text
        \texttt{countrycode = c1.countrycode} \wedge \texttt{countrycode = c2.countrycode}}(\\
       \texttt{world.country} \times \texttt{world.c1}\times \texttt{world.c2})\big)$$
 
-```{sql}
+```{.sql}
 SELECT DISTINCT name_country
 FROM country AS c , countrylanguage AS l1 , countrylanguage AS l2
 WHERE c.countrycode = l1.countrycode AND 
@@ -583,7 +583,7 @@ On dispose aussi de la syntaxe `JOIN … USING (a₁,…,aₖ)` pour
 faire des jointures qui ne considèrent que les attributs communs
 `a₁` à `aₖ`.
 
-```{sql}
+```{.sql}
 SELECT DISTINCT name_country
 FROM country NATURAL JOIN
      countrylanguage AS l1 JOIN 
@@ -607,7 +607,7 @@ $$\Pi_{\texttt{name\_country}}\big(
       \texttt{world.country})-
      \Pi_{\texttt{name\_country}}\big( \sigma_{\texttt{isofficial}}(\texttt{world.country} \bowtie \texttt{world.countrylanguage}))$$
 
-```{sql}
+```{.sql}
 (SELECT name_country 
  FROM world.country
 )
@@ -637,7 +637,7 @@ $$\big( \sigma_{\texttt{c1.population\_city  > 1000000}\wedge \texttt{c2..popula
  \texttt{countrycode = c1.countrycode} \wedge \texttt{countrycode = c2.countrycode}}(\\
 \texttt{world.country} \times \texttt{world.c1}\times \texttt{world.c2})\big)$$
 
-```{sql}
+```{.sql}
 SELECT DISTINCT name_country
 FROM country as c , city as v1 , city as v2
 WHERE c.countrycode = v1.countrycode  AND 
@@ -664,7 +664,7 @@ $$\Pi_{\texttt{region}}\big( \texttt{world.country})- \Pi_{\texttt{region}}$$
      
 $$\big( \sigma_{\texttt{c1.region = c2.region}\wedge\texttt{c1.countrycode<>c2.countrycode}\wedge c1.governmentform<>c2.governmentform}(\texttt{world.c1} \bowtie \texttt{world.c2}))$$
 
-```{sql}
+```{.sql}
 (SELECT region 
 FROM country)
 EXCEPT
@@ -690,7 +690,7 @@ Ici `c1` (respectivement, `c2`) est utilisé comme abbréviation pour `country1`
 
 Une solution algébrique aurait la forme générale de la requête de la question 5. En revanche, nous n'avons pas présenté en cours d'implémentation pour l'opérateur de comparaison `LIKE` qui devrait être utilisé dans l'opérateur de sélection. Nous préférons donc en toute rigueur ne pas proposer ici de traduction algébrique.
 
-```{sql}
+```{.sql}
 (SELECT region 
 FROM country)
 
