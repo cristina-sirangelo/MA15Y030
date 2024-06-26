@@ -1,0 +1,859 @@
+[
+  {
+    "objectID": "computing-pipelines.html",
+    "href": "computing-pipelines.html",
+    "title": "Pipelines",
+    "section": "",
+    "text": "Query a database using R (through ODBC)"
+  },
+  {
+    "objectID": "cours-syllabus.html",
+    "href": "cours-syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Click here to download a PDF copy of the syllabus.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#course-info",
+    "href": "cours-syllabus.html#course-info",
+    "title": "Syllabus",
+    "section": "Course info",
+    "text": "Course info\n\n\n\n\n\n\n\n\n\n\nDay\nTime\nLocation\n\n\n\n\nLectures\nTue & Thu\n1:45 pm - 3:00 pm\nReuben-Cooke Building 130\n\n\nSection 1\nMon\n1:45 pm - 3:00 pm\nPerkins LINK 087 (Classroom 3)\n\n\nSection 2\nMon\n3:30 pm - 4:45 pm\nOld Chemistry 003\n\n\nSection 3\nMon\n5:15 pm - 6:30 pm\nSocial Sciences 311",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#learning-objectives",
+    "href": "cours-syllabus.html#learning-objectives",
+    "title": "Syllabus",
+    "section": "Learning objectives",
+    "text": "Learning objectives\nBy the end of the semester, you will be able to…\n\nanalyze real-world data to answer questions about multivariable relationships.\nfit and evaluate linear and logistic regression models.\nassess whether a proposed model is appropriate and describe its limitations.\nuse Quarto to write reproducible reports and GitHub for version control and collaboration.\ncommunicate results from statistical analyses to a general audience.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#community",
+    "href": "cours-syllabus.html#community",
+    "title": "Syllabus",
+    "section": "Community",
+    "text": "Community\n\nDuke Community Standard\nAs a student in this course, you have agreed to uphold the Duke Community Standard as well as the practices specific to this course.\n\n\n\n\nInclusive community\nIt is my intent that students from all diverse backgrounds and perspectives be well-served by this course, that students’ learning needs be addressed both in and out of class, and that the diversity that the students bring to this class be viewed as a resource, strength, and benefit. It is my intent to present materials and activities that are respectful of diversity and in alignment with Duke’s Commitment to Diversity and Inclusion. Your suggestions are encouraged and appreciated. Please let me know ways to improve the effectiveness of the course for you personally, or for other students or student groups.\nFurthermore, I would like to create a learning environment for my students that supports a diversity of thoughts, perspectives and experiences, and honors your identities. To help accomplish this:\n\nIf you feel like your performance in the class is being impacted by your experiences outside of class, please don’t hesitate to come and talk with me. If you prefer to speak with someone outside of the course, your academic dean is an excellent resource.\nI (like many people) am still in the process of learning about diverse perspectives and identities. If something was said in class (by anyone) that made you feel uncomfortable, please let me or a member of the teaching team know.\n\n\n\nAccessibility\nIf there is any portion of the course that is not accessible to you due to challenges with technology or the course format, please let me know so we can make appropriate accommodations.\nThe Student Disability Access Office (SDAO) is available to ensure that students are able to engage with their courses and related assignments. Students should be in touch with the Student Disability Access Office to request or update accommodations under these circumstances.\n\n\nCommunication\nAll lecture notes, assignment instructions, an up-to-date schedule, and other course materials may be found on the course website at sta210-s22.github.io/website.\nI will regularly send course announcements via email and Sakai, make sure to check one or the other of these regularly. If an announcement is sent Monday through Thursday, I will assume that you have read the announcement by the next day. If an announcement is sent on a Friday or over the weekend, I will assume that you have read it by Monday.\n\n\nWhere to get help\n\nIf you have a question during lecture or lab, feel free to ask it! There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.\nThe teaching team is here to help you be successful in the course. You are encouraged to attend office hours to ask questions about the course content and assignments. Many questions are most effectively answered as you discuss them with others, so office hours are a valuable resource. Please use them!\nOutside of class and office hours, any general questions about course content or assignments should be posted on the course forum Conversations. There is a chance another student has already asked a similar question, so please check the other posts in Conversations before adding a new question. If you know the answer to a question posted in the discussion forum, I encourage you to respond!\nEmails should be reserved for questions not appropriate for the public forum. If you email me, please include “STA 210” in the subject line. Barring extenuating circumstances, I will respond to STA 210 emails within 48 hours Monday - Friday. Response time may be slower for emails sent Friday evening - Sunday.\n\nCheck out the Support page for more resources.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#textbooks",
+    "href": "cours-syllabus.html#textbooks",
+    "title": "Syllabus",
+    "section": "Textbooks",
+    "text": "Textbooks\nWhile there is no official textbook for the course, we will be assigning readings from the following textbooks.\n\nR for Data Science by Garret Grolemund and Hadley Wickham",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#lectures-and-labs",
+    "href": "cours-syllabus.html#lectures-and-labs",
+    "title": "Syllabus",
+    "section": "Lectures and labs",
+    "text": "Lectures and labs\nThe goal of both the lectures and the labs is for them to be as interactive as possible. My role as instructor is to introduce you new tools and techniques, but it is up to you to take them and make use of them. A lot of what you do in this course will involve writing code, and coding is a skill that is best learned by doing. Therefore, as much as possible, you will be working on a variety of tasks and activities throughout each lecture and lab. You are expected to attend all lecture and lab sessions and meaningfully contribute to in-class exercises and discussion. Additionally, some lectures will feature application exercises that will be graded. In addition to application exercises will be periodic activities help build a learning community. These will be short, fun activities that will help everyone in the class connect throughout the semester.\nYou are expected to bring a laptop to each class so that you can take part in the in-class exercises. Please make sure your laptop is fully charged before you come to class as the number of outlets in the classroom will not be sufficient to accommodate everyone. More information on loaner laptops can be found here.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#teams",
+    "href": "cours-syllabus.html#teams",
+    "title": "Syllabus",
+    "section": "Teams",
+    "text": "Teams\nYou will be assigned to a team at the beginning of the semester. You are encouraged to sit with your teammates in lecture and you will also work with them in the lab sessions. All team members are expected to contribute equally to the completion of the labs and project and you will be asked to evaluate your team members throughout the semester. Failure to adequately contribute to an assignment will result in a penalty to your mark relative to the team’s overall mark.\nYou are expected to make use of the provided GitHub repository as their central collaborative platform. Commits to this repository will be used as a metric (one of several) of each team member’s relative contribution for each project.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#assessment",
+    "href": "cours-syllabus.html#assessment",
+    "title": "Syllabus",
+    "section": "Assessment",
+    "text": "Assessment\nAssessment for the course is comprised of six components: application exercises, homework assignments, labs, exams, projects, and teamwork.\n\nApplication exercises\nParts of some lectures will be dedicated to working on Application Exercises (AEs). These exercises which give you an opportunity to practice apply the statistical concepts and code introduced in the readings and lectures. These AEs are due within three days of the corresponding lecture period. Specifically, AEs from Tuesday lectures are due Friday by 11:59 pm ET, and AEs from Thursday lectures are due Sunday by 11:59 pm ET.\nBecause these AEs are for practice, they will be graded based on completion, i.e., a good-faith effort has been made in attempting all parts. Successful on-time completion of at least 80% of AEs will result in full credit for AEs in the final course grade.\n\n\nLabs\nIn labs, you will apply the concepts discussed in lecture to various data analysis scenarios, with a focus on the computation. Most lab assignments will be completed in teams, and all team members are expected to contribute equally to the completion of each assignment. You are expected to use the team’s GitHub repository on the course’s GitHub organization as the central platform for collaboration. Commits to this repository will be used as a metric of each team member’s relative contribution for each lab, and there will be periodic peer evaluation on the team collaboration. Lab assignments will be completed using Quarto, correspond to an appropriate GitHub repository, and submitted for grading in Gradescope.\nThe lowest lab grade will be dropped at the end of the semester.\n\n\nHomework\nIn homework, you will apply what you’ve learned during lecture and lab to complete data analysis tasks. You may discuss homework assignments with other students; however, homework should be completed and submitted individually. Similar to lab assignments, homework must be typed up using Quarto and GitHub and submitted as a PDF in Gradescope.\nOne homework assignment will be dedicated to a statistics experience. The statistics experience is an opportunity to engage with statistics and data science outside of the classroom through podcasts, books, seminars, data analysis competitions, and other activities. As you complete these experiences, the goal is to consider how the material you’re learning in the course connects with society more broadly.\nThe lowest homework grade will be dropped at the end of the semester.\n\n\nExams\nThere will be three, take-home, open-note exams. Through these exams you have the opportunity to demonstrate what you’ve learned in the course thus far. The exams will focus on the conceptual understanding of the content, and they may also include small analysis and computational tasks. The content of the exam will be related to the content in the prepare, practice, and perform assignments. More detail about the exams will be given during the semester.\n\n\nProject\nThe purpose of the project is to apply what you’ve learned throughout the semester to analyze an interesting, data-driven research question. The project will be completed with your lab teams, and each team will present their work in video and in writing during the final exam period. More information about the project will be provided during the semester.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#grading",
+    "href": "cours-syllabus.html#grading",
+    "title": "Syllabus",
+    "section": "Grading",
+    "text": "Grading\nThe final course grade will be calculated as follows:\n\n\n\nCategory\nPercentage\n\n\n\n\nApplication exercises\n3%\n\n\nHomework\n35% (7% x 5)\n\n\nProject\n15%\n\n\nLab\n14% (2.33% x 6)\n\n\nExam 01\n10%\n\n\nExam 02\n10%\n\n\nExam 03\n10%\n\n\nTeamwork\n3%\n\n\n\nThe final letter grade will be determined based on the following thresholds:\n\n\n\nLetter Grade\nFinal Course Grade\n\n\n\n\nA\n&gt;= 93\n\n\nA-\n90 - 92.99\n\n\nB+\n87 - 89.99\n\n\nB\n83 - 86.99\n\n\nB-\n80 - 82.99\n\n\nC+\n77 - 79.99\n\n\nC\n73 - 76.99\n\n\nC-\n70 - 72.99\n\n\nD+\n67 - 69.99\n\n\nD\n63 - 66.99\n\n\nD-\n60 - 62.99\n\n\nF\n&lt; 60",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#five-tips-for-success",
+    "href": "cours-syllabus.html#five-tips-for-success",
+    "title": "Syllabus",
+    "section": "Five tips for success",
+    "text": "Five tips for success\nYour success on this course depends very much on you and the effort you put into it. The course has been organized so that the burden of learning is on you. Your TAs and I will help you be providing you with materials and answering questions and setting a pace, but for this to work you must do the following:\n\nComplete all the preparation work before class.\nAsk questions. As often as you can. In class, out of class. Ask me, ask the TAs, ask your friends, ask the person sitting next to you. This will help you more than anything else. If you get a question wrong on an assessment, ask us why. If you’re not sure about the homework, ask. If you hear something on the news that sounds related to what we discussed, ask. If the reading is confusing, ask.\nDo the readings.\nDo the homework and lab.The earlier you start, the better. It’s not enough to just mechanically plow through the exercises. You should ask yourself how these exercises relate to earlier material, and imagine how they might be changed (to make questions for an exam, for example.)\nDon’t procrastinate. If something is confusing to you in Week 2, Week 3 will become more confusing, Week 4 even worse, and eventually you won’t know where to begin asking questions. Don’t let the week end with unanswered questions. But if you find yourself falling behind and not knowing where to begin asking, come to office hours, and let me help you identify a good (re)starting point.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#course-policies",
+    "href": "cours-syllabus.html#course-policies",
+    "title": "Syllabus",
+    "section": "Course policies",
+    "text": "Course policies\n\nAcademic integrity\nTL;DR: Don’t cheat!\nAll students must adhere to the Duke Community Standard (DCS): Duke University is a community dedicated to scholarship, leadership, and service and to the principles of honesty, fairness, and accountability. Citizens of this community commit to reflect upon these principles in all academic and non-academic endeavors, and to protect and promote a culture of integrity.\nTo uphold the Duke Community Standard:\nStudents affirm their commitment to uphold the values of the Duke University community by signing a pledge that states:\n\nI will not lie, cheat, or steal in my academic endeavors;\nI will conduct myself honorably in all my endeavors;\nI will act if the Standard is compromised\n\nRegardless of course delivery format, it is your responsibility to understand and follow Duke policies regarding academic integrity, including doing one’s own work, following proper citation of sources, and adhering to guidance around group work projects. Ignoring these requirements is a violation of the Duke Community Standard. If you have any questions about how to follow these requirements, please contact Jeanna McCullers (jeanna.mccullers@duke.edu), Director of the Office of Student Conduct.\n\n\nCollaboration policy\nOnly work that is clearly assigned as team work should be completed collaboratively.\n\nThe homework assignments must be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what’s the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to homework questions (including any code) with anyone other than myself and the teaching assistants.\nFor the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.\n\n\n\nPolicy on sharing and reusing code\nI am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course’s policy is that you may make use of any online resources (e.g. RStudio Community, StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. On individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.\n\n\nLate work policy\nThe due dates for assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback within a timely manner. We understand that things come up periodically that could make it difficult to submit an assignment by the deadline. Note that the lowest homework and lab assignment will be dropped to accommodate such circumstances.\n\nHomework and labs may be submitted up to 3 days late. There will be a 5% deduction for each 24-hour period the assignment is late.\nThere is no late work accepted for application exercises, since these are designed to help you prepare for labs and homework.\nThe late work policy for exams will be provided with the exam instructions.\nThe late work policy for the project will be provided with the project instructions.\n\n\n\nWaiver for extenuating circumstances\nIf there are circumstances that prevent you from completing a lab or homework assignment by the stated due date, you may email Dr. Çetinkaya-Rundel and our head TA Rick Presman before the deadline to waive the late penalty. In your email, you only need to request the waiver; you do not need to provide explanation. This waiver may only be used for once in the semester, so only use it for a truly extenuating circumstance.\nIf there are circumstances that are having a longer-term impact on your academic performance, please let your academic dean know, as they can be a resource. Please let Dr. Çetinkaya-Rundel know if you need help contacting your academic dean.\n\n\nRegrade request policy\nRegrade requests must be submitted on Gradescope within a week of when an assignment is returned. Regrade requests will be considered if there was an error in the grade calculation or if you feel a correct answer was mistakenly marked as incorrect. Requests to dispute the number of points deducted for an incorrect response will not be considered. Note that by submitting a regrade request, the entire question will be graded which could potentially result in losing points.\nNo grades will be changed after the final project presentations.\n\n\nAttendance policy\nResponsibility for class attendance rests with individual students. Since regular and punctual class attendance is expected, students must accept the consequences of failure to attend. More details on Trinity attendance policies are available here.\nHowever, there may be many reasons why you cannot be in class on a given day, particularly with possible extra personal and academic stress and health concerns this semester. All course lectures will be recorded and available to enrolled students after class. If you miss a lecture, make sure to watch the recording and review the material before the next class session. Lab time is dedicated to working on your lab assignments and collaborating with your teammates on your project. If you miss a lab session, make sure to communicate with your team about how you can make up your contribution. Given the technologies we use in the course, this is straightforward to do asynchronously. If you know you’re going to miss a lab session and you’re feeling well enough to do so, notify your teammates ahead of time. Overall these policies are put in place to ensure communication between team members, respect for each others’ time, and also to give you a safety net in the case of illness or other reasons that keep you away from attending class.\n\n\nAttendance policy related to COVID symptoms, exposure, or infection\nStudent health, safety, and well-being are the university’s top priorities. To help ensure your well-being and the well-being of those around you, please do not come to class if you have symptoms related to COVID-19, have had a known exposure to COVID-19, or have tested positive for COVID-19. If any of these situations apply to you, you must follow university guidance related to the ongoing COVID-19 pandemic and current health and safety protocols. If you are experiencing any COVID-19 symptoms, contact student health at 919-681-9355. To keep the university community as safe and healthy as possible, you will be expected to follow these guidelines. Please reach out to me and your academic dean as soon as possible if you need to quarantine or isolate so that we can discuss arrangements for your continued participation in class.\n\n\nInclement weather policy\nIn the event of inclement weather or other connectivity-related events that prohibit class attendance, I will notify you how we will make up missed course content and work. This might entail holding the class on Zoom synchronously or watching a recording of the class.\n\n\nPolicy on video recording course content\nAll lectures will be recorded and available on Panopto, so students should not need to create their own recordings of lectures. If you feel that you need record the lectures yourself, you must get permission from me ahead of time and these recordings should be used for personal study only, no for distribution. The full policy on recording of lectures falls under the Duke University Policy on Intellectual Property Rights, available at provost.duke.edu/sites/default/files/FHB_App_P.pdf. Unauthorized distribution is a cause for disciplinary action by the Judicial Board.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#learning-during-a-pandemic",
+    "href": "cours-syllabus.html#learning-during-a-pandemic",
+    "title": "Syllabus",
+    "section": "Learning during a pandemic",
+    "text": "Learning during a pandemic\nI want to make sure that you learn everything you were hoping to learn from this class. If this requires flexibility, please don’t hesitate to ask.\n\nYou never owe me personal information about your health (mental or physical) but you’re always welcome to talk to me. If I can’t help, I likely know someone who can.\nI want you to learn lots of things from this class, but I primarily want you to stay healthy, balanced, and grounded during this crisis.\n\nNote: If you’ve read this far in the syllabus, email me a picture of your pet if you have one or your favourite meme!",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-syllabus.html#important-dates",
+    "href": "cours-syllabus.html#important-dates",
+    "title": "Syllabus",
+    "section": "Important dates",
+    "text": "Important dates\n\nJanuary 5: Classes begin (Monday meeting schedule)\nJanuary 6: Regular class meeting schedule begins\nJanuary 17: Martin Luther King, Jr. Day holiday, no classes are held\nJanuary 19: Drop/add ends\nMarch 7-11: Spring recess, no classes are held\nMarch 23: Last day to withdraw with W\nApril 20: Classes end\nApril 21-24: Reading period\nApril 25-30: Final exams\n\nClick here for the full Duke academic calendar.",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "workshops/td10.html",
+    "href": "workshops/td10.html",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "",
+    "text": "L3 MIASHS/Ingémath\nUniversité Paris Cité\nAnnée 2024-2025\nCourse Homepage\n\nMoodle\n\n\n\n\n\n\n\n\nExercice\nSoit \\(\\mathcal{A}=\\left\\{A,B,C,D,E\\right\\}\\) un schéma et soit \\(\\mathcal{A}_1=\\left\\{A,B,C\\right\\}\\). Pour chaque ensemble \\(\\Sigma\\) de dépendances fonctionnelles ci-dessous, déterminer un ensemble de DF équivalent à \\(\\pi_{\\mathcal{A}_1}(\\Sigma)\\).\n\n\\(\\Sigma=\\left\\{AB\\to DE, C\\to E, D\\to C, E\\to A\\right\\}\\)\n\\(\\Sigma=\\left\\{A\\to D, BD\\to E, AC\\to E, DE\\to B\\right\\}\\)\n\\(\\Sigma=\\left\\{AB\\to D, AC\\to E, BC\\to D, D\\to A, E\\to B\\right\\}\\)\n\\(\\Sigma=\\left\\{A\\to B, B\\to C, C\\to D, D\\to E, E\\to A\\right\\}\\)\n\n\n\nExercice\nSoit \\(\\mathcal{A}=\\left\\{A,B,C,D,E\\right\\}\\) un schéma et soit la décomposition \\(\\left\\{\\mathcal{A}_1,\\mathcal{A}_2,\\mathcal{A}_3\\right\\}\\) où \\[\\mathcal{A}_1=\\left\\{A,B,C\\right\\}\\quad \\mathcal{A}_2=\\left\\{B,C,D\\right\\}\\quad \\mathcal{A}_3=\\left\\{A,C,E\\right\\}\\] Pour chaque ensemble \\(\\Sigma\\) de dépendances fonctionnelles ci-dessous, déterminer quelles dépendances sont préservées par cette décomposition, c’est-à-dire quelles DF de \\(\\Sigma\\) sont impliquées par \\(\\bigcup_{i=1}^3 \\pi_{\\mathcal{A}_i}(\\Sigma)\\).\n\n\\(\\Sigma=\\left\\{b\\rightarrow E, CE\\rightarrow A\\right\\}\\)\n\\(\\Sigma=\\left\\{aC\\rightarrow E, BC\\to D\\right\\}\\)\n\\(\\Sigma=\\left\\{a\\rightarrow D, D\\to E, B\\to D\\right\\}\\)\n\\(\\Sigma=\\left\\{a\\rightarrow D, CD\\to E, E\\to D\\right\\}\\)\n\n\n\nExercice\nOn considère le schéma de relation suivant concernant la gestion de rendez-vous d’un service d’intervention hospitaliers. \\[\n\\mathcal{A}=\\left\\{\\texttt{IdM,NomM,PrenomM,DateRV,HeureRV,IdP,NomP,PrenomP,IdInterV}\\right\\}\n\\]\nChaque rendez-vous implique un médecin et un patient. Chaque médecin est identifié par un numéro, IdM, un nom NomM et un prénom PrenomM. Le rendez-vous est à une date, DateRV, et à une heure, HeureRV données. Chaque patient est identifié par un numéro, IdP, un nom NomP et un prénom PrenomP. Chaque rv est programmé pour un type d’intervention médical, IdInterV. On suppose que chaque jour, un médecin ne peut pratiquer qu’un seul type d’intervention médicale (consultation, type de chirurgie donnée).\nOn a les dépendances fonctionnelles \\(\\Sigma\\) suivantes:\nIdM, DateRV,HeureRV, IdInterV → IdP\nIdM, DateRV →  IdInterV\nIdM → NomM, PrenomM\nIdP → NomP, PrenomP\nIdP,DateRV,HeureRV → IdInterV\nIdP,DateRV,HeureRV →  IdM,NomM\n\nQuels sont les inconvénients d’une telle modélisation par une seule table en terme d’anomalies d’insertion ou de suppression ?\n\n\nCalculer \\([\\texttt{IdM}]^+_{\\Sigma}\\)\n\n\nProposez un ensemble d’attributs formant une clé de la relation.\n\n\nDonner un ensemble de dépendances fonctionnelles \\(\\Sigma'\\) équivalent à \\(\\Sigma\\) qui soit minimal (i.e. sans règles redondantes, notamment). Justifiez\n\nOn se donne la décomposition de \\(\\mathcal{A}\\) suivante~: \\[\n\\begin{array}{l}\n    \\mathcal{A}_1=\\left\\{\\texttt{IdM,HeureRV,DateRV,IdP,NomP,PrenomP}\\right\\},\\\\\n     \\mathcal{A}_2=\\left\\{\\texttt{IdM,DateRV,IdInterV}\\right\\},\\\\\n     \\mathcal{A}_3=\\left\\{\\texttt{IdM,NomM,PrenomM}\\right\\}\n\\end{array}\n\\]\n\nToutes les dépendances fonctionnelles sont-elles préservées par cette décomposition ?\nEst-elle sans perte d’information ?\nPour \\(i=1,2,3\\), déterminer si \\(\\mathcal{A}_i\\) est en forme normale de Boyce-Codd.\n\n\nMêmes questions pour la décomposition :\n\n\\[\n\\begin{array}{rl}\n\\mathcal{A}_1 &=\\left\\{\\texttt{IdM,HeureRV,DateRV,IdP}\\right\\}\\\\\n\\mathcal{A}_2 &=\\left\\{\\texttt{IdP,NomP,PrenomP}\\right\\}, \\\\\n\\mathcal{A}_3 &=\\left\\{\\texttt{IdM,DateRV,IdInterV}\\right\\},\\\\\n\\mathcal{A}_4 &=\\left\\{\\texttt{IdM,NomM,PrenomM}\\right\\}\n\\end{array}\n\\]\n\n\nExercice\nSoit une relation concernant des personnes résidant en France avec les attributs suivants:\nNom, Numéro de sécurité sociale, Commune, Département, Code postal, Numéro de téléphone\navec l’ensemble \\(\\Sigma\\) de DF suivantes~:\nNuméro de sécurité sociale → Nom, Commune, Département, Code postal, Numéro de téléphone \nCommune → Département \nCode postal → Commune, Département\n\nCe schéma est-il en forme normale de Boyce-Codd ?\n\nSoit la décomposition \\[\\mathcal{A}_1=\\left\\{\\texttt{Code postal}, \\texttt{Commune}, \\texttt{Département}\\right\\}\\] et \\[\\mathcal{A}_2=\\left\\{\\texttt{Numéro de sécurité sociale}, \\texttt{Nom}, \\texttt{Code postal},\\texttt{Numéro de téléphone}\\right\\}\\]\n\nChaque \\(\\mathcal{A}_i\\) est-elle en forme normale de Boyce-Codd ?\nCette décomposition préserve-t-elle les dépendances fonctionnelles ?\nCette décomposition est-elle sans perte d’information ?\nMêmes questions pour la décomposition \\[\\mathcal{A}_1=\\left\\{\\texttt{Commune}, \\texttt{Département}\\right\\}\\]\n\n\\[\\mathcal{A}_2=\\left\\{\\texttt{Numéro de sécurité sociale}, \\texttt{Nom}, \\texttt{Commune}, \\texttt{Code postal},\\texttt{Numéro de téléphone}\\right\\}\\]\n\n\nExercice\nSoit un schéma d’attributs \\(A_1, A_2,\\dots A_n\\) et un ensemble de dépendances fonctionnelles. Calculer le nombre de super-clefs (en fonction de \\(n\\)) dans les cas suivants~:\n\nLa seule clef est \\(\\left\\{A_1\\right\\}\\).\nLes seules clefs sont \\(\\left\\{A_1\\right\\}\\) et \\(\\left\\{A_2\\right\\}\\).\nLes seules clefs sont \\(\\left\\{A_1,A_2\\right\\}\\) et \\(\\left\\{A_3,A_4\\right\\}\\).\nLes seules clefs sont \\(\\left\\{A_1,A_2\\right\\}\\) et \\(\\left\\{A_1,A_3\\right\\}\\).\n\n\n\nExercice\nSoit le schéma \\(\\mathcal{A}=\\{A,B,C,D\\}\\) et l’ensemble de dépendances fonctionnelles \\[\\Sigma = \\{ A \\to B, B \\to C\\} \\]\n\nQuelle est la fermeture \\(\\{A\\}^+\\) de \\(\\{A\\}\\) ?\n\n\nQuelles sont les super-clés ? Les clés ?\n\n\n\nExercice\nSoit le schéma \\(\\mathcal{A}=\\{A,B,C,D,E,F\\}\\) et l’ensemble de dépendances fonctionnelles \\[\\Sigma = \\Bigl\\{ \\left\\{A,B\\right\\}\\to C, \\left\\{B,C\\right\\}\\to \\left\\{A,D\\right\\}, D\\to E, \\left\\{C,F\\right\\}\\to B \\Bigr\\}\\]\n\nCalculer la fermeture \\(\\left\\{A,B\\right\\}^+\\) de \\(\\left\\{A,B\\right\\}\\).\nEst-ce que \\(\\Sigma\\) implique la dépendance fonctionnelle \\(\\left\\{A,B\\right\\}\\to D\\)~?\nEst-ce que \\(\\Sigma\\) implique la dépendance fonctionnelle \\(D\\to A\\)~?\n\n\n\n\nExercice\nOn considère une schéma \\(\\mathcal{A}\\) avec les attributs\nPropriétaire, Occupant, Adresse, Noapt, Nbpièces, Nbpersonnes\nUn nuplet/tuple (p, o, a, n, nb1, nb2) ayant la signification suivante : La personne o habite avec nb2 personnes l’appartement de numéro n ayant nb1 pièces dont le propriétaire est p.\nUne analyse de cette relation nous fournit un ensemble initial \\(\\Sigma\\) de dépendances fonctionnelles\nOccupant → Adresse\nOccupant → Noapt\nOccupant → Nbpersonnes\nAdresse, Noapt → Proprietaire\nAdresse, Noapt → Occupant\nAdresse, Noapt → Nbpieces\n\nDéterminer les clés du schémas\nLes schéma est-il en FN3 ?\nSi la réponse est Non, décomposer sans perte d’information et sans perte de dépendances fonctionnelles.\n\n\n\nExercice\n\nSoit le schéma \\[\\mathcal{A}=\\{\\texttt{IdLivre, Titre, Langue, Pays, IdTraducteur, Nom, Date}\\}\\] et l’ensemble de DF\nIdLivre → Titre \nLangue → Pays \nIdTraducteur → Nom \nIdLivre, IdTraducteur, Langue → Date\nIdLivre, IdTraducteur → Langue\nAppliquer l’algorithme de décomposition vu en cours pour obtenir une décomposition de \\(\\mathcal{A}\\) qui respecte la FNBC et est sans perte d’information. Déterminer quelles DF sont préservées.\n\n\nExercice\nSoit le schéma \\[\\mathcal{A}=\\left\\{\\texttt{A,B,C,D,E,F,G,H}\\right\\}\\] et l’ensemble de DF\nBE → AC  \nB → H  \nF → CD  \nD → G\n\nAppliquer l’algorithme de décomposition vu en cours pour obtenir une décomposition de \\(\\mathcal{A}\\) qui respecte la FNBC et est sans perte d’information. Déterminer quelles DF sont préservées.\nPeut-on, en ajoutant un sous-schéma à la décomposition, obtenir une décomposition FNBC sans perte d’information et sans perte de DF ?\n\n\n\nExercice\nReprendre les questions de l’exercice précédent pour le schéma \\[\\mathcal{A}=\\left\\{\\texttt{A,B,C,D,E,F,G,H}\\right\\}\\] et l’ensemble de DF\nBE → AC  \nB → H\nF → CD\nD → G\nA→ E"
+  },
+  {
+    "objectID": "workshops/td-recap-sql.html#schéma-world",
+    "href": "workshops/td-recap-sql.html#schéma-world",
+    "title": "Recapitulatif SQL",
+    "section": "Schéma world",
+    "text": "Schéma world\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le pays qui a le plus de villes recensées dans la table world.city? Combien de villes ? (363 villes)\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les pays qui ont \\(3\\) ou plus langues officielles ? (8 lignes)\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les pays dont plus de \\(1.000.000\\) d’habitants parlent une langue non officielle ? (72 lignes)\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuelles sont les langues qui sont officielles dans tous les continents où au moins une langue est parlée ? (1 ligne)\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les pays pour lesquels une langue non officielle est parlée par strictement plus de monde (dans le pays) qu’il n’y a d’habitants dans la capitale ? (118 lignes)\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels est le nombre de villes par region ?"
+  },
+  {
+    "objectID": "workshops/td-recap-sql.html#schéma-pagila",
+    "href": "workshops/td-recap-sql.html#schéma-pagila",
+    "title": "Recapitulatif SQL",
+    "section": "Schéma pagila",
+    "text": "Schéma pagila\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est l’acteur (actor_id) présent sur le plus de DVD (inventory_id) ?\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le prix moyen d’une location de DVD ?\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le DVD qui a rapporté le plus d’argent ? Le film (film_id)?\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les employés (staff_id) qui travaillent dans une autre ville que celle dans laquelle ils vivent ? (4 lignes)"
+  },
+  {
+    "objectID": "workshops/simple_layout.html",
+    "href": "workshops/simple_layout.html",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "",
+    "text": "Table public.region\nRegion(nom, population, prefecture)\n\n\n\n* 🔑 ⬋\nnom\ntext\n\n\n\npopulation\ninteger\n\n\n⬈\nprefecture\nchar(5)\n\n\n\n\nForeign Keys\n\n\n\n\nfk_region_ville\n( prefecture ) ref public.ville (code_postal)\n\n\n\n\n\n\nTable public.ville\nVille(nom, nom\\_gare, code\\_postal, region)\n\n\n\n\n\n\n\n\n\n*\nnom\ntext\n\n\n\n\nnom_gare\ntext\n\n\n\n* 🔑 ⬋\ncode_postal\nchar(5)\n5 caractères reprèsentant des entiers\n\n\n* ⬈\nregion\ntext\n\n\n\n\n\nForeign Keys\n\n\n\n\nfk_ville_region\n( region ) ref public.region (nom)"
+  },
+  {
+    "objectID": "workshops/td1.html#schémas",
+    "href": "workshops/td1.html#schémas",
+    "title": "Récapitulatif",
+    "section": "Schémas",
+    "text": "Schémas\nLes schémas sont une abstraction spécifique à PostgreSQL. Les schémas permettent de faire cohabiter sur une même base de données (ou catalogue dans le jargon PostgreSQL) plusieurs ensembles d’informations de nature différentes. On peut indiquer à pgcli, psql ou un autre client (dbeaver ou autre) quels schémas on veut utiliser par défaut.\nDans ce TP, nous allons nous concentrer sur le schéma world qui contient des informations concernant des villes et des pays/territoires du monde entier. Au cours de ce semestre, nous serons amenés à utiliser d’autres schémas : pagila qui contient des informations concernant des films, …\nPour lister et modifier les schémas de votre environnement de travail:\nbd_2023-24&gt; SHOW search_path ;                  -- lister\nbd_2023-24&gt; SET search_path TO world, public ;  -- modifier\nbd_2023-24&gt; SHOW search_path ;       -- visualiser \nLister les schémas du catalogue bd_2023-24.\n\\dn\nPour lister les tables des schemas inscrits sur votre search_path.\nbd_2023-24&gt; \\d\n+----------+---------------------+--------+----------+\n| Schema   | Name                | Type   | Owner    |\n|----------+---------------------+--------+----------|\n| world    | city                | table  | postgres |\n| world    | country             | table  | postgres |\n| world    | countrylanguage     | table  | postgres |\n+----------+---------------------+--------+----------+\nVue d’ensemble du schéma world"
+  },
+  {
+    "objectID": "workshops/td1.html#suggestion",
+    "href": "workshops/td1.html#suggestion",
+    "title": "Récapitulatif",
+    "section": "Suggestion",
+    "text": "Suggestion\nSi vous travaillez avec pgcli/psql, utilisez en local votre éditeur préféré (emacs, vi, sublime text, visual studio code, …), transférez votre script sql grâce à scp, et chargez le script dans votre session psql/pgcli à l’aide de \\\\i."
+  },
+  {
+    "objectID": "workshops/td1.html#tables",
+    "href": "workshops/td1.html#tables",
+    "title": "Récapitulatif",
+    "section": "Tables",
+    "text": "Tables\nPour voir la définition (c’est-à-dire les différentes colonnes) d’une table:\nbd_2023-24&gt; \\d world.country\n\n+--------------------+---------------+-------------+\n| Column             | Type          | Modifiers   |\n|--------------------+---------------+-------------|\n| countrycode        | character(3)  |  not null   |\n| name_country       | text          |  not null   |\n| continent          | text          |  not null   |\n| region             | text          |  not null   |\n| surfacearea        | real          |  not null   |\n| indepyear          | smallint      |             |\n| population_country | integer       |  not null   |\n| lifeexpectancy     | real          |             |\n| gnp                | numeric(10,2) |             |\n| gnpold             | numeric(10,2) |             |\n| localname          | text          |  not null   |\n| governmentform     | text          |  not null   |\n| headofstate        | text          |             |\n| capital            | integer       |             |\n| code2              | character(2)  |  not null   |\n+--------------------+---------------+-------------+"
+  },
+  {
+    "objectID": "workshops/td1.html#explorer-les-possibilités-de-psql-ou-de-pgcli",
+    "href": "workshops/td1.html#explorer-les-possibilités-de-psql-ou-de-pgcli",
+    "title": "Récapitulatif",
+    "section": "Explorer les possibilités de psql ou de pgcli",
+    "text": "Explorer les possibilités de psql ou de pgcli\nbd_2023-24&gt; \\?\nDans la deuxième partie du TP, on s’intéresse aux requêtes, c’est-à-dire, les moyens d’extraire une information pertinente d’une base de données."
+  },
+  {
+    "objectID": "workshops/nycflights_layout.html",
+    "href": "workshops/nycflights_layout.html",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "",
+    "text": "U\n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n  \n  \n    \n    \n  \n  \n    \n      \n      \n      \n      \n    \n  \n  \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n  \n\n\n\n  \n    \n    \n    \n  \n  \n    \n    \n    \n  \n  \n    \n    \n    \n    \n  \n  \n    \n    \n  \n  \n    \n  \n  \n    \n  \n  \n      \n      \n      \n  \n\n\n\n\n\n\n\n\n   \n  DbSchema Database Designer   nycflights_layout \n  Comments as mouse-over tips, zoom and pan.Read column and table comments by hovering the columns and tables.\nZoom with CTRL+whell mouse button, pan by dragging the diagram with the right-mouse button \n  by DbSchema.com - Wise CodersDbSchema is an universal database designer.\nDbSchema has a free Community Edition. \n\n\n\n\n\nflights\n\n\n\t🔗  Foreign Key flights_fk\nflights ref airlines ( carrier )\n\n🔗  Foreign Key flights_fk\nflights ref airlines ( carrier )\ncarrier\n\n\n\t🔗  Foreign Key flights_fk_planes\nflights ref planes ( tailnum )\n\n🔗  Foreign Key flights_fk_planes\nflights ref planes ( tailnum )\ntailnum\n\n\n\t🔗  Foreign Key flights_fk_origin\nflights ref airports ( origin -&gt; faa )\n\n🔗  Foreign Key flights_fk_origin\nflights ref airports ( origin -&gt; faa )\norigin\n\n\n\t🔗  Foreign Key flights_fk_dest\nflights ref airports ( dest -&gt; faa )\n\n🔗  Foreign Key flights_fk_dest\nflights ref airports ( dest -&gt; faa )\ndest\n\n\n\t🔗  Foreign Key weather_fk\nweather ref airports ( origin -&gt; faa )\n\n🔗  Foreign Key weather_fk\nweather ref airports ( origin -&gt; faa )\norigin\n\n\n\n\nairlinesTable nycflights_bis.airlines\n  🔑  Pk airlines_pk ( carrier ) carrier⧉  carrier\n     * text\n ↙ flights( carrier )\n🔗  Referred by flights ( carrier ) \n  🔍  Unq airlines_un ( name ) name⧉  name\n     text\nt\n\n\n\n\nairportsTable nycflights_bis.airports\n  🔑  Pk airports_pk ( faa ) faa⧉  faa\n     * text\n ↙ weather( faa )\n ↙ flights( faa )\n ↙ flights( faa )\n🔗  Referred by weather ( origin -&gt; faa ) \nReferred by flights ( origin -&gt; faa ) \nReferred by flights ( dest -&gt; faa ) \n  🔍  Unq airports_un ( name ) name⧉  name\n     text\nt  🔍  Unq airports_un_ll ( lat, lon ) lat⧉  lat\n     double precision\n#  🔍  Unq airports_un_ll ( lat, lon ) lon⧉  lon\n     double precision\n#  alt⧉  alt\n     double precision\n#  tz⧉  tz\n     double precision\n#  dst⧉  dst\n     text\nt  tzone⧉  tzone\n     text\nt\n\n\n\n\nflightsTable nycflights_bis.flights\n  year⧉  year\n     integer\n#  month⧉  month\n     integer\n#  day⧉  day\n     integer\n#  dep_time⧉  dep_time\n     integer\n#  sched_dep_time⧉  sched_dep_time\n     integer\n#  dep_delay⧉  dep_delay\n     double precision\n#  arr_time⧉  arr_time\n     integer\n#  sched_arr_time⧉  sched_arr_time\n     integer\n#  arr_delay⧉  arr_delay\n     double precision\n#  carrier⧉  carrier\n     text\n ↗ flights( carrier )\n🔗  References airlines ( carrier ) \n  flight⧉  flight\n     integer\n#  🔑  Pk flights_pk ( tailnum, origin, time_hour ) tailnum⧉  tailnum\n     * text\n ↗ flights( tailnum )\n🔗  References planes ( tailnum ) \n  🔑  Pk flights_pk ( tailnum, origin, time_hour ) origin⧉  origin\n     * text\n ↗ flights( faa )\n🔗  References airports ( origin -&gt; faa ) \n  dest⧉  dest\n     text\n ↗ flights( faa )\n🔗  References airports ( dest -&gt; faa ) \n  air_time⧉  air_time\n     double precision\n#  distance⧉  distance\n     double precision\n#  hour⧉  hour\n     double precision\n#  minute⧉  minute\n     double precision\n#  🔑  Pk flights_pk ( tailnum, origin, time_hour ) time_hour⧉  time_hour\n     * timestamptz\nd\n\n\n\n\nplanesTable nycflights_bis.planes\n  🔑  Pk planes_pk ( tailnum ) tailnum⧉  tailnum\n     * text\n ↙ flights( tailnum )\n🔗  Referred by flights ( tailnum ) \n  year⧉  year\n     integer\n#  type⧉  type\n     text\nt  manufacturer⧉  manufacturer\n     text\nt  model⧉  model\n     text\nt  engines⧉  engines\n     integer\n#  seats⧉  seats\n     integer\n#  speed⧉  speed\n     integer\n#  engine⧉  engine\n     text\nt\n\n\n\n\nweatherTable nycflights_bis.weather\n  🔑  Pk weather_pk ( origin, time_hour ) origin⧉  origin\n     * text\n ↗ weather( faa )\n🔗  References airports ( origin -&gt; faa ) \n  year⧉  year\n     integer\n#  month⧉  month\n     integer\n#  day⧉  day\n     integer\n#  hour⧉  hour\n     integer\n#  temp⧉  temp\n     double precision\n#  dewp⧉  dewp\n     double precision\n#  humid⧉  humid\n     double precision\n#  wind_dir⧉  wind_dir\n     double precision\n#  wind_speed⧉  wind_speed\n     double precision\n#  wind_gust⧉  wind_gust\n     double precision\n#  precip⧉  precip\n     double precision\n#  pressure⧉  pressure\n     double precision\n#  visib⧉  visib\n     double precision\n#  🔑  Pk weather_pk ( origin, time_hour ) time_hour⧉  time_hour\n     * timestamptz\nd\n\n\n\n    This is a layout. You can create multiple layouts with the same or different tables. \n    Edit tables by double-clicking the table headers.\n\n\nNYC Flights (pattes de corbeaux)\n\n\n\nTable nycflights.airlines\n\n\n\n* 🔑 ⬋\ncarrier\ntext\n\n\n🔍\nname\ntext\n\n\n\n\n\nTable nycflights.airports\n\n\n\n* 🔑 ⬋\nfaa\ntext\n\n\n🔍\nname\ntext\n\n\n🔍\nlat\ndouble precision\n\n\n🔍\nlon\ndouble precision\n\n\n\nalt\ndouble precision\n\n\n\ntz\ndouble precision\n\n\n\ndst\ntext\n\n\n\ntzone\ntext\n\n\n\n\n\nTable nycflights.flights\n\n\n\n\nyear\ninteger\n\n\n\nmonth\ninteger\n\n\n\nday\ninteger\n\n\n\ndep_time\ninteger\n\n\n\nsched_dep_time\ninteger\n\n\n\ndep_delay\ndouble precision\n\n\n\narr_time\ninteger\n\n\n\nsched_arr_time\ninteger\n\n\n\narr_delay\ndouble precision\n\n\n⬈\ncarrier\ntext\n\n\n\nflight\ninteger\n\n\n* 🔑 ⬈\ntailnum\ntext\n\n\n* 🔑 ⬈\norigin\ntext\n\n\n⬈\ndest\ntext\n\n\n\nair_time\ndouble precision\n\n\n\ndistance\ndouble precision\n\n\n\nhour\ndouble precision\n\n\n\nminute\ndouble precision\n\n\n* 🔑\ntime_hour\ntimestamptz\n\n\n\n\nForeign Keys\n\n\n\n\nflights_fk\n( carrier ) ref nycflights_bis.airlines (carrier)\n\n\n\nflights_fk_planes\n( tailnum ) ref nycflights_bis.planes (tailnum)\n\n\n\nflights_fk_origin\n( origin ) ref nycflights_bis.airports (faa)\n\n\n\nflights_fk_dest\n( dest ) ref nycflights_bis.airports (faa)\n\n\n\n\n\n\nTable nycflights.planes\n\n\n\n* 🔑 ⬋\ntailnum\ntext\n\n\n\nyear\ninteger\n\n\n\ntype\ntext\n\n\n\nmanufacturer\ntext\n\n\n\nmodel\ntext\n\n\n\nengines\ninteger\n\n\n\nseats\ninteger\n\n\n\nspeed\ninteger\n\n\n\nengine\ntext\n\n\n\n\n\nTable nycflights.weather\n\n\n\n* 🔑 ⬈\norigin\ntext\n\n\n\nyear\ninteger\n\n\n\nmonth\ninteger\n\n\n\nday\ninteger\n\n\n\nhour\ninteger\n\n\n\ntemp\ndouble precision\n\n\n\ndewp\ndouble precision\n\n\n\nhumid\ndouble precision\n\n\n\nwind_dir\ndouble precision\n\n\n\nwind_speed\ndouble precision\n\n\n\nwind_gust\ndouble precision\n\n\n\nprecip\ndouble precision\n\n\n\npressure\ndouble precision\n\n\n\nvisib\ndouble precision\n\n\n* 🔑\ntime_hour\ntimestamptz\n\n\n\n\nForeign Keys\n\n\n\n\nweather_fk\n( origin ) ref nycflights_bis.airports (faa)"
+  },
+  {
+    "objectID": "workshops/td4bis.html#over-partition-by",
+    "href": "workshops/td4bis.html#over-partition-by",
+    "title": "Fonctions fenêtres/Window functions",
+    "section": "OVER (PARTITION BY …)",
+    "text": "OVER (PARTITION BY …)\nCette construction peut être combinée avec n’importe quelle fonction d’aggrégation.\nCette requête indique pour chaque ville, la “population moyenne” des villes de ce pays (cette moyenne n’a aucun sens).\nSELECT id, name_city, population_city, \n       avg(population_city) OVER (PARTITION BY countrycode)  AS avg_pop\nFROM world.city;  \nSans le mécanisme de fenêtrage, on pourrait obtenir le résultat au prix d’une jointure\n WITH tmp AS (\n  SELECT c.countrycode, AVG(c.population_city) AS avg_pop\n  FROM world.city c\n  GROUP BY c.countrycode\n ) \n  SELECT cc.id, cc.name_city, cc.population_city, tmp.avg_pop\n  FROM world.city cc NATURAL JOIN tmp;"
+  },
+  {
+    "objectID": "workshops/td4bis.html#over-partition-by-order-by",
+    "href": "workshops/td4bis.html#over-partition-by-order-by",
+    "title": "Fonctions fenêtres/Window functions",
+    "section": "OVER (PARTITION BY … ORDER BY)",
+    "text": "OVER (PARTITION BY … ORDER BY)\nOn peut partitioner et trier.\nCette construction est très pratique pour ranger les tuples d’un sous-groupe.\nDans world, si on veut ranger les langues parlées dans un pays par popularité décroissante, on peut procéder ainsi.\nSELECT countrycode, LANGUAGE, \nRANK() OVER (PARTITION BY countrycode ORDER BY percentage DESC)  AS rnk\nFROM world.countrylanguage ;"
+  },
+  {
+    "objectID": "workshops/td4bis.html#rank-over",
+    "href": "workshops/td4bis.html#rank-over",
+    "title": "Fonctions fenêtres/Window functions",
+    "section": "RANK() OVER ()",
+    "text": "RANK() OVER ()\nOn peut ne pas partitionner en utilisant l’expression OVER (). Par exemple, si on veut obtenir le rang des tuples d’une table sur un tri particulier.\nSELECT countrycode, name_country, \n       RANK() OVER (ORDER BY population_country DESC)  AS rnk\nFROM world.country ;"
+  },
+  {
+    "objectID": "workshops/td4bis.html#autres-types-de-fenêtres",
+    "href": "workshops/td4bis.html#autres-types-de-fenêtres",
+    "title": "Fonctions fenêtres/Window functions",
+    "section": "Autres types de fenêtres",
+    "text": "Autres types de fenêtres\nLa construction OVER ( ...) n’est pas utilisée exclusivement avec des partitions (peut-être triviales), on peut aussi définir des fenêtres glissantes.\nLes fonctions fenêtre ne sont autorisées que dans la liste SELECT et la clause ORDER BY de la requête. Elles sont interdites ailleurs, par exemple dans les clauses GROUP BY, HAVING et WHERE."
+  },
+  {
+    "objectID": "workshops/td4bis.html#forme-générale",
+    "href": "workshops/td4bis.html#forme-générale",
+    "title": "Fonctions fenêtres/Window functions",
+    "section": "Forme générale",
+    "text": "Forme générale\nCREATE OR REPLACE FUNCTION  schema_name.func_name(p_arg1 p_arg1_datatype, ..., [OUT o_arg1 o_arg1_datatype, ...])\nRETURNS some type | RECORD | SETOF some type | TABLE (..) \nLANGUAGE SQL AS\n$$\nSQL statement ;\nSQL statement ;\n...\nSQL statement ;\n$$ ;"
+  },
+  {
+    "objectID": "workshops/td4bis.html#fonctions-qui-retournent-un-type-simple",
+    "href": "workshops/td4bis.html#fonctions-qui-retournent-un-type-simple",
+    "title": "Fonctions fenêtres/Window functions",
+    "section": "Fonctions qui retournent un type simple",
+    "text": "Fonctions qui retournent un type simple\nDans le schéma world, on veut écrire une fonction qui prend en argument une région et renvoie la population maximale parmi les capitales de la région (voir td2 requête 1).\nCREATE OR REPLACE FUNCTION username.taille_max_capitale_region(p_region text)\nRETURNS INTEGER LANGUAGE SQL AS\n$$\nSELECT MAX(population_city) AS max_pop\nFROM world.country c JOIN world.city cc ON (c.capital=cc.id)\nWHERE c.region=p_region AND cc.population_city IS NOT NULL;\n$$ ;"
+  },
+  {
+    "objectID": "workshops/td4bis.html#fonctions-qui-retournent-un-type-composé",
+    "href": "workshops/td4bis.html#fonctions-qui-retournent-un-type-composé",
+    "title": "Fonctions fenêtres/Window functions",
+    "section": "Fonctions qui retournent un type composé",
+    "text": "Fonctions qui retournent un type composé\nDans le schéma world, on veut écrire une fonction qui prend en argument une région et renvoie le nom et la population de la capitale la plus peuplée de cette région (voir td2 requête 1).\nOn peut utiliser le qualifiant OUT pour désigner des paramètres de sortie.\nCREATE OR REPLACE FUNCTION username.capitale(p_region text, OUT o_name_capital TEXT, OUT o_population_capital INTEGER)\nRETURNS RECORD  LANGUAGE SQL AS\n$$\nWITH r AS(\n  SELECT cc.*, RANK() OVER (PARTITION BY c.region \n                            ORDER BY cc.population_city DESC) AS rnk\n  FROM world.country c JOIN world.city cc ON (c.capital=cc.id)\n  WHERE c.region=p_region)\nSELECT r.name_city,  r.population_city\nFROM r \nWHERE r.rnk = 1 ;\n$$ ;"
+  },
+  {
+    "objectID": "workshops/td4bis.html#fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table",
+    "href": "workshops/td4bis.html#fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table",
+    "title": "Fonctions fenêtres/Window functions",
+    "section": "Fonctions qui retournent un type composé défini par les lignes d’une table",
+    "text": "Fonctions qui retournent un type composé défini par les lignes d’une table\nDans le schéma world, on veut écrire une fonction qui prend en argument une région et renvoie la description de la capitale la plus peuplée de cette région (voir td2 requête 1).\nCREATE OR REPLACE FUNCTION username.capitale(p_region text)\nRETURNS world.city  LANGUAGE SQL AS\n$$\nWITH r AS(\n  SELECT cc.*, RANK() OVER (PARTITION BY c.region \n                            ORDER BY cc.population_city DESC) AS rnk\n  FROM world.country c JOIN world.city cc ON (c.capital=cc.id)\n  WHERE c.region=p_region\n)\nSELECT r.id, r.name_city, r.countrycode, r.district, r.population_city\nFROM r \nWHERE r.rnk = 1 ;\n$$ ;"
+  },
+  {
+    "objectID": "workshops/td4bis.html#fonctions-qui-retournent-une-table",
+    "href": "workshops/td4bis.html#fonctions-qui-retournent-une-table",
+    "title": "Fonctions fenêtres/Window functions",
+    "section": "Fonctions qui retournent une table",
+    "text": "Fonctions qui retournent une table\nDans le schéma world, on veut écrire une fonction qui prend en argument une région et renvoie la table des capitales de la région (voir td2 requête 1).\n\nTable de schéma explicite\nOn se contente d’abord de renvoyer le nom de la capitale. On explicite le schéma de la table résultat\nCREATE OR REPLACE FUNCTION username.capitales_region(p_region text)\nRETURNS TABLE (name_capital text) LANGUAGE SQL AS\n$$\nSELECT cc.name_city \nFROM world.country c JOIN world.city cc ON (c.capital=cc.id)\nWHERE c.region=p_region ;\n$$ ;\n\n\nTable de même schéma qu’une autre table\nDocumentation\nOn veut maintenant récupérer une table de même schéma que city.\n\n\n\n\n\n\nLa solution est très simple. On profite de ce qu’à chaque table correspond un type de même nom et on utilise le mot-clé SETOF.\n\n\n\nCREATE OR REPLACE FUNCTION username.capitales_region_large(p_region text)\nRETURNS SETOF world.city  LANGUAGE SQL AS\n$$\nSELECT cc.* \nFROM world.country c JOIN world.city cc ON (c.capital=cc.id)\nWHERE c.region=p_region ;\n$$ ;"
+  },
+  {
+    "objectID": "workshops/layout-pagila-rental.html",
+    "href": "workshops/layout-pagila-rental.html",
+    "title": "Schéma pagila (vue partielle restreinte au tables touchant à la location)",
+    "section": "",
+    "text": "Schéma pagila (vue partielle restreinte au tables touchant à la location)\nCréé ` l’aide de DbSchema\npagila est un schéma d’entrainement dérivé du schéma sakila de MySQL. C’est une base de donnée fictive destinée à gérer le catalogue et les stocks d’une chaine de magasins de location de DVD (début du XXIème siècle).\n\nVue partielle restreinte au tables touchant à la location\n\n\n\n   \n\n\n\n  \n    \n  \n  \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n  \n  \n  \n    \n    \n  \n  \n    \n  \n  \n  \n     \n     \n    \n       \n       \n    \n  \n  \n    \n    \n  \n  \n    \n    \n  \n  \n    \n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n      \n      \n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n      \n      U\n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n  \n  \n    \n    \n  \n  \n    \n      \n      \n      \n      \n    \n  \n  \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n  \n\n\n\n  \n    \n    \n    \n  \n  \n    \n    \n    \n  \n  \n    \n    \n    \n    \n  \n  \n    \n    \n  \n  \n    \n  \n  \n    \n  \n  \n      \n      \n      \n  \n\n\n\n\n\n\n\n\n   \n  DbSchema Database Designer   pagila_rental_layout \n  Comments as mouse-over tips, zoom and pan.Read column and table comments by hovering the columns and tables.\nZoom with CTRL+whell mouse button, pan by dragging the diagram with the right-mouse button \n  by DbSchema.com - Wise CodersDbSchema is an universal database designer.\nDbSchema has a free Community Edition. \n\n\n\n\n\n\t🔗  Foreign Key customer_store_id_fkey\ncustomer ref store ( store_id )\n\n🔗  Foreign Key customer_store_id_fkey\ncustomer ref store ( store_id )\nstore_id\n\n\n\t🔗  Foreign Key customer_address_id_fkey\ncustomer ref address ( address_id )\n\n🔗  Foreign Key customer_address_id_fkey\ncustomer ref address ( address_id )\naddress_id\n\n\n\t🔗  Foreign Key payment_staff_id_fkey\npayment ref staff ( staff_id )\n\n🔗  Foreign Key payment_staff_id_fkey\npayment ref staff ( staff_id )\nstaff_id\n\n\n\t🔗  Foreign Key payment_customer_id_fkey\npayment ref customer ( customer_id )\n\n🔗  Foreign Key payment_customer_id_fkey\npayment ref customer ( customer_id )\ncustomer_id\n\n\n\t🔗  Foreign Key inventory_store_id_fkey\ninventory ref store ( store_id )\n\n🔗  Foreign Key inventory_store_id_fkey\ninventory ref store ( store_id )\nstore_id\n\n\n\t🔗  Foreign Key inventory_film_id_fkey\ninventory ref film ( film_id )\n\n🔗  Foreign Key inventory_film_id_fkey\ninventory ref film ( film_id )\nfilm_id\n\n\n\t🔗  Foreign Key store_manager_staff_id_fkey\nstore ref staff ( manager_staff_id -&gt; staff_id )\n\n🔗  Foreign Key store_manager_staff_id_fkey\nstore ref staff ( manager_staff_id -&gt; staff_id )\nmanager_staff_id\n\n\n\t🔗  Foreign Key store_address_id_fkey\nstore ref address ( address_id )\n\n🔗  Foreign Key store_address_id_fkey\nstore ref address ( address_id )\naddress_id\n\n\n\t🔗  Foreign Key address_city_id_fkey\naddress ref city ( city_id )\n\n🔗  Foreign Key address_city_id_fkey\naddress ref city ( city_id )\ncity_id\n\n\n\t🔗  Foreign Key staff_store_id_fkey\nstaff ref store ( store_id )\n\n🔗  Foreign Key staff_store_id_fkey\nstaff ref store ( store_id )\nstore_id\n\n\n\t🔗  Foreign Key staff_address_id_fkey\nstaff ref address ( address_id )\n\n🔗  Foreign Key staff_address_id_fkey\nstaff ref address ( address_id )\naddress_id\n\n\n\t🔗  Foreign Key city_country_id_fkey\ncity ref country ( country_id )\n\n🔗  Foreign Key city_country_id_fkey\ncity ref country ( country_id )\ncountry_id\n\n\n\n\ncustomerTable pagila.customer\n  🔑  Pk customer_pkey ( customer_id ) customer_id⧉  customer_id\n     * integer default nextval('pagila.customer_customer_id_seq'::regclass)\n ↙ rental( customer_id )\n ↙ payment( customer_id )\n🔗  Referred by rental ( customer_id ) \nReferred by payment ( customer_id ) \n  🔍  idx_fk_store_id ( store_id ) store_id⧉  store_id\n     * smallint\n ↗ customer( store_id )\n🔗  References store ( store_id ) \n  first_name⧉  first_name\n     * varchar(45)\nt  🔍  idx_last_name ( last_name ) last_name⧉  last_name\n     * varchar(45)\nt  email⧉  email\n     varchar(50)\nt  🔍  idx_fk_address_id ( address_id ) address_id⧉  address_id\n     * smallint\n ↗ customer( address_id )\n🔗  References address ( address_id ) \n  activebool⧉  activebool\n     * boolean default true\nb  create_date⧉  create_date\n     * date default ('now'::text)::date\nd  last_update⧉  last_update\n     timestamp default now()\nd  active⧉  active\n     integer\n#\n\n\n\n\nfilmTable pagila.film\n  🔑  Pk film_pkey ( film_id ) film_id⧉  film_id\n     * integer default nextval('pagila.film_film_id_seq'::regclass)\n ↙ film_category( film_id )\n ↙ inventory( film_id )\n ↙ film_actor( film_id )\n🔗  Referred by film_category ( film_id ) \nReferred by inventory ( film_id ) \nReferred by film_actor ( film_id ) \n  🔍  idx_title ( title ) title⧉  title\n     * varchar(255)\nt  description⧉  description\n     text\nt  release_year⧉  release_year\n     integer\n#  🔍  idx_fk_language_id ( language_id ) language_id⧉  language_id\n     * smallint\n ↗ film( language_id )\n🔗  References language ( language_id ) \n  🔍  idx_fk_original_language_id ( original_language_id ) original_language_id⧉  original_language_id\n     smallint\n ↗ film( language_id )\n🔗  References language ( original_language_id -&gt; language_id ) \n  rental_duration⧉  rental_duration\n     * smallint default 3\n#  rental_rate⧉  rental_rate\n     * varchar(4) default 4.99\nt  length⧉  length\n     smallint\n#  replacement_cost⧉  replacement_cost\n     * varchar(5) default 19.99\nt  rating⧉  rating\n     mpaa_rating default 'G'::pagila.mpaa_rating\nt  last_update⧉  last_update\n     * timestamp default now()\nd  special_features⧉  special_features\n     text[]\n[]\n\n\n\n\npaymentTable pagila.payment\n  🔑  Pk payment_pkey ( payment_id ) payment_id⧉  payment_id\n     * integer default nextval('pagila.payment_payment_id_seq'::regclass)\n#  🔍  idx_fk_customer_id ( customer_id ) customer_id⧉  customer_id\n     * smallint\n ↗ payment( customer_id )\n🔗  References customer ( customer_id ) \n  🔍  idx_fk_staff_id ( staff_id ) staff_id⧉  staff_id\n     * smallint\n ↗ payment( staff_id )\n🔗  References staff ( staff_id ) \n  rental_id⧉  rental_id\n     * integer\n ↗ payment( rental_id )\n🔗  References rental ( rental_id ) \n  amount⧉  amount\n     * numeric(5,2)\n#  payment_date⧉  payment_date\n     * timestamp\nd\n\n\n\n\ninventoryTable pagila.inventory\n  🔑  Pk inventory_pkey ( inventory_id ) inventory_id⧉  inventory_id\n     * integer default nextval('pagila.inventory_inventory_id_seq'::regclass)\n ↙ rental( inventory_id )\n🔗  Referred by rental ( inventory_id ) \n  🔍  idx_store_id_film_id ( store_id, film_id ) film_id⧉  film_id\n     * smallint\n ↗ inventory( film_id )\n🔗  References film ( film_id ) \n  🔍  idx_store_id_film_id ( store_id, film_id ) store_id⧉  store_id\n     * smallint\n ↗ inventory( store_id )\n🔗  References store ( store_id ) \n  last_update⧉  last_update\n     * timestamp default now()\nd\n\n\n\n\nstoreTable pagila.store\n  🔑  Pk store_pkey ( store_id ) store_id⧉  store_id\n     * integer default nextval('pagila.store_store_id_seq'::regclass)\n ↙ staff( store_id )\n ↙ inventory( store_id )\n ↙ customer( store_id )\n🔗  Referred by staff ( store_id ) \nReferred by inventory ( store_id ) \nReferred by customer ( store_id ) \n  🔍  Unq idx_unq_manager_staff_id ( manager_staff_id ) manager_staff_id⧉  manager_staff_id\n     * smallint\n ↗ store( staff_id )\n🔗  References staff ( manager_staff_id -&gt; staff_id ) \n  address_id⧉  address_id\n     * smallint\n ↗ store( address_id )\n🔗  References address ( address_id ) \n  last_update⧉  last_update\n     * timestamp default now()\nd\n\n\n\n\naddressTable pagila.address\n  🔑  Pk address_pkey ( address_id ) address_id⧉  address_id\n     * integer default nextval('pagila.address_address_id_seq'::regclass)\n ↙ staff( address_id )\n ↙ store( address_id )\n ↙ customer( address_id )\n🔗  Referred by staff ( address_id ) \nReferred by store ( address_id ) \nReferred by customer ( address_id ) \n  address⧉  address\n     * varchar(50)\nt  address2⧉  address2\n     varchar(50)\nt  district⧉  district\n     * varchar(20)\nt  🔍  idx_fk_city_id ( city_id ) city_id⧉  city_id\n     * smallint\n ↗ address( city_id )\n🔗  References city ( city_id ) \n  postal_code⧉  postal_code\n     varchar(10)\nt  phone⧉  phone\n     * varchar(20)\nt  last_update⧉  last_update\n     * timestamp default now()\nd\n\n\n\n\nstaffTable pagila.staff\n  🔑  Pk staff_pkey ( staff_id ) staff_id⧉  staff_id\n     * integer default nextval('pagila.staff_staff_id_seq'::regclass)\n ↙ rental( staff_id )\n ↙ store( staff_id )\n ↙ payment( staff_id )\n🔗  Referred by rental ( staff_id ) \nReferred by store ( manager_staff_id -&gt; staff_id ) \nReferred by payment ( staff_id ) \n  first_name⧉  first_name\n     * varchar(45)\nt  last_name⧉  last_name\n     * varchar(45)\nt  address_id⧉  address_id\n     * smallint\n ↗ staff( address_id )\n🔗  References address ( address_id ) \n  email⧉  email\n     varchar(50)\nt  store_id⧉  store_id\n     * smallint\n ↗ staff( store_id )\n🔗  References store ( store_id ) \n  active⧉  active\n     * boolean default true\nb  username⧉  username\n     * varchar(16)\nt  password⧉  password\n     varchar(40)\nt  last_update⧉  last_update\n     * timestamp default now()\nd  picture⧉  picture\n     bytea\n~\n\n\n\n\ncityTable pagila.city\n  🔑  Pk city_pkey ( city_id ) city_id⧉  city_id\n     * integer default nextval('pagila.city_city_id_seq'::regclass)\n ↙ address( city_id )\n🔗  Referred by address ( city_id ) \n  city⧉  city\n     * varchar(50)\nt  🔍  idx_fk_country_id ( country_id ) country_id⧉  country_id\n     * smallint\n ↗ city( country_id )\n🔗  References country ( country_id ) \n  last_update⧉  last_update\n     * timestamp default now()\nd\n\n\n\n\ncountryTable pagila.country\n  🔑  Pk country_pkey ( country_id ) country_id⧉  country_id\n     * integer default nextval('pagila.country_country_id_seq'::regclass)\n ↙ city( country_id )\n🔗  Referred by city ( country_id ) \n  country⧉  country\n     * varchar(50)\nt  last_update⧉  last_update\n     * timestamp default now()\nd\n\nVue partielle du schéma pagila\n\n\nVoir aussi vue partielle restreinte au catalogue des films\n\n\nTable pagila.address\n\n\n\n\n\n\n\n\n* 🔑 ⬋\naddress_id\ninteger DEFAULT nextval(‘pagila.address_address_id_seq’::regclass)\n\n\n*\naddress\nvarchar(50)\n\n\n\naddress2\nvarchar(50)\n\n\n*\ndistrict\nvarchar(20)\n\n\n* 🔎 ⬈\ncity_id\nsmallint\n\n\n\npostal_code\nvarchar(10)\n\n\n*\nphone\nvarchar(20)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\n\naddress_city_id_fkey\n( city_id ) ref pagila.city (city_id)\n\n\n\n\n\n\nTable pagila.city\n\n\n\n\n\n\n\n\n* 🔑 ⬋\ncity_id\ninteger DEFAULT nextval(‘pagila.city_city_id_seq’::regclass)\n\n\n*\ncity\nvarchar(50)\n\n\n* 🔎 ⬈\ncountry_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\n\ncity_country_id_fkey\n( country_id ) ref pagila.country (country_id)\n\n\n\n\n\n\nTable pagila.country\n\n\n\n\n\n\n\n\n* 🔑 ⬋\ncountry_id\ninteger DEFAULT nextval(‘pagila.country_country_id_seq’::regclass)\n\n\n*\ncountry\nvarchar(50)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\n\nTable pagila.customer\n\n\n\n\n\n\n\n\n* 🔑 ⬋\ncustomer_id\ninteger DEFAULT nextval(‘pagila.customer_customer_id_seq’::regclass)\n\n\n* 🔎 ⬈\nstore_id\nsmallint\n\n\n*\nfirst_name\nvarchar(45)\n\n\n* 🔎\nlast_name\nvarchar(45)\n\n\n\nemail\nvarchar(50)\n\n\n* 🔎 ⬈\naddress_id\nsmallint\n\n\n*\nactivebool\nboolean DEFAULT true\n\n\n*\ncreate_date\ndate DEFAULT (‘now’::text)::date\n\n\n\nlast_update\ntimestamp DEFAULT now()\n\n\n\nactive\ninteger\n\n\n\n\nForeign Keys\n\n\n\n\ncustomer_store_id_fkey\n( store_id ) ref pagila.store (store_id)\n\n\n\ncustomer_address_id_fkey\n( address_id ) ref pagila.address (address_id)\n\n\n\n\n\n\nTable pagila.film\n\n\n\n\n\n\n\n\n* 🔑 ⬋\nfilm_id\ninteger DEFAULT nextval(‘pagila.film_film_id_seq’::regclass)\n\n\n* 🔎\ntitle\nvarchar(255)\n\n\n\ndescription\ntext\n\n\n\nrelease_year\ninteger\n\n\n* 🔎 ⬈\nlanguage_id\nsmallint\n\n\n🔎 ⬈\noriginal_language_id\nsmallint\n\n\n*\nrental_duration\nsmallint DEFAULT 3\n\n\n*\nrental_rate\nvarchar(4) DEFAULT 4.99\n\n\n\nlength\nsmallint\n\n\n*\nreplacement_cost\nvarchar(5) DEFAULT 19.99\n\n\n\nrating\nmpaa_rating DEFAULT ‘G’::pagila.mpaa_rating\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\nspecial_features\ntext[]\n\n\n\n\nForeign Keys\n\n\n\n\nfilm_original_language_id_fkey\n( original_language_id ) ref pagila.language (language_id)\n\n\n\nfilm_language_id_fkey\n( language_id ) ref pagila.language (language_id)\n\n\n\n\n\n\nTable pagila.inventory\n\n\n\n\n\n\n\n\n* 🔑 ⬋\ninventory_id\ninteger DEFAULT nextval(‘pagila.inventory_inventory_id_seq’::regclass)\n\n\n* 🔎 ⬈\nfilm_id\nsmallint\n\n\n* 🔎 ⬈\nstore_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\n\ninventory_store_id_fkey\n( store_id ) ref pagila.store (store_id)\n\n\n\ninventory_film_id_fkey\n( film_id ) ref pagila.film (film_id)\n\n\n\n\n\n\nTable pagila.payment\n\n\n\n\n\n\n\n\n* 🔑\npayment_id\ninteger DEFAULT nextval(‘pagila.payment_payment_id_seq’::regclass)\n\n\n* 🔎 ⬈\ncustomer_id\nsmallint\n\n\n* 🔎 ⬈\nstaff_id\nsmallint\n\n\n* ⬈\nrental_id\ninteger\n\n\n*\namount\nnumeric(5,2)\n\n\n*\npayment_date\ntimestamp\n\n\n\n\nForeign Keys\n\n\n\n\npayment_staff_id_fkey\n( staff_id ) ref pagila.staff (staff_id)\n\n\n\npayment_rental_id_fkey\n( rental_id ) ref pagila.rental (rental_id)\n\n\n\npayment_customer_id_fkey\n( customer_id ) ref pagila.customer (customer_id)\n\n\n\n\n\n\nTable pagila.staff\n\n\n\n\n\n\n\n\n* 🔑 ⬋\nstaff_id\ninteger DEFAULT nextval(‘pagila.staff_staff_id_seq’::regclass)\n\n\n*\nfirst_name\nvarchar(45)\n\n\n*\nlast_name\nvarchar(45)\n\n\n* ⬈\naddress_id\nsmallint\n\n\n\nemail\nvarchar(50)\n\n\n* ⬈\nstore_id\nsmallint\n\n\n*\nactive\nboolean DEFAULT true\n\n\n*\nusername\nvarchar(16)\n\n\n\npassword\nvarchar(40)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\npicture\nbytea\n\n\n\n\nForeign Keys\n\n\n\n\nstaff_store_id_fkey\n( store_id ) ref pagila.store (store_id)\n\n\n\nstaff_address_id_fkey\n( address_id ) ref pagila.address (address_id)\n\n\n\n\n\n\nTable pagila.store\n\n\n\n\n\n\n\n\n* 🔑 ⬋\nstore_id\ninteger DEFAULT nextval(‘pagila.store_store_id_seq’::regclass)\n\n\n* 🔍 ⬈\nmanager_staff_id\nsmallint\n\n\n* ⬈\naddress_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\n\nstore_manager_staff_id_fkey\n( manager_staff_id ) ref pagila.staff (staff_id)\n\n\n\nstore_address_id_fkey\n( address_id ) ref pagila.address (address_id)"
+  },
+  {
+    "objectID": "workshops/td11.html",
+    "href": "workshops/td11.html",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "",
+    "text": "L3 MIASHS/Ingémath\nUniversité Paris Cité\nAnnée 2024-2025\nCourse Homepage\n\nMoodle\n\n\n\n\n\n\n\n\nExercice\nSoit le schéma \\[\\mathcal{A}=\\left\\{\\texttt{A,B,C,D,E,F,G,H}\\right\\}\\] et l’ensemble de DF\nBE → AC  \nB → H  \nF → CD  \nD → G\n\nAppliquer l’algorithme de décomposition vu en cours pour obtenir une décomposition de \\(\\mathcal{A}\\) qui respecte la FNBC et est sans perte d’information. Déterminer quelles DF sont préservées.\nPeut-on, en ajoutant un sous-schéma à la décomposition, obtenir une décomposition FNBC sans perte d’information et sans perte de DF ?\n\n\n\nExercice\nReprendre les questions de l’exercice précédent pour le schéma \\[\\mathcal{A}=\\left\\{\\texttt{A,B,C,D,E,F,G,H}\\right\\}\\] et l’ensemble de DF\nBE → AC  \nB → H\nF → CD\nD → G\nA→ E"
+  },
+  {
+    "objectID": "workshops/td2.html#schéma-world-rappel",
+    "href": "workshops/td2.html#schéma-world-rappel",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "Schéma world (rappel)",
+    "text": "Schéma world (rappel)\nUtiliser les commandes suivantes pour retrouver les schémas de tables country, countrylanguage et city.\nbd_2023&gt; \\d world.\"nom de table\"\nVue d’ensemble du schéma world"
+  },
+  {
+    "objectID": "workshops/td2.html#écriture-de-requêtes",
+    "href": "workshops/td2.html#écriture-de-requêtes",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "Écriture de requêtes",
+    "text": "Écriture de requêtes\nPour extraire des informations d’une base de données, on utilise l’algèbre relationnelle (pour la théorie) et le langage SQL (pour la pratique).\n\n\n\n\n\n\n\n\nOpération\nAlgèbre rel.\nSQL\n\n\n\n\nProjection\n\\(\\Pi_{\\text{liste d'attributs}}(R)\\)\nSELECT attributs FROM  R\n\n\nSélection\n\\({\\Large \\sigma}_{\\text{condition}}{R}\\)\nSELECT * FROM R WHERE condition\n\n\nRenommage\n\\(\\rho_{\\text{nom1} \\rightarrow \\text{nom2}}(R)\\)\nSELECT nom1 AS nom2 FROM table1 AS table2\n\n\nUnion\n\\(R \\cup S\\)\n(SELECT * FROM R) UNION (SELECT * FROM S)\n\n\nDifférence\n\\(R - S\\)\n(SELECT * FROM R) EXCEPT (SELECT * FROM S)\n\n\nProduit\n\\(R \\times S\\)\nSELECT * FROM R,S\n\n\nIntersection\n\\(R \\cap S\\)\n(SELECT * FROM R) INTERSECT (SELECT * FROM S)"
+  },
+  {
+    "objectID": "workshops/td2.html#opérations-avancées",
+    "href": "workshops/td2.html#opérations-avancées",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "Opérations avancées",
+    "text": "Opérations avancées\n\nJointures\nLa jointure est une opération qui permet de recoller deux relations ensemble. On la note avec le signe \\(\\bowtie_C\\) où \\(C\\) est une condition. Formellement, ce n’est qu’une sélection selon la condition \\(C\\) d’un produit cartésien, c’est-à-dire, par définition : \\[R {\\Large \\bowtie}_C S = {\\Large \\sigma}_{C}{(R \\times S)}.\\]\nCette opération est très courante dans les requêtes. Cela vient du fait que les bases de données sont conçues pour ne pas avoir d’information redondante.\nPrenons l’exemple du schéma world et des tables world.country et world.city. La table world.country possède une colonne capital qui contient le numéro d’identification d’une ville de la table world.city. Par exemple, pour la France, la colonne capital vaut 2974 et la ville numéro 2974 est Paris:\nbd_2023-24&gt; SELECT capital \nFROM world.country \nWHERE countrycode='FRA';\nbd_2023-24&gt; SELECT name \nFROM world.city \nWHERE id = 2974;\nPour lister les noms des capitales mondiales, on va avoir besoin de recoller les deux tables en prenant soin de respecter la condition d’égalité entre la capitale et le numéro d’identification de la ville. Cela peut s’écrire en SQL comme suit:\nSELECT name\nFROM world.city AS V JOIN \n     world.country AS P ON \n     V.id = P.capital;\nParfois, on veut recoller deux tables avec la condition que les colonnes qui ont le même nom doivent être égales. Cela arrive souvent si la base de données a bien été conçue. On appelle cette jointure une jointure naturelle, qu’on peut écrire avec NATURAL JOIN. La requête\nSELECT name \nFROM world.city NATURAL JOIN world.country\nWHERE continent = 'Oceania';\nrenvoie la liste des villes d’Océanie. La jointure est faite implicitement sur la condition\nworld.city.countrycode = world.country.countrycode\nla table résultante n’aura qu’une seule colonne countrycode. Si l’on souhaite ne faire la jointure naturelle que sur un sous-ensemble a1,...,ak des attributs communs, on peut utiliser JOIN ... USING (a1,...,ak).\n\n\nRequêtes nommées : utilisation de WITH\nLorsque les requêtes se compliquent, il est parfois commode de la découper en plusieurs requêtes qu’on manipulera par la suite. Par exemple, trouver le nom des capitales européennes ayant plus d’un million d’habitants peut se découper ainsi: on résout la requête CAP qui contient le nom, le continent et la population des capitales. Puis on résout la requête finale en filtrant CAP. Cela peut s’écrire avec l’opérateur WITH:\nWITH CAP AS (\nSELECT name, continent, population\nFROM world.city AS V JOIN \n     world.country AS P ON  V.id=P.capital\n)\n\nSELECT name\nFROM CAP\nWHERE continent = 'Europe' AND population &gt; 1000000;"
+  },
+  {
+    "objectID": "workshops/td2.html#requêtes",
+    "href": "workshops/td2.html#requêtes",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "Requêtes",
+    "text": "Requêtes\n\nQuels sont les noms des capitales Sud-Américaines ? (14 lignes)\n\n\nQuels sont les noms des pays où le français est langue officielle ? (18 lignes)\n\n\nQuels sont les pays dont le gouvernement est monarchique (constitutionnelle ou pas) ? (43 lignes)\n\n\nQuelles sont les monarchies d’Europe dont la capitale compte moins d’un million d’habitants ? (8 lignes)\n\n\nQuelles sont les régions où on ne trouve pas de monarchie ? (9 lignes)\n\n\nQuelles sont les langues qui ne sont langues officielles dans aucun pays ? (355 lignes)\n\n\nQuels sont les pays qui n’ont pas de langue officielle ? (49 lignes)\n\n\nQuels sont les pays dont la seule langue officielle est le français ? (9 lignes)\n\n\nLes noms des pays où le français n’est pas la seule langue officielle. (9 lignes)\n\n\nQuelles sont les régions qui ne comportent qu’une seule forme de gouvernement ? (3 lignes)\n\n\nQuelles sont les langues officielles des pays dont la capitale compte plus de 5 000 000 d’habitants ? (12 lignes)\n\n\nQuels sont les pays où au moins trois langues sont parlées chacune par strictement plus de \\(10\\%\\) de la population ? (35 lignes)\n\n\nQuelles sont les régions où il existe deux pays dont les espérances de vie diffèrent par au moins \\(10\\) ans ? (16 lignes)\n\n\nQuels sont les pays où l’anglais et le français sont des langues officielles ? (3 lignes)\n\n\nMontrer comment calculer l’intersection de deux tables avec une jointure (sous certaines conditions)."
+  },
+  {
+    "objectID": "cours-equipe.html",
+    "href": "cours-equipe.html",
+    "title": "Équipe enseignante",
+    "section": "",
+    "text": "S. Boucheron Professeur de Mathématiques à l’Université Paris Cité/Laboratoire de Probabilités, Statistiques et Modélisatiion LPSM.",
+    "crumbs": [
+      "Course information",
+      "Équipe"
+    ]
+  },
+  {
+    "objectID": "cours-equipe.html#cours",
+    "href": "cours-equipe.html#cours",
+    "title": "Équipe enseignante",
+    "section": "",
+    "text": "S. Boucheron Professeur de Mathématiques à l’Université Paris Cité/Laboratoire de Probabilités, Statistiques et Modélisatiion LPSM.",
+    "crumbs": [
+      "Course information",
+      "Équipe"
+    ]
+  },
+  {
+    "objectID": "cours-equipe.html#travaux-dirigés",
+    "href": "cours-equipe.html#travaux-dirigés",
+    "title": "Équipe enseignante",
+    "section": "Travaux dirigés",
+    "text": "Travaux dirigés\n\n\n\n\n\n\n\n\n\n\nNom\nHoraire\nSalle\n\n\n\n\n\nStéphane Boucheron\nVendredi 14h45 - 17h15\n2004 Sophie Germain\n\n\n\nSylvain Schmitz\nVendredi 14h45 - 17h15\n2005 Sophie Germain\n\n\n\nxxx xxx\nVendredi 14h45 - 17h15\n2006 Sophie Germain",
+    "crumbs": [
+      "Course information",
+      "Équipe"
+    ]
+  },
+  {
+    "objectID": "cours-liens.html",
+    "href": "cours-liens.html",
+    "title": "Useful links",
+    "section": "",
+    "text": "RStudio containers\n🔗 on Duke Container Manager\n\n\nCourse GitHub organization\n🔗 on GitHub\n\n\nDiscussion forum\n🔗 on Sakai\n\n\nLecture streaming and recordings\n🔗 on Panopto\n\n\nGradebook\n🔗 on Sakai\n\n\nVirtual meetings\n🔗 on Sakai",
+    "crumbs": [
+      "Course information",
+      "Liens"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "MA15Y030: Introduction aux Bases de données",
+    "section": "",
+    "text": "L’agenda sera sans doute ajusté au cours du semestre.\n\n\n\nLeçon\nDiapos\nDiapos(pdf)\nDate\n\n\n\n\nIntroduction + Algèbre relationnelle\n + \nMoodle\n2024-09-13\n\n\nAlgèbre Relationnelle + SQL I\n\nMoodle SQL 1\n2024-09-20\n\n\nRequêtes SQL II\n\nMoodle SQL 2\n2024-09-27\n\n\nRequêtes SQL III\n\nMoodle SQL 2\n2024-10-04\n\n\nDéfinition de données\n\nMoodle SQL 3\n2024-10-11\n\n\nContraintes, Vues, Fonctions\n \n\n2024-10-18\n\n\nContraintes, Vues, Fonctions (bis)\n\n\n2024-10-25\n\n\nModélisation I\n\n\n2024-11-08\n\n\nModélisation II\n\n\n2024-11-15\n\n\nNormalisation(s)\n\n\n2024-11-22\n\n\nNormalisation(s) II\n\n\n2024-11-29\n\n\nNormalisation(s) III\n\n\n2024-12-06",
+    "crumbs": [
+      "Course information",
+      "Agenda"
+    ]
+  },
+  {
+    "objectID": "cours-apercu.html",
+    "href": "cours-apercu.html",
+    "title": "MA15Y030: Introduction aux Bases de Données",
+    "section": "",
+    "text": "twitter\n  \n  \n    \n     Github\n  \n\n  \n  \nApprendre à interroger une base de données relationnelle\nApprendre à lire un schéma de base de données\nApprendre à concevoir une base de données\nApprendre à améliorer une base de données",
+    "crumbs": [
+      "Course information",
+      "Aperçu"
+    ]
+  },
+  {
+    "objectID": "computing-troubleshooting.html",
+    "href": "computing-troubleshooting.html",
+    "title": "Computing troubleshooting",
+    "section": "",
+    "text": "If you’re having difficulty launching a dbeaver session from your reserved container, go to  and scroll down to Teaching and Learning Tools. Under this heading you’ll find an entry called Container Manager (CMGR Coursework Containers).\n\nIf the status shows something other than Operational, this means there is a known incident with the containers. Check back later to see if it’s been resolved. If there’s a deadline coming up soon, post on the course forum to let us know that there’s an issue. We can look into how quickly it might get resolved and decide on what to do about the deadline accordingly. Note: We don’t anticipate this to happen regularly, the systems are Operational a huge majority of the time!\nIf the status shows Operational, this means the system is expected to be working. Check your internet connection, if need be, restart your computer to ensure a fresh new connection. If your issue persists, post on the course forum with details on what you’ve tried and the errors you see (including verbatim errors and/or screenshots).\nEither way you can also fill out the form here, which will notify us They’ll be able to help diagnose the issue.",
+    "crumbs": [
+      "Computing",
+      "Troubleshooting"
+    ]
+  },
+  {
+    "objectID": "cours-support.html",
+    "href": "cours-support.html",
+    "title": "Course support",
+    "section": "",
+    "text": "Most of you will need help at some point and we want to make sure you can identify when that is without getting too frustrated and feel comfortable seeking help.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "cours-support.html#lectures-and-labs",
+    "href": "cours-support.html#lectures-and-labs",
+    "title": "Course support",
+    "section": "Lectures and labs",
+    "text": "Lectures and labs\nIf you have a question during lecture or lab, feel free to ask it! There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "cours-support.html#office-hours",
+    "href": "cours-support.html#office-hours",
+    "title": "Course support",
+    "section": "Office hours",
+    "text": "Office hours\nThe teaching team is here to help you be successful in the course. You are encouraged to attend office hours during the times posted on the home page to ask questions about the course content and assignments. A lot of questions are most effectively answered in-person, so office hours are a valuable resource. I encourage each and every one of you to take advantage of this resource! Make a pledge to stop by office hours at least once during the first three weeks of class. If you truly have no questions to ask, just stop by and say hi and introduce yourself. You can find a list of everyone’s office hours here.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "cours-support.html#discussion-forum",
+    "href": "cours-support.html#discussion-forum",
+    "title": "Course support",
+    "section": "Discussion forum",
+    "text": "Discussion forum\nHave a question that can’t wait for office hours? Prefer to write out your question in detail rather than asking in person? The online discussion forum is the best venue for these! We will use Conversations as the online discussion forum. There is a chance another student has already asked a similar question, so please check the other posts on Ed Discussion before adding a new question. If you know the answer to a question that is posted, I encourage you to respond!",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "cours-support.html#email",
+    "href": "cours-support.html#email",
+    "title": "Course support",
+    "section": "Email",
+    "text": "Email\nPlease refrain from emailing any course content questions (those should go Conversations, and only use email for questions about personal matters that may not be appropriate for the public course forum (e.g., illness, accommodations, etc.).\nIf there is a question that’s not appropriate for the public forum, you are welcome to email me directly. If you email me, please include “MA15Y030” in the subject line.\nResponse time may be slower for emails sent Friday evening - Sunday.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "cours-support.html#academic-support",
+    "href": "cours-support.html#academic-support",
+    "title": "Course support",
+    "section": "Academic support",
+    "text": "Academic support\nThere are times you may need help with the class that is beyond what can be provided by the teaching team. In those instances, I encourage you to visit the Academic Resource Center. The Academic Resource Center (ARC) offers free services to all students during their undergraduate careers at Université Paris Citérvices include Learning Consultations, Peer Tutoring and Study Groups, ADHD/LD Coaching, Outreach Workshops, and more. Because learning is a process unique to every individual, they work with each student to discover and develop their own academic strategy for success at Université Paris CitéC services are available free to any Université Paris Citéergraduate student, in any year, studying in any discipline. Contact the ARC to schedule an appointment. Undergraduates in any year, studying any discipline can benefit! Contact theARC @ Université Paris Cité.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "cours-support.html#mental-health-and-wellness",
+    "href": "cours-support.html#mental-health-and-wellness",
+    "title": "Course support",
+    "section": "Mental health and wellness",
+    "text": "Mental health and wellness\nStudent mental health and wellness is of primary importance at Université Paris Citéd the university offers resources to support students in managing daily stress and self-care. Université Paris Citéers several resources for students to seek assistance on coursework and to nurture daily habits that support overall well-being, some of which are listed below:\nIf your mental health concerns and/or stressful events negatively affect your daily emotional state, academic performance, or ability to participate in your daily activities, many resources are available to help you through difficult times. Université Paris Citéourages all students to access these resources.\n\nUniversité Paris Citéh. Provides comprehensive outreach services to identify and support students in managing all aspects of well-being. If you have concerns about a student’s behavior or health visit the website for resources and assistance. studentaffairs.Université Paris Cité/Université Paris Citéh\nCounseling and Psychological Services (CAPS). CAPS helps Université Paris Citédents enhance strengths and develop abilities to successfully live, grow and learn in their personal and academic lives. CAPS recognizes that we are living in unprecedented times and that the changes, challenges and stressors brought on by the COVID-19 pandemic have impacted everyone, often in ways that are tax our well-being. CAPS offers many services to Université Paris Citéergraduate students, including brief individual and group counseling, couples counseling and more. CAPS staff also provides outreach to student groups, particularly programs supportive of at-risk populations, on a wide range of issues impacting them in various aspects of campus life.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "cours-support.html#technology-accommodations",
+    "href": "cours-support.html#technology-accommodations",
+    "title": "Course support",
+    "section": "Technology accommodations",
+    "text": "Technology accommodations\nStudents with demonstrated high financial need who have limited access to computers may request assistance in the form of loaner laptops. Please note that supplies are limited.\nNote that we will be using Université Paris Citéomputational resources in this course. These resources are freely available to you. As long as your computer can connect to the internet and open a browser window, you can perform the necessary computing for this course. All software we use is open-source and/or freely available.",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "cours-support.html#course-materials-costs",
+    "href": "cours-support.html#course-materials-costs",
+    "title": "Course support",
+    "section": "Course materials costs",
+    "text": "Course materials costs\nThere are no costs associated with this course. All readings will come from freely available, open resources (open-source textbooks, journal articles, etc.).",
+    "crumbs": [
+      "Course information",
+      "Support"
+    ]
+  },
+  {
+    "objectID": "project-description.html",
+    "href": "project-description.html",
+    "title": "Project description",
+    "section": "",
+    "text": "Topic ideas due Fri, Feb 18\nProposal due Fri, Mar 18\nDraft report due Fri, Apr 8\nPeer review due Fri, Apr 15\nFinal report due Mon, Apr 25\nVideo presentation + slides and final GitHub repo due Thu, Apr 28\nPresentation comments due Sat, Apr 30",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#timeline",
+    "href": "project-description.html#timeline",
+    "title": "Project description",
+    "section": "",
+    "text": "Topic ideas due Fri, Feb 18\nProposal due Fri, Mar 18\nDraft report due Fri, Apr 8\nPeer review due Fri, Apr 15\nFinal report due Mon, Apr 25\nVideo presentation + slides and final GitHub repo due Thu, Apr 28\nPresentation comments due Sat, Apr 30",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#introduction",
+    "href": "project-description.html#introduction",
+    "title": "Project description",
+    "section": "Introduction",
+    "text": "Introduction\nTL;DR: Pick a data set and do a regression analysis. That is your final project.\nThe goal of the final project is for you to use regression analysis to analyze a data set of your own choosing. The data set may already exist or you may collect your own data by scraping the web.\nChoose the data based on your group’s interests or work you all have done in other courses or research projects. The goal of this project is for you to demonstrate proficiency in the techniques we have covered in this class (and beyond, if you like!) and apply them to a data set to analyze it in a meaningful way.\nAll analyses must be done in RStudio, and all components of the project must be reproducible (with the exception of the presentation).\n\nLogistics\nYou will work on the project with your lab groups.\nThe four primary deliverables for the final project are\n\nA written, reproducible report detailing your analysis\nA GitHub repository corresponding to your report\nSlides + a video presentation\nFormal peer review on another team’s project",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#topic-ideas",
+    "href": "project-description.html#topic-ideas",
+    "title": "Project description",
+    "section": "Topic ideas",
+    "text": "Topic ideas\nIdentify 2-3 data sets you’re interested in potentially using for the final project. If you’re unsure where to find data, you can use the list of potential data sources in the Tips + Resources section as a starting point. It may also help to think of topics you’re interested in investigating and find data sets on those topics.\nThe purpose of submitting project ideas is to give you time to find data for the project and to make sure you have a data set that can help you be successful in the project. Therefore, you must use one of the data sets submitted as a topic idea, unless otherwise notified by the teaching team.\nThe data sets should meet the following criteria:\n\nAt least 500 observations\nAt least 10 columns\nAt least 6 of the columns must be useful and unique predictor variables.\n\nIdentifier variables such as “name”, “social security number”, etc. are not useful predictor variables.\nIf you have multiple columns with the same information (e.g. “state abbreviation” and “state name”), then they are not unique predictors.\n\nAt least one variable that can be identified as a reasonable response variable.\n\nThe response variable can be quantitative or categorical.\n\nA mix of quantitative and categorical variables that can be used as predictors.\nObservations should reasonably meet the independence condition. Therefore, avoid data with repeated measures, data collected over time, etc.\nYou may not use data that has previously been used in any course materials, or any derivation of data that has been used in course materials.\n\nPlease ask a member of the teaching team if you’re unsure whether your data set meets the criteria.\nFor each data set, include the following:\n\nIntroduction and data\n\nState the source of the data set.\nDescribe when and how it was originally collected (by the original data curator, not necessarily how you found the data)\nDescribe the observations and the general characteristics being measured in the data\n\n\n\nResearch question\n\nDescribe a research question you’re interested in answering using this data.\n\n\n\nGlimpse of data\n\nUse the glimpse function to provide an overview of each data set\n\nSubmit the PDF of the topic ideas to Gradescope. Mark all pages associated with each data set.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#project-proposal",
+    "href": "project-description.html#project-proposal",
+    "title": "Project description",
+    "section": "Project proposal",
+    "text": "Project proposal\nThe purpose of the project proposal is to help you think about your analysis strategy early.\nInclude the following in the proposal:\n\nSection 1 - Introduction\nThe introduction section includes\n\nan introduction to the subject matter you’re investigating\nthe motivation for your research question (citing any relevant literature)\nthe general research question you wish to explore\nyour hypotheses regarding the research question of interest.\n\n\n\nSection 2 - Data description\nIn this section, you will describe the data set you wish to explore. This includes\n\ndescription of the observations in the data set,\ndescription of how the data was originally collected (not how you found the data but how the original curator of the data collected it).\n\n\n\nSection 3 - Analysis approach\nIn this section, you will provide a brief overview of your analysis approach. This includes:\n\nDescription of the response variable.\nVisualization and summary statistics for the response variable.\nList of variables that will be considered as predictors\nRegression model technique (multiple linear regression and logistic regression)\n\n\n\nData dictionary (aka code book)\nSubmit a data dictionary for all the variables in your data set in the README of your project repo, in the data folder. Link to this file from your proposal writeup.\n\n\nSubmission\nPush all of your final changes to the GitHub repo, and submit the PDF of your proposal to Gradescope.\n\n\nProposal grading\n\n\n\nTotal\n10 pts\n\n\n\n\nIntroduction\n3 pts\n\n\nData description\n2 pts\n\n\nAnalysis plan\n4 pts\n\n\nData dictionary\n1 pts\n\n\n\nEach component will be graded as follows:\n\nMeets expectations (full credit): All required elements are completed and are accurate. The narrative is written clearly, all tables and visualizations are nicely formatted, and the work would be presentable in a professional setting.\nClose to expectations (half credit): There are some elements missing and/or inaccurate. There are some issues with formatting.\nDoes not meet expectations (no credit): Major elements missing. Work is not neatly formatted and would not be presentable in a professional setting.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#draft-report",
+    "href": "project-description.html#draft-report",
+    "title": "Project description",
+    "section": "Draft report",
+    "text": "Draft report\nThe purpose of the draft and peer review is to give you an opportunity to get early feedback on your analysis. Therefore, the draft and peer review will focus primarily on the exploratory data analysis, modeling, and initial interpretations.\nWrite the draft in the written-report.qmd file in your project repo. You do not need to submit the draft on Gradescope.\nBelow is a brief description of the sections to focus on in the draft:\n\nIntroduction and data\nThis section includes an introduction to the project motivation, data, and research question. Describe the data and definitions of key variables. It should also include some exploratory data analysis. All of the EDA won’t fit in the paper, so focus on the EDA for the response variable and a few other interesting variables and relationships.\n\n\nMethodology\nThis section includes a brief description of your modeling process. Explain the reasoning for the type of model you’re fitting, predictor variables considered for the model including any interactions. Additionally, show how you arrived at the final model by describing the model selection process, any variable transformations (if needed), and any other relevant considerations that were part of the model fitting process.\n\n\nResults\nIn this section, you will output the final model and include a brief discussion of the model assumptions, diagnostics, and any relevant model fit statistics.\nThis section also includes initial interpretations and conclusions drawn from the model.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#peer-review",
+    "href": "project-description.html#peer-review",
+    "title": "Project description",
+    "section": "Peer review",
+    "text": "Peer review\nCritically reviewing others’ work is a crucial part of the scientific process, and STA 210 is no exception. Each lab team will be assigned two other teams’s projects to review. Each team should push their draft to their GitHub repo by the due date. One lab in the following week will be dedicated to the peer review, and all reviews will be due by the end of that lab session.\nDuring the peer review process, you will be provided read-only access to your partner teams’ GitHub repos. Provide your review in the form of GitHub issues to your partner team’s GitHub repo using the issue template provided. The peer review will be graded on the extent to which it comprehensively and constructively addresses the components of the partner team’s report: the research context and motivation, exploratory data analysis, modeling, interpretations, and conclusions.\n\nPairings\n\nSection 1 - M 1:45PM - 3:00PM\n\n\n\nTeam being reviewed\nReviewer 1\nReviewer 2\n\n\n\n\nchaa_chaa_chaa\nyay_stats\nstat_over_flow\n\n\ndekk\nchaa_chaa_chaa\nyay_stats\n\n\neight\ndekk\nchaa_chaa_chaa\n\n\nhousecats\neight\ndekk\n\n\nkrafthouse\nhousecats\neight\n\n\nrrawr\nkrafthouse\nhousecats\n\n\nstat_over_flow\nrrawr\nkrafthouse\n\n\nyay_stats\nstat_over_flow\nrrawr\n\n\n\n\n\nSection 2 - M 3:30PM - 4:45PM\n\n\n\nTeam being reviewed\nReviewer 1\nReviewer 2\n\n\n\n\na_plus_plus_plus\nwe_r\ntina\n\n\npredictors\na_plus_plus_plus\nwe_r\n\n\nsixers\npredictors\na_plus_plus_plus\n\n\nsoy_nuggets\nsixers\npredictors\n\n\ntina\nsoy_nuggets\nsixers\n\n\nwe_r\ntina\nsoy_nuggets\n\n\n\n\n\nSection 3 - M 5:15PM - 6:30PM\n\n\n\n\n\n\n\n\nTeam being reviewed\nReviewer 1\nReviewer 2\n\n\n\n\ndown_to_earth_goats\nthe_three_musketeers\nteam_five\n\n\nginger_and_stats\ndown_to_earth_goats\nthe_three_musketeers\n\n\npineapple_wedge_and_diced_papaya\nginger_and_stats\ndown_to_earth_goats\n\n\nstatchelorettes\npineapple_wedge_and_diced_papaya\nginger_and_stats\n\n\nstatisix\nstatchelorettes\npineapple_wedge_and_diced_papaya\n\n\nstats_squad\nstatisix\nstatchelorettes\n\n\nteam_five\nstats_squad\nstatisix\n\n\nthe_three_musketeers\nteam_five\nstats_squad\n\n\n\n\n\n\nProcess and questions\nSpend ~30 mins to review each team’s project.\n\nFind your team name on the Reviewer 1 and Reviewer 2 columns.\nFor each of the columns, find the name of the team to review in the Team being reviewed column. You should already have access to this team’s repo.\nOpen the repo of the team you’re reviewing, read their project draft, and browser around the rest of their repo.\nThen, go to the Issues tab in that repo, click on New issue, and click on Get started for the Peer review issue. Fill out this issue, answering the following questions:\n\nPeer review by: [NAME OF TEAM DOING THE REVIEW]\nNames of team members that participated in this review: [FULL NAMES OF TEAM MEMBERS DOING THE REVIEW]\nDescribe the goal of the project.\nDescribe the data used or collected, if any. If the proposal does not include the use of a specific dataset, comment on whether the project would be strengthened by the inclusion of a dataset.\nDescribe the approaches, tools, and methods that will be used.\nIs there anything that is unclear from the proposal?\nProvide constructive feedback on how the team might be able to improve their project. Make sure your feedback includes at least one comment on the statistical modeling aspect of the project, but do feel free to comment on aspects beyond the modeling.\nWhat aspect of this project are you most interested in and would like to see highlighted in the presentation.\nProvide constructive feedback on any issues with file and/or code organization.\n(Optional) Any further comments or feedback?",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#written-report",
+    "href": "project-description.html#written-report",
+    "title": "Project description",
+    "section": "Written report",
+    "text": "Written report\nYour written report must be completed in the written-report.qmd file and must be reproducible. All team members should contribute to the GitHub repository, with regular meaningful commits.\nBefore you finalize your write up, make sure the printing of code chunks is off with the option echo = FALSE.\nYou will submit the PDF of your final report on Gradescope.\nThe PDF you submit must match the files in your GitHub repository exactly. The mandatory components of the report are below. You are free to add additional sections as necessary. The report, including visualizations, should be no more than 10 pages long. is no minimum page requirement; however, you should comprehensively address all of the analysis and report.\nBe selective in what you include in your final write-up. The goal is to write a cohesive narrative that demonstrates a thorough and comprehensive analysis rather than explain every step of the analysis.\nYou are welcome to include an appendix with additional work at the end of the written report document; however, grading will largely be based on the content in the main body of the report. You should assume the reader will not see the material in the appendix unless prompted to view it in the main body of the report. The appendix should be neatly formatted and easy for the reader to navigate. It is not included in the 10-page limit.\nThe written report is worth 40 points, broken down as follows\n\n\n\nTotal\n40 pts\n\n\n\n\nIntroduction/data\n6 pts\n\n\nMethodology\n10 pts\n\n\nResults\n14 pts\n\n\nDiscussion + conclusion\n6 pts\n\n\nOrganization + formatting\n4 pts\n\n\n\nClick here for a PDF of the written report rubric.\n\nIntroduction and data\nThis section includes an introduction to the project motivation, data, and research question. Describe the data and definitions of key variables. It should also include some exploratory data analysis. All of the EDA won’t fit in the paper, so focus on the EDA for the response variable and a few other interesting variables and relationships.\n\nGrading criteria\nThe research question and motivation are clearly stated in the introduction, including citations for the data source and any external research. The data are clearly described, including a description about how the data were originally collected and a concise definition of the variables relevant to understanding the report. The data cleaning process is clearly described, including any decisions made in the process (e.g., creating new variables, removing observations, etc.) The explanatory data analysis helps the reader better understand the observations in the data along with interesting and relevant relationships between the variables. It incorporates appropriate visualizations and summary statistics.\n\n\n\nMethodology\nThis section includes a brief description of your modeling process. Explain the reasoning for the type of model you’re fitting, predictor variables considered for the model including any interactions. Additionally, show how you arrived at the final model by describing the model selection process, interactions considered, variable transformations (if needed), assessment of conditions and diagnostics, and any other relevant considerations that were part of the model fitting process.\n\nGrading criteria\nThe analysis steps are appropriate for the data and research question. The group used a thorough and careful approach to select the final model; the approach is clearly described in the report. The model selection process took into account potential interaction effects and addressed any violations in model conditions. The model conditions and diagnostics are thoroughly and accurately assessed for their model. If violations of model conditions are still present, there was a reasonable attempt to address the violations based on the course content.\n\n\n\nResults\nThis is where you will output the final model with any relevant model fit statistics.\nDescribe the key results from the model. The goal is not to interpret every single variable in the model but rather to show that you are proficient in using the model output to address the research questions, using the interpretations to support your conclusions. Focus on the variables that help you answer the research question and that provide relevant context for the reader.\n\nGrading criteria\nThe model fit is clearly assessed, and interesting findings from the model are clearly described. Interpretations of model coefficients are used to support the key findings and conclusions, rather than merely listing the interpretation of every model coefficient. If the primary modeling objective is prediction, the model’s predictive power is thoroughly assessed.\n\n\n\nDiscussion + Conclusion\nIn this section you’ll include a summary of what you have learned about your research question along with statistical arguments supporting your conclusions. In addition, discuss the limitations of your analysis and provide suggestions on ways the analysis could be improved. Any potential issues pertaining to the reliability and validity of your data and appropriateness of the statistical analysis should also be discussed here. Lastly, this section will include ideas for future work.\n\nGrading criteria\nOverall conclusions from analysis are clearly described, and the model results are put into the larger context of the subject matter and original research question. There is thoughtful consideration of potential limitations of the data and/or analysis, and ideas for future work are clearly described.\n\n\n\nOrganization + formatting\nThis is an assessment of the overall presentation and formatting of the written report.\n\nGrading criteria\nThe report neatly written and organized with clear section headers and appropriately sized figures with informative labels. Numerical results are displayed with a reasonable number of digits, and all visualizations are neatly formatted. All citations and links are properly formatted. If there is an appendix, it is reasonably organized and easy for the reader to find relevant information. All code, warnings, and messages are suppressed. The main body of the written report (not including the appendix) is no longer than 10 pages.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#video-presentation-slides",
+    "href": "project-description.html#video-presentation-slides",
+    "title": "Project description",
+    "section": "Video presentation + slides",
+    "text": "Video presentation + slides\n\nSlides\nIn addition to the written report, your team will also create presentation slides and record a video presentation that summarize and showcase your project. Introduce your research question and data set, showcase visualizations, and discuss the primary conclusions. These slides should serve as a brief visual addition to your written report and will be graded for content and quality.\nFor submission, convert these slides to a .pdf document, and submit the PDF of the slides on Gradescope.\nThe slide deck should have no more than 6 content slides + 1 title slide. Here is a suggested outline as you think through the slides; you do not have to use this exact format for the 6 slides.\n\nTitle Slide\nSlide 1: Introduce the topic and motivation\nSlide 2: Introduce the data\nSlide 3: Highlights from EDA\nSlide 4: Final model\nSlide 5: Interesting findings from the model\nSlide 6: Conclusions + future work\n\n\n\nVideo presentation\nFor the video presentation, you can speak over your slide deck, similar to the lecture content videos. The video presentation must be no longer than 8 minutes. It is fine if the video is shorter than 8 minutes, but it cannot exceed 8 minutes. You may use can use any platform that works best for your group to record your presentation. Below are a few resources on recording videos:\n\nRecording presentations in Zoom\nApple Quicktime for screen recording\nWindows 10 built-in screen recording functionality\nKap for screen recording\n\nOnce your video is ready, upload the video to Warpwire, then embed the video in an new discussion post on Conversations.\n\nTo upload your video to Warpwire:\n\nClick the Warpwire tab in the course Sakai site.\nClick the “+” and select “Upload files”.\nLocate the video on your computer and click to upload.\nOnce you’ve uploaded the video to Warpwire, click to share the video and copy the video’s URL. You will need this when you post the video in the discussion forum.\n\n\n\nTo post the video to the discussion forum\n\nClick the Presentations tab in the course Sakai site.\nClick the Presentations topic.\nClick “Start a new conversation”.\nMake the title “Your Team Name: Project Title”. For example, “Teaching Team: Our Awesome Presentation”.\nClick the Warpwire icon (between the table and shopping cart icons).\nSelect your video, then click “Insert 1 item.” This will embed your video in the conversation.\nUnder the video, paste the URL to your video.\nYou’re done!",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#presentation-comments",
+    "href": "project-description.html#presentation-comments",
+    "title": "Project description",
+    "section": "Presentation comments",
+    "text": "Presentation comments\nEach student will be assigned 2 presentations to watch. Your viewing assignments will be posted later in the semester.\nWatch the group’s video, then click “Reply” to post a question for the group. You may not post a question that’s already been asked on the discussion thread. Additionally, the question should be (i) substantive (i.e. it shouldn’t be “Why did you use a bar plot instead of a pie chart”?), (ii) demonstrate your understanding of the content from the course, and (iii) relevant to that group’s specific presentation, i.e demonstrating that you’ve watched the presentation.\nThis portion of the project will be assessed individually.\n\nPairings\nFind your team name in the first column, watch videos from teams in the second column and leave comments.\n\n\n\n\n\n\n\n\nReviewer\nFirst video to review\nSecond video to review\n\n\n\n\nGinger and Stats\nEight\nWe R\n\n\nKrafthouse\nGinger and Stats\nEight\n\n\nSoy Nuggets\nKrafthouse\nGinger and Stats\n\n\nDown To Earth Goats\nSoy Nuggets\nKrafthouse\n\n\nA+++\nDown To Earth Goats\nSoy Nuggets\n\n\nTeam Five\nA+++\nDown To Earth Goats\n\n\nRrawr\nTeam Five\nA+++\n\n\nHousecats\nRrawr\nTeam Five\n\n\nDekk\nHousecats\nRrawr\n\n\nStat OverFlow\nDekk\nHousecats\n\n\nThe Three Musketeers\nStat OverFlow\nDekk\n\n\nPredictors\nThe Three Musketeers\nStat OverFlow\n\n\nStats Squad\nPredictors\nThe Three Musketeers\n\n\nStatisix\nStats Squad\nPredictors\n\n\nSixers\nStatisix\nStats Squad\n\n\nYay Stats\nSixers\nStatisix\n\n\nTINA\nYay Stats\nSixers\n\n\nStatchelorettes\nTINA\nYay Stats\n\n\nPineapple Wedge and Diced Papaya\nStatchelorettes\nTINA\n\n\nChaa Chaa Chaa\nPineapple Wedge and Diced Papaya\nStatchelorettes\n\n\nWe R\nChaa Chaa Chaa\nPineapple Wedge and Diced Papaya\n\n\nEight\nWe R\nChaa Chaa Chaa",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#reproducibility-organization",
+    "href": "project-description.html#reproducibility-organization",
+    "title": "Project description",
+    "section": "Reproducibility + organization",
+    "text": "Reproducibility + organization\nAll written work (with exception of presentation slides) should be reproducible, and the GitHub repo should be neatly organized.\nThe GitHub repo should have the following structure:\n\nREADME: Short project description and data dictionary\nwritten-report.qmd & written-report.pdf: Final written report\n/data: Folder that contains the data set for the final project.\n/previous-work: Folder that contains the topic-ideas and project-proposal files.\n/presentation: Folder with the presentation slides.\n\nIf your presentation slides are online, you can put a link to the slides in a README.md file in the presentation folder.\n\n\nPoints for reproducibility + organization will be based on the reproducibility of the written report and the organization of the project GitHub repo. The repo should be neatly organized as described above, there should be no extraneous files, all text in the README should be easily readable.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#peer-teamwork-evaluation",
+    "href": "project-description.html#peer-teamwork-evaluation",
+    "title": "Project description",
+    "section": "Peer teamwork evaluation",
+    "text": "Peer teamwork evaluation\nYou will be asked to fill out a survey where you rate the contribution and teamwork of each team member by assigning a contribution percentage for each team member. Filling out the survey is a prerequisite for getting credit on the team member evaluation. If you are suggesting that an individual did less than half the expected contribution given your team size (e.g., for a team of four students, if a student contributed less than 12.5% of the total effort), please provide some explanation. If any individual gets an average peer score indicating that this was the case, their grade will be assessed accordingly.\nIf you have concerns with the teamwork and/or contribution from any team members, please email me by the project video deadline. You only need to email me if you have concerns. Otherwise, I will assume everyone on the team equally contributed and will receive full credit for the teamwork portion of the grade.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-description.html#overall-grading",
+    "href": "project-description.html#overall-grading",
+    "title": "Project description",
+    "section": "Overall grading",
+    "text": "Overall grading\nThe grade breakdown is as follows:\n\n\n\nTotal\n100 pts\n\n\n\n\nTopic ideas\n5 pts\n\n\nProject proposal\n10 pts\n\n\nPeer review\n10 pts\n\n\nWritten report\n40 pts\n\n\nSlides + video presentation\n20 pts\n\n\nReproducibility + organization\n5 pts\n\n\nVideo comments\n5 pts\n\n\nPeer teamwork evaluation\n5 pts\n\n\n\nNote: No late project reports or videos are accepted.\n\nGrading summary\nGrading of the project will take into account the following:\n\nContent - What is the quality of research and/or policy question and relevancy of data to those questions?\nCorrectness - Are statistical procedures carried out and explained correctly?\nWriting and Presentation - What is the quality of the statistical presentation, writing, and explanations?\nCreativity and Critical Thought - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?\n\nA general breakdown of scoring is as follows:\n\n90%-100%: Outstanding effort. Student understands how to apply all statistical concepts, can put the results into a cogent argument, can identify weaknesses in the argument, and can clearly communicate the results to others.\n80%-89%: Good effort. Student understands most of the concepts, puts together an adequate argument, identifies some weaknesses of their argument, and communicates most results clearly to others.\n70%-79%: Passing effort. Student has misunderstanding of concepts in several areas, has some trouble putting results together in a cogent argument, and communication of results is sometimes unclear.\n60%-69%: Struggling effort. Student is making some effort, but has misunderstanding of many concepts and is unable to put together a cogent argument. Communication of results is unclear.\nBelow 60%: Student is not making a sufficient effort.\n\n\n\nLate work policy\nThere is no late work accepted on this project. Be sure to turn in your work early to avoid any technological mishaps.",
+    "crumbs": [
+      "Project",
+      "Description"
+    ]
+  },
+  {
+    "objectID": "project-tips-resources.html",
+    "href": "project-tips-resources.html",
+    "title": "Project tips + resources",
+    "section": "",
+    "text": "R Data Sources for Regression Analysis\nFiveThirtyEight data\nTidyTuesday\n\n\n\n\n\nWorld Health Organization\nThe National Bureau of Economic Research\nInternational Monetary Fund\nGeneral Social Survey\nUnited Nations Data\nUnited Nations Statistics Division\nU.K. Data\nU.S. Data\nU.S. Census Data\nEuropean Statistics\nStatistics Canada\nPew Research\nUNICEF\nCDC\nWorld Bank\nElection Studies",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project-tips-resources.html#data-sources",
+    "href": "project-tips-resources.html#data-sources",
+    "title": "Project tips + resources",
+    "section": "",
+    "text": "R Data Sources for Regression Analysis\nFiveThirtyEight data\nTidyTuesday\n\n\n\n\n\nWorld Health Organization\nThe National Bureau of Economic Research\nInternational Monetary Fund\nGeneral Social Survey\nUnited Nations Data\nUnited Nations Statistics Division\nU.K. Data\nU.S. Data\nU.S. Census Data\nEuropean Statistics\nStatistics Canada\nPew Research\nUNICEF\nCDC\nWorld Bank\nElection Studies",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project-tips-resources.html#tips",
+    "href": "project-tips-resources.html#tips",
+    "title": "Project tips + resources",
+    "section": "Tips",
+    "text": "Tips\n\nAsk questions if any of the expectations are unclear.\nCode: In your write up your code should be hidden (echo = FALSE) so that your document is neat and easy to read. However your document should include all your code such that if I re-knit your qmd file I should be able to obtain the results you presented.\n\nException: If you want to highlight something specific about a piece of code, you’re welcome to show that portion.\n\nMerge conflicts will happen, issues will arise, and that’s fine! Commit and push often, and ask questions when stuck.\nMake sure each team member is contributing, both in terms of quality and quantity of contribution (we will be reviewing commits from different team members).\nAll team members are expected to contribute equally to the completion of this assignment and group assessments will be given at its completion - anyone judged to not have sufficient contributed to the final product will have their grade penalized. While different teams members may have different backgrounds and abilities, it is the responsibility of every team member to understand how and why all code and approaches in the assignment works.",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project-tips-resources.html#formatting-communication-tips",
+    "href": "project-tips-resources.html#formatting-communication-tips",
+    "title": "Project tips + resources",
+    "section": "Formatting + communication tips",
+    "text": "Formatting + communication tips\n\nSuppress Code, Warnings, & Messages\n\nInclude the following code in a code chunk at the top of your .qmd file to suppress all code, warnings, and other messages. Use the code chunk header {r set-up, include = FALSE} to suppress this set up code.\n\n\n\nHeaders\n\nUse headers to clearly label each section.\nInspect the document outline to review your headers and sub-headers.\n\n\n\nReferences\n\nInclude all references in a section called “References” at the end of the report.\nThis course does not have specific requirements for formatting citations and references.\n\n\n\nAppendix\n\nIf you have additional work that does not fit or does not belong in the body of the report, you may put it at the end of the document in section called “Appendix”.\nThe items in the appendix should be properly labeled.\nThe appendix should only be for additional material. The reader should be able to fully understand your report without viewing content in the appendix.\n\n\n\nResize figures\nResize plots and figures, so you have more space for the narrative.\n\n\nArranging plots\nArrange plots in a grid, instead of one after the other. This is especially useful when displaying plots for exploratory data analysis and to check assumptions.\nIf you’re using ggplot2 functions, the patchwork package makes it easy to arrange plots in a grid. See the documentation and examples here.\n\n\nDo a little more to make the plot look professional!\n\nInformative title and axis labels\nFlipped coordinates to make names readable\nArranged bars based on count\nCapitalized manufacturer names\nOptional: Added color - Use a coordinated color scheme throughout paper / presentation\nOptional: Applied a theme - Use same theme throughout paper / presentation\n\n\n\nTables and model output\n\nUse the kable function from the knitr package to neatly output all tables and model output. This will also ensure all model coefficients are displayed.\n\nUse the digits argument to display only 3 or 4 significant digits.\nUse the caption argument to add captions to your table.\n\n\n\n\nGuidelines for communicating results",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "project-tips-resources.html#additional-resources",
+    "href": "project-tips-resources.html#additional-resources",
+    "title": "Project tips + resources",
+    "section": "Additional resources",
+    "text": "Additional resources\n\nR for Data Science\nQuarto Documentation",
+    "crumbs": [
+      "Project",
+      "Tips + resources"
+    ]
+  },
+  {
+    "objectID": "computing-access.html",
+    "href": "computing-access.html",
+    "title": "Computing access",
+    "section": "",
+    "text": "To access computing resources for the introductory data science courses offered by the Duke University Department of Statistical Science, go to the Container Manager website, .",
+    "crumbs": [
+      "Computing",
+      "Access"
+    ]
+  },
+  {
+    "objectID": "cours-faq.html#how-can",
+    "href": "cours-faq.html#how-can",
+    "title": "FAQ",
+    "section": "How can ?",
+    "text": "How can ?",
+    "crumbs": [
+      "Course information",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "cours-faq.html#can-i-use-a-local-install-of-dbeaver-and-pgcli-instead-of-using-the-containers",
+    "href": "cours-faq.html#can-i-use-a-local-install-of-dbeaver-and-pgcli-instead-of-using-the-containers",
+    "title": "FAQ",
+    "section": "Can I use a local install of dbeaver and pgcli instead of using the containers?",
+    "text": "Can I use a local install of dbeaver and pgcli instead of using the containers?\nThe short answer is, I’d rather you didn’t, to save yourself some headache. But, the long answer is, sure! But you will need to install a specific versions of R and RStudio for everything to work as expected. You will also need to install the R packages we’re using as well as have Git installed on your computer. These are not extremely challenging things to get right, but they are not trivial either, particularly on certain operating systems. Myself and the TAs are always happy to provide help with any computational questions when you’re working in the containers we have provided for you. If you’re working on your local setup, we can’t guarantee being able to resolve your issues, though we’re happy to try.\nIf you want to take this path, here is what you need to do:\n\nDownload and install dbeaver\nDownload and install an ssh client\n\nAnd I’d like to reiterate again that successful installation of these software is not a learning goal of this course. So if any of this seems tedious or intimidating in any way, just use the computing environment we have set up for you. More on that here.",
+    "crumbs": [
+      "Course information",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "workshops/td4.html",
+    "href": "workshops/td4.html",
+    "title": "Fonctions d’agrégation",
+    "section": "",
+    "text": "Documentation Postgres\nDocumentation Postgres en Français"
+  },
+  {
+    "objectID": "workshops/td4.html#count",
+    "href": "workshops/td4.html#count",
+    "title": "Fonctions d’agrégation",
+    "section": "Count",
+    "text": "Count\nPour compter les pays en Europe, on écrira :\nSELECT COUNT(countrycode)\nFROM world.country\nWHERE continent='Europe';\nCette requête renvoie une table ayant une ligne et une colonne contenant le nombre de lignes dans le résultat de la requête."
+  },
+  {
+    "objectID": "workshops/td4.html#sum-max-min-avg",
+    "href": "workshops/td4.html#sum-max-min-avg",
+    "title": "Fonctions d’agrégation",
+    "section": "Sum, Max, Min, Avg",
+    "text": "Sum, Max, Min, Avg\nUne autre fonction importante est la fonction SUM(col) qui effectue la somme des valeurs (numériques) d’une colonne :\nSELECT SUM(population_country)\nFROM world.country;\nrenvoie la population mondiale.\nOn peut de même utiliser GROUP BY pour faire des paquets :\nSELECT continent, SUM(population_country)\nFROM world.country\nGROUP BY continent;\nrenvoie la population de chaque continent.\nOn peut même faire des opérations sur la colonne à l’intérieur de SUM. Par exemple: SUM(percentage/100).\n\nÉcrire une requête qui renvoie le nombre de langues officielles par pays"
+  },
+  {
+    "objectID": "workshops/layout-pagila-film.html",
+    "href": "workshops/layout-pagila-film.html",
+    "title": "Schéma pagila (vue partielle restreinte au catalogue des films)",
+    "section": "",
+    "text": "Schéma pagila (vue partielle restreinte au catalogue des films)\nCréé par DbSchema\npagila est un schéma d’entrainement dérivé du schéma sakila de MySQL. C’est une base de donnée fictive destinée à gérer le catalogue et les stocks d’une chaine de magasins de location de DVD (début du XXIème siècle).\n\nVue d’ensemble des tables portants sur les films\n\n\n\n   \n\n\n\n  \n    \n  \n  \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n  \n  \n  \n    \n    \n  \n  \n    \n  \n  \n  \n     \n     \n    \n       \n       \n    \n  \n  \n    \n    \n  \n  \n    \n    \n  \n  \n    \n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n      \n      \n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n      \n      U\n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n  \n  \n    \n    \n  \n  \n    \n      \n      \n      \n      \n    \n  \n  \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n  \n\n\n\n  \n    \n    \n    \n  \n  \n    \n    \n    \n  \n  \n    \n    \n    \n    \n  \n  \n    \n    \n  \n  \n    \n  \n  \n    \n  \n  \n      \n      \n      \n  \n\n\n\n\n\n\n\n\n   \n  DbSchema Database Designer   Layout-pagila-films \n  Comments as mouse-over tips, zoom and pan.Read column and table comments by hovering the columns and tables.\nZoom with CTRL+whell mouse button, pan by dragging the diagram with the right-mouse button \n  by DbSchema.com - Wise CodersDbSchema is an universal database designer.\nDbSchema has a free Community Edition. \n\n\n\n\n\n\t🔗  Foreign Key film_original_language_id_fkey\nfilm ref language ( original_language_id -&gt; language_id )\n\n🔗  Foreign Key film_original_language_id_fkey\nfilm ref language ( original_language_id -&gt; language_id )\noriginal_language_id\n\n\n\t🔗  Foreign Key film_language_id_fkey\nfilm ref language ( language_id )\n\n🔗  Foreign Key film_language_id_fkey\nfilm ref language ( language_id )\nlanguage_id\n\n\n\t🔗  Foreign Key film_actor_film_id_fkey\nfilm_actor ref film ( film_id )\n\n🔗  Foreign Key film_actor_film_id_fkey\nfilm_actor ref film ( film_id )\nfilm_id\n\n\n\t🔗  Foreign Key film_actor_actor_id_fkey\nfilm_actor ref actor ( actor_id )\n\n🔗  Foreign Key film_actor_actor_id_fkey\nfilm_actor ref actor ( actor_id )\nactor_id\n\n\n\t🔗  Foreign Key film_category_film_id_fkey\nfilm_category ref film ( film_id )\n\n🔗  Foreign Key film_category_film_id_fkey\nfilm_category ref film ( film_id )\nfilm_id\n\n\n\t🔗  Foreign Key film_category_category_id_fkey\nfilm_category ref category ( category_id )\n\n🔗  Foreign Key film_category_category_id_fkey\nfilm_category ref category ( category_id )\ncategory_id\n\n\n\n\nactorTable pagila.actor\n  🔑  Pk actor_pkey ( actor_id ) actor_id⧉  actor_id\n     * integer default nextval('pagila.actor_actor_id_seq'::regclass)\n ↙ film_actor( actor_id )\n🔗  Referred by film_actor ( actor_id ) \n  first_name⧉  first_name\n     * varchar(45)\nt  🔍  idx_actor_last_name ( last_name ) last_name⧉  last_name\n     * varchar(45)\nt  last_update⧉  last_update\n     * timestamp default now()\nd\n\n\n\n\ncategoryTable pagila.category\n  🔑  Pk category_pkey ( category_id ) category_id⧉  category_id\n     * integer default nextval('pagila.category_category_id_seq'::regclass)\n ↙ film_category( category_id )\n🔗  Referred by film_category ( category_id ) \n  name⧉  name\n     * varchar(25)\nt  last_update⧉  last_update\n     * timestamp default now()\nd\n\n\n\n\ncountryTable pagila.country\n  🔑  Pk country_pkey ( country_id ) country_id⧉  country_id\n     * integer default nextval('pagila.country_country_id_seq'::regclass)\n ↙ city( country_id )\n🔗  Referred by city ( country_id ) \n  country⧉  country\n     * varchar(50)\nt  last_update⧉  last_update\n     * timestamp default now()\nd\n\n\n\n\nfilmTable pagila.film\n  🔑  Pk film_pkey ( film_id ) film_id⧉  film_id\n     * integer default nextval('pagila.film_film_id_seq'::regclass)\n ↙ film_category( film_id )\n ↙ inventory( film_id )\n ↙ film_actor( film_id )\n🔗  Referred by film_category ( film_id ) \nReferred by inventory ( film_id ) \nReferred by film_actor ( film_id ) \n  🔍  idx_title ( title ) title⧉  title\n     * varchar(255)\nt  description⧉  description\n     text\nt  release_year⧉  release_year\n     integer\n#  🔍  idx_fk_language_id ( language_id ) language_id⧉  language_id\n     * smallint\n ↗ film( language_id )\n🔗  References language ( language_id ) \n  🔍  idx_fk_original_language_id ( original_language_id ) original_language_id⧉  original_language_id\n     smallint\n ↗ film( language_id )\n🔗  References language ( original_language_id -&gt; language_id ) \n  rental_duration⧉  rental_duration\n     * smallint default 3\n#  rental_rate⧉  rental_rate\n     * varchar(4) default 4.99\nt  length⧉  length\n     smallint\n#  replacement_cost⧉  replacement_cost\n     * varchar(5) default 19.99\nt  rating⧉  rating\n     mpaa_rating default 'G'::pagila.mpaa_rating\nt  last_update⧉  last_update\n     * timestamp default now()\nd  special_features⧉  special_features\n     text[]\n[]\n\n\n\n\nfilm_actorTable pagila.film_actor\n  🔑  Pk film_actor_pkey ( actor_id, film_id ) actor_id⧉  actor_id\n     * smallint\n ↗ film_actor( actor_id )\n🔗  References actor ( actor_id ) \n  🔑  Pk film_actor_pkey ( actor_id, film_id ) 🔍  idx_fk_film_id ( film_id ) film_id⧉  film_id\n     * smallint\n ↗ film_actor( film_id )\n🔗  References film ( film_id ) \n  last_update⧉  last_update\n     * timestamp default now()\nd\n\n\n\n\nfilm_categoryTable pagila.film_category\n  🔑  Pk film_category_pkey ( film_id, category_id ) film_id⧉  film_id\n     * smallint\n ↗ film_category( film_id )\n🔗  References film ( film_id ) \n  🔑  Pk film_category_pkey ( film_id, category_id ) category_id⧉  category_id\n     * smallint\n ↗ film_category( category_id )\n🔗  References category ( category_id ) \n  last_update⧉  last_update\n     * timestamp default now()\nd\n\n\n\n\nlanguageTable pagila.language\n  🔑  Pk language_pkey ( language_id ) language_id⧉  language_id\n     * integer default nextval('pagila.language_language_id_seq'::regclass)\n ↙ film( language_id )\n ↙ film( language_id )\n🔗  Referred by film ( original_language_id -&gt; language_id ) \nReferred by film ( language_id ) \n  name⧉  name\n     * char(20)\nc  last_update⧉  last_update\n     * timestamp default now()\nd\n\nVue partielle de pagila\n\n\n\n\n\nTable pagila.actor\n\n\n\n\n\n\n\n\n* 🔑 ⬋\nactor_id\ninteger DEFAULT nextval(‘pagila.actor_actor_id_seq’::regclass)\n\n\n*\nfirst_name\nvarchar(45)\n\n\n* 🔎\nlast_name\nvarchar(45)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\nLes lignes de la able actor sont identifiées par la colonne actor_id. Deux lignes différentes peuvent coïncider sur les colonnes first_name et last_name mais elles doivent se distinguer sur la colonne actor_id. La colonne actor_id est la clé primaire de la table actor.\n\n\nTable pagila.category\n\n\n\n\n\n\n\n\n* 🔑 ⬋\ncategory_id\ninteger DEFAULT nextval(‘pagila.category_category_id_seq’::regclass)\n\n\n*\nname\nvarchar(25)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\nUn film relève d’une ou plusieurs catégories (horror, children, …). La table category liste les catégories utilisées dans pagila. Les lignes de cette table sont disinguées par la colonne category_id.\n\n\nTable pagila.country\n\n\n\n\n\n\n\n\n* 🔑 ⬋\ncountry_id\ninteger DEFAULT nextval(‘pagila.country_country_id_seq’::regclass)\n\n\n*\ncountry\nvarchar(50)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\n\nTable pagila.film\n\n\n\n\n\n\n\n\n* 🔑 ⬋\nfilm_id\ninteger DEFAULT nextval(‘pagila.film_film_id_seq’::regclass)\n\n\n* 🔎\ntitle\nvarchar(255)\n\n\n\ndescription\ntext\n\n\n\nrelease_year\ninteger\n\n\n* 🔎 ⬈\nlanguage_id\nsmallint\n\n\n🔎 ⬈\noriginal_language_id\nsmallint\n\n\n*\nrental_duration\nsmallint DEFAULT 3\n\n\n*\nrental_rate\nvarchar(4) DEFAULT 4.99\n\n\n\nlength\nsmallint\n\n\n*\nreplacement_cost\nvarchar(5) DEFAULT 19.99\n\n\n\nrating\nmpaa_rating DEFAULT ‘G’::pagila.mpaa_rating\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\nspecial_features\ntext[]\n\n\n\nLa table film contient le catalogue de la chaine de magasins de DVD. Les lignes de cette table sont distinguées par la colonne film_id. Deux lignes distinctes peuvent coïncider sur la colonne title.\nLa colonne original_language_id permet de repérer la langue de la version originale du film. La colonne language_id permet de repérer la langue dans laquelle le DVD est éditée. Ces informations doivent être recollées à l’aide de la table language. Les valeurs prises par les colonnes language_id et original_language_id doivent obligatoirement réferrer à des valeurs recontrées dans la colonne language_id de la table language. On parle de contraintes référentielles.\n\nForeign Keys\n\n\n\n\nfilm_original_language_id_fkey\n( original_language_id ) ref pagila.language (language_id)\n\n\n\nfilm_language_id_fkey\n( language_id ) ref pagila.language (language_id)\n\n\n\n\n\n\nTable pagila.film_actor\n\n\n\n* 🔑 ⬈\nactor_id\nsmallint\n\n\n* 🔑 ⬈\nfilm_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\n\nfilm_actor_film_id_fkey\n( film_id ) ref pagila.film (film_id)\n\n\n\nfilm_actor_actor_id_fkey\n( actor_id ) ref pagila.actor (actor_id)\n\n\n\nLa table film_actor est une table intermédiaire qui permet de savoir quels acteurs jouent dans quels films.\n\n\n\nTable pagila.film_category\n\n\n\n* 🔑 ⬈\nfilm_id\nsmallint\n\n\n* 🔑 ⬈\ncategory_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\nLa table film_category est une table intermédiaire qui permet de savoir de quelles catégories relève un film.\n\nForeign Keys\n\n\n\n\nfilm_category_film_id_fkey\n( film_id ) ref pagila.film (film_id)\n\n\n\nfilm_category_category_id_fkey\n( category_id ) ref pagila.category (category_id)\n\n\n\n\n\n\nTable pagila.language\n\n\n\n\n\n\n\n\n* 🔑 ⬋\nlanguage_id\ninteger DEFAULT nextval(‘pagila.language_language_id_seq’::regclass)\n\n\n*\nname\nchar(20)\n\n\n*\nlast_update\ntimestamp DEFAULT now()"
+  },
+  {
+    "objectID": "workshops/td9.html",
+    "href": "workshops/td9.html",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "",
+    "text": "L3 MIASHS/Ingémath\nUniversité Paris Cité\nAnnée 2024-2025\nCourse Homepage\n\nMoodle\n\n\n\n\n\n\n\n\nDéfinitions\nUne dépendance fonctionnelle est une expression de la forme \\[A_1,A_2,\\ldots,A_k \\rightarrow A_{k+1},\\ldots,A_n\\] où \\(A_1,A_2,\\ldots,A_k, A_{k+1},\\ldots,A_n\\) sont des attributs (colonnes) d’une base de données.\nElle signifie que deux tuples ayant la même valeur sur \\(A_1,\\ldots,A_k\\) doivent avoir la même valeur sur chaque colonnes \\(A_{k+1},\\ldots, A_n\\) (en français : \\(A_1,\\ldots,A_k\\) déterminent \\(A_{k+1},\\ldots,A_n\\). On dit que les attributs \\(A_{k+1},\\ldots, A_n\\) dépendent fonctionnellement de \\(A_1,A_2,\\ldots,A_k\\).\nLa notion de dépendance est transitive : si \\(A \\rightarrow B\\) et \\(B \\rightarrow C\\) alors \\(A \\rightarrow C\\).\nUn ensemble de dépendances fonctionnelles \\(\\mathcal{F}\\) est 1 si aucune dépendance ne peut être déduite des autres en utilisant les règles suivantes :\n\ntrivialité : si \\(Y\\subseteq X\\) alors \\(X\\rightarrow Y\\)\naugmentation : si \\(X\\rightarrow Y\\) alors \\(X,Z\\rightarrow Y,Z\\) pour toute suite d’attributs \\(Z\\).\ntransitivité : si \\(X\\rightarrow Y\\) et \\(Y\\rightarrow Z\\) alors \\(X\\rightarrow Z\\)\nunion : si \\(X\\rightarrow Y\\) et \\(X\\rightarrow Z\\) alors \\(X\\rightarrow Y,Z\\)\ndécomposition/séparation si \\(X\\rightarrow Y\\) et \\(Z\\subseteq Y\\) alors \\(X\\rightarrow Z\\)\n\nLa clôture transitive des attributs \\(A_1,\\ldots, A_k\\) pour un ensemble de dépendances fonctionnelles \\(\\mathcal F\\) est l’ensemble des attributs \\(B_1,\\ldots, B_{\\ell}\\) qui dépendent fonctionnellement de \\(A_1,\\ldots, A_k\\).\nOn la note \\[[A_1,\\ldots, A_k]^+_{\\mathcal{F}}\\] en oubliant \\(\\mathcal{F}\\) si le contexte est clair.\nUn ensemble d’attributs \\(A_1,\\ldots, A_k\\) est une super-clé pour une relation \\(R(B_1,\\ldots, B_{\\ell})\\) si ce sont des attributs de \\(R\\) et si sa clôture transitive contient \\(B_1,\\ldots, B_{\\ell}\\). C’est une clé si elle est minimale, c’est-à-dire, aucun sous-ensemble strict de cette super-clé n’est une clé.\nUn schéma est en :\n\n\\(\\text{FN}_1\\) si tout attribut est atomique.\n\\(\\text{FN}_2\\) si un attribut ne fait pas partie d’une clef, il ne peut pas dépendre d’une partie stricte d’une clef.\n\\(\\text{FN}_3\\) Pour toute dépendance fonctionnelle non triviale, le membre de gauche contient une clef ou tout attribut du membre de droit appartient à une clef.\n\nUn schéma et un ensemble de dépendances fonctionnelles peut se décomposer en une collection de schémas, dans le sens où chaque relation \\(R\\) peut se décomposer en \\(R_1,\\ldots, R_k\\) tels que \\(R_i = \\pi_i(R)\\) pour une certaine projection \\(\\pi_i\\).\nOn dit cette décomposition si toute relation \\(R\\) du schéma d’origine peut être retrouvée à partir des relations \\(R_1,\\ldots, R_k\\) : \\(R = \\pi_1(R) \\bowtie \\ldots \\bowtie \\pi_k(R)\\).\nOn dit que cette décomposition respecte les dépendances fonctionnelles si celles-ci sont toujours satisfaites par la nouvelle décomposition.\n\n\nExercice\nSoit une relation concernant des personnes en France avec les attributs suivants~:\\ Nom, Numéro de sécurité sociale, Commune, Département, Code postal, Numéro de téléphone\nQuelles sont les dépendances fonctionnelles censées être satisfaites~?\n\n\nExercice\nSoit un schéma d’attributs \\(A_1, A_2,\\dots A_n\\) et un ensemble de dépendances fonctionnelles. Calculer le nombre de super-clefs (en fonction de \\(n\\)) dans les cas suivants~:\n\nLa seule clef est \\(\\{A_1\\}\\).\nLes seules clefs sont \\(\\{A_1\\}\\) et \\(\\{A_2\\}\\).\nLes seules clefs sont \\(\\{A_1,A_2\\}\\) et \\(\\{A_3,A_4\\}\\).\nLes seules clefs sont \\(\\{A_1,A_2\\}\\) et \\(\\{A_1,A_3\\}\\).\n\n\n\nExercice\nSoit le schéma \\(\\mathcal{A}=\\{A,B,C,D\\}\\) et l’ensemble de dépendances fonctionnelles \\[\\Sigma = \\{ A \\longrightarrow B, B \\longrightarrow C\\} \\]\n\nQuelle est la fermeture \\(\\{A\\}^+\\) de \\(\\{A\\}\\) ?\n\n\nQuelles sont les super-clés ? Les clés ?\n\n\n\nExercice\nSoit le schéma \\(\\mathcal{A}=\\{A,B,C,D,E,F\\}\\) et l’ensemble de dépendances fonctionnelles \\[\\Sigma = \\Bigl\\{ \\{A,B\\}\\to C, \\{B,C\\}\\to \\{A,D\\}, D\\to E, \\{C,F\\}\\to B \\Bigr\\}\\]\n\nCalculer la fermeture \\(\\{A,B\\}^+\\) de \\(\\{A,B\\}\\).\nEst-ce que \\(\\Sigma\\) implique la dépendance fonctionnelle \\(\\{A,B\\}\\to D\\)~?\nEst-ce que \\(\\Sigma\\) implique la dépendance fonctionnelle \\(D\\to A\\)~?\n\n\n\nExercice\nMontrer que les assertions suivantes sont fausses~:\n\n\\(A\\to B\\) implique \\(B\\to A\\).\nSi \\(\\{A,B\\}\\to C\\) et \\(A\\to C\\) alors \\(B\\to C\\).\nSi \\(\\{A,B\\}\\to C\\) alors \\(A\\to C\\) ou \\(B\\to C\\).\n\n\n\nExercice\n\nSoit le schéma \\(\\mathcal{A}=\\{A, B,C, D, E, F, G, H\\}\\) et soit \\[\\Sigma = \\{AB \\longrightarrow C; \\ B \\longrightarrow D;  \\ CD \\longrightarrow E;  \\ CE \\longrightarrow GH; \\  G \\longrightarrow A\\} \\] Est-ce que les dépendances\n\\(A,B \\longrightarrow E\\)\n\\(B,G \\longrightarrow C\\)\n\\(A,B \\longrightarrow G\\)\n\nsont déductibles de \\(\\Sigma\\)~?\n\n\n\n\nSoit \\[\\Sigma_1 = \\{A \\longrightarrow B ; C,E \\longrightarrow H ; C \\longrightarrow E ; A \\longrightarrow C,H\\}\\] et \\[\\Sigma_2 = \\{A \\longrightarrow B,C ;  C \\longrightarrow E,H\\}\\] Les deux ensembles de dépendances fonctionnelles \\(\\Sigma_1\\) et \\(\\Sigma_2\\) sont-ils équivalents ?\n\n\n\nExercice : Décomposition et perte d’information\n\nOn considère le schéma de relation \\(\\mathcal{A}=\\{A,B,C\\}\\) et la dépendance fonctionnelle suivante:\n\n\\[\\Sigma=\\{  A,B \\longrightarrow C   \\}.\\]\nDéterminer si la décomposition suivante est sans perte d’information\n\\[\\mathcal{A}_1=\\{A,B\\} , \\quad \\mathcal{A}_2=\\{B,C\\}\\]\nen étudiant le cas de la table suivante :\n\n\n\n\n\nA\nB\nC\n\n\n\n\n1\n2\n3\n\n\n4\n2\n5\n\n\n\n\n\nOn considère le schéma de relation \\(\\mathcal{A}=\\{A,B,C,D,E\\}\\) et les dépendances fonctionnelles suivantes:\n\n\\[\\Sigma=\\{  A \\longrightarrow C ; B \\longrightarrow C ; C \\longrightarrow D ; D,E \\longrightarrow C ; C,E \\longrightarrow A    \\}.\\]\nAppliquer l’algorithme de poursuite pour déterminer si la décomposition suivante est sans perte d’information :\n\\[ \\mathcal{A}_1=\\{A,D\\} , \\mathcal{A}_2=\\{A,B\\}    , \\mathcal{A}_3=\\{B,E\\} , \\mathcal{A}_4=\\{C,D,E\\}, \\mathcal{A}_5=\\{A,E\\} \\]\nMême question pour la décomposition: \\[ \\mathcal{A}_1=\\{A,D\\}, \\mathcal{A}_2=\\{A,B\\}, \\mathcal{A}_3=\\{B,E\\}, \\mathcal{A}_4=\\{C,D\\}, \\mathcal{A}_5=\\{D,E\\}, \\mathcal{A}_6=\\{A,E\\} \\]\n\n\nExercice\nSoit \\(\\mathcal{A}=\\{A,B,C,D,E\\}\\) un schéma et soit la décomposition \\(\\{\\mathcal{A}_1,\\mathcal{A}_2,\\mathcal{A}_3\\}\\) où \\[\\mathcal{A}_1=\\{A,B,C\\}\\quad \\mathcal{A}_2=\\{B,C,D\\}\\quad \\mathcal{A}_3=\\{A,C,E\\}\\] Pour chaque ensemble \\(\\Sigma\\) de dépendances fonctionnelles ci-dessous, appliquer l’algorithme de poursuite pour déterminer si la décomposition est sans perte d’information. Dans le cas où il y a perte d’information, donner une relation \\(R\\) de schéma \\(\\mathcal{A}\\) satisfaisant \\(\\Sigma\\) et telle que \\[ \\pi_{\\mathcal{A}_1}(R)\\bowtie\\pi_{\\mathcal{A}_2}(R)\\bowtie\\pi_{\\mathcal{A}_3}(R)\\not\\subset R\\]\n\n\\(\\Sigma=\\{B\\rightarrow E, CE\\rightarrow A\\}\\)\n\\(\\Sigma=\\{AC\\rightarrow E, BC\\to D\\}\\)\n\\(\\Sigma=\\{A\\rightarrow D, D\\to E, B\\to D\\}\\)\n\\(\\Sigma=\\{A\\rightarrow D, CD\\to E, E\\to D\\}\\)\n\n\n\nExercice : Normalisation\nOn considère le schéma de relation R(C,T,H,S,E,N) :\nR(Cours, Enseignant, Horaire, Salle, Étudiant, Note)\net les dépendances fonctionnelles suivantes:\n\\[\\mathcal{F}=\\{  \\texttt{C} \\to \\texttt{T}; \\quad \\texttt{H,S} \\to \\texttt{C}; \\quad \\texttt{H,T} \\to \\texttt{S}; \\quad \\texttt{C,E} \\to \\texttt{N}; \\quad \\texttt{H,E} \\to S \\}. \\]\n\nCalculer une clé.\n\n\nMettre en Boyce-Codd Normal Form (BCNF), donner plusieurs résultats possibles."
+  },
+  {
+    "objectID": "workshops/nycflights-schema.html",
+    "href": "workshops/nycflights-schema.html",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "",
+    "text": "&lt;!–"
+  },
+  {
+    "objectID": "workshops/nycflights_bis_sql_ddl.html",
+    "href": "workshops/nycflights_bis_sql_ddl.html",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "",
+    "text": "Définition du schéma en SQL\n\n\n\n\n\n\nCREATE TABLE airlines (\n    carrier text NOT NULL,\n    \"name\" text NULL,\n    CONSTRAINT airlines_pk \n        PRIMARY KEY (carrier),\n    CONSTRAINT airlines_un \n        UNIQUE (name)\n);\nCREATE TABLE airports (\n    faa text NOT NULL,\n    \"name\" text NULL,\n    lat float8 NULL,\n    lon float8 NULL,\n    alt float8 NULL,\n    tz float8 NULL,\n    dst text NULL,\n    tzone text NULL,\n    CONSTRAINT airports_pk \n        PRIMARY KEY (faa),\n    CONSTRAINT airports_un \n        UNIQUE (name),\n    CONSTRAINT airports_un_ll \n        UNIQUE (lat, lon)\n);\n\n\nCREATE TABLE weather (\n    origin text NOT NULL,\n    \"year\" int4 NULL,\n    \"month\" int4 NULL,\n    \"day\" int4 NULL,\n    \"hour\" int4 NULL,\n    \"temp\" float8 NULL,\n    dewp float8 NULL,\n    humid float8 NULL,\n    wind_dir float8 NULL,\n    wind_speed float8 NULL,\n    wind_gust float8 NULL,\n    precip float8 NULL,\n    pressure float8 NULL,\n    visib float8 NULL,\n    time_hour timestamptz NOT NULL,\n    CONSTRAINT weather_pk \n        PRIMARY KEY (origin, time_hour)\n);\nALTER TABLE weather ADD \n    CONSTRAINT weather_fk \n    FOREIGN KEY (origin) \n    REFERENCES airports(faa) \n    ON DELETE CASCADE \n    ON UPDATE CASCADE;\n\n\n\nCREATE TABLE planes (\n    tailnum text NOT NULL,\n    \"year\" int4 NULL,\n    \"type\" text NULL,\n    manufacturer text NULL,\n    model text NULL,\n    engines int4 NULL,\n    seats int4 NULL,\n    speed int4 NULL,\n    engine text NULL,\n    CONSTRAINT planes_pk   PRIMARY KEY (tailnum)\n);\n\n\n\n\n\n\nCREATE TABLE flights (\n    \"year\" int4 NULL,\n    \"month\" int4 NULL,\n    \"day\" int4 NULL,\n    dep_time int4 NULL,\n    sched_dep_time int4 NULL,\n    dep_delay float8 NULL,\n    arr_time int4 NULL,\n    sched_arr_time int4 NULL,\n    arr_delay float8 NULL,\n    carrier text NULL,\n    flight int4 NULL,\n    tailnum text NOT NULL,\n    origin text NOT NULL,\n    dest text NULL,\n    air_time float8 NULL,\n    distance float8 NULL,\n    \"hour\" float8 NULL,\n    \"minute\" float8 NULL,\n    time_hour timestamptz NOT NULL,\n    CONSTRAINT flights_pk \n        PRIMARY KEY (\n            tailnum, origin, time_hour)\n);\n\n\nALTER TABLE flights ADD \n    CONSTRAINT flights_fk \n    FOREIGN KEY (carrier) \n    REFERENCES airlines(carrier) \n    ON DELETE SET NULL \n    ON UPDATE CASCADE;\nALTER TABLE flights ADD \n    CONSTRAINT flights_fk_dest \n    FOREIGN KEY (dest) \n    REFERENCES airports(faa) \n    ON DELETE SET NULL \n    ON UPDATE CASCADE;\nALTER TABLE flights ADD \n    CONSTRAINT flights_fk_origin \n    FOREIGN KEY (origin) \n    REFERENCES airports(faa) \n    ON DELETE SET NULL \n    ON UPDATE CASCADE;\nALTER TABLE flights ADD \n    CONSTRAINT flights_fk_planes \n    FOREIGN KEY (tailnum) \n    REFERENCES planes(tailnum) \n    ON DELETE SET NULL \n    ON UPDATE CASCADE;"
+  },
+  {
+    "objectID": "workshops/td-admin.html#administration-sous-postgres",
+    "href": "workshops/td-admin.html#administration-sous-postgres",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "Administration sous Postgres",
+    "text": "Administration sous Postgres\nDes outils d’administration importants d’une base de données postgres se trouvent dans deux schémas appelés :\n\ninformation_schema\npg_catalog\n\nCes deux schémas et les tables qu’ils contiennent permettent de retrouver toutes les informations concernant les schémas, tables, utilisateurs, fonctions, etc présentes dans la base de données.\nPour faciliter l’administration de la base et obtenir un certain nombre d’informations basiques, des commandes sont définies dans postgres. On peut en avoir la liste par l’instruction \\? (vous connaissez déjà \\d). Ces commandes sont, en fait, des raccourcis (des macros) en lieu et place de requêtes SQL plus ou moins complexes portant sur les objets des schémas information_schema et pg_catalog.\nLes questions ci-dessous permettent de faire connaissance avec les schémas d’administration à travers quelques requêtes à générer.\n\nDans information_schema la table tables contient le nom (et bien plus) des tables de la base. Examinez la structure de la table tables par l’instruction \\d information_schema.tables (il faut au préalable fixer le search_path pour y inclure information_schema).\n\nLister juste les noms de toutes les tables.\n\nEn utilisant seulement la table tables de information_schema, lister les noms des tables du schema world puis du schéma information_schema\n\n\nD’après la requête précédente, une des tables du schéma information_schema s’appelle schemata.\n\nExaminer cette table et en déduire une liste de tous les schémas de la base\n\nUne des tables du schéma information_schema s’appelle columns. Essayez de comprendre la nature des informations présentes dans cette table. Écrire une requête qui renvoie les mêmes informations que l’instruction \\d world.country. Améliorer votre requête pour qu’elle affiche exactement la même chose que \\d world.country.\n\n\nListez les noms de tables qui apparaissent dans au moins deux schémas. On donnera aussi les (deux) schémas concernés dans le résultat.\n\n\nListez les noms de colonnes (attributs) qui apparaissent dans au moins deux tables du même schéma. On donnera aussi le nom des tables et du schéma dans le résultat (on pourra exclure information_schema et pg_catalog).\n\n\nListez les définitions de toutes les vues que vous avez écrites. Listez celles qui commencent pas ‘q’.\n\n\nLa vue pg_roles contient les identifiants des différents rôles. Trouvez celui du rôle isifar2022.\n\n\nÀ l’aide de la réponse à la question précédente, listez les noms des schémas des utilisateurs (rôles) qui ont aussi le rôle isifar2022"
+  },
+  {
+    "objectID": "workshops/td-admin.html#droits",
+    "href": "workshops/td-admin.html#droits",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "Droits",
+    "text": "Droits\n\nCréer dans votre schéma une table matable_etudiant par copie de la table datatpadmin du schema durand. Sélectionner les tuples de la table crée : il contiennent des informations (aléatoire) pour chacun des utilisateurs du groupe.\n\nDonner les droits de sélection sur cette table à l’utilisateur de votre choix ou au groupe entier). Vérifier que cela marche.\nEnlever les droits de sélection à cet utilisateur\n\nOn suppose maintenant que vous souhaitez accorder des droits de sélection à chacun des étudiants du groupe mais uniquement pour les données qui le concerne. Par exemple, s’il existe des tuples dont la valeur pour identifiant est johnsmith, l’utilisateur johnsmith doit pouvoir sélectionner ces tuples mais aucun autre. Proposez une manière de réaliser cette politique de sécurité ?\n\nIndication: on pourra s’appuyer sur la création d’une vue. Regardez aussi la documentation de la variable CURRENT_USER.\n\nDans la continuité de la question précédente, accordez à chaque utilisateur le droit de modifier les tuples qui le concerne dans votre table."
+  },
+  {
+    "objectID": "workshops/villes_layout.html",
+    "href": "workshops/villes_layout.html",
+    "title": "MA15Y030 - Automne 2024",
+    "section": "",
+    "text": "Schema relationnel pattes de corbeau\n\n\n\nimg\n\n\n\n\nTable villes.departement\n\n\n\n🔍\nnom\nvarchar\n\n\n* 🔑 ⬈\nnumero\ninteger\n\n\n⬈\nregion\nvarchar\n\n\n⬈\nprefecture\ninteger\n\n\n\n\nForeign Keys\n\n\n\n\ndepartement_fk\n( region ) ref villes.region (nom)\n\n\n\ndepartement_prefecture_fk\n( numero, prefecture ) ref villes.ville (departement, numero)\n\n\n\n\n\n\nTable villes.recensement\n\n\n\n* 🔑\nannee\ninteger\n\n\n* 🔑 ⬈\ndepartement\ninteger\n\n\n* 🔑 ⬈\nnumero\ninteger\n\n\n\npopulation\ninteger\n\n\n\n\nForeign Keys\n\n\n\n\nrecensement_fk\n( departement, numero ) ref villes.ville (departement, numero)\n\n\n\n\n\n\nTable villes.region\n\n\n\n* 🔑 ⬋\nnom\nvarchar\n\n\n⬈\nprefecture_num\ninteger\n\n\n⬈\nprefecture_dep\ninteger\n\n\n\n\nForeign Keys\n\n\n\n\nregion_prefecture_fk\n( prefecture_dep, prefecture_num ) ref villes.ville (departement, numero)\n\n\n\n\n\n\nTable villes.taxe\n\n\n\n* 🔑\nannee\ninteger\n\n\n* 🔑 ⬈\ndepartement\ninteger\n\n\n* 🔑 ⬈\nnumero\ninteger\n\n\n\nvaleur\ninteger\n\n\n\n\nForeign Keys\n\n\n\n\ntaxe_fk\n( departement, numero ) ref villes.ville (departement, numero)\n\n\n\n\n\n\nTable villes.ville\n\n\n\n\nnom\nvarchar\n\n\n\narticle\nvarchar\n\n\n* 🔑 ⬈\ndepartement\ninteger\n\n\n* 🔑 ⬋\nnumero\ninteger\n\n\n\n\nForeign Keys\n\n\n\n\nville_fk\n( departement ) ref villes.departement (numero)"
+  },
+  {
+    "objectID": "workshops/layout-world.html",
+    "href": "workshops/layout-world.html",
+    "title": "Schéma world",
+    "section": "",
+    "text": "Schéma world\nCréé par DbSchema\n\nVue d’ensemble\n\n\n\n   \n\n\n\n  \n    \n  \n  \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n  \n  \n  \n    \n    \n  \n  \n    \n  \n  \n  \n     \n     \n    \n       \n       \n    \n  \n  \n    \n    \n  \n  \n    \n    \n  \n  \n    \n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n      \n      \n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n      \n      U\n    \n  \n  \n    \n      \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n      \n    \n  \n  \n    \n  \n  \n    \n    \n  \n  \n    \n      \n      \n      \n      \n    \n  \n  \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n  \n\n\n\n  \n    \n    \n    \n  \n  \n    \n    \n    \n  \n  \n    \n    \n    \n    \n  \n  \n    \n    \n  \n  \n    \n  \n  \n    \n  \n  \n      \n      \n      \n  \n\n\n\n\n\n\n\n\n   \n  DbSchema Database Designer   Layout-world \n  Comments as mouse-over tips, zoom and pan.Read column and table comments by hovering the columns and tables.\nZoom with CTRL+whell mouse button, pan by dragging the diagram with the right-mouse button \n  by DbSchema.com - Wise CodersDbSchema is an universal database designer.\nDbSchema has a free Community Edition. \n\n\n\n\n\ncountry\n\n\n\t🔗  Foreign Key country_capital_fkey\ncountry ref city ( capital -&gt; id )\n\n🔗  Foreign Key country_capital_fkey\ncountry ref city ( capital -&gt; id )\ncapital\n\n\n\t🔗  Foreign Key countrylanguage_countrycode_fkey\ncountrylanguage ref country ( countrycode )\n\n🔗  Foreign Key countrylanguage_countrycode_fkey\ncountrylanguage ref country ( countrycode )\ncountrycode\n\n\n\n\ncityTable world.city\n  🔑  Pk city_pkey ( id ) id⧉  id\n     * integer\n ↙ country( id )\n🔗  Referred by country ( capital -&gt; id ) \n  name⧉  name\n     * text\nt  countrycode⧉  countrycode\n     * char(3)\nc  district⧉  district\n     * text\nt  population⧉  population\n     * integer\n#\n\n\n\n\ncountryTable world.country\n  🔑  Pk country_pkey ( countrycode ) countrycode⧉  countrycode\n     * char(3)\n ↙ countrylanguage( countrycode )\n🔗  Referred by countrylanguage ( countrycode ) \n  name_country⧉  name_country\n     * text\nt  continent⧉  continent\n     * text\nt  region⧉  region\n     * text\nt  surfacearea⧉  surfacearea\n     * real\n#  indepyear⧉  indepyear\n     smallint\n#  population_country⧉  population_country\n     * integer\n#  lifeexpectancy⧉  lifeexpectancy\n     real\n#  gnp⧉  gnp\n     numeric(10,2)\n#  gnpold⧉  gnpold\n     numeric(10,2)\n#  localname⧉  localname\n     * text\nt  governmentform⧉  governmentform\n     * text\nt  headofstate⧉  headofstate\n     text\nt  capital⧉  capital\n     integer\n ↗ country( id )\n🔗  References city ( capital -&gt; id ) \n  code2⧉  code2\n     * char(2)\nc\n\n\n\n\ncountrylanguageTable world.countrylanguage\n  🔑  Pk countrylanguage_pkey ( countrycode, language ) countrycode⧉  countrycode\n     * char(3)\n ↗ countrylanguage( countrycode )\n🔗  References country ( countrycode ) \n  🔑  Pk countrylanguage_pkey ( countrycode, language ) language⧉  language\n     * text\nt  isofficial⧉  isofficial\n     * boolean\nb  percentage⧉  percentage\n     * real\n#\n\n\n\n    This is a layout. You can create multiple layouts with the same or different tables. \n    Edit tables by double-clicking the table headers.\n\n\nimg\n\n\n\n\nTable world.city\n\n\n\n* 🔑 ⬋\nid\ninteger\n\n\n*\nname\ntext\n\n\n*\ncountrycode\nchar(3)\n\n\n*\ndistrict\ntext\n\n\n*\npopulation\ninteger\n\n\n\n\n\nTable world.country\n\n\n\n* 🔑 ⬋\ncountrycode\nchar(3)\n\n\n*\nname_country\ntext\n\n\n*\ncontinent\ntext\n\n\n*\nregion\ntext\n\n\n*\nsurfacearea\nreal\n\n\n\nindepyear\nsmallint\n\n\n*\npopulation_country\ninteger\n\n\n\nlifeexpectancy\nreal\n\n\n\ngnp\nnumeric(10,2)\n\n\n\ngnpold\nnumeric(10,2)\n\n\n*\nlocalname\ntext\n\n\n*\ngovernmentform\ntext\n\n\n\nheadofstate\ntext\n\n\n⬈\ncapital\ninteger\n\n\n*\ncode2\nchar(2)\n\n\n\n\nForeign Keys\n\n\n\n\ncountry_capital_fkey\n( capital ) ref world.city (id)\n\n\n\n\n\nConstraints\n\n\n\n\n\n\n\ncountry_continent_check\n((continent = ‘Asia’::text) OR (continent = ‘Europe’::text) OR (continent = ‘North America’::text) OR (continent = ‘Africa’::text) OR (continent = ‘Oceania’::text) OR (continent = ‘Antarctica’::text) OR (continent = ‘South America’::text))\n\n\n\n\n\n\nTable world.countrylanguage\n\n\n\n* 🔑 ⬈\ncountrycode\nchar(3)\n\n\n* 🔑\nlanguage\ntext\n\n\n*\nisofficial\nboolean\n\n\n*\npercentage\nreal\n\n\n\n\nForeign Keys\n\n\n\n\ncountrylanguage_countrycode_fkey\n( countrycode ) ref world.country (countrycode)"
+  },
+  {
+    "objectID": "weeks/week-1.html",
+    "href": "weeks/week-1.html",
+    "title": "Semaine 1",
+    "section": "",
+    "text": "Important\n\n\n\n\nDue date: Lab 2 - Fri, Feb 4, 5pm ET\nExam 1 released on Fri, Feb 4, due Mon, Feb 7 at 11:59pm",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weeks/week-1.html#préparer",
+    "href": "weeks/week-1.html#préparer",
+    "title": "Semaine 1",
+    "section": "Préparer",
+    "text": "Préparer",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weeks/week-1.html#cours",
+    "href": "weeks/week-1.html#cours",
+    "title": "Semaine 1",
+    "section": "Cours",
+    "text": "Cours\nIntroduction aux Bases de Données\nIntroduction à l’algèbre relationnelle",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weeks/week-1.html#exercices-td-1",
+    "href": "weeks/week-1.html#exercices-td-1",
+    "title": "Semaine 1",
+    "section": "Exercices : TD 1",
+    "text": "Exercices : TD 1\nhtml pdf",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
+  },
+  {
+    "objectID": "weeks/week-1.html#perform",
+    "href": "weeks/week-1.html#perform",
+    "title": "Semaine 1",
+    "section": "Perform",
+    "text": "Perform\nLab 3 - Coffee ratings\nExam 1\n\n\nretour à Agenda ⏎",
+    "crumbs": [
+      "Weekly materials",
+      "Week 1"
+    ]
+  }
+]
