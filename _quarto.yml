@@ -13,8 +13,8 @@ website:
   open-graph: true
 
   page-footer:
-    right: "This page is built with[Quarto](https://quarto.org/)."
-    left: "&copy; Copyright 2022, Stéphane Boucheron"
+    right: "This page is built with blood, sweat, tears, and [Quarto](https://quarto.org/)."
+    left: "&copy; Copyright 2024, Stéphane Boucheron"
     background: "#D9E3E4"
 
   sidebar:
@@ -106,6 +106,7 @@ format:
     code-overflow: wrap
     toc: true
 
-freeze: auto
+execute:
+  freeze: auto
 
-editor: visual
+editor: source
