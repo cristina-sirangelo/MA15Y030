@@ -1,0 +1,15 @@
+{
+  "hash": "6e3c8f319b59ead0765603f168a01049",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"MA15Y030: Introduction  aux Bases de données\"\n---\n\n\n\nL'agenda sera sans doute ajusté au cours du semestre.\n\n\n\n::: {.cell}\n\n:::\n\n\n\n\n| Leçon         | Diapos          |   Diapos(pdf)   |    Date    |\n|:-----------------|:---------------|:----------------:|:-------------------:|\n| Introduction + Algèbre relationnelle | [<i class=\"fab fa-slideshare\"></i>](/sides/BD_Intro.html) + [<i class=\"fab fa-slideshare\"></i>](/sides/algrel.html) |    [Moodle](https://moodle.u-paris.fr/enrol/index.php?id=2313)    | 2024-09-13 |\n| Algèbre Relationnelle + SQL I | [<i class=\"fab fa-slideshare\"></i>](/sides/SQL_1.html)   | [Moodle SQL 1](https://moodle.u-paris.fr/enrol/index.php?id=2313) | 2024-09-20 |\n| Requêtes SQL II    | [<i class=\"fab fa-slideshare\"></i>](/sides/SQL_2.html)     | [Moodle SQL 2](https://moodle.u-paris.fr/enrol/index.php?id=2313) | 2024-09-27 |\n| Requêtes SQL III    | [<i class=\"fab fa-slideshare\"></i>](/sides/SQL_3.html)  | [Moodle SQL 2](https://moodle.u-paris.fr/enrol/index.php?id=2313) | 2024-10-04 |\n| Définition de données   | [<i class=\"fab fa-slideshare\"></i>](/sides/SQL_LDD.html)| [Moodle SQL 3](https://moodle.u-paris.fr/enrol/index.php?id=2313) | 2024-10-11 |\n| Contraintes, Vues, Fonctions         | [<i class=\"fab fa-slideshare\"></i>](/sides/SQL_LDD.html) [<i class=\"fab fa-slideshare\"></i>](/sides/SQL_5.html)     |                                             | 2024-10-18 |\n| Contraintes, Vues, Fonctions (bis)   | [<i class=\"fab fa-slideshare\"></i>](/sides/SQL_6.html)     |       | 2024-10-25 |\n| Modélisation I      |                     |                             | 2024-11-08 |\n| Modélisation II           |                   |                                | 2024-11-15 |\n| Normalisation(s)             |                 |                             | 2024-11-22 |\n| Normalisation(s) II     |               |                              | 2024-11-29 |\n| Normalisation(s) III    |             |                                    | 2024-12-06 |\n\n\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
