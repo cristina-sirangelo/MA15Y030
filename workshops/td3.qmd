@@ -57,7 +57,7 @@ Objectifs de la séance:
 
 En plus du schéma `world`, nous allons utiliser le schéma `pagila` qui contient des informations utilisées par un magasin de location de DVD.
 
-Le schéma est visible sur Moodle ou [ici](./layout-pagila-film.html).
+Le schéma est visible sur [ici](./_layout-pagila-film.html).
 
 Sous `psql` ou `pgli`, vous pouvez aussi inspecter les tables comme d'habitude avec
 
@@ -122,7 +122,7 @@ WHERE population_country >= ALL(
 );
 ```
 
-retournera la liste des pays les plus peuplés.\\
+retournera la liste des pays les plus peuplés.
 
 ```{.sql}
 SELECT * 
@@ -691,6 +691,7 @@ FROM pagila.actor ac NATURAL JOIN
         (SELECT * FROM pagila.film_id_cat('Comedy') )
       ) as X;
 ```
+
 Elle répond à la question : *Quels sont les acteurs qui ont  joué dans un film qui n'est pas une comédie ?*
 
 :::

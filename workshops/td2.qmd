@@ -12,6 +12,7 @@ format:
     embed-resources: true
     code-fold: true
     output-file: td2.html
+    
 params:
     year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
@@ -57,7 +58,7 @@ Utiliser les commandes suivantes pour retrouver les schémas de tables `country`
 bd_2023> \d world."nom de table"
 ```
 
-[Vue d'ensemble du schéma `world`](../images/layout-world.svg.html)
+[Vue d'ensemble du schéma `world`](../images/layout_world.png)
 
 
 ## Écriture de requêtes
