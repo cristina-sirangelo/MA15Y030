@@ -4,6 +4,9 @@ title: "Syllabus"
 
 [**Télécharger**](/documents/ma15y030-syllabus.pdf "PDF du syllabus") **pour télécharger une  version PDF du syllabus.**
 
+
+::: {.callout-note}
+
 ## Organisation 
 
 |           | Jour       | Horaire              | Lieu                       |
@@ -13,6 +16,10 @@ title: "Syllabus"
 | TD/TP 2   | Vendredi  | 15:15  - 17:45  | Sophie Germain 2005          |
 | TD/TP 3   | Vendredi  | 15:15  - 17:45  | Sophie Germain 2006            |
 
+:::
+
+::: {.callout-note}
+
 ## Objectifs
 
 Après avoir suivi ce cours, vous serez capable de ...
@@ -20,90 +27,85 @@ Après avoir suivi ce cours, vous serez capable de ...
 - ...
 - ...
 
+:::
 
-## Community
+::: {.callout-note}
 
-### Charte Université Paris Cité
+## [Université Paris Cité](https://u-paris.fr)
 
+- [Charte Université Paris Cité](https://u-paris.fr/valeurs/)
 
+- [Démarches et accessibilité](https://u-paris.fr/demarches-administratives-de-scolarite/)
 
-<!-- ```{=html}
-<iframe width="560" height="315" src="https://www.youtube.com/embed/_KN97j30ST4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
-</iframe>
-``` -->
+- [Centre de contact](https://u-paris.fr/centre-de-contact/)
 
+- [Relais handicap](https://u-paris.fr/etudes-et-handicap/)
 
-### Égalité, diversité, ...
-
-
-### Accessibilité
-
-If there is any portion of the course that is not accessible to you due to challenges with technology or the course format, please let me know so we can make appropriate accommodations.
-
-[Relais Handicap]() 
+:::
 
 
-### Communication
-
-All lecture notes, assignment instructions, an up-to-date schedule, and other course materials may be found on the course website at [s-v-b.github.io/MA15Y030](https://s-v-b.github.io/MA15Y030).
-
-Les annonces sont diffusées via courriel/Moodle. Inscrivez-vous ...
-If an announcement is sent Monday through Thursday, I will assume that you have read the announcement by the next day.
-If an announcement is sent on a Friday or over the weekend, I will assume that you have read it by Monday.
-
-### Aide
-
--   If you have a question during lecture or lab, feel free to ask it! There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.
--   The teaching team is here to help you be successful in the course. You are encouraged to attend office hours to ask questions about the course content and assignments. Many questions are most effectively answered as you discuss them with others, so office hours are a valuable resource. Please use them!
--   Outside of class and office hours, any general questions about course content or assignments should be posted on the course forum [Conversations](https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/tool/13b6446a-a6c6-4222-8cfb-c36d1f70802b). There is a chance another student has already asked a similar question, so please check the other posts in Conversations before adding a new question. If you know the answer to a question posted in the discussion forum, I encourage you to respond!
--   Emails should be reserved for questions not appropriate for the public forum. **If you email me, please include "STA 210" in the subject line.** Barring extenuating circumstances, I will respond to STA 210 emails within 48 hours Monday - Friday. Response time may be slower for emails sent Friday evening - Sunday.
-
-Check out the [Support](/course-support.html) page for more resources.
-
-## Lectures
-
-While there is no official textbook for the course, we will be assigning readings from the following textbooks.
-
--   [R for Data Science](https://r4ds.had.co.nz/) by Garret Grolemund and Hadley Wickham
+::: {.callout-note}
 
 
-## Cours magistraux et Travaux dirigés
+### Communication  {{< fa bullhorn >}}
 
-The goal of both the lectures and the labs is for them to be as interactive as possible.
-My role as instructor is to introduce you new tools and techniques, but it is up to you to take them and make use of them.
-A lot of what you do in this course will involve writing code, and coding is a skill that is best learned by doing.
-Therefore, as much as possible, you will be working on a variety of tasks and activities throughout each lecture and lab.
-You are expected to attend all lecture and lab sessions and meaningfully contribute to in-class exercises and discussion.
-Additionally, some lectures will feature [application exercises] that will be graded.
-In addition to application exercises will be periodic activities help build a learning community.
-These will be short, fun activities that will help everyone in the class connect throughout the semester.
+Les supports matériels du cours sont accessible à partir de  [s-v-b.github.io/MA15Y030](https://s-v-b.github.io/MA15Y030)
 
-You are expected to bring a laptop to each class so that you can take part in the in-class exercises.
-Please make sure your laptop is fully charged before you come to class as the number of outlets in the classroom will not be sufficient to accommodate everyone.
-More information on loaner laptops can be found [here](https://keeplearning.duke.edu/technical-support/).
+Les annonces sont diffusées via [Moodle](https://moodle.u-paris.fr/course/view.php?id=2313)
 
-## Contrôle des connaissances
+Inscrivez-vous au [portail Moodle](https://moodle.u-paris.fr/course/view.php?id=2313) pour être  informé
 
-Assessment for the course is comprised of six components: application exercises, homework assignments, labs, exams, projects, and teamwork.
+:::
 
-### Exercises
+::: {.callout-note}
 
-Parts of some lectures will be dedicated to working on Application Exercises (AEs).
+### [Support](/course-support.html) {{< fa bullhorn >}}
 
-### Contrôle continu
+- [`psql`](https://www.postgresql.org/docs/current/app-psql.html)
+- [`pgcli`](https://www.pgcli.com)
+- [`dbeaver`](https://dbeaver.io)
 
-Trois épreuves sur table :
-
-- $\textsf{CC}_1$ (1 heure)
-- $\textsf{CC}_2$ (1 heure)
-- $\textsf{CC}_3$ (1 heure)
-
-### Examen
-
-$\textsf{CT}$ (2 heures)
+:::
 
 
-## Notation
+::: {.callout-note}
+
+
+## Références  {{< fa book >}}
+
+- [Database Systems: The Complete Book (DS:CB), by Hector Garcia-Molina, Jeff Ullman, and Jennifer Widom]()
+- [Foundations of databases. Abiteboul, Hull et Vianu](https://wiki.epfl.ch/provenance2011/documents/foundations+of+databases-abiteboul-1995.pdf)
+- [Documentation PostGres](https://www.postgresql.org/docs/current/)
+- [Next Generation Databases NoSQLand Big Data, Guy Harrison ](https://link.springer.com/book/10.1007/978-1-4842-1329-2)
+- [Guy Harrison Blog](https://www.guyharrison.net)
+- [Databases trends and applications](https://www.dbta.com)
+
+:::
+
+
+::: {.callout-note}
+
+### Cours magistraux et Travaux dirigés  {{< fa chalkboard-teacher >}}
+
+:::
+
+::: {.callout-important}
+
+### Contrôle des connaissances   {{< fa graduation-cap >}}
+
+
+-  Contrôle continu Trois épreuves sur table :
+
+   - $\textsf{CC}_1$ (1 heure)
+   - $\textsf{CC}_2$ (1 heure)
+   - $\textsf{CC}_3$ (1 heure)
+
+- Examen
+
+  - $\textsf{CT}$ (2 heures)
+
+
+- Notation
 
 La note finale de session I est calculée selon la formule :
 
@@ -111,60 +113,45 @@ $$\frac{1}{6}\left\{\max( \textsf{CC}_1,\textsf{CT}) + \max(\textsf{CC}_2,\texts
 
 La note de session II (seconde chance) est égale à la note obtenue à l'épreuve sur table de seconde chance. 
 
-## Trucs 
 
-Your success on this course depends very much on you and the effort you put into it.
-The course has been organized so that the burden of learning is on you.
-Your TAs and I will help you be providing you with materials and answering questions and setting a pace, but for this to work you must do the following:
+- Consultation des copies
 
-1.  Complete all the preparation work before class.
-2.  Ask questions. As often as you can. In class, out of class. Ask me, ask the TAs, ask your friends, ask the person sitting next to you. This will help you more than anything else. If you get a question wrong on an assessment, ask us why. If you're not sure about the homework, ask. If you hear something on the news that sounds related to what we discussed, ask. If the reading is confusing, ask.
-3.  Do the readings.
-4.  Do the homework and lab.The earlier you start, the better. It's not enough to just mechanically plow through the exercises. You should ask yourself how these exercises relate to earlier material, and imagine how they might be changed (to make questions for an exam, for example.)
-5.  Don't procrastinate. If something is confusing to you in Week 2, Week 3 will become more confusing, Week 4 even worse, and eventually you won't know where to begin asking questions. Don't let the week end with unanswered questions. But if you find yourself falling behind and not knowing where to begin asking, come to office hours, and let me help you identify a good (re)starting point.
 
-## Course policies
+- Assiduité
+
+:::
+
+::: {.callout-tip}
+
+### Trucs 
+
+
+:::
+
+
+::: {.callout-warning}
 
 ### Intégrité universitaire
 
 **TL;DR: Pas de triche!**
 
-All students must adhere to the [Duke Community Standard (DCS)](https://trinity.duke.edu/undergraduate/academic-policies/community-standard-student-conduct): Duke University is a community dedicated to scholarship, leadership, and service and to the principles of honesty, fairness, and accountability.
-Citizens of this community commit to reflect upon these principles in all academic and non-academic endeavors, and to protect and promote a culture of integrity.
-
-To uphold the Duke Community Standard:
-
-Students affirm their commitment to uphold the values of the Duke University community by signing a pledge that states:
-
--   I will not lie, cheat, or steal in my academic endeavors;
--   I will conduct myself honorably in all my endeavors;
--   I will act if the Standard is compromised
-
-Regardless of course delivery format, it is your responsibility to understand and follow Duke policies regarding academic integrity, including doing one's own work, following proper citation of sources, and adhering to guidance around group work projects.
-Ignoring these requirements is a violation of the Duke Community Standard.
-If you have any questions about how to follow these requirements, please contact Jeanna McCullers ([jeanna.mccullers\@duke.edu](mailto:jeanna.mccullers@duke.edu)), Director of the Office of Student Conduct.
+:::
 
 
-### Partage et usage du code
+
+ 
+
+::: {.callout-important}
 
 
-### Justification d'absence 
-
-
-### Consultation des copies
-
-
-### Assiduité 
-
-
-## Sauvez les  dates !
+### Sauvez les  dates !  {{< fa calendar >}}
 
 -   **Septembre 13:** Début du cours
 -   **Septembre 13:** Début des TD/TP
 -   **Octobre 25:** Contrôle continu I
 -   **Octobre 26-Novembre 3:** Pause de la Toussaint
--   **Novembre  8 :** Reprise des cours et TD
--   **Novembre  15**: Contrôle continu II
+-   **Novembre 8 :** Reprise des cours et TD
+-   **Novembre 15**: Contrôle continu II
 -   **Décembre 6**: Fin du cours
 -   **Décembre 6**: Contrôle continu III
 -   **Janvier ??**: Contrôle terminal 
@@ -174,3 +161,5 @@ If you have any questions about how to follow these requirements, please contact
 Cliquer [ici]() pour le calendrier universitaire de Université Paris Cité.
 
 Cliquer [ici](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3) pour l'emploi du temps de la Licence MIASHS 
+
+:::
