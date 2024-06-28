@@ -2,7 +2,7 @@
 format:
   pdf:
     code-annotations: below
-    keep-tex: true
+    keep-tex: false
     code-fold: false
     toc: false
     output-file: ct-2024-06-19.pdf
