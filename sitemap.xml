@@ -2,22 +2,18 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/computing-pipelines.html</loc>
-    <lastmod>2024-06-26T11:51:06.884Z</lastmod>
+    <lastmod>2024-06-26T17:54:01.249Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/cours-syllabus.html</loc>
-    <lastmod>2024-06-26T11:51:06.888Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-1.html</loc>
+    <lastmod>2024-06-28T08:57:34.696Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td10.html</loc>
     <lastmod>2024-06-26T11:51:06.968Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/td-recap-sql.html</loc>
-    <lastmod>2024-06-26T11:51:06.964Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/simple_layout.html</loc>
+    <loc>https://s-v-b.github.io/MA15Y030/workshops/td-admin.html</loc>
     <lastmod>2024-06-26T11:51:06.964Z</lastmod>
   </url>
   <url>
@@ -25,20 +21,12 @@
     <lastmod>2024-06-26T11:51:06.964Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/nycflights_layout.html</loc>
-    <lastmod>2024-06-26T11:51:06.964Z</lastmod>
-  </url>
-  <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td3.html</loc>
-    <lastmod>2024-06-26T11:51:06.964Z</lastmod>
+    <lastmod>2024-06-27T21:09:43.885Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td4bis.html</loc>
     <lastmod>2024-06-26T11:51:06.968Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/layout-pagila-rental.html</loc>
-    <lastmod>2024-06-26T11:51:06.960Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td11.html</loc>
@@ -46,11 +34,31 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td2.html</loc>
-    <lastmod>2024-06-26T11:51:06.964Z</lastmod>
+    <lastmod>2024-06-27T21:06:55.936Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/cours-equipe.html</loc>
     <lastmod>2024-06-26T11:51:06.884Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/cc3-2023-12-08.html</loc>
+    <lastmod>2024-06-27T18:42:59.928Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/cc2-2023-11-24.html</loc>
+    <lastmod>2024-06-27T22:18:51.357Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/cc3-2022-11-03.html</loc>
+    <lastmod>2024-06-27T22:04:27.624Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/cc3-2022-11-13.html</loc>
+    <lastmod>2024-06-27T22:18:58.361Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/cc3-2022-10-21.html</loc>
+    <lastmod>2024-06-27T22:04:04.312Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/cours-liens.html</loc>
@@ -62,11 +70,43 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/cours-apercu.html</loc>
-    <lastmod>2024-06-26T11:51:07.024Z</lastmod>
+    <lastmod>2024-06-26T18:02:06.610Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/slides/slide-1.html</loc>
-    <lastmod>2024-06-26T11:51:06.960Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/DF_norm_1.html</loc>
+    <lastmod>2024-06-27T11:24:06.352Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/LDD_0.html</loc>
+    <lastmod>2024-06-27T10:01:48.060Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/DF_norm_4.html</loc>
+    <lastmod>2024-06-27T10:12:46.916Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_4.html</loc>
+    <lastmod>2024-06-27T09:36:53.008Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/BD_admin_1.html</loc>
+    <lastmod>2024-06-27T11:46:47.876Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_3.html</loc>
+    <lastmod>2024-06-27T09:24:25.204Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_1.html</loc>
+    <lastmod>2024-06-27T10:14:17.848Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/DF_norm_3.html</loc>
+    <lastmod>2024-06-27T10:16:11.900Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_0.html</loc>
+    <lastmod>2024-06-27T15:07:19.680Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/computing-troubleshooting.html</loc>
@@ -74,11 +114,43 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/cours-support.html</loc>
-    <lastmod>2024-06-26T11:51:06.888Z</lastmod>
+    <lastmod>2024-06-26T19:40:32.266Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/project-description.html</loc>
     <lastmod>2024-06-26T11:51:06.960Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_2.html</loc>
+    <lastmod>2024-06-27T08:16:51.084Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/BD_admin_2.html</loc>
+    <lastmod>2024-06-27T14:48:55.456Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/BD_intro.html</loc>
+    <lastmod>2024-06-27T14:21:13.024Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/LDD_2.html</loc>
+    <lastmod>2024-06-27T11:43:45.984Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_6.html</loc>
+    <lastmod>2024-06-27T10:13:08.056Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_5.html</loc>
+    <lastmod>2024-06-27T11:40:17.596Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/LDD_1.html</loc>
+    <lastmod>2024-06-27T10:15:26.132Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/DF_norm_2.html</loc>
+    <lastmod>2024-06-27T14:13:54.156Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/project-tips-resources.html</loc>
@@ -86,7 +158,27 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/computing-access.html</loc>
-    <lastmod>2024-06-26T11:51:06.884Z</lastmod>
+    <lastmod>2024-06-26T17:53:07.061Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/ct-2024-06-19.html</loc>
+    <lastmod>2024-06-27T22:06:40.547Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/cc3-2022-10-14.html</loc>
+    <lastmod>2024-06-27T22:06:17.335Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/cc1-2023-10-27.html</loc>
+    <lastmod>2024-06-27T20:24:32.203Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/cc2-2022-11-25.html</loc>
+    <lastmod>2024-06-27T22:09:39.757Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/exams/ct-2024-01-08.html</loc>
+    <lastmod>2024-06-27T21:56:33.898Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/cours-faq.html</loc>
@@ -101,20 +193,12 @@
     <lastmod>2024-06-26T11:51:06.964Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/layout-pagila-film.html</loc>
-    <lastmod>2024-06-26T11:51:06.960Z</lastmod>
-  </url>
-  <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td9.html</loc>
     <lastmod>2024-06-26T11:51:06.968Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/nycflights-schema.html</loc>
-    <lastmod>2024-06-26T11:51:06.964Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/nycflights_bis_sql_ddl.html</loc>
-    <lastmod>2024-06-26T11:51:06.964Z</lastmod>
+    <lastmod>2024-06-27T20:12:22.752Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td-fonction1.html</loc>
@@ -125,19 +209,15 @@
     <lastmod>2024-06-26T11:51:06.968Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/td-admin.html</loc>
+    <loc>https://s-v-b.github.io/MA15Y030/workshops/td-recap-sql.html</loc>
     <lastmod>2024-06-26T11:51:06.964Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/villes_layout.html</loc>
-    <lastmod>2024-06-26T11:51:06.968Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/cours-syllabus.html</loc>
+    <lastmod>2024-06-26T19:04:54.387Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/layout-world.html</loc>
-    <lastmod>2024-06-26T11:51:06.960Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-1.html</loc>
-    <lastmod>2024-06-26T11:51:06.960Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-2.html</loc>
+    <lastmod>2024-06-28T08:59:40.080Z</lastmod>
   </url>
 </urlset>
