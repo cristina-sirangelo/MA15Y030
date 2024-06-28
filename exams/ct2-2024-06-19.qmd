@@ -1,0 +1,661 @@
+---
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: true
+    code-fold: false
+    toc: false
+    output-file: ct-2024-06-19.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données \\\\ CT 2024-06-19 14h-16h}}"
+  html:
+    standalone: true
+    code-fold: true
+    output-file: ct-2024-06-19.html
+params:
+    year: 2023 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+engine: knitr
+execute: 
+  eval: true
+  echo: false
+  include: false
+---
+
+
+```{r}
+#| message: false
+#| warning: false
+library(glue)
+library(lubridate)
+```
+
+::: {layout="[80,20]"} 
+
+::: {#first-column}
+
+
+
+- **`r stringr::str_glue('{params$curriculum}')`** 
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+
+![](/images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+
+:::
+
+:::
+
+
+
+::: {.content-hidden when-profile="solution"}
+
+::: {.callout-caution}
+
+- Pas de documents autorisés
+- Pas de téléphone portable 
+
+:::
+
+:::
+
+::: {.callout-warning}
+
+Les requêtes portent sur 
+le schéma `nycflights` légèrement nettoyé. 
+
+:::
+
+
+![NYCFlights en relationel à pattes de corbeau](/images/nycflights_layout_crop.png){width="80%"}
+
+{{< pagebreak >}}
+
+<!-- {{< include nycflights_layout.qmd >}} -->
+
+
+{{< include ../workshops/_nycflights_bis_sql_ddl.qmd >}}
+
+
+
+
+Dans le schéma `nycflights`, on a aussi les dépendances fonctionnelles suivantes:
+
+Table `airports`
+
+- `faa`, `name`, et `(lon, lat)` sont des clés. 
+
+Table `airlines`
+
+- `carrier` et `name` sont des clés
+
+Table `weather`
+
+- `origin, time_hour` est une clé
+- `time_hour → year, month, day, hour`
+- `year, month, day, hour  → time_hour`
+
+Table `planes`
+
+- `tailnum` est une clé
+- `model → manufacturer, engines, engine, type`
+
+Table `flights`
+
+- `tailnum, time_hour → carrier`
+- `time_hour → sched_dep_time`
+- `sched_dep_time, dep_time → dep_delay`
+- `sched_arr_time, arr_time → arr_delay`
+- `origin, dest, dep_time, arr_time → airtime`
+- `time_hour → year, month, day, hour, minute`
+- `year, month, day, hour, minute → time_hour`
+- `origin, dest → distance`
+- `(tailnum, origin, time_hour)` est une clé
+- `(flight, dest, origin, year, month, day)` est une clé
+
+
+<!-- Pour chaque exercice -->
+
+::: {.content-hidden}
+
+::: {.callout-note title="Exercice : Modélisation" icon="false"}
+
+<!-- Énoncé --> 
+
+Le schéma entité-association est une tentative de rétro-ingénieurie du schéma 
+relationnel `nycflights`.
+
+![](../images/nycflight_er.png){width="70%" fig-align="right"}
+
+
+:::
+
+
+:::
+
+
+::: {.content-hidden}
+
+
+::: {.callout-note}
+
+### `r glue::glue("Question")`
+
+
+
+Proposez une variation de la représentation de l'entité `plane` où 
+on définit une entité `model` (dont les instances seraient par exemple `Airbus A350`, `Boeing 777`, ...), et où chaque avion/aéronef serait considéré comme une réalisation d'une instance de `model`). 
+
+Préciser la nature de l'association entre `plane`  et `model` et les cardinalités.
+
+Précisez la répartition des attributs entre `plane` et `model`.
+
+:::
+
+
+:::
+
+::: {.content-visible when-profile="solution"}
+::: {.callout-tip title="Solution"}
+
+
+:::
+:::
+
+<!-- {{< pagebreak >}} -->
+
+<!-- Pour chaque exercice -->
+::: {.content-hidden}
+
+::: {.callout-note title="Exercice : Normalisation" icon="false"}
+
+<!-- Énoncé --> 
+
+```{r}
+q_count <- 1
+```
+
+:::
+:::
+
+::: {.content-hidden}
+
+::: {.callout-note}
+
+### `r glue::glue("Question {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+Pour chaque table, préciser si elle est en FNBC ou non.
+
+:::
+
+:::
+
+::: {.content-visible when-profile="solution"}
+::: {.callout-tip title="Solution"}
+
+
+:::
+:::
+
+::: {.content-hidden}
+
+::: {.callout-note}
+
+### `r glue::glue("Question {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+
+
+:::
+:::
+
+
+::: {.content-visible when-profile="solution"}
+::: {.callout-tip title="Solution"}
+
+
+
+:::
+:::
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+::: {.callout-note title="Exercice : Requêtes  (schéma `nycflights`)" icon="false"}
+```{r}
+q_count <- 1
+```
+:::
+
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- Énoncé --> 
+<!-- jointure + requête imbriquée -->
+Pour chaque couple origine/destination, lister les caractéristiques de l'avion le plus rapide sur la liaison. 
+
+:::
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+WITH R As (
+  SELECT f.origin, f.dest, f.tailnum, RANK() OVER w AS rnk
+  FROM flights AS f
+  WHERE f.airtime IS NOT NULL
+  WINDOW w AS (PARTITION BY f.origin, f.dest ORDER by f.airtime DESC)
+) 
+
+SELECT R.origin, R.dest, p.* 
+FROM (SELECT * FROM R WHERE R.rnk=1) AS S 
+  JOIN planes as p 
+  ON (R.tailnum=p.tailnum) ;
+```
+
+
+```{.sql}
+WITH R As (
+  SELECT f.origin, f.dest, min(f.airtime) as min_time
+  FROM flights AS f
+  WHERE f.airtime IS NOT NULL
+  GROUP BY f.origin, f.dest 
+), S AS (
+  SELECT f.origin, f.dest, f.tailnum
+  FROM flights AS f NATURAL JOIN R 
+  WHERE f.airtime = R.min_time
+)
+
+SELECT S.origin, S.dest, p.* 
+FROM S  
+  JOIN planes as p 
+  ON (S.tailnum=p.tailnum) ;
+```
+
+:::::
+
+:::
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- Énoncé --> 
+<!-- Énoncé --> 
+<!-- jointure + agregation -->
+
+Pour chaque aéroport d'origine, déterminer pour chaque heure de la jourńee, les températures maximales et minimales
+
+:::
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+WITH o AS (
+  SELECT DISTINCT f.origin
+  FROM flights as f 
+)
+SELECT w.origin, w.hour, MAX(w.temp), MIN(w.temp)
+FROM o NATURAL JOIN weather w 
+GROUP BY w.hour ;
+```
+
+
+:::::
+
+:::
+
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- deux jointures ou plutôt une requête imbriquée et une jointure  -->
+
+Pour chaque aéroport d'origine, pour chaque température enregistrée en début d'heure, arrondie à l'entier le plus proche, indiquer la proportion de vols avec un retard supérieur à 30 mn au décollage.
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+WITH R AS (
+  SELECT f.origin, f.year. f.month, f.day, f.hour, f.flight, f.dep_delay, ROUND(w.temp, 0) as t
+  FROM flights f JOIN weater w ON
+    (f.origin=w.origin AND 
+     f.year=w.year AND 
+     f.month=w.month AND
+     f.day=w.day AND 
+     f.hour=w.hour)
+)
+
+SELECT f.origin, f.t, SUM(f.dep_delay > 30)/COUNT(*) AS p
+FROM R AS f 
+GROUP BY f.origin, f.t ;
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- Énoncé --> 
+<!-- agrégation  simple  -->
+
+Pour chaque aéroport de destination, lister les modèles d'avion qui ont atterri au moins une fois dans cet aéroport.
+
+:::
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+SELECT DISTINCT(f.dest, p.models)
+FROM flights f JOIN planes p ON (f.tailnum=p.tailnum) ;
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- Énoncé --> 
+<!-- agrégation + filtrage sur agrégation + jointure -->
+
+Pour chaque modèle d'avion, lister pour chaque semaine, le nombre de vols efectivement réalisés.
+
+
+:::
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+SELECT p.model, DATE_PART('week', f.time_hour) AS semaine, COUNT(*) AS n
+FROM flights f JOIN planes p ON (f.tailnum=p.tailnum)
+WHERE f.dep_time IS NOT NULL 
+GROUP BY p.model, DATE_PART('week', f.time_hour) AS semaine ; 
+```
+
+:::::
+
+:::
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- Énoncé --> 
+<!-- fonction fenetre  -->
+
+Quelles sont les destinations qui ne sont pas desservies le jeudi ?
+
+
+:::
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+WITH R AS (
+  SELECT DISTINCT f.dest
+  FROM flights f
+  WHERE DATE_PART('week', f.time_hour) = 'Thursday'
+), S AS (
+  SELECT DISTINCT f.dest
+  FROM flights f
+)
+
+SELECT * FROM S
+
+EXCEPT
+
+SELECT * FROM R; 
+```
+
+:::::
+
+:::
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- Énoncé --> 
+Quelles sont les villes desservies par une seule compagnie le dimanche ?
+
+:::
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+SELECT f.dest
+FROM flights f
+WHERE DATE_PART('week', f.time_hour) = 'Sunday'
+GROUP BY f.dest
+HAVING COUNT(DISTINCT f.carrier) = 1 ;
+
+```
+
+{{< fa hand-point-right >}} L'utilisation d'une clause `WITH` (Common Table Expression) plutôt que d'une requête imbriquée rend le code plus lisible. 
+
+{{< fa hand-point-right >}} Dans la réponse, nous donnons plus que ce qui était demandé. On aurait pu se contenter de ;
+
+```{.sql}
+...
+
+
+```
+
+:::::
+
+:::
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- Énoncé --> 
+<!-- division -->
+
+Quelles sont les compagnies pour lesquelles le retard médian au décollage est supérieur à 15 minutes ?
+
+
+:::
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+SELECT f.carrier
+FROM flights f
+WHERE f.dep_delay IS NOT NULL
+GROUP BY f.carrier
+HAVING MEDIAN(f.dep_delay) > 15 ;
+```
+
+:::::
+
+:::
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- Énoncé --> 
+<!-- Division avec fonction fenetre -->
+
+Quelles sont les destinations qui sont desservies quotidiennement par une compagnie ?
+
+
+
+:::
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+
+```
+
+
+
+
+
+:::::
+
+:::
+
+::: {.callout-note}
+
+### `r glue::glue("Requête {q_count}")`
+
+```{r}
+#| code: "q_count <-  q_count + 1"
+```
+
+<!-- Énoncé --> 
+<!-- fenêtres -->
+
+Quelles sont les compagnies qui exploitent des avions de tous les constructeurs ?
+
+
+:::
+
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+
+```
+
+:::::
+
+:::
+
+::: {.callout-tip}
+
+### Quelques conseils
+
+- Préférez les clauses `WITH` et les jointures aux requêtes imbriquées sauf si la requête imbriquée est très simple. C'est une question de lisibilité et donc souvent de correction.
+
+- Ne mélangez pas les fonctions fenêtres et les clauses `GROUP BY ...`
+
+```{.sql}
+SELECT ..., FOO() OVER w
+FROM R
+WINDOW w AS (PARTITION BY ... ORDER BY ...)
+GROUP BY ... ;  
+```  
+
+est tout simplement incorrect. 
+
+- Lorsque vous effectuez un partitionnement par `GROUP BY ...`, la clause `SELECT ...` est sévèrement contrainte, vous n'y trouverez que 
+  - les colonnes qui ont servi dans la clause `GROUP BY ...`, normalement elles devraient toutes y figurer
+  - des fonctions d'aggrégation, comme `COUNT(...)`, `SUM(...)`, `VAR(...)`  
+
+:::

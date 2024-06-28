@@ -1,0 +1,35 @@
+
+toc: true
+toc-depth: 2
+toc-collapse: 1
+toc-title: " "
+
+engine: knitr
+
+execute:
+  echo: true
+  eval: false
+  collapse: true
+
+callout-appearance: simple
+
+editor: 
+  markdown: 
+    wrap: 72
+
+
+format:
+  html:
+    highlight-style: zenburn
+    embed-resources: true
+  pdf:
+    highlight-style: arrow
+    documentclass: exam
+    classoption: [10pt,titlepage=false]
+    keep-tex: false
+    include-in-header:
+      - file: ./macros.tex
+    include-before-body: 
+      - text: "\\renewcommand{\\contentsname}{}"
+
+prefer-html: true

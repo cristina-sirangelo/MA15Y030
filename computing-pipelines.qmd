@@ -5,8 +5,7 @@ editor: visual
 
 
 
-### Query a database using `R` (through ODBC)
+# Interroger une base de données avec  `R` (via ODBC)
 
 
-
-
+# Interroger une base de données avec  `Python` (via ODBC)

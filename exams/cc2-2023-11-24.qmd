@@ -1,0 +1,262 @@
+---
+format:
+  pdf:
+    code-annotations: below
+    code-fold: false
+    toc: false
+    output-file: cc2-2023-11-24.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données (BD5) \\\\ CC 2023-24: 2}}"
+  html:
+    standalone: true
+    code-fold: true
+    output-file: cc2-2023-11-24.html
+params:
+    year: 2023
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+---
+
+
+```{r}
+#| include: false
+```
+
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+
+
+- **CC 2** 2023-11-24 16h30-18h45
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](/images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+::: {.content-hidden when-profile="solution"}
+::: {.callout-caution}
+
+- Pas de documents autorisés
+- Pas de téléphone portable 
+
+:::
+:::
+
+```{r}
+#| include: false
+```
+
+
+::: {.callout-tip}
+Pour chaque question, proposer une requête écrite en algèbre relationnelle ou en `SQL`. 
+:::
+
+
+::: {.callout-note  title="Question 1"}  
+
+Dans le schéma `world`, lister les pays où les dix plus grandes villes ont chacune 
+au moins 10 millions d'habitants. 
+
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+```{.sql}
+SELECT ci.countrycode
+FROM world.city ci 
+WHERE ci.population_city > 10000000
+GROUP BY ci.countrycode 
+HAVING COUNT(ci.id) >= 10 ;
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note  title="Question 2"}  
+
+Dans le schéma `world`, pour chaque pays, donner les trois langues les plus parlées.  
+ 
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+
+```{.sql}
+WITH R AS (
+  SELECT cl.countrycode, cl.language, RANK()   OVER w AS rnk 
+  FROM world.countrylanguage cl 
+  WINDOW w AS (PARTITION BY cl.countrycode ORDER   BY cl.percentage DESC)
+)
+
+SELECT R.countrycode, R.language
+FROM R
+WHERE R.rnk <= 3 ;
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note  title="Question 3"}  
+
+Dans le schéma `world`, lister les langues parlées sur tous les continents. 
+
+:::
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+
+```{.sql}
+
+```
+
+:::::
+
+:::
+
+::: {.callout-note  title="Question 4"}  
+
+
+Dans le schéma `world`, lister par région le nombre de langues officielles distinctes.
+
+
+:::
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+
+```{.sql}
+SELECT co.region, COUNT(DISTINCT cl.language) AS n
+FROM world.countrylanguage cl NATURAL JOIN world.country co 
+WHERE cl.isofficial
+GROUP BY co.region
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note  title="Question 5"}  
+
+Dans le schéma `world`, lister pour chaque forme de gouvernement, la population des villes des pays qui subissent cette forme de gouvernement.
+
+
+:::
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+
+```{.sql}
+SELECT co.governmentform, SUM(ci.population_city) AS pop
+FROM world.country co JOIN world.city ci 
+  ON (co.countrycode=ci.countrycode)
+GROUP BY co.governmentform ;
+```
+
+:::::
+
+:::
+
+
+
+::: {.callout-note  title="Question 6"}  
+
+Dans le schéma `world`, lister les pays où la capitale est 
+la ville la plus peuplée.
+
+
+:::
+
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+
+```{.sql}
+WITH R AS (
+  SELECT  co.country, ci.id, ci.population_city
+  FROM world.country co JOIN world.city ci 
+  ON (co.capital=ci.id)
+)
+
+SELECT R.countrycode, R.id, 
+FROM R co JOIN world.city ci 
+  ON (co.countrycode=ci.countrycode)
+GROUP BY R.id, R.countrycode 
+HAVING co.population_city >= MAX(ci.population_city);
+```
+
+:::::
+
+:::
+
+
+::: {.callout-note  title="Question 7"}  
+
+Dans le schéma `world`, lister les pays où $90\%$ de la population
+parle une langue officielle (il peut y avoir plusieurs langues
+officielles, dont la somme des locuteurs et locutrices dépasse
+$90\%$ de la population).
+
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::::: {.callout-tip title="Solution"}
+
+
+```{.sql}
+SELECT cl.countrycode
+FROM world.countrylanguage cl 
+WHERE cl.isofficial
+GROUP BY cl.countrycode
+HAVING SUM(cl.percentage) >= 90 ;
+```
+
+:::::
+
+:::
+
+
+{{< pagebreak >}}
+
+
+Toutes les questions portent sur le schéma `world`.
+
+
+![Schéma `world`](/images/world.png){width=8cm}
+

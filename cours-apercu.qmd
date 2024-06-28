@@ -3,7 +3,7 @@ title: "MA15Y030: Introduction aux Bases de Données"
 about:
   id: hero-heading
   template: trestles
-  image: images/logo.png
+  image: images/team/ritratto.jpg
   image-width: 10em
   image-shape: round
   links:

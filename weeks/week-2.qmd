@@ -13,25 +13,25 @@ editor: source
 
 ## Préparer
 
-
+Finir requêtes du TD 1 [TD 1](/workshops/td1.html) 
 
 ## Cours magistral : diapositives
 
-[Introduction aux Bases de Données](/slides/BD_intro.html)
-
 [Introduction à l'algèbre relationnelle](/slides/SQL_0.html)
 
-## Exercices : TD 1
+[SQL requêtes élémentaires](/slides/SQL_1.html)
 
-[html](/workshops/td1.html)  [pdf](/workshops/td1.pdf)
 
-<!-- ## Solutions : TD 1
+## Exercices : TD 2
 
-[html](/solutions/workshops/td1.html)  [pdf](/solutions/workshops/td1.pdf) -->
+[html](/workshops/td2.html)  [pdf](/workshops/td2.pdf)
+
+## Solutions du  TD 1  (Semaine 1)
+
+[html](/solutions/workshops/td1.html)  [pdf](/solutions/workshops/td1.pdf)
 
 
 ## Travail personnel
-
 
 [CC 1 2023-24](/exams/cc1-2023-10-27.html)
 

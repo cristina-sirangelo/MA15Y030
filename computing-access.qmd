@@ -1,8 +1,22 @@
 ---
-title: "Computing access"
+title: "Moyens de calcul"
 ---
 
-To access computing resources for the introductory data science courses offered by the Duke University Department of Statistical Science, go to the [Container Manager]() website, .
+
+# Serveur 
+
+- Serveur `PostGreSQL`
+- Machine dédiée
+
+
+# Clients 
+
+- `psql`
+- `pgcli`
+- `dbeaver`
+
+# Connexions `ssh`
+
 
 
 

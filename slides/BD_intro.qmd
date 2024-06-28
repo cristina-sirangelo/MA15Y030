@@ -1,0 +1,581 @@
+---
+title: "BD I: Introduction aux SGBD"
+subtitle: "Bases de Données Licences MIASHS et Mathématiques"
+author: "Équipe BD"
+institute: "Université Paris Cité"
+date: "2024-06-23"
+
+execute: 
+  echo: true
+  eval: false
+---
+
+
+  
+
+# Données ? {background-color="#1c191c"}
+
+
+
+## Les données en Sciences Sociales 
+
+Pourquoi ?
+
+
+De quoi sont faites les données ?
+
+
+
+Comment les accumuler ?
+
+
+
+Comment les interroger ?
+
+
+
+Comment les conserver ? les éditer ?
+
+
+
+## Sources
+
+*Data humanities with R.* Arnold and Tilton 
+
+*Quantitative tour at social sciences* Gelman and ?
+
+Humanités numériques 
+ 
+
+- Constitution
+
+- Acquisition
+
+- Usage(s)
+
+- Maintenance 
+
+
+## Les données de l'entreprise/des administrations
+
+:::::: {.columns}
+::: {.column}
+
+- La comptabilité
+
+- Les stocks (ERP)
+
+- La clientèle (CRM)
+
+- ...
+
+:::
+
+::: {.column}
+
+TODO
+
+:::
+::::::
+
+
+
+
+
+
+## La vie des données 
+
+- Saisie
+
+- Traitement(s)
+
+- Usage(s)
+
+- Archivage 
+
+- Maintenance
+
+
+
+## Les enjeux 
+
+
+
+
+## Avant-hier
+
+:::::: {.columns}
+::: {.column}
+
+
+  
+Les entreprises et les administrations ont toujours cultivé une mémoire
+sous forme de *fichiers* plus ou moins mécanisés et formattés.
+
+Ces collections de fichiers mécanisées répondaient à des exigences de
+*fiabilité*, de *convenance* (facilité de la recherche, de
+la maintenance)
+
+
+:::
+::: {.column}
+
+
+
+![](/images//pexels-mike-1181772.jpg)
+
+
+
+
+
+:::
+::::::
+
+
+
+
+
+## Aujourd'hui
+
+
+Explosion des volumes 
+
+Besoins **mixtes**
+
+  
+
+# Systèmes d'information  {background-color="#1c191c"}
+
+
+
+
+
+## Systèmes d'information (SI) et Bases de Données (BD, SGBD, SGBDR)
+
+
+Au coeur des systèmes d'information (modernes) on trouve les **bases de données**
+
+
+
+
+
+
+
+## Des propriétés désirables (ACID)
+
+Quelle que soit la forme, on souhaite avoir :
+
+
+- **A**tomicité : chaque ajout/modification d'information doit
+  former un tout cohérent.
+Si tout se passe correctement, les actions de la transaction sont toutes validées, sinon
+on retourne à l'état initial.
+L'unité de travail est indivisible. Une transaction ne peut être partiellement effectuée.
+
+-   **C**ohérence : le contenu de la base de données doit rester
+  conforme à des *contraintes* qui ont été définies lors de la
+  *conception* de la base
+
+-   **I**solation : la bases de données doit pouvoir être utilisée
+  concurremment par plusieurs usagers
+
+-   **D**urabilité : la vie d'une base de données s'étale sur
+  plusieurs dizaines d'années
+
+
+
+  
+
+# Bases de données et (autres) logiciels {background-color="#1c191c"}
+
+
+
+
+## Bases de **données**  
+
+<!-- {{< fa database >}} -->
+
+<!-- {{< fa question >}}  -->
+
+Qu'est-ce que c'est ?
+
+Ce sont des logiciels intermédiaires (*middleware*) entre :
+
+- Systèmes de gestion de fichiers/Systèmes d'exploitation
+
+- Applications (CRM, ERP, CMS, ...)
+
+
+
+Les bases de données ne sont pas (simplement) un *langage* (comme `JAVA`, 
+<!-- {{< fa r-project >}}, {{< fa python >}})  -->
+ou un
+environnement de calcul 
+<!-- (comme {{< fa r-project >}}, {{< fa python >}}) -->
+
+
+
+  
+
+# Bases de données (relationnelles)  {background-color="#1c191c"}
+
+
+
+Toutes les bases de données ne sont pas relationnelles
+
+Les **Bases de données relationnelles** forment un sous-ensemble important (et même prépondérant) des systèmes de
+gestion des bases de données en entreprise
+
+
+
+
+
+
+## Collection de tables/`data frame`s
+
+Caricaturalement :
+
+
+> Une base de données relationnelle est une collection de *tables*
+
+
+Les tables s'incarnent de plusieurs façons en informatique
+
+
+`R`, `Pandas`, les tableurs (`Excel` ...), offrent un environnement interactif de manipulation de données et un environnement de définition de données
+
+
+
+
+## Data frame 
+
+<!-- ({{< fa r-project >}}) -->
+
+- Un `dataframe` est une *liste* de *vecteurs* (colonnes)
+
+- Les vecteurs (colonnes) d'un `dataframe` sont tous de même longueur
+
+- Les éléments d'un vecteur sont d'un même type de base
+
+- Chaque vecteur a un nom et son propre type
+
+
+
+## Autres environments (`Excel`, `JAVA`, `Python`)
+
+<!-- {{< fa python >}} -->
+
+- Les `spreadsheet` des tableurs
+
+- Les `Dataframes`  de `Pandas` 
+<!-- ({{< fa python >}}) -->
+
+- Les tableaux d'objets en `JAVA`
+
+permettent de représenter ce que les `dataframes` représentent en `R`
+<!-- {{< fa r-project >}} -->
+
+
+
+
+## Les SGBD vont au delà : 
+
+Ils offrent:
+
+- **Persistance**
+
+> Entre deux *sessions* les données sont confiées au système de fichiers de l'ordinateur
+
+
+
+- **Intégrité**
+
+> Les données confiées au système de fichiers ne peuvent pas être altérées par d'autre logiciel
+
+
+
+- **Concurrence**
+
+Les données peuvent être manipulées/consultées/mises à jour de manière *concurrente* par plusieurs
+ou du moins par une grande quantité d' utilisateurs.
+
+
+
+
+
+
+## Usages
+
+- Sites web dynamiques
+
+
+-  Logiciels personnels
+
+Derrière certaines applications (gestion de photos, de carnet
+d'adresses, ...), on trouve des bases de données légères
+(`SQLITE`)
+
+- Partout
+
+    - smartphones, tablettes, ...
+
+    - web, réseaux sociaux
+
+    - administrations (APOGEE, ...)
+
+    - entreprises (Stocks Supply Chain, Customer Relationship Management, ...)
+
+    - NSA
+
+
+
+
+
+  
+
+# L'idée relationnelle  {background-color="#1c191c"}
+
+
+
+
+## L'idée clé (Codd, 1970)
+
+Organiser les informations en **tables** ou **relations**
+
+
+
+Développer et formaliser un langage de manipulation de
+tables : l'algèbre relationnelle} (langage SQL, Structured Query Language)
+
+-  L'usager peut définir l'organisation des données
+
+-  Il peut interroger celles-ci (par des requêtes)
+
+-  Le langage est *déclaratif* :
+
+    -  On décrit ce que l'on veut obtenir (quoi mais pas comment)
+    -  Le système fait le reste...
+
+-  L'évaluation de toutes les requêtes s'arrête (au moins en théorie : si on y met les moyens...)
+
+-  L'algèbre relationnelle/SQL n'est pas un langage complet (différence avec  `JAVA`, `C`, `Python`, etc)
+
+
+{{< embed _codds-principles.qmd >}}
+
+
+
+## Quelques acteurs
+
+
+
+
+:::::: {.columns}
+::: {.column}
+
+
+**Serveurs**
+
+- [ORACLE (commercial)]()
+
+- [DB2 (IBM commercial)]()
+
+- [SQLSERVER (Microsoft commercial)]()
+
+- [MySQL (open source)]()
+
+- [**PostGres** (open source)](https://www.postgresql.org)
+
+- [Hana (commercial)]()
+
+
+:::
+
+::: {.column}
+
+**Clients**
+
+- [`psql`]()
+
+- [`pgcli`]()
+
+- [`dbeaver`]()
+
+- [`PgAdmin4`]()
+
+- ...
+
+
+:::
+::::::
+
+
+## PostGres (PostgreSQL)
+
+
+- Un **serveur** : `etu-pgsql`
+
+- Un **catalogue** : `bd_2023-24`
+
+- Des **schémas**: `world, pagila, nycflights13, ...`
+
+
+
+
+## Un exemple de schéma `world`
+
+Un schema
+
+Des schémas de table
+
+- `continent` : association nom de continent (texte)-code de continent (entier)
+
+- `country` : chaque tuple porte sur un état/territoire
+
+- `city` : chaque tuple porte sur une ville (déisgnée par `id`) qui appartient à un
+état/territoire désigné par `countrycode`
+
+- `countrylanguage` : chaque tuple indique la
+part de la population d'un état/territoire (désigné par `countrycode`) qui parle/connaît une langue
+(désignée par `language`) et précise si la langue est officielle dans cet état/territoire.
+
+
+
+
+
+
+
+
+
+## Détails du schema `world`
+
+![Image World](/images//world.png)
+
+Un schéma de table : la donnée des noms des colonnes et des types des colonnes
+
+
+
+
+
+
+## Quelques questions et propriétés typiques
+
+-  Extraire de l'information
+
+-  Assurer de la cohérence après modification
+
+	-  Faire en sorte que chaque état/territoire soit identifié par un numéro unique
+    -  Faire en sorte que chaque ville soit identifiée par un numéro unique
+    -  Ne pas proposer de données sur des villes/territoires/états qui n'existent pas
+
+
+-  Propager l'information
+
+    - Historiciser le schéma
+
+
+
+
+
+## Objectifs du cours
+
+
+- Compétences d'un usager de BD relationnelles
+
+- Exprimer des requêtes en algèbre relationnelle et en SQL
+
+- SQL Définition, manipulation et contrôle des données
+
+- Concevoir un Modèle Conceptuel de Données (Entités/Associations)
+
+- Déterminer les dépendances fonctionnelles et normaliser une relation
+
+
+
+
+
+## Plan du cours
+
+
+- Algèbre et calcul relationnels
+
+- SQL (algèbre relationnelle stricte)
+
+- SQL sous-requêtes
+
+- SQL agrégation
+
+- SQL requêtes paramétrées
+
+- Définition de données/Conception
+
+- Normalisation
+
+
+
+  
+
+# Autour des bases de données  {background-color="#1c191c"}
+
+
+
+
+## Entrepôts de données (Fin des années 1980)
+
+(Datawarehouse)
+
+> Un Data Warehouse est une technologie qui regroupe des données *structurées* provenant d'une ou de plusieurs sources afin qu'elles puissent être comparées et analysées.
+
+<!-- {{< fa hand-point-right >}}  -->
+
+[Entrepôt_de_données sur Wikipedia](https://fr.wikipedia.org/wiki/Entrepôt_de_données)
+
+
+## Lacs de données (2010)
+
+(Datalake)
+
+> Le concept de Data Lake a été évoqué pour la première fois, en 2010, par James Dixon, comme une solution pour le stockage de données sans pré-traitement et sans connaître précisément l'usage futur qui en sera fait. L'image du lac, permettant d'expliquer, que différentes sources peuvent l'alimenter de manière naturelle et brute, et que les utilisateurs peuvent y plonger pour l'explorer et en rapporter des échantillons à examiner
+
+
+
+## Au delà du relationnel: No SQL
+
+
+> Ce sont les grandes entreprises du web amenées à traiter des volumes de données très importants qui ont été les premières confrontées aux limitations intrinsèques des SGBD relationnels traditionnels. Ces systèmes fondés sur une application stricte des propriétés ACID et généralement conçus pour fonctionner sur des ordinateurs uniques ont rapidement posé des problèmes d'extensibilité.
+
+> Afin de répondre à ces limites, ces entreprises ont commencé à développer leurs propres systèmes de gestion de bases de données pouvant fonctionner sur des architectures matérielles distribuées et permettant de traiter des volumes de données importants. Les systèmes propriétaires qui en ont résulté, Google (BigTable), Amazon (Dynamo (en)), LinkedIn (Voldemort), Facebook (Cassandra puis HBase), SourceForge.net (MongoDB), Ubuntu One (CouchDB), Baidu (Hypertable) ont été les précurseurs du modèle NoSQL.
+
+> Les performances restent bonnes avec la montée en charge en multipliant simplement le nombre de serveurs, solution raisonnable avec la baisse des coûts, en particulier si les revenus croissent en même temps que l'activité5. Les systèmes géants sont les premiers concernés : énormes quantités de données6, structuration relationnelle faible (ou de moindre importance que la capacité d'accès très rapide, quitte à multiplier les serveurs).
+
+> Un modèle typique en NoSQL est le système clé-valeur, avec une base de données pouvant se résumer topologiquement à un simple tableau associatif unidimensionnel avec des millions — voire des milliards — d'entrées. Parmi les applications typiques, on retrouve des analyses temps-réel, statistiques, du stockage de logs (journaux), etc.
+
+
+
+
+<!-- {{< fa hand-point-right >}}  -->
+
+[NoSQL](https://fr.wikipedia.org/wiki/NoSQL)
+
+
+
+
+## Lire plus 
+
+[Guy Harrison. Next Generation Databases. NoSQL, NewSQL, Big Data](https://scholar.google.com/scholar?hl=fr&as_sdt=0%2C5&q=harrison+next+generation+databases&oq=harrison+next+)
+
+
+```{r}
+#| echo: false
+#| eval: false
+knitr::include_url("http://guyharrison.squarespace.com/blog/tag/nosql")
+```
+
+<!-- {{< embed http://guyharrison.squarespace.com/blog/tag/nosql >}} -->
+
+
+
+
+# The End  {background-color="#1c191c"}
+
+

@@ -1,10 +1,11 @@
 project:
   type: website
+  output-dir: _site
 
 website:
   page-navigation: true
   title: "MA15Y030 - Automne 2024"
-  description: "Page maison for MA15Y030 - Bases de données, Licence MIASHS Automne  2024."
+  description: "Page maison pour MA15Y030 - Bases de données, Licence MIASHS Automne  2024."
   site-url: "https://s-v-b.github.io/MA15Y030/"
 
   repo-url: https://github.com/s-v-b/MA15Y030

@@ -1,0 +1,316 @@
+---
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: false
+    code-fold: false
+    toc: false
+    output-file: cc3-2022-10-21.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données (BD5) \\\\ CC 2022-23: 3}}"
+  html:
+    standalone: true
+    code-fold: true
+    output-file: cc3-2022-10-21.html
+params:
+    year: 2023 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+---
+
+
+```{r}
+#| include: false
+```
+
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](/images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::****
+
+:::
+
+Sur le serveur, dans votre schéma personnel (celui dont le nom est votre `username`), créer les fonctions `SQL` et vues correspondant aux cinq questions suivantes.
+
+## Popularité
+
+Écrire une fonction `SQL` nommée `cc_fonc_6` qui prend en argument une année  `yyyy` et un entier `n` et renvoie une table `(sexe TEXT, prenom TEXT, nombre int4, rang int4)` qui contient, selon la table `babynames.bebes`, les `n` prénoms les plus populaires (attribués) de l'année `yyyy` pour chaque sexe.
+
+::: {.callout-tip  collapse="false"}
+
+Réponse attendue pour `SELECT * FROM cc_fonc_6(1950, 5);` :
+
+```
++----+---------+------+----+
+|F   |MARIE    | 28093|   1|
+|F   |MARTINE  | 16288|   2|
+|F   |FRANÇOISE| 14735|   3|
+|F   |MONIQUE  | 14647|   4|
+|F   |NICOLE   | 12695|   5|
+|H   |JEAN     | 38353|   1|
+|H   |MICHEL   | 27957|   2|
+|H   |ALAIN    | 24048|   3|
+|H   |GÉRARD   | 18618|   4|
+|H   |BERNARD  | 18355|   5|
+```
+
+:::
+
+::: {.content-visible when-profile="solution"}
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+:::
+
+
+
+## Nombre de naissances
+
+Données dans le schéma `babynames`.
+
+Écrire une fonction `SQL` nommée `cc_fonc_7` qui prend en argument une année  `yyyy`  et renvoie le rapport entre le nombre total de naissances féminines et le nombre total de naissances masculines cette année là selon la table `babynames.bebes`.
+
+
+::: {.callout-tip}
+
+Réponse attendue pour `SELECT * FRON cc_fonc_7(1922);`
+
+```
++---------+
+|cc_fonc_7|
++---------+
+|     1.05|
+```
+
+NB:  précision demandée : 0.1
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+
+:::
+
+
+## Popularité relative et rang de popularité
+
+Données dans le schéma `babynames`
+
+Écrire une vue nommée `cc_vue_8` de schema
+```
+(sexe text, prenom text, annee integer, rang integer, popularite numeric)
+```
+qui donne pour chaque prénom, année, sexe, la popularité  relative (nombre sur nombre total de naissance de ce sexe cette année là) et le rang par popularité décroissante.
+
+
+::: {.callout-tip}
+
+Réponse attendue pour
+
+```
+SELECT *
+FROM cc_vue_8
+WHERE prenom='THÉO' AND
+      sexe = 'H' AND
+      annee >1999 AND
+      annee < 2005;
+```
+
+```
++----+------+-----+----+----------+
+|sexe|prenom|annee|rang|popularite|
++----+------+-----+----+----------+
+|H   |THÉO  | 2000|   6|     0.019|
+|H   |THÉO  | 2001|   6|     0.022|
+|H   |THÉO  | 2002|   5|     0.022|
+|H   |THÉO  | 2003|   5|     0.020|
+|H   |THÉO  | 2004|   7|     0.016|
+```
+
+
+NB:  précision demandée pour la popularité  0.01
+
+:::
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+
+:::
+
+
+## Requête fenêtre
+
+Données dans le schéma `world`
+
+Écrire une vue  nommée `cc_vue_9` de schéma:
+
+```{.sql}
+(region TEXT,
+ min_gnp_cap NUMERIC, poorest_country_name TEXT,
+ max_gnp_per_cap NUMERIC, richest_country_name TEXT)
+```
+
+où chaque ligne indique pour une région donnée, le minimum du PIB (`gnp`) par habitant, un des pays de la région où ce minimum est réalisé, le maximum du PIB par habitant et un des pays où ce maximum est réalisé.
+
+
+::: {.callout-tip}
+
+```{.sql}
+SELECT region, richest_country, poorest_country
+FROM cc_vue_9
+WHERE region='Eastern Asia' ;
+```
+
+```
++------------+---------------+---------------+
+|region      |richest_country|poorest_country|
++------------+---------------+---------------+
+|Eastern Asia|Japan          |North Korea    |
+```
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+
+:::
+
+## Fenêtre glissante
+
+Données dans le schéma `babynames`
+
+Créer une vue `cc_vue_10` de schéma `(prenom  TEXT, sexe TEXT, annee INTEGER, moy NUMERIC)` qui, pour chaque prénom, sexe et année, donne le nombre moyen d'attributions du prénom aux enfants du sexe en question durant l'intervalle formé par les deux années qui précèdent et les deux années qui suivent l'année courante (incluse).
+
+
+::: {.callout-tip collapse="true"}
+
+```{.sql}
+SELECT *
+FROM cc_vue_10
+WHERE prenom='PATRICK' AND
+      annee BETWEEN 1955 AND 1960 ;
+```
+
+```
++-------+----+-----+--------+
+|prenom |sexe|annee|moy     |
++-------+----+-----+--------+
+|PATRICK|F   | 1959|    3.00|
+|PATRICK|H   | 1955|20381.00|
+|PATRICK|H   | 1956|20673.80|
+|PATRICK|H   | 1957|20532.20|
+|PATRICK|H   | 1958|20173.80|
+|PATRICK|H   | 1959|19443.20|
+|PATRICK|H   | 1960|18479.60|
+```
+
+:::
+
+La manière la plus simple de répondre à cette question 10 est d'utiliser une *fenêtre glissante*. Les fenêtres glissantes étendent les fenêtres définies par `PARTITION BY ... ORDER BY ...`.
+
+La syntaxe de l'invocation des fonctions fenêtres est décrite dans la documentation [PostgreSQL](https://www.postgresql.org/docs/current/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS).
+
+L'invocation d'une fonction opérant sur une fenêtre suit la forme :
+
+```{.sql}
+function_name ([expression [, expression ... ]])
+      [ FILTER ( WHERE filter_clause ) ]
+      OVER ( window_definition )
+
+-- OU
+
+function_name ( * )
+      [ FILTER ( WHERE filter_clause ) ]
+      OVER ( window_definition )
+```
+
+Nous n'avons pas eu besoin d'utiliser la clause `FILTER (WHERE filter_clause)`
+
+La définition de la fenêtre  `window definition` est de la forme 
+
+```{.sql}
+[ PARTITION BY expression [, ...] ]
+[ ORDER BY expression [ ASC | DESC | USING operator ] [ NULLS { FIRST | LAST } ] [, ...] ]
+[ frame_clause ]
+```
+
+Rappel : une expression entre [] est optionnelle.
+
+La dernière clause optionnelle `frame_clause`  permet de calculer des fenêtres glissantes et d'autres types de fenêtres. Elle peut se décliner en
+
+```{.sql}
+{ RANGE | ROWS | GROUPS } frame_start [ frame_exclusion ]
+{ RANGE | ROWS | GROUPS } BETWEEN frame_start AND frame_end [ frame_exclusion ]
+```
+
+où `frame_start` (début du cadre/de la fenêtre) peut prendre les formes suivantes :
+
+```{.sql}
+UNBOUNDED PRECEDING  -- ou
+offset PRECEDING  -- ou
+CURRENT ROW   --ou
+offset FOLLOWING  -- ou
+UNBOUNDED FOLLOWING  -- ou
+```
+
+`frame_end`  se définit de la même manière.
+
+Si on veut calculer le nombre cumulé  d'attributions d'un prénom depuis l'origine des temps  on pourra procéder ainsi:
+
+```{.sql}
+WITH R AS (
+SELECT prenom, sexe, annee, SUM(nombre)
+      OVER (PARTITION BY prenom, sexe
+            ORDER BY annee
+            RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
+      as cumule
+FROM babynames.bebes
+)
+
+SELECT * FROM R
+WHERE prenom IN ('PATRICK', 'MICHEL') ;  -- pour limiter la taille du résultat
+```
+
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+
+:::

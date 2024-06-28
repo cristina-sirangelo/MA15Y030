@@ -1,0 +1,224 @@
+---
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: false
+    code-fold: false
+    toc: false
+    output-file: cc3-2022-10-14.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données (BD5) \\\\ CC 2022-23: 3}}"
+  html:
+    standalone: true
+    code-fold: true
+    output-file: cc3-2022-10-14.html
+params:
+    year: 2023 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+---
+
+
+```{r}
+#| include: false
+```
+
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](/images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+
+Sur le serveur, dans votre schéma personnel, créer les fonctions `SQL` et vues correspondant aux cinq questions suivantes.
+
+---
+
+## Les pays où l'on cause le ....
+
+
+Écrire une fonction `SQL` nommée `cc_fonc_1` qui prend en argument
+une chaine de caractères censée désigner une langue et renvoie une
+table `(name_country TEXT, pop_speakers int4)` qui contient les
+5 pays comportant le plus de locuteurs de la langue en question et 
+pour chaque pays le nombre estimé de locuteurs de la langue en question
+
+
+::: {.callout-tip   collapse="true"}
+
+Réponse attendue pour `%French%` :
+
+
+|name_country |pop_speakers|
+|:-------------|------------:|
+|France       |    55435254|
+|Canada       |     7288398|
+|Belgium      |     3337914|
+|Tunisia      |     2521118|
+|United States|     1948499|
+
+:::
+
+::: {.content-visible when-profile="solution"}
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+:::
+---
+
+## Pays peu concentrés sur les grandes villes
+
+
+Créer une vue `cc_vue_2` des  pays dont la population n'est pas nulle et où les cinq plus grandes villes  ne rassemblent pas plus du  **dixième** de la population. La vue aura pour schéma `(countrycode, name_country, portion)`
+
+::: {.callout-tip}
+
+Réponse attendue pour
+
+```{.sql}
+SELECT * 
+FROM username.cc_vue_2 cv 
+WHERE cv.countrycode  IN (
+ SELECT c.countrycode 
+ FROM world.country c 
+ WHERE region='Eastern Africa'
+) ;
+```
+
+
+|countrycode  |name_country | portion    |
+|:-----------:|:------------|-----------:|
+|MDG          |Madagascar  | 0.07045295|
+|MWI          |Malawi      | 0.08367222|
+|BDI          |Burundi     | 0.04480956|
+|COM          |Comoros     |0.062283736|
+|TZA          |Tanzania    |0.071704924|
+|MYT          |Mayotte     | 0.08053691|
+|UGA          |Uganda      |0.040903665|
+|RWA          |Rwanda      |0.036984354|
+|ETH          |Ethiopia    |0.047906272|
+
+:::
+
+::: {.content-visible when-profile="solution"}
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+:::
+
+---
+
+##  La cinquième ville la plus peuplée dans chaque pays
+
+Écrire une fonction de `cc_fonc_3` langage  `SQL` qui prend en argument
+une chaine de caractères censée désigner un pays par son nom et   renvoie le nom de la cinquième ville la plus peuplée du pays (type de `name_city`),  et la part de la population du pays qui réside dans cette ville (type `float4`).
+
+::: {.callout-tip}
+
+Réponse attendue pour 
+
+```{.sql}
+SELECT name_city, prop 
+FROM username.cc_fonc_3('Italy') ;
+```
+
+
+|name_city|prop       |
+|:---------|-----------:|
+|Palermo  |0.011854959|
+
+:::
+
+::: {.content-visible when-profile="solution"}
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+:::
+
+---
+
+## La population des deux villes les plus peuplées de chaque pays
+
+Créer une vue `cc_vue_4` qui liste par pays, le nombre d'habitants des deux villes les plus peuplées.  La vue aura pour schéma `(name_contry text, pop_two_cities int4)`.
+
+::: {.callout-tip}
+
+Réponse attendue pour 
+
+```{.sql}
+SELECT * 
+FROM username.cc_vue_4 
+WHERE name_country = 'France' ;
+```
+
+
+|name_country|pop_two_cities|
+|:------------|-------------:|
+|France      |       2923676|
+
+:::
+
+::: {.content-visible when-profile="solution"}
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+:::
+
+---
+
+## Pays où deux langues sont parlées par au moins un dixième de la population
+
+Créer une vue `cc_vue_5` des pays où au moins deux langues sont (chacunes) parlées par au moins un dixieme  de la population.  La vue aura même schema que `world.country`.
+
+
+::: {.callout-tip}
+
+```{.sql}
+SELECT countrycode, name_country  
+FROM username.cc_vue_5 
+WHERE region='Eastern Europe' ;
+```
+
+
+|countrycode|name_country  |
+|:----------:|:--------------|
+|CZE        |Czech Republic|
+|BLR        |Belarus       |
+|MDA        |Moldova       |
+|UKR        |Ukraine       |
+|SVK        |Slovakia      |
+
+:::
+
+::: {.content-visible when-profile="solution"}
+::: {.callout-tip title="solution"}
+
+TODO 
+
+:::
+:::

@@ -1,0 +1,276 @@
+---
+title: "BD : Nettoyage de NYCFlights"
+
+
+execute:
+  eval: false
+  echo: true
+---
+
+```{.r, include=FALSE}
+library(DBI)
+require(dbplyr)
+require(tidyverse)
+
+db <- dbConnect(RPostgreSQL::PostgreSQL(), 
+                user="boucheron",
+                password=rstudioapi::askForPassword("Database password"),
+                host="localhost",
+                port=5434,
+                dbname = "bd_2023")
+
+knitr::opts_chunk$set(connection = "db")
+```
+
+
+
+```{sql, connection=db}
+SELECT * FROM nycflights13.airlines
+```
+
+
+```{sql, connection=db}
+SELECT * 
+FROM nycflights13.planes 
+LIMIT 10
+```
+
+# Exploration des valeurs manquantes 
+
+---
+
+```{sql, connection=db}
+SELECT *  
+FROM nycflights13.flights 
+LIMIT 10 ;
+```
+
+```{sql, connection=db}
+SELECT COUNT(*)  
+FROM nycflights13.flights  f1 JOIN nycflights13.flights  f2
+ON (f1.flight=f2.flight AND f1.carrier = f2.carrier AND f1.origin<> f2.origin) ;
+```
+
+---
+
+```{sql, connection=db}
+WITH R AS (
+  SELECT f1.flight, f1.carrier, 
+    COUNT(DISTINCT f1.dest)  AS n_dest, 
+    COUNT(DISTINCT f1.origin) AS n_origin
+  FROM nycflights13.flights  f1 
+  GROUP BY f1.flight, f1.carrier 
+  HAVING COUNT(DISTINCT f1.dest) > 1 OR COUNT(DISTINCT f1.origin) > 1
+)
+
+SELECT R.carrier, COUNT(*) AS n
+FROM R 
+GROUP BY R.carrier 
+ORDER BY n DESC;
+```
+
+---
+
+```{sql, connection=db}
+WITH R AS (
+  SELECT f1.carrier, f1.origin, f1.dest, f1.sched_dep_time, 
+    COUNT(DISTINCT f1.flight)
+  FROM nycflights13.flights  f1 
+  GROUP BY f1.carrier, f1.origin, f1.dest, f1.sched_dep_time 
+  HAVING COUNT(DISTINCT f1.flight) >  1
+) 
+
+SELECT carrier, COUNT(*)
+FROM R 
+GROUP BY carrier ;
+```
+
+---
+
+```{sql, connection=db}
+SELECT *
+FROM nycflights13.flights  f1  ;
+```
+
+---
+
+```{r}
+
+```
+
+```{r}
+flights2 <- tbl(db, in_schema('nycflights13','flights'))
+```
+
+---
+
+```{r}
+sk_flights <- flights2 |> 
+  skimr::skim() 
+```
+
+Colonnes avec valeurs manquantes 
+```{r}
+sk_flights |> 
+  filter(n_missing >0 )
+```
+
+Dépendances fonctionnelles 
+
+
+```{r}
+require(lubridate)
+
+flights2 |> 
+  filter(lubridate::year(time_hour) != year | 
+         lubridate::month(time_hour) != month| 
+         lubridate::day(time_hour) != day |
+         lubridate::hour(time_hour) != hour |
+         sched_dep_time / 100L  != hour |
+         sched_dep_time %% 100L  != minute ) |> 
+  head()
+```
+
+```{r}
+flights2 |> 
+  group_by(origin, dest) |> 
+  summarise(n_dist = n_distinct(distance), .groups="drop") |> 
+  filter(n_dist > 1) |>  
+  head()
+```
+
+
+```{r}
+flights2 |> 
+  filter(origin %in% c("EWR", "JFK"), dest=="EGE") |> 
+  select(carrier, origin, dest, distance) |> 
+  distinct() 
+```
+```{r}
+flights2 |> 
+  group_by(carrier, origin, wday(time_hour), sched_dep_time) |> 
+  summarise(n_flights= n_distinct(flight), n_dest=n_distinct(dest), .groups = "drop") |> 
+  filter( n_dest >1) |> 
+  group_by(carrier) |> 
+  summarise(n())
+```
+
+
+[https://en.wikipedia.org/wiki/Flight_number](https://en.wikipedia.org/wiki/Flight_number)
+
+
+```{r}
+res <- dbSendQuery(db, "
+    WITH R AS (
+SELECT f1.carrier, f1.origin, f1.dest, f1.sched_dep_time, COUNT(DISTINCT f1.flight)
+FROM nycflights13.flights  f1 
+GROUP BY f1.carrier, f1.origin, f1.dest, f1.sched_dep_time 
+HAVING COUNT(DISTINCT f1.flight) >  1) 
+SELECT carrier, COUNT(*)
+FROM R 
+GROUP BY carrier ;
+")
+```
+
+```{r}
+# dbListResults(db)
+dbFetch(res, n=10)
+dbClearResult(res)
+#dbDisconnect(db)
+```
+
+# Understanding `planes`
+
+```{r}
+planes2 <- tbl(db, in_schema('nycflights13','planes'))
+```
+
+Conjecture : `model` et `year`  déterminent d'autres attributs, comme `manufacturer`, `engines`, `engine`, `type`. 
+
+Pour une vingtaine de couples `(model, year)` ne détermine pas tous ces attributs. 
+
+Pour un couple, `(model, year)` ne détermine ni `manufacturer`, ni `engine`, ni `engines`. 
+Pour neuf couples,  `(model, year)` ne détermine ni `manufacturer` ni `engine`. 
+Pour un couple, `(model, year)` détermine 
+```{r}
+planes2 |> 
+  group_by(model, year) |> 
+  summarize(n_distinct(manufacturer),  n_distinct(engine), n_distinct(engines), n_distinct(type), .groups = "drop") |> 
+  filter(`n_distinct(manufacturer)`>1 |  `n_distinct(engine)`>1) |> 
+  arrange(desc(`n_distinct(engine)`))
+```
+
+```{sql, connection=db}
+SELECT model, year, 
+       array_agg(DISTINCT manufacturer) as manu, 
+       array_agg(DISTINCT engine) AS engie, 
+       array_agg(DISTINCT engines) AS engies
+FROM nycflights13.planes pl 
+GROUP BY model, year
+HAVING COUNT(DISTINCT manufacturer) >1 OR 
+       COUNT(DISTINCT engine) > 1 ;
+```
+
+```{r}
+planes2 |> 
+  filter(substr(model, 1, 5) =="A330-") |> 
+  select(model, manufacturer, engines, engine)
+
+planes2 |> 
+  filter(engine=="Turbo-jet")
+
+planes2 |> 
+  filter(substr(manufacturer, 1, 6) =="MCDONN") |> 
+  distinct(year, manufacturer,engine, model) |> 
+  arrange(year)
+
+```
+The last  tow lines look erroneous. `A330-xxx` have two engines of type `Turbo-fan`. The manufacturer   should be named `AIRBUS` (`AIRBUS INDUSTRIE` was the most frequent denomination until 2002).
+
+
+> What is the difference between a turbojet and a turbofan? The main difference between a turbofan and a turbojet is that all the air goes into the engine core (compressor, combustion chamber, turbine) in a turbojet. A turbofan uses the main elements of a turbojet but has a large fan at the front of the engine.
+
+```{sql, connection=db}
+CREATE TABLE nyc_flights.plane_models AS 
+SELECT DISTINCT model, year, manufacturer, engine, engines, type 
+FROM nycflights13.planes pl ;
+```
+
+```{sql,  connection=db}
+UPDATE nyc_flights.plane_models
+SET  manufacturer='AIRBUS', engine='Turbo-fan', engines=2
+WHERE model='A330-223' ;
+```
+
+```{r}
+planes3 <- tbl(db, in_schema('nyc_flights','plane_models'))
+```
+
+```{r}
+planes3 |> 
+  group_by(model, year) |> 
+  summarize(n_distinct(manufacturer),  
+            n_distinct(engine), 
+            n_distinct(engines), 
+            n_distinct(type), 
+            .groups = "drop") |> 
+  filter(`n_distinct(manufacturer)`>1 |  
+         `n_distinct(engine)`>1 ) |> 
+  arrange(desc(`n_distinct(engine)`))
+```
+
+```{sql, connection=db}
+UPDATE nyc_flights.plane_models
+SET  manufacturer='MCDONNELL DOUGLAS'
+WHERE manufacturer LIKE 'MCDONNELL DOUGLAS %' ;
+```
+
+```{r}
+planes3 |> 
+  filter(substr(manufacturer, 1, 6) =="MCDONN") |> 
+  distinct(year, manufacturer,engine, model) |> 
+  arrange(year)
+```
+
+
+# Fin

@@ -1,0 +1,40 @@
+---
+title: "BD V: Administration"
+---
+
+```{r}
+#| echo: false
+#| eval: false
+library(DBI)
+db <- dbConnect(RSQLite::SQLite(), dbname = "sql.sqlite")
+knitr::opts_chunk$set(connection = "db")
+```
+
+
+# Tâches administratives  {background-color="#1c191c"}
+
+
+---
+
+- Sauvegarde/Restauration
+- Réplication
+- Gestion des privilèges
+- Surveillance du serveur
+
+
+---
+
+# Les schémas utilisés pour l'administration  {background-color="#1c191c"}
+
+
+
+
+# Administration dans `psql`  {background-color="#1c191c"}
+
+
+
+
+
+
+
+# Fin {background-color="#1c191c"}

@@ -1,0 +1,50 @@
+
+author: Stéphane Boucheron
+institute: LPSM Université Paris-Cité
+
+format: 
+  revealjs:
+    theme: [default, "custom-rladies.scss"]
+    logo: /images/logo.png
+    highlight-style: arrow
+    code-fold: false
+    code-link: true
+    code-annotations: hover
+    slide-number: c/t
+    show-slide-number: all
+    smaller: false
+    scrollable: true
+    preview-links: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    title-slide-attributes:
+      data-background-color: "#1c191c"
+
+filters:
+  - d2
+d2:
+  layout: elk
+  theme: "GrapeSoda"
+
+execute: 
+  echo: true
+  eval: true
+
+
+toc: true
+toc-depth: 1
+toc-title: Roadmap
+center: true
+
+params:
+  title: "Introduction aux SGBD"
+  # curriculum: "Licence MIASHS"
+  coursetitle: "Bases de Données MA15Y030"
+  lecturer: "Equipe BD"
+  homepage: "http://s-v-b.gitub.io/MA15Y030/"
+  curriculum_homepage: "https://licence.math.univ-paris-diderot.fr/"
+
+
+engine: knitr
+
