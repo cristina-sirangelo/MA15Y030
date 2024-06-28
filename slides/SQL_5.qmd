@@ -1,0 +1,720 @@
+---
+title: 'BD : Fonctions et extension PlpgSQL de SQL'
+
+engine: knitr
+---
+
+
+
+
+
+
+
+# Fonctions plpgSQL: introduction et exemples  {background-color="#1c191c"}
+
+
+Pourquoi étendre SQL ?
+
+
+## Trois objectifs
+
+1. Automatisation de taches répétitives (administration)
+  - On veut répéter une même tache sur une collection de schémas
+  - On veut traiter une collection de roles
+  - 
+2. Calculs impossibles à  réaliser en SQL : 
+  - Calculer la *fermeture transitive* d'une relation comme `film_actors`  
+  - L'algèbre relationnelle est un modèle de calculabilité restreint·
+  
+3. `Triggers`
+  - Certaines contraintes ne peuvent pas être mises en place avec les seules constructions `primary key` , `unique`, `foreign key`, `check` et `exclude` (notamment des contraintes d'exclusion qui mettent en jeu plusieurs tables). 
+  - On peut les maintenir à l'aide de traitements spéciaux :  les `triggers`
+  - Les triggers reposent sur des fonctions spéciales
+
+. . .
+
+Extensions procédurales de SQL
+
+`plpgsql` : *Programming Language PostGres SQL*
+
+
+
+
+
+
+## Automatisation des tâches répétitives : deux outils nécessaires
+
+Lorsqu'on administre une base, on doit souvent engendrer des *requêtes dynamiques* à l'intérieur
+d'une fonction `PL/pgSQL`, c'est à dire des commandes qui vont
+concerner des tables ou des types différents à chaque exécution
+
+Les *requêtes préparées* sont alors très utilement combinées avec les
+*structures de contrôle* (itérations, alternatives) pour
+automatiser les tâches !
+
+. . .
+
+
+{{< fa screwdriver-wrench >}} 2 outils (pour étendre SQL) :
+
+-   requêtes dynamiques `EXECUTE, PREPARE`
+-   structures de contrôles `IF, LOOP, ...` *Transforment SQL en un langage de programmation*
+
+---
+
+On commence par des exemples !
+
+
+# Un premier cas : fonctions issues du schéma `sakila`  {background-color="#1c191c"}
+
+## Fonction `inventory_in_stock()`
+
+Objectif : calculer si un dvd est en stock ou pas
+
+Un DVD est en stock
+
+- s'il n'a jamais été loué 
+
+**OU**
+
+- si toutes les locations de ce DVD sont déjà terminées (`return_date` n'est pas nul)
+
+```{.sql}
+-- AN ITEM IS IN-STOCK IF THERE ARE EITHER NO ROWS IN THE rental TABLE
+-- FOR THE ITEM OR ALL ROWS HAVE return_date POPULATED
+```
+
+
+
+## Fonction `inventory_in_stock`  {.smaller}
+
+
+```{.sql}
+CREATE OR REPLACE FUNCTION sakila.inventory_in_stock(p_inventory_id integer)
+ RETURNS boolean
+ LANGUAGE plpgsql
+AS $function$
+DECLARE                 
+    v_rentals INTEGER;  #<<
+    v_out     INTEGER;  #<<
+BEGIN
+    SELECT count(*) INTO v_rentals  #<<
+    FROM rental
+    WHERE inventory_id = p_inventory_id;
+
+    IF v_rentals = 0 THEN   #<<
+      RETURN TRUE;          #<< 
+    END IF;                 #<<
+
+    SELECT COUNT(rental_id) INTO v_out     #<< 
+    FROM inventory LEFT JOIN rental USING(inventory_id)
+    WHERE inventory.inventory_id = p_inventory_id AND rental.return_date IS NULL;
+
+    IF v_out > 0 THEN
+      RETURN FALSE;
+    ELSE
+      RETURN TRUE;
+    END IF;
+END $function$ ;
+```
+
+---
+
+
+```{.sql}
+-- Permissions
+
+ALTER FUNCTION sakila.inventory_in_stock(int4) OWNER TO postgres;
+GRANT ALL ON FUNCTION sakila.inventory_in_stock(int4) TO postgres;
+```
+
+
+
+
+---
+
+## {{< fa hand-point-right >}}
+
+- `SELECT ... INTO ...`
+
+Le résultat de la requête est ici un entier, il est affecté à une
+variable locale comme `v_rentals`, `v_out`, ...  
+
+En `plpgsql`, le résultat d'une requête doit être mémorisé ou
+explicitement négligé en utilisant `PERFORM` plutôt que `SELECT` 
+
+
+- `IF ... THEN ...`
+
+Alternative, comme dans un langage de programmation ordinaire
+
+- `RETURN`
+
+Retourne le résultat et termine l'exécution de la fonction
+
+# Un deuxième cas : surveillance et maintenance  {background-color="#1c191c"}
+
+
+## Une tâche de surveillance/maintenance
+
+{{< fa bullseye >}}
+
+Déterminer pour chaque usager (*schéma*) le nombre de tuples dans
+la table `ville_pays` de cet usager.
+
+
+Pour chaque schéma `schema`, on veut évaluer une requête
+
+```{.sql}
+SELECT COUNT(*) 
+FROM schema.ville_pays ;
+```
+
+Ici `schema` doit être calculé en interrogeant le SGBD
+
+. . .
+
+Situation inédite :
+
+-  comment déterminer les schémas pertinents ?
+
+
+
+
+## La métabase : `information_schema` et `pg_catalog`
+
+On va s'aider des tables d'administration du SGBD
+
+Chaque usager correspond à un `role` et ce rôle correspond dans notre cas à un schema créé à partir du rôle via l'instruction
+
+```{.sql}
+CREATE SCHEMA AUTHORIZATION user_name ;
+```
+
+On a envie d'écrire une requête comme
+
+```{.sql}
+SELECT COUNT(*) FROM username.tournaments ; 
+```
+
+où `username` est collectée à partir de
+
+```{.sql}
+SELECT usename  FROM pg_catalog.pg_user ;
+```
+
+
+
+## Deux schémas pour l'administration : la **métabase**
+
+1. `information_schema`
+
+Ce schema contient l'information sur les `schémas` du
+cluster/catalogue :
+
+- les définitions de tables, de vues, de colonnes, les contraintes, ...
+- il est formé de tables et surtout de (très nombreuses) vues
+- les instructions, `CREATE, ALTER,  DROP` modifient le contenu de ce schéma (une seule instruction `ALTER  TABLE` peut engendrer plusieurs mises à jours dans les tables de `information_schema`
+
+
+2. `pg_catalog`
+
+Ce schema contient lui aussi beaucoup de tables et de vues utiles au
+fonctionnement du serveur
+
+
+
+## Exemple de vue de `pg_catalog` : `pg_user`
+
+
+::::: {.columns}
+
+::: {.column}
+
+Schéma
+
+```{verbatim}
++--------------+---------+-------------+
+| Column       | Type    | Modifiers   |
+|--------------+---------+-------------|
+| usename      | name    |             |
+| usesysid     | oid     |             |
+| usecreatedb  | boolean |             |
+| usesuper     | boolean |             |
+| userepl      | boolean |             |
+| usebypassrls | boolean |             |
+| passwd       | text    |             |
+| valuntil     | abstime |             |
+| useconfig    | text[]  |             |
++--------------+---------+-------------+
+```
+
+:::
+
+
+::: {.column}
+
+`pg_user` nous renseigne sur :
+
+- {{< fa user >}}  les usagers (`usename`)
+- {{< fa user-plus >}}  leur statut (`usesuper` : super-utilisateur ou pas)
+- {{< fa scale-balanced >}} leurs privilèges (`createdb` : peut créer une base ou non)
+
+
+:::
+
+:::::
+
+
+
+## Autre exemple d'usage de la métabase
+
+
+```{.sql}
+SELECT datname, application_name, client_addr, backend_start, state 
+FROM pg_catalog.pg_stat_activity psa 
+WHERE datname='bd_2023';                                               
+
++-----------+-------------------------------------------+---------------+-------------------------------+---------+
+| datname   | application_name                          | client_addr   | backend_start                 | state   |
+|-----------+-------------------------------------------+---------------+-------------------------------+---------|
+| bd_2023   | DBeaver 22.2.0 - Main <bd_2023>           | 127.0.0.1     | 2022-10-04 22:48:59.57231+02  | idle    |
+| bd_2023   | DBeaver 22.2.0 - Metadata <bd_2023>       | 127.0.0.1     | 2022-10-04 22:48:59.693656+02 | idle    |
+| bd_2023   | DBeaver 22.2.0 - SQLEditor <Script-4.sql> | 127.0.0.1     | 2022-10-04 22:48:59.958616+02 | idle    |
+| bd_2023   | pgcli                                     | <null>        | 2022-10-04 23:23:19.739258+02 | active  |
+| bd_2023   | pgcli                                     | <null>        | 2022-10-04 23:23:19.770006+02 | idle    |
++-----------+-------------------------------------------+---------------+-------------------------------+---------+
+```
+
+---
+
+Renseigne sur les utilisateurs ayant une session en cours sur la base `bd_2023`
+
+---
+
+## Tentative
+
+On engendre *dynamiquement* une série de requêtes par une instruction de la forme :
+
+
+```{.sql}
+SELECT 
+    'SELECT ' || quote_literal(usename) || ', COUNT(*)  FROM ' || usename || '.ville_pays ;'
+FROM pg_catalog.pg_user  ;
+```
+
+{{< fa brain >}} A quoi sert `quote_literal()` ?
+
+---
+
+
+## Le résultat est une table de chaines de caractères  {.smaller}
+
+
+```{.sql}
+rqt                                                      |
+---------------------------------------------------------+
+SELECT 'postgres', COUNT(*)  FROM postgres.ville_pays ;  |
+SELECT 'shinken', COUNT(*)  FROM shinken.ville_pays ;    |
+SELECT 'aalahy99', COUNT(*)  FROM aalahy99.ville_pays ;  |
+SELECT 'etemam', COUNT(*)  FROM etemam.ville_pays ;      |
+SELECT 'durand', COUNT(*)  FROM durand.ville_pays ;      |
+...
+```
+
+
+. . .
+
+Tel quel, cela ne fonctionnera pas !
+
+- Il faut pouvoir confier ces chaines de caractères à l'évaluateur de
+  requêtes
+
+- Il faut pouvoir le faire pour chacune des chaines de caractères
+  produites par la requête (itérer)
+
+
+
+---
+
+
+
+## Mode opératoire
+
+
+```{.sql}
+CREATE OR REPLACE FUNCTION taille_ville_pays()
+LANGUAGE plpgsql RETURNS  TEXT AS
+$$
+DECLARE
+  stmt CHARACTER VARYING ;
+  usename CHARACTER VARYING ;
+  result CHARACTER VARYING    := '' ;
+  resp CHARACTER VARYING := '' ;
+BEGIN
+FOR usename IN SELECT u.usename  #<<
+  FROM pg_catalog.pg_user AS u JOIN
+  information_schema.tables t ON
+  (u.usename=t.table_schema and t.table_name ='ville_pays')
+LOOP
+  stmt = 'SELECT CAST(COUNT(*) AS VARCHAR) FROM '|| usename||'.ville_pays #<<
+  result:=result || usename || ': ' ||resp| '; ';   #<< 
+END LOOP ;
+RETURN result ; #<< 
+END;$$ ;
+```
+
+---
+
+Nous utilisons une des structures itératives de `plpgSQL` :
+
+```{.sql}
+FOR v IN expression 
+LOOP
+  instructions
+END LOOP ;
+```
+
+. . .
+
+- On itère sur les tuples de la requête `SELECT u.usename  ...`
+
+Voir [Documentation officielle](https://www.postgresql.org/docs/current/plpgsql.html)
+
+. . .
+
+- Dans le corps de la boucle `LOOP`, on fabrique une requête :
+
+`stmt := ...` 
+
+- Puis on exécute cette requête :
+
+`EXECUTE stmt INTO resp ;`
+
+. . .
+
+Le résultat de la requête engendrée dynamiquement est affecté à la variable locale `stmt`
+
+Le contenu est accumulé dans `result`
+
+. . .
+
+Renvoi du résultat
+
+`plpgSQL` propose une variété de manières de construire et de renvoyer le résultat d'une fonction
+
+Voir [Documentation officielle](https://www.postgresql.org/docs/current/plpgsql-declarations.html)
+
+
+
+
+# Extension de SQL en un langage procédural  {background-color="#1c191c"}
+
+
+## Extension de SQL
+
+A travers ces deux exemples, on a vu quelques particularités des extensions possible de `SQL` en un langage procédural `pgplSQL`. Le principe est le même dans la plupart des SGBD permettant une telle extension (`Oracle`, `SQL Server`, ...). Il repose sur la norme `SQL`.
+
+On a besoin :
+
+
+- d'instructions conditionnelles (*si ... alors ... sinon*)
+
+- d'instruction itératives (*boucles*)
+
+- de la capacité à définir des variables
+
+- de mécanismes d'articulations entre `SQL` et son extension procédurale :
+
+    - Pouvoir stocker le résultat d'une requête (avec résultat unique) dans une variable
+    - Pouvoir stocker, les uns après les autres, les résultats d'une requêtes complexes pour traitement, définir un curseur (`CURSOR`)
+
+
+## Extension de SQL
+
+On doit avoir un mécanisme qui permet conserver les programmes écrits pour les utiliser lors de sessions futures 
+
+Le langage `plpgsql` permet :
+
+- de définir des fonctions et procédures stockées...
+- qui vont avoir la même *persistence* que les *tables*, *vues*, etc
+
+- L'existence de ces fonctions, leurs codes, etc, seront conservés dans des tables et vue d'administration (`information_schema.routines`). 
+
+
+
+
+## Exemple 
+
+```{.sql}
+SELECT routine_catalog, routine_schema, routine_name, data_type, security_type
+FROM information_schema.routines    #<< 
+WHERE routine_type='FUNCTION' AND specific_schema='sakila'   #<< 
+```
+
+. . .
+
+```
+routine_catalog|routine_schema|routine_name              |data_type   |security_type|
+---------------+--------------+--------------------------+------------+-------------+
+bd_2023        |sakila        |_group_concat             |text        |INVOKER      |
+bd_2023        |sakila        |film_in_stock             |integer     |INVOKER      |
+bd_2023        |sakila        |film_not_in_stock         |integer     |INVOKER      |
+bd_2023        |sakila        |get_customer_balance      |numeric     |INVOKER      |
+bd_2023        |sakila        |inventory_held_by_customer|integer     |INVOKER      |
+bd_2023        |sakila        |inventory_in_stock        |boolean     |INVOKER      |
+bd_2023        |sakila        |last_day                  |date        |INVOKER      |
+bd_2023        |sakila        |last_updated              |trigger     |INVOKER      |
+bd_2023        |sakila        |rewards_report            |USER-DEFINED|DEFINER      |
+```
+
+
+#  Un exemple plus complexe issu de `sakila`  {background-color="#1c191c"}
+
+
+## `rewards_report` signature  {.smaller}
+
+
+```{.sql}
+CREATE OR REPLACE FUNCTION 
+    sakila.rewards_report(min_monthly_purchases integer, 
+                          min_dollar_amount_purchased numeric)
+ RETURNS SETOF sakila.customer
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+AS $function$
+DECLARE
+    last_month_start DATE;
+    last_month_end DATE;
+rr RECORD;
+tmpSQL TEXT;
+BEGIN
+...
+END $$ ;
+```
+
+
+Détermine la liste des bons clients qui beaucoup consommé durant le dernier mois écoulé
+
+---
+
+```{.sql}
+CREATE OR REPLACE FUNCTION sakila.rewards_report(min_monthly_purchases integer, min_dollar_amount_purchased numeric)
+ RETURNS SETOF sakila.customer
+ LANGUAGE plpgsql
+ SECURITY DEFINER
+AS $function$
+DECLARE
+    last_month_start DATE;
+    last_month_end DATE;
+rr RECORD;
+tmpSQL TEXT;
+BEGIN
+
+    /* Some sanity checks... */
+    IF min_monthly_purchases = 0 THEN
+        RAISE EXCEPTION 'Minimum monthly purchases parameter must be > 0';
+    END IF;
+    IF min_dollar_amount_purchased = 0.00 THEN
+        RAISE EXCEPTION 'Minimum monthly dollar amount purchased parameter must be > $0.00';
+    END IF;
+
+    last_month_start := CURRENT_DATE - '3 month'::interval;
+    last_month_start := to_date((extract(YEAR FROM last_month_start) || '-' || extract(MONTH FROM last_month_start) || '-01'),'YYYY-MM-DD');
+    last_month_end := LAST_DAY(last_month_start);
+
+    /*
+    Create a temporary storage area for Customer IDs.
+    */
+    CREATE TEMPORARY TABLE tmpCustomer (customer_id INTEGER NOT NULL PRIMARY KEY);
+
+    /*
+    Find all customers meeting the monthly purchase requirements
+    */
+
+    tmpSQL := 'INSERT INTO tmpCustomer (customer_id)
+        SELECT p.customer_id
+        FROM payment AS p
+        WHERE DATE(p.payment_date) BETWEEN '||quote_literal(last_month_start) ||' AND '|| quote_literal(last_month_end) || '
+        GROUP BY customer_id
+        HAVING SUM(p.amount) > '|| min_dollar_amount_purchased || '
+        AND COUNT(customer_id) > ' ||min_monthly_purchases ;
+
+    EXECUTE tmpSQL;
+
+    /*
+    Output ALL customer information of matching rewardees.
+    Customize output as needed.
+    */
+    FOR rr IN EXECUTE 'SELECT c.* FROM tmpCustomer AS t INNER JOIN customer AS c ON t.customer_id = c.customer_id' LOOP
+        RETURN NEXT rr;
+    END LOOP;
+
+    /* Clean up */
+    tmpSQL := 'DROP TABLE tmpCustomer';
+    EXECUTE tmpSQL;
+
+RETURN;
+END
+$function$
+;
+
+-- Permissions
+
+ALTER FUNCTION sakila.rewards_report(int4, numeric) OWNER TO postgres;
+GRANT ALL ON FUNCTION sakila.rewards_report(int4, numeric) TO postgres;
+
+
+```
+
+---
+
+
+> Whenever you create a new table, PostgreSQL automatically creates a
+composite type based on the structure of the table. This allows you to
+treat table rows as objects in their own right. You'll appreciate this
+automatic type creation when you write functions that loop through
+tables. pgAdmin doesn't make the automatic type creation obvious
+because it does not list them under the types node, but rest assured that
+they are there
+
+
+---
+
+
+## {{< fa hand-point-right >}}
+
+-   la signature comporte une déclaration de type originale
+-   la déclaration des variables locales mentionne un type fourre-tout
+
+
+#### `SETOF customer`
+
+Table de même schéma que `customer` (mêmes colonnes)
+
+Construction très très utile : `SETOF nom_de_table`
+
+
+#### `RECORD`
+
+Un type générique (fourre-tout) pour désigner les types *composés*
+(en particulier comme les types définis à partir des tables)
+
+---
+
+## `rewards_report` corps (I)   {.smaller}
+
+
+
+```{.sql}
+BEGIN
+    /* Some sanity checks... */
+    IF min_monthly_purchases = 0 THEN
+        RAISE EXCEPTION 'Minimum monthly purchases parameter must be > 0';
+    END IF;
+    IF min_dollar_amount_purchased = 0.00 THEN
+        RAISE EXCEPTION 'Minimum monthly dollar amount purchased parameter must be > $0.00';  #<< 
+    END IF;
+
+    last_month_start := CURRENT_DATE - '3 month'::interval;
+    last_month_start := to_date((extract(YEAR FROM last_month_start) || '-' || extract(MONTH FROM last_month_start) || '-01'),'YYYY-MM-DD');
+    last_month_end := LAST_DAY(last_month_start);
+...
+```
+
+
+. . .
+
+
+
+{{< fa hand-point-right >}} `RAISE EXCEPTION 'msg'`
+
+termine (en erreur) l'exécution de la fonction envoie un message d'erreur
+
+
+## `rewards_report` corps (II)
+
+
+
+```{.sql}
+/*
+    Create a temporary storage area for Customer IDs.
+    */
+    CREATE TEMPORARY TABLE tmpCustomer (customer_id INTEGER NOT NULL PRIMARY KEY);
+
+    /*
+    Find all customers meeting the monthly purchase requirements
+    */
+
+    tmpSQL := 'INSERT INTO tmpCustomer (customer_id)
+        SELECT p.customer_id
+        FROM payment AS p
+        WHERE DATE(p.payment_date) BETWEEN '|| quote_literal(last_month_start) ||' AND '|| quote_literal(last_month_end) || '
+        GROUP BY customer_id
+        HAVING SUM(p.amount) > ' || min_dollar_amount_purchased || 
+        'AND COUNT(customer_id) > ' || 
+        min_monthly_purchases ;
+
+    EXECUTE tmpSQL;  #<< 
+```
+
+
+
+
+
+
+
+## {{< fa hand-point-right >}} `CREATE TEMPORARY TABLE ...`
+
+Crée une table (très simple ici) qui sera détruite avant la fin de
+l'exécution de la fonction. 
+
+Si l'exécution de la fonction devait être interrompue, cette table ne survivrait pas à la *session* qui a invoqué la fonction
+
+
+
+## Pourquoi utiliser une requête créée dynamiquement ?
+
+-   Est ce une nécessité ici ?
+
+-   Si non, quel est l'intérêt ?
+
+
+
+## `rewards_report` corps III
+
+
+```{.sql}
+/*
+    Output ALL customer information of matching rewardees.
+    Customize output as needed.
+    */
+    FOR rr IN EXECUTE 'SELECT c.* FROM tmpCustomer AS t INNER JOIN customer AS c ON t.customer_id = c.customer_id' LOOP
+        RETURN NEXT rr;   #<<
+    END LOOP;
+
+    /* Clean up */
+    tmpSQL := 'DROP TABLE tmpCustomer';
+    EXECUTE tmpSQL;
+
+RETURN;   #<<
+END
+$function$ ;
+```
+
+---
+
+#### `FOR rr IN EXECUTE ...`
+
+#### `RETURN NEXT rr`
+
+
+---
+
+{{< fa hand-point-right >}} Les requêtes dynamiques sont-elles vraiment nécessaires ?
+
+
+---
+
+
+# Fin {background-color="#1c191c"}

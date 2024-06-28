@@ -1,0 +1,16 @@
+---
+title: "BD : Transactions"
+
+execute: 
+  echo: true
+  eval: false
+---
+
+
+```{r}
+library(DBI)
+db <- dbConnect(RSQLite::SQLite(), dbname = "sql.sqlite")
+knitr::opts_chunk$set(connection = "db")
+```
+
+# Introduction

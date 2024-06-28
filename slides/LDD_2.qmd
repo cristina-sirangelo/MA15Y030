@@ -1,0 +1,507 @@
+---
+title: "BD VII: Corriger le schéma World"
+---
+
+```{.r}
+#| eval: false
+#| echo: false
+#| 
+library(DBI)
+db <- dbConnect(RSQLite::SQLite(), dbname = "sql.sqlite")
+knitr::opts_chunk$set(connection = "db")
+```
+
+  
+
+
+# Revisiter le schéma world  {background-color="#1c191c"}
+
+
+
+## Schema de world
+
+
+![]('/images//bd_2023-world.png')
+
+
+
+
+## Conraintes sur la table `country`
+
+- Un pays est identifié par son `countrycode` 
+
+- Deux pays ne devraient pas avoir le même nom
+
+- Une région ne devrait appartenir qu'à un seul continent 
+
+- La capitale d'un pays devrait être une ville connue dans `city`
+
+- La capitale d'un pays devrait être une ville de ce pays
+
+- Les capitales de deux pays différents devraient être des villes différentes
+
+- ...
+
+
+Ce ne sont pas les seules contraintes possibles 
+
+
+
+## Mise en œuvre des contraintes
+
+- Un pays est identifié par son `countrycode` : `PRIMARY KEY`
+
+- Deux pays ne devraient pas avoir le même nom : `UNIQUE`
+
+- **Une région ne devrait appartenir qu'à un seul continent** : ???
+
+- La capitale d'un pays devrait être une ville connue dans `city` : `REFERENCES`
+
+- **La capitale d'un pays devrait être une ville de ce pays** : ???
+
+- Les capitales de deux pays différents devraient être des villes différentes : `UNIQUE`
+
+- Deux pays différents ne peuvent avoir le même `code2`
+
+
+
+## Examen du schema de `country`   {.smaller}
+
+
+
+```{.sql}
++--------------------+---------------+-----------+----------+--------------+-------------+
+| Column             | Type          | Modifiers | Storage  | Stats target | Description |
+|--------------------+---------------+-----------+----------+--------------+-------------|
+| countrycode        | character(3)  |  not null | extended | <null>       | <null>      |
+| name_country       | text          |  not null | extended | <null>       | <null>      |
+| continent          | text          |  not null | extended | <null>       | <null>      |
+| region             | text          |  not null | extended | <null>       | <null>      |
+| surfacearea        | real          |  not null | plain    | <null>       | <null>      |
+| indepyear          | smallint      |           | plain    | <null>       | <null>      |
+| population_country | integer       |  not null | plain    | <null>       | <null>      |
+| lifeexpectancy     | real          |           | plain    | <null>       | <null>      |
+| gnp                | numeric(10,2) |           | main     | <null>       | <null>      |
+| gnpold             | numeric(10,2) |           | main     | <null>       | <null>      |
+| localname          | text          |  not null | extended | <null>       | <null>      |
+| governmentform     | text          |  not null | extended | <null>       | <null>      |
+| headofstate        | text          |           | extended | <null>       | <null>      |
+| capital            | integer       |           | plain    | <null>       | <null>      |
+| code2              | character(2)  |  not null | extended | <null>       | <null>      |
++--------------------+---------------+-----------+----------+--------------+-------------+
+```
+
+
+Un schéma de table ne se réduit pas 
+
+
+##  (continued)   {.smaller}
+
+
+```{.sql}
+Indexes:
+    "country_pkey" PRIMARY KEY, btree (countrycode)
+Check constraints:
+    "country_continent_check" CHECK (continent = 'Asia'::text OR 
+                                     continent = 'Europe'::text OR 
+                                     continent = 'North America'::text OR 
+                                     continent = 'Africa'::text OR
+                                     continent = 'Oceania'::text OR
+                                     continent = 'Antarctica'::text OR
+                                     continent = 'South America'::text),
+Foreign-key constraints:
+    "country_capital_fkey" FOREIGN KEY (capital) REFERENCES city(id)
+    "country_fk" FOREIGN KEY (continent) REFERENCES code_continent(continent)
+```
+
+
+## DDL pour `country`   {.smaller}
+
+
+```{.sql}
+CREATE TABLE world.country (
+	countrycode bpchar(3) NOT NULL,
+	name_country text NOT NULL,
+	continent text NOT NULL,
+	region text NOT NULL,
+	surfacearea float4 NOT NULL,
+	indepyear int2 NULL,
+	population_country int4 NOT NULL,
+	lifeexpectancy float4 NULL,
+	gnp numeric(10, 2) NULL,
+	gnpold numeric(10, 2) NULL,
+	localname text NOT NULL,
+	governmentform text NOT NULL,
+	headofstate text NULL,
+	capital int4 NULL,
+	code2 bpchar(2) NOT NULL,
+	CONSTRAINT country_continent_check CHECK (((continent = 'Asia'::text) 
+    OR (continent = 'Europe'::text) 
+    OR (continent = 'North America'::text) 
+    OR (continent = 'Africa'::text) 
+    OR (continent = 'Oceania'::text)
+    OR (continent = 'Antarctica'::text) 
+    OR (continent = 'South America'::text))),
+	CONSTRAINT country_pkey PRIMARY KEY (countrycode)
+);
+```
+
+
+
+## Ajout de contraintes référentielles
+
+```{.sql}
+-- world.country foreign keys
+
+ALTER TABLE world.country ADD CONSTRAINT 
+  country_capital_fkey FOREIGN KEY (capital) REFERENCES world.city(id);
+
+ALTER TABLE world.country ADD CONSTRAINT 
+  country_fk FOREIGN KEY (continent) REFERENCES world.code_continent(continent);
+```
+
+Les contraintes `country_capital_fkey`  et `country_fk` sont émises par 
+la table `country`
+
+
+
+
+## Contraintes ajoutées
+
+```{.sql}
+-- world.country foreign keys
+
+ALTER TABLE world.country ADD CONSTRAINT 
+  country_capital_fkey FOREIGN KEY (capital) REFERENCES world.city(id);
+
+ALTER TABLE world.country ADD CONSTRAINT 
+  country_fk FOREIGN KEY (continent) REFERENCES world.code_continent(continent);
+```
+
+{{< fa hand-point-right >}} La contrainte `country_fk` sur `continent` remplit la même fonction que la 
+contrainte `country_continent_check`
+
+. . .
+
+{{< fa lightbulb >}} **Conseil:** 
+
+- Si le domaine est de grande cardinalité, utiliser une table pour représenter le domaine, 
+et une contrainte référentielle
+- Si le domaine est de petite cardinalité, une contrainte `CHECK` est aussi pratique
+
+. . .
+
+{{< fa brain >}} Comment procéder pour mettre en œuvre une contrainte de domaine sur `region` ? 
+
+
+
+## Une région n'appartient qu'à un continent
+
+Cette contrainte signifie que le résultat de la requête suivante est vide :
+
+```{.sql}
+SELECT *
+FROM world.country c1 JOIN world.country c2 ON 
+  (c1.continent<> c2.continent AND c1.region=c2.region);
+```
+
+. . .
+
+On *exclut* l'existence de deux lignes qui coïncideraient sur `region` mais pas sur `continent`
+
+Nous postulons l'existence d'une **dépendance fonctionnelle**
+
+$$\texttt{region} \longrightarrow \texttt{continent}$$
+
+. . .
+
+On peut considérer qu'il s'agit d'une anomalie de schéma et **normaliser** le schéma
+
+On peut mettre en place une contrainte d'exclusion avec `EXCLUDE`
+
+
+# Une contrainte d'exclusion   {background-color="#1c191c"}
+
+
+## Index pour la contrainte d'exclusion
+
+
+
+# Normalisation de $\texttt{country}$   {background-color="#1c191c"}
+
+
+
+## Éclatement de la table `country`
+
+- Mise en place d'une table `region_continent(region, continent)`
+
+- Émission d'une contrainte référentielle de `country` vers `region_continent`
+
+
+
+## Préparation
+
+```{.sql}
+CREATE SCHEMA monde AUTHORIZATION superdupont ;
+
+GRANT ALL ON SCHEMA monde TO superdupont ;
+
+CREATE TABLE monde.code_continent AS 
+       TABLE world.code_continent ;
+
+ALTER TABLE monde.code_continent ADD CONSTRAINT 
+  code_continent_pk PRIMARY KEY (codecontinent);
+ALTER TABLE monde.code_continent ADD CONSTRAINT 
+  code_continent_un UNIQUE (continent);
+```
+
+
+
+## Création de `region_continent`
+
+```{.sql}
+CREATE TABLE monde.region_continent AS 
+  SELECT DISTINCT region, continent 
+  FROM world.country c ;
+```
+
+
+La requête suivante renvoie une table vide:
+
+```{.sql}
+SELECT * 
+FROM monde.region_continent rc1 JOIN 
+     monde.region_continent rc2 ON (
+	rc1.region=rc2.region AND 
+  rc1.continent<> rc2.continent
+) ;
+```
+
+
+
+```{.sql}
+ALTER TABLE monde.region_continent ADD CONSTRAINT 
+	region_continent_pk PRIMARY KEY (region);
+
+ALTER TABLE mode.region_continent ADD CONSTRAINT 
+  region_continent_fk FOREIGN KEY (continent) 
+  REFERENCES monde.code_continent(continent);
+```
+
+
+## Création de la table `monde.country`
+
+```{.sql}
+CREATE TABLE monde.country AS  
+  SELECT  countrycode, name_country, region, surfacearea, 
+          indepyear, population_country, 
+          lifeexpectancy, gnp, gnpold, localname,
+          governmentform, headofstate, capital,  code2            
+  FROM world.country ;
+```
+
+{{< fa hand-point-right >}} sans colonne `continent`
+
+
+
+## Mise en place des contraintes sur `monde.country`
+
+
+```{.sql}
+ALTER TABLE monde.country ADD CONSTRAINT 
+  country_pk PRIMARY KEY (countrycode);
+ALTER TABLE monde.country ADD CONSTRAINT c
+  ountry_un_name UNIQUE (name_country);
+ALTER TABLE monde.country ADD CONSTRAINT 
+  country_un_code2 UNIQUE (code2);
+ALTER TABLE monde.country ADD CONSTRAINT 
+  country_un_capital UNIQUE (capital);
+```
+
+. . .
+
+```{.sql}
+ALTER TABLE monde.country ADD CONSTRAINT country_fk 
+  FOREIGN KEY (region) REFERENCES monde.region_continent(region) 
+  ON DELETE SET NULL 
+  ON UPDATE CASCADE;
+```
+
+
+
+
+## Copie de `city`
+
+```{.sql}
+CREATE TABLE monde.city AS TABLE world.city;
+```
+
+{{< fa hand-point-right >}} On a copié le schéma a minima (sans les contraintes)
+
+
+## Dans un pays plusieurs villes peuvent elles porter le même nom ?
+
+
+
+```{.sql}
+SELECT *
+FROM monde.city c JOIN monde.city c2 
+	ON (c.name_city=c2.name_city AND 
+      c.countrycode = c2.countrycode  AND 
+      c.id<> c2.id) ;
+```
+
+renvoie 48 lignes 
+
+. . .
+
+```{.sql}
+SELECT *
+FROM monde.city c JOIN monde.city c2 
+	ON (c.name_city=c2.name_city AND 
+      c.countrycode = c2.countrycode  AND
+      c.district = c2.district  AND
+      c.id<> c2.id) ;
+```
+
+renvoie 2 lignes 
+
+
+
+
+## Existe-t-il un pays dont la capitale est dans un autre pays ?
+
+```{.sql}
+SELECT c. countrycode, c.name_country, cc.name_city, cc.countrycode
+FROM world.country c JOIN world.city cc ON (c.capital=cc.id AND cc.countrycode <> c.countrycode) ;
+```
+
+renvoie 0 lignes {{< fa champagne-glasses >}}
+
+
+##  {{< fa triangle-exclamation >}}  Blocages possibles
+
+Si 
+
+- `city` emet une contrainte référentielle sur `country` (`countrycode`)
+- `country` emet une contrainte référentielle sur `city` (`capital` $\rightarrow$ `id`)
+
+Risque de blocage : qui précède la capitale ou le pays ? 
+
+
+
+
+## Émission de la contrainte de `city` vers `country`
+
+```{.sql}
+ALTER TABLE monde.city 
+  ADD CONSTRAINT city_fk FOREIGN KEY (countrycode) 
+      REFERENCES monde.country(countrycode) 
+  ON DELETE SET NULL ON UPDATE CASCADE;
+```
+
+
+
+## Table `countrylanguage`   {.smaller}
+
+```{.sql}
+CREATE TABLE monde.countrylanguage  AS TABLE world.countrylanguage ;
+```
+
+
+```{.sql}
+ALTER TABLE monde.countrylanguage 
+  ADD CONSTRAINT countrylanguage_fk 
+	    FOREIGN KEY (countrycode) REFERENCES monde.country(countrycode) 
+	    ON DELETE CASCADE 
+      ON UPDATE CASCADE;
+
+ALTER TABLE monde.countrylanguage 
+  ADD CONSTRAINT countrylanguage_pk 
+	PRIMARY KEY ("language",countrycode);
+
+ALTER TABLE monde.countrylanguage 
+  ADD CONSTRAINT countrylanguage_check 
+	CHECK (percentage <= 100.0 AND percentage >=0.0 );
+```
+
+
+
+---
+
+
+![](/images//bd_2023-monde.png)
+
+
+
+# Vues régionales et continentales  {background-color="#1c191c"}
+
+
+
+## Synthèse régionale 
+
+```{.sql}
+CREATE OR REPLACE VIEW monde.regionale AS (
+SELECT C.region, 
+       SUM(c.population_country) AS population_region,
+       SUM(COALESCE(c.surfacearea, 0)) AS surfacearea_region,
+       SUM(c.gnp) AS gnp_region,
+       SUM(c.gnpold) AS gnpold_region
+FROM monde.country c 
+GROUP BY c.region ) ;
+```
+
+
+
+## Synthèse continentale
+
+```{.sql}
+SELECT r.* 
+FROM monde.regionale r JOIN monde.region_continent rc 
+     ON (r.region=rc.region AND rc.continent='Europe') ;
+```
+
+
+
+```
++----------------+-----------------+------------------+----------+-------------+
+|region          |population_region|surfacearea_region|gnp_region|gnpold_region|
++----------------+-----------------+------------------+----------+-------------+
+|Western Europe  |        183247600|         1108456.5|4673272.00|   4578420.00|
+|Southern Europe |        144674200|         1316392.4|2012289.00|   1944737.00|
+|Baltic Countries|          7561900|          175117.0|  22418.00|     18595.00|
+|Nordic Countries|         24166400|         1321901.0| 676655.00|    677698.00|
+|British Islands |         63398500|          313173.0|1454251.00|   1369962.00|
+|Eastern Europe  |        307026000|          18814094| 659980.00|    792589.00|
+```
+
+
+## Synthèse continentale
+
+```{.sql}
+CREATE OR REPLACE VIEW monde.continentale AS (
+SELECT rc.continent, 
+       SUM(r.population_region) AS population,
+       SUM(r.surfacearea_region) AS surfacearea,
+       SUM(r.gnp_region) AS gcp,
+       SUM(r.gnpold_region) AS gcpold
+FROM monde.regionale r JOIN monde.region_continent rc 
+     ON (r.region=rc.region) 
+GROUP BY rc.continent;) ;
+```
+
+```
++-------------+----------+-----------+----------+----------+
+|continent    |population|surfacearea|gcp       |gcpold    |
++-------------+----------+-----------+----------+----------+
+|South America| 345780000|   17864926|1511874.00|1520641.00|
+|North America| 482993000|   24214472|9688627.20|9288175.00|
+|Oceania      |  30401150|  8564294.0| 419774.70| 469058.00|
+|Antarctica   |         0|   13132101|      0.00|          |
+|Africa       | 784475000|   30250376| 580375.00| 553264.00|
+|Europe       | 730074600|   23049132|9498865.00|9382001.00|
+|Asia         |3705025700|   31881006|7655392.00|8251969.00|
+```
+
+
+# Fin  {background-color="#1c191c"}
