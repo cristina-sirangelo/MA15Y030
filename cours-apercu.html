@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>MA15Y030: Introduction aux Bases de Données – MA15Y030 - Automne 2024</title>
+<title>Syllabus – MA15Y030 - Automne 2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -40,6 +40,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -68,12 +70,42 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <meta property="og:title" content="MA15Y030: Introduction aux Bases de Données – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Page maison pour MA15Y030 - Bases de données, Licence MIASHS Automne 2024.">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 
-<body class="nav-sidebar docked fullcontent">
+<body class="nav-sidebar docked">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -252,7 +284,25 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#cours" id="toc-cours" class="nav-link active" data-scroll-target="#cours">Cours</a></li>
+  <li><a href="#travaux-dirigés" id="toc-travaux-dirigés" class="nav-link" data-scroll-target="#travaux-dirigés">Travaux dirigés</a></li>
+  <li><a href="#how-do" id="toc-how-do" class="nav-link" data-scroll-target="#how-do">How do ?</a></li>
+  <li><a href="#how-can" id="toc-how-can" class="nav-link" data-scroll-target="#how-can">How can ?</a></li>
+  <li><a href="#can-i-use-a-local-install-of-dbeaver-and-pgcli-instead-of-using-the-containers" id="toc-can-i-use-a-local-install-of-dbeaver-and-pgcli-instead-of-using-the-containers" class="nav-link" data-scroll-target="#can-i-use-a-local-install-of-dbeaver-and-pgcli-instead-of-using-the-containers">Can I use a local install of dbeaver and pgcli instead of using the containers?</a></li>
+  <li><a href="#cours-magistraux" id="toc-cours-magistraux" class="nav-link" data-scroll-target="#cours-magistraux">Cours magistraux</a></li>
+  <li><a href="#exercices" id="toc-exercices" class="nav-link" data-scroll-target="#exercices">Exercices</a></li>
+  <li><a href="#forums-moodle" id="toc-forums-moodle" class="nav-link" data-scroll-target="#forums-moodle">Forums moodle</a></li>
+  <li><a href="#courriel" id="toc-courriel" class="nav-link" data-scroll-target="#courriel">Courriel</a></li>
+  <li><a href="#soutien-académique" id="toc-soutien-académique" class="nav-link" data-scroll-target="#soutien-académique">Soutien académique</a></li>
+  <li><a href="#soutien-équipement-informatique" id="toc-soutien-équipement-informatique" class="nav-link" data-scroll-target="#soutien-équipement-informatique"><strong>Soutien équipement informatique</strong></a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/cours-apercu.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -265,7 +315,7 @@ ul.task-list li input[type="checkbox"] {
   round " style="height: 10em; width: 10em;">
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./cours-apercu.html">Course information</a></li><li class="breadcrumb-item"><a href="./cours-apercu.html">Aperçu</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">MA15Y030: Introduction aux Bases de Données</h1>
+<h1 class="title">Syllabus</h1>
 </div>
 <div class="quarto-title-meta">
   </div>
@@ -292,6 +342,368 @@ ul.task-list li input[type="checkbox"] {
 
 
 
+<section id="cours" class="level2">
+<h2 data-anchor-id="cours">Cours</h2>
+<p><img src="images/team/ritratto.jpg" class="img-fluid" style="float:right;padding: 0 0 0 10px;" alt="Headshot of S. Boucheron" width="100"></p>
+<p><a href="http://stephane-v-boucheron.fr/"><strong>S. Boucheron</strong></a> Professeur de Mathématiques à l’Université Paris Cité/Laboratoire de Probabilités, Statistiques et Modélisatiion LPSM.</p>
+</section>
+<section id="travaux-dirigés" class="level2">
+<h2 data-anchor-id="travaux-dirigés">Travaux dirigés</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 22%">
+<col style="width: 19%">
+<col style="width: 39%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: left;">Nom</th>
+<th style="text-align: center;">Horaire</th>
+<th style="text-align: center;">Salle</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;"><img src="images/team/ritratto.jpg" class="img-fluid" alt="foo"></td>
+<td style="text-align: left;">Stéphane Boucheron</td>
+<td style="text-align: center;">Vendredi 14h45 - 17h15</td>
+<td style="text-align: center;">2004 Sophie Germain</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;"><img src="images/team/ritratto.png" class="img-fluid" alt="foo"></td>
+<td style="text-align: left;">Sylvain Schmitz</td>
+<td style="text-align: center;">Vendredi 14h45 - 17h15</td>
+<td style="text-align: center;">2005 Sophie Germain</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;"><img src="images/team/ritratto.png" class="img-fluid" alt="foo"></td>
+<td style="text-align: left;">xxx xxx</td>
+<td style="text-align: center;">Vendredi 14h45 - 17h15</td>
+<td style="text-align: center;">2006 Sophie Germain</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="how-do" class="level2">
+<h2 data-anchor-id="how-do">How do ?</h2>
+</section>
+<section id="how-can" class="level2">
+<h2 data-anchor-id="how-can">How can ?</h2>
+<!-- 
+```{=html}
+<iframe width="700" height="394" src="https://www.youtube.com/embed/u-pK4GzpId0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+``` -->
+</section>
+<section id="can-i-use-a-local-install-of-dbeaver-and-pgcli-instead-of-using-the-containers" class="level2">
+<h2 data-anchor-id="can-i-use-a-local-install-of-dbeaver-and-pgcli-instead-of-using-the-containers">Can I use a local install of dbeaver and pgcli instead of using the containers?</h2>
+<p>The short answer is, I’d rather you didn’t, to save yourself some headache. But, the long answer is, sure! But you will need to install a specific versions of R and RStudio for everything to work as expected. You will also need to install the R packages we’re using as well as have Git installed on your computer. These are not extremely challenging things to get right, but they are not trivial either, particularly on certain operating systems. Myself and the TAs are always happy to provide help with any computational questions when you’re working in the containers we have provided for you. If you’re working on your local setup, we can’t guarantee being able to resolve your issues, though we’re happy to try.</p>
+<p>If you want to take this path, here is what you need to do:</p>
+<ul>
+<li>Download and install dbeaver</li>
+<li>Download and install an ssh client</li>
+</ul>
+<p>And I’d like to reiterate again that successful installation of these software is <strong>not</strong> a learning goal of this course. So if any of this seems tedious or intimidating in any way, just use the computing environment we have set up for you. More on that <a href="./computing-access.html">here</a>.</p>
+<table class="caption-top table">
+<tbody>
+<tr class="odd">
+<td>RStudio containers</td>
+<td>🔗 on <a href="https://cmgr.oit.duke.edu/containers">Duke Container Manager</a></td>
+</tr>
+<tr class="even">
+<td>Course GitHub organization</td>
+<td>🔗 on <a href="https://github.com/sta210-s22">GitHub</a></td>
+</tr>
+<tr class="odd">
+<td>Discussion forum</td>
+<td>🔗 on <a href="https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/tool/13b6446a-a6c6-4222-8cfb-c36d1f70802b">Sakai</a></td>
+</tr>
+<tr class="even">
+<td>Lecture streaming and recordings</td>
+<td>🔗 on <a href="https://duke.hosted.panopto.com/Panopto/Pages/Sessions/List.aspx#folderID=%22d6c1d58a-cb6d-4732-9d4b-ae0c011bf767%22">Panopto</a></td>
+</tr>
+<tr class="odd">
+<td>Gradebook</td>
+<td>🔗 on <a href="https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/tool/69078433-67a6-4054-a2e7-9e6c202ecdc3/">Sakai</a></td>
+</tr>
+<tr class="even">
+<td>Virtual meetings</td>
+<td>🔗 on <a href="https://sakai.duke.edu/portal/site/779c3ebe-3b88-4bcc-bd01-1813e8396a23/page/d5eef508-07a4-4c6d-b7bd-4614a9631562">Sakai</a></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="cours-magistraux" class="level2">
+<h2 data-anchor-id="cours-magistraux">Cours magistraux</h2>
+<p>Posez des questions, cela aide tout le monde : les enseignants, vous, vos condisciples.</p>
+</section>
+<section id="exercices" class="level2">
+<h2 data-anchor-id="exercices">Exercices</h2>
+<ul>
+<li>Cherchez d’abord les solutions par vous même.</li>
+<li>Les solutions sont disponibles en ligne.</li>
+<li>Utilisez les aides en ligne (StackOverflow, ChatGPT, copilot, …)</li>
+<li>Décryptez les messages d’erreur</li>
+<li>Posez des questions, , cela aide tout le monde (bis)</li>
+</ul>
+</section>
+<section id="forums-moodle" class="level2">
+<h2 data-anchor-id="forums-moodle">Forums moodle</h2>
+</section>
+<section id="courriel" class="level2">
+<h2 data-anchor-id="courriel">Courriel</h2>
+<p>Please refrain from emailing any course content questions (those should go <a href="">Conversations</a>, and only use email for questions about personal matters that may not be appropriate for the public course forum (e.g., illness, accommodations, etc.).</p>
+<p>If there is a question that’s not appropriate for the public forum, you are welcome to email me directly. <strong>If you email me, please include “MA15Y030” in the subject line.</strong></p>
+<p>Response time may be slower for emails sent Friday evening - Sunday.</p>
+</section>
+<section id="soutien-académique" class="level2">
+<h2 data-anchor-id="soutien-académique">Soutien académique</h2>
+</section>
+<section id="soutien-équipement-informatique" class="level2">
+<h2 data-anchor-id="soutien-équipement-informatique"><strong>Soutien équipement informatique</strong></h2>
+<p>Students with demonstrated high financial need who have limited access to computers may request assistance in the form of loaner laptops. Please note that supplies are limited.</p>
+<p>Note that we will be using Université Paris Citéomputational resources in this course. These resources are freely available to you. As long as your computer can connect to the internet and open a browser window, you can perform the necessary computing for this course. All software we use is open-source and/or freely available.</p>
+<p><a href="./documents/ma15y030-syllabus.pdf" title="PDF du syllabus"><strong>Télécharger</strong></a> <strong>pour télécharger une version PDF du syllabus.</strong></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Organisation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<table class="caption-top table">
+<colgroup>
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 26%">
+<col style="width: 43%">
+</colgroup>
+<thead>
+<tr class="header">
+<th></th>
+<th>Jour</th>
+<th>Horaire</th>
+<th>Lieu</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Cours</td>
+<td>Vendredi</td>
+<td>13:15 - 14:45</td>
+<td>Olympe de Gouges Amphi I</td>
+</tr>
+<tr class="even">
+<td>TD/TP 1</td>
+<td>Vendredi</td>
+<td>15:15 - 17:45</td>
+<td>Sophie Germain 2004</td>
+</tr>
+<tr class="odd">
+<td>TD/TP 2</td>
+<td>Vendredi</td>
+<td>15:15 - 17:45</td>
+<td>Sophie Germain 2005</td>
+</tr>
+<tr class="even">
+<td>TD/TP 3</td>
+<td>Vendredi</td>
+<td>15:15 - 17:45</td>
+<td>Sophie Germain 2006</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Objectifs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Après avoir suivi ce cours, vous serez capable de …</p>
+<ul>
+<li>…</li>
+<li>…</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<a href="https://u-paris.fr">Université Paris Cité</a>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p><a href="https://u-paris.fr/valeurs/">Charte Université Paris Cité</a></p></li>
+<li><p><a href="https://u-paris.fr/demarches-administratives-de-scolarite/">Démarches et accessibilité</a></p></li>
+<li><p><a href="https://u-paris.fr/centre-de-contact/">Centre de contact</a></p></li>
+<li><p><a href="https://u-paris.fr/etudes-et-handicap/">Relais handicap</a></p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Communication <i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les supports matériels du cours sont accessible à partir de <a href="https://s-v-b.github.io/MA15Y030">s-v-b.github.io/MA15Y030</a></p>
+<p>Les annonces sont diffusées via <a href="https://moodle.u-paris.fr/course/view.php?id=2313">Moodle</a></p>
+<p>Inscrivez-vous au <a href="https://moodle.u-paris.fr/course/view.php?id=2313">portail Moodle</a> pour être informé</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<a href="./course-support.html">Support</a> <i class="fa-solid fa-bullhorn" aria-label="bullhorn"></i>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/app-psql.html"><code>psql</code></a></li>
+<li><a href="https://www.pgcli.com"><code>pgcli</code></a></li>
+<li><a href="https://dbeaver.io"><code>dbeaver</code></a></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Références <i class="fa-solid fa-book" aria-label="book"></i>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><a href="">Database Systems: The Complete Book (DS:CB), by Hector Garcia-Molina, Jeff Ullman, and Jennifer Widom</a></li>
+<li><a href="https://wiki.epfl.ch/provenance2011/documents/foundations+of+databases-abiteboul-1995.pdf">Foundations of databases. Abiteboul, Hull et Vianu</a></li>
+<li><a href="https://www.postgresql.org/docs/current/">Documentation PostGres</a></li>
+<li><a href="https://link.springer.com/book/10.1007/978-1-4842-1329-2">Next Generation Databases NoSQLand Big Data, Guy Harrison</a></li>
+<li><a href="https://www.guyharrison.net">Guy Harrison Blog</a></li>
+<li><a href="https://www.dbta.com">Databases trends and applications</a></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Cours magistraux et Travaux dirigés <i class="fa-solid fa-chalkboard-teacher" aria-label="chalkboard-teacher"></i>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Contrôle des connaissances <i class="fa-solid fa-graduation-cap" aria-label="graduation-cap"></i>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Contrôle continu Trois épreuves sur table :</p>
+<ul>
+<li><span class="math inline">\(\textsf{CC}_1\)</span> (1 heure)</li>
+<li><span class="math inline">\(\textsf{CC}_2\)</span> (1 heure)</li>
+<li><span class="math inline">\(\textsf{CC}_3\)</span> (1 heure)</li>
+</ul></li>
+<li><p>Examen</p>
+<ul>
+<li><span class="math inline">\(\textsf{CT}\)</span> (2 heures)</li>
+</ul></li>
+<li><p>Notation</p></li>
+</ul>
+<p>La note finale de session I est calculée selon la formule :</p>
+<p><span class="math display">\[\frac{1}{6}\left\{\max( \textsf{CC}_1,\textsf{CT}) + \max(\textsf{CC}_2,\textsf{CT}) + \max(\textsf{CC}_3,\textsf{CT}) \right\} + \frac{1}{2} \textsf{CT}\]</span></p>
+<p>La note de session II (seconde chance) est égale à la note obtenue à l’épreuve sur table de seconde chance.</p>
+<ul>
+<li><p>Consultation des copies</p></li>
+<li><p>Assiduité</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Trucs
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Intégrité universitaire
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>TL;DR: Pas de triche!</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Sauvez les dates ! <i class="fa-solid fa-calendar" aria-label="calendar"></i>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Septembre 13:</strong> Début du cours</li>
+<li><strong>Septembre 13:</strong> Début des TD/TP</li>
+<li><strong>Octobre 25:</strong> Contrôle continu I</li>
+<li><strong>Octobre 26-Novembre 3:</strong> Pause de la Toussaint</li>
+<li><strong>Novembre 8 :</strong> Reprise des cours et TD</li>
+<li><strong>Novembre 15</strong>: Contrôle continu II</li>
+<li><strong>Décembre 6</strong>: Fin du cours</li>
+<li><strong>Décembre 6</strong>: Contrôle continu III</li>
+<li><strong>Janvier ??</strong>: Contrôle terminal</li>
+<li><strong>Juin ??</strong>: Deuxième chance</li>
+</ul>
+<p>Cliquer <a href="">ici</a> pour le calendrier universitaire de Université Paris Cité.</p>
+<p>Cliquer <a href="https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3">ici</a> pour l’emploi du temps de la Licence MIASHS</p>
+</div>
+</div>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -868,7 +1280,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/cours-apercu.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/cours-apercu.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with blood, sweat, tears, and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

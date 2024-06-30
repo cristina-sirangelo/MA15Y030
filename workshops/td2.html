@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>td2 – MA15Y030 - Automne 2024</title>
+<title>TD 2 : SQL – MA15Y030 - Automne 2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4873,7 +4873,7 @@ window.Quarto = {
 };
 </script>
 
-<meta property="og:title" content="MA15Y030 - Automne 2024">
+<meta property="og:title" content="TD 2 : SQL – MA15Y030 - Automne 2024">
 <meta property="og:description" content="Page maison pour MA15Y030 - Bases de données, Licence MIASHS Automne 2024.">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
@@ -4887,7 +4887,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TD 2 : SQL</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -5071,7 +5071,23 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">TD 2 : SQL</h1>
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <div>
@@ -5185,9 +5201,9 @@ window.Quarto = {
 <h3 class="anchored" data-anchor-id="requêtes-nommées-utilisation-de-with">Requêtes nommées : utilisation de <code>WITH</code></h3>
 <p>Lorsque les requêtes se compliquent, il est parfois commode de la découper en plusieurs requêtes qu’on manipulera par la suite. Par exemple, trouver le nom des capitales européennes ayant plus d’un million d’habitants peut se découper ainsi: on résout la requête <code>CAP</code> qui contient le nom, le continent et la population des capitales. Puis on résout la requête finale en filtrant <code>CAP</code>. Cela peut s’écrire avec l’opérateur <code>WITH</code>:</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> CAP <span class="kw">AS</span> (</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name, continent, population</span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world.city <span class="kw">AS</span> V <span class="kw">JOIN</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>     world.country <span class="kw">AS</span> P <span class="kw">ON</span>  V.<span class="kw">id</span><span class="op">=</span>P.capital</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> name, continent, population</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> world.city <span class="kw">AS</span> V <span class="kw">JOIN</span> </span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    world.country <span class="kw">AS</span> P <span class="kw">ON</span>  V.<span class="kw">id</span><span class="op">=</span>P.capital</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name</span>

@@ -1,0 +1,23 @@
+---
+title: "Moyens de calcul"
+---
+
+
+# Serveur 
+
+- Serveur `PostGreSQL`
+- Machine dédiée
+
+
+# Clients 
+
+- `psql`
+- `pgcli`
+- `dbeaver`
+
+# Connexions `ssh`
+
+
+
+
+
