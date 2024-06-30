@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "TD Récapitulatif SQL"
 format:
   pdf:
     code-annotations: below

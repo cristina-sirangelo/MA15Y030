@@ -1,5 +1,5 @@
 ---
-title: Fonctions PL/PgSQL
+title: "TD Fonctions II (Fonctions PL/PgSQL)"
 format:
   pdf:
     code-annotations: below
@@ -21,31 +21,29 @@ params:
     moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
 ---
 
-
 ```{r}
 #| include: false
 ```
 
 
-# {{< meta title >>}}
+::: {layout="[80,20]"}
 
-![](../images/UniversiteParis_monogramme_couleur_RVB.png){style="float:right; size: 75px;"
-width="132"}
+::: {#first-column}
 
 
-```{r}
-#| echo: false
-#| eval: true
-#| results: asis
-#| label: title_template
-stringr::str_glue('### {params$curriculum}\n\n',
-  "**{params$university}**\n\n",
-  "Academic Year {params$year}-{params$year+1}\n\n",
-  "[Course Homepage]({params$homepage})\n\n\n",
-  "[Moodle]({params$moodle})\n\n\n",
-  "---\n\n")
-```
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`  
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
 
+::: 
+
+::: {#second-column}
+![](../images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
 
 
 On donne ci-dessous une requête renvoyant les paires d'acteurs ayant joué dans un même film.

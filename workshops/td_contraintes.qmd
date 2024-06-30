@@ -1,5 +1,5 @@
 ---
-title: ""
+title: "TD : Contraintes"
 format:
   pdf:
     code-annotations: below
@@ -30,7 +30,6 @@ params:
 
 ::: {#first-column}
 
-{{< meta title >>}}
 
 - **`r stringr::str_glue('{params$curriculum}')`**
 - **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
@@ -54,21 +53,25 @@ params:
 Cette contrainte permet de vérifier que les colonnes d'une ligne donnée vérifient une certaine condition. Par exemple, on pourrait vouloir vérifier que la valeur de la colonne ` percentage` de la table ` countrylanguage` est inférieure à 100 ou que la valeur de la colonne `return_date` de la table ` rental` est soit ` NULL` ou supérieure à `rental_date`. Ces contraintes se définissent lors de la création de la table. Par exemple :
 
 ```{.sql}
-CREATE TABLE solde(produit TEXT,
-				   reduc_pourcentage INT,
-				   CHECK (reduc_pourcentage<=100 AND reduc_pourcentage%10=0));
+CREATE TABLE solde(
+	produit TEXT,
+	reduc_pourcentage INT,
+	CHECK (reduc_pourcentage<=100 AND reduc_pourcentage%10=0)
+);
 ```
 
 On peut ajouter une contrainte CHECK à une table qui existe déjà. Par exemple :
 
 ```{.sql}
-ALTER TABLE solde ADD CHECK (reduc_pourcentage >=0);
+ALTER TABLE solde ADD 
+	CHECK (reduc_pourcentage >=0);
 ```
 
 ou bien en nommant la contrainte :
 
 ```{.sql}
-ALTER TABLE solde ADD CONSTRAINT reduc_positive 
+ALTER TABLE solde 
+	ADD CONSTRAINT reduc_positive 
 	CHECK (reduc_pourcentage >=0);
 ```
 
@@ -78,10 +81,12 @@ ALTER TABLE solde ADD CONSTRAINT reduc_positive
  Ces contraintes s'appliquent à une colonne en particulier. La contrainte ` DEFAULT` spécifie une valeur par défaut pour remplir une colonne lorsque sa valeur n'est pas spécifiée, ` NOT NULL` que la valeur de la colonne ne peut pas être ` NULL` et ` UNIQUE` que deux lignes différentes de la table ne peuvent pas avoir la même valeur sur les colonnes indiquées. Par exemple:
 
 ```{.sql}
-CREATE TABLE membre(nom VARCHAR(50) NOT NULL,
-					prenom VARCHAR(50) NOT NULL,
-					date_inscription DATE DEFAULT NOW(),
-					UNIQUE(nom, prenom)  );
+CREATE TABLE membre(
+	nom VARCHAR(50) NOT NULL,
+	prenom VARCHAR(50) NOT NULL,
+	date_inscription DATE DEFAULT NOW(),
+	UNIQUE(nom, prenom)  
+);
 ```
 
 
@@ -100,7 +105,7 @@ PRIMARY KEY (id)
 CREATE TABLE amis(
 	id1 INT, 
 	id2 INT,
-    FOREIGN KEY (id1) REFERENCES membre (id)
+  FOREIGN KEY (id1) REFERENCES membre (id)
 );
 ```
 
@@ -139,7 +144,8 @@ CREATE TABLE chaprot.td_country (like world.country) ;
 Va copier les champs avec leur type et les contraintes `NOT NULL`. Mais aucune autre contrainte. Par contre, la commande :
 
 ```{.sql}
-CREATE TABLE chaprot.td_country (like world.country 
+CREATE TABLE chaprot.td_country (
+	like world.country 
 	including all
 ) ;
 ```

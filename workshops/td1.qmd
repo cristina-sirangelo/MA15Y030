@@ -1,4 +1,6 @@
 ---
+title: "TD I: Algèbre relationnelle"
+
 format:
   pdf:
     code-annotations: below
@@ -29,7 +31,6 @@ params:
 ::: {layout="[80,20]"}
 
 ::: {#first-column}
-
 
 
 - **`r stringr::str_glue('{params$curriculum}')`**

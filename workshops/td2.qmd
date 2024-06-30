@@ -1,4 +1,5 @@
 ---
+title: "TD 2 : SQL "
 format:
   pdf:
     code-annotations: below
@@ -42,7 +43,7 @@ params:
 ::: 
 
 ::: {#second-column}
-![](../images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+![](/images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
 :::
 
 :::
@@ -131,9 +132,9 @@ Lorsque les requêtes se compliquent, il est parfois commode de la découper en 
 
 ```{.sql}
 WITH CAP AS (
-SELECT name, continent, population
-FROM world.city AS V JOIN 
-     world.country AS P ON  V.id=P.capital
+  SELECT name, continent, population
+  FROM world.city AS V JOIN 
+    world.country AS P ON  V.id=P.capital
 )
 
 SELECT name
@@ -150,8 +151,9 @@ WHERE continent = 'Europe' AND population > 1000000;
 
 ```{.sql}
 SELECT name
-  FROM world.city JOIN world.country ON capital=id
- WHERE continent = 'South America';
+FROM world.city JOIN 
+  world.country ON capital=id
+WHERE continent = 'South America';
 ```
 ::: 
 :::
@@ -227,7 +229,8 @@ EXCEPT
 WITH R AS (
   SELECT language 
   FROM world.countrylanguage 
-  WHERE isofficial)
+  WHERE isofficial
+)
 
 (SELECT DISTINCT language 
 FROM world.countrylanguage) 
@@ -247,12 +250,14 @@ FROM R);
 WITH R AS (
   SELECT countrycode 
   FROM world.countrylanguage
-  WHERE isofficial),
+  WHERE isofficial
+),
 S AS (
   SELECT countrycode 
   FROM world.country
   EXCEPT 
-  SELECT * FROM R)
+  SELECT * FROM R
+)
 
 SELECT name_country 
 FROM world.country NATURAL JOIN S;
@@ -278,7 +283,8 @@ S AS (
   FROM world.countrylanguage
   WHERE language='French' AND isofficial
   EXCEPT 
-  (SELECT * FROM R))
+  (SELECT * FROM R)
+)
 
 SELECT name_country 
 FROM world.country NATURAL JOIN S;
