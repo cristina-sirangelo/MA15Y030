@@ -1,492 +1,557 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.47">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-
-<meta name="author" content="Stéphane Boucheron">
-
-<title>BD IV: SQL III – MA15Y030 - Automne 2024</title>
-<style>
-code{white-space: pre-wrap;}
-span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: min(4vw, 1.5em);}
-div.column{flex: auto; overflow-x: auto;}
-div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-ul.task-list{list-style: none;}
-ul.task-list li input[type="checkbox"] {
-  width: 0.8em;
-  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-  vertical-align: middle;
-}
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-</style>
-
-
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<html lang="en"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.47">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN") {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
+  <meta name="author" content="Stéphane Boucheron">
+  <title>MA15Y030 - Automne 2024 – BD IV: SQL III</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+      vertical-align: middle;
     }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
+    /* CSS for syntax highlighting */
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+      }
+    pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+    div.sourceCode
+      { color: #cccccc; background-color: #303030; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span.al { color: #ffcfaf; } /* Alert */
+    code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
+    code span.at { } /* Attribute */
+    code span.bn { color: #dca3a3; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #f0dfaf; } /* ControlFlow */
+    code span.ch { color: #dca3a3; } /* Char */
+    code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
+    code span.co { color: #7f9f7f; } /* Comment */
+    code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
+    code span.do { color: #7f9f7f; } /* Documentation */
+    code span.dt { color: #dfdfbf; } /* DataType */
+    code span.dv { color: #dcdccc; } /* DecVal */
+    code span.er { color: #c3bf9f; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #c0bed1; } /* Float */
+    code span.fu { color: #efef8f; } /* Function */
+    code span.im { } /* Import */
+    code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
+    code span.kw { color: #f0dfaf; } /* Keyword */
+    code span.op { color: #f0efd0; } /* Operator */
+    code span.ot { color: #efef8f; } /* Other */
+    code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
+    code span.sc { color: #dca3a3; } /* SpecialChar */
+    code span.ss { color: #cc9393; } /* SpecialString */
+    code span.st { color: #cc9393; } /* String */
+    code span.va { } /* Variable */
+    code span.vs { color: #cc9393; } /* VerbatimString */
+    code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+  </style>
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-titled.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-titled) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-titled .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-titled .callout-title  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-titled.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-titled.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-title {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-title {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-title {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-titled .callout-body > .callout-content > :last-child {
+    padding-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .callout.callout-titled .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-titled) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-title {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-title {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-title {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-title {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-title {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
 <meta property="og:title" content="BD IV: SQL III – MA15Y030 - Automne 2024">
-<meta property="og:description" content="Page maison pour MA15Y030 - Bases de données, Licence MIASHS Automne 2024.">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
 
-<body class="nav-sidebar docked">
+<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
+  <h1 class="title">BD IV: SQL III</h1>
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">BD IV: SQL III</li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
-    <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
-      </a>
-      <div class="sidebar-tools-main tools-wide">
-    <a href="https://github.com/s-v-b/MA15Y030" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
-    <div class="dropdown">
-      <a href="" title="Moodle" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Moodle"><i class="bi bi-person-fill"></i></a>
-      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.u-paris.fr/course/view.php?id=2313">
-            Discussion forum
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.u-paris.fr/course/view.php?id=2313">
-            Dépot
-            </a>
-          </li>
-          <li>
-            <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.u-paris.fr/course/view.php?id=2313">
-            Notes
-            </a>
-          </li>
-      </ul>
-    </div>
-  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Stéphane Boucheron 
 </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Course information</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cours-apercu.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Aperçu</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cours-syllabus.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Syllabus</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cours-support.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Support</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cours-equipe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Équipe</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Agenda</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cours-liens.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Liens</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../cours-faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FAQ</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Computing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Access</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../computing-dbeaver.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">dbeaver</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Troubleshooting</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Project</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../project-description.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Description</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../project-tips-resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tips + resources</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Weekly materials</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../weeks/week-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Roadmap</h2>
-   
-  <ul>
-  <li><a href="#fonctions-dagrégation-en-sql" id="toc-fonctions-dagrégation-en-sql" class="nav-link active" data-scroll-target="#fonctions-dagrégation-en-sql">Fonctions d’agrégation en SQL</a></li>
-  <li><a href="#fonctions-max-et-min" id="toc-fonctions-max-et-min" class="nav-link" data-scroll-target="#fonctions-max-et-min">Fonctions MAX et MIN</a></li>
-  <li><a href="#fonction-count" id="toc-fonction-count" class="nav-link" data-scroll-target="#fonction-count">Fonction COUNT</a></li>
-  <li><a href="#partitions-group-by" id="toc-partitions-group-by" class="nav-link" data-scroll-target="#partitions-group-by">Partitions, <code>GROUP BY</code></a></li>
-  <li><a href="#tri-des-résultats" id="toc-tri-des-résultats" class="nav-link" data-scroll-target="#tri-des-résultats">Tri des résultats</a></li>
-  <li><a href="#fonctions-fenêtres-window-functions" id="toc-fonctions-fenêtres-window-functions" class="nav-link" data-scroll-target="#fonctions-fenêtres-window-functions">Fonctions fenêtres (Window functions)</a></li>
-  </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/slides/SQL_3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="SQL_3.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
-    </div>
-<!-- main -->
-<main class="content" id="quarto-document-content">
-
-<header id="title-block-header" class="quarto-title-block default">
-<div class="quarto-title">
-<h1 class="title">BD IV: SQL III</h1>
-</div>
-
-
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Stéphane Boucheron </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
+        <p class="quarto-title-affiliation">
             LPSM Université Paris-Cité
           </p>
-      </div>
-  </div>
+    </div>
+</div>
 
-<div class="quarto-title-meta">
-
-      
-  
-    
-  </div>
-  
-
-
-</header>
-
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Roadmap</h2>
+<ul>
+<li><a href="#/fonctions-dagrégation-en-sql" id="/toc-fonctions-dagrégation-en-sql">Fonctions d’agrégation en SQL</a></li>
+<li><a href="#/fonctions-max-et-min" id="/toc-fonctions-max-et-min">Fonctions MAX et MIN</a></li>
+<li><a href="#/fonction-count" id="/toc-fonction-count">Fonction COUNT</a></li>
+<li><a href="#/partitions-group-by" id="/toc-partitions-group-by">Partitions, <code>GROUP BY</code></a></li>
+<li><a href="#/tri-des-résultats" id="/toc-tri-des-résultats">Tri des résultats</a></li>
+<li><a href="#/fonctions-fenêtres-window-functions" id="/toc-fonctions-fenêtres-window-functions">Fonctions fenêtres (Window functions)</a></li>
+</ul>
+</nav>
+</section>
+<section class="slide level2 center">
 
 <p><code>{.r, include=FALSE} library(DBI) db &lt;- dbConnect(RSQLite::SQLite(), dbname = "sql.sqlite") knitr::opts_chunk$set(connection = "db")</code></p>
-<section id="fonctions-dagrégation-en-sql" class="level1" data-background-color="#1c191c">
-<h1 data-background-color="#1c191c">Fonctions d’agrégation en SQL</h1>
-<hr>
+</section>
+<section>
+<section id="fonctions-dagrégation-en-sql" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Fonctions d’agrégation en SQL</h1>
+
+</section>
+<section class="slide level2 center">
+
 <p>L’algèbre relationnelle pure ne sait pas tout calculer</p>
 <p>Certains problèmes aisément solubles par un langage de programmation complet (<code>Python</code>, <code>C</code>, <code>R</code>, …) ne sont pas solubles dans l’algèbre relationnelle pure ( <span class="math inline">\(\sigma(), \pi(), \bowtie(), ...\)</span> ) :</p>
 <ul>
 <li><p>accessibilité dans un graphe non-orienté (qui puis-je contacter dans un réseau social?)</p></li>
 <li><p>compter : quel est le nombre de lignes d’une table ?</p></li>
 </ul>
-<section id="fonctions-dagrégation-en-sql-1" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-dagrégation-en-sql-1"><i class="fa-solid fa-binoculars" aria-label="binoculars"></i> Fonctions d’agrégation en SQL</h2>
+</section>
+<section id="fonctions-dagrégation-en-sql-1" class="slide level2 center">
+<h2><i class="fa-solid fa-binoculars" aria-label="binoculars"></i> Fonctions d’agrégation en SQL</h2>
 <ul>
 <li><p>Possibilité de <em>compter</em>, de <em>faire des moyennes</em>, de trouver un maximum, … en SQL (contrairement à l’algèbre relationnelle “classique”)</p></li>
 <li><p>Possibilité de <em>partitionner</em> les données</p></li>
 </ul>
 </section>
-<section id="usages" class="level2">
-<h2 class="anchored" data-anchor-id="usages">Usages</h2>
+<section id="usages" class="slide level2 center">
+<h2>Usages</h2>
 <ul>
 <li><p><a href="https://fr.wikipedia.org/wiki/Business_analytics">Analyse commerciale ou Buisiness Analytics</a>,</p></li>
 <li><p>Statistique et Data Science</p></li>
 </ul>
 </section>
-<section id="dans-la-partie-select" class="level2">
-<h2 class="anchored" data-anchor-id="dans-la-partie-select">Dans la partie <code>SELECT</code></h2>
+<section id="dans-la-partie-select" class="slide level2 center">
+<h2>Dans la partie <code>SELECT</code></h2>
 <ul>
 <li>Somme des valeurs prises par <code>nomattribut</code></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">SUM</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>. . .</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a><span class="fu">SUM</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <ul>
 <li>Moyenne des valeurs prises par <code>nomattribut</code></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AVG</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nom_attribut<span class="op">&gt;</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>. . .</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="fu">AVG</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nom_attribut<span class="op">&gt;</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Le type des attributs doit être un nombre ou un entier (sinon, impossible de faire des sommes…).</p>
+</div>
 </section>
-<section id="fonctions-dagrégation-sum-et-avg" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-dagrégation-sum-et-avg">Fonctions d’agrégation : <code>SUM</code> et <code>AVG</code></h2>
+<section id="fonctions-dagrégation-sum-et-avg" class="slide level2 center">
+<h2>Fonctions d’agrégation : <code>SUM</code> et <code>AVG</code></h2>
 <ul>
 <li>Le nombre de pièces ‘x21’ livrées.</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">SUM</span> (<span class="kw">ALL</span> Quantite)  </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="kw">SELECT</span> <span class="fu">SUM</span> (<span class="kw">ALL</span> Quantite)  </span>
+<span id="cb3-2"><a></a><span class="kw">FROM</span> Livraison </span>
+<span id="cb3-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Prix moyen des pièces livrées par la socié <code>FastDelivery</code></li>
 </ul>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">AVG</span> (<span class="kw">ALL</span> Prix)    </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison L, Piece P </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> L.NomP<span class="op">=</span>P.NomP <span class="kw">AND</span> L.NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-<p><img src="../images/prod-liv-fourn.png" class="img-fluid"></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">SELECT</span> <span class="fu">AVG</span> (<span class="kw">ALL</span> Prix)    </span>
+<span id="cb4-2"><a></a><span class="kw">FROM</span> Livraison L, Piece P </span>
+<span id="cb4-3"><a></a><span class="kw">WHERE</span> L.NomP<span class="op">=</span>P.NomP <span class="kw">AND</span> L.NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
+<section class="slide level2 center">
+
+
+<img data-src="../images/prod-liv-fourn.png" class="r-stretch"></section></section>
+<section>
+<section id="fonctions-max-et-min" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Fonctions MAX et MIN</h1>
+
 </section>
-<section id="fonctions-max-et-min" class="level1" data-background-color="#1c191c">
-<h1 data-background-color="#1c191c">Fonctions MAX et MIN</h1>
-<section id="fonctions-de-calcul-max-min" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-de-calcul-max-min">Fonctions de calcul : <code>MAX</code>, <code>MIN</code></h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MAX</span> (<span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="fonctions-de-calcul-max-min" class="slide level2 center">
+<h2>Fonctions de calcul : <code>MAX</code>, <code>MIN</code></h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="fu">MAX</span> (<span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>maximum des valeurs prises par <code>&lt;nomattribut&gt;</code></p>
-<p>. . .</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">MIN</span> (<span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="fu">MIN</span> (<span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>minimum des valeurs prises par <code>&lt;nomattribut&gt;</code></p>
 <p>Attention aux valeurs nulles !</p>
-<p>. . .</p>
+</div>
+<div class="fragment">
 <p>Quantité maximale livrée de pièce ‘x21’ lors d’une commande.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">MAX</span> (Quantite)   </span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="../images/prod-liv-fourn.png" class="img-fluid"></p>
-</section>
-</section>
-<section id="fonction-count" class="level1">
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">SELECT</span> <span class="fu">MAX</span> (Quantite)   </span>
+<span id="cb7-2"><a></a><span class="kw">FROM</span> Livraison </span>
+<span id="cb7-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img data-src="../images/prod-liv-fourn.png"></p>
+</div>
+</section></section>
+<section>
+<section id="fonction-count" class="title-slide slide level1 center">
 <h1>Fonction COUNT</h1>
-<section id="fonctions-de-calcul-count" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-de-calcul-count">Fonctions de calcul : <code>COUNT</code></h2>
+
+</section>
+<section id="fonctions-de-calcul-count" class="slide level2 center">
+<h2>Fonctions de calcul : <code>COUNT</code></h2>
 <p>On peut aussi compter le nombre de tuples dans un résultat</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">COUNT</span>(<span class="op">*</span> |[ <span class="kw">ALL</span> | <span class="kw">DISTINCT</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>])  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="fu">COUNT</span>(<span class="op">*</span> |[ <span class="kw">ALL</span> | <span class="kw">DISTINCT</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>])  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Nombre de valeurs prises par le résultat</p>
-<p>. . .</p>
+<div class="fragment">
 <ul>
 <li><code>DISTINCT</code> : sans les doublons</li>
 <li><code>ALL</code>: avec les doublons</li>
 <li><code>*</code> : y compris les valeurs nullles/manquantes</li>
 </ul>
 <p>Nombre de livraisons de la pièce ’x21</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>)  </span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="../images/prod-liv-fourn.png" class="img-fluid"></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>)  </span>
+<span id="cb9-2"><a></a><span class="kw">FROM</span> Livraison</span>
+<span id="cb9-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><img data-src="../images/prod-liv-fourn.png"></p>
+</div>
 </section>
-<section id="fonctions-de-calcul-exemples" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-de-calcul-exemples">Fonctions de calcul : exemples</h2>
+<section id="fonctions-de-calcul-exemples" class="slide level2 center">
+<h2>Fonctions de calcul : exemples</h2>
 <p>Exemple de combinaison de quelques opérations et fonctions</p>
 <p>Nom des fournisseurs ayant effectué plus de <span class="math inline">\(10\)</span> livraisons.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> F.NomF </span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Fournisseur F </span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> (<span class="kw">SELECT</span> <span class="fu">Count</span> (<span class="op">*</span>)     </span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>          <span class="kw">FROM</span> Livraison L     </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>          <span class="kw">WHERE</span> F.NomF <span class="op">=</span> L.NomF) <span class="op">&gt;=</span> <span class="dv">10</span>;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><img src="../images/prod-liv-fourn.png" class="img-fluid"></p>
-</section>
-<section id="musée-des-horreurs-smaller" class="level2">
-<h2 class="anchored" data-anchor-id="musée-des-horreurs-smaller">Musée des horreurs {smaller}</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> continent, region</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country c </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> (<span class="kw">SELECT</span> <span class="fu">MIN</span>(d.lifeexpectancy)     </span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>       <span class="kw">FROM</span> country d    </span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>       <span class="kw">WHERE</span> c.region<span class="op">=</span>d.region) <span class="op">&lt;</span> <span class="dv">50</span>    </span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">SELECT</span> F.NomF </span>
+<span id="cb10-2"><a></a><span class="kw">FROM</span> Fournisseur F </span>
+<span id="cb10-3"><a></a><span class="kw">WHERE</span> (<span class="kw">SELECT</span> <span class="fu">Count</span> (<span class="op">*</span>)     </span>
+<span id="cb10-4"><a></a>          <span class="kw">FROM</span> Livraison L     </span>
+<span id="cb10-5"><a></a>          <span class="kw">WHERE</span> F.NomF <span class="op">=</span> L.NomF) <span class="op">&gt;=</span> <span class="dv">10</span>;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<img data-src="../images/prod-liv-fourn.png" class="r-stretch"></section>
+<section id="musée-des-horreurs-smaller" class="slide level2 center">
+<h2>Musée des horreurs {smaller}</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> continent, region</span>
+<span id="cb11-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb11-3"><a></a><span class="kw">WHERE</span> (<span class="kw">SELECT</span> <span class="fu">MIN</span>(d.lifeexpectancy)     </span>
+<span id="cb11-4"><a></a>       <span class="kw">FROM</span> country d    </span>
+<span id="cb11-5"><a></a>       <span class="kw">WHERE</span> c.region<span class="op">=</span>d.region) <span class="op">&lt;</span> <span class="dv">50</span>    </span>
+<span id="cb11-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;"><strong>Continent</strong></th>
@@ -529,34 +594,36 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="fonctions-de-calcul-exemples-1" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-de-calcul-exemples-1">Fonctions de calcul : exemples</h2>
+<section id="fonctions-de-calcul-exemples-1" class="slide level2 center">
+<h2>Fonctions de calcul : exemples</h2>
 <p>Utilisation d’opérateur arithmétique entre les différents attributs d’un même tuple…</p>
 <p>Prix de revient des commandes livrées par le fournisseur <code>FD</code></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> L.NomP, P.Prix<span class="op">*</span>L.Quantite </span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison F, Piece P </span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> P.NomP<span class="op">=</span>L.NomP <span class="kw">AND</span> L.NomF<span class="op">=</span><span class="st">'FD'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> L.NomP, P.Prix<span class="op">*</span>L.Quantite </span>
+<span id="cb12-2"><a></a><span class="kw">FROM</span> Livraison F, Piece P </span>
+<span id="cb12-3"><a></a><span class="kw">WHERE</span> P.NomP<span class="op">=</span>L.NomP <span class="kw">AND</span> L.NomF<span class="op">=</span><span class="st">'FD'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="partitions-group-by" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Partitions, <code>GROUP BY</code></h1>
+
 </section>
-</section>
-<section id="partitions-group-by" class="level1" data-background-color="#1c191c">
-<h1 data-background-color="#1c191c">Partitions, <code>GROUP BY</code></h1>
-<section id="partition-de-résultats-de-requêtes" class="level2">
-<h2 class="anchored" data-anchor-id="partition-de-résultats-de-requêtes">Partition de résultats de requêtes</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>nomattribut1<span class="op">&gt;</span>, <span class="op">..</span>., <span class="op">&lt;</span>nomattributn<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="partition-de-résultats-de-requêtes" class="slide level2 center">
+<h2>Partition de résultats de requêtes</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>nomattribut1<span class="op">&gt;</span>, <span class="op">..</span>., <span class="op">&lt;</span>nomattributn<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><code>GROUP BY</code> permet de regrouper selon la valeur de certains attributs l’ensemble des résults d’une requête</p></li>
 <li><p>Forme des sous-relations auxquelles on peut appliquer des opérateurs (<code>SUM</code>, <code>MAX</code>, …) renvoyant un résultat par sous-relation</p></li>
 </ul>
 <p>Exemple d’utilisation : regrouper les livraisons par numéro de fournisseur et prendre la quantité maximum livrée par fournisseur.</p>
 </section>
-<section id="partition-de-résultats-de-requêtes-1" class="level2">
-<h2 class="anchored" data-anchor-id="partition-de-résultats-de-requêtes-1">Partition de résultats de requêtes</h2>
+<section id="partition-de-résultats-de-requêtes-1" class="slide level2 center">
+<h2>Partition de résultats de requêtes</h2>
 <p>Schéma général</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">....</span>.  </span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>. . .</p>
-<table class="caption-top table">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">SELECT</span> <span class="op">....</span>.  </span>
+<span id="cb14-2"><a></a><span class="kw">FROM</span> Livraison </span>
+<span id="cb14-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;">NomF</th>
@@ -632,15 +699,16 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
+</div>
 </section>
-<section id="partition-de-résultats-de-requêtes-2" class="level2">
-<h2 class="anchored" data-anchor-id="partition-de-résultats-de-requêtes-2">Partition de résultats de requêtes</h2>
+<section id="partition-de-résultats-de-requêtes-2" class="slide level2 center">
+<h2>Partition de résultats de requêtes</h2>
 <p>Quantité maximale livrée par chaque fournisseur</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> NomF, <span class="fu">MAX</span>(Quantite) </span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">SELECT</span> NomF, <span class="fu">MAX</span>(Quantite) </span>
+<span id="cb15-2"><a></a><span class="kw">FROM</span> Livraison </span>
+<span id="cb15-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Livraison</p>
-<table class="caption-top table">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;">NomF</th>
@@ -676,19 +744,19 @@ window.Quarto = {
 </table>
 <p>Les opérateurs (<code>MAX</code>, <code>SUM</code>, etc) s’appliquent à chaque groupe de relations.</p>
 </section>
-<section id="exemple-smaller" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-smaller">Exemple {smaller}</h2>
+<section id="exemple-smaller" class="slide level2 center">
+<h2>Exemple {smaller}</h2>
 <p>Dans le schéma <code>world</code>, quel est le <code>gnp</code> moyen par <code>region</code> sur le continent <code>Europe</code> ?</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> region, </span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">ROUND</span>(<span class="dv">1000</span> <span class="op">*</span> <span class="fu">SUM</span>(gnp)<span class="op">/</span><span class="fu">SUM</span>(population_country),<span class="dv">2</span>) <span class="kw">AS</span> avg_gnp,  </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">ROUND</span>(<span class="fu">MAX</span>(<span class="dv">1000</span><span class="op">*</span> gnp<span class="op">/</span>population_country),<span class="dv">2</span>) <span class="kw">AS</span> max_gnp, </span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">ROUND</span>(<span class="fu">MIN</span>(<span class="dv">1000</span><span class="op">*</span> gnp<span class="op">/</span>population_country),<span class="dv">2</span>) <span class="kw">AS</span> min_gnp,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">MIN</span>(lifeexpectancy) <span class="kw">AS</span> min_life_exp</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country </span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> region </span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> avg_gnp <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">SELECT</span> region, </span>
+<span id="cb16-2"><a></a>       <span class="fu">ROUND</span>(<span class="dv">1000</span> <span class="op">*</span> <span class="fu">SUM</span>(gnp)<span class="op">/</span><span class="fu">SUM</span>(population_country),<span class="dv">2</span>) <span class="kw">AS</span> avg_gnp,  </span>
+<span id="cb16-3"><a></a>       <span class="fu">ROUND</span>(<span class="fu">MAX</span>(<span class="dv">1000</span><span class="op">*</span> gnp<span class="op">/</span>population_country),<span class="dv">2</span>) <span class="kw">AS</span> max_gnp, </span>
+<span id="cb16-4"><a></a>       <span class="fu">ROUND</span>(<span class="fu">MIN</span>(<span class="dv">1000</span><span class="op">*</span> gnp<span class="op">/</span>population_country),<span class="dv">2</span>) <span class="kw">AS</span> min_gnp,</span>
+<span id="cb16-5"><a></a>       <span class="fu">MIN</span>(lifeexpectancy) <span class="kw">AS</span> min_life_exp</span>
+<span id="cb16-6"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb16-7"><a></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
+<span id="cb16-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> region </span>
+<span id="cb16-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> avg_gnp <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top">
 <colgroup>
 <col style="width: 32%">
 <col style="width: 14%">
@@ -751,68 +819,72 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="partition-de-résultats-de-requêtes-3" class="level2">
-<h2 class="anchored" data-anchor-id="partition-de-résultats-de-requêtes-3">Partition de résultats de requêtes</h2>
+<section id="partition-de-résultats-de-requêtes-3" class="slide level2 center">
+<h2>Partition de résultats de requêtes</h2>
 <p>Quel est le sens de cette requête ?</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> NomP, <span class="fu">COUNT</span>(<span class="op">*</span>), <span class="fu">SUM</span>(Quantite) </span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomP;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>. . .</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">SELECT</span> NomP, <span class="fu">COUNT</span>(<span class="op">*</span>), <span class="fu">SUM</span>(Quantite) </span>
+<span id="cb17-2"><a></a><span class="kw">FROM</span> Livraison </span>
+<span id="cb17-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomP;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <p><i class="fa-solid fa-brain" aria-label="brain"></i></p>
 <p>Cette requête n’est pas correcte <i class="fa-solid fa-skull" aria-label="skull"></i></p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> NomF, NomP, <span class="fu">MAX</span>(Quantite) </span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>. . .</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="kw">SELECT</span> NomF, NomP, <span class="fu">MAX</span>(Quantite) </span>
+<span id="cb18-2"><a></a><span class="kw">FROM</span> Livraison </span>
+<span id="cb18-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
 <p>Les attributs présents dans le <code>SELECT</code> sont forcémment présents dans le <code>GROUP BY</code>.</p>
+</div>
 </section>
-<section id="partition-de-résultats-de-requêtes-4" class="level2">
-<h2 class="anchored" data-anchor-id="partition-de-résultats-de-requêtes-4">Partition de résultats de requêtes</h2>
+<section id="partition-de-résultats-de-requêtes-4" class="slide level2 center">
+<h2>Partition de résultats de requêtes</h2>
 <ul>
 <li><p>La clause <code>HAVING</code> permet de poser une condition portant sur chacune des sous-relations générées par le <code>GROUP BY</code></p></li>
 <li><p>Les sous-relations ne vérifiant pas la condition sont écartées du résultat.</p></li>
 </ul>
 <p>Liste des fournisseurs qui ont effectué plus de 3 livraisons.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> NomF </span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF    </span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;=</span> <span class="dv">3</span>;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">SELECT</span> NomF </span>
+<span id="cb19-2"><a></a><span class="kw">FROM</span> Livraison </span>
+<span id="cb19-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF    </span>
+<span id="cb19-4"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;=</span> <span class="dv">3</span>;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section>
+<section>
+<section id="tri-des-résultats" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Tri des résultats</h1>
+
 </section>
-</section>
-<section id="tri-des-résultats" class="level1" data-background-color="#1c191c">
-<h1 data-background-color="#1c191c">Tri des résultats</h1>
-<section id="présentationtri-de-résultats" class="level2">
-<h2 class="anchored" data-anchor-id="présentationtri-de-résultats">Présentation/tri de résultats</h2>
+<section id="présentationtri-de-résultats" class="slide level2 center">
+<h2>Présentation/tri de résultats</h2>
 <ul>
 <li>La clause <code>ORDER BY</code> permet de trier le résultat de la requête, en fournissant la liste des attributs sur lesquels effectuer le tri et en spécifiant le sens du tri (ascendan ou descendant)</li>
 </ul>
 <p>Liste des salariés triée par ordre décroissant salaire</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Employe </span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> Salaire <span class="kw">DESC</span>;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb20-2"><a></a><span class="kw">FROM</span> Employe </span>
+<span id="cb20-3"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> Salaire <span class="kw">DESC</span>;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="regroupement-tri-etc-exemple" class="level2">
-<h2 class="anchored" data-anchor-id="regroupement-tri-etc-exemple">Regroupement, tri, etc : exemple</h2>
+<section id="regroupement-tri-etc-exemple" class="slide level2 center">
+<h2>Regroupement, tri, etc : exemple</h2>
 <p>Que fait cette requête ?</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Fonction, <span class="fu">COUNT</span>(<span class="op">*</span>) </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> Employe </span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> NumDep <span class="kw">IN</span> (</span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> NumDep </span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> Departement </span>
-<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> NomDept<span class="op">=</span><span class="st">'Financier'</span>) </span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> Fonction </span>
-<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">AVG</span>(Salaire) <span class="op">&gt;=</span> <span class="dv">10000</span> </span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> Fonction;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">SELECT</span> Fonction, <span class="fu">COUNT</span>(<span class="op">*</span>) </span>
+<span id="cb21-2"><a></a><span class="kw">FROM</span> Employe </span>
+<span id="cb21-3"><a></a><span class="kw">WHERE</span> NumDep <span class="kw">IN</span> (</span>
+<span id="cb21-4"><a></a>  <span class="kw">SELECT</span> NumDep </span>
+<span id="cb21-5"><a></a>  <span class="kw">FROM</span> Departement </span>
+<span id="cb21-6"><a></a>  <span class="kw">WHERE</span> NomDept<span class="op">=</span><span class="st">'Financier'</span>) </span>
+<span id="cb21-7"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> Fonction </span>
+<span id="cb21-8"><a></a><span class="kw">HAVING</span> <span class="fu">AVG</span>(Salaire) <span class="op">&gt;=</span> <span class="dv">10000</span> </span>
+<span id="cb21-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> Fonction;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Sur les relations d’une base <code>employé</code> (tables <code>Departement</code>,<code>Employe</code>, …)</p>
 </section>
-<section id="retour-au-musée-des-horreurs" class="level2">
-<h2 class="anchored" data-anchor-id="retour-au-musée-des-horreurs">Retour au musée des horreurs</h2>
-<div class="sourceCode" id="cb22"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> continent, region, <span class="fu">MIN</span>(c.lifeexpectancy)</span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country c </span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent, region</span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">MIN</span>(c.lifeexpectancy) <span class="op">&lt;</span> <span class="dv">50</span>  </span>
-<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
+<section id="retour-au-musée-des-horreurs" class="slide level2 center">
+<h2>Retour au musée des horreurs</h2>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">MIN</span>(c.lifeexpectancy)</span>
+<span id="cb22-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb22-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent, region</span>
+<span id="cb22-4"><a></a><span class="kw">HAVING</span> <span class="fu">MIN</span>(c.lifeexpectancy) <span class="op">&lt;</span> <span class="dv">50</span>  </span>
+<span id="cb22-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;"><strong>Continent</strong></th>
@@ -873,27 +945,28 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="exemple-daggrégation" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-daggrégation">Exemple d’aggrégation</h2>
+<section id="exemple-daggrégation" class="slide level2 center">
+<h2>Exemple d’aggrégation</h2>
 <p>Dans le schéma <code>world</code>,</p>
-</section>
-</section>
-<section id="fonctions-fenêtres-window-functions" class="level1">
+</section></section>
+<section>
+<section id="fonctions-fenêtres-window-functions" class="title-slide slide level1 center">
 <h1>Fonctions fenêtres (Window functions)</h1>
 <p>Une <strong>fonction fenêtre</strong> effectue un calcul sur un (sous)-ensemble de lignes de la table qui sont liées à la ligne courante.</p>
 <p>C’est comparable au type de calcul effectué avec une fonction d’agrégation.</p>
 <p>Mais les fonctions de fenêtre ne regroupement pas les lignes en une seule ligne de sortie. Au contraire, les lignes conservent leurs identités distinctes. En coulisses, la fonction de fenêtre est capable d’accéder à plus que la ligne actuelle du résultat de la requête.</p>
-<section id="exemple" class="level2">
-<h2 class="anchored" data-anchor-id="exemple">Exemple</h2>
+</section>
+<section id="exemple" class="slide level2 center">
+<h2>Exemple</h2>
 <p>Dans le schéma <code>world</code>, présenter pour chaque pays dont la région comprend le motif <code>Countries</code>, l’espérance de vie, l’espérance de vie maximale et minimale dans la région.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> region, name_country, lifeexpectancy, </span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">min</span>(lifeexpectancy) <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region),  </span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>       <span class="fu">max</span>(lifeexpectancy) <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region)   </span>
-<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country </span>
-<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span></span>
-<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, lifeexpectancy  </span>
-<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a><span class="kw">SELECT</span> region, name_country, lifeexpectancy, </span>
+<span id="cb23-2"><a></a>       <span class="fu">min</span>(lifeexpectancy) <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region),  </span>
+<span id="cb23-3"><a></a>       <span class="fu">max</span>(lifeexpectancy) <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region)   </span>
+<span id="cb23-4"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb23-5"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span></span>
+<span id="cb23-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, lifeexpectancy  </span>
+<span id="cb23-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Region</th>
@@ -949,12 +1022,12 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="calculer-une-fonction-fenêtre-sans-invoquer-over-..." class="level2">
-<h2 class="anchored" data-anchor-id="calculer-une-fonction-fenêtre-sans-invoquer-over-...">Calculer une fonction fenêtre sans invoquer <code>OVER (...)</code></h2>
+<section id="calculer-une-fonction-fenêtre-sans-invoquer-over-..." class="slide level2 center">
+<h2>Calculer une fonction fenêtre sans invoquer <code>OVER (...)</code></h2>
 <p>Pour calculer ce résultat sans fonctions fenêtres, on effectue une partition selon la <code>region</code>, une aggrégation par groupe pour calculer <code>min(lifeexpectancy)</code> et <code>max(lifeexpectancy)</code> On obtient une table à trois colonnes <code>region, min, max</code></p>
 <p>Enfin, on calcule une (équi)-jointure avec la table <code>country</code> originelle sur la colonne commune <code>region</code></p>
 <p>On projette le résultat sur les cinq colonnes pertinentes.</p>
-<table class="caption-top table">
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th>Region</th>
@@ -1010,16 +1083,16 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="variations" class="level2">
-<h2 class="anchored" data-anchor-id="variations">Variations</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> region, name_country, lifeexpectancy, </span>
-<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">rank</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region   </span>
-<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>                    <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>)  </span>
-<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country </span>
-<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span></span>
-<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, lifeexpectancy <span class="kw">DESC</span> </span>
-<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
+<section id="variations" class="slide level2 center">
+<h2>Variations</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">SELECT</span> region, name_country, lifeexpectancy, </span>
+<span id="cb24-2"><a></a>       <span class="fu">rank</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region   </span>
+<span id="cb24-3"><a></a>                    <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>)  </span>
+<span id="cb24-4"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb24-5"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span></span>
+<span id="cb24-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, lifeexpectancy <span class="kw">DESC</span> </span>
+<span id="cb24-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Region</th>
@@ -1068,16 +1141,16 @@ window.Quarto = {
 </tbody>
 </table>
 </section>
-<section id="sommes-cumulées-par-groupes-selon-un-ordre" class="level2">
-<h2 class="anchored" data-anchor-id="sommes-cumulées-par-groupes-selon-un-ordre">Sommes cumulées par groupes selon un ordre</h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
-<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    region, name_country , </span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">sum</span>(gnp) <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region  </span>
-<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>                   <span class="kw">ORDER</span> <span class="kw">BY</span> gnp)     </span>
-<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country c </span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Europe'</span> </span>
-<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a><span class="kw">LIMIT</span> <span class="dv">6</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
+<section id="sommes-cumulées-par-groupes-selon-un-ordre" class="slide level2 center">
+<h2>Sommes cumulées par groupes selon un ordre</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">SELECT</span> </span>
+<span id="cb25-2"><a></a>    region, name_country , </span>
+<span id="cb25-3"><a></a>    <span class="fu">sum</span>(gnp) <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region  </span>
+<span id="cb25-4"><a></a>                   <span class="kw">ORDER</span> <span class="kw">BY</span> gnp)     </span>
+<span id="cb25-5"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb25-6"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Europe'</span> </span>
+<span id="cb25-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Region</th>
@@ -1118,118 +1191,119 @@ window.Quarto = {
 </tr>
 </tbody>
 </table>
-<hr>
+</section>
+<section class="slide level2 center">
+
 <p>Les fonctions de fenêtre ne sont autorisées que dans la liste SELECT et la clause ORDER BY de la requête.</p>
 <p>Elles sont interdites ailleurs, par exemple dans les clauses GROUP BY, HAVING et WHERE.</p>
 <p>En effet, elles s’exécutent logiquement après le traitement de ces clauses.</p>
 <p>De même, les fonctions de fenêtre s’exécutent après les fonctions d’agrégation habituelles.</p>
 <p>Cela signifie qu’il est valable d’inclure un appel de fonction d’agrégation dans les arguments d’une fonction de fenêtre, mais pas l’inverse.</p>
-<hr>
 </section>
-<section id="exemple-1" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-1">Exemple</h2>
+<section id="exemple-1" class="slide level2 center">
+<h2>Exemple</h2>
 <p>Pour chaque continent, afficher les trois pays ayant l’espérance de vie à la naissance la plus élevée</p>
-<p>. . .</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> continent, </span>
-<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>       name_country, </span>
-<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>       lifeexpectancy, </span>
-<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>       pos</span>
-<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span></span>
-<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  (<span class="kw">SELECT</span> continent, </span>
-<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>          name_country, </span>
-<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>          lifeexpectancy,</span>
-<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>          <span class="fu">rank</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> continent </span>
-<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>                       <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>) <span class="kw">AS</span> pos</span>
-<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>     <span class="kw">FROM</span> country</span>
-<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>     <span class="kw">WHERE</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="kw">AS</span> ws</span>
-<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
+<div class="fragment">
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">SELECT</span> continent, </span>
+<span id="cb26-2"><a></a>       name_country, </span>
+<span id="cb26-3"><a></a>       lifeexpectancy, </span>
+<span id="cb26-4"><a></a>       pos</span>
+<span id="cb26-5"><a></a><span class="kw">FROM</span></span>
+<span id="cb26-6"><a></a>  (<span class="kw">SELECT</span> continent, </span>
+<span id="cb26-7"><a></a>          name_country, </span>
+<span id="cb26-8"><a></a>          lifeexpectancy,</span>
+<span id="cb26-9"><a></a>          <span class="fu">rank</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> continent </span>
+<span id="cb26-10"><a></a>                       <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>) <span class="kw">AS</span> pos</span>
+<span id="cb26-11"><a></a>     <span class="kw">FROM</span> country</span>
+<span id="cb26-12"><a></a>     <span class="kw">WHERE</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb26-13"><a></a>  ) <span class="kw">AS</span> ws</span>
+<span id="cb26-14"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
-<section id="avec-with-...-et-les-ctes" class="level2">
-<h2 class="anchored" data-anchor-id="avec-with-...-et-les-ctes">Avec <code>WITH ...</code> et les CTEs</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> ws <span class="kw">AS</span> (</span>
-<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> continent, </span>
-<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>         name_country, </span>
-<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>         lifeexpectancy,</span>
-<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a>         <span class="fu">rank</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> continent </span>
-<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>                      <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>) <span class="kw">AS</span> pos</span>
-<span id="cb27-7"><a href="#cb27-7" aria-hidden="true" tabindex="-1"></a>     <span class="kw">FROM</span> country</span>
-<span id="cb27-8"><a href="#cb27-8" aria-hidden="true" tabindex="-1"></a>     <span class="kw">WHERE</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb27-9"><a href="#cb27-9" aria-hidden="true" tabindex="-1"></a>) </span>
-<span id="cb27-10"><a href="#cb27-10" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> continent, </span>
-<span id="cb27-11"><a href="#cb27-11" aria-hidden="true" tabindex="-1"></a>       name_country, </span>
-<span id="cb27-12"><a href="#cb27-12" aria-hidden="true" tabindex="-1"></a>       lifeexpectancy, </span>
-<span id="cb27-13"><a href="#cb27-13" aria-hidden="true" tabindex="-1"></a>       pos</span>
-<span id="cb27-14"><a href="#cb27-14" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> ws   </span>
-<span id="cb27-15"><a href="#cb27-15" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
+<section id="avec-with-...-et-les-ctes" class="slide level2 center">
+<h2>Avec <code>WITH ...</code> et les CTEs</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a><span class="kw">WITH</span> ws <span class="kw">AS</span> (</span>
+<span id="cb27-2"><a></a>  <span class="kw">SELECT</span> continent, </span>
+<span id="cb27-3"><a></a>         name_country, </span>
+<span id="cb27-4"><a></a>         lifeexpectancy,</span>
+<span id="cb27-5"><a></a>         <span class="fu">rank</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> continent </span>
+<span id="cb27-6"><a></a>                      <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>) <span class="kw">AS</span> pos</span>
+<span id="cb27-7"><a></a>     <span class="kw">FROM</span> country</span>
+<span id="cb27-8"><a></a>     <span class="kw">WHERE</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb27-9"><a></a>) </span>
+<span id="cb27-10"><a></a><span class="kw">SELECT</span> continent, </span>
+<span id="cb27-11"><a></a>       name_country, </span>
+<span id="cb27-12"><a></a>       lifeexpectancy, </span>
+<span id="cb27-13"><a></a>       pos</span>
+<span id="cb27-14"><a></a><span class="kw">FROM</span> ws   </span>
+<span id="cb27-15"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="exemple-smaller-1" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-smaller-1">Exemple {smaller}</h2>
+<section id="exemple-smaller-1" class="slide level2 center">
+<h2>Exemple {smaller}</h2>
 <p>Afficher le pays le plus peuplé</p>
-<p>. . .</p>
+<div class="fragment">
 <div class="columns">
 <div class="column">
-<div class="sourceCode" id="cb28"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> S.name_country, </span>
-<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>       S.continent, </span>
-<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>       S.population_country</span>
-<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (</span>
-<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> <span class="fu">max</span>(population_country) <span class="kw">AS</span> mpc </span>
-<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> country c) <span class="kw">AS</span> R </span>
-<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">JOIN</span> LATERAL  (    </span>
-<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> country c2 </span>
-<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> c2.population_country <span class="op">&gt;=</span> R.mpc) <span class="kw">AS</span> S </span>
-<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ON</span> (<span class="kw">TRUE</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a><span class="kw">SELECT</span> S.name_country, </span>
+<span id="cb28-2"><a></a>       S.continent, </span>
+<span id="cb28-3"><a></a>       S.population_country</span>
+<span id="cb28-4"><a></a><span class="kw">FROM</span> (</span>
+<span id="cb28-5"><a></a>  <span class="kw">SELECT</span> <span class="fu">max</span>(population_country) <span class="kw">AS</span> mpc </span>
+<span id="cb28-6"><a></a>  <span class="kw">FROM</span> country c) <span class="kw">AS</span> R </span>
+<span id="cb28-7"><a></a>    <span class="kw">JOIN</span> LATERAL  (    </span>
+<span id="cb28-8"><a></a>    <span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb28-9"><a></a>    <span class="kw">FROM</span> country c2 </span>
+<span id="cb28-10"><a></a>    <span class="kw">WHERE</span> c2.population_country <span class="op">&gt;=</span> R.mpc) <span class="kw">AS</span> S </span>
+<span id="cb28-11"><a></a>    <span class="kw">ON</span> (<span class="kw">TRUE</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div class="sourceCode" id="cb29"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> c.name_country, </span>
-<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>       c.continent, </span>
-<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>       c.population_country</span>
-<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (</span>
-<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="fu">max</span>(population_country) <span class="kw">AS</span> mpc </span>
-<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> country c2) <span class="kw">AS</span> S</span>
-<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">JOIN</span> country c </span>
-<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span> (c.population_country <span class="op">&gt;=</span> S.mpc)    </span>
-<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a><span class="kw">SELECT</span> c.name_country, </span>
+<span id="cb29-2"><a></a>       c.continent, </span>
+<span id="cb29-3"><a></a>       c.population_country</span>
+<span id="cb29-4"><a></a><span class="kw">FROM</span> (</span>
+<span id="cb29-5"><a></a>    <span class="kw">SELECT</span> <span class="fu">max</span>(population_country) <span class="kw">AS</span> mpc </span>
+<span id="cb29-6"><a></a>    <span class="kw">FROM</span> country c2) <span class="kw">AS</span> S</span>
+<span id="cb29-7"><a></a>  <span class="kw">JOIN</span> country c </span>
+<span id="cb29-8"><a></a>  <span class="kw">ON</span> (c.population_country <span class="op">&gt;=</span> S.mpc)    </span>
+<span id="cb29-9"><a></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><p>::::: <!-- end columns --></p><pre><code>name_country|continent|population_country|
 ------------+---------+------------------+
-China       |Asia     |        1277558000|</code></pre><hr><section id="exemple-suite-smaller" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-suite-smaller">Exemple (suite) {smaller}</h2>
+China       |Asia     |        1277558000|</code></pre><hr><section id="exemple-suite-smaller" class="slide level2 center">
+<h2>Exemple (suite) {smaller}</h2>
 <p>Afficher le pays le plus peuplé</p>
 <div class="columns">
 <div class="column">
-<div class="sourceCode" id="cb31"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world.country c  </span>
-<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> <span class="kw">ALL</span>(</span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> cc.population_country  </span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> world.country  cc</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>) ;     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb31-2"><a></a><span class="kw">FROM</span> world.country c  </span>
+<span id="cb31-3"><a></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> <span class="kw">ALL</span>(</span>
+<span id="cb31-4"><a></a>  <span class="kw">SELECT</span> cc.population_country  </span>
+<span id="cb31-5"><a></a>  <span class="kw">FROM</span> world.country  cc</span>
+<span id="cb31-6"><a></a>) ;     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div class="sourceCode" id="cb32"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> S <span class="kw">AS</span> (        </span>
-<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> c.<span class="op">*</span>, <span class="fu">max</span>(population_country) </span>
-<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>         <span class="kw">OVER</span> () <span class="kw">AS</span> mpc  </span>
-<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> world.country c</span>
-<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> S   </span>
-<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> mpc ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a></a><span class="kw">WITH</span> S <span class="kw">AS</span> (        </span>
+<span id="cb32-2"><a></a>    <span class="kw">SELECT</span> c.<span class="op">*</span>, <span class="fu">max</span>(population_country) </span>
+<span id="cb32-3"><a></a>         <span class="kw">OVER</span> () <span class="kw">AS</span> mpc  </span>
+<span id="cb32-4"><a></a>    <span class="kw">FROM</span> world.country c</span>
+<span id="cb32-5"><a></a>)</span>
+<span id="cb32-6"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb32-7"><a></a><span class="kw">FROM</span> S   </span>
+<span id="cb32-8"><a></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> mpc ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><p>::::: <!-- end columns --></p><pre><code>name_country|continent|population_country|
 ------------+---------+------------------+
-China       |Asia     |        1277558000|</code></pre><hr><section id="exemple-smaller-2" class="level2">
-<h2 class="anchored" data-anchor-id="exemple-smaller-2">Exemple {smaller}</h2>
+China       |Asia     |        1277558000|</code></pre><hr><section id="exemple-smaller-2" class="slide level2 center">
+<h2>Exemple {smaller}</h2>
 <p>Afficher les 10 pays les plus peuplés</p>
-<p>. . .</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> S <span class="kw">AS</span> (        </span>
-<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> c.<span class="op">*</span>, <span class="fu">rank</span>() </span>
-<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>         <span class="kw">OVER</span> (<span class="kw">ORDER</span> <span class="kw">BY</span> population_country <span class="kw">DESC</span>) <span class="kw">AS</span> rpc  </span>
-<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> world.country c</span>
-<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> name_country, continent, population_country</span>
-<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> S   </span>
-<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> rpc <span class="op">&lt;=</span> <span class="dv">10</span> </span>
-<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> rpc <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>. . .</p>
+<div class="fragment">
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a></a><span class="kw">WITH</span> S <span class="kw">AS</span> (        </span>
+<span id="cb34-2"><a></a>    <span class="kw">SELECT</span> c.<span class="op">*</span>, <span class="fu">rank</span>() </span>
+<span id="cb34-3"><a></a>         <span class="kw">OVER</span> (<span class="kw">ORDER</span> <span class="kw">BY</span> population_country <span class="kw">DESC</span>) <span class="kw">AS</span> rpc  </span>
+<span id="cb34-4"><a></a>    <span class="kw">FROM</span> world.country c</span>
+<span id="cb34-5"><a></a>)</span>
+<span id="cb34-6"><a></a><span class="kw">SELECT</span> name_country, continent, population_country</span>
+<span id="cb34-7"><a></a><span class="kw">FROM</span> S   </span>
+<span id="cb34-8"><a></a><span class="kw">WHERE</span> rpc <span class="op">&lt;=</span> <span class="dv">10</span> </span>
+<span id="cb34-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> rpc <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
 <pre><code>name_country      |continent    |population_country|
 ------------------+-------------+------------------+
 China             |Asia         |        1277558000|
@@ -1242,21 +1316,23 @@ Russian Federation|Europe       |         146934000|
 Bangladesh        |Asia         |         129155000|
 Japan             |Asia         |         126714000|
 Nigeria           |Africa       |         111506000|</code></pre>
-</section><section id="groupements-avancés" class="level1">
+</div>
+</section><section id="groupements-avancés" class="title-slide slide level1 center">
 <h1>Groupements avancés</h1>
 <hr>
 <p>Introduits dans SQL avec la mode du <code>Data mining</code> (Fouille de données) dans les années 1990</p>
 <p>Permet de réaliser de facon apparemment simultanée des aggrégations de régularités emboîtées</p>
 <p>Dans le monde des statistiques, lorsqu’on aggrège des comptages de grains différents, on parle de tables de contingences (<em>contingency tables</em>).</p>
 <hr>
-<section id="rollup-smaller" class="level2">
-<h2 class="anchored" data-anchor-id="rollup-smaller"><code>ROLLUP</code> {smaller}</h2>
-<div class="sourceCode" id="cb36"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> continent, region, <span class="fu">max</span>(lifeexpectancy)</span>
-<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country c </span>
-<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
-<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">ROLLUP</span>  (continent, region)  </span>
-<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
+</section>
+<section id="rollup-smaller" class="slide level2 center">
+<h2><code>ROLLUP</code> {smaller}</h2>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">max</span>(lifeexpectancy)</span>
+<span id="cb36-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb36-3"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
+<span id="cb36-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">ROLLUP</span>  (continent, region)  </span>
+<span id="cb36-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Continent</th>
@@ -1303,21 +1379,21 @@ Nigeria           |Africa       |         111506000|</code></pre>
 </tbody>
 </table>
 </section>
-<section id="grouping-sets" class="level2">
-<h2 class="anchored" data-anchor-id="grouping-sets">GROUPING SETS</h2>
-<div class="sourceCode" id="cb37"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> c1, c2, aggregate_function(c3)</span>
-<span id="cb37-2"><a href="#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> table_name</span>
-<span id="cb37-3"><a href="#cb37-3" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS ((c1, c2), (c1), (c2), ());   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="grouping-sets" class="slide level2 center">
+<h2>GROUPING SETS</h2>
+<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a></a><span class="kw">SELECT</span> c1, c2, aggregate_function(c3)</span>
+<span id="cb37-2"><a></a><span class="kw">FROM</span> table_name</span>
+<span id="cb37-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS ((c1, c2), (c1), (c2), ());   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> <code>ROLLUP</code> and <code>CUBE</code> are special cases of <code>GROUPING SETS</code></p>
 </section>
-<section id="grouping-sets-suite-smaller" class="level2">
-<h2 class="anchored" data-anchor-id="grouping-sets-suite-smaller"><code>GROUPING SETS</code> (suite) {smaller}</h2>
-<div class="sourceCode" id="cb38"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> continent, region, <span class="fu">max</span>(lifeexpectancy)</span>
-<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country c </span>
-<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
-<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS  ((continent, region), (continent), ())  </span>
-<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<table class="caption-top table">
+<section id="grouping-sets-suite-smaller" class="slide level2 center">
+<h2><code>GROUPING SETS</code> (suite) {smaller}</h2>
+<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb38-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">max</span>(lifeexpectancy)</span>
+<span id="cb38-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb38-3"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
+<span id="cb38-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS  ((continent, region), (continent), ())  </span>
+<span id="cb38-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Continent</th>
@@ -1364,18 +1440,18 @@ Nigeria           |Africa       |         111506000|</code></pre>
 </tbody>
 </table>
 </section>
-<section id="cube" class="level2">
-<h2 class="anchored" data-anchor-id="cube"><code>CUBE</code></h2>
-<div class="sourceCode" id="cb39"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> c1, c2, c3,</span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>    aggregate (c4) </span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> table_name</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span> (c1, c2, c3);  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="cube" class="slide level2 center">
+<h2><code>CUBE</code></h2>
+<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a></a><span class="kw">SELECT</span> c1, c2, c3,</span>
+<span id="cb39-2"><a></a>    aggregate (c4) </span>
+<span id="cb39-3"><a></a><span class="kw">FROM</span> table_name</span>
+<span id="cb39-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span> (c1, c2, c3);  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
-<div class="sourceCode" id="cb40"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> continent, region, governmentform, <span class="fu">count</span>(<span class="op">*</span>) <span class="kw">AS</span> cnt, <span class="fu">max</span>(lifeexpectancy)</span>
-<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country c </span>
-<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
-<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span>   (continent, region, governmentform)   </span>
-<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">5</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a></a><span class="kw">SELECT</span> continent, region, governmentform, <span class="fu">count</span>(<span class="op">*</span>) <span class="kw">AS</span> cnt, <span class="fu">max</span>(lifeexpectancy)</span>
+<span id="cb40-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb40-3"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
+<span id="cb40-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span>   (continent, region, governmentform)   </span>
+<span id="cb40-5"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">5</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <pre><code>|Continent    |Region       |Governmentf   |cnt|max |
 |:------------|:------------|:-------------|:--|:---|
@@ -1403,18 +1479,18 @@ Nigeria           |Africa       |         111506000|</code></pre>
 |             |               |Dependent Territory of the UK|  7|78.9|</code></pre>
 <hr>
 </section>
-<section id="compter-les-formes-de-gouvernement-et-les-région-dans-les-amériques-smaller" class="level2">
-<h2 class="anchored" data-anchor-id="compter-les-formes-de-gouvernement-et-les-région-dans-les-amériques-smaller">Compter les formes de gouvernement et les région dans les Amériques {smaller}</h2>
-<div class="sourceCode" id="cb42"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>  </span>
-<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>       region, </span>
-<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>       governmentform, </span>
-<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>       <span class="fu">count</span>(<span class="op">*</span>) <span class="kw">AS</span> cnt, </span>
-<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>       <span class="fu">max</span>(lifeexpectancy)</span>
-<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country c </span>
-<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
-<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span>   (region, governmentform)   </span>
-<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">0</span></span>
-<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, cnt <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="compter-les-formes-de-gouvernement-et-les-région-dans-les-amériques-smaller" class="slide level2 center">
+<h2>Compter les formes de gouvernement et les région dans les Amériques {smaller}</h2>
+<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb42-1"><a></a><span class="kw">SELECT</span>  </span>
+<span id="cb42-2"><a></a>       region, </span>
+<span id="cb42-3"><a></a>       governmentform, </span>
+<span id="cb42-4"><a></a>       <span class="fu">count</span>(<span class="op">*</span>) <span class="kw">AS</span> cnt, </span>
+<span id="cb42-5"><a></a>       <span class="fu">max</span>(lifeexpectancy)</span>
+<span id="cb42-6"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb42-7"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
+<span id="cb42-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span>   (region, governmentform)   </span>
+<span id="cb42-9"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb42-10"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, cnt <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>region         |governmentform                              |cnt|max |
 ---------------+--------------------------------------------+---+----+
 Caribbean      |                                            | 24|78.9|
@@ -1429,49 +1505,51 @@ Caribbean      |Republic                                    |  4|73.4|
                |Overseas Department of France               |  3|78.3|
 ...</code></pre>
 </section>
-</section><section id="résumé" class="level1">
+<section id="résumé" class="title-slide slide level1 center">
 <h1>Résumé</h1>
-<section id="portrait-robot-dune-requête" class="level2">
-<h2 class="anchored" data-anchor-id="portrait-robot-dune-requête">Portrait robot d’une requête</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">&lt;</span>attributs<span class="op">&gt;</span>           <span class="co">-- les colonnes de la table résultat</span></span>
-<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> <span class="op">&lt;</span>relations<span class="op">&gt;</span>             <span class="co">-- la/les table/s qui émettent les données</span></span>
-<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span> ]         <span class="co">-- filtre</span></span>
-<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>attributs de partitionnement<span class="op">&gt;</span>   <span class="co">-- découpage en groupes</span></span>
-<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>[<span class="kw">HAVING</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span>]]      <span class="co">-- filtrage des groupes</span></span>
-<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="op">&lt;</span>critere<span class="op">&gt;</span>]       <span class="co">-- trier </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</section>
+<section id="portrait-robot-dune-requête" class="slide level2 center">
+<h2>Portrait robot d’une requête</h2>
+<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb44-1"><a></a><span class="kw">SELECT</span> <span class="op">&lt;</span>attributs<span class="op">&gt;</span>           <span class="co">-- les colonnes de la table résultat</span></span>
+<span id="cb44-2"><a></a></span>
+<span id="cb44-3"><a></a><span class="kw">FROM</span> <span class="op">&lt;</span>relations<span class="op">&gt;</span>             <span class="co">-- la/les table/s qui émettent les données</span></span>
+<span id="cb44-4"><a></a></span>
+<span id="cb44-5"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span> ]         <span class="co">-- filtre</span></span>
+<span id="cb44-6"><a></a></span>
+<span id="cb44-7"><a></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>attributs de partitionnement<span class="op">&gt;</span>   <span class="co">-- découpage en groupes</span></span>
+<span id="cb44-8"><a></a></span>
+<span id="cb44-9"><a></a>[<span class="kw">HAVING</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span>]]      <span class="co">-- filtrage des groupes</span></span>
+<span id="cb44-10"><a></a></span>
+<span id="cb44-11"><a></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="op">&lt;</span>critere<span class="op">&gt;</span>]       <span class="co">-- trier </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>SELECT</code> : attributs du résultat (avec agrégats éventuels)</li>
 <li><code>WHERE</code> : condition de sélection indépendante du <code>GROUP BY</code></li>
 <li><code>HAVING</code> : condition de sélection portant sur les groupes</li>
 </ul>
 <hr>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-title-container flex-fill">
-Avis
+<p><strong>Avis</strong></p>
 </div>
-</div>
-<div class="callout-body-container callout-body">
+<div class="callout-content">
 <p>All SQL queries will contain some combination of these clauses. If you remember nothing else, remember this!</p>
 </div>
 </div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span>        <span class="co">-- columns to display</span></span>
-<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span>          <span class="co">-- table(s) to pull from</span></span>
-<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span>         <span class="co">-- filter</span></span>
-<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span>      <span class="co">-- split rows into groups</span></span>
-<span id="cb45-5"><a href="#cb45-5" aria-hidden="true" tabindex="-1"></a><span class="kw">HAVING</span>        <span class="co">-- filter within groups</span></span>
-<span id="cb45-6"><a href="#cb45-6" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span>      <span class="co">-- sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb45-1"><a></a><span class="kw">SELECT</span>        <span class="co">-- columns to display</span></span>
+<span id="cb45-2"><a></a><span class="kw">FROM</span>          <span class="co">-- table(s) to pull from</span></span>
+<span id="cb45-3"><a></a><span class="kw">WHERE</span>         <span class="co">-- filter</span></span>
+<span id="cb45-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span>      <span class="co">-- split rows into groups</span></span>
+<span id="cb45-5"><a></a><span class="kw">HAVING</span>        <span class="co">-- filter within groups</span></span>
+<span id="cb45-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span>      <span class="co">-- sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="ordre-dexécution-des-éléments-dune-requête" class="level2">
-<h2 class="anchored" data-anchor-id="ordre-dexécution-des-éléments-dune-requête">Ordre d’exécution des éléments d’une requête</h2>
+<section id="ordre-dexécution-des-éléments-dune-requête" class="slide level2 center scrollable">
+<h2>Ordre d’exécution des éléments d’une requête</h2>
 <ol type="1">
 <li><p>Rassembler les données mentionnées dans la clause <code>FROM</code></p></li>
 <li><p>Filter les lignes selon la clause <code>WHERE</code></p></li>
@@ -1481,8 +1559,8 @@ Avis
 <li><p>Trier le résultat final selon la clause <code>ORDER BY</code></p></li>
 </ol>
 </section>
-</section><section id="références" class="level1" data-background-color="#1c191c">
-<h1 data-background-color="#1c191c">Références</h1>
+<section id="références" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Références</h1>
 <hr>
 <p><a href="https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-select/">Tutoriel <code>SELECT</code> de PostGreSQL</a></p>
 <p><a href="https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-joins/">Tutoriel <code>joins</code></a></p>
@@ -1490,598 +1568,572 @@ Avis
 <p><a href="https://www.postgresql.org/docs/14/sql-select.html">Documentation <code>SELECT</code></a></p>
 <p><a href="https://www.postgresql.org/docs/14/queries-table-expressions.html#QUERIES-GROUPING-SETS">GROUPING SETS, ROLLUP, CUBE</a></p>
 <hr>
-</section><section id="fin" class="level1" data-background-color="#1c191c">
-<h1 data-background-color="#1c191c">Fin</h1>
-
-
 </section>
+<section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Fin</h1>
+
+<div class="quarto-auto-generated-content">
+<p><img src="../images/logo.png" class="slide-logo"></p>
+<div class="footer footer-default">
+<p>MA15Y030 – Bases de Données – L3 MIASHS – UParis Cité</p>
+</div>
+</div>
+</section>
+
 </div>
 </section>
 </div>
-</section>
-</section>
+</div>
+</section></section>
+    </div>
+  </div>
 
-</main> <!-- /main -->
-<script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
-    }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
-      }
-    }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
-      }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
-        }
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': true,
+'previewLinksAuto': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: true,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'bottom-right',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: 'c/t',
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: true,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'default',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: true,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'none',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'none',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1050,
+
+        height: 700,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 0.1,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
       });
-    }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
-        }
-      }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
         } else {
-          toggle.classList.remove("alternate");
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
         }
       }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const icon = "";
-  const anchorJS = new window.AnchorJS();
-  anchorJS.options = {
-    placement: 'right',
-    icon: icon
-  };
-  anchorJS.add('.anchored');
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const onCopySuccess = function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  }
-  const getTextToCopy = function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
         }
       }
-      return codeEl.innerText;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-    text: getTextToCopy
-  });
-  clipboard.on('success', onCopySuccess);
-  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-    // For code content inside modals, clipBoardJS needs to be initialized with a container option
-    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-      text: getTextToCopy,
-      container: window.document.getElementById('quarto-embedded-source-code-modal')
-    });
-    clipboardModal.on('success', onCopySuccess);
-  }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/s-v-b\.github\.io\/MA15Y030\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const isCodeAnnotation = (el) => {
+        for (const clz of el.classList) {
+          if (clz.startsWith('code-annotation-')) {                     
+            return true;
+          }
         }
+        return false;
       }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+      const onCopySuccess = function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
         }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
       }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
+      const getTextToCopy = function(trigger) {
+          const codeEl = trigger.previousElementSibling.cloneNode(true);
+          for (const childEl of codeEl.children) {
+            if (isCodeAnnotation(childEl)) {
+              childEl.remove();
+            }
+          }
+          return codeEl.innerText;
+      }
+      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+        text: getTextToCopy
+      });
+      clipboard.on('success', onCopySuccess);
+      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+        // For code content inside modals, clipBoardJS needs to be initialized with a container option
+        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+          text: getTextToCopy,
+          container: window.document.getElementById('quarto-embedded-source-code-modal')
+        });
+        clipboardModal.on('success', onCopySuccess);
+      }
+        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+        var mailtoRegex = new RegExp(/^mailto:/);
+          var filterRegex = new RegExp("https:\/\/s-v-b\.github\.io\/MA15Y030\/");
+        var isInternal = (href) => {
+            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+        }
+        // Inspect non-navigation links and adorn them if external
+     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+        for (var i=0; i<links.length; i++) {
+          const link = links[i];
+          if (!isInternal(link.href)) {
+            // undo the damage that might have been done by quarto-nav.js in the case of
+            // links that we want to consider external
+            if (link.dataset.originalHref !== undefined) {
+              link.href = link.dataset.originalHref;
+            }
+          }
+        }
+      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+        const config = {
+          allowHTML: true,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'light-border',
+          placement: 'bottom-start',
+        };
+        if (contentFn) {
+          config.content = contentFn;
+        }
+        if (onTriggerFn) {
+          config.onTrigger = onTriggerFn;
+        }
+        if (onUntriggerFn) {
+          config.onUntrigger = onUntriggerFn;
+        }
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note) {
+            return note.innerHTML;
           } else {
-            container.appendChild(child.cloneNode(true));
-            break;
+            return "";
           }
+        });
+      }
+          let selectedAnnoteEl;
+          const selectorForAnnotation = ( cell, annotation) => {
+            let cellAttr = 'data-code-cell="' + cell + '"';
+            let lineAttr = 'data-code-annotation="' +  annotation + '"';
+            const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+            return selector;
+          }
+          const selectCodeLines = (annoteEl) => {
+            const doc = window.document;
+            const targetCell = annoteEl.getAttribute("data-target-cell");
+            const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+            const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+            const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+            const lineIds = lines.map((line) => {
+              return targetCell + "-" + line;
+            })
+            let top = null;
+            let height = null;
+            let parent = null;
+            if (lineIds.length > 0) {
+                //compute the position of the single el (top and bottom and make a div)
+                const el = window.document.getElementById(lineIds[0]);
+                top = el.offsetTop;
+                height = el.offsetHeight;
+                parent = el.parentElement.parentElement;
+              if (lineIds.length > 1) {
+                const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+                const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+                height = bottom - top;
+              }
+              if (top !== null && height !== null && parent !== null) {
+                // cook up a div (if necessary) and position it 
+                let div = window.document.getElementById("code-annotation-line-highlight");
+                if (div === null) {
+                  div = window.document.createElement("div");
+                  div.setAttribute("id", "code-annotation-line-highlight");
+                  div.style.position = 'absolute';
+                  parent.appendChild(div);
+                }
+                div.style.top = top - 2 + "px";
+                div.style.height = height + 4 + "px";
+                div.style.left = 0;
+                let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+                if (gutterDiv === null) {
+                  gutterDiv = window.document.createElement("div");
+                  gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                  gutterDiv.style.position = 'absolute';
+                  const codeCell = window.document.getElementById(targetCell);
+                  const gutter = codeCell.querySelector('.code-annotation-gutter');
+                  gutter.appendChild(gutterDiv);
+                }
+                gutterDiv.style.top = top - 2 + "px";
+                gutterDiv.style.height = height + 4 + "px";
+              }
+              selectedAnnoteEl = annoteEl;
+            }
+          };
+          const unselectCodeLines = () => {
+            const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+            elementsIds.forEach((elId) => {
+              const div = window.document.getElementById(elId);
+              if (div) {
+                div.remove();
+              }
+            });
+            selectedAnnoteEl = undefined;
+          };
+            // Handle positioning of the toggle
+        window.addEventListener(
+          "resize",
+          throttle(() => {
+            elRect = undefined;
+            if (selectedAnnoteEl) {
+              selectCodeLines(selectedAnnoteEl);
+            }
+          }, 10)
+        );
+        function throttle(fn, ms) {
+        let throttle = false;
+        let timer;
+          return (...args) => {
+            if(!throttle) { // first call gets through
+                fn.apply(this, args);
+                throttle = true;
+            } else { // all the others get throttled
+                if(timer) clearTimeout(timer); // cancel #2
+                timer = setTimeout(() => {
+                  fn.apply(this, args);
+                  timer = throttle = false;
+                }, ms);
+            }
+          };
         }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+          const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+          for (let i=0; i<annoteTargets.length; i++) {
+            const annoteTarget = annoteTargets[i];
+            const targetCell = annoteTarget.getAttribute("data-target-cell");
+            const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+            const contentFn = () => {
+              const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+              if (content) {
+                const tipContent = content.cloneNode(true);
+                tipContent.classList.add("code-annotation-tip-content");
+                return tipContent.outerHTML;
+              }
+            }
+            const config = {
+              allowHTML: true,
+              content: contentFn,
+              onShow: (instance) => {
+                selectCodeLines(instance.reference);
+                instance.reference.classList.add('code-annotation-active');
+                window.tippy.hideAll();
+              },
+              onHide: (instance) => {
+                unselectCodeLines();
+                instance.reference.classList.remove('code-annotation-active');
+              },
+              maxWidth: 300,
+              delay: [50, 0],
+              duration: [200, 0],
+              offset: [5, 10],
+              arrow: true,
+              appendTo: function(el) {
+                return el.parentElement.parentElement.parentElement;
+              },
+              interactive: true,
+              interactiveBorder: 10,
+              theme: 'light-border',
+              placement: 'right',
+              popperOptions: {
+                modifiers: [
+                {
+                  name: 'flip',
+                  options: {
+                    flipVariations: false, // true by default
+                    allowedAutoPlacements: ['right'],
+                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+                  },
+                },
+                {
+                  name: 'preventOverflow',
+                  options: {
+                    mainAxis: false,
+                    altAxis: false
+                  }
+                }
+                ]        
+              }      
+            };
+            window.tippy(annoteTarget, config); 
+          }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
       }
-    }, function(instance) {
     });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
-      });
-    }
-  }
-});
-</script>
-</div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-<p>© Copyright 2024, Stéphane Boucheron</p>
-</div>   
-    <div class="nav-footer-center">
-      &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/slides/SQL_3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
-    <div class="nav-footer-right">
-<p>This page is built with blood, sweat, tears, and <a href="https://quarto.org/">Quarto</a>.</p>
-</div>
-  </div>
-</footer>
-
-
-
+    </script>
+    
 
 </body></html>
