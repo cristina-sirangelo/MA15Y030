@@ -4833,6 +4833,12 @@ vertical-align: -.125em;
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../computing-dbeaver.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dbeaver</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting</span></a>
   </div>
@@ -4922,12 +4928,12 @@ vertical-align: -.125em;
 <div class="quarto-layout-row">
 <div id="first-column" class="quarto-layout-cell" style="flex-basis: 80.0%;justify-content: flex-start;">
 <ul>
-<li><strong>L3 MIASHS/Ingémath</strong></li>
-<li><strong><a href="https://www.u-paris.fr">Université Paris Cité</a></strong></li>
-<li>Année 2024-2025</li>
-<li><a href="https://stephane-v-boucheron.fr/courses/bdd">Course Homepage</a><br>
+<li><strong><code>r stringr::str_glue(&#39;{params$curriculum}&#39;)</code></strong></li>
+<li><strong><code>r stringr::str_glue(&#39;[{params$university}](https://www.u-paris.fr)&#39;)</code></strong></li>
+<li><code>r stringr::str_glue(&quot;Année {params$year}-{params$year+1}&quot;)</code></li>
+<li><code>r stringr::str_glue(&quot;[Course Homepage]({params$homepage})&quot;)</code><br>
 </li>
-<li><a href="https://moodle.u-paris.fr/course/view.php?id=2313">Moodle</a></li>
+<li><code>r stringr::str_glue(&quot;[Moodle]({params$moodle})&quot;)</code></li>
 </ul>
 </div>
 <div id="second-column" class="quarto-layout-cell" style="flex-basis: 20.0%;justify-content: center;">

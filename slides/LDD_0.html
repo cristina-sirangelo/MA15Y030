@@ -1,427 +1,348 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.47">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Stéphane Boucheron">
+
+<title>BD II: SQL LDD – MA15Y030 - Automne 2024</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.47">
-
-  <meta name="author" content="Stéphane Boucheron">
-  <title>MA15Y030 - Automne 2024 – BD II: SQL LDD</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
-  <style>
-    code{white-space: pre-wrap;}
-    span.smallcaps{font-variant: small-caps;}
-    div.columns{display: flex; gap: min(4vw, 1.5em);}
-    div.column{flex: auto; overflow-x: auto;}
-    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
-    ul.task-list{list-style: none;}
-    ul.task-list li input[type="checkbox"] {
-      width: 0.8em;
-      margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
-      vertical-align: middle;
-    }
-    /* CSS for syntax highlighting */
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; font-weight: bold; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; font-weight: bold; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
-  </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
-  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
-
-  .callout {
-    margin-top: 1em;
-    margin-bottom: 1em;  
-    border-radius: .25rem;
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
+}</script>
 
-  .callout.callout-style-simple { 
-    padding: 0em 0.5em;
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-    display: flex;
-  }
 
-  .callout.callout-style-default {
-    border-left: solid #acacac .3rem;
-    border-right: solid 1px silver;
-    border-top: solid 1px silver;
-    border-bottom: solid 1px silver;
-  }
-
-  .callout .callout-body-container {
-    flex-grow: 1;
-  }
-
-  .callout.callout-style-simple .callout-body {
-    font-size: 1rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-style-default .callout-body {
-    font-size: 0.9rem;
-    font-weight: 400;
-  }
-
-  .callout.callout-titled.callout-style-simple .callout-body {
-    margin-top: 0.2em;
-  }
-
-  .callout:not(.callout-titled) .callout-body {
-      display: flex;
-  }
-
-  .callout:not(.no-icon).callout-titled.callout-style-simple .callout-content {
-    padding-left: 1.6em;
-  }
-
-  .callout.callout-titled .callout-header {
-    padding-top: 0.2em;
-    margin-bottom: -0.2em;
-  }
-
-  .callout.callout-titled .callout-title  p {
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-  }
-    
-  .callout.callout-titled.callout-style-simple .callout-content  p {
-    margin-top: 0;
-  }
-
-  .callout.callout-titled.callout-style-default .callout-content  p {
-    margin-top: 0.7em;
-  }
-
-  .callout.callout-style-simple div.callout-title {
-    border-bottom: none;
-    font-size: .9rem;
-    font-weight: 600;
-    opacity: 75%;
-  }
-
-  .callout.callout-style-default  div.callout-title {
-    border-bottom: none;
-    font-weight: 600;
-    opacity: 85%;
-    font-size: 0.9rem;
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-default div.callout-content {
-    padding-left: 0.5em;
-    padding-right: 0.5em;
-  }
-
-  .callout.callout-style-simple .callout-icon::before {
-    height: 1rem;
-    width: 1rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 1rem 1rem;
-  }
-
-  .callout.callout-style-default .callout-icon::before {
-    height: 0.9rem;
-    width: 0.9rem;
-    display: inline-block;
-    content: "";
-    background-repeat: no-repeat;
-    background-size: 0.9rem 0.9rem;
-  }
-
-  .callout-title {
-    display: flex
-  }
-    
-  .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  .callout.no-icon::before {
-    display: none !important;
-  }
-
-  .callout.callout-titled .callout-body > .callout-content > :last-child {
-    padding-bottom: 0.5rem;
-    margin-bottom: 0;
-  }
-
-  .callout.callout-titled .callout-icon::before {
-    margin-top: .5rem;
-    padding-right: .5rem;
-  }
-
-  .callout:not(.callout-titled) .callout-icon::before {
-    margin-top: 1rem;
-    padding-right: .5rem;
-  }
-
-  /* Callout Types */
-
-  div.callout-note {
-    border-left-color: #4582ec !important;
-  }
-
-  div.callout-note .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
-  }
-
-  div.callout-note.callout-style-default .callout-title {
-    background-color: #dae6fb
-  }
-
-  div.callout-important {
-    border-left-color: #d9534f !important;
-  }
-
-  div.callout-important .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-important.callout-style-default .callout-title {
-    background-color: #f7dddc
-  }
-
-  div.callout-warning {
-    border-left-color: #f0ad4e !important;
-  }
-
-  div.callout-warning .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-warning.callout-style-default .callout-title {
-    background-color: #fcefdc
-  }
-
-  div.callout-tip {
-    border-left-color: #02b875 !important;
-  }
-
-  div.callout-tip .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
-  }
-
-  div.callout-tip.callout-style-default .callout-title {
-    background-color: #ccf1e3
-  }
-
-  div.callout-caution {
-    border-left-color: #fd7e14 !important;
-  }
-
-  div.callout-caution .callout-icon::before {
-    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
-  }
-
-  div.callout-caution.callout-style-default .callout-title {
-    background-color: #ffe5d0
-  }
-
-  </style>
-  <style type="text/css">
-    .reveal div.sourceCode {
-      margin: 0;
-      overflow: auto;
-    }
-    .reveal div.hanging-indent {
-      margin-left: 1em;
-      text-indent: -1em;
-    }
-    .reveal .slide:not(.center) {
-      height: 100%;
-      overflow-y: auto;
-    }
-    .reveal .slide.scrollable {
-      overflow-y: auto;
-    }
-    .reveal .footnotes {
-      height: 100%;
-      overflow-y: auto;
-    }
-    .reveal .slide .absolute {
-      position: absolute;
-      display: block;
-    }
-    .reveal .footnotes ol {
-      counter-reset: ol;
-      list-style-type: none; 
-      margin-left: 0;
-    }
-    .reveal .footnotes ol li:before {
-      counter-increment: ol;
-      content: counter(ol) ". "; 
-    }
-    .reveal .footnotes ol li > p:first-child {
-      display: inline-block;
-    }
-    .reveal .slide ul,
-    .reveal .slide ol {
-      margin-bottom: 0.5em;
-    }
-    .reveal .slide ul li,
-    .reveal .slide ol li {
-      margin-top: 0.4em;
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide ul[role="tablist"] li {
-      margin-bottom: 0;
-    }
-    .reveal .slide ul li > *:first-child,
-    .reveal .slide ol li > *:first-child {
-      margin-block-start: 0;
-    }
-    .reveal .slide ul li > *:last-child,
-    .reveal .slide ol li > *:last-child {
-      margin-block-end: 0;
-    }
-    .reveal .slide .columns:nth-child(3) {
-      margin-block-start: 0.8em;
-    }
-    .reveal blockquote {
-      box-shadow: none;
-    }
-    .reveal .tippy-content>* {
-      margin-top: 0.2em;
-      margin-bottom: 0.7em;
-    }
-    .reveal .tippy-content>*:last-child {
-      margin-bottom: 0.2em;
-    }
-    .reveal .slide > img.stretch.quarto-figure-center,
-    .reveal .slide > img.r-stretch.quarto-figure-center {
-      display: block;
-      margin-left: auto;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-left,
-    .reveal .slide > img.r-stretch.quarto-figure-left  {
-      display: block;
-      margin-left: 0;
-      margin-right: auto; 
-    }
-    .reveal .slide > img.stretch.quarto-figure-right,
-    .reveal .slide > img.r-stretch.quarto-figure-right  {
-      display: block;
-      margin-left: auto;
-      margin-right: 0; 
-    }
-  </style>
 <meta property="og:title" content="BD II: SQL LDD – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Page maison pour MA15Y030 - Bases de données, Licence MIASHS Automne 2024.">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
-<body class="quarto-light">
-  <div class="reveal">
-    <div class="slides">
 
-<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
-  <h1 class="title">BD II: SQL LDD</h1>
+<body class="nav-sidebar docked">
 
-<div class="quarto-title-authors">
-<div class="quarto-title-author">
-<div class="quarto-title-author-name">
-Stéphane Boucheron 
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">BD II: SQL LDD</li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-center sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      </a>
+      <div class="sidebar-tools-main tools-wide">
+    <a href="https://github.com/s-v-b/MA15Y030" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
+    <div class="dropdown">
+      <a href="" title="Moodle" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Moodle"><i class="bi bi-person-fill"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.u-paris.fr/course/view.php?id=2313">
+            Discussion forum
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.u-paris.fr/course/view.php?id=2313">
+            Dépot
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.u-paris.fr/course/view.php?id=2313">
+            Notes
+            </a>
+          </li>
+      </ul>
+    </div>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-        <p class="quarto-title-affiliation">
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
+ <span class="menu-text">Course information</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cours-apercu.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Aperçu</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cours-syllabus.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Syllabus</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cours-support.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Support</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cours-equipe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Équipe</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Agenda</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cours-liens.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Liens</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../cours-faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Computing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Access</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-dbeaver.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">dbeaver</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Troubleshooting</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Project</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project-description.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Description</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../project-tips-resources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Tips + resources</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Weekly materials</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Week 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Roadmap</h2>
+   
+  <ul>
+  <li><a href="#insertion-mise-à-jour-suppression" id="toc-insertion-mise-à-jour-suppression" class="nav-link active" data-scroll-target="#insertion-mise-à-jour-suppression">Insertion, mise à jour, suppression</a></li>
+  <li><a href="#intégrité-référentielle" id="toc-intégrité-référentielle" class="nav-link" data-scroll-target="#intégrité-référentielle">Intégrité référentielle</a></li>
+  <li><a href="#contraintes" id="toc-contraintes" class="nav-link" data-scroll-target="#contraintes">Contraintes</a></li>
+  <li><a href="#résumé" id="toc-résumé" class="nav-link" data-scroll-target="#résumé">Résumé</a></li>
+  <li><a href="#fin" id="toc-fin" class="nav-link" data-scroll-target="#fin">Fin</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/slides/LDD_0.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="LDD_0.html"><i class="bi bi-file-slides"></i>RevealJS</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">BD II: SQL LDD</h1>
+</div>
+
+
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Author</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Stéphane Boucheron </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
             LPSM Université Paris-Cité
           </p>
-    </div>
-</div>
+      </div>
+  </div>
 
-</section><section id="TOC">
-<nav role="doc-toc"> 
-<h2 id="toc-title">Roadmap</h2>
-<ul>
-<li><a href="#/insertion-mise-à-jour-suppression" id="/toc-insertion-mise-à-jour-suppression">Insertion, mise à jour, suppression</a></li>
-<li><a href="#/intégrité-référentielle" id="/toc-intégrité-référentielle">Intégrité référentielle</a></li>
-<li><a href="#/contraintes" id="/toc-contraintes">Contraintes</a></li>
-<li><a href="#/résumé" id="/toc-résumé">Résumé</a></li>
-<li><a href="#/fin" id="/toc-fin">Fin</a></li>
-</ul>
-</nav>
-</section>
-<section class="slide level2 center">
+<div class="quarto-title-meta">
+
+      
+  
+    
+  </div>
+  
+
+
+</header>
+
 
 <p>```{.r, include=FALSE, eval=FALSE, echo=FALSE} tryCatch({ drv &lt;- dbDriver(“PostgreSQL”) print(“Connecting to Database…”) connec &lt;- dbConnect(drv, dbname = “bd_2018”, host = “localhost”, port = 5432, user = “postgres”, password = “postgres”) print(“Database Connected!”) }, error=function(cond) { print(“Unable to connect to Database.”) })</p>
 <p>dbSendQuery(connec, “SET search_path TO world ;”)</p>
@@ -497,116 +418,110 @@ CREATE TABLE &lt;nom_relation&gt; (
   &lt;,element de relation&gt;*
   &lt;,contrainte de relation&gt;* );</code></pre>
 <p>Chaque attribut est défini par un nom d’attribut et un type de données</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="op">&lt;</span>element de relation<span class="op">&gt;</span> :<span class="op">:=</span></span>
-<span id="cb2-2"><a></a><span class="op">&lt;</span>nom_attrib<span class="op">&gt;&lt;</span>type_donnees<span class="op">&gt;</span>[<span class="op">&lt;</span>contrainte_attrib<span class="op">&gt;*</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>element de relation<span class="op">&gt;</span> :<span class="op">:=</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>nom_attrib<span class="op">&gt;&lt;</span>type_donnees<span class="op">&gt;</span>[<span class="op">&lt;</span>contrainte_attrib<span class="op">&gt;*</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Exemples de types:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="op">&lt;</span>type_donnees<span class="op">&gt;</span> :<span class="op">:=</span></span>
-<span id="cb3-2"><a></a><span class="dt">VARCHAR</span> <span class="op">&lt;</span>longueur<span class="op">&gt;</span>| <span class="dt">INT</span> | <span class="dt">REAL</span> | <span class="dt">DATE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="exemple" class="slide level2 center">
-<h2>Exemple</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="op">&lt;</span>type_donnees<span class="op">&gt;</span> :<span class="op">:=</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="dt">VARCHAR</span> <span class="op">&lt;</span>longueur<span class="op">&gt;</span>| <span class="dt">INT</span> | <span class="dt">REAL</span> | <span class="dt">DATE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="exemple" class="level2">
+<h2 class="anchored" data-anchor-id="exemple">Exemple</h2>
 <p>Schéma:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {verbatim} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>fournisseur(nomf, villef),</span>
-<span id="cb4-2"><a></a>piece(nomp, prix, couleur),</span>
-<span id="cb4-3"><a></a>livraison(numliv, nomf, nomp, dateliv, quantite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
-<span id="cb5-2"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb5-3"><a></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>)</span>
-<span id="cb5-4"><a></a>);</span>
-<span id="cb5-5"><a></a></span>
-<span id="cb5-6"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
-<span id="cb5-7"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb5-8"><a></a>    prix <span class="dt">REAL</span>,</span>
-<span id="cb5-9"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>)</span>
-<span id="cb5-10"><a></a>);</span>
-<span id="cb5-11"><a></a></span>
-<span id="cb5-12"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> livraison(</span>
-<span id="cb5-13"><a></a>    numLiv <span class="dt">INT</span>,</span>
-<span id="cb5-14"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb5-15"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb5-16"><a></a>    dateliv <span class="dt">DATE</span> <span class="kw">DEFAULT</span> NOW(),</span>
-<span id="cb5-17"><a></a>    quantite <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span></span>
-<span id="cb5-18"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<pre class="{verbatim}"><code>fournisseur(nomf, villef),
+piece(nomp, prix, couleur),
+livraison(numliv, nomf, nomp, dateliv, quantite)</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    prix <span class="dt">REAL</span>,</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> livraison(</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>    numLiv <span class="dt">INT</span>,</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    dateliv <span class="dt">DATE</span> <span class="kw">DEFAULT</span> NOW(),</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    quantite <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
 </section>
-<section id="exemple-schéma-world-smaller" class="slide level2 center">
-<h2>Exemple : schéma <code>world</code> {smaller}</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.city (</span>
-<span id="cb6-2"><a></a>    <span class="kw">id</span> int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-3"><a></a>    name_city text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-4"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-5"><a></a>    district text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-6"><a></a>    population_city int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-7"><a></a>    <span class="kw">CONSTRAINT</span> city_pkey</span>
-<span id="cb6-8"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">id</span>)</span>
-<span id="cb6-9"><a></a>);</span>
-<span id="cb6-10"><a></a></span>
-<span id="cb6-11"><a></a></span>
-<span id="cb6-12"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.code_continent (</span>
-<span id="cb6-13"><a></a>    continent name <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-14"><a></a>    codecontinent float4 <span class="kw">NULL</span>,</span>
-<span id="cb6-15"><a></a>    <span class="kw">CONSTRAINT</span> code_continent_pk</span>
-<span id="cb6-16"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (continent)</span>
-<span id="cb6-17"><a></a>);</span>
-<span id="cb6-18"><a></a></span>
-<span id="cb6-19"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.countrylanguage (</span>
-<span id="cb6-20"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-21"><a></a>    <span class="ot">"language"</span> text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-22"><a></a>    isofficial bool <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-23"><a></a>    percentage float4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-24"><a></a>    <span class="kw">CONSTRAINT</span> countrylanguage_pkey</span>
-<span id="cb6-25"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode, language)</span>
-<span id="cb6-26"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="exemple-schéma-world-smaller" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-schéma-world-smaller">Exemple : schéma <code>world</code> {smaller}</h2>
+<div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.city (</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">id</span> int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    name_city text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    district text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    population_city int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> city_pkey</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">id</span>)</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.code_continent (</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    continent name <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    codecontinent float4 <span class="kw">NULL</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> code_continent_pk</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (continent)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.countrylanguage (</span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>    <span class="ot">"language"</span> text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>    isofficial bool <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    percentage float4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> countrylanguage_pkey</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode, language)</span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><img src="../images/bd_2023-world.png" class="img-fluid"></p>
 </section>
-<section class="slide level2 center">
-
-
-<img data-src="../images/bd_2023-world.png" class="r-stretch"></section>
-<section id="exemple-schéma-world-suite-smaller" class="slide level2 center">
-<h2>Exemple: schéma <code>world</code> (suite) {smaller}</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.country (</span>
-<span id="cb7-2"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-3"><a></a>    name_country text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-4"><a></a>    continent text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-5"><a></a>    region text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-6"><a></a>    surfacearea float4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-7"><a></a>    indepyear int2 <span class="kw">NULL</span>,</span>
-<span id="cb7-8"><a></a>    population_country int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-9"><a></a>    lifeexpectancy float4 <span class="kw">NULL</span>,</span>
-<span id="cb7-10"><a></a>    gnp <span class="dt">numeric</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,</span>
-<span id="cb7-11"><a></a>    gnpold <span class="dt">numeric</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,</span>
-<span id="cb7-12"><a></a>    localname text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-13"><a></a>    governmentform text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-14"><a></a>    headofstate text <span class="kw">NULL</span>,</span>
-<span id="cb7-15"><a></a>    capital int4 <span class="kw">NULL</span>,</span>
-<span id="cb7-16"><a></a>    code2 bpchar(<span class="dv">2</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-17"><a></a>    <span class="kw">CONSTRAINT</span> country_continent_check <span class="kw">CHECK</span> (</span>
-<span id="cb7-18"><a></a>        ((continent <span class="op">=</span> <span class="st">'Asia'</span>:<span class="ch">:text</span>) <span class="kw">OR</span> (</span>
-<span id="cb7-19"><a></a>            continent <span class="op">=</span> <span class="st">'Europe'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-20"><a></a>            (continent <span class="op">=</span> <span class="st">'North America'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-21"><a></a>            (continent <span class="op">=</span> <span class="st">'Africa'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-22"><a></a>            (continent <span class="op">=</span> <span class="st">'Oceania'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-23"><a></a>            (continent <span class="op">=</span> <span class="st">'Antarctica'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-24"><a></a>            (continent <span class="op">=</span> <span class="st">'South America'</span>:<span class="ch">:text</span>))),</span>
-<span id="cb7-25"><a></a>    <span class="kw">CONSTRAINT</span> country_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode)</span>
-<span id="cb7-26"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="exemple-schéma-world-suite-smaller" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-schéma-world-suite-smaller">Exemple: schéma <code>world</code> (suite) {smaller}</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.country (</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    name_country text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    continent text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    region text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    surfacearea float4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    indepyear int2 <span class="kw">NULL</span>,</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    population_country int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    lifeexpectancy float4 <span class="kw">NULL</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    gnp <span class="dt">numeric</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    gnpold <span class="dt">numeric</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    localname text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>    governmentform text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>    headofstate text <span class="kw">NULL</span>,</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>    capital int4 <span class="kw">NULL</span>,</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>    code2 bpchar(<span class="dv">2</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> country_continent_check <span class="kw">CHECK</span> (</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>        ((continent <span class="op">=</span> <span class="st">'Asia'</span>:<span class="ch">:text</span>) <span class="kw">OR</span> (</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>            continent <span class="op">=</span> <span class="st">'Europe'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>            (continent <span class="op">=</span> <span class="st">'North America'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>            (continent <span class="op">=</span> <span class="st">'Africa'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>            (continent <span class="op">=</span> <span class="st">'Oceania'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>            (continent <span class="op">=</span> <span class="st">'Antarctica'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>            (continent <span class="op">=</span> <span class="st">'South America'</span>:<span class="ch">:text</span>))),</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> country_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><img src="../images/bd_2023-world.png" class="img-fluid"></p>
+<hr>
 </section>
-<section class="slide level2 center">
-
-
-<img data-src="../images/bd_2023-world.png" class="r-stretch"></section>
-<section id="suppression-dune-table" class="slide level2 center">
-<h2>Suppression d’une table</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> fournisseur;</span>
-<span id="cb8-2"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> piece;</span>
-<span id="cb8-3"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> livraison;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="suppression-dune-table" class="level2">
+<h2 class="anchored" data-anchor-id="suppression-dune-table">Suppression d’une table</h2>
+<div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> fournisseur;</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> piece;</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">DROP</span> <span class="kw">TABLE</span> livraison;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section>
-<section id="insertion-mise-à-jour-suppression" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Insertion, mise à jour, suppression</h1>
-
-</section>
-<section id="contenu-des-relations" class="slide level2 center">
-<h2>Contenu des relations</h2>
+<section id="insertion-mise-à-jour-suppression" class="level1" data-background-color="#1c191c">
+<h1 data-background-color="#1c191c">Insertion, mise à jour, suppression</h1>
+<section id="contenu-des-relations" class="level2">
+<h2 class="anchored" data-anchor-id="contenu-des-relations">Contenu des relations</h2>
 <p>On peut gérer le contenu des tables directement dans le langage <code>SQL</code>.</p>
 <p>On peut donc :</p>
 <ul>
@@ -615,100 +530,98 @@ CREATE TABLE &lt;nom_relation&gt; (
 <li><p>Supprimer des tuples : <code>DELETE FROM ...</code></p></li>
 </ul>
 </section>
-<section id="insertion-de-tuples" class="slide level2 center">
-<h2>Insertion de tuples</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
-<span id="cb9-2"><a></a>    [(nom_attrib [, nom_attrib]<span class="op">*</span>)]</span>
-<span id="cb9-3"><a></a>    <span class="kw">VALUES</span> (valeur [, valeur]<span class="op">*</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="insertion-de-tuples" class="level2">
+<h2 class="anchored" data-anchor-id="insertion-de-tuples">Insertion de tuples</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>    [(nom_attrib [, nom_attrib]<span class="op">*</span>)]</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span> (valeur [, valeur]<span class="op">*</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Exemple</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="st">'rouge'</span>);</span>
-<span id="cb10-2"><a></a></span>
-<span id="cb10-3"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece (nomp,couleur) <span class="kw">VALUES</span>(<span class="st">'x22'</span>, <span class="st">'vert'</span>);</span>
-<span id="cb10-4"><a></a></span>
-<span id="cb10-5"><a></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span>
-<span id="cb10-6"><a></a>| nomp   | prix   | couleur   |</span>
-<span id="cb10-7"><a></a>|<span class="co">--------+--------+-----------|</span></span>
-<span id="cb10-8"><a></a>| x21    | <span class="fl">1.51</span>   | rouge     |</span>
-<span id="cb10-9"><a></a>| x22    | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | vert      |</span>
-<span id="cb10-10"><a></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="st">'rouge'</span>);</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece (nomp,couleur) <span class="kw">VALUES</span>(<span class="st">'x22'</span>, <span class="st">'vert'</span>);</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>| nomp   | prix   | couleur   |</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>|<span class="co">--------+--------+-----------|</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>| x21    | <span class="fl">1.51</span>   | rouge     |</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>| x22    | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | vert      |</span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>Les valeurs doivent être fournies dans l’ordre de déclaration des attributs</p></li>
 <li><p>Les valeurs non spécifiées sont affectées à <code>NULL</code>.</p></li>
 </ul>
 </section>
-<section id="insertion-exemple-smaller" class="slide level2 center">
-<h2>Insertion, exemple {smaller}</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> world.country</span>
-<span id="cb11-2"><a></a>(countrycode, name_country, continent,</span>
-<span id="cb11-3"><a></a> region, surfacearea, indepyear, population_country,</span>
-<span id="cb11-4"><a></a> lifeexpectancy, gnp, gnpold,</span>
-<span id="cb11-5"><a></a> localname, governmentform, headofstate, capital, code2)</span>
-<span id="cb11-6"><a></a><span class="kw">VALUES</span>(</span>
-<span id="cb11-7"><a></a>    <span class="st">'SYL'</span>, <span class="st">'Syldavia'</span>, <span class="st">'Europe'</span>,</span>
-<span id="cb11-8"><a></a>    <span class="st">'Eastern Europe'</span>, <span class="dv">200000</span>, <span class="dv">1918</span>, <span class="dv">21345717</span>,</span>
-<span id="cb11-9"><a></a>    <span class="fl">81.2</span>, <span class="dv">25213</span>, <span class="dv">24878</span>,</span>
-<span id="cb11-10"><a></a>    <span class="st">'Syldavie'</span>, <span class="st">'Constitutional Monarchy'</span>, <span class="st">'Ottokar II'</span>, <span class="dv">0</span>, <span class="st">'SY'</span></span>
-<span id="cb11-11"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section class="slide level2 center">
-
-
-<img data-src="./images/bd_2023-world.png" class="r-stretch"><blockquote>
+<section id="insertion-exemple-smaller" class="level2">
+<h2 class="anchored" data-anchor-id="insertion-exemple-smaller">Insertion, exemple {smaller}</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> world.country</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>(countrycode, name_country, continent,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a> region, surfacearea, indepyear, population_country,</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a> lifeexpectancy, gnp, gnpold,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a> localname, governmentform, headofstate, capital, code2)</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">VALUES</span>(</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>    <span class="st">'SYL'</span>, <span class="st">'Syldavia'</span>, <span class="st">'Europe'</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Eastern Europe'</span>, <span class="dv">200000</span>, <span class="dv">1918</span>, <span class="dv">21345717</span>,</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>    <span class="fl">81.2</span>, <span class="dv">25213</span>, <span class="dv">24878</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Syldavie'</span>, <span class="st">'Constitutional Monarchy'</span>, <span class="st">'Ottokar II'</span>, <span class="dv">0</span>, <span class="st">'SY'</span></span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+<p><img src="./images/bd_2023-world.png" class="img-fluid"></p>
+<blockquote class="blockquote">
 <p>The latter portion of the multirow constructor, starting with the VALUES keyword, is often referred to as a values list.</p>
 </blockquote>
-<blockquote>
+<blockquote class="blockquote">
 <p>A values list can stand alone and effectively creates a table on the fly. Using a multirow constructor as a virtual table</p>
 </blockquote>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb12-2"><a></a><span class="kw">FROM</span> (</span>
-<span id="cb12-3"><a></a>    <span class="kw">VALUES</span></span>
-<span id="cb12-4"><a></a>        (<span class="st">'robe'</span>, <span class="st">'logged in'</span>, <span class="st">'2011-01-10 10:15 AM EST'</span>:<span class="ch">:timestamptz</span>),</span>
-<span id="cb12-5"><a></a>        (<span class="st">'lhsu'</span>, <span class="st">'logged out'</span>, <span class="st">'2011-01-11 10:20 AM EST'</span>:<span class="ch">:timestamptz</span>)</span>
-<span id="cb12-6"><a></a>) <span class="kw">AS</span> l (user_name, description, log_ts);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> (</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'robe'</span>, <span class="st">'logged in'</span>, <span class="st">'2011-01-10 10:15 AM EST'</span>:<span class="ch">:timestamptz</span>),</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'lhsu'</span>, <span class="st">'logged out'</span>, <span class="st">'2011-01-11 10:20 AM EST'</span>:<span class="ch">:timestamptz</span>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>) <span class="kw">AS</span> l (user_name, description, log_ts);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<blockquote class="blockquote">
 <p>When you use <code>VALUES</code> as a stand-in for a virtual table, you need to specify the names for the columns. You also need to explicitly cast the values to the data types in the table if the parser can’t infer the data type from the data.</p>
 </blockquote>
 </section>
-<section id="insertion-de-tuples-1" class="slide level2 center">
-<h2>Insertion de tuples</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> livraison</span>
-<span id="cb13-2"><a></a>    <span class="kw">VALUES</span></span>
-<span id="cb13-3"><a></a>    (<span class="dv">1</span>, <span class="st">'fournisseur1'</span>, <span class="st">'x21'</span>, <span class="st">'2019-07-13'</span>, <span class="dv">2</span>);</span>
-<span id="cb13-4"><a></a></span>
-<span id="cb13-5"><a></a><span class="co">-- Avec des colonnes pas renseignées</span></span>
-<span id="cb13-6"><a></a></span>
-<span id="cb13-7"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> livraison</span>
-<span id="cb13-8"><a></a>   (numliv, dateliv, quantite)</span>
-<span id="cb13-9"><a></a>    <span class="kw">VALUES</span></span>
-<span id="cb13-10"><a></a>   (<span class="dv">2</span>, <span class="st">'2018-07-29'</span>, <span class="dv">10</span>);</span>
-<span id="cb13-11"><a></a></span>
-<span id="cb13-12"><a></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span>
-<span id="cb13-13"><a></a>| numliv   | nomf         | nomp   | dateliv    | quantite   |</span>
-<span id="cb13-14"><a></a>|<span class="co">----------+--------------+--------+------------+------------|</span></span>
-<span id="cb13-15"><a></a>| <span class="dv">1</span>        | fournisseur1 | x21    | <span class="dv">2019</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">13</span> | <span class="dv">2</span>          |</span>
-<span id="cb13-16"><a></a>| <span class="dv">2</span>        | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>       | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | <span class="dv">2018</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">29</span> | <span class="dv">10</span>         |</span>
-<span id="cb13-17"><a></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="insertion-de-tuples-1" class="level2">
+<h2 class="anchored" data-anchor-id="insertion-de-tuples-1">Insertion de tuples</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> livraison</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    (<span class="dv">1</span>, <span class="st">'fournisseur1'</span>, <span class="st">'x21'</span>, <span class="st">'2019-07-13'</span>, <span class="dv">2</span>);</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- Avec des colonnes pas renseignées</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> livraison</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>   (numliv, dateliv, quantite)</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>   (<span class="dv">2</span>, <span class="st">'2018-07-29'</span>, <span class="dv">10</span>);</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>| numliv   | nomf         | nomp   | dateliv    | quantite   |</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>|<span class="co">----------+--------------+--------+------------+------------|</span></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>| <span class="dv">1</span>        | fournisseur1 | x21    | <span class="dv">2019</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">13</span> | <span class="dv">2</span>          |</span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>| <span class="dv">2</span>        | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>       | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | <span class="dv">2018</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">29</span> | <span class="dv">10</span>         |</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>Les valeurs doivent être fournies dans l’ordre de déclaration des attributs</p></li>
 <li><p>Les valeurs non spécifiées sont affectées à <code>NULL</code>.</p></li>
 </ul>
 </section>
-<section id="insertion-de-tuples-par-requête" class="slide level2 center">
-<h2>Insertion de tuples par requête</h2>
+<section id="insertion-de-tuples-par-requête" class="level2">
+<h2 class="anchored" data-anchor-id="insertion-de-tuples-par-requête">Insertion de tuples par requête</h2>
 <ul>
 <li><p>On peut faire une insertion par le biais d’une requête</p></li>
 <li><p>La clause <code>VALUES</code> est remplacée par une requête</p></li>
 <li><p>Les résultats de la requête sont insérés comme valeurs dans la table</p></li>
 </ul>
 <p>Exemple : Alimentation d’une nouvelle table à l’aide des données d’une autre</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> FournisseursParisiens</span>
-<span id="cb14-2"><a></a>    (<span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb14-3"><a></a>     <span class="kw">FROM</span> Fournisseur</span>
-<span id="cb14-4"><a></a>     <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Paris'</span></span>
-<span id="cb14-5"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> FournisseursParisiens</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    (<span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>     <span class="kw">FROM</span> Fournisseur</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>     <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Paris'</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="mise-à-jour" class="slide level2 center">
-<h2>Mise à jour</h2>
+<section id="mise-à-jour" class="level2">
+<h2 class="anchored" data-anchor-id="mise-à-jour">Mise à jour</h2>
 <ul>
 <li><p>On peut mettre à jour des tuples existants par le biais d’une requête</p>
 <ul>
@@ -716,17 +629,17 @@ CREATE TABLE &lt;nom_relation&gt; (
 <li>Soit l’ensemble des tuples vérifiants une condition donnée</li>
 </ul></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">UPDATE</span> nom_relation</span>
-<span id="cb15-2"><a></a><span class="kw">SET</span> nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span></span>
-<span id="cb15-3"><a></a>[ , nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span> ]<span class="op">*</span></span>
-<span id="cb15-4"><a></a>[ <span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span> ];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> nom_relation</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>[ , nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span> ]<span class="op">*</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>[ <span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span> ];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="mise-à-jour-de-tuples" class="slide level2 center">
-<h2>Mise à jour de tuples</h2>
+<section id="mise-à-jour-de-tuples" class="level2">
+<h2 class="anchored" data-anchor-id="mise-à-jour-de-tuples">Mise à jour de tuples</h2>
 <p>Le <code>WHERE</code> permet de sélectionner les tuples à mettre à jour</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">UPDATE</span> Fournisseur</span>
-<span id="cb16-2"><a></a>    <span class="kw">SET</span> VilleF<span class="op">=</span><span class="st">'St.Petersburg'</span></span>
-<span id="cb16-3"><a></a>    <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Leningrad'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Fournisseur</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SET</span> VilleF<span class="op">=</span><span class="st">'St.Petersburg'</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Leningrad'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On peut aussi effectuer des opérations sur les tuples à mettre à jour.</p>
 <p>La clause <code>&lt;expression de valeur&gt;</code> peut être :</p>
 <ul>
@@ -735,89 +648,87 @@ CREATE TABLE &lt;nom_relation&gt; (
 <li><p>Une expression arithmétique sur les attributs de la table à modifier</p></li>
 </ul>
 </section>
-<section id="mise-à-jour-de-tuples-exemple" class="slide level2 center">
-<h2>Mise à jour de tuples (exemple)</h2>
+<section id="mise-à-jour-de-tuples-exemple" class="level2">
+<h2 class="anchored" data-anchor-id="mise-à-jour-de-tuples-exemple">Mise à jour de tuples (exemple)</h2>
 <p>Augmentation du prix d’une pièce</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">UPDATE</span> Piece</span>
-<span id="cb17-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> Prix <span class="op">*</span> <span class="fl">1.05</span></span>
-<span id="cb17-3"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Piece</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> Prix <span class="op">=</span> Prix <span class="op">*</span> <span class="fl">1.05</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="mise-à-jour-par-requête" class="slide level2 center">
-<h2>Mise à jour par requête</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="kw">UPDATE</span> Piece</span>
-<span id="cb18-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> (</span>
-<span id="cb18-3"><a></a>    <span class="kw">SELECT</span> Prix</span>
-<span id="cb18-4"><a></a>    <span class="kw">FROM</span> Piece</span>
-<span id="cb18-5"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span></span>
-<span id="cb18-6"><a></a>)</span>
-<span id="cb18-7"><a></a><span class="kw">WHERE</span> Prix <span class="op">&lt;=</span> <span class="dv">1000</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="mise-à-jour-par-requête" class="level2">
+<h2 class="anchored" data-anchor-id="mise-à-jour-par-requête">Mise à jour par requête</h2>
+<div class="sourceCode" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">UPDATE</span> Piece</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> Prix <span class="op">=</span> (</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> Prix</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Piece</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Prix <span class="op">&lt;=</span> <span class="dv">1000</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="suppression-de-tuples-syntaxe" class="slide level2 center">
-<h2>Suppression de tuples : syntaxe</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
-<span id="cb19-2"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span>];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<h3 id="exemple-1">Exemple</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Fournisseur</span>
-<span id="cb20-2"><a></a><span class="kw">WHERE</span> NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="suppression-de-tuples-syntaxe" class="level2">
+<h2 class="anchored" data-anchor-id="suppression-de-tuples-syntaxe">Suppression de tuples : syntaxe</h2>
+<div class="sourceCode" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span>];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="exemple-1" class="level3">
+<h3 class="anchored" data-anchor-id="exemple-1">Exemple</h3>
+<div class="sourceCode" id="cb20"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Fournisseur</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On supprime dans <code>Fournisseur</code> les tuples correspondant au fournisseur nommé <code>'FastDelivery'</code></p>
 </section>
-<section id="suppression-de-tuples-avec-requête-imbriquée" class="slide level2 center">
-<h2>Suppression de tuples avec requête imbriquée</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Livraison</span>
-<span id="cb21-2"><a></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
-<span id="cb21-3"><a></a>    <span class="kw">SELECT</span> NomP</span>
-<span id="cb21-4"><a></a>    <span class="kw">FROM</span> Piece</span>
-<span id="cb21-5"><a></a>    <span class="kw">WHERE</span> Couleur<span class="op">=</span><span class="st">'Rouge'</span></span>
-<span id="cb21-6"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="delete-from-table-using-t-where-...-smaller" class="slide level2 center">
-<h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code> {smaller}</h2>
-<blockquote>
+<section id="suppression-de-tuples-avec-requête-imbriquée" class="level2">
+<h2 class="anchored" data-anchor-id="suppression-de-tuples-avec-requête-imbriquée">Suppression de tuples avec requête imbriquée</h2>
+<div class="sourceCode" id="cb21"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Livraison</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> NomP</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Piece</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> Couleur<span class="op">=</span><span class="st">'Rouge'</span></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="delete-from-table-using-t-where-...-smaller" class="level2">
+<h2 class="anchored" data-anchor-id="delete-from-table-using-t-where-...-smaller"><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code> {smaller}</h2>
+<blockquote class="blockquote">
 <p>Souvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat <code>USING</code></p>
 </blockquote>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.city () INHERITS (world.city) ;</span>
-<span id="cb22-2"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.country () INHERITS (world.country) ;</span>
-<span id="cb22-3"><a></a></span>
-<span id="cb22-4"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.country (</span>
-<span id="cb22-5"><a></a>    <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> world.country</span>
-<span id="cb22-6"><a></a>    <span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
-<span id="cb22-7"><a></a>);</span>
-<span id="cb22-8"><a></a></span>
-<span id="cb22-9"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.city (</span>
-<span id="cb22-10"><a></a>    <span class="kw">SELECT</span> ci.<span class="op">*</span>  <span class="kw">FROM</span> world.city ci <span class="kw">NATURAL</span> <span class="kw">JOIN</span> world.country co</span>
-<span id="cb22-11"><a></a>    <span class="kw">WHERE</span> co.continent <span class="op">=</span> <span class="st">'Europe'</span></span>
-<span id="cb22-12"><a></a>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.city () INHERITS (world.city) ;</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.country () INHERITS (world.country) ;</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.country (</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> world.country</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>);</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.city (</span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> ci.<span class="op">*</span>  <span class="kw">FROM</span> world.city ci <span class="kw">NATURAL</span> <span class="kw">JOIN</span> world.country co</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> co.continent <span class="op">=</span> <span class="st">'Europe'</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="delete-from-table-using-t-where-..." class="slide level2 center">
-<h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code></h2>
-<blockquote>
+<section id="delete-from-table-using-t-where-..." class="level2">
+<h2 class="anchored" data-anchor-id="delete-from-table-using-t-where-..."><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code></h2>
+<blockquote class="blockquote">
 <p>Souvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat <code>USING</code></p>
 </blockquote>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> chaprot.city </span>
-<span id="cb23-2"><a></a><span class="kw">USING</span> chaprot.country <span class="kw">AS</span> co</span>
-<span id="cb23-3"><a></a><span class="kw">WHERE</span> city.countrycode <span class="op">=</span> co.countrycode <span class="kw">AND</span> </span>
-<span id="cb23-4"><a></a>      co.region<span class="op">=</span> <span class="st">'Eastern Europe'</span> <span class="kw">AND</span> </span>
-<span id="cb23-5"><a></a>      co.indepyear <span class="op">=</span> <span class="dv">1991</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section class="slide level2 center">
-
+<div class="sourceCode" id="cb23"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> chaprot.city </span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="kw">USING</span> chaprot.country <span class="kw">AS</span> co</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> city.countrycode <span class="op">=</span> co.countrycode <span class="kw">AND</span> </span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>      co.region<span class="op">=</span> <span class="st">'Eastern Europe'</span> <span class="kw">AND</span> </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>      co.indepyear <span class="op">=</span> <span class="dv">1991</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
 <p>La requête suivante pose-t’elle problème ?</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Piece</span>
-<span id="cb24-2"><a></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
-<span id="cb24-3"><a></a>    <span class="kw">SELECT</span> NomP</span>
-<span id="cb24-4"><a></a>    <span class="kw">FROM</span> Livraison</span>
-<span id="cb24-5"><a></a>    <span class="kw">WHERE</span> Quantite<span class="op">&gt;</span><span class="dv">10</span></span>
-<span id="cb24-6"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Piece</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> NomP</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> Livraison</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">WHERE</span> Quantite<span class="op">&gt;</span><span class="dv">10</span></span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Peut-être.</p>
 <p>Cela dépend des contraintes d’intégrité qui pèsent sur la base</p>
-</section></section>
-<section>
-<section id="intégrité-référentielle" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Intégrité référentielle</h1>
-
 </section>
-<section id="maintien-de-lintégrité-référentielle-un-problème" class="slide level2 center">
-<h2>Maintien de l’intégrité référentielle (un problème)</h2>
+</section>
+<section id="intégrité-référentielle" class="level1" data-background-color="#1c191c">
+<h1 data-background-color="#1c191c">Intégrité référentielle</h1>
+<section id="maintien-de-lintégrité-référentielle-un-problème" class="level2">
+<h2 class="anchored" data-anchor-id="maintien-de-lintégrité-référentielle-un-problème">Maintien de l’intégrité référentielle (un problème)</h2>
 <p>La dernière requête renvoie à un problème plus général que l’on illustre à l’aide des tables <code>Livraison</code> et <code>Piece</code>, notées <code>L</code> et <code>P</code>.</p>
 <p>Il y a problème quand :</p>
 <ul>
@@ -827,55 +738,49 @@ CREATE TABLE &lt;nom_relation&gt; (
 <li><p>On met à jour le champs <code>NomP</code> d’un tuple de <code>P</code> alors que l’ancienne valeur de ce champs est présente comme valeur de <code>NomP</code> dans <code>L</code></p></li>
 </ul>
 </section>
-<section id="maintien-de-lintégrité-référentielle-politiques-possibles" class="slide level2 center">
-<h2>Maintien de l’intégrité référentielle (politiques possibles)</h2>
+<section id="maintien-de-lintégrité-référentielle-politiques-possibles" class="level2">
+<h2 class="anchored" data-anchor-id="maintien-de-lintégrité-référentielle-politiques-possibles">Maintien de l’intégrité référentielle (politiques possibles)</h2>
 <p>Plusieurs politiques possibles pour régler ces problèmes</p>
 <ul>
 <li><em>Par défaut</em> : le système rejette toute modification ne respectant pas les contraintes d’intégrité</li>
 </ul>
-<div class="fragment">
+<p>. . .</p>
 <ul>
 <li><em>En cascade</em> : les modifications sur l’attribut référencé sont effectués aussi sur l’attribut qui référence (la clé étrangère)</li>
 </ul>
 <p>Exemple : mise à jour de <code>P.NomP</code> répercutée sur <code>L.NomP</code>. Effacement répercuté aussi..</p>
-</div>
-<div class="fragment">
+<p>. . .</p>
 <ul>
 <li><em>Set-Null</em> : les modifications sur l’attribut référencé sont répercuté sur l’attribut qui référence en mettant sa valeur à <code>NULL</code>.</li>
 </ul>
-</div>
 </section>
-<section id="maintien-de-lintégrité-référentielle-exemple" class="slide level2 center">
-<h2>Maintien de l’intégrité référentielle (exemple)</h2>
+<section id="maintien-de-lintégrité-référentielle-exemple" class="level2">
+<h2 class="anchored" data-anchor-id="maintien-de-lintégrité-référentielle-exemple">Maintien de l’intégrité référentielle (exemple)</h2>
 <p><em>Exemple de syntaxe</em></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
-<span id="cb25-2"><a></a>    NumLiv <span class="dt">INT</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb25-3"><a></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
-<span id="cb25-4"><a></a>    DateLiv <span class="dt">DATE</span>,</span>
-<span id="cb25-5"><a></a>    Quantite <span class="dt">INT</span>(<span class="dv">8</span>);</span>
-<span id="cb25-6"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">REFERENCES</span> Piece</span>
-<span id="cb25-7"><a></a>      <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span></span>
-<span id="cb25-8"><a></a>      <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span></span>
-<span id="cb25-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    NumLiv <span class="dt">INT</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    DateLiv <span class="dt">DATE</span>,</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    Quantite <span class="dt">INT</span>(<span class="dv">8</span>);</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">REFERENCES</span> Piece</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>      <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span></span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>      <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span></span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Cette déclaration force :</p>
 <ul>
 <li><p>à répercuter l’effacement d’un tuple dans <code>Piece</code> en mettant tous les champs <code>L.NomP</code> à <code>NULL</code> lorsque ceux-ci avait pour valeur celle de <code>P.NomP</code> effacée.</p></li>
 <li><p>à répercuter la mise à jour d’un tuple dans <code>Piece</code> (pour ce qui concerne le champs <code>NomP</code>) dans les tuples de <code>Livraison</code> concernés.</p></li>
 </ul>
-</section></section>
-<section>
-<section id="contraintes" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Contraintes</h1>
-
 </section>
-<section class="slide level2 center">
-
+</section>
+<section id="contraintes" class="level1" data-background-color="#1c191c">
+<h1 data-background-color="#1c191c">Contraintes</h1>
+<hr>
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> La définition d’un schéma de base ne s’arrête pas à la définition des tables, des colonnes et des types des colonnes</p>
 <p>Les <em>contraintes</em> décrivent des propriétés que devront vérifier toutes les mises en oeuvre (instances) du schémas <em>durant toute leur durée de vie</em></p>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Pour spécifier une <em>contrainte</em>, il suffit de préciser que le résultat d’une certaine requête doit toujours être vide</p>
-</section>
-<section id="famille-de-contraintes" class="slide level2 center">
-<h2>Famille de contraintes</h2>
+<section id="famille-de-contraintes" class="level2">
+<h2 class="anchored" data-anchor-id="famille-de-contraintes">Famille de contraintes</h2>
 <ul>
 <li><p>Contrainte de <strong>type</strong> (attribut)</p></li>
 <li><p>Contrainte de <strong>non-nullité</strong> (attribut)</p></li>
@@ -887,34 +792,34 @@ CREATE TABLE &lt;nom_relation&gt; (
 <li><p>Contrainte de <strong>clé étrangère</strong> (multi-tables)</p></li>
 </ul>
 </section>
-<section id="contraintes-élémentaires" class="slide level2 center">
-<h2>Contraintes élémentaires</h2>
+<section id="contraintes-élémentaires" class="level2">
+<h2 class="anchored" data-anchor-id="contraintes-élémentaires">Contraintes élémentaires</h2>
 <p>Spécifier le type d’un attribut, c’est le contraindre</p>
 <p><i class="fa-solid fa-book" aria-label="book"></i> Consulter la liste des constructions de type possible</p>
 <p><a href="http://www.postgresql.org/docs/9.4/interactive/datatype.html">http://www.postgresql.org/docs/9.4/interactive/datatype.html</a></p>
 <p>Il faut essayer d’utiliser autant que possible ces types pour préciser les contenus des colonnes.</p>
 </section>
-<section id="les-valeurs-nulles" class="slide level2 center">
-<h2>Les valeurs nulles</h2>
+<section id="les-valeurs-nulles" class="level2">
+<h2 class="anchored" data-anchor-id="les-valeurs-nulles">Les valeurs nulles</h2>
 <p>Imposer qu’une colonne soit toujours renseignée</p>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> La présence possible des valeurs nulles rend beaucoup d’opérations complexes</p>
 <p>Il faut avoir en tête que en <code>SQL</code>, les booléens peuvent avoir trois valeurs : <code>TRUE, FALSE</code> et <code>NULL</code> et que le fait qu’une expression ne vaille pas <code>FALSE</code> ne veut pas dire qu’elle vaut <code>TRUE</code> …</p>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Pour imposer qu’une colonne soit renseignée</p>
 <p>Préciser, après le type : <code>NOT NULL</code></p>
-
-<img data-src="../images/world-country-details.png" class="r-stretch"></section>
-<section id="contraintes-élémentaires-clé-primaire" class="slide level2 center">
-<h2>Contraintes élémentaires : clé primaire</h2>
+<p><img src="../images/world-country-details.png" class="img-fluid"></p>
+</section>
+<section id="contraintes-élémentaires-clé-primaire" class="level2">
+<h2 class="anchored" data-anchor-id="contraintes-élémentaires-clé-primaire">Contraintes élémentaires : clé primaire</h2>
 <p>Quand on précise que <code>code</code> est clé primaire de <code>country_code</code>, on impose que la requête suivante renvoie toujours une table vide:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">SELECT</span> cc1.code, cc2.code</span>
-<span id="cb26-2"><a></a><span class="kw">FROM</span> country_code cc1 <span class="kw">JOIN</span></span>
-<span id="cb26-3"><a></a>     country_code cc2</span>
-<span id="cb26-4"><a></a><span class="kw">WHERE</span> cc1.code <span class="op">=</span> cc2.code <span class="kw">AND</span></span>
-<span id="cb26-5"><a></a>      cc1.country <span class="op">&lt;&gt;</span> cc2.country  ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> cc1.code, cc2.code</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> country_code cc1 <span class="kw">JOIN</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>     country_code cc2</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> cc1.code <span class="op">=</span> cc2.code <span class="kw">AND</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>      cc1.country <span class="op">&lt;&gt;</span> cc2.country  ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La requête est une jointure de la table sur elle-même</p>
 </section>
-<section id="quelques-remarques" class="slide level2 center">
-<h2>Quelques remarques</h2>
+<section id="quelques-remarques" class="level2">
+<h2 class="anchored" data-anchor-id="quelques-remarques">Quelques remarques</h2>
 <ul>
 <li><p>Une contrainte d’attribut concerne un seul attribut</p></li>
 <li><p>Si valeur NULL impossible : <code>NOT NULL</code></p></li>
@@ -926,677 +831,699 @@ CREATE TABLE &lt;nom_relation&gt; (
 <ul>
 <li>Définir une valeur par <strong>défaut</strong> : <code>DEFAULT &lt;valeur&gt;</code></li>
 </ul>
-<div class="callout callout-caution callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
+<div class="callout callout-style-default callout-caution callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<p><strong>Attention</strong></p>
+<div class="callout-title-container flex-fill">
+Attention
 </div>
-<div class="callout-content">
+</div>
+<div class="callout-body-container callout-body">
 <p>les types disponibles (mais pas seulement) diffèrent grandement suivant les SGBD (<code>Mysql</code>, <code>Postgresql</code>, <code>Oracle</code>, <code>SQL Server</code>, …)</p>
 </div>
 </div>
-</div>
 </section>
-<section id="exemple-de-contrainte-de-clé-primaire" class="slide level2 center">
-<h2>Exemple de contrainte de clé primaire</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
-<span id="cb27-2"><a></a>Piece(NomP, Prix, Couleur)</span>
-<span id="cb27-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
-<span id="cb28-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb28-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
-<span id="cb28-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="exemple-de-contrainte-de-clé-primaire" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-de-contrainte-de-clé-primaire">Exemple de contrainte de clé primaire</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>Fournisseur (NomF, VilleF, AdresseF)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>Piece(NomP, Prix, Couleur)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>ou bien :</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
-<span id="cb29-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>),</span>
-<span id="cb29-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
-<span id="cb29-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
-<span id="cb29-5"><a></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(NomP));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>),</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(NomP));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="contraintes-dunicité" class="slide level2 center">
-<h2>Contraintes d’unicité</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> sakila.<span class="ot">"language"</span> (</span>
-<span id="cb30-2"><a></a>    language_id serial4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb30-3"><a></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb30-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> now(),</span>
-<span id="cb30-5"><a></a>    <span class="kw">CONSTRAINT</span> language_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
-<span id="cb30-6"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="contraintes-dunicité" class="level2">
+<h2 class="anchored" data-anchor-id="contraintes-dunicité">Contraintes d’unicité</h2>
+<div class="sourceCode" id="cb30"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> sakila.<span class="ot">"language"</span> (</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    language_id serial4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>    last_update <span class="dt">timestamp</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> now(),</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> language_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On voudrait aussi imposer que <code>"name"</code> satisfît une contrainte d’unicité</p>
-<div class="fragment">
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> uname.<span class="ot">"language"</span> (</span>
-<span id="cb31-2"><a></a>    language_id int4 <span class="kw">NULL</span>,</span>
-<span id="cb31-3"><a></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NULL</span>,</span>
-<span id="cb31-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NULL</span>,</span>
-<span id="cb31-5"><a></a>    <span class="kw">CONSTRAINT</span> language_un <span class="kw">UNIQUE</span> (<span class="ot">"name"</span>),</span>
-<span id="cb31-6"><a></a>    <span class="kw">CONSTRAINT</span> language_pk <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
-<span id="cb31-7"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>. . .</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> uname.<span class="ot">"language"</span> (</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>    language_id int4 <span class="kw">NULL</span>,</span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NULL</span>,</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    last_update <span class="dt">timestamp</span> <span class="kw">NULL</span>,</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> language_un <span class="kw">UNIQUE</span> (<span class="ot">"name"</span>),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">CONSTRAINT</span> language_pk <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="contraintes-dunicité-avancées" class="slide level2 center">
-<h2>Contraintes d’unicité avancées</h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
-<span id="cb32-2"><a></a>    <span class="kw">VALUES</span> </span>
-<span id="cb32-3"><a></a>        (<span class="st">'blue'</span>, <span class="st">'0000FF'</span>), </span>
-<span id="cb32-4"><a></a>        (<span class="st">'red'</span>, <span class="st">'FF0000'</span>), </span>
-<span id="cb32-5"><a></a>        (<span class="st">'green'</span>, <span class="st">'00FF00'</span>)</span>
-<span id="cb32-6"><a></a>    <span class="kw">ON</span> CONFLICT DO <span class="kw">NOTHING</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="contraintes-dunicité-avancées" class="level2">
+<h2 class="anchored" data-anchor-id="contraintes-dunicité-avancées">Contraintes d’unicité avancées</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span> </span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'blue'</span>, <span class="st">'0000FF'</span>), </span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'red'</span>, <span class="st">'FF0000'</span>), </span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'green'</span>, <span class="st">'00FF00'</span>)</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ON</span> CONFLICT DO <span class="kw">NOTHING</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Someone could come and put in a different case ‘Blue’ in our system, and we’d then have two different cased blues.</p>
-<div class="fragment">
+<p>. . .</p>
 <p>To remedy this, we can put a unique index on our table:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a></a><span class="kw">CREATE</span> <span class="kw">UNIQUE</span> <span class="kw">INDEX</span> uidx_colors_lcolor </span>
-<span id="cb33-2"><a></a>    <span class="kw">ON</span> colors </span>
-<span id="cb33-3"><a></a>    <span class="kw">USING</span> btree(<span class="fu">lower</span>(color));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="fragment">
+<div class="sourceCode" id="cb33"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">UNIQUE</span> <span class="kw">INDEX</span> uidx_colors_lcolor </span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">ON</span> colors </span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">USING</span> btree(<span class="fu">lower</span>(color));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>. . .</p>
 <p>As before, if we tried to insert a ‘Blue’, we’d be prevented from doing so and the <code>ON CONFLICT DO NOTHING</code> would result in nothing happening.</p>
 <p>If we really wanted to spell the colors as given to us, we could use code like that given in Example 7-18.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a></a><span class="kw">ON</span> CONFLICT DO <span class="kw">UPDATE</span></span>
-<span id="cb34-2"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
-<span id="cb34-3"><a></a>    <span class="kw">VALUES</span></span>
-<span id="cb34-4"><a></a>        (<span class="st">'Blue'</span>, <span class="st">'0000FF'</span>), </span>
-<span id="cb34-5"><a></a>        (<span class="st">'Red'</span>, <span class="st">'FF0000'</span>), </span>
-<span id="cb34-6"><a></a>        (<span class="st">'Green'</span>, <span class="st">'00FF00'</span>)</span>
-<span id="cb34-7"><a></a><span class="kw">ON</span> CONFLICT(<span class="fu">lower</span>(color))</span>
-<span id="cb34-8"><a></a></span>
-<span id="cb34-9"><a></a>DO <span class="kw">UPDATE</span> <span class="kw">SET</span> color <span class="op">=</span> EXCLUDED.color, hex <span class="op">=</span> EXCLUDED.hex;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> CONFLICT DO <span class="kw">UPDATE</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">VALUES</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'Blue'</span>, <span class="st">'0000FF'</span>), </span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'Red'</span>, <span class="st">'FF0000'</span>), </span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>        (<span class="st">'Green'</span>, <span class="st">'00FF00'</span>)</span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> CONFLICT(<span class="fu">lower</span>(color))</span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>DO <span class="kw">UPDATE</span> <span class="kw">SET</span> color <span class="op">=</span> EXCLUDED.color, hex <span class="op">=</span> EXCLUDED.hex;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="contraintes-référentiellesclé-étrangère" class="slide level2 center">
-<h2>Contraintes référentielles/clé étrangère</h2>
+<section id="contraintes-référentiellesclé-étrangère" class="level2">
+<h2 class="anchored" data-anchor-id="contraintes-référentiellesclé-étrangère">Contraintes référentielles/clé étrangère</h2>
 <p>Une contrainte de <strong>clé étrangère</strong> sur une collection de colonnes stipule que</p>
-<div class="fragment">
-<blockquote>
+<p>. . .</p>
+<blockquote class="blockquote">
 <p>pour tout tuple de la table <em>émettrice</em>, la combinaison des valeurs des colonnes impliquées se trouve aussi dans un tuple la table <em>cible</em></p>
 </blockquote>
-</div>
+<hr>
 </section>
-<section id="exemple-de-contrainte-référentielle" class="slide level2 center">
-<h2>Exemple de contrainte référentielle</h2>
-<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
-<span id="cb35-2"><a></a>Piece(NomP, Prix, Couleur)</span>
-<span id="cb35-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
-<span id="cb36-2"><a></a>    NumLiv <span class="dt">int</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb36-3"><a></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
-<span id="cb36-4"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Piece,</span>
-<span id="cb36-5"><a></a>    DateLiv <span class="dt">DATE</span>,</span>
-<span id="cb36-6"><a></a>    Quantite <span class="dt">Int</span>(<span class="dv">8</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="résumé" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Résumé</h1>
-
+<section id="exemple-de-contrainte-référentielle" class="level2">
+<h2 class="anchored" data-anchor-id="exemple-de-contrainte-référentielle">Exemple de contrainte référentielle</h2>
+<div class="sourceCode" id="cb35"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>Fournisseur (NomF, VilleF, AdresseF)</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>Piece(NomP, Prix, Couleur)</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>    NumLiv <span class="dt">int</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Piece,</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>    DateLiv <span class="dt">DATE</span>,</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>    Quantite <span class="dt">Int</span>(<span class="dv">8</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section class="slide level2 center">
-
+</section>
+<section id="résumé" class="level1" data-background-color="#1c191c">
+<h1 data-background-color="#1c191c">Résumé</h1>
+<hr>
 <ul>
 <li><p>On a vu comment créer des tables (de façon simplifiée) et gérer le contenu de celles-ci</p></li>
 <li><p>On peut spécifier bien plus de contraintes dans la partie création de tables</p></li>
 <li><p>L’ajout ou la suppression de données n’est pas libre : les contraintes (de clés notamment) doivent être satisfaites après l’exécution des mises à jours</p></li>
 </ul>
-</section></section>
-<section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Fin</h1>
-
-<div class="quarto-auto-generated-content">
-<p><img src="../images/logo.png" class="slide-logo"></p>
-<div class="footer footer-default">
-
-</div>
-</div>
 </section>
-    </div>
-  </div>
+<section id="fin" class="level1" data-background-color="#1c191c">
+<h1 data-background-color="#1c191c">Fin</h1>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
 
-  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+</section>
 
-  <script>
-
-      // Full list of configuration options available at:
-      // https://revealjs.com/config/
-      Reveal.initialize({
-'controlsAuto': true,
-'previewLinksAuto': false,
-'pdfSeparateFragments': false,
-'autoAnimateEasing': "ease",
-'autoAnimateDuration': 1,
-'autoAnimateUnmatched': true,
-'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.togglePdfExport(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
-'smaller': false,
- 
-        // Display controls in the bottom right corner
-        controls: false,
-
-        // Help the user learn the controls by providing hints, for example by
-        // bouncing the down arrow when they first encounter a vertical slide
-        controlsTutorial: true,
-
-        // Determines where controls appear, "edges" or "bottom-right"
-        controlsLayout: 'bottom-right',
-
-        // Visibility rule for backwards navigation arrows; "faded", "hidden"
-        // or "visible"
-        controlsBackArrows: 'faded',
-
-        // Display a presentation progress bar
-        progress: true,
-
-        // Display the page number of the current slide
-        slideNumber: 'c/t',
-
-        // 'all', 'print', or 'speaker'
-        showSlideNumber: 'all',
-
-        // Add the current slide number to the URL hash so that reloading the
-        // page/copying the URL will return you to the same slide
-        hash: true,
-
-        // Start with 1 for the hash rather than 0
-        hashOneBasedIndex: false,
-
-        // Flags if we should monitor the hash and change slides accordingly
-        respondToHashChanges: true,
-
-        // Push each slide change to the browser history
-        history: true,
-
-        // Enable keyboard shortcuts for navigation
-        keyboard: true,
-
-        // Enable the slide overview mode
-        overview: true,
-
-        // Disables the default reveal.js slide layout (scaling and centering)
-        // so that you can use custom CSS layout
-        disableLayout: false,
-
-        // Vertical centering of slides
-        center: true,
-
-        // Enables touch navigation on devices with touch input
-        touch: true,
-
-        // Loop the presentation
-        loop: false,
-
-        // Change the presentation direction to be RTL
-        rtl: false,
-
-        // see https://revealjs.com/vertical-slides/#navigation-mode
-        navigationMode: 'default',
-
-        // Randomizes the order of slides each time the presentation loads
-        shuffle: false,
-
-        // Turns fragments on and off globally
-        fragments: true,
-
-        // Flags whether to include the current fragment in the URL,
-        // so that reloading brings you to the same fragment position
-        fragmentInURL: false,
-
-        // Flags if the presentation is running in an embedded mode,
-        // i.e. contained within a limited portion of the screen
-        embedded: false,
-
-        // Flags if we should show a help overlay when the questionmark
-        // key is pressed
-        help: true,
-
-        // Flags if it should be possible to pause the presentation (blackout)
-        pause: true,
-
-        // Flags if speaker notes should be visible to all viewers
-        showNotes: false,
-
-        // Global override for autoplaying embedded media (null/true/false)
-        autoPlayMedia: null,
-
-        // Global override for preloading lazy-loaded iframes (null/true/false)
-        preloadIframes: null,
-
-        // Number of milliseconds between automatically proceeding to the
-        // next slide, disabled when set to 0, this value can be overwritten
-        // by using a data-autoslide attribute on your slides
-        autoSlide: 0,
-
-        // Stop auto-sliding after user input
-        autoSlideStoppable: true,
-
-        // Use this method for navigation when auto-sliding
-        autoSlideMethod: null,
-
-        // Specify the average time in seconds that you think you will spend
-        // presenting each slide. This is used to show a pacing timer in the
-        // speaker view
-        defaultTiming: null,
-
-        // Enable slide navigation via mouse wheel
-        mouseWheel: false,
-
-        // The display mode that will be used to show slides
-        display: 'block',
-
-        // Hide cursor if inactive
-        hideInactiveCursor: true,
-
-        // Time before the cursor is hidden (in ms)
-        hideCursorTime: 5000,
-
-        // Opens links in an iframe preview overlay
-        previewLinks: true,
-
-        // Transition style (none/fade/slide/convex/concave/zoom)
-        transition: 'none',
-
-        // Transition speed (default/fast/slow)
-        transitionSpeed: 'default',
-
-        // Transition style for full page slide backgrounds
-        // (none/fade/slide/convex/concave/zoom)
-        backgroundTransition: 'none',
-
-        // Number of slides away from the current that are visible
-        viewDistance: 3,
-
-        // Number of slides away from the current that are visible on mobile
-        // devices. It is advisable to set this to a lower number than
-        // viewDistance in order to save resources.
-        mobileViewDistance: 2,
-
-        // The "normal" size of the presentation, aspect ratio will be preserved
-        // when the presentation is scaled to fit different resolutions. Can be
-        // specified using percentage units.
-        width: 1050,
-
-        height: 700,
-
-        // Factor of the display size that should remain empty around the content
-        margin: 0.1,
-
-        math: {
-          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
-          config: 'TeX-AMS_HTML-full',
-          tex2jax: {
-            inlineMath: [['\\(','\\)']],
-            displayMath: [['\\[','\\]']],
-            balanceBraces: true,
-            processEscapes: false,
-            processRefs: true,
-            processEnvironments: true,
-            preview: 'TeX',
-            skipTags: ['script','noscript','style','textarea','pre','code'],
-            ignoreClass: 'tex2jax_ignore',
-            processClass: 'tex2jax_process'
-          },
-        },
-
-        // reveal.js plugins
-        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
-
-          RevealMath,
-          RevealNotes,
-          RevealSearch,
-          RevealZoom
-        ]
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
       });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
-    window.document.addEventListener("DOMContentLoaded", function (event) {
-      const toggleBodyColorMode = (bsSheetEl) => {
-        const mode = bsSheetEl.getAttribute("data-mode");
-        const bodyEl = window.document.querySelector("body");
-        if (mode === "dark") {
-          bodyEl.classList.add("quarto-dark");
-          bodyEl.classList.remove("quarto-light");
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
         } else {
-          bodyEl.classList.add("quarto-light");
-          bodyEl.classList.remove("quarto-dark");
+          toggle.classList.remove("alternate");
         }
       }
-      const toggleBodyColorPrimary = () => {
-        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-        if (bsSheetEl) {
-          toggleBodyColorMode(bsSheetEl);
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
       }
-      toggleBodyColorPrimary();  
-      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
-      tabsets.forEach(function(tabset) {
-        const tabby = new Tabby('#' + tabset.id);
-      });
-      const isCodeAnnotation = (el) => {
-        for (const clz of el.classList) {
-          if (clz.startsWith('code-annotation-')) {                     
-            return true;
-          }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/s-v-b\.github\.io\/MA15Y030\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
         }
-        return false;
       }
-      const onCopySuccess = function(e) {
-        // button target
-        const button = e.trigger;
-        // don't keep focus
-        button.blur();
-        // flash "checked"
-        button.classList.add('code-copy-button-checked');
-        var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
-        let tooltip;
-        if (window.bootstrap) {
-          button.setAttribute("data-bs-toggle", "tooltip");
-          button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
-          tooltip = new bootstrap.Tooltip(button, 
-            { trigger: "manual", 
-              customClass: "code-copy-button-tooltip",
-              offset: [0, -8]});
-          tooltip.show();    
-        }
-        setTimeout(function() {
-          if (tooltip) {
-            tooltip.hide();
-            button.removeAttribute("data-bs-title");
-            button.removeAttribute("data-bs-toggle");
-            button.removeAttribute("data-bs-placement");
-          }
-          button.setAttribute("title", currentTitle);
-          button.classList.remove('code-copy-button-checked');
-        }, 1000);
-        // clear code selection
-        e.clearSelection();
-      }
-      const getTextToCopy = function(trigger) {
-          const codeEl = trigger.previousElementSibling.cloneNode(true);
-          for (const childEl of codeEl.children) {
-            if (isCodeAnnotation(childEl)) {
-              childEl.remove();
-            }
-          }
-          return codeEl.innerText;
-      }
-      const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
-        text: getTextToCopy
-      });
-      clipboard.on('success', onCopySuccess);
-      if (window.document.getElementById('quarto-embedded-source-code-modal')) {
-        // For code content inside modals, clipBoardJS needs to be initialized with a container option
-        // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
-        const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
-          text: getTextToCopy,
-          container: window.document.getElementById('quarto-embedded-source-code-modal')
-        });
-        clipboardModal.on('success', onCopySuccess);
-      }
-        var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-        var mailtoRegex = new RegExp(/^mailto:/);
-          var filterRegex = new RegExp("https:\/\/s-v-b\.github\.io\/MA15Y030\/");
-        var isInternal = (href) => {
-            return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-        }
-        // Inspect non-navigation links and adorn them if external
-     	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
-        for (var i=0; i<links.length; i++) {
-          const link = links[i];
-          if (!isInternal(link.href)) {
-            // undo the damage that might have been done by quarto-nav.js in the case of
-            // links that we want to consider external
-            if (link.dataset.originalHref !== undefined) {
-              link.href = link.dataset.originalHref;
-            }
-          }
-        }
-      function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-        const config = {
-          allowHTML: true,
-          maxWidth: 500,
-          delay: 100,
-          arrow: false,
-          appendTo: function(el) {
-              return el.closest('section.slide') || el.parentElement;
-          },
-          interactive: true,
-          interactiveBorder: 10,
-          theme: 'light-border',
-          placement: 'bottom-start',
-        };
-        if (contentFn) {
-          config.content = contentFn;
-        }
-        if (onTriggerFn) {
-          config.onTrigger = onTriggerFn;
-        }
-        if (onUntriggerFn) {
-          config.onUntrigger = onUntriggerFn;
-        }
-          config['offset'] = [0,0];
-          config['maxWidth'] = 700;
-        window.tippy(el, config); 
-      }
-      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-      for (var i=0; i<noterefs.length; i++) {
-        const ref = noterefs[i];
-        tippyHover(ref, function() {
-          // use id or data attribute instead here
-          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-          try { href = new URL(href).hash; } catch {}
-          const id = href.replace(/^#\/?/, "");
-          const note = window.document.getElementById(id);
-          if (note) {
-            return note.innerHTML;
-          } else {
-            return "";
-          }
-        });
-      }
-          let selectedAnnoteEl;
-          const selectorForAnnotation = ( cell, annotation) => {
-            let cellAttr = 'data-code-cell="' + cell + '"';
-            let lineAttr = 'data-code-annotation="' +  annotation + '"';
-            const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-            return selector;
-          }
-          const selectCodeLines = (annoteEl) => {
-            const doc = window.document;
-            const targetCell = annoteEl.getAttribute("data-target-cell");
-            const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-            const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-            const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-            const lineIds = lines.map((line) => {
-              return targetCell + "-" + line;
-            })
-            let top = null;
-            let height = null;
-            let parent = null;
-            if (lineIds.length > 0) {
-                //compute the position of the single el (top and bottom and make a div)
-                const el = window.document.getElementById(lineIds[0]);
-                top = el.offsetTop;
-                height = el.offsetHeight;
-                parent = el.parentElement.parentElement;
-              if (lineIds.length > 1) {
-                const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-                const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-                height = bottom - top;
-              }
-              if (top !== null && height !== null && parent !== null) {
-                // cook up a div (if necessary) and position it 
-                let div = window.document.getElementById("code-annotation-line-highlight");
-                if (div === null) {
-                  div = window.document.createElement("div");
-                  div.setAttribute("id", "code-annotation-line-highlight");
-                  div.style.position = 'absolute';
-                  parent.appendChild(div);
-                }
-                div.style.top = top - 2 + "px";
-                div.style.height = height + 4 + "px";
-                div.style.left = 0;
-                let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-                if (gutterDiv === null) {
-                  gutterDiv = window.document.createElement("div");
-                  gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-                  gutterDiv.style.position = 'absolute';
-                  const codeCell = window.document.getElementById(targetCell);
-                  const gutter = codeCell.querySelector('.code-annotation-gutter');
-                  gutter.appendChild(gutterDiv);
-                }
-                gutterDiv.style.top = top - 2 + "px";
-                gutterDiv.style.height = height + 4 + "px";
-              }
-              selectedAnnoteEl = annoteEl;
-            }
-          };
-          const unselectCodeLines = () => {
-            const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-            elementsIds.forEach((elId) => {
-              const div = window.document.getElementById(elId);
-              if (div) {
-                div.remove();
-              }
-            });
-            selectedAnnoteEl = undefined;
-          };
-            // Handle positioning of the toggle
-        window.addEventListener(
-          "resize",
-          throttle(() => {
-            elRect = undefined;
-            if (selectedAnnoteEl) {
-              selectCodeLines(selectedAnnoteEl);
-            }
-          }, 10)
-        );
-        function throttle(fn, ms) {
-        let throttle = false;
-        let timer;
-          return (...args) => {
-            if(!throttle) { // first call gets through
-                fn.apply(this, args);
-                throttle = true;
-            } else { // all the others get throttled
-                if(timer) clearTimeout(timer); // cancel #2
-                timer = setTimeout(() => {
-                  fn.apply(this, args);
-                  timer = throttle = false;
-                }, ms);
-            }
-          };
-        }
-          const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
-          for (let i=0; i<annoteTargets.length; i++) {
-            const annoteTarget = annoteTargets[i];
-            const targetCell = annoteTarget.getAttribute("data-target-cell");
-            const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
-            const contentFn = () => {
-              const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-              if (content) {
-                const tipContent = content.cloneNode(true);
-                tipContent.classList.add("code-annotation-tip-content");
-                return tipContent.outerHTML;
-              }
-            }
-            const config = {
-              allowHTML: true,
-              content: contentFn,
-              onShow: (instance) => {
-                selectCodeLines(instance.reference);
-                instance.reference.classList.add('code-annotation-active');
-                window.tippy.hideAll();
-              },
-              onHide: (instance) => {
-                unselectCodeLines();
-                instance.reference.classList.remove('code-annotation-active');
-              },
-              maxWidth: 300,
-              delay: [50, 0],
-              duration: [200, 0],
-              offset: [5, 10],
-              arrow: true,
-              appendTo: function(el) {
-                return el.parentElement.parentElement.parentElement;
-              },
-              interactive: true,
-              interactiveBorder: 10,
-              theme: 'light-border',
-              placement: 'right',
-              popperOptions: {
-                modifiers: [
-                {
-                  name: 'flip',
-                  options: {
-                    flipVariations: false, // true by default
-                    allowedAutoPlacements: ['right'],
-                    fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
-                  },
-                },
-                {
-                  name: 'preventOverflow',
-                  options: {
-                    mainAxis: false,
-                    altAxis: false
-                  }
-                }
-                ]        
-              }      
-            };
-            window.tippy(annoteTarget, config); 
-          }
-      const findCites = (el) => {
-        const parentEl = el.parentElement;
-        if (parentEl) {
-          const cites = parentEl.dataset.cites;
-          if (cites) {
-            return {
-              el,
-              cites: cites.split(' ')
-            };
-          } else {
-            return findCites(el.parentElement)
-          }
-        } else {
-          return undefined;
-        }
-      };
-      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-      for (var i=0; i<bibliorefs.length; i++) {
-        const ref = bibliorefs[i];
-        const citeInfo = findCites(ref);
-        if (citeInfo) {
-          tippyHover(citeInfo.el, function() {
-            var popup = window.document.createElement('div');
-            citeInfo.cites.forEach(function(cite) {
-              var citeDiv = window.document.createElement('div');
-              citeDiv.classList.add('hanging-indent');
-              citeDiv.classList.add('csl-entry');
-              var biblioDiv = window.document.getElementById('ref-' + cite);
-              if (biblioDiv) {
-                citeDiv.innerHTML = biblioDiv.innerHTML;
-              }
-              popup.appendChild(citeDiv);
-            });
-            return popup.innerHTML;
-          });
-        }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
       }
     });
-    </script>
-    
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Copyright 2024, Stéphane Boucheron</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/slides/LDD_0.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<p>This page is built with blood, sweat, tears, and <a href="https://quarto.org/">Quarto</a>.</p>
+</div>
+  </div>
+</footer>
+
+
+
 
 </body></html>

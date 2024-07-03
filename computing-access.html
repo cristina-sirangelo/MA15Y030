@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Semaine 1 – MA15Y030 - Automne 2024</title>
+<title>Moyens de calcul – MA15Y030 - Automne 2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,27 +20,62 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../project-tips-resources.html" rel="prev">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./computing-dbeaver.html" rel="next">
+<link href="./cours-faq.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -70,8 +105,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Semaine 1 – MA15Y030 - Automne 2024">
-<meta property="og:description" content="Introduction aux Bases de Données/Algèbre relationnelle">
+<meta property="og:title" content="Moyens de calcul – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Page maison pour MA15Y030 - Bases de données, Licence MIASHS Automne 2024.">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 
@@ -84,7 +119,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-1.html">Weekly materials</a></li><li class="breadcrumb-item"><a href="../weeks/week-1.html">Week 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./computing-access.html">Computing</a></li><li class="breadcrumb-item"><a href="./computing-access.html">Access</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -98,8 +133,8 @@ ul.task-list li input[type="checkbox"] {
 <!-- sidebar -->
   <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
     <div class="pt-lg-2 mt-2 text-center sidebar-header">
-      <a href="../index.html" class="sidebar-logo-link">
-      <img src="../images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
+      <a href="./index.html" class="sidebar-logo-link">
+      <img src="./images/logo.png" alt="" class="sidebar-logo py-0 d-lg-inline d-none">
       </a>
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/s-v-b/MA15Y030" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
@@ -144,43 +179,43 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cours-apercu.html" class="sidebar-item-text sidebar-link">
+  <a href="./cours-apercu.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Aperçu</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cours-syllabus.html" class="sidebar-item-text sidebar-link">
+  <a href="./cours-syllabus.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Syllabus</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cours-support.html" class="sidebar-item-text sidebar-link">
+  <a href="./cours-support.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Support</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cours-equipe.html" class="sidebar-item-text sidebar-link">
+  <a href="./cours-equipe.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Équipe</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Agenda</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cours-liens.html" class="sidebar-item-text sidebar-link">
+  <a href="./cours-liens.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Liens</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../cours-faq.html" class="sidebar-item-text sidebar-link">
+  <a href="./cours-faq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FAQ</span></a>
   </div>
 </li>
@@ -188,28 +223,28 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
  <span class="menu-text">Computing</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
+  <a href="./computing-access.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Access</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../computing-dbeaver.html" class="sidebar-item-text sidebar-link">
+  <a href="./computing-dbeaver.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">dbeaver</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
+  <a href="./computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Troubleshooting</span></a>
   </div>
 </li>
@@ -226,13 +261,13 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../project-description.html" class="sidebar-item-text sidebar-link">
+  <a href="./project-description.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Description</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../project-tips-resources.html" class="sidebar-item-text sidebar-link">
+  <a href="./project-tips-resources.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Tips + resources</span></a>
   </div>
 </li>
@@ -240,16 +275,16 @@ ul.task-list li input[type="checkbox"] {
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
  <span class="menu-text">Weekly materials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../weeks/week-1.html" class="sidebar-item-text sidebar-link active">
+  <a href="./weeks/week-1.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Week 1</span></a>
   </div>
 </li>
@@ -265,20 +300,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#préparer" id="toc-préparer" class="nav-link active" data-scroll-target="#préparer">Préparer</a></li>
-  <li><a href="#cours-magistral-diapositives" id="toc-cours-magistral-diapositives" class="nav-link" data-scroll-target="#cours-magistral-diapositives">Cours magistral : diapositives</a></li>
-  <li><a href="#exercices-td-1" id="toc-exercices-td-1" class="nav-link" data-scroll-target="#exercices-td-1">Exercices : TD 1</a></li>
-  <li><a href="#travail-personnel" id="toc-travail-personnel" class="nav-link" data-scroll-target="#travail-personnel">Travail personnel</a></li>
+  <li><a href="#serveur" id="toc-serveur" class="nav-link active" data-scroll-target="#serveur">Serveur</a></li>
+  <li><a href="#clients" id="toc-clients" class="nav-link" data-scroll-target="#clients">Clients</a></li>
+  <li><a href="#connexions-ssh-linuxmacos" id="toc-connexions-ssh-linuxmacos" class="nav-link" data-scroll-target="#connexions-ssh-linuxmacos">Connexions <code>ssh</code> (Linux/MacOS)</a></li>
+  <li><a href="#connexions-ssh-sous-windows" id="toc-connexions-ssh-sous-windows" class="nav-link" data-scroll-target="#connexions-ssh-sous-windows">Connexions <code>ssh</code> sous <code>windows</code></a></li>
+  <li><a href="#connexions-ssh-avec-tunnel" id="toc-connexions-ssh-avec-tunnel" class="nav-link" data-scroll-target="#connexions-ssh-avec-tunnel">Connexions <code>ssh</code> avec <em>tunnel</em></a></li>
+  <li><a href="#client-dbeaver" id="toc-client-dbeaver" class="nav-link" data-scroll-target="#client-dbeaver">Client <code>dbeaver</code></a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/weeks/week-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/computing-access.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-1.html">Weekly materials</a></li><li class="breadcrumb-item"><a href="../weeks/week-1.html">Week 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./computing-access.html">Computing</a></li><li class="breadcrumb-item"><a href="./computing-access.html">Access</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Semaine 1</h1>
-<p class="subtitle lead">Introduction aux Bases de Données/Algèbre relationnelle</p>
+<h1 class="title">Moyens de calcul</h1>
 </div>
 
 
@@ -295,44 +331,128 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-important callout-titled">
+<section id="serveur" class="level1">
+<h1>Serveur</h1>
+<p>Le cours et les TP</p>
+<ul>
+<li>Serveur <code>PostGreSQL</code></li>
+<li>Machine dédiée : <code>etu-pgsql.math.univ-paris-diderot.fr</code></li>
+</ul>
+</section>
+<section id="clients" class="level1">
+<h1>Clients</h1>
+<ul>
+<li><code>psql</code></li>
+<li><code>pgcli</code></li>
+<li><code>dbeaver</code></li>
+<li><code>vs code</code> avec greffon</li>
+</ul>
+</section>
+<section id="connexions-ssh-linuxmacos" class="level1">
+<h1>Connexions <code>ssh</code> (Linux/MacOS)</h1>
+<p>Pour accéder au serveur <code>Postgres</code> (SGBD), il faut d’abord se connecter à la machine qui héberge ce serveur <code>etu-pgsql.math.univ-paris-diderot.fr</code>.</p>
+<p>Pour se connecter à <code>etu-pgsql.math.univ-paris-diderot.fr</code>, on utilise le protocole <a href="https://en.wikipedia.org/wiki/Secure_Shell"><code>ssh</code></a>, avec son identifiant et son mot de passe <code>ENT</code>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh username@etu-pgsql.math.univ-paris-diderot.fr</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">username@etu-pgsql.math.univ-paris-diderot.fr</span><span class="kw">)</span> <span class="ex">Password</span> for username@etu-pgsql.math.univ-paris-diderot.fr:</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Last</span> login: ..................</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="ex">....</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ex">....</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="ex">This</span> fortune brought to you by:</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="va">$FreeBSD</span><span class="ex">$</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[username@etu-pgsql</span> ~]$ ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Attention : pas d’écho lorsque vous saisissez votre mot de passe.</p>
+<p>On peut maintenant se connecter au serveur Postgres, toujours avec son identifiant et son mot de passe <code>ENT</code></p>
+<p>Ici, nous proposons d’utiliser le <em>client</em> <code>pgcli</code> :</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[username@etu-pgsql</span> ~]$ pgcli <span class="at">-d</span> bd_2023-24 </span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Password</span> for username: </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Server:</span> PostgreSQL 13.8</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Version:</span> 3.5.0</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Home:</span> http://pgcli.com</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">userame@/tmp:bd_2023-24</span><span class="op">&gt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Important
+Pourquoi préciser <code>-d bd_2023-24</code> ?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ul>
-<li>Cours magistral en Amphi 1 Olympe de Gouges</li>
-<li>TD/TP 2004-2006 Étage 2 Sophie Germain</li>
-</ul>
+<p><code>bd_2023-24</code> est un des <em>catalogues</em> hébergés par le serveur <code>PostGres</code>. <code>bd_2023-24</code> contient les <em>schemas</em> sur lesquels nous travaillerons.</p>
 </div>
 </div>
-<section id="préparer" class="level2">
-<h2 class="anchored" data-anchor-id="préparer">Préparer</h2>
+<p>Nous sommes maintenant dans une <em>session</em> du serveur</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ex">username@/tmp:bd_2023-24</span><span class="op">&gt;</span> <span class="dt">\c</span>onninfo</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ex">You</span> are connected to database <span class="st">"bd_2023-24"</span> as user <span class="st">"username"</span> on socket <span class="st">"/tmp"</span> at port <span class="st">"None"</span>.</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Time:</span> 0.000s</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Pour obtenir de l’aide, utiliser la commande <code>\d?</code> et laissez vous guider.</p>
+<p>Nous nous intéresserons en général à un ensemble de tables formant un schéma. Ici, nous choisissons comme schéma par défaut <code>world</code> et nous affichons les tables du schéma.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">username@/tmp:bd_2023-24</span><span class="op">&gt;</span> set search_path to world <span class="kw">;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ex">SET</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Time:</span> 0.001s</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="ex">username@/tmp:bd_2023-24</span><span class="op">&gt;</span> <span class="dt">\d</span>t</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ex">+--------+-----------------+-------+-----------+</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">Schema</span> <span class="kw">|</span> <span class="ex">Name</span>            <span class="kw">|</span> <span class="ex">Type</span>  <span class="kw">|</span> <span class="ex">Owner</span>     <span class="kw">|</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span><span class="ex">--------+-----------------+-------+-----------</span><span class="kw">|</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">world</span>  <span class="kw">|</span> <span class="ex">city</span>            <span class="kw">|</span> <span class="ex">table</span> <span class="kw">|</span> <span class="ex">boucheron</span> <span class="kw">|</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">world</span>  <span class="kw">|</span> <span class="ex">country</span>         <span class="kw">|</span> <span class="ex">table</span> <span class="kw">|</span> <span class="ex">boucheron</span> <span class="kw">|</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">world</span>  <span class="kw">|</span> <span class="ex">countrylanguage</span> <span class="kw">|</span> <span class="ex">table</span> <span class="kw">|</span> <span class="ex">boucheron</span> <span class="kw">|</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="ex">+--------+-----------------+-------+-----------+</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">SELECT</span> 3</span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Time:</span> 0.011s</span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">username@/tmp:bd_2023-24</span><span class="op">&gt;</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
-<section id="cours-magistral-diapositives" class="level2">
-<h2 class="anchored" data-anchor-id="cours-magistral-diapositives">Cours magistral : diapositives</h2>
-<p><a href="../slides/BD_intro.html">Introduction aux Bases de Données</a></p>
-<p><a href="../slides/SQL_0.html">Introduction à l’algèbre relationnelle</a></p>
+<section id="connexions-ssh-sous-windows" class="level1">
+<h1>Connexions <code>ssh</code> sous <code>windows</code></h1>
+<p><a href=""></a></p>
 </section>
-<section id="exercices-td-1" class="level2">
-<h2 class="anchored" data-anchor-id="exercices-td-1">Exercices : TD 1</h2>
-<p><a href="../workshops/td1.html">html</a> <a href="../workshops/td1.pdf">pdf</a></p>
-<!-- ## Solutions : TD 1
+<section id="connexions-ssh-avec-tunnel" class="level1">
+<h1>Connexions <code>ssh</code> avec <em>tunnel</em></h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh <span class="at">-f</span> username@etu-pgsql.math.univ-paris-diderot.fr <span class="at">-L</span> 5436:localhost:5432 <span class="at">-N</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">username@etu-pgsql.math.univ-paris-diderot.fr</span><span class="kw">)</span> <span class="ex">Password</span> for username@etu-pgsql.math.univ-paris-diderot.fr:</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Renvoi de port <code>-L 5436:localhost:5432</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
 
-[html](/solutions/workshops/td1.html)  [pdf](/solutions/workshops/td1.pdf) -->
-</section>
-<section id="travail-personnel" class="level2">
-<h2 class="anchored" data-anchor-id="travail-personnel">Travail personnel</h2>
-<p><a href="../exams/cc1-2023-10-27.html">CC 1 2023-24</a></p>
-<p><br><br></p>
-<div style="font-size: 0.875em;">
-<p>retour à <a href=".." title="Agenda du cours">Agenda</a> ⏎</p>
 </div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pourquoi <code>-N</code> ?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+<p>On peut maintenant lancer un client sur sa propre machine (<code>localhost</code>) en précisant qu’on s’adresse au port <em>local</em> <code>5436</code> (ou le port que vous choisissez), la requête de conexion au serveur PostGres distant sera transmise par le <em>tunnel</em> : elle sera envoyée sur le port <em>officiel</em> <code>5432</code> de la machine distante. Une fois la <em>session</em> établie, tout se passsera comme précédemment (ou presque).</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pgcli <span class="at">-d</span> bd_2023-24 <span class="at">-h</span> localhost <span class="at">-p</span> 5436 <span class="at">-u</span> username</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Server:</span> PostgreSQL 13.8</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Version:</span> 3.5.0</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Home:</span> http://pgcli.com</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bd_2023-24</span><span class="op">&gt;</span> <span class="dt">\d</span>n</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ex">+----------------+--------------+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">Name</span>           <span class="kw">|</span> <span class="ex">Owner</span>        <span class="kw">|</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span><span class="ex">----------------+--------------</span><span class="kw">|</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section>
+<section id="client-dbeaver" class="level1">
+<h1>Client <code>dbeaver</code></h1>
+<p>Le mécanisme du tunnel <code>ssh</code> peut être utilisé pour connecter un client plus ambitieux au serveur. Le client <a href=""><code>dbeaver</code></a> est particulièrement facile à utiliser.</p>
 
 
 </section>
@@ -904,11 +1024,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../project-tips-resources.html" class="pagination-link" aria-label="Tips + resources">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Tips + resources</span>
+      <a href="./cours-faq.html" class="pagination-link" aria-label="FAQ">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">FAQ</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="./computing-dbeaver.html" class="pagination-link" aria-label="dbeaver">
+        <span class="nav-page-text">dbeaver</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->
@@ -919,7 +1042,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
       &nbsp;
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/weeks/week-1.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/computing-access.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with blood, sweat, tears, and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>
