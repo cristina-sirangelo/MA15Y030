@@ -6,7 +6,8 @@ format:
   revealjs:
     theme: [default, "custom-rladies.scss"]
     logo: /images/logo.png
-    highlight-style: arrow
+    footer: "MA15Y030 -- Bases de Données -- L3 MIASHS -- UParis Cité"
+    highlight-style: zenburn
     code-fold: false
     code-link: true
     code-annotations: hover
@@ -29,7 +30,7 @@ d2:
 
 execute: 
   echo: true
-  eval: true
+  eval: false
 
 
 toc: true

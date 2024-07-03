@@ -5,6 +5,28 @@ author: "Équipe BD"
 institute: "Université Paris Cité"
 date: "2024-06-23"
 
+
+format: 
+  revealjs:
+    theme: [default, "custom-rladies.scss"]
+    logo: /images/logo.png
+    footer: "MA15Y030 -- Bases de Données -- L3 MIASHS -- UParis Cité"
+    highlight-style: zenburn
+    code-fold: false
+    code-link: true
+    code-annotations: hover
+    slide-number: c/t
+    show-slide-number: all
+    smaller: false
+    scrollable: true
+    preview-links: true
+    navigation-mode: vertical
+    controls-layout: bottom-right
+    controls-tutorial: true
+    title-slide-attributes:
+      data-background-color: "#1c191c"
+
+
 execute: 
   echo: true
   eval: false
@@ -282,24 +304,34 @@ permettent de représenter ce que les `dataframes` représentent en `R`
 
 Ils offrent:
 
-- **Persistance**
+::: {.callout-important}
 
-> Entre deux *sessions* les données sont confiées au système de fichiers de l'ordinateur
+### Persistance
 
+Entre deux *sessions*,  les données sont confiées au système de fichiers de l'ordinateur
 
+:::
 
-- **Intégrité**
+. . .
 
-> Les données confiées au système de fichiers ne peuvent pas être altérées par d'autre logiciel
+::: {.callout-important}
 
+### Intégrité
 
+Les données confiées au système de fichiers ne peuvent pas être altérées par d'autres logiciels
 
-- **Concurrence**
+:::
+
+. . .
+
+::: {.callout-important}
+
+### Concurrence
 
 Les données peuvent être manipulées/consultées/mises à jour de manière *concurrente* par plusieurs
-ou du moins par une grande quantité d' utilisateurs.
+voire par une grande quantité d' utilisateurs.
 
-
+:::
 
 
 
@@ -361,7 +393,9 @@ tables : l'algèbre relationnelle} (langage SQL, Structured Query Language)
 -  L'algèbre relationnelle/SQL n'est pas un langage complet (différence avec  `JAVA`, `C`, `Python`, etc)
 
 
-{{< embed _codds-principles.qmd >}}
+---
+
+{{< include _codds-principles.qmd >}}
 
 
 
@@ -519,12 +553,15 @@ Un schéma de table : la donnée des noms des colonnes et des types des colonnes
 
 
 
-
 ## Entrepôts de données (Fin des années 1980)
 
-(Datawarehouse)
+::: {.callout-note}
+
+### Datawarehouse
 
 > Un Data Warehouse est une technologie qui regroupe des données *structurées* provenant d'une ou de plusieurs sources afin qu'elles puissent être comparées et analysées.
+
+:::
 
 <!-- {{< fa hand-point-right >}}  -->
 
@@ -533,10 +570,13 @@ Un schéma de table : la donnée des noms des colonnes et des types des colonnes
 
 ## Lacs de données (2010)
 
-(Datalake)
+::: {.callout-note}
 
-> Le concept de Data Lake a été évoqué pour la première fois, en 2010, par James Dixon, comme une solution pour le stockage de données sans pré-traitement et sans connaître précisément l'usage futur qui en sera fait. L'image du lac, permettant d'expliquer, que différentes sources peuvent l'alimenter de manière naturelle et brute, et que les utilisateurs peuvent y plonger pour l'explorer et en rapporter des échantillons à examiner
+### Datalake
 
+Le concept de Data Lake a été évoqué pour la première fois, en 2010, par James Dixon, comme une solution pour le stockage de données sans pré-traitement et sans connaître précisément l'usage futur qui en sera fait. L'image du lac, permettant d'expliquer, que différentes sources peuvent l'alimenter de manière naturelle et brute, et que les utilisateurs peuvent y plonger pour l'explorer et en rapporter des échantillons à examiner
+
+:::
 
 
 ## Au delà du relationnel: No SQL

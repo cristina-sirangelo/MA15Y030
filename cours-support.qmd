@@ -21,26 +21,15 @@ Posez des questions, cela aide tout le monde : les enseignants, vous, vos condis
 
 ## Courriel
 
-Please refrain from emailing any course content questions (those should go [Conversations](), and only use email for questions about personal matters that may not be appropriate for the public course forum (e.g., illness, accommodations, etc.).
+Évitez si possible les courriels à propos du contenu du cours. Le courriel devrait être réservé aux questions personnelles.
 
-
-If there is a question that's not appropriate for the public forum, you are welcome to email me directly.
-**If you email me, please include "MA15Y030" in the subject line.** 
-
-Response time may be slower for emails sent Friday evening - Sunday.
 
 ## Soutien académique 
 
 
 ## **Soutien équipement informatique**
 
-Students with demonstrated high financial need who have limited access to computers may request assistance in the form of loaner laptops.
-Please note that supplies are limited.
-
-Note that we will be using Université Paris Citéomputational resources in this course.
-These resources are freely available to you.
-As long as your computer can connect to the internet and open a browser window, you can perform the necessary computing for this course.
-All software we use is open-source and/or freely available.
+L'université prête des ordinateurs aux étudiants qui pourraient en avoir besoin. Ce service est à capacité limité. 
 
 
 

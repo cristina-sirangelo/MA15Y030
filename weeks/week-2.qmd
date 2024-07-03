@@ -28,7 +28,7 @@ Finir requêtes du TD 1 [TD 1](/workshops/td1.html)
 
 ## Solutions du  TD 1  (Semaine 1)
 
-[html](/solutions/workshops/td1.html)  [pdf](/solutions/workshops/td1.pdf)
+[html](/solutions/td1.html)  [pdf](/solutions/td1.pdf)
 
 
 ## Travail personnel

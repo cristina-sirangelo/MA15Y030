@@ -1,5 +1,5 @@
 ---
-title: "Moyens de calcul"
+title: "Client CloudBeaver"
 
 format:
   html:
@@ -7,20 +7,64 @@ format:
 ---
 
 
-# Serveur 
+# Démonstration
 
-Le cours et les TP 
+[Démo](https://demo.cloudbeaver.io)
 
-- Serveur `PostGreSQL`
-- Machine dédiée : `etu-pgsql.math.univ-paris-diderot.fr`
+# Installer 
 
 
-# Clients 
+# Docker
 
-- `psql`
-- `pgcli`
-- `dbeaver`
-- `vs code` avec greffon
+
+
+
+# Configurer une connexion
+
+- Onglet `Main`
+  - Connect by `Host`, 
+    - Host: `localhost`, 
+    - Port: `5434` (ou un autre nombre exotique)
+    - Database: bd_2023-24 
+    - Décocher `Show all databases
+  - Authentification: `Database Native`
+    - Username: `username` (ENT)
+    - Password: xxxxxxx  (ENT) 
+    - Cocher `Save password` 
+  - 
+
+- Onglet `PostgreSQL`
+
+- Onglet `SSH`
+  - Cocher `Use SSH Tunnel`
+  - Settings
+    - Host/IP: localhost
+    - Port 22
+    - Username: `username` (ENT)
+    - Password: xxxxxxx  (ENT) 
+    - Cocher `Save credentials`
+  - Jump servers
+    - Jump #1 etu-pgsql.math.univ-paris-diderot.fr  username Password
+    - Target localhost:22  username Password
+  
+# Utiliser une connexion
+
+
+# Définir et utiliser un projet
+
+- Connections
+- Bookmarks
+- Dashboards
+- Diagrams
+- Scripts 
+
+
+# Éditeur SQL
+
+
+
+- 
+
 
 # Connexions `ssh`  (Linux/MacOS)
 

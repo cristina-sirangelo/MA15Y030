@@ -25,6 +25,17 @@ params:
 #| include: false
 ```
 
+::: {.content-visible when-profile='solution'} 
+
+::: {.callout-warning}
+
+### Avec solutions
+
+:::
+
+:::
+
+
 
 ::: {layout="[80,20]"}
 

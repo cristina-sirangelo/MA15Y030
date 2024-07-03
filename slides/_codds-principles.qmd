@@ -1,6 +1,6 @@
 
 
-
+::: {.callout-important}
 
 ### Codd's Twelve Principles
 
@@ -23,5 +23,5 @@ where or how the physical data is distributed and should not require
 alteration if the physical data is centralized or distributed
 1.  Any *row processing* done in the system must obey the same *integrity rules* and *constraints* that set-processing operations do
 
-
+:::
 

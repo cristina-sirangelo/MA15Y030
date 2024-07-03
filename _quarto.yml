@@ -1,5 +1,12 @@
 project:
   type: website
+  render:
+    - "*.qmd"
+    - "weeks/"
+    - "workshops/"
+    - "!slides/"
+    - "!solutions/"
+    - "!exams/"
   output-dir: _site
 
 website:
@@ -61,6 +68,8 @@ website:
         contents:
           - href: computing-access.qmd
             text: Access
+          - href: computing-dbeaver.qmd
+            text: dbeaver
           - href: computing-troubleshooting.qmd
             text: Troubleshooting
       - section: "Project"
@@ -73,8 +82,8 @@ website:
         contents:
           - href: weeks/week-1.qmd
             text: "Week 1"
-          # - href: weeks/week-2.qmd
-          #   text: "Week 2"
+          - href: weeks/week-2.qmd
+            text: "Week 2"
           # - href: weeks/week-3.qmd
           #   text: "Week 3"
           # - href: weeks/week-4.qmd

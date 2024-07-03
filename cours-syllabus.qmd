@@ -147,13 +147,13 @@ La note de session II (seconde chance) est égale à la note obtenue à l'épreu
 ### Sauvez les  dates !  {{< fa calendar >}}
 
 -   **Septembre 13:** Début du cours
--   **Septembre 13:** Début des TD/TP
+-   **Septembre 20:** Début des TD/TP
 -   **Octobre 25:** Contrôle continu I
 -   **Octobre 26-Novembre 3:** Pause de la Toussaint
 -   **Novembre 8 :** Reprise des cours et TD
 -   **Novembre 15**: Contrôle continu II
--   **Décembre 6**: Fin du cours
--   **Décembre 6**: Contrôle continu III
+-   **Décembre 6**: Fin du cours magistral
+-   **Décembre 13**: Contrôle continu III 
 -   **Janvier ??**: Contrôle terminal 
 -   **Juin ??**: Deuxième chance
    

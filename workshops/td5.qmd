@@ -20,10 +20,28 @@ params:
     moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
 ---
 
+::: {.content-visible when-profile='solution'} 
 
-```{r}
-#| include: false
-```
+::: {.callout-warning}
+
+### Avec solutions
+
+:::
+
+:::
+
+
+
+::: {.content-visible when-profile='solution'} 
+
+::: {.callout-warning}
+
+### Avec solutions
+
+::: 
+
+:::
+
 
 ::: {layout="[80,20]"}
 
