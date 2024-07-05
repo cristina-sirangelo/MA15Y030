@@ -91,7 +91,7 @@ bd_2023-24> \d
 ```
 
 
-[Vue d'ensemble du schéma `world`](../images/layout-world.svg.html)
+[Vue d'ensemble du schéma `world`](../images/layout-world.png)
 
 
 ## Suggestion

@@ -2,7 +2,7 @@
 title: "Syllabus"
 ---
 
-[**Télécharger**](/documents/ma15y030-syllabus.pdf "PDF du syllabus") **pour télécharger une  version PDF du syllabus.**
+[**Télécharger  "PDF du syllabus"**](/documents/ma15y030-syllabus.pdf)
 
 
 ::: {.callout-note}

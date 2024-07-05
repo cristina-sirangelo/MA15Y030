@@ -44,6 +44,7 @@ Attention : pas d'écho lorsque vous saisissez votre  mot de passe.
 On peut maintenant se connecter au serveur Postgres, toujours avec son identifiant et son mot de passe `ENT`
 
 Ici, nous proposons d'utiliser le *client* `pgcli`  :
+
 ```{.bash}
 [username@etu-pgsql ~]$ pgcli -d bd_2023-24 
 Password for username: 
@@ -57,8 +58,7 @@ userame@/tmp:bd_2023-24>
 
 ### Pourquoi préciser `-d bd_2023-24` ?
 
-`bd_2023-24` est un des *catalogues* hébergés par le serveur `PostGres`. `bd_2023-24` contient les
-*schemas* sur lesquels nous travaillerons.
+`bd_2023-24` est un des *catalogues* hébergés par le serveur `PostGres`. `bd_2023-24` contient les *schemas* sur lesquels nous travaillerons.
 
 :::
 
@@ -149,5 +149,40 @@ Le client [`dbeaver`]() est particulièrement facile à utiliser.
 
 
 
+# Client VS Code + extensions `SQLTools` 
 
+Si vous êtes déjà habitué à l'éditeur Visual Studio Code (VS Code), vous pouvez utiliser l'extension [`SQLToos`](https://vscode-sqltools.mteixeira.dev/en/home) et son pilote ['PostgreSQL/Cockroach'](https://vscode-sqltools.mteixeira.dev/en/drivers/postgre-sql). 
+
+Votre configuration de connexion devrait ressembler à :
+
+```{.json}
+{
+  "label": "etu-pgsql",
+  "host": "localhost",
+  "user": "<identifiant ENT>",
+  "port": 5436,
+  "ssl": false,
+  "database": "bd_2023-24",
+  "schema": "world",
+  "password": "Ask on connect"
+}
+```
+
+Il faut par ailleurs ouvrir un tunnel `SSH` dans un terminal 
+
+```{.bash}
+$ ssh -f username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N
+(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:
+$ 
+```
+
+en remplaçant `username` par votre identifiant ENT. 
+
+<!-- 
+::: {.callout-note}
+
+### Extension [`Remote-SSH`](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+
+:::
+ -->
 

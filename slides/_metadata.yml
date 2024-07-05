@@ -1,32 +1,40 @@
 
-author: Stéphane Boucheron
-institute: LPSM Université Paris-Cité
+
 
 format: 
   revealjs:
     theme: [default, "custom-rladies.scss"]
     logo: /images/logo.png
-    footer: "MA15Y030 -- Bases de Données -- L3 MIASHS -- UParis Cité"
+    footer: "[MA15Y030](http://s-v-b.github.io/MA15Y030) -- Bases de Données -- L3 MIASHS -- UParis Cité"
+
+    smaller: false
     highlight-style: zenburn
     code-fold: false
     code-link: true
     code-annotations: hover
     slide-number: c/t
     show-slide-number: all
-    smaller: false
     scrollable: true
     preview-links: true
     navigation-mode: vertical
     controls-layout: bottom-right
     controls-tutorial: true
+    lang: fr-FR
+
+    subtitle: "[Bases de Données Licences MIASHS et Mathématiques](https://s-v-b.github.io/MA15Y030/)"
+    author: Équipe BD 
+    institute: "[LPSM Université Paris-Cité](https://u-paris.fr)"
+
+    link-external-icon: true
+    link-external-newwindow: true
     title-slide-attributes:
       data-background-color: "#1c191c"
 
-filters:
-  - d2
-d2:
-  layout: elk
-  theme: "GrapeSoda"
+# filters:
+#   - d2
+# d2:
+#   layout: elk
+#   theme: "GrapeSoda"
 
 execute: 
   echo: true
@@ -35,7 +43,7 @@ execute:
 
 toc: true
 toc-depth: 1
-toc-title: Roadmap
+toc-title: Plan
 center: true
 
 params:

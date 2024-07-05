@@ -1,41 +1,26 @@
 ---
 title: "BD I: Algèbre Relationnelle"
-subtitle: "Bases de Données Licences MIASHS et Mathématiques"
-author: "Équipe BD"
-institute: "Université de Paris"
 ---
 
-
-# Plan
-
-- Un peu d'histoire
-
-- Schémas et relations
-
-- Formalisation alternative
-
-- Premiers opérateurs du langage de manipulation de données 
-
-- Opérations complémentaires : les jointures
-
-- Variations sur les jointures
 
 
 
 # Le modèle relationnel {background-color="#1c191c"}
 
 
+---
+
 
 - Formulé par [E. Codd](https://en.wikipedia.org/wiki/Edgar_F._Codd) en 1970
 
-- Fondé sur la théorie des relations (partie de la théorie naïve des ensembles)
+- Fondé sur la théorie des *relations* (partie de la théorie naïve des ensembles)
 
 - Propose une solution pour
  
-  + la modélisation et 
+  + la modélisation
   + l'interrogation de données
 
-- Facile à traduire/mettre en œuvre dans des langages *réels* exemple~: `Structured Query Language (SQL)`
+- Facile à traduire/mettre en œuvre dans des langages *réels* comme `Structured Query Language (SQL)` ou dans des environnements de calcul orientés données comme `R/dplyr`
 
 
 
@@ -53,16 +38,19 @@ Un ensemble d'éléments
 
 :::
 
-Exemples :  entiers, flottants, chaines de caractères, date, ...
-
-Les types d'un langage de programmation comme `C`, `Java`, ...
+. . .
 
 
+Exemples :  entiers $\mathbb{Z}$, flottants, chaines de caractères $\mathcal{A}^*$, date, ...
+
+Les *types* d'un langage de programmation comme `C`, `Java`, ...
 
 
-## Remarque 
 
-- Un *domaine* peut se définir 
+
+## Remarque   {.incremental}
+
+- Un *domaine* peut se définir :
 
   - en *extension* (en donnant la
 liste de toutes les valeurs possibles) ou
@@ -75,7 +63,7 @@ liste de toutes les valeurs possibles) ou
 
 ::: {.callout-important}
 
-### Définition 
+### Définition : Produit cartésien  
 
 Le *Produit cartésien*  d'une liste de domaines $D_1, D_2, \dots, D_k$, noté 
 
@@ -92,47 +80,42 @@ Un élément $t=(t_1,t_2,\dots,t_k)\in D_1 \times D_2 \times \dots \times  D_k$ 
 
 
 
-
-## Relations (classiques)
-
+---
 
 
 
-Une *Relation* $R$ est un  sous-ensemble de 
+
+::: {.callout-note}
+
+### Relations (classique)
+
+Une *Relation* $R$ est un sous-ensemble de 
 
 $$D_1\times D_2\times \cdots \times D_k$$
 
 où $D_1,...,D_k$ sont des domaines
 
 
-$$R\subset D_1  \times D_2\times \cdots \times D_k$$
+$$R \subseteq D_1  \times D_2\times \cdots \times D_k$$
+
+:::
 
 
 
+## Exemple  {.smaller}
 
-## Exemple  
 
-```{r}
-#| include: false
-#| echo: false
-#| eval: false
-require(tidyverse)
-D1 <-  c(1,2,5) ;  D2 <- c(2,4)
-D1xD2 <- expand.grid(D1, D2)
-R <- tribble(~ Var1, ~Var2, 1,2, 1,4, 5, 2, 5,4)
-```
 
 ::::: {.columns}
-::: {.column}
+::: {.column width="65%"}
 
 Deux domaines 
 
-$$D_1=\left\{1,2,5\right\} \quad D_2=\left\{2,4\right\}$$
+$$D_1=\left\{1,2,5\right\} \quad\text{et}\quad D_2=\left\{2,4\right\}$$
 
 Un produit cartésien 
 
-$$D_1 \times D_2 =
-\left\{(1,2),(1,4),(2,2),(2,4),(5,2),(5,4)\right\}$$
+$$D_1 \times D_2 = \left\{(1,2),(1,4),(2,2),(2,4),(5,2),(5,4)\right\}$$
 
 Une relation 
 
@@ -142,16 +125,20 @@ Une relation est un (sous-) ensemble (d'un produit cartésien)
 
 :::
 
-::: {.column}
+::: {.column   width="30%"}
 
 On peut  représenter $R$  par le tableau :
 
+::: {.center}
+
 | $X_1$  | $X_2$ |
-|:---:|:---:|
+|:------:|:-----:|
 |  1    |  2 |
 |  1    |  4 |
 |  5    |  2 |
 |  5    |  4 |
+
+:::
 
 Chaque ligne de la table correspond à  un élément de la relation $R$ 
 
@@ -167,18 +154,34 @@ Chaque ligne de la table correspond à  un élément de la relation $R$
 
 Dans ce cours, toutes les relations ont  un nombre fini d'éléments !
 
-## *Cardinalité* de la relation $R$: $|R|$
+
+---
+
+::: {.callout-important}
+
+### Définition : *Cardinalité* de la relation $R$: $|R|$
 
 On appelle *cardinalité* d'une relation $R$, notée $|R|$, le nombre d'éléments  de $R$.
 
+:::
 
-## *Arité* de la relation $R$
+. . .
+
+::: {.callout-important}
+
+### *Arité* de la relation $R$
 
 Soit $R\subset D_1\times D_2\times \cdots \times D_k$, l'entier $k$ est appelé *arité* de $R$.
 
+:::
+
+. . .
+
 On parle parfois aussi de *degré* d'une relation.
 
-Une relation binaire est une relation d'arité $2$
+. . .
+
+Une *relation binaire* est une relation d'arité $2$
 
 
 
@@ -189,24 +192,20 @@ Une relation binaire est une relation d'arité $2$
 ## Relations et schémas
 
 
-- Une *relation* (au sens classique) peut se voir comme une table
-à deux dimensions :
+- Une *relation* (classique) peut se voir comme une *table* à deux dimensions :
+  - chaque ligne correspond alors à un $k$-uplet (si la relation est d'arité $k$),
+  - chaque élément d'une colonne est à valeur dans  un domaine.
+  - Un *domaine* peut apparaître plusieurs fois dans la définition d'une relation.
 
-- chaque ligne correspond alors à un $k$-uplet (si la relation est d'arité $k$),
+---
 
-- chaque élément d'une colonne est à valeur dans  un domaine.
+En BD relationnelle, on  donne un nom à chaque colonne
 
-
-- Un *domaine* peut apparaître plusieurs fois dans la définition d'une relation.
-
-. . .
-
-En BD relationnelle, on veut pouvoir donner un nom à chaque colonne
-
-- *Attribut*:  nom/rôle de la colonne. Précise la sémantique de celle-ci. 
+- *Attribut*:  nom/rôle de la colonne. L'attribut suggère/précise la sémantique de la colonne 
  
-{{< fa  triangle-exclamation >}}  Pas deux attributs identiques dans une même table
+{{< fa  triangle-exclamation >}}  En BD on ne peut pas avoir deux attributs identiques (même nom, même domaine) dans une même table
 
+---
 
 ::: {.callout-note}
 
@@ -220,7 +219,7 @@ L'idée de nommer les colonnes plutôt que de les désigner par une position/un 
 
 ::: {.callout-important}
 
-### Définition
+### Définition : schéma 
 
 Le *Schéma* d'une relation $R$ est la donnée  des  attributs et domaines de la relation
 
@@ -228,39 +227,63 @@ Le *Schéma* d'une relation $R$ est la donnée  des  attributs et domaines de la
 
 Le schéma peut se noter
 
-$$R(A_1\! :\!
-D_1,A_2\! :\! D_2,\dots,A_k\! :\! D_k)$$
+$$R(A_1\! :\! D_1,A_2\! :\! D_2,\dots,A_k\! :\! D_k)$$
 
 où $A_i$ : attribut et $D_i$ : domaine.
 
 
 
+## Exemple de schéma : table `bebes`  dans `babynames` {.smaller}
 
-## Exemple de schéma
+::: {.columns}
 
-*ville* :  ensemble de chaînes de caractères (noms de villes).
+::: {.column}
 
-*heure* :
-ensemble de chaînes de caractères de la forme $XYhZT$ où
-$X,Y,Z,T$ sont des chiffres
+```{.sql}
+bd_2023-24> \dt
++-----------+-------+-------+-----------+
+| Schema    | Name  | Type  | Owner     |
+|-----------+-------+-------+-----------|
+| babynames | bebes | table | boucheron |
++-----------+-------+-------+-----------+
 
-En notation ISO une heure s'écrit 'HH:MM:SS' (s' on oublie le fuseau horaire) `r lubridate::now()`
+bd_2023-24> \d bebes
++--------+------------------------+-----------+
+| Column | Type                   | Modifiers |
+|--------+------------------------+-----------|
+| sexe   | integer                |           |
+| prenom | character varying(500) |           |
+| annee  | integer                |           |
+| nombre | integer                |           |
++--------+------------------------+-----------+
+```
+
+$$\left((\textsf{sexe}, \mathbb{Z}), (\textsf{prenom}, \texttt{char}), (\texttt{annee}, \mathbb{Z}), (\texttt{nombre}, \mathbb{Z})\right)$$
+:::
+
+::: {.column}
+
+Données [INSEE](). Une ligne de la table `bébés` nous informe qu'en France (héxagone?), pendant une `annee`, le nombre de naissances de sexe `sexe`, ayant reçu le prénom `prenom` est donnée par la colonne `nombre`.  
 
 
+```{.sql}
+bd_2023-24> SELECT * 
+FROM bebes 
+WHERE sexe=1 AND annee=2000 AND prenom='THÉO' ;
 
-| h-dep |   dest | h-arr |  prov |
-|:-------:|:-------|:-------:|:---------|
-| 13h15    | Lyon    |   15h15   | Paris   |
-| 13h22    | Nantes  |    15h30  | Paris  |
++------+--------+-------+--------+
+| sexe | prenom | annee | nombre |
+|------+--------+-------+--------|
+| 1    | THÉO   | 2000  | 7961   |
++------+--------+-------+--------+
+```
 
-*Schéma*:  Train(h-dep:*heure*,
-dest:*ville* , h-arr:*heure* , prov:*ville*)
-
-Arité : $4$, Cardinalité : $2$
-
-L'ordre (des lignes ou colonnes) n'a pas vraiment d'importance
+L'arité de `bebes` est $4$, sa cardinalité est $648 614$. 
 
 
+:::
+
+::: 
 
 
 
@@ -293,63 +316,97 @@ Un élément $t$ de $\mathcal{R}$ est appelé *tuple* de la relation $R$
 
 ---
 
+### Conventions (suite)
 
-L'ensemble des valeurs $t.A_1,...., t.A_k$ associées à un $t\in \mathcal{R}$.
+- Pour désigner l'ensemble des valeurs $t.A_1,...., t.A_k$ associées à un tuple $t\in \mathcal{R}$,
+on fixe un ordre arbitraire sur les attibuts et on note $t=(t.A_1,...., t.A_k)$ 
 
-on fixe un ordre arbitraire et on note $t=(t.A_1,...., t.A_k)$ un tuple.
-
-- A un tuple $t$ de $\mathcal{R}$ correspond les $k$ valeurs $t.A_1, \dots, t.A_k$
+- A un tuple $t$ de $\mathcal{R}$ correspondent les $k$ valeurs $t.A_1, \dots, t.A_k$
 
 - On notera aussi $R$ le domaine $\mathcal{R}$ d'une relation $R$.
-
-
----
-
-::: {.callout-note}
-
-### Remarque
-
-L'idée de désigner les membres d'un $k$-uplet par leur nom plutôt que par leur position est reprise dans les formalismes de représentationn des données tabulaires proposés par `Python` (`Pandas`) et `R` (les `data.frame` et autres `tibble`).  
-
-:::
 
 
 ## Relations et schémas : formalisation
 
 
-La relation `{Train}(h-dep:*heure*, dest:*ville* , harr:*heure* , prov:*ville*)`
+::: {.columns}
 
+::: {.column}
 
-|				**hdep**   | **dest**     |   **harr**       |  **prov** | 
-|:------------------:|:---------------|:----------------:|:-----------|
-|				13h15        | Lyon           |     15h15        | Paris      |
-|				13h22        | Nantes         |     15h30        | Paris      |
+```{.sql}
+bd_2023-24> SELECT * 
+FROM bebes 
+WHERE sexe=1 AND 
+  annee> 1960 AND 
+  prenom LIKE 'THEODULE' ;
+```
 
-est constituée de deux tuples $e_1$, $e_2$ avec :
+```{.sql}
++------+----------+-------+--------+
+| sexe | prenom   | annee | nombre |
+|------+----------+-------+--------|
+| 1    | THEODULE | 1961  | 4      |
+| 1    | THEODULE | 1962  | 4      |
+| 1    | THEODULE | 1965  | 4      |
+| 1    | THEODULE | 1969  | 4      |
++------+----------+-------+--------+
 
-- $e_1.\textrm{hdep}=\textrm{'13h15'}$,
-- $e_1.\textrm{dest}=\textrm{'Lyon'}$,
-- $e_1.\textrm{harr}=\textrm{'15h15'}$,
-- $e_1.\textrm{prov}=\textrm{'Paris'}$
+```
+:::
+
+::: {.column}
+
+Quatre tuples de `bebes` : $t_1, t_2, t_3, t_4$. 
+
+\begin{align*}
+t_1.\text{sexe} & =  1 \\
+t_1.\text{prenom} & = \texttt{THEODULE} \\
+t_1.\text{annee} & = 1961 \\
+t_1.\text{nombre} & = 4
+\end{align*}
+
+:::
+
+::: 
 
 
 
 
 ## Résumé informel
 
-- RELATION =  TABLE A DEUX DIMENSIONS
+- RELATION ↔  TABLE À DEUX DIMENSIONS
 
-- (NOM DE) COLONNE =  ATTRIBUT
+- (NOM DE) COLONNE ↔  ATTRIBUT
 
-- EN-TÊTE DU TABLEAU = SCHEMA DE LA RELATION
+- EN-TÊTE DU TABLEAU ↔ SCHEMA DE LA RELATION
 
-- LIGNE = TUPLE
+- LIGNE ↔ TUPLE
 
-- ENSEMBLE DES LIGNES = CONTENU DE LA RELATION
+- ENSEMBLE DES LIGNES ↔ CONTENU DE LA RELATION
 
 
 
 # LMD : Opérateurs  {background-color="#1c191c"}
+
+
+## Langage de manipulation de données
+
+L'algèbre relationnelle est un système de calcul sur les tables
+
+Elle est formée d'une collection d'*opérateurs* qui prennent en argument des tables et retournent des tables
+
+::: {.callout-note}
+
+### Remarque:
+
+Les opérateurs prennent en général des arguments supplémentaires qui ne sont pas des tables. La notion d'algèbre relationnelle
+est inspirée par les structures algébriques comme les groupes, les anneaux, les corps où des opérations internes opèrent sur 
+une ensemble (par exemple $(\mathbb{R}, +, \times)$), mais elle ne rentre pas exactement dans le cadre.
+
+:::
+
+L'algèbre n'est pas aussi expressive qu'un langage de programmatoin classique (comme `Python`). C'est cela qui rend ce modèle de 
+calcul intéressant : il permet de faire des choses pas triviales, mais il est plus facile à utiliser qu'un langage de programmation.     
 
 
 
@@ -392,64 +449,157 @@ s'appliquent à des relations pour produire d'autres relations (le résultat).
 
 - L'*union* et l'*intersection* sont des  opérations portant sur deux relations $R_1$ et $R_2$ de **même  schéma**
 
- - $T=R_1\cup R_2$  est  constituée des tuples appartenant à $R_1$ *ou* à
+- $T=R_1\cup R_2$  est  constituée des tuples appartenant à $R_1$ *ou* à
 $R_2$.
 
 - $T=R_1\cap R_2$  est  constituée des tuples appartenant à $R_1$ *et* à
 $R_2$.
 
-- Schémas de  $R_1\cup R_2$, $R_1\cap R_2$ sont les mêmes que ceux de $R_1$  et  $R_2$
+- Les Schémas de  $R_1\cup R_2$, $R_1\cap R_2$ sont les mêmes que ceux de $R_1$  et  $R_2$
 
 :::
 
-## Union et intersection
+## Union : exemple  {.smaller}
 
-## Exemple
+<!-- 
+
+```{sql}
+-- | echo: false
+
+SET search_path TO babynames ;
+
+SELECT * 
+FROM bebes AS b
+WHERE b.sexe=1 AND
+  b.prenom ILIKE 'THEO%' AND
+  b.annee = 2000 ;
+
+
+SELECT * 
+FROM bebes AS b
+WHERE b.sexe=1 AND
+  b.prenom ILIKE 'THEO%' AND
+  b.annee = 1900 ;
+```
+ -->
 
 ::::: {.columns}
 
 ::: {.column}
 
-**Train 1**
+```{.sql}
+-- THEO_1900
 
-| **h-dep**   | **dest**            | **num**           |
-|:--------:|:-----------------|:----------------|
-|    13h15    | Lyon         |     213         |
-|    13h29    | Marseille    |    1024         |
-|    14h15    | Lyon         |    214          |
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEOBALD  | 1900  | 6      |
+| 1    | THEODORE  | 1900  | 227    |
+| 1    | THEOPHILE | 1900  | 309    |
+| 1    | THEODOSE  | 1900  | 3      |
+| 1    | THEODULE  | 1900  | 39     |
+| 1    | THEOPHANE | 1900  | 3      |
++------+-----------+-------+--------+
 
+-- THEO_2000
 
-**Train 2**
-
-| **h-dep**   | **dest**             | **num**            |
-|:--------:|:-----------------|:----------------|
-|    13h39   | Avignon       |     43          |
-|    14h15   | Lyon          |     214         |
+|------+-----------+-------+--------|
+| 1    | THEO      | 2000  | 6      |
+| 1    | THEODOR   | 2000  | 3      |
+| 1    | THEOPHILE | 2000  | 336    |
+| 1    | THEODORE  | 2000  | 149    |
+| 1    | THEOPHANE | 2000  | 47     |
+| 1    | THEOPHYLE | 2000  | 4      |
+| 1    | THEOTIME  | 2000  | 73     |
+| 1    | THEOS     | 2000  | 3      |
+| 1    | THEOTIM   | 2000  | 4      |
++------+-----------+-------+--------+
+```
 
 :::
 
 ::: {.column}
 
-**Train 1 $\cup$ Train 2**
+`THEO_1900` ∪ `THEO_2000`
 
-| **h-dep**   | **dest**     |    **num**      |
-|:-----------:|:-------------|:----------------|
-|    13h15    | Lyon         |     213         |
-|    13h29    | Marseille    |    1024         |
-|    14h15    | Lyon         |    214          |
-|    13h39    | Avignon      |     43          |
+```{.sql}
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEO      | 2000  | 6      |
+| 1    | THEOBALD  | 1900  | 6      |
+| 1    | THEODOR   | 2000  | 3      |
+| 1    | THEOPHANE | 2000  | 47     |
+| 1    | THEODORE  | 1900  | 227    |
+| 1    | THEODORE  | 2000  | 149    |
+| 1    | THEODOSE  | 1900  | 3      |
+| 1    | THEODULE  | 1900  | 39     |
+| 1    | THEOPHANE | 1900  | 3      |
+| 1    | THEOPHILE | 1900  | 309    |
+| 1    | THEOTIME  | 2000  | 73     |
+| 1    | THEOPHILE | 2000  | 336    |
+| 1    | THEOPHYLE | 2000  | 4      |
+| 1    | THEOS     | 2000  | 3      |
+| 1    | THEOTIM   | 2000  | 4      |
++------+-----------+-------+--------+
 
-
-**Train 1 $\cap$ Train 2**
-
-| **h-dep**   | **dest**             | **num**            |
-|:--------:|:-----------------|----------------:|
-|    14h15    | Lyon         |    214          |
+```
 
 :::
 
 :::::
 
+
+---
+
+## Intersection : exemple    {.smaller}
+
+::: {.columns}
+::: {.column}
+
+```{.sql}
+-- THEO_1900
+
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEOBALD  | 1900  | 6      |
+| 1    | THEODORE  | 1900  | 227    |
+| 1    | THEOPHILE | 1900  | 309    |
+| 1    | THEODOSE  | 1900  | 3      |
+| 1    | THEODULE  | 1900  | 39     |
+| 1    | THEOPHANE | 1900  | 3      |
++------+-----------+-------+--------+
+
+-- THEOD_1900
+
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEODORE  | 1900  | 227    |
+| 1    | THEODOSE  | 1900  | 3      |
+| 1    | THEODULE  | 1900  | 39     |
++------+-----------+-------+--------+
+
+```
+:::
+::: {.column}
+
+`THEO_1900` ∩ `THEOD_1900`
+```{.sql}
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEODORE  | 1900  | 227    |
+| 1    | THEODOSE  | 1900  | 3      |
+| 1    | THEODULE  | 1900  | 39     |
++------+-----------+-------+--------+
+```
+car `THEOD_1900` ⊂ `THEO_1900`
+
+:::
+
+:::
 
 
 ## Différence
@@ -464,52 +614,76 @@ $R_2$.
 
 - de même schéma que $R_1$ et $R_2$ 
 
--  constituée des tuples appartenant à $R_1$ et n'appartenant pas à $R_2$.
+- constituée des tuples appartenant à $R_1$ et n'appartenant pas à $R_2$.
 
 
 - On note $T = R_1 - R_2$.
 
 :::
 
-Opération non *commutative* : $R_1 - R_2\neq  R_2 - R_1$ (en général).
+. . .
+
+::: {.callout-caution}
+
+### Opération non *commutative* !
+
+$R_1 - R_2\neq  R_2 - R_1$ (en général).
+
+
+:::
 
 
 
-## Différence : exemple
+## Différence : exemple   {.smaller}
 
 
 ::::: {.columns}
 
 
 ::: {.column}
-**Train 1**
 
-| **h-dep**   | **dest**            | **num**           |
-|:--------:|:-----------------|:----------------|
-|    13h15    | Lyon         |     213         |
-|    13h29    | Marseille    |    1024         |
-|    14h15    | Lyon         |    214          |
+```{.sql}
+-- THEO_1900
 
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEOBALD  | 1900  | 6      |
+| 1    | THEODORE  | 1900  | 227    |
+| 1    | THEOPHILE | 1900  | 309    |
+| 1    | THEODOSE  | 1900  | 3      |
+| 1    | THEODULE  | 1900  | 39     |
+| 1    | THEOPHANE | 1900  | 3      |
++------+-----------+-------+--------+
 
-**Train 2**
+-- THEOD_1900
 
-| **h-dep**   | **dest**             | **num**            |
-|:--------:|:-----------------|:----------------|
-|    13h39   | Avignon       |     43          |
-|    14h15   | Lyon          |     214         |
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEODORE  | 1900  | 227    |
+| 1    | THEODOSE  | 1900  | 3      |
+| 1    | THEODULE  | 1900  | 39     |
++------+-----------+-------+--------+
+```
 
 :::
 
 ::: {.column}
 
-**Train 1 $\backslash$ Train 2**
+`THEO_1900` ∖ `THEOD_1900`
 
-| **h-dep**   | **dest**             | **num**             |
-|:--------:|:-----------------|----------------:|
-|    13h15    | Lyon         |     213         |
-|    13h29    | Marseille    |    1024         |
+```{.sql}
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEOBALD  | 1900  | 6      |
+| 1    | THEOPHILE | 1900  | 309    |
+| 1    | THEOPHANE | 1900  | 3      |
++------+-----------+-------+--------+
 
 
+```
 :::
 
 :::::
@@ -532,11 +706,13 @@ Opération non *commutative* : $R_1 - R_2\neq  R_2 - R_1$ (en général).
 
 -  Dans le contexte "classique" : $R_1 \times R_2= \{(e_1,e_2): e_1\in R_1, e_2\in R_2\}$
 
-- $R=R_1 \times R_2$  de schéma $R(A_1,A_2,...,A_k,B_1,B_2,...,B_\ell)$. Le schéma de $R$ est .red[l'union] des schémas de $R_1$ et $R_2$
+- $R=R_1 \times R_2$  de schéma $R(A_1,A_2,...,A_k,B_1,B_2,...,B_\ell)$. Le schéma de $R$ est *l'union* des schémas de $R_1$ et $R_2$
 
 :::
 
 ::: {.callout-caution}
+
+### Attention 
 
 En algèbre relationnelle, cette opération est commutative  ( $R_1\times R_2 = R_2\times R_1$ ) et associative
  
@@ -552,33 +728,20 @@ En algèbre relationnelle, cette opération est commutative  ( $R_1\times R_2 = 
 $R=R_1\times R_2$ est la relation de schéma $R(A_1,A_2,...,A_k,B_1,B_2,...,B_\ell)$ vérifiant~:
 
 
-- Pour tout $t\in R$, il existe $t_1\in R_1$, $t_2\in R_2$ tels que :
+- Pour tout $t\in R$, il existe $t_1\in R_1$, $t_2\in R_2$  ($\forall t \in R, \exists t_1 \in R_1, \exists t_2 \in R_2, \ldots$) tels que :
 
 $$t.A_1=t_1.A_1, \ldots, t.A_k=t_1.A_k,\quad t.B_1=t_2.B_1, \ldots, t.B_\ell=t_2.B_\ell$$
 
 - Réciproquement, pour tout $t_1\in R_1$, $t_2\in R_2$ , il existe $t\in R$ tels que :
 
-$$t.A_1=t_1.A_1, \ldots, t.A_k=t_1.A_k,\quad t.B_1=t_2.B_1, \ldots, t.B_\ell=t_2.B_\ell$$
+$$t.A_1=t_1.A_1, \ldots, t.A_k=t_1.A_k,\quad \text{et} \quad t.B_1=t_2.B_1, \ldots, t.B_\ell=t_2.B_\ell$$
 
-
+$$\forall t_1 \in R_1, \forall t_2 \in R_2, \exists t \in R, \qquad  t.A_1=t_1.A_1, \ldots, t.A_k=t_1.A_k,\quad \text{et} \quad t.B_1=t_2.B_1, \ldots, t.B_\ell=t_2.B_\ell$$
 :::
 
 
 
 ## Produit cartésien : exemple
-
-
-**Train 1  $\times$ Train 2** 
-
-| **h-dep(1)**   | **dest(1)**       |  **num(1)**         | **h-dep(2)**   | **dest(2)**             | **num(2)**            |
-|:--------|:-----------------|:----------------|:--------|:-----------------|:----------------|
-|    13h15    | Lyon         |     213         | 13h39   | Avignon       |     43          |
-|    13h15    | Lyon         |     213         | 14h15   | Lyon          |     214         |
-|    13h29    | Marseille    |    1024         | 13h39   | Avignon       |     43          |
-|    13h29    | Marseille    |    1024         | 14h15   | Lyon          |     214         |
-|    14h15    | Lyon         |    214          | 13h39   | Avignon       |     43          |
-|    14h15    | Lyon         |    214          | 14h15   | Lyon          |     214         |
-
 
 
 
@@ -594,38 +757,64 @@ $$t.A_1=t_1.A_1, \ldots, t.A_k=t_1.A_k,\quad t.B_1=t_2.B_1, \ldots, t.B_\ell=t_2
 
 - La *projection* d'une relation $R$ de schéma $R(A_1,\dots, A_k)$
  sur les attributs $A_{i_1}, \dots, A_{i_p}$, $i_1,..., i_p\in \{1,...,k\}$,  est la relation $S$
-
-- de schéma $S(A_{i_1}, \dots,A_{i_p})$
-
-- dont les tuples sont obtenus par élimination des attributs
+  - de schéma $S(A_{i_1}, \dots,A_{i_p})$
+  - dont les tuples sont obtenus par élimination des attributs
 non mentionnés dans $A_{i_1}, \dots, A_{i_p}$ (et par élimination
 des doublons).
-
-- On note $S = \pi_{A_{i_1}, \dots, A_{i_p}} (R)$.
+  - On note $S = \pi_{A_{i_1}, \dots, A_{i_p}} (R)$.
 
 - Définition formelle :
 
-$$s\in S\quad  \iff \quad \exists t\in R\ \forall n\in\left\{1,\dots,p\right\}\ s.A_{i_n}=t.A_{i_n}$$
+$$s\in S\quad  \iff \quad \exists t\in R, \forall n\in\left\{1,\dots,p\right\}\qquad s.A_{i_n}=t.A_{i_n}$$
 
 :::
 
+::: {.callout-note}
 
-*Élimination des doublons* car une projection peut produire plusieurs fois le même tuple.
+### Remarque 
 
+Implicitement, on a *élimination des doublons* car une projection peut produire plusieurs fois le même tuple.
 
+:::
+
+---
+
+::: {.callout-caution}
+
+### Remarque 
+
+À la différence des opérations ensemblistes ∩, ∪, ∖, ×, la projection ne fait pas intervenir que des tables. 
+
+On peut considérer la projection comme une fonction à deux arguments, avec un premier argument de type table, et un 
+second argument constitué par une liste d'attributs. 
+
+On peut aussi considérer la projection comme une fonction avec un nombre *variable*  d'arguments. Un premier argument de type  table, puis de arguments qui désignent des attributs de la table. Si on accepte ce point de vue, on peut adopter la 
+notation 
+
+On note 
+$$S = \pi(R, {A_{i_1}, \dots, A_{i_p}})$$
+au lieu de $S = \pi_{A_{i_1}, \dots, A_{i_p}} (R)$
+
+Dans la suite, nous utiliserons cette possibilité. 
+ 
+:::
 
 ## Projection : Exemple
 
 
-$\Large{\Pi_{\text{dest, num}}(\text{Train})}$
+Π(`THEO_1900`, `prenom`, `nombre`)
 
-| **dest**             | **num**             |
-|:----------------|----------------:|
-| Lyon             |     213         |
-| Marseille        |     1024         |
-| Lyon             |     214          |
+```{.sql}
++-----------+---------+
+| prenom    |  nombre |
+|-----------+---------+
+| THEODORE  |  227    |
+| THEODOSE  |  3      |
+| THEODULE  |  39     |
++-----------+---------+
+```
 
-
+Ici, aucune éliminitation de doublons n'a été nécessaire
 
 
 ## Sélection  ( $\Large{\sigma}$ ) 
@@ -653,23 +842,50 @@ par une condition $C$ est une relation $S$
 :::
 
 
+---
+
+
+::: {.callout-caution}
+
+### Remarque 
+
+À la différence des opérations ensemblistes ∩, ∪, ∖, ×, comme la projection, la sélection ne fait pas intervenir que des tables. 
+
+On peut considérer la sélection comme une fonction à deux arguments, avec un premier argument de type table, et un 
+second argument constitué par une condition (une expression dont l'évaluation sur chaque ligne de la table retourne `Vrai`, `Faux`, ou `Indéterminé`). 
+
+On peut aussi considérer la sélection comme une fonction avec un nombre *variable*  d'arguments. Un premier argument de type  table, puis de arguments qui représentent des expressions susceptibles d'être évaluées sur chaque ligne de la table.
+Une ligne fera partie de la table résultat, si elle satisfait toutes les expressions.
+
+On note 
+$$S = \sigma(R, {C_{1}, \dots, C_{p}})$$
+au lieu de $S = \sigma_{C_1 \wedge C_2 \wedge \ldots \wedge C_p } (R)$
+
+Dans la suite, nous utiliserons cette possibilité. 
+
+Notons que dans un langage comme `Python`, nous ne disposons pas d'emblée d'un type *expression* et que 
+la notation proposée ici ne se code pas trivialement en `Python`.
+
+En langage `R`, on dispose d'un type *expression*, la notation proposée ici est mise en œuvre dans le package `dplyr`.
+
+:::
+
+
 ## Sélection : Exemple
 
 
-$\Large{\sigma_{\text{dest}=\text{'Lyon'}} \text{Train 1}}$
-
-| **h-dep**   | **dest**             | **num** |
-|:--------:|:-----------------|---------------:|
-|    13h15    | Lyon         |     213         |
-|    14h15    | Lyon         |    214          |
+σ(`THEO_1900`, `prenom` `LIKE` 'THEOD%')
 
 
-$\Large{\sigma_{\text{dest}=\text{'Lyon'} \wedge \text{hdep} > 14h} \text{Train 1}}$
-
-| **h-dep**   | **dest**             | **num**    |
-|:--------:|:-----------------|----------------:|
-|    14h15    | Lyon         |    214          |
-
+```{.sql}
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEOBALD  | 1900  | 6      |
+| 1    | THEOPHILE | 1900  | 309    |
+| 1    | THEOPHANE | 1900  | 3      |
++------+-----------+-------+--------+
+```
 
 
 ## Renommage
@@ -679,38 +895,65 @@ $\Large{\sigma_{\text{dest}=\text{'Lyon'} \wedge \text{hdep} > 14h} \text{Train 
 ### Définition
 
 - Soit  $R$ de schéma $R(A_1,\dots, A_k)$, le *renommage* d'un attribut $A_i$, $i\leq k$, en $B$ est une relation $S$ :
-
-- de même contenu
-
-- de schéma $S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)$
-
-- On le note $S=\rho_{A_i\mapsto B}(R)$
+  - de même contenu  (mêmes lignes)
+  - de schéma $S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)$
+  - On le note $S=\rho_{A_i\mapsto B}(R)$
 
 :::
 
 
-## Exemple
+---
 
+::: {.callout-caution}
+
+### Remarque 
+
+Comme la projection et la sélection, le renommage  ne fait pas intervenir que des tables. 
+
+
+On peut  considérer le renommage comme une fonction avec un nombre *variable*  d'arguments. Un premier argument de type  table, puis de arguments qui représentent des expressions indiquant comment doivent être renommées certains attributs.
+
+On note 
+$$S = \rho(R, A_{i_1}\mapsto B_1,\ldots, A_{i_p}\mapsto B_p)$$
+au lieu de $S=\rho_{A_{i_1}\mapsto B_1,\ldots, A_{i_p}\mapsto B_p}(R)$
+
+Dans la suite, nous utiliserons cette possibilité. 
+
+Notons que dans un langage comme `Python`, nous ne disposons pas d'emblée d'un type *expression* et que 
+la notation proposée ici ne se code pas trivialement en `Python`.
+
+En langage `R`, on dispose d'un type *expression*, la notation proposée ici est mise en œuvre dans le package `dplyr`.
+
+:::
+
+
+## Renommage : Exemple   {.smaller}
+
+```{.sql}
+-- THEOD_1900
+
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
+|------+-----------+-------+--------|
+| 1    | THEODORE  | 1900  | 227    |
+| 1    | THEODOSE  | 1900  | 3      |
+| 1    | THEODULE  | 1900  | 39     |
++------+-----------+-------+--------+
+```
+
+ρ(`THEOD_1900`, `sexe→sex`, `prenom→name`, `annee→year`, `nombre→count`)
 	
-Train :
+```{.sql}
+-- THEOD_1900
 
-|  **h-dep**   | **dest**   | **num** | 
-|:---------------:|:--------------|--------------:|
-|		13h15         | Lyon          |     213       |
-|		13h29         | Marseille     |    1024       |
-|		14h15         | Lyon          |     214       |
-	
-	
-$$\rho_{\text{num}\mapsto \text{numero}}(\text{Train})$$
-
-
-|  **h-dep**   | **dest**   | **numero** | 
-|:---------------:|:--------------|--------------:|
-|		13h15         | Lyon          |     213       |
-|		13h29         | Marseille     |    1024       |
-|		14h15         | Lyon          |     214       |
-	
-
++------+-----------+-------+--------+
+| sex  | name      | year  | count  |
+|------+-----------+-------+--------|
+| 1    | THEODORE  | 1900  | 227    |
+| 1    | THEODOSE  | 1900  | 3      |
+| 1    | THEODULE  | 1900  | 39     |
++------+-----------+-------+--------+
+```
 
 
 
@@ -734,9 +977,48 @@ Pour interroger une BD, on *compose* ces opérateurs :
 
 ## Exemple
 
-$\pi_{num}(\sigma_{dest='Lyon'}(Train))$
+π(σ(`THEO_1900`, `prenom` `LIKE` 'THEOD%'), `prenom`, `nombre`)
 
-Numéro des trains dont la ville de destination est 'Lyon'.
+. . .
+
+ρ(π(σ(`THEO_1900`, `prenom` `LIKE` 'THEOD%'), `prenom`, `nombre`), `prenom→name`, `nombre→count`)
+
+
+## De la composition aux tuyeaux (pipelines)
+
+
+On peut  rendre la composition de fonctions plus lisible (pour l'humain) en reprenant un mécanisme d'`Unix` : le *pipe* (tuyeau) `|`
+
+Plutôt qu'écrire $g(f(x,y), z, t)$, on convient d'écrire  `f(x,y) | g(z, t)` voire `x | f(y) | g(z,t)`
+
+Et pour rendre l'expression encore plus lisible on peut écrire 
+
+```{.sql}
+x | 
+  f(y) | 
+  g(z,t)
+```
+
+## De la composition aux tuyeaux (suite)
+
+On peut ainsi réécrire 
+
+ρ(π(σ(`THEO_1900`, `prenom` `LIKE` 'THEOD%'), `prenom`, `nombre`), `prenom→name`, `nombre→count`)
+
+en 
+
+```{.sql}
+THEO_1900  |
+  σ(`prenom` `LIKE` 'THEOD%') |
+  π(`prenom`, `nombre`) |
+  ρ(`prenom→name`, `nombre→count`)
+```
+
+::: {.aside}
+
+Dans le langage `R` (> 4.x), le pipe s'écrit `|>`
+
+:::
 
 
 # Opérations complémentaires : les jointures  {background-color="#1c191c"}
@@ -744,7 +1026,7 @@ Numéro des trains dont la ville de destination est 'Lyon'.
 
 ## Les jointures
 
-On va définir des opérations pratiques pour la manipulation de données~: les *jointures*
+On va définir des opérations pratiques pour la manipulation de données : les *jointures*
 
 - Jointure
 
@@ -783,35 +1065,89 @@ $$R_1 \bowtie_C R_2 = \sigma_C(R_1\times R_2)$$
 :::
 
 
-## Exemple
+---
 
-`TrDep`
+::: {.callout-note}
 
-|  **hdep**   | **dest**   | **numdep** |
-|:----------------:|:--------------|--------:|
-|    13h15         | Lyon          |     213 |
-|    13h29         | Marseille     |    1024 |
+### Remarque 
 
+Comme la projection, la sélection et le renommage, la jointure  ne fait pas intervenir que des tables. 
 
-`TrArr`
+On peut  considérer la jointure comme une fonction avec un nombre *variable*  d'arguments. Deux  premiers arguments de type  table, puis une expression dont l'évaluation permet de déterminer quels couples de lignes doivent figurer dans la table résultat
 
-| **harr**      | **prov**     | **numarr**   |
-|:----------------:|:--------------|--------:|
-|    13h39         | Avignon        |     43       |
-|    15h15         | Paris          |     213       |
+On note 
+$$T = \bowtie(R, S, C)$$
+au lieu de $T=R  \bowtie_C C$
 
+Dans la suite, nous utiliserons cette possibilité. 
 
+Notons que dans un langage comme `Python`, nous ne disposons pas d'emblée d'un type *expression* et que 
+la notation proposée ici ne se code pas trivialement en `Python`.
 
-$\texttt{TrDep} \bowtie_{\text{numdep} > \text{numar}} \texttt{TrArr}$
-
-| **hdep**         | **dest**         | **numdep** | **harr**       | **prov**         | **numarr** |
-|:----------------:|:--------------|--------:|:----------------:|:--------------|--------:|
-|    13h15              | Lyon               |     213           |     13h39          | Avignon            |     43  |        |
-|    13h29              | Marseille          |    1024           |     13h39          | Avignon            |     43   |        |
-|    13h29              | Marseille          |    1024           |     15h15          | Paris              |     213   |       |
+En langage `R`, on dispose d'un type *expression*, la notation proposée ici est mise en œuvre dans le package `dplyr` avec 
+la fonction `inner_join()`,
 
 
-## Équi-jointure, $\theta$-jointure
+:::
+
+
+
+## Exemple  sur le schéma `world`
+
+![](/images/layout_world.png)
+
+Lier les pays (les lignes de `country`) à leur capitale, c'est à dire les couples de lignes de `country`  et de `city`
+qui satisfont  `capital = id` 
+
+## Exemple  sur le schéma `world` (suite)
+
+```{.sql}
+`country` |
+  ⋈(`city`, `capital=id`) |
+  π(`name_country`, `name`)
+
+```
+
+```{.sql}
+
++----------------------+------------------+
+| name_country         | name             |
+|----------------------+------------------|
+| Afghanistan          | Kabul            |
+| Netherlands          | Amsterdam        |
+| Netherlands Antilles | Willemstad       |
+| Albania              | Tirana           |
+| Algeria              | Alger            |
+...
++----------------------+------------------+
+
+```
+
+::: {.aside}
+
+On se contente d'afficher les cinq premières lignes du résultat.
+
+:::
+
+## Différentes variétés de jointures
+
+Autour de la jointure `⋈(R, S, C)` on a pris l'habitude de distinguer des types de jointure selon la forme de l'expression de jointure (la condition `C`) 
+
+On distingue 
+
+- les équi-jointures 
+- les θ-jontures 
+- les jointures naturelles
+
+::: {.aside}
+
+Ces distinctions portent sur la condition `C`. Elles ne sont pas de même nature que les distinctions qui portent sur la manière dont le résultat final est calculé et qui définissent les jointures *internes*, *externes*, ... 
+
+
+:::
+
+
+## Équi-jointure, 
 
 
 ::: {.callout-important}
@@ -822,15 +1158,15 @@ Jointure avec égalité entre attributs de types comparables
 
 :::
 
-
-$$\texttt{TrDep} \bowtie_{\text{numdep} = \text{numarr}} \texttt{TrArr}$$
-
-|**hdep**         | **dest**         | **numdep** | **harr**       | **prov**         | **numarr** |
-|:----------------:|:--------------|--------:|:----------------:|:--------------|--------:|
-|  13h15          | Lyon             |     213    |     15h15      | Paris            |     213    |
-
-
 . . .
+
+
+```{.sql}
+⋈(`country`, `city`, `capital=id`)
+```
+
+
+## θ-jointure
 
 ::: {.callout-important}
 
@@ -838,11 +1174,16 @@ $$\texttt{TrDep} \bowtie_{\text{numdep} = \text{numarr}} \texttt{TrArr}$$
 
 Condition de jointure entre attributs de types comparables et avec un opérateur différent de l'égalité, c'est-à-dire dans $\left\{<,>,\leq,\geq, \neq\right\}$.
 
-$$\text{TrDep} \bowtie_{\text{numdep} > \text{numarr}} \text{TrArr}$$
 
 :::
  
 
+. . .
+
+
+```{.sql}
+⋈(`country`, `city`, `capital=id`  ∧ `population > .5 * population_country`)
+```
 
 
 
@@ -872,7 +1213,7 @@ On considère
 
 
 
-## Jointure naturelle  (formalisation)
+## Jointure naturelle  (formalisation)   {.scrollable}
 
 Considérons $S$ d'attributs $A_1',..,A_k',B_{h+1},...,B_l$ définie par :
 
@@ -882,90 +1223,134 @@ $$S=\rho_{A_1\mapsto A_1'}(\rho_{A_2\mapsto A_2'}(\cdots (\rho_{A_k\mapsto A_k'}
 La *jointure naturelle* sur deux relations $R_1$ et $R_2$ est la relation
 
 - d'attributs $A_1,..,A_k,B_1,...,B_h, B_{h+1},...,B_\ell$
-
 - définie par :
-
 $$\pi_{A_1,..,A_k,B_1,...,B_h, B_{h+1},...,B_\ell}(R_1\bowtie_{C} S)$$
-
-
 où $C$ est $(A_1=A_1') \wedge (A_2=A'_2) \wedge \ldots \wedge (A_k=A_k')$
-
-{{< fa  hand-point-right >}} on réalise une équi-jointure sur tous les attributs communs et on ne garde qu'un seul "exemplaire" de ces attributs communs par projection.
-
-On note cette opération : $R_1 \bowtie R_2$.
 
 . . .
 
+::: {.aside}
 
+{{< fa  hand-point-right >}} on réalise une équi-jointure sur tous les attributs communs et on ne garde qu'un seul "exemplaire" de ces attributs communs par projection. On note cette opération : $R_1 \bowtie R_2$.
 
-Pour éviter le renommage, on peut décider de préfixer les noms des attributs par ceux de la relation. La condition $C$ devient :
+{{< fa  hand-point-right >}} Pour éviter le renommage, on peut décider de préfixer les noms des attributs par ceux de la relation. La condition $C$ devient :
 
 $$(R_1.A_1=R_2.A_1) \wedge \ldots \wedge (R_1.A_k=R_2.A_k)$$
 
+:::
 
 
 
-
-## Exemple de Jointure naturelle
+## Exemple de Jointure naturelle  {.smaller}
 
 ::::: {.columns}
 ::: {.column}
 
-`TrDep`
+```{.sql}
+bd_2023-24> \d countrylanguage
++-------------+--------------+-----------+
+| Column      | Type         | Modifiers |
+|-------------+--------------+-----------|
+| countrycode | character(3) |  not null |
+| language    | text         |  not null |
+| isofficial  | boolean      |  not null |
+| percentage  | real         |  not null |
++-------------+--------------+-----------+
+```
 
-|  **hdep**   | **dest**   | **num** |
-|:----------------:|:--------------|--------:|
-|    13h15         | Lyon          |     213 |
-|    13h29         | Marseille     |    1024 |
 
+```{.sql}
 
-`TrArr`
++--------------------+---------------+-----------+
+| Column             | Type          | Modifiers |
+|--------------------+---------------+-----------|
+| countrycode        | character(3)  |  not null |
+| name_country       | text          |  not null |
+| continent          | text          |  not null |
+| region             | text          |  not null |
+| surfacearea        | real          |  not null |
+| indepyear          | smallint      |           |
+| population_country | integer       |  not null |
+| lifeexpectancy     | real          |           |
+| gnp                | numeric(10,2) |           |
+| gnpold             | numeric(10,2) |           |
+| localname          | text          |  not null |
+| governmentform     | text          |  not null |
+| headofstate        | text          |           |
+| capital            | integer       |           |
+| code2              | character(2)  |  not null |
++--------------------+---------------+-----------+
+```
 
-| **harr**      | **prov**     | **num**   |
-|:----------------:|:--------------|--------:|
-|    13h39         | Avignon        |     43       |
-|    15h15         | Paris          |     213       |
 
 :::
+
 ::: {.column}
 
+### Jointure naturelle
 
-$$\text{TrDep} \bowtie \text{TrArr}$$ 
+```{.sql}
+country |
+  ⋈(countrylanguage) |
+  σ(country='France') |
+  π(name_country, language)
 
-| **hdep**         | **dest**         | **num** | **harr**       | **prov**      |
-|:-----------------:|:----------------|--------:|:--------------:|--------------:|
-|    13h15          | Lyon            |     213 |     15h15      | Paris         |
+```
+
+```{.sql}
++--------------+------------+
+| name_country | language   |
+|--------------+------------|
+| France       | French     |
+| France       | Arabic     |
+| France       | Portuguese |
+| France       | Italian    |
+| France       | Spanish    |
+| France       | Turkish    |
++--------------+------------+
+```
 
 :::
 
 :::::
 
+---
+
+On aurait pu décrire de façon plus explicite la jointure en précisant sur quels attributs s'effectue la jointure 
+
+
+```{.sql}
+country |
+  ⋈(countrylanguage, countrycode) |
+  σ(country='France') |
+  π(name_country, language)
+
+```
 
 ## Exemples de requêtes
 
-Base constituée des trois tables suivantes:
+
+- déterminer les noms des capitales des pays situés en Asie (`Asia`)
+
+```{.sql}
+country |
+  σ(continent='Asia') |
+  ⋈(city, capital=id) |
+  π(name)
+```
+
+. . .
+
+- déterminer les langues parlées dans les pays d'Asie
+
+```{.sql}
+country |
+  σ(continent='Asia') |
+  ⋈(countrylanguage) |
+  π(language)
+```
 
 
-`fournisseurs(fno, nom, adresse, ville)`
-
-`produits(pno, design, prix, poids, couleur)`
-
-`commandes(cno, fno, pno, qte)`
-
-
-
-## Exemples de requêtes (suite) 
-
-- déterminer les numéros des fournisseurs ayant comme nom "Durand"
-
-
-$$\pi_{\text{fno}} \bigl( \sigma_{\text{nom}=\text{'Durand'}} (\text{fournisseurs})\bigr)$$
-
-
-- déterminer les références, prix et quantités des produits commandés à plus de 10 exemplaires.
-
-
-$$\pi_{\text{pno,prix,qte}} \bigl( \sigma_{\text{qte}>10} (\text{commandes} \bowtie \text{produits})\bigr)$$
 
 
 
@@ -1075,54 +1460,41 @@ $$T = R \div S$$
 ::: {.columns}
 ::: {.column}
 
-`Voyage` : contient  pour chaque numéro de
-client la ville de départ et d'arrivée des voyages qu'il a
-effectué
+{{< fa hand-point-right >}} Lister les langues parlées sur tous les continents 
 
 
-| **numclient**  | **vdep**   | **varr**|
-|---------------:|:-----------------|:----------------|
-|   1           | Paris              | Marseille    |
-|   3           | Marseille          | Lyon  |
-|   1            | Paris              | Nantes |
-|   5            | Marseille          | Avignon |
-|   4           | Paris              | Nantes   |
-|   3           | Paris              | Marseille |
-|   2           | Caen               | Le Mans   |
-|   3           | Paris              | Nantes |
+On aimerait écrire une expression qui renvoie un résultat correct quelque soit les conventions adoptées sur la définition de *continent* (les Amériques forment-elles un ou deux continents, etc)
+
 
 :::
+
+
 ::: {.column}
 
+```{.sql}
+CL ← ⋈(country, countrylanguage) |
+  π(continent, language)
 
-`Villes` contient des couples  villes de départ/villes d'arrivée
+C ← π(CL, continent)
+L ← π(CL, language)
+
+LPPTC ← (C × L  ∖  CL ) |
+  π(language)
+
+L  ∖  LPPTC
+```
+
+On vient de calculer une division !
+
+```{.sql}
+CL ÷ C
+```
 
 
-| **vdep**   | **varr** |
-|:-------------|:---------------|
-|  Paris             | Marseille       |
-|  Paris             | Nantes          |
 
 :::
 
 :::
-
-
-
-
-## Division (exemple, suite)
-
-
-$$\texttt{Voyage} \div \texttt{Villes}$$
-
-
-| **numclient** |
-|-------------:|
-|  1          |
-|  3             |
-
-*Résultat* :  numéros des clients ayant
-effectué tous les voyages entre les villes de la table `Villes` (i.e. à la fois un Paris-Marseille et un Paris-Nantes.)
 
 
 
@@ -1132,9 +1504,6 @@ effectué tous les voyages entre les villes de la table `Villes` (i.e. à la foi
 - L'union, la différence, le produit cartésien, la sélection et la projection et le renommage sont *suffisants* pour définir tous les opérateurs que l'on a vu.
 
 - Mais avoir un panier  plus large d'opérateurs simplifie l'écriture des requêtes.
-
-
-
 
 
 Quelques définitions
@@ -1156,30 +1525,51 @@ Soient  $R$ de schéma
 $R(A_1,A_2,\dots,A_k)$, $S$ de schéma
 $S(A_{p+1},\dots ,A_k)$
 
-est la relation $T= R \div S$ de schéma $T(A_1, \dots, A_p)$.
+est la relation $T= R ÷ S$ de schéma $T(A_1, \dots, A_p)$.
 
-\begin{center}
-\begin{tikzpicture}
-%\Tree [.$\pi_{pno,prix,qte}$ [.$\sigma_{qte>10}$ [.$\bowtie_{pno}$ [.commandes ] [.produit ] ] ] ]
-\Tree [.$-$ [.$\pi_{A_1,...,A_p}$ $R$ ] [.$\pi_{A_1,...,A_p}$ [.$-$ [.$\times$ [.$\pi_{A_1,...,A_p}$ $R$ ] [.S ] ] [.R ] ] ] ]
-%[.$\pi_{A_1,...,A_p}$ [.- [.\times [.$\pi_{A_1,...,A_p}$ $R$ ] [.S ] ] [.R ] ]
-\end{tikzpicture}
-\end{center}
+
+```{.sql}
+T ← Π(R, A) ∖ Π((Π(R, A) × S ∖ R), A)
+```
 
 :::
 
-# The story    {background-color="#1c191c"}
+
+::: {.aside}
+
+Dans la définition de `R ÷ S`, on utilise en deux endroits  `Π(R, A)`. 
+Il serait utile, lors de l'évaluation de   `R ÷ S` de n'évaluer `Π(R, A)`
+qu'une seule fois.
+
+:::
 
 
-##  From Wikipedia {smaller}
 
-> In the 1960s and 1970s he worked out his theories of data arrangement, issuing his paper "A Relational Model of Data for Large Shared Data Banks"[14] in 1970, after an internal IBM paper one year earlier.[15] To his disappointment, IBM proved slow to exploit his suggestions until commercial rivals started implementing them.[16]
+# Petite histoire    {background-color="#1c191c"}
 
-> Initially, IBM refused to implement the relational model to preserve revenue from IMS/DB.[citation needed] Codd then showed IBM customers the potential of the implementation of its model, and they in turn pressured IBM. Then IBM included in its Future Systems project a System R subproject – but put in charge of it developers who were not thoroughly familiar with Codd's ideas, and isolated the team from Codd.[citation needed] As a result, they did not use Codd's own Alpha language but created a non-relational one, SEQUEL. Even so, SEQUEL was so superior to pre-relational systems that it was copied, in 1979, based on pre-launch papers presented at conferences, by Larry Ellison, of Relational Software Inc, in his Oracle Database, which actually reached market before SQL/DS – because of the then-already proprietary status of the original name, SEQUEL had been renamed SQL.
+
+---
+
+L'algèbre relationnelle est la définition d'un modèle de calculabilité restreint. 
+
+Comme les modèles de calcul classiques  (les langages de programmation comme `Python`), elle est formée de briques de base (les opérateurs) et de mécanismes d'assemblage (la composition de fonction). 
+
+Le modèle de calcul relationnel est bien plus simple qu celui d'un langage de programmation (pas de boucles `while`, `for`). Il est aussi moins expressif. 
+On peut montrer qu'il existe de questions qui sont solubles avec un langage de programmation mais qui ne le sont pas avec l'algèbre relationnelle.
+
+L'histoire de l'algèbre relationnelle éclaire le développement des bases de données.
+
+
+
+##  Depuis  Wikipedia {.smaller}
+
+> In the 1960s and 1970s he [Codd] worked out his theories of data arrangement, issuing his paper "A Relational Model of Data for Large Shared Data Banks" in 1970.[ To his disappointment, IBM proved slow to exploit his suggestions until commercial rivals started implementing them.
+
+> Initially, IBM refused to implement the relational model to preserve revenue from IMS/DB. Codd then showed IBM customers the potential of the implementation of its model, and they in turn pressured IBM. Then IBM included in its Future Systems project a System R subproject – but put in charge of it developers who were not thoroughly familiar with Codd's ideas, and isolated the team from Codd. As a result, they did not use Codd's own Alpha language but created a non-relational one, SEQUEL. Even so, SEQUEL was so superior to pre-relational systems that it was copied, in 1979, based on pre-launch papers presented at conferences, by Larry Ellison, of Relational Software Inc, in his Oracle Database, which actually reached market before SQL/DS – because of the then-already proprietary status of the original name, SEQUEL had been renamed SQL.
 
 > Codd continued to develop and extend his relational model, sometimes in collaboration with Christopher J. Date. One of the normalised forms, the Boyce–Codd normal form, is named after him.
 
-> Codd's theorem, a result proven in his seminal work on the relational model, equates the expressive power of relational algebra and relational calculus.[14]
+> Codd's theorem, a result proven in his seminal work on the relational model, equates the expressive power of relational algebra and relational calculus.
 
 
 

@@ -14,19 +14,19 @@ $font-family-sans-serif: 'Helvetica Neue', Tahoma, sans-serif !default;
 // headings
 $presentation-heading-font: 'Yanone Kaffeesatz',  Tahoma, sans-serif  !default;
 // $presentation-heading-color: rgb(183, 29, 86) !default;
-$h1-font-size: 1.6rem !default;
+$h1-font-size: 1.45rem !default;
 $h2-font-size: 1.3rem !default;
 $h3-font-size: 1.15rem !default;
 
 //code
-// $code-color: #f0dfaf !default;
+$code-color: #ec1515 !default;
 $font-family-monospace: 'Ubuntu Mono', monospace  !default;
 
 // general  
 // $body-bg: #fff;
 // $body-color: #000000;
 // $link-color: rgb(142, 5, 55);
-$presentation-font-size-root: 32px;
+$presentation-font-size-root: 30px;
 
 /*-- scss:rules --*/
 .reveal pre code {

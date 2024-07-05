@@ -17,9 +17,9 @@ editor: source
 
 ## Cours magistral : diapositives
 
-[Introduction aux Bases de Données](/slides/BD_intro.html)
+[Introduction aux Bases de Données](/slides/BD_intro.html){target="_blank"}
 
-[Introduction à l'algèbre relationnelle](/slides/SQL_0.html)
+[Introduction à l'algèbre relationnelle](/slides/SQL_0.html){target="_blank"}
 
 ## Exercices : TD 1
 
