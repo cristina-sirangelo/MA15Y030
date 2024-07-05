@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="fr-FR"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -12,7 +12,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.47">
-<meta name="author" content="Stéphane Boucheron">
+<meta name="author" content="Équipe BD">
 <title>MA15Y030 - Automne 2024 – BD VII: Administration et Droits</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,6 +387,7 @@
     }
   </style>
 <meta property="og:title" content="BD VII: Administration et Droits – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
@@ -394,19 +395,20 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center"><h1 class="title">BD VII: Administration et Droits</h1>
+  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Stéphane Boucheron 
+Équipe BD 
 </div>
         <p class="quarto-title-affiliation">
-            LPSM Université Paris-Cité
+            <a href="https://u-paris.fr">LPSM Université Paris-Cité</a>
           </p>
     </div>
 </div>
 
-</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Roadmap</h2>
+</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
 <li><a href="#/droits" id="/toc-droits">Droits</a></li>
@@ -504,17 +506,17 @@ Stéphane Boucheron
 <span id="cb1-3"><a></a><span class="kw">ON</span> {[<span class="kw">TABLE</span>] table_name [, <span class="op">..</span>.]</span>
 <span id="cb1-4"><a></a>    | <span class="kw">ALL</span> <span class="kw">TABLES</span> <span class="kw">IN</span> <span class="kw">SCHEMA</span> schema_name}</span>
 <span id="cb1-5"><a></a><span class="kw">TO</span> <span class="kw">role</span><span class="op">-</span><span class="kw">specification</span> [, <span class="op">..</span>.]</span>
-<span id="cb1-6"><a></a>[<span class="kw">WITH</span> <span class="kw">GRANT</span> <span class="kw">OPTION</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a></a>[<span class="kw">WITH</span> <span class="kw">GRANT</span> <span class="kw">OPTION</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <p><code>role-specification</code> :</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a>role_name, <span class="kw">PUBLIC</span>, <span class="op">..</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a>role_name, <span class="kw">PUBLIC</span>, <span class="op">..</span>.</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <p><code>privilege</code> :</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="kw">SELECT</span>, <span class="kw">DELETE</span>, <span class="kw">INSERT</span>,</span>
 <span id="cb3-2"><a></a><span class="kw">UPDATE</span> [(nom<span class="op">-</span>attribut</span>
 <span id="cb3-3"><a></a>    {, nom<span class="op">-</span>attribut})],</span>
 <span id="cb3-4"><a></a><span class="kw">REFERENCES</span> [(nom<span class="op">-</span>attribut</span>
-<span id="cb3-5"><a></a>     {, nom<span class="op">-</span>attribut})]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-5"><a></a>     {, nom<span class="op">-</span>attribut})]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> *<code>WITH GRANT OPTION</code>:] si spécifié, donne le droit de transmettre les droits obtenus</p>
 <p><i class="fa-solid fa-binoculars" aria-label="binoculars"></i> voir : <a href="https://www.postgresql.org/docs/current/sql-grant.html">https://www.postgresql.org/docs/current/sql-grant.html</a></p>
@@ -533,7 +535,7 @@ Stéphane Boucheron
 <span id="cb4-3"><a></a><span class="kw">ON</span> <span class="kw">DATABASE</span> database_name [, <span class="op">..</span>.]</span>
 <span id="cb4-4"><a></a><span class="kw">TO</span> role_specification [, <span class="op">..</span>.]</span>
 <span id="cb4-5"><a></a>[ <span class="kw">WITH</span> <span class="kw">GRANT</span> <span class="kw">OPTION</span> ]</span>
-<span id="cb4-6"><a></a>[ GRANTED <span class="kw">BY</span> role_specification ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-6"><a></a>[ GRANTED <span class="kw">BY</span> role_specification ]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Commentaire sur</p>
 <ul>
 <li><code>TEMPORARY</code></li>
@@ -550,7 +552,7 @@ Stéphane Boucheron
 <span id="cb5-7"><a></a></span>
 <span id="cb5-8"><a></a><span class="kw">FROM</span> role_spec [, <span class="op">..</span>.]</span>
 <span id="cb5-9"><a></a>[ GRANTED <span class="kw">BY</span> role_spec ]</span>
-<span id="cb5-10"><a></a>[ <span class="kw">CASCADE</span> | <span class="kw">RESTRICT</span> ]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-10"><a></a>[ <span class="kw">CASCADE</span> | <span class="kw">RESTRICT</span> ]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-binoculars" aria-label="binoculars"></i> *syntaxe complète:] voir <a href="https://www.postgresql.org/docs/current/sql-revoke.html">https://www.postgresql.org/docs/current/sql-revoke.html</a></p>
 <p>Commentaire</p>
 <ul>
@@ -560,23 +562,23 @@ Stéphane Boucheron
 </ul></section><section id="exemples" class="slide level2 center"><h2>Exemples</h2>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">GRANT</span> <span class="kw">USAGE</span></span>
 <span id="cb6-2"><a></a><span class="kw">ON</span> <span class="kw">SCHEMA</span> durand</span>
-<span id="cb6-3"><a></a><span class="kw">TO</span> thomas007</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a></a><span class="kw">TO</span> thomas007</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">GRANT</span> <span class="kw">SELECT</span></span>
 <span id="cb7-2"><a></a><span class="kw">ON</span> <span class="kw">ALL</span> <span class="kw">TABLES</span> <span class="kw">IN</span> <span class="kw">SCHEMA</span> durand</span>
-<span id="cb7-3"><a></a><span class="kw">TO</span> thomas007</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a></a><span class="kw">TO</span> thomas007</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>On peut se mettre “à la place” de l’utilisateur thomas007 par la commande :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">set</span> <span class="kw">role</span> thomas007</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">set</span> <span class="kw">role</span> thomas007</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">REVOKE</span> <span class="kw">SELECT</span></span>
 <span id="cb9-2"><a></a><span class="kw">ON</span> <span class="kw">ALL</span> <span class="kw">TABLES</span> <span class="kw">IN</span> <span class="kw">SCHEMA</span> durand</span>
-<span id="cb9-3"><a></a><span class="kw">FROM</span> thomas007</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a></a><span class="kw">FROM</span> thomas007</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">REVOKE</span> <span class="kw">USAGE</span></span>
 <span id="cb10-2"><a></a><span class="kw">ON</span> <span class="kw">SCHEMA</span> durand</span>
-<span id="cb10-3"><a></a><span class="kw">FROM</span> thomas007</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a></a><span class="kw">FROM</span> thomas007</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On pouvait donner directement les mêmes droits à tous les utilisateurs d’un même rôle <code>etudiant</code> par exemple plutôt qu’un seul utilisateur</p>
 <ul>
 <li><code>USAGE</code></li>
@@ -666,7 +668,7 @@ Stéphane Boucheron
 FROM information_schema.tables;</code></pre>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> table_name</span>
 <span id="cb12-2"><a></a><span class="kw">FROM</span> information_schema.<span class="kw">tables</span></span>
-<span id="cb12-3"><a></a><span class="kw">WHERE</span> table_type<span class="op">=</span><span class="st">'VIEW'</span> <span class="kw">AND</span> table_schema<span class="op">=</span><span class="st">'durand'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a></a><span class="kw">WHERE</span> table_type<span class="op">=</span><span class="st">'VIEW'</span> <span class="kw">AND</span> table_schema<span class="op">=</span><span class="st">'durand'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a>    <span class="op">+</span><span class="co">------------------+</span></span>
 <span id="cb13-2"><a></a>    | table_name       |</span>
 <span id="cb13-3"><a></a>    |<span class="co">------------------|</span></span>
@@ -680,11 +682,11 @@ FROM information_schema.tables;</code></pre>
 <span id="cb13-11"><a></a>    | q1               |</span>
 <span id="cb13-12"><a></a>    | q2               |</span>
 <span id="cb13-13"><a></a>    | q3               |</span>
-<span id="cb13-14"><a></a>    <span class="op">+</span><span class="co">------------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-14"><a></a>    <span class="op">+</span><span class="co">------------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="exemple-représentation-des-droits-dans-la-metabase" class="slide level2 center"><h2>Exemple : Représentation des droits dans la metabase</h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">SELECT</span> table_schema, table_name, privilege_type</span>
 <span id="cb14-2"><a></a><span class="kw">FROM</span> information_schema.role_table_grants</span>
-<span id="cb14-3"><a></a><span class="kw">WHERE</span> grantee<span class="op">=</span><span class="st">'durand'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a></a><span class="kw">WHERE</span> grantee<span class="op">=</span><span class="st">'durand'</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a></a> +----------------+--------------------+------------------+</span>
 <span id="cb15-2"><a></a> | table_schema   | table_name         | privilege_type   |</span>
 <span id="cb15-3"><a></a> |----------------+--------------------+------------------|</span>
@@ -694,18 +696,18 @@ FROM information_schema.tables;</code></pre>
 <span id="cb15-7"><a></a> | gestion_2022   | etudiantsmiashs    | DELETE           |</span>
 <span id="cb15-8"><a></a> | gestion_2022   | etudiantsmiashs    | TRUNCATE         |</span>
 <span id="cb15-9"><a></a> | gestion_2022   | etudiantsmiashs    | REFERENCES       |</span>
-<span id="cb15-10"><a></a> | gestion_2022   | etudiantsmiashs    | TRIGGER          |</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-10"><a></a> | gestion_2022   | etudiantsmiashs    | TRIGGER          |</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="information_schema.table_privileges" class="slide level2 center"><h2><code>information_schema.table_privileges</code></h2>
 <p>The view <code>table_privileges</code> identifies all privileges granted on tables or views to a currently enabled role or by a currently enabled role.</p>
 <p>There is one row for each combination of table, grantor, and grantee.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Le role <code>PUBLIC</code> dispose du privilège de <code>SELECT</code> sur les tables de <code>pg_catalog</code> et de <code>information_schema</code></p>
 </section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>MA15Y030 – Bases de Données – L3 MIASHS – UParis Cité</p>
+<p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 </section>
@@ -977,12 +979,12 @@ FROM information_schema.tables;</code></pre>
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Copié");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Copié");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",
@@ -1040,6 +1042,13 @@ FROM information_schema.tables;</code></pre>
             if (link.dataset.originalHref !== undefined) {
               link.href = link.dataset.originalHref;
             }
+              // target, if specified
+              link.setAttribute("target", "_blank");
+              if (link.getAttribute("rel") === null) {
+                link.setAttribute("rel", "noopener");
+              }
+              // default icon
+              link.classList.add("external");
           }
         }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

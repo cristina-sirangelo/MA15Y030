@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="fr-FR"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -12,7 +12,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.47">
-<meta name="author" content="Stéphane Boucheron">
+<meta name="author" content="Équipe BD">
 <title>MA15Y030 - Automne 2024 – BD : Contraintes</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,6 +387,7 @@
     }
   </style>
 <meta property="og:title" content="BD : Contraintes – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
@@ -394,19 +395,20 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center"><h1 class="title">BD : Contraintes</h1>
+  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Stéphane Boucheron 
+Équipe BD 
 </div>
         <p class="quarto-title-affiliation">
-            LPSM Université Paris-Cité
+            <a href="https://u-paris.fr">LPSM Université Paris-Cité</a>
           </p>
     </div>
 </div>
 
-</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Roadmap</h2>
+</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
 <li><a href="#/contraintes-de-type" id="/toc-contraintes-de-type">Contraintes de type</a></li>
@@ -463,7 +465,7 @@ Stéphane Boucheron
 <span id="cb1-2"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb1-3"><a></a>    prix MONEY <span class="kw">CHECK</span> (prix<span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:money</span>), #<span class="op">&lt;&lt;</span></span>
 <span id="cb1-4"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>)</span>
-<span id="cb1-5"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>Have a look at <a href="https://www.postgresql.org/docs/current/datatype-money.html">PostGres Monetary type</a></p>
 </div>
@@ -492,7 +494,7 @@ Stéphane Boucheron
 <span id="cb2-20"><a></a>         (continent <span class="op">=</span> <span class="st">'Oceania'</span>:<span class="ch">:text</span>) <span class="kw">OR</span> (continent <span class="op">=</span> <span class="st">'Antarctica'</span>:<span class="ch">:text</span>) <span class="kw">OR</span> </span>
 <span id="cb2-21"><a></a>         (continent <span class="op">=</span> <span class="st">'South America'</span>:<span class="ch">:text</span>))),</span>
 <span id="cb2-22"><a></a>    <span class="kw">CONSTRAINT</span> country_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode)</span>
-<span id="cb2-23"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-23"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section id="contrainte-de-vérification---exemple-suite" class="slide level2 center"><h2>Contrainte de vérification - Exemple (suite)</h2>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
@@ -501,13 +503,13 @@ Stéphane Boucheron
 <span id="cb3-4"><a></a>    prix_promo MONEY <span class="kw">CHECK</span> (prix_promo <span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>), #<span class="op">&lt;&lt;</span></span>
 <span id="cb3-5"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
 <span id="cb3-6"><a></a>    <span class="kw">CHECK</span>(prix <span class="op">&gt;</span> prix_promo) #<span class="op">&lt;&lt;</span></span>
-<span id="cb3-7"><a></a>); </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-7"><a></a>); </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="fl">1.61</span>,<span class="st">'rouge'</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="fl">1.61</span>,<span class="st">'rouge'</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>ERROR:  new row for relation "piece" violates check constraint piece_check</code> <i class="fa-solid fa-face-angry" aria-label="face-angry"></i></p>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="kw">null</span>,<span class="st">'rouge'</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="kw">null</span>,<span class="st">'rouge'</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>est accepté <i class="fa-solid fa-champagne-glasses" aria-label="champagne-glasses"></i></p>
 </div>
 </section><section id="valeurs-nulles-et-contraintes-de-tuple" class="slide level2 center"><h2>
@@ -542,7 +544,7 @@ Stéphane Boucheron
 <span id="cb6-4"><a></a>    prix_promo MONEY <span class="kw">CHECK</span> (prix_promo <span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>),  #<span class="op">&lt;&lt;</span></span>
 <span id="cb6-5"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
 <span id="cb6-6"><a></a>    <span class="kw">CHECK</span> (prix <span class="op">&gt;</span> prix_promo)   #<span class="op">&lt;&lt;</span></span>
-<span id="cb6-7"><a></a>); </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a></a>); </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center"></section></section><section><section id="contrainte-dunicité" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte d’unicité</h1>
 
 </section><section id="contrainte-dunicité-1" class="slide level2 center"><h2>Contrainte d’unicité</h2>
@@ -557,7 +559,7 @@ Stéphane Boucheron
 <span id="cb7-5"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
 <span id="cb7-6"><a></a>    <span class="kw">CHECK</span> (prix <span class="op">&gt;</span> prix_promo)</span>
 <span id="cb7-7"><a></a>);</span>
-<span id="cb7-8"><a></a> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-8"><a></a> </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="contrainte-dunicité-2" class="slide level2 center"><h2>Contrainte d’unicité</h2>
 <ul>
 <li>La contrainte d’unicité peut porter sur un groupe de colonnes</li>
@@ -566,7 +568,7 @@ Stéphane Boucheron
 <span id="cb8-2"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb8-3"><a></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb8-4"><a></a>    <span class="kw">UNIQUE</span>(nomf, villef)  #<span class="op">&lt;&lt;</span></span>
-<span id="cb8-5"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Il ne peut pas avoir deux lignes identiques dans la table <code>fournisseur</code>
 </li>
@@ -585,13 +587,13 @@ Stéphane Boucheron
 <span id="cb9-2"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb9-3"><a></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb9-4"><a></a>    <span class="kw">UNIQUE</span>(nomf, villef)  </span>
-<span id="cb9-5"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
 <span id="cb10-2"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb10-3"><a></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb10-4"><a></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (nomf, villef)  #<span class="op">&lt;&lt;</span></span>
-<span id="cb10-5"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Une table a au plus une clef primaire</p>
 </section><section class="slide level2 center"></section></section><section><section id="clef-étrangère" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Clef étrangère</h1>
@@ -608,7 +610,7 @@ Stéphane Boucheron
 <span id="cb11-2"><a></a>    idf <span class="dt">INT</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
 <span id="cb11-3"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb11-4"><a></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>)</span>
-<span id="cb11-5"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
 <span id="cb12-2"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
@@ -618,7 +620,7 @@ Stéphane Boucheron
 <span id="cb12-6"><a></a>        (prix_promo <span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>),</span>
 <span id="cb12-7"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
 <span id="cb12-8"><a></a>    <span class="kw">CHECK</span> (prix <span class="op">&gt;</span> prix_promo)</span>
-<span id="cb12-9"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-9"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section><section id="clef-étrangère-references" class="slide level2 center"><h2>Clef étrangère : REFERENCES</h2>
 <ul>
@@ -639,7 +641,7 @@ Stéphane Boucheron
 <span id="cb13-5"><a></a>    dateLiv <span class="dt">DATE</span> <span class="kw">DEFAULT</span> NOW(),</span>
 <span id="cb13-6"><a></a>    quantite <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span> <span class="kw">CHECK</span> (quantite<span class="op">&gt;=</span><span class="dv">0</span>)</span>
 <span id="cb13-7"><a></a>);</span>
-<span id="cb13-8"><a></a> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-8"><a></a> </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>Il est désormais impossible de créer des livraisons pour lesquelles les valeurs non <code>NULL</code> de <code>nomp</code> n’apparaissent pas dans la table <code>piece</code> et les valeurs non <code>NULL</code> de <code>idf</code> n’apparaissent pas dans la table <code>fournisseur</code></p></li>
 <li><p>On dit que la table des livraisons est la table qui référence et la table des pièces est la table référencée</p></li>
@@ -653,7 +655,7 @@ Stéphane Boucheron
 <span id="cb14-7"><a></a>| percentage  | real         |  not null   |</span>
 <span id="cb14-8"><a></a>+-------------+--------------+-------------+</span>
 <span id="cb14-9"><a></a>Indexes:</span>
-<span id="cb14-10"><a></a>    "countrylanguage_pkey" PRIMARY KEY, btree (countrycode, language)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-10"><a></a>    "countrylanguage_pkey" PRIMARY KEY, btree (countrycode, language)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="définition-de-world.country-smaller" class="slide level2 center"><h2>Définition de world.country {smaller}</h2>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a></a>+--------------------+---------------+-------------+</span>
 <span id="cb15-2"><a></a>| Column             | Type          | Modifiers   |</span>
@@ -687,7 +689,7 @@ Stéphane Boucheron
 <span id="cb15-30"><a></a>Referenced by:</span>
 <span id="cb15-31"><a></a>    TABLE "world.countrylanguage"</span>
 <span id="cb15-32"><a></a>    CONSTRAINT "countrylanguage_countrycode_fkey" FOREIGN KEY (countrycode)</span>
-<span id="cb15-33"><a></a>    REFERENCES country(countrycode)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-33"><a></a>    REFERENCES country(countrycode)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="foreign-keys-emitted-by-world.country" class="slide level2 center"><h2>Foreign keys emitted by <code>world.country</code>
 </h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> world.country <span class="kw">ADD</span> </span>
@@ -698,13 +700,13 @@ Stéphane Boucheron
 <span id="cb16-6"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> world.country </span>
 <span id="cb16-7"><a></a>    <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> country_fk </span>
 <span id="cb16-8"><a></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent)   #<span class="op">&lt;&lt;</span></span>
-<span id="cb16-9"><a></a>        <span class="kw">REFERENCES</span> world.code_continent(continent);  #<span class="op">&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-9"><a></a>        <span class="kw">REFERENCES</span> world.code_continent(continent);  #<span class="op">&lt;&lt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center"></section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>MA15Y030 – Bases de Données – L3 MIASHS – UParis Cité</p>
+<p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 </section>
@@ -976,12 +978,12 @@ Stéphane Boucheron
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Copié");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Copié");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",
@@ -1039,6 +1041,13 @@ Stéphane Boucheron
             if (link.dataset.originalHref !== undefined) {
               link.href = link.dataset.originalHref;
             }
+              // target, if specified
+              link.setAttribute("target", "_blank");
+              if (link.getAttribute("rel") === null) {
+                link.setAttribute("rel", "noopener");
+              }
+              // default icon
+              link.classList.add("external");
           }
         }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

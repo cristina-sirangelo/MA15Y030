@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="fr-FR"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -12,7 +12,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.47">
 
-  <meta name="author" content="Stéphane Boucheron">
+  <meta name="author" content="Équipe BD">
   <title>MA15Y030 - Automne 2024 – BD IV: SQL III</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,6 +387,7 @@
     }
   </style>
 <meta property="og:title" content="BD IV: SQL III – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
@@ -395,21 +396,22 @@
 
 <section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
   <h1 class="title">BD IV: SQL III</h1>
+  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Stéphane Boucheron 
+Équipe BD 
 </div>
         <p class="quarto-title-affiliation">
-            LPSM Université Paris-Cité
+            <a href="https://u-paris.fr">LPSM Université Paris-Cité</a>
           </p>
     </div>
 </div>
 
 </section><section id="TOC">
 <nav role="doc-toc"> 
-<h2 id="toc-title">Roadmap</h2>
+<h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/fonctions-dagrégation-en-sql" id="/toc-fonctions-dagrégation-en-sql">Fonctions d’agrégation en SQL</a></li>
 <li><a href="#/fonctions-max-et-min" id="/toc-fonctions-max-et-min">Fonctions MAX et MIN</a></li>
@@ -457,12 +459,12 @@ Stéphane Boucheron
 <ul>
 <li>Somme des valeurs prises par <code>nomattribut</code></li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a><span class="fu">SUM</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a><span class="fu">SUM</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <ul>
 <li>Moyenne des valeurs prises par <code>nomattribut</code></li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="fu">AVG</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nom_attribut<span class="op">&gt;</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="fu">AVG</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nom_attribut<span class="op">&gt;</span>) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Le type des attributs doit être un nombre ou un entier (sinon, impossible de faire des sommes…).</p>
@@ -475,13 +477,13 @@ Stéphane Boucheron
 </ul>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="kw">SELECT</span> <span class="fu">SUM</span> (<span class="kw">ALL</span> Quantite)  </span>
 <span id="cb3-2"><a></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb3-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Prix moyen des pièces livrées par la socié <code>FastDelivery</code></li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">SELECT</span> <span class="fu">AVG</span> (<span class="kw">ALL</span> Prix)    </span>
 <span id="cb4-2"><a></a><span class="kw">FROM</span> Livraison L, Piece P </span>
-<span id="cb4-3"><a></a><span class="kw">WHERE</span> L.NomP<span class="op">=</span>P.NomP <span class="kw">AND</span> L.NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a></a><span class="kw">WHERE</span> L.NomP<span class="op">=</span>P.NomP <span class="kw">AND</span> L.NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2 center">
 
@@ -494,10 +496,10 @@ Stéphane Boucheron
 </section>
 <section id="fonctions-de-calcul-max-min" class="slide level2 center">
 <h2>Fonctions de calcul : <code>MAX</code>, <code>MIN</code></h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="fu">MAX</span> (<span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="fu">MAX</span> (<span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>maximum des valeurs prises par <code>&lt;nomattribut&gt;</code></p>
 <div class="fragment">
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="fu">MIN</span> (<span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="fu">MIN</span> (<span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>minimum des valeurs prises par <code>&lt;nomattribut&gt;</code></p>
 <p>Attention aux valeurs nulles !</p>
 </div>
@@ -505,7 +507,7 @@ Stéphane Boucheron
 <p>Quantité maximale livrée de pièce ‘x21’ lors d’une commande.</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">SELECT</span> <span class="fu">MAX</span> (Quantite)   </span>
 <span id="cb7-2"><a></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb7-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img data-src="../images/prod-liv-fourn.png"></p>
 </div>
 </section></section>
@@ -517,7 +519,7 @@ Stéphane Boucheron
 <section id="fonctions-de-calcul-count" class="slide level2 center">
 <h2>Fonctions de calcul : <code>COUNT</code></h2>
 <p>On peut aussi compter le nombre de tuples dans un résultat</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="fu">COUNT</span>(<span class="op">*</span> |[ <span class="kw">ALL</span> | <span class="kw">DISTINCT</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>])  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="fu">COUNT</span>(<span class="op">*</span> |[ <span class="kw">ALL</span> | <span class="kw">DISTINCT</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>])  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Nombre de valeurs prises par le résultat</p>
 <div class="fragment">
 <ul>
@@ -528,7 +530,7 @@ Stéphane Boucheron
 <p>Nombre de livraisons de la pièce ’x21</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>)  </span>
 <span id="cb9-2"><a></a><span class="kw">FROM</span> Livraison</span>
-<span id="cb9-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>; </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><img data-src="../images/prod-liv-fourn.png"></p>
 </div>
 </section>
@@ -540,7 +542,7 @@ Stéphane Boucheron
 <span id="cb10-2"><a></a><span class="kw">FROM</span> Fournisseur F </span>
 <span id="cb10-3"><a></a><span class="kw">WHERE</span> (<span class="kw">SELECT</span> <span class="fu">Count</span> (<span class="op">*</span>)     </span>
 <span id="cb10-4"><a></a>          <span class="kw">FROM</span> Livraison L     </span>
-<span id="cb10-5"><a></a>          <span class="kw">WHERE</span> F.NomF <span class="op">=</span> L.NomF) <span class="op">&gt;=</span> <span class="dv">10</span>;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a></a>          <span class="kw">WHERE</span> F.NomF <span class="op">=</span> L.NomF) <span class="op">&gt;=</span> <span class="dv">10</span>;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <img data-src="../images/prod-liv-fourn.png" class="r-stretch"></section>
 <section id="musée-des-horreurs-smaller" class="slide level2 center">
@@ -550,7 +552,7 @@ Stéphane Boucheron
 <span id="cb11-3"><a></a><span class="kw">WHERE</span> (<span class="kw">SELECT</span> <span class="fu">MIN</span>(d.lifeexpectancy)     </span>
 <span id="cb11-4"><a></a>       <span class="kw">FROM</span> country d    </span>
 <span id="cb11-5"><a></a>       <span class="kw">WHERE</span> c.region<span class="op">=</span>d.region) <span class="op">&lt;</span> <span class="dv">50</span>    </span>
-<span id="cb11-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -600,7 +602,7 @@ Stéphane Boucheron
 <p>Prix de revient des commandes livrées par le fournisseur <code>FD</code></p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> L.NomP, P.Prix<span class="op">*</span>L.Quantite </span>
 <span id="cb12-2"><a></a><span class="kw">FROM</span> Livraison F, Piece P </span>
-<span id="cb12-3"><a></a><span class="kw">WHERE</span> P.NomP<span class="op">=</span>L.NomP <span class="kw">AND</span> L.NomF<span class="op">=</span><span class="st">'FD'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-3"><a></a><span class="kw">WHERE</span> P.NomP<span class="op">=</span>L.NomP <span class="kw">AND</span> L.NomF<span class="op">=</span><span class="st">'FD'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="partitions-group-by" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -609,7 +611,7 @@ Stéphane Boucheron
 </section>
 <section id="partition-de-résultats-de-requêtes" class="slide level2 center">
 <h2>Partition de résultats de requêtes</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>nomattribut1<span class="op">&gt;</span>, <span class="op">..</span>., <span class="op">&lt;</span>nomattributn<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>nomattribut1<span class="op">&gt;</span>, <span class="op">..</span>., <span class="op">&lt;</span>nomattributn<span class="op">&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><code>GROUP BY</code> permet de regrouper selon la valeur de certains attributs l’ensemble des résults d’une requête</p></li>
 <li><p>Forme des sous-relations auxquelles on peut appliquer des opérateurs (<code>SUM</code>, <code>MAX</code>, …) renvoyant un résultat par sous-relation</p></li>
@@ -621,7 +623,7 @@ Stéphane Boucheron
 <p>Schéma général</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">SELECT</span> <span class="op">....</span>.  </span>
 <span id="cb14-2"><a></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb14-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF    </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <table class="caption-top">
 <thead>
@@ -706,7 +708,7 @@ Stéphane Boucheron
 <p>Quantité maximale livrée par chaque fournisseur</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">SELECT</span> NomF, <span class="fu">MAX</span>(Quantite) </span>
 <span id="cb15-2"><a></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb15-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Livraison</p>
 <table class="caption-top">
 <thead>
@@ -755,7 +757,7 @@ Stéphane Boucheron
 <span id="cb16-6"><a></a><span class="kw">FROM</span> country </span>
 <span id="cb16-7"><a></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
 <span id="cb16-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> region </span>
-<span id="cb16-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> avg_gnp <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> avg_gnp <span class="kw">DESC</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <colgroup>
 <col style="width: 32%">
@@ -824,13 +826,13 @@ Stéphane Boucheron
 <p>Quel est le sens de cette requête ?</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">SELECT</span> NomP, <span class="fu">COUNT</span>(<span class="op">*</span>), <span class="fu">SUM</span>(Quantite) </span>
 <span id="cb17-2"><a></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb17-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomP;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomP;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p><i class="fa-solid fa-brain" aria-label="brain"></i></p>
 <p>Cette requête n’est pas correcte <i class="fa-solid fa-skull" aria-label="skull"></i></p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="kw">SELECT</span> NomF, NomP, <span class="fu">MAX</span>(Quantite) </span>
 <span id="cb18-2"><a></a><span class="kw">FROM</span> Livraison </span>
-<span id="cb18-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>Les attributs présents dans le <code>SELECT</code> sont forcémment présents dans le <code>GROUP BY</code>.</p>
@@ -846,7 +848,7 @@ Stéphane Boucheron
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">SELECT</span> NomF </span>
 <span id="cb19-2"><a></a><span class="kw">FROM</span> Livraison </span>
 <span id="cb19-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> NomF    </span>
-<span id="cb19-4"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;=</span> <span class="dv">3</span>;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-4"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;=</span> <span class="dv">3</span>;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="tri-des-résultats" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -861,7 +863,7 @@ Stéphane Boucheron
 <p>Liste des salariés triée par ordre décroissant salaire</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
 <span id="cb20-2"><a></a><span class="kw">FROM</span> Employe </span>
-<span id="cb20-3"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> Salaire <span class="kw">DESC</span>;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-3"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> Salaire <span class="kw">DESC</span>;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="regroupement-tri-etc-exemple" class="slide level2 center">
 <h2>Regroupement, tri, etc : exemple</h2>
@@ -874,7 +876,7 @@ Stéphane Boucheron
 <span id="cb21-6"><a></a>  <span class="kw">WHERE</span> NomDept<span class="op">=</span><span class="st">'Financier'</span>) </span>
 <span id="cb21-7"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> Fonction </span>
 <span id="cb21-8"><a></a><span class="kw">HAVING</span> <span class="fu">AVG</span>(Salaire) <span class="op">&gt;=</span> <span class="dv">10000</span> </span>
-<span id="cb21-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> Fonction;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> Fonction;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Sur les relations d’une base <code>employé</code> (tables <code>Departement</code>,<code>Employe</code>, …)</p>
 </section>
 <section id="retour-au-musée-des-horreurs" class="slide level2 center">
@@ -883,7 +885,7 @@ Stéphane Boucheron
 <span id="cb22-2"><a></a><span class="kw">FROM</span> country c </span>
 <span id="cb22-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent, region</span>
 <span id="cb22-4"><a></a><span class="kw">HAVING</span> <span class="fu">MIN</span>(c.lifeexpectancy) <span class="op">&lt;</span> <span class="dv">50</span>  </span>
-<span id="cb22-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -965,7 +967,7 @@ Stéphane Boucheron
 <span id="cb23-4"><a></a><span class="kw">FROM</span> country </span>
 <span id="cb23-5"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span></span>
 <span id="cb23-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, lifeexpectancy  </span>
-<span id="cb23-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1091,7 +1093,7 @@ Stéphane Boucheron
 <span id="cb24-4"><a></a><span class="kw">FROM</span> country </span>
 <span id="cb24-5"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span></span>
 <span id="cb24-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, lifeexpectancy <span class="kw">DESC</span> </span>
-<span id="cb24-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1149,7 +1151,7 @@ Stéphane Boucheron
 <span id="cb25-4"><a></a>                   <span class="kw">ORDER</span> <span class="kw">BY</span> gnp)     </span>
 <span id="cb25-5"><a></a><span class="kw">FROM</span> country c </span>
 <span id="cb25-6"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Europe'</span> </span>
-<span id="cb25-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1217,7 +1219,7 @@ Stéphane Boucheron
 <span id="cb26-11"><a></a>     <span class="kw">FROM</span> country</span>
 <span id="cb26-12"><a></a>     <span class="kw">WHERE</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
 <span id="cb26-13"><a></a>  ) <span class="kw">AS</span> ws</span>
-<span id="cb26-14"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-14"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="avec-with-...-et-les-ctes" class="slide level2 center">
@@ -1236,7 +1238,7 @@ Stéphane Boucheron
 <span id="cb27-12"><a></a>       lifeexpectancy, </span>
 <span id="cb27-13"><a></a>       pos</span>
 <span id="cb27-14"><a></a><span class="kw">FROM</span> ws   </span>
-<span id="cb27-15"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-15"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exemple-smaller-1" class="slide level2 center">
 <h2>Exemple {smaller}</h2>
@@ -1254,7 +1256,7 @@ Stéphane Boucheron
 <span id="cb28-8"><a></a>    <span class="kw">SELECT</span> <span class="op">*</span> </span>
 <span id="cb28-9"><a></a>    <span class="kw">FROM</span> country c2 </span>
 <span id="cb28-10"><a></a>    <span class="kw">WHERE</span> c2.population_country <span class="op">&gt;=</span> R.mpc) <span class="kw">AS</span> S </span>
-<span id="cb28-11"><a></a>    <span class="kw">ON</span> (<span class="kw">TRUE</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-11"><a></a>    <span class="kw">ON</span> (<span class="kw">TRUE</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a><span class="kw">SELECT</span> c.name_country, </span>
 <span id="cb29-2"><a></a>       c.continent, </span>
@@ -1264,7 +1266,7 @@ Stéphane Boucheron
 <span id="cb29-6"><a></a>    <span class="kw">FROM</span> country c2) <span class="kw">AS</span> S</span>
 <span id="cb29-7"><a></a>  <span class="kw">JOIN</span> country c </span>
 <span id="cb29-8"><a></a>  <span class="kw">ON</span> (c.population_country <span class="op">&gt;=</span> S.mpc)    </span>
-<span id="cb29-9"><a></a>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-9"><a></a>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><p>::::: <!-- end columns --></p><pre><code>name_country|continent|population_country|
 ------------+---------+------------------+
 China       |Asia     |        1277558000|</code></pre><hr><section id="exemple-suite-smaller" class="slide level2 center">
@@ -1277,7 +1279,7 @@ China       |Asia     |        1277558000|</code></pre><hr><section id="exemple-
 <span id="cb31-3"><a></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> <span class="kw">ALL</span>(</span>
 <span id="cb31-4"><a></a>  <span class="kw">SELECT</span> cc.population_country  </span>
 <span id="cb31-5"><a></a>  <span class="kw">FROM</span> world.country  cc</span>
-<span id="cb31-6"><a></a>) ;     </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-6"><a></a>) ;     </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a></a><span class="kw">WITH</span> S <span class="kw">AS</span> (        </span>
 <span id="cb32-2"><a></a>    <span class="kw">SELECT</span> c.<span class="op">*</span>, <span class="fu">max</span>(population_country) </span>
@@ -1286,7 +1288,7 @@ China       |Asia     |        1277558000|</code></pre><hr><section id="exemple-
 <span id="cb32-5"><a></a>)</span>
 <span id="cb32-6"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
 <span id="cb32-7"><a></a><span class="kw">FROM</span> S   </span>
-<span id="cb32-8"><a></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> mpc ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-8"><a></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> mpc ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><p>::::: <!-- end columns --></p><pre><code>name_country|continent|population_country|
 ------------+---------+------------------+
 China       |Asia     |        1277558000|</code></pre><hr><section id="exemple-smaller-2" class="slide level2 center">
@@ -1301,7 +1303,7 @@ China       |Asia     |        1277558000|</code></pre><hr><section id="exemple-
 <span id="cb34-6"><a></a><span class="kw">SELECT</span> name_country, continent, population_country</span>
 <span id="cb34-7"><a></a><span class="kw">FROM</span> S   </span>
 <span id="cb34-8"><a></a><span class="kw">WHERE</span> rpc <span class="op">&lt;=</span> <span class="dv">10</span> </span>
-<span id="cb34-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> rpc <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> rpc <span class="kw">DESC</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <pre><code>name_country      |continent    |population_country|
@@ -1331,7 +1333,7 @@ Nigeria           |Africa       |         111506000|</code></pre>
 <span id="cb36-2"><a></a><span class="kw">FROM</span> country c </span>
 <span id="cb36-3"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
 <span id="cb36-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">ROLLUP</span>  (continent, region)  </span>
-<span id="cb36-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1383,7 +1385,7 @@ Nigeria           |Africa       |         111506000|</code></pre>
 <h2>GROUPING SETS</h2>
 <div class="sourceCode" id="cb37"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a></a><span class="kw">SELECT</span> c1, c2, aggregate_function(c3)</span>
 <span id="cb37-2"><a></a><span class="kw">FROM</span> table_name</span>
-<span id="cb37-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS ((c1, c2), (c1), (c2), ());   </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb37-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS ((c1, c2), (c1), (c2), ());   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> <code>ROLLUP</code> and <code>CUBE</code> are special cases of <code>GROUPING SETS</code></p>
 </section>
 <section id="grouping-sets-suite-smaller" class="slide level2 center">
@@ -1392,7 +1394,7 @@ Nigeria           |Africa       |         111506000|</code></pre>
 <span id="cb38-2"><a></a><span class="kw">FROM</span> country c </span>
 <span id="cb38-3"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
 <span id="cb38-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS  ((continent, region), (continent), ())  </span>
-<span id="cb38-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb38-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -1445,13 +1447,13 @@ Nigeria           |Africa       |         111506000|</code></pre>
 <div class="sourceCode" id="cb39"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a></a><span class="kw">SELECT</span> c1, c2, c3,</span>
 <span id="cb39-2"><a></a>    aggregate (c4) </span>
 <span id="cb39-3"><a></a><span class="kw">FROM</span> table_name</span>
-<span id="cb39-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span> (c1, c2, c3);  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span> (c1, c2, c3);  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <div class="sourceCode" id="cb40"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a></a><span class="kw">SELECT</span> continent, region, governmentform, <span class="fu">count</span>(<span class="op">*</span>) <span class="kw">AS</span> cnt, <span class="fu">max</span>(lifeexpectancy)</span>
 <span id="cb40-2"><a></a><span class="kw">FROM</span> country c </span>
 <span id="cb40-3"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
 <span id="cb40-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span>   (continent, region, governmentform)   </span>
-<span id="cb40-5"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">5</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb40-5"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">5</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <pre><code>|Continent    |Region       |Governmentf   |cnt|max |
 |:------------|:------------|:-------------|:--|:---|
@@ -1490,7 +1492,7 @@ Nigeria           |Africa       |         111506000|</code></pre>
 <span id="cb42-7"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
 <span id="cb42-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span>   (region, governmentform)   </span>
 <span id="cb42-9"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">0</span></span>
-<span id="cb42-10"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, cnt <span class="kw">DESC</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb42-10"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, cnt <span class="kw">DESC</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>region         |governmentform                              |cnt|max |
 ---------------+--------------------------------------------+---+----+
 Caribbean      |                                            | 24|78.9|
@@ -1521,7 +1523,7 @@ Caribbean      |Republic                                    |  4|73.4|
 <span id="cb44-8"><a></a></span>
 <span id="cb44-9"><a></a>[<span class="kw">HAVING</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span>]]      <span class="co">-- filtrage des groupes</span></span>
 <span id="cb44-10"><a></a></span>
-<span id="cb44-11"><a></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="op">&lt;</span>critere<span class="op">&gt;</span>]       <span class="co">-- trier </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb44-11"><a></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="op">&lt;</span>critere<span class="op">&gt;</span>]       <span class="co">-- trier </span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><code>SELECT</code> : attributs du résultat (avec agrégats éventuels)</li>
 <li><code>WHERE</code> : condition de sélection indépendante du <code>GROUP BY</code></li>
@@ -1546,7 +1548,7 @@ Caribbean      |Republic                                    |  4|73.4|
 <span id="cb45-3"><a></a><span class="kw">WHERE</span>         <span class="co">-- filter</span></span>
 <span id="cb45-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span>      <span class="co">-- split rows into groups</span></span>
 <span id="cb45-5"><a></a><span class="kw">HAVING</span>        <span class="co">-- filter within groups</span></span>
-<span id="cb45-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span>      <span class="co">-- sort</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb45-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span>      <span class="co">-- sort</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ordre-dexécution-des-éléments-dune-requête" class="slide level2 center scrollable">
 <h2>Ordre d’exécution des éléments d’une requête</h2>
@@ -1575,7 +1577,7 @@ Caribbean      |Republic                                    |  4|73.4|
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>MA15Y030 – Bases de Données – L3 MIASHS – UParis Cité</p>
+<p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 </section>
@@ -1835,12 +1837,12 @@ Caribbean      |Republic                                    |  4|73.4|
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Copié");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Copié");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",
@@ -1898,6 +1900,13 @@ Caribbean      |Republic                                    |  4|73.4|
             if (link.dataset.originalHref !== undefined) {
               link.href = link.dataset.originalHref;
             }
+              // target, if specified
+              link.setAttribute("target", "_blank");
+              if (link.getAttribute("rel") === null) {
+                link.setAttribute("rel", "noopener");
+              }
+              // default icon
+              link.classList.add("external");
           }
         }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

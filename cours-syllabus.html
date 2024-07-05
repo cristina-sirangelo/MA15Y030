@@ -323,7 +323,7 @@ window.Quarto = {
 </header>
 
 
-<p><a href="./documents/ma15y030-syllabus.pdf" title="PDF du syllabus"><strong>Télécharger</strong></a> <strong>pour télécharger une version PDF du syllabus.</strong></p>
+<p><a href="./documents/ma15y030-syllabus.pdf"><strong>Télécharger “PDF du syllabus”</strong></a></p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -816,6 +816,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

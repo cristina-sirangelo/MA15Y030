@@ -312,6 +312,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#connexions-ssh-sous-windows" id="toc-connexions-ssh-sous-windows" class="nav-link" data-scroll-target="#connexions-ssh-sous-windows">Connexions <code>ssh</code> sous <code>windows</code></a></li>
   <li><a href="#connexions-ssh-avec-tunnel" id="toc-connexions-ssh-avec-tunnel" class="nav-link" data-scroll-target="#connexions-ssh-avec-tunnel">Connexions <code>ssh</code> avec <em>tunnel</em></a></li>
   <li><a href="#client-dbeaver" id="toc-client-dbeaver" class="nav-link" data-scroll-target="#client-dbeaver">Client <code>dbeaver</code></a></li>
+  <li><a href="#client-vs-code-extensions-sqltools" id="toc-client-vs-code-extensions-sqltools" class="nav-link" data-scroll-target="#client-vs-code-extensions-sqltools">Client VS Code + extensions <code>SQLTools</code></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/computing-access.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -459,6 +460,33 @@ Pourquoi <code>-N</code> ?
 <section id="client-dbeaver" class="level1">
 <h1>Client <code>dbeaver</code></h1>
 <p>Le mécanisme du tunnel <code>ssh</code> peut être utilisé pour connecter un client plus ambitieux au serveur. Le client <a href=""><code>dbeaver</code></a> est particulièrement facile à utiliser.</p>
+</section>
+<section id="client-vs-code-extensions-sqltools" class="level1">
+<h1>Client VS Code + extensions <code>SQLTools</code></h1>
+<p>Si vous êtes déjà habitué à l’éditeur Visual Studio Code (VS Code), vous pouvez utiliser l’extension <a href="https://vscode-sqltools.mteixeira.dev/en/home"><code>SQLToos</code></a> et son pilote <a href="https://vscode-sqltools.mteixeira.dev/en/drivers/postgre-sql">‘PostgreSQL/Cockroach’</a>.</p>
+<p>Votre configuration de connexion devrait ressembler à :</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"label"</span><span class="fu">:</span> <span class="st">"etu-pgsql"</span><span class="fu">,</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"host"</span><span class="fu">:</span> <span class="st">"localhost"</span><span class="fu">,</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"user"</span><span class="fu">:</span> <span class="st">"&lt;identifiant ENT&gt;"</span><span class="fu">,</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"port"</span><span class="fu">:</span> <span class="dv">5436</span><span class="fu">,</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"ssl"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"bd_2023-24"</span><span class="fu">,</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"schema"</span><span class="fu">:</span> <span class="st">"world"</span><span class="fu">,</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"password"</span><span class="fu">:</span> <span class="st">"Ask on connect"</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Il faut par ailleurs ouvrir un tunnel <code>SSH</code> dans un terminal</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh <span class="at">-f</span> username@etu-pgsql.math.univ-paris-diderot.fr <span class="at">-L</span> 5436:localhost:5432 <span class="at">-N</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">username@etu-pgsql.math.univ-paris-diderot.fr</span><span class="kw">)</span> <span class="ex">Password</span> for username@etu-pgsql.math.univ-paris-diderot.fr:</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>en remplaçant <code>username</code> par votre identifiant ENT.</p>
+<!-- 
+::: {.callout-note}
+
+### Extension [`Remote-SSH`](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-ssh)
+
+:::
+ -->
 
 
 </section>
@@ -714,6 +742,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

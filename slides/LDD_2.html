@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="fr-FR"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -12,7 +12,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.47">
 
-  <meta name="author" content="Stéphane Boucheron">
+  <meta name="author" content="Équipe BD">
   <title>MA15Y030 - Automne 2024 – BD VII: Corriger le schéma World</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,6 +387,7 @@
     }
   </style>
 <meta property="og:title" content="BD VII: Corriger le schéma World – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
@@ -395,21 +396,22 @@
 
 <section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
   <h1 class="title">BD VII: Corriger le schéma World</h1>
+  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Stéphane Boucheron 
+Équipe BD 
 </div>
         <p class="quarto-title-affiliation">
-            LPSM Université Paris-Cité
+            <a href="https://u-paris.fr">LPSM Université Paris-Cité</a>
           </p>
     </div>
 </div>
 
 </section><section id="TOC">
 <nav role="doc-toc"> 
-<h2 id="toc-title">Roadmap</h2>
+<h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/revisiter-le-schéma-world" id="/toc-revisiter-le-schéma-world">Revisiter le schéma world</a></li>
 <li><a href="#/une-contrainte-dexclusion" id="/toc-une-contrainte-dexclusion">Une contrainte d’exclusion</a></li>
@@ -426,7 +428,7 @@ Stéphane Boucheron
 <span id="cb1-3"><a></a><span class="co">#| </span></span>
 <span id="cb1-4"><a></a><span class="fu">library</span>(DBI)</span>
 <span id="cb1-5"><a></a>db <span class="ot">&lt;-</span> <span class="fu">dbConnect</span>(RSQLite<span class="sc">::</span><span class="fu">SQLite</span>(), <span class="at">dbname =</span> <span class="st">"sql.sqlite"</span>)</span>
-<span id="cb1-6"><a></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">connection =</span> <span class="st">"db"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-6"><a></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">connection =</span> <span class="st">"db"</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section>
 <section id="revisiter-le-schéma-world" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -482,7 +484,7 @@ Stéphane Boucheron
 <span id="cb2-16"><a></a>| headofstate        | text          |           | extended | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>       | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>      |</span>
 <span id="cb2-17"><a></a>| capital            | <span class="dt">integer</span>       |           | plain    | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>       | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>      |</span>
 <span id="cb2-18"><a></a>| code2              | <span class="dt">character</span>(<span class="dv">2</span>)  |  <span class="kw">not</span> <span class="kw">null</span> | extended | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>       | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>      |</span>
-<span id="cb2-19"><a></a><span class="op">+</span><span class="co">--------------------+---------------+-----------+----------+--------------+-------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-19"><a></a><span class="op">+</span><span class="co">--------------------+---------------+-----------+----------+--------------+-------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Un schéma de table ne se réduit pas</p>
 </section>
 <section id="continued" class="slide level2 smaller center">
@@ -499,7 +501,7 @@ Stéphane Boucheron
 <span id="cb3-10"><a></a>                                     continent <span class="op">=</span> <span class="st">'South America'</span>:<span class="ch">:text</span>),</span>
 <span id="cb3-11"><a></a><span class="kw">Foreign</span><span class="op">-</span><span class="kw">key</span> <span class="kw">constraints</span>:</span>
 <span id="cb3-12"><a></a>    <span class="ot">"country_capital_fkey"</span> <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (capital) <span class="kw">REFERENCES</span> city(<span class="kw">id</span>)</span>
-<span id="cb3-13"><a></a>    <span class="ot">"country_fk"</span> <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent) <span class="kw">REFERENCES</span> code_continent(continent)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-13"><a></a>    <span class="ot">"country_fk"</span> <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent) <span class="kw">REFERENCES</span> code_continent(continent)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ddl-pour-country" class="slide level2 smaller center">
 <h2>DDL pour <code>country</code></h2>
@@ -527,7 +529,7 @@ Stéphane Boucheron
 <span id="cb4-22"><a></a>    <span class="kw">OR</span> (continent <span class="op">=</span> <span class="st">'Antarctica'</span>:<span class="ch">:text</span>) </span>
 <span id="cb4-23"><a></a>    <span class="kw">OR</span> (continent <span class="op">=</span> <span class="st">'South America'</span>:<span class="ch">:text</span>))),</span>
 <span id="cb4-24"><a></a>    <span class="kw">CONSTRAINT</span> country_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode)</span>
-<span id="cb4-25"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-25"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="ajout-de-contraintes-référentielles" class="slide level2 center">
 <h2>Ajout de contraintes référentielles</h2>
@@ -537,7 +539,7 @@ Stéphane Boucheron
 <span id="cb5-4"><a></a>  country_capital_fkey <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (capital) <span class="kw">REFERENCES</span> world.city(<span class="kw">id</span>);</span>
 <span id="cb5-5"><a></a></span>
 <span id="cb5-6"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> world.country <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> </span>
-<span id="cb5-7"><a></a>  country_fk <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent) <span class="kw">REFERENCES</span> world.code_continent(continent);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-7"><a></a>  country_fk <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent) <span class="kw">REFERENCES</span> world.code_continent(continent);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Les contraintes <code>country_capital_fkey</code> et <code>country_fk</code> sont émises par la table <code>country</code></p>
 </section>
 <section id="contraintes-ajoutées" class="slide level2 center">
@@ -548,7 +550,7 @@ Stéphane Boucheron
 <span id="cb6-4"><a></a>  country_capital_fkey <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (capital) <span class="kw">REFERENCES</span> world.city(<span class="kw">id</span>);</span>
 <span id="cb6-5"><a></a></span>
 <span id="cb6-6"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> world.country <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> </span>
-<span id="cb6-7"><a></a>  country_fk <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent) <span class="kw">REFERENCES</span> world.code_continent(continent);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-7"><a></a>  country_fk <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent) <span class="kw">REFERENCES</span> world.code_continent(continent);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> La contrainte <code>country_fk</code> sur <code>continent</code> remplit la même fonction que la contrainte <code>country_continent_check</code></p>
 <div class="fragment">
 <p><i class="fa-solid fa-lightbulb" aria-label="lightbulb"></i> <strong>Conseil:</strong></p>
@@ -566,7 +568,7 @@ Stéphane Boucheron
 <p>Cette contrainte signifie que le résultat de la requête suivante est vide :</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb7-2"><a></a><span class="kw">FROM</span> world.country c1 <span class="kw">JOIN</span> world.country c2 <span class="kw">ON</span> </span>
-<span id="cb7-3"><a></a>  (c1.continent<span class="op">&lt;&gt;</span> c2.continent <span class="kw">AND</span> c1.region<span class="op">=</span>c2.region);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-3"><a></a>  (c1.continent<span class="op">&lt;&gt;</span> c2.continent <span class="kw">AND</span> c1.region<span class="op">=</span>c2.region);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>On <em>exclut</em> l’existence de deux lignes qui coïncideraient sur <code>region</code> mais pas sur <code>continent</code></p>
 <p>Nous postulons l’existence d’une <strong>dépendance fonctionnelle</strong></p>
@@ -609,26 +611,26 @@ Stéphane Boucheron
 <span id="cb8-8"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> monde.code_continent <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> </span>
 <span id="cb8-9"><a></a>  code_continent_pk <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (codecontinent);</span>
 <span id="cb8-10"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> monde.code_continent <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> </span>
-<span id="cb8-11"><a></a>  code_continent_un <span class="kw">UNIQUE</span> (continent);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-11"><a></a>  code_continent_un <span class="kw">UNIQUE</span> (continent);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="création-de-region_continent" class="slide level2 center">
 <h2>Création de <code>region_continent</code></h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> monde.region_continent <span class="kw">AS</span> </span>
 <span id="cb9-2"><a></a>  <span class="kw">SELECT</span> <span class="kw">DISTINCT</span> region, continent </span>
-<span id="cb9-3"><a></a>  <span class="kw">FROM</span> world.country c ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a></a>  <span class="kw">FROM</span> world.country c ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La requête suivante renvoie une table vide:</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
 <span id="cb10-2"><a></a><span class="kw">FROM</span> monde.region_continent rc1 <span class="kw">JOIN</span> </span>
 <span id="cb10-3"><a></a>     monde.region_continent rc2 <span class="kw">ON</span> (</span>
 <span id="cb10-4"><a></a>    rc1.region<span class="op">=</span>rc2.region <span class="kw">AND</span> </span>
 <span id="cb10-5"><a></a>  rc1.continent<span class="op">&lt;&gt;</span> rc2.continent</span>
-<span id="cb10-6"><a></a>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-6"><a></a>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> monde.region_continent <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> </span>
 <span id="cb11-2"><a></a>    region_continent_pk <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (region);</span>
 <span id="cb11-3"><a></a></span>
 <span id="cb11-4"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> <span class="kw">mode</span>.region_continent <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> </span>
 <span id="cb11-5"><a></a>  region_continent_fk <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent) </span>
-<span id="cb11-6"><a></a>  <span class="kw">REFERENCES</span> monde.code_continent(continent);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a></a>  <span class="kw">REFERENCES</span> monde.code_continent(continent);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="création-de-la-table-monde.country" class="slide level2 center">
 <h2>Création de la table <code>monde.country</code></h2>
@@ -637,7 +639,7 @@ Stéphane Boucheron
 <span id="cb12-3"><a></a>          indepyear, population_country, </span>
 <span id="cb12-4"><a></a>          lifeexpectancy, gnp, gnpold, localname,</span>
 <span id="cb12-5"><a></a>          governmentform, headofstate, capital,  code2            </span>
-<span id="cb12-6"><a></a>  <span class="kw">FROM</span> world.country ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a></a>  <span class="kw">FROM</span> world.country ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> sans colonne <code>continent</code></p>
 </section>
 <section id="mise-en-place-des-contraintes-sur-monde.country" class="slide level2 center">
@@ -649,17 +651,17 @@ Stéphane Boucheron
 <span id="cb13-5"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> monde.country <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> </span>
 <span id="cb13-6"><a></a>  country_un_code2 <span class="kw">UNIQUE</span> (code2);</span>
 <span id="cb13-7"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> monde.country <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> </span>
-<span id="cb13-8"><a></a>  country_un_capital <span class="kw">UNIQUE</span> (capital);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-8"><a></a>  country_un_capital <span class="kw">UNIQUE</span> (capital);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> monde.country <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> country_fk </span>
 <span id="cb14-2"><a></a>  <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (region) <span class="kw">REFERENCES</span> monde.region_continent(region) </span>
 <span id="cb14-3"><a></a>  <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span> </span>
-<span id="cb14-4"><a></a>  <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-4"><a></a>  <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="copie-de-city" class="slide level2 center">
 <h2>Copie de <code>city</code></h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> monde.city <span class="kw">AS</span> <span class="kw">TABLE</span> world.city;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> monde.city <span class="kw">AS</span> <span class="kw">TABLE</span> world.city;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> On a copié le schéma a minima (sans les contraintes)</p>
 </section>
 <section id="dans-un-pays-plusieurs-villes-peuvent-elles-porter-le-même-nom" class="slide level2 center">
@@ -668,7 +670,7 @@ Stéphane Boucheron
 <span id="cb16-2"><a></a><span class="kw">FROM</span> monde.city c <span class="kw">JOIN</span> monde.city c2 </span>
 <span id="cb16-3"><a></a>    <span class="kw">ON</span> (c.name_city<span class="op">=</span>c2.name_city <span class="kw">AND</span> </span>
 <span id="cb16-4"><a></a>      c.countrycode <span class="op">=</span> c2.countrycode  <span class="kw">AND</span> </span>
-<span id="cb16-5"><a></a>      c.<span class="kw">id</span><span class="op">&lt;&gt;</span> c2.<span class="kw">id</span>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-5"><a></a>      c.<span class="kw">id</span><span class="op">&lt;&gt;</span> c2.<span class="kw">id</span>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>renvoie 48 lignes</p>
 <div class="fragment">
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
@@ -676,14 +678,14 @@ Stéphane Boucheron
 <span id="cb17-3"><a></a>    <span class="kw">ON</span> (c.name_city<span class="op">=</span>c2.name_city <span class="kw">AND</span> </span>
 <span id="cb17-4"><a></a>      c.countrycode <span class="op">=</span> c2.countrycode  <span class="kw">AND</span></span>
 <span id="cb17-5"><a></a>      c.district <span class="op">=</span> c2.district  <span class="kw">AND</span></span>
-<span id="cb17-6"><a></a>      c.<span class="kw">id</span><span class="op">&lt;&gt;</span> c2.<span class="kw">id</span>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-6"><a></a>      c.<span class="kw">id</span><span class="op">&lt;&gt;</span> c2.<span class="kw">id</span>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>renvoie 2 lignes</p>
 </div>
 </section>
 <section id="existe-t-il-un-pays-dont-la-capitale-est-dans-un-autre-pays" class="slide level2 center">
 <h2>Existe-t-il un pays dont la capitale est dans un autre pays ?</h2>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="kw">SELECT</span> c. countrycode, c.name_country, cc.name_city, cc.countrycode</span>
-<span id="cb18-2"><a></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span> <span class="kw">AND</span> cc.countrycode <span class="op">&lt;&gt;</span> c.countrycode) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-2"><a></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span> <span class="kw">AND</span> cc.countrycode <span class="op">&lt;&gt;</span> c.countrycode) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>renvoie 0 lignes <i class="fa-solid fa-champagne-glasses" aria-label="champagne-glasses"></i></p>
 </section>
 <section id="blocages-possibles" class="slide level2 center">
@@ -700,11 +702,11 @@ Stéphane Boucheron
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> monde.city </span>
 <span id="cb19-2"><a></a>  <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> city_fk <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (countrycode) </span>
 <span id="cb19-3"><a></a>      <span class="kw">REFERENCES</span> monde.country(countrycode) </span>
-<span id="cb19-4"><a></a>  <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span> <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-4"><a></a>  <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span> <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="table-countrylanguage" class="slide level2 smaller center">
 <h2>Table <code>countrylanguage</code></h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> monde.countrylanguage  <span class="kw">AS</span> <span class="kw">TABLE</span> world.countrylanguage ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> monde.countrylanguage  <span class="kw">AS</span> <span class="kw">TABLE</span> world.countrylanguage ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> monde.countrylanguage </span>
 <span id="cb21-2"><a></a>  <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> countrylanguage_fk </span>
 <span id="cb21-3"><a></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (countrycode) <span class="kw">REFERENCES</span> monde.country(countrycode) </span>
@@ -717,7 +719,7 @@ Stéphane Boucheron
 <span id="cb21-10"><a></a></span>
 <span id="cb21-11"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> monde.countrylanguage </span>
 <span id="cb21-12"><a></a>  <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> countrylanguage_check </span>
-<span id="cb21-13"><a></a>    <span class="kw">CHECK</span> (percentage <span class="op">&lt;=</span> <span class="fl">100.0</span> <span class="kw">AND</span> percentage <span class="op">&gt;=</span><span class="fl">0.0</span> );</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-13"><a></a>    <span class="kw">CHECK</span> (percentage <span class="op">&lt;=</span> <span class="fl">100.0</span> <span class="kw">AND</span> percentage <span class="op">&gt;=</span><span class="fl">0.0</span> );</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2 center">
 
@@ -737,13 +739,13 @@ Stéphane Boucheron
 <span id="cb22-5"><a></a>       <span class="fu">SUM</span>(c.gnp) <span class="kw">AS</span> gnp_region,</span>
 <span id="cb22-6"><a></a>       <span class="fu">SUM</span>(c.gnpold) <span class="kw">AS</span> gnpold_region</span>
 <span id="cb22-7"><a></a><span class="kw">FROM</span> monde.country c </span>
-<span id="cb22-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> c.region ) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> c.region ) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="synthèse-continentale" class="slide level2 center">
 <h2>Synthèse continentale</h2>
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a><span class="kw">SELECT</span> r.<span class="op">*</span> </span>
 <span id="cb23-2"><a></a><span class="kw">FROM</span> monde.regionale r <span class="kw">JOIN</span> monde.region_continent rc </span>
-<span id="cb23-3"><a></a>     <span class="kw">ON</span> (r.region<span class="op">=</span>rc.region <span class="kw">AND</span> rc.continent<span class="op">=</span><span class="st">'Europe'</span>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-3"><a></a>     <span class="kw">ON</span> (r.region<span class="op">=</span>rc.region <span class="kw">AND</span> rc.continent<span class="op">=</span><span class="st">'Europe'</span>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>+----------------+-----------------+------------------+----------+-------------+
 |region          |population_region|surfacearea_region|gnp_region|gnpold_region|
 +----------------+-----------------+------------------+----------+-------------+
@@ -764,7 +766,7 @@ Stéphane Boucheron
 <span id="cb25-6"><a></a>       <span class="fu">SUM</span>(r.gnpold_region) <span class="kw">AS</span> gcpold</span>
 <span id="cb25-7"><a></a><span class="kw">FROM</span> monde.regionale r <span class="kw">JOIN</span> monde.region_continent rc </span>
 <span id="cb25-8"><a></a>     <span class="kw">ON</span> (r.region<span class="op">=</span>rc.region) </span>
-<span id="cb25-9"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> rc.continent;) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-9"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> rc.continent;) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>+-------------+----------+-----------+----------+----------+
 |continent    |population|surfacearea|gcp       |gcpold    |
 +-------------+----------+-----------+----------+----------+
@@ -782,7 +784,7 @@ Stéphane Boucheron
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>MA15Y030 – Bases de Données – L3 MIASHS – UParis Cité</p>
+<p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 </section>
@@ -1036,12 +1038,12 @@ Stéphane Boucheron
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Copié");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Copié");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",
@@ -1099,6 +1101,13 @@ Stéphane Boucheron
             if (link.dataset.originalHref !== undefined) {
               link.href = link.dataset.originalHref;
             }
+              // target, if specified
+              link.setAttribute("target", "_blank");
+              if (link.getAttribute("rel") === null) {
+                link.setAttribute("rel", "noopener");
+              }
+              // default icon
+              link.classList.add("external");
           }
         }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

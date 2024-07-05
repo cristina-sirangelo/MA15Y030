@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="fr-FR"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -12,7 +12,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.47">
 
-  <meta name="author" content="Stéphane Boucheron">
+  <meta name="author" content="Équipe BD">
   <title>MA15Y030 - Automne 2024 – BD II: SQL LDD</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,6 +387,7 @@
     }
   </style>
 <meta property="og:title" content="BD II: SQL LDD – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
@@ -395,21 +396,22 @@
 
 <section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
   <h1 class="title">BD II: SQL LDD</h1>
+  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Stéphane Boucheron 
+Équipe BD 
 </div>
         <p class="quarto-title-affiliation">
-            LPSM Université Paris-Cité
+            <a href="https://u-paris.fr">LPSM Université Paris-Cité</a>
           </p>
     </div>
 </div>
 
 </section><section id="TOC">
 <nav role="doc-toc"> 
-<h2 id="toc-title">Roadmap</h2>
+<h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/insertion-mise-à-jour-suppression" id="/toc-insertion-mise-à-jour-suppression">Insertion, mise à jour, suppression</a></li>
 <li><a href="#/intégrité-référentielle" id="/toc-intégrité-référentielle">Intégrité référentielle</a></li>
@@ -496,17 +498,17 @@ CREATE TABLE &lt;nom_relation&gt; (
   &lt;,contrainte de relation&gt;* );</code></pre>
 <p>Chaque attribut est défini par un nom d’attribut et un type de données</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="op">&lt;</span>element de relation<span class="op">&gt;</span> :<span class="op">:=</span></span>
-<span id="cb2-2"><a></a><span class="op">&lt;</span>nom_attrib<span class="op">&gt;&lt;</span>type_donnees<span class="op">&gt;</span>[<span class="op">&lt;</span>contrainte_attrib<span class="op">&gt;*</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a></a><span class="op">&lt;</span>nom_attrib<span class="op">&gt;&lt;</span>type_donnees<span class="op">&gt;</span>[<span class="op">&lt;</span>contrainte_attrib<span class="op">&gt;*</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Exemples de types:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="op">&lt;</span>type_donnees<span class="op">&gt;</span> :<span class="op">:=</span></span>
-<span id="cb3-2"><a></a><span class="dt">VARCHAR</span> <span class="op">&lt;</span>longueur<span class="op">&gt;</span>| <span class="dt">INT</span> | <span class="dt">REAL</span> | <span class="dt">DATE</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a></a><span class="dt">VARCHAR</span> <span class="op">&lt;</span>longueur<span class="op">&gt;</span>| <span class="dt">INT</span> | <span class="dt">REAL</span> | <span class="dt">DATE</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exemple" class="slide level2 center">
 <h2>Exemple</h2>
 <p>Schéma:</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {verbatim} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>fournisseur(nomf, villef),</span>
 <span id="cb4-2"><a></a>piece(nomp, prix, couleur),</span>
-<span id="cb4-3"><a></a>livraison(numliv, nomf, nomp, dateliv, quantite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-3"><a></a>livraison(numliv, nomf, nomp, dateliv, quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
 <span id="cb5-2"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb5-3"><a></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>)</span>
@@ -524,7 +526,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb5-15"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb5-16"><a></a>    dateliv <span class="dt">DATE</span> <span class="kw">DEFAULT</span> NOW(),</span>
 <span id="cb5-17"><a></a>    quantite <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span></span>
-<span id="cb5-18"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-18"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exemple-schéma-world-smaller" class="slide level2 center">
 <h2>Exemple : schéma <code>world</code> {smaller}</h2>
@@ -553,7 +555,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb6-23"><a></a>    percentage float4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb6-24"><a></a>    <span class="kw">CONSTRAINT</span> countrylanguage_pkey</span>
 <span id="cb6-25"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode, language)</span>
-<span id="cb6-26"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-26"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2 center">
 
@@ -586,7 +588,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb7-23"><a></a>            (continent <span class="op">=</span> <span class="st">'Antarctica'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
 <span id="cb7-24"><a></a>            (continent <span class="op">=</span> <span class="st">'South America'</span>:<span class="ch">:text</span>))),</span>
 <span id="cb7-25"><a></a>    <span class="kw">CONSTRAINT</span> country_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode)</span>
-<span id="cb7-26"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-26"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2 center">
 
@@ -596,7 +598,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <h2>Suppression d’une table</h2>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> fournisseur;</span>
 <span id="cb8-2"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> piece;</span>
-<span id="cb8-3"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> livraison;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-3"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> livraison;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section>
 <section id="insertion-mise-à-jour-suppression" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -617,7 +619,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <h2>Insertion de tuples</h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
 <span id="cb9-2"><a></a>    [(nom_attrib [, nom_attrib]<span class="op">*</span>)]</span>
-<span id="cb9-3"><a></a>    <span class="kw">VALUES</span> (valeur [, valeur]<span class="op">*</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-3"><a></a>    <span class="kw">VALUES</span> (valeur [, valeur]<span class="op">*</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Exemple</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="st">'rouge'</span>);</span>
 <span id="cb10-2"><a></a></span>
@@ -628,7 +630,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb10-7"><a></a>|<span class="co">--------+--------+-----------|</span></span>
 <span id="cb10-8"><a></a>| x21    | <span class="fl">1.51</span>   | rouge     |</span>
 <span id="cb10-9"><a></a>| x22    | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | vert      |</span>
-<span id="cb10-10"><a></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-10"><a></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>Les valeurs doivent être fournies dans l’ordre de déclaration des attributs</p></li>
 <li><p>Les valeurs non spécifiées sont affectées à <code>NULL</code>.</p></li>
@@ -646,7 +648,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb11-8"><a></a>    <span class="st">'Eastern Europe'</span>, <span class="dv">200000</span>, <span class="dv">1918</span>, <span class="dv">21345717</span>,</span>
 <span id="cb11-9"><a></a>    <span class="fl">81.2</span>, <span class="dv">25213</span>, <span class="dv">24878</span>,</span>
 <span id="cb11-10"><a></a>    <span class="st">'Syldavie'</span>, <span class="st">'Constitutional Monarchy'</span>, <span class="st">'Ottokar II'</span>, <span class="dv">0</span>, <span class="st">'SY'</span></span>
-<span id="cb11-11"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-11"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2 center">
 
@@ -662,7 +664,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb12-3"><a></a>    <span class="kw">VALUES</span></span>
 <span id="cb12-4"><a></a>        (<span class="st">'robe'</span>, <span class="st">'logged in'</span>, <span class="st">'2011-01-10 10:15 AM EST'</span>:<span class="ch">:timestamptz</span>),</span>
 <span id="cb12-5"><a></a>        (<span class="st">'lhsu'</span>, <span class="st">'logged out'</span>, <span class="st">'2011-01-11 10:20 AM EST'</span>:<span class="ch">:timestamptz</span>)</span>
-<span id="cb12-6"><a></a>) <span class="kw">AS</span> l (user_name, description, log_ts);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a></a>) <span class="kw">AS</span> l (user_name, description, log_ts);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <blockquote>
 <p>When you use <code>VALUES</code> as a stand-in for a virtual table, you need to specify the names for the columns. You also need to explicitly cast the values to the data types in the table if the parser can’t infer the data type from the data.</p>
 </blockquote>
@@ -685,7 +687,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb13-14"><a></a>|<span class="co">----------+--------------+--------+------------+------------|</span></span>
 <span id="cb13-15"><a></a>| <span class="dv">1</span>        | fournisseur1 | x21    | <span class="dv">2019</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">13</span> | <span class="dv">2</span>          |</span>
 <span id="cb13-16"><a></a>| <span class="dv">2</span>        | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>       | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | <span class="dv">2018</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">29</span> | <span class="dv">10</span>         |</span>
-<span id="cb13-17"><a></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-17"><a></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>Les valeurs doivent être fournies dans l’ordre de déclaration des attributs</p></li>
 <li><p>Les valeurs non spécifiées sont affectées à <code>NULL</code>.</p></li>
@@ -703,7 +705,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb14-2"><a></a>    (<span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb14-3"><a></a>     <span class="kw">FROM</span> Fournisseur</span>
 <span id="cb14-4"><a></a>     <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Paris'</span></span>
-<span id="cb14-5"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="mise-à-jour" class="slide level2 center">
 <h2>Mise à jour</h2>
@@ -717,14 +719,14 @@ CREATE TABLE &lt;nom_relation&gt; (
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">UPDATE</span> nom_relation</span>
 <span id="cb15-2"><a></a><span class="kw">SET</span> nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span></span>
 <span id="cb15-3"><a></a>[ , nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span> ]<span class="op">*</span></span>
-<span id="cb15-4"><a></a>[ <span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span> ];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-4"><a></a>[ <span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span> ];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="mise-à-jour-de-tuples" class="slide level2 center">
 <h2>Mise à jour de tuples</h2>
 <p>Le <code>WHERE</code> permet de sélectionner les tuples à mettre à jour</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">UPDATE</span> Fournisseur</span>
 <span id="cb16-2"><a></a>    <span class="kw">SET</span> VilleF<span class="op">=</span><span class="st">'St.Petersburg'</span></span>
-<span id="cb16-3"><a></a>    <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Leningrad'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-3"><a></a>    <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Leningrad'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On peut aussi effectuer des opérations sur les tuples à mettre à jour.</p>
 <p>La clause <code>&lt;expression de valeur&gt;</code> peut être :</p>
 <ul>
@@ -738,7 +740,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <p>Augmentation du prix d’une pièce</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">UPDATE</span> Piece</span>
 <span id="cb17-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> Prix <span class="op">*</span> <span class="fl">1.05</span></span>
-<span id="cb17-3"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-3"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="mise-à-jour-par-requête" class="slide level2 center">
 <h2>Mise à jour par requête</h2>
@@ -748,15 +750,15 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb18-4"><a></a>    <span class="kw">FROM</span> Piece</span>
 <span id="cb18-5"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span></span>
 <span id="cb18-6"><a></a>)</span>
-<span id="cb18-7"><a></a><span class="kw">WHERE</span> Prix <span class="op">&lt;=</span> <span class="dv">1000</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a></a><span class="kw">WHERE</span> Prix <span class="op">&lt;=</span> <span class="dv">1000</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="suppression-de-tuples-syntaxe" class="slide level2 center">
 <h2>Suppression de tuples : syntaxe</h2>
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
-<span id="cb19-2"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span>];</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span>];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <h3 id="exemple-1">Exemple</h3>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Fournisseur</span>
-<span id="cb20-2"><a></a><span class="kw">WHERE</span> NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-2"><a></a><span class="kw">WHERE</span> NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On supprime dans <code>Fournisseur</code> les tuples correspondant au fournisseur nommé <code>'FastDelivery'</code></p>
 </section>
 <section id="suppression-de-tuples-avec-requête-imbriquée" class="slide level2 center">
@@ -766,7 +768,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb21-3"><a></a>    <span class="kw">SELECT</span> NomP</span>
 <span id="cb21-4"><a></a>    <span class="kw">FROM</span> Piece</span>
 <span id="cb21-5"><a></a>    <span class="kw">WHERE</span> Couleur<span class="op">=</span><span class="st">'Rouge'</span></span>
-<span id="cb21-6"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="delete-from-table-using-t-where-...-smaller" class="slide level2 center">
 <h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code> {smaller}</h2>
@@ -784,7 +786,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb22-9"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.city (</span>
 <span id="cb22-10"><a></a>    <span class="kw">SELECT</span> ci.<span class="op">*</span>  <span class="kw">FROM</span> world.city ci <span class="kw">NATURAL</span> <span class="kw">JOIN</span> world.country co</span>
 <span id="cb22-11"><a></a>    <span class="kw">WHERE</span> co.continent <span class="op">=</span> <span class="st">'Europe'</span></span>
-<span id="cb22-12"><a></a>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-12"><a></a>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="delete-from-table-using-t-where-..." class="slide level2 center">
 <h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code></h2>
@@ -795,7 +797,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb23-2"><a></a><span class="kw">USING</span> chaprot.country <span class="kw">AS</span> co</span>
 <span id="cb23-3"><a></a><span class="kw">WHERE</span> city.countrycode <span class="op">=</span> co.countrycode <span class="kw">AND</span> </span>
 <span id="cb23-4"><a></a>      co.region<span class="op">=</span> <span class="st">'Eastern Europe'</span> <span class="kw">AND</span> </span>
-<span id="cb23-5"><a></a>      co.indepyear <span class="op">=</span> <span class="dv">1991</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-5"><a></a>      co.indepyear <span class="op">=</span> <span class="dv">1991</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section class="slide level2 center">
 
@@ -805,7 +807,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb24-3"><a></a>    <span class="kw">SELECT</span> NomP</span>
 <span id="cb24-4"><a></a>    <span class="kw">FROM</span> Livraison</span>
 <span id="cb24-5"><a></a>    <span class="kw">WHERE</span> Quantite<span class="op">&gt;</span><span class="dv">10</span></span>
-<span id="cb24-6"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Peut-être.</p>
 <p>Cela dépend des contraintes d’intégrité qui pèsent sur la base</p>
 </section></section>
@@ -854,7 +856,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb25-6"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">REFERENCES</span> Piece</span>
 <span id="cb25-7"><a></a>      <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span></span>
 <span id="cb25-8"><a></a>      <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span></span>
-<span id="cb25-9"><a></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-9"><a></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Cette déclaration force :</p>
 <ul>
 <li><p>à répercuter l’effacement d’un tuple dans <code>Piece</code> en mettant tous les champs <code>L.NomP</code> à <code>NULL</code> lorsque ceux-ci avait pour valeur celle de <code>P.NomP</code> effacée.</p></li>
@@ -908,7 +910,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb26-2"><a></a><span class="kw">FROM</span> country_code cc1 <span class="kw">JOIN</span></span>
 <span id="cb26-3"><a></a>     country_code cc2</span>
 <span id="cb26-4"><a></a><span class="kw">WHERE</span> cc1.code <span class="op">=</span> cc2.code <span class="kw">AND</span></span>
-<span id="cb26-5"><a></a>      cc1.country <span class="op">&lt;&gt;</span> cc2.country  ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-5"><a></a>      cc1.country <span class="op">&lt;&gt;</span> cc2.country  ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La requête est une jointure de la table sur elle-même</p>
 </section>
 <section id="quelques-remarques" class="slide level2 center">
@@ -942,17 +944,17 @@ CREATE TABLE &lt;nom_relation&gt; (
 <h2>Exemple de contrainte de clé primaire</h2>
 <div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
 <span id="cb27-2"><a></a>Piece(NomP, Prix, Couleur)</span>
-<span id="cb27-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
 <span id="cb28-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
 <span id="cb28-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
-<span id="cb28-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>ou bien :</p>
 <div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
 <span id="cb29-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>),</span>
 <span id="cb29-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
 <span id="cb29-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
-<span id="cb29-5"><a></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(NomP));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-5"><a></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(NomP));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="contraintes-dunicité" class="slide level2 center">
 <h2>Contraintes d’unicité</h2>
@@ -961,7 +963,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb30-3"><a></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb30-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> now(),</span>
 <span id="cb30-5"><a></a>    <span class="kw">CONSTRAINT</span> language_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
-<span id="cb30-6"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb30-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On voudrait aussi imposer que <code>"name"</code> satisfît une contrainte d’unicité</p>
 <div class="fragment">
 <div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> uname.<span class="ot">"language"</span> (</span>
@@ -970,7 +972,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb31-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NULL</span>,</span>
 <span id="cb31-5"><a></a>    <span class="kw">CONSTRAINT</span> language_un <span class="kw">UNIQUE</span> (<span class="ot">"name"</span>),</span>
 <span id="cb31-6"><a></a>    <span class="kw">CONSTRAINT</span> language_pk <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
-<span id="cb31-7"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb31-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="contraintes-dunicité-avancées" class="slide level2 center">
@@ -980,13 +982,13 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb32-3"><a></a>        (<span class="st">'blue'</span>, <span class="st">'0000FF'</span>), </span>
 <span id="cb32-4"><a></a>        (<span class="st">'red'</span>, <span class="st">'FF0000'</span>), </span>
 <span id="cb32-5"><a></a>        (<span class="st">'green'</span>, <span class="st">'00FF00'</span>)</span>
-<span id="cb32-6"><a></a>    <span class="kw">ON</span> CONFLICT DO <span class="kw">NOTHING</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb32-6"><a></a>    <span class="kw">ON</span> CONFLICT DO <span class="kw">NOTHING</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Someone could come and put in a different case ‘Blue’ in our system, and we’d then have two different cased blues.</p>
 <div class="fragment">
 <p>To remedy this, we can put a unique index on our table:</p>
 <div class="sourceCode" id="cb33"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a></a><span class="kw">CREATE</span> <span class="kw">UNIQUE</span> <span class="kw">INDEX</span> uidx_colors_lcolor </span>
 <span id="cb33-2"><a></a>    <span class="kw">ON</span> colors </span>
-<span id="cb33-3"><a></a>    <span class="kw">USING</span> btree(<span class="fu">lower</span>(color));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb33-3"><a></a>    <span class="kw">USING</span> btree(<span class="fu">lower</span>(color));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p>As before, if we tried to insert a ‘Blue’, we’d be prevented from doing so and the <code>ON CONFLICT DO NOTHING</code> would result in nothing happening.</p>
@@ -999,7 +1001,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb34-6"><a></a>        (<span class="st">'Green'</span>, <span class="st">'00FF00'</span>)</span>
 <span id="cb34-7"><a></a><span class="kw">ON</span> CONFLICT(<span class="fu">lower</span>(color))</span>
 <span id="cb34-8"><a></a></span>
-<span id="cb34-9"><a></a>DO <span class="kw">UPDATE</span> <span class="kw">SET</span> color <span class="op">=</span> EXCLUDED.color, hex <span class="op">=</span> EXCLUDED.hex;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb34-9"><a></a>DO <span class="kw">UPDATE</span> <span class="kw">SET</span> color <span class="op">=</span> EXCLUDED.color, hex <span class="op">=</span> EXCLUDED.hex;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="contraintes-référentiellesclé-étrangère" class="slide level2 center">
@@ -1015,13 +1017,13 @@ CREATE TABLE &lt;nom_relation&gt; (
 <h2>Exemple de contrainte référentielle</h2>
 <div class="sourceCode" id="cb35"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
 <span id="cb35-2"><a></a>Piece(NomP, Prix, Couleur)</span>
-<span id="cb35-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb35-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb36"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
 <span id="cb36-2"><a></a>    NumLiv <span class="dt">int</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
 <span id="cb36-3"><a></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
 <span id="cb36-4"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Piece,</span>
 <span id="cb36-5"><a></a>    DateLiv <span class="dt">DATE</span>,</span>
-<span id="cb36-6"><a></a>    Quantite <span class="dt">Int</span>(<span class="dv">8</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb36-6"><a></a>    Quantite <span class="dt">Int</span>(<span class="dv">8</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="résumé" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -1042,7 +1044,7 @@ CREATE TABLE &lt;nom_relation&gt; (
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>MA15Y030 – Bases de Données – L3 MIASHS – UParis Cité</p>
+<p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 </section>
@@ -1296,12 +1298,12 @@ CREATE TABLE &lt;nom_relation&gt; (
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Copié");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Copié");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",
@@ -1359,6 +1361,13 @@ CREATE TABLE &lt;nom_relation&gt; (
             if (link.dataset.originalHref !== undefined) {
               link.href = link.dataset.originalHref;
             }
+              // target, if specified
+              link.setAttribute("target", "_blank");
+              if (link.getAttribute("rel") === null) {
+                link.setAttribute("rel", "noopener");
+              }
+              // default icon
+              link.classList.add("external");
           }
         }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

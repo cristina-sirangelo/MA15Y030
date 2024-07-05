@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="fr-FR"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -12,7 +12,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.47">
 
-  <meta name="author" content="Stéphane Boucheron">
+  <meta name="author" content="Équipe BD">
   <title>MA15Y030 - Automne 2024 – BD V: Fonctions SQL et Vues</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,6 +387,7 @@
     }
   </style>
 <meta property="og:title" content="BD V: Fonctions SQL et Vues – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
@@ -395,21 +396,22 @@
 
 <section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
   <h1 class="title">BD V: Fonctions SQL et Vues</h1>
+  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Stéphane Boucheron 
+Équipe BD 
 </div>
         <p class="quarto-title-affiliation">
-            LPSM Université Paris-Cité
+            <a href="https://u-paris.fr">LPSM Université Paris-Cité</a>
           </p>
     </div>
 </div>
 
 </section><section id="TOC">
 <nav role="doc-toc"> 
-<h2 id="toc-title">Roadmap</h2>
+<h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/requêtes-paramétrées-pourquoi" id="/toc-requêtes-paramétrées-pourquoi">Requêtes paramétrées : pourquoi ?</a></li>
 <li><a href="#/fonctions-sql-version-postgresql-définition" id="/toc-fonctions-sql-version-postgresql-définition">Fonctions SQL (version PostGreSQL): définition</a></li>
@@ -479,7 +481,7 @@ Stéphane Boucheron
 <span id="cb1-7"><a></a><span class="kw">BODY</span> <span class="kw">of</span> <span class="kw">function</span></span>
 <span id="cb1-8"><a></a></span>
 <span id="cb1-9"><a></a>$$</span>
-<span id="cb1-10"><a></a>LANGUAGE language_of_function</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-10"><a></a>LANGUAGE language_of_function</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="columns">
 <div class="column">
 <p><code>langage_of_function</code> peut prendre différentes valeurs :</p>
@@ -492,7 +494,7 @@ Stéphane Boucheron
 </ul>
 </div><div class="column">
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="kw">SELECT</span> lanname </span>
-<span id="cb2-2"><a></a><span class="kw">FROM</span> pg_language;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a></a><span class="kw">FROM</span> pg_language;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>lanname |
 --------+
 internal|
@@ -504,7 +506,7 @@ plpgsql |</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> </span>
 <span id="cb4-2"><a></a>    <span class="op">&lt;</span>func_name<span class="op">&gt;</span>(<span class="op">&lt;</span>arg1<span class="op">&gt;</span> <span class="op">&lt;</span>arg1_datatype<span class="op">&gt;</span> [<span class="kw">DEFAULT</span> <span class="op">&lt;</span>arg1_default<span class="op">&gt;</span>])</span>
 <span id="cb4-3"><a></a></span>
-<span id="cb4-4"><a></a>RETURNS <span class="op">&lt;</span><span class="kw">some</span> <span class="kw">type</span><span class="op">&gt;</span> | SETOF <span class="op">&lt;</span><span class="kw">some</span> <span class="kw">type</span><span class="op">&gt;</span> | <span class="kw">TABLE</span> (<span class="op">..</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-4"><a></a>RETURNS <span class="op">&lt;</span><span class="kw">some</span> <span class="kw">type</span><span class="op">&gt;</span> | SETOF <span class="op">&lt;</span><span class="kw">some</span> <span class="kw">type</span><span class="op">&gt;</span> | <span class="kw">TABLE</span> (<span class="op">..</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>La signature d’une fonction est formée par - le nom de la fonction - la liste des arguments (nom et type attendu) - le type du résultat retourné par la fonction</p>
 </section><section id="signature-de-la-fonction-suite" class="slide level2 center">
 <h2>Signature de la fonction (suite)</h2>
@@ -536,11 +538,11 @@ plpgsql |</code></pre>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">CREATE</span> <span class="kw">TYPE</span>  type_utilisateur <span class="kw">AS</span> </span>
 <span id="cb5-2"><a></a>  (<span class="op">&lt;</span>identifiant<span class="op">&gt;</span> <span class="op">&lt;</span><span class="kw">type</span> défini<span class="op">&gt;</span>) </span>
 <span id="cb5-3"><a></a>   [, <span class="op">&lt;</span>identifiant<span class="op">&gt;</span> <span class="op">&lt;</span><span class="kw">type</span> défini<span class="op">&gt;</span>]<span class="op">*</span></span>
-<span id="cb5-4"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-4"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Usage pour une création de table</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="op">&lt;</span>nom de <span class="kw">table</span><span class="op">&gt;</span> <span class="kw">OF</span> </span>
 <span id="cb6-2"><a></a>  type_utilisateur</span>
-<span id="cb6-3"><a></a>  (<span class="kw">CONSTRAINT</span> <span class="op">&lt;</span>nom de contrainte<span class="op">&gt;</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>  (<span class="op">&lt;</span>nom de colonne<span class="op">&gt;</span>));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-3"><a></a>  (<span class="kw">CONSTRAINT</span> <span class="op">&lt;</span>nom de contrainte<span class="op">&gt;</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>  (<span class="op">&lt;</span>nom de colonne<span class="op">&gt;</span>));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Pratique pour créer des tables de même schéma</p>
 </section><section id="section" class="slide level2 center">
 <h2><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i></h2>
@@ -550,12 +552,12 @@ plpgsql |</code></pre>
 <ul>
 <li>Définition d’un type</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">CREATE</span> <span class="kw">TYPE</span> basic_user <span class="kw">AS</span> (user_name <span class="dt">varchar</span>(<span class="dv">50</span>), pwd <span class="dt">varchar</span>(<span class="dv">10</span>));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">CREATE</span> <span class="kw">TYPE</span> basic_user <span class="kw">AS</span> (user_name <span class="dt">varchar</span>(<span class="dv">50</span>), pwd <span class="dt">varchar</span>(<span class="dv">10</span>));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Usage du type défini par usager</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> super_users <span class="kw">OF</span> basic_user </span>
-<span id="cb8-2"><a></a>  (<span class="kw">CONSTRAINT</span> pk_su <span class="kw">PRIMARY</span> <span class="kw">KEY</span>  (user_name));</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-2"><a></a>  (<span class="kw">CONSTRAINT</span> pk_su <span class="kw">PRIMARY</span> <span class="kw">KEY</span>  (user_name));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="annotations" class="slide level2 center">
 <h2>Annotations</h2>
 <p>Les définitions de fonctions comportent parfois des qualifications supplémentaires</p>
@@ -599,13 +601,13 @@ plpgsql |</code></pre>
 <span id="cb9-2"><a></a></span>
 <span id="cb9-3"><a></a><span class="kw">BODY</span> <span class="kw">of</span> <span class="kw">function</span></span>
 <span id="cb9-4"><a></a></span>
-<span id="cb9-5"><a></a>$$</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-5"><a></a>$$</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="références-aux-argument" class="slide level2 center">
 <h2>Références aux argument</h2>
 <p>On peut faire références aux arguments en les nommant dans le corps de la fonction</p>
 <p>Si les arguments ne sont pas nommés, vous faites référence aux arguments par leur position dans la signature : <code>$1</code>, <code>$2</code>, <code>$3</code>, etc</p>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Si vous nommez les arguments, vous pouvez utiliser la notation</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a>big_elephant(name <span class="op">=&gt;</span> <span class="st">'Wooly'</span>, ear_size <span class="op">=&gt;</span> <span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a>big_elephant(name <span class="op">=&gt;</span> <span class="st">'Wooly'</span>, ear_size <span class="op">=&gt;</span> <span class="fl">1.2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>lors des appels à la fonction</p>
 </section><section id="exemple-1" class="slide level2 center">
 <h2>Exemple</h2>
@@ -619,11 +621,11 @@ plpgsql |</code></pre>
 <span id="cb11-8"><a></a>   <span class="kw">VALUES</span>($<span class="dv">1</span>, $<span class="dv">2</span>)</span>
 <span id="cb11-9"><a></a><span class="kw">RETURNING</span> log_id;</span>
 <span id="cb11-10"><a></a>$$</span>
-<span id="cb11-11"><a></a>LANGUAGE <span class="st">'sql'</span> VOLATILE;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-11"><a></a>LANGUAGE <span class="st">'sql'</span> VOLATILE;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>Invocation</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> write_to_log(<span class="st">'alex'</span>, </span>
-<span id="cb12-2"><a></a>    <span class="st">'Logged in at 11:59 AM.'</span>) <span class="kw">AS</span> new_id;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a></a>    <span class="st">'Logged in at 11:59 AM.'</span>) <span class="kw">AS</span> new_id;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p>Les fonctions SQL peuvent retourner des ensembles</p>
 <p>Trois manières de faire:</p>
@@ -644,7 +646,7 @@ plpgsql |</code></pre>
 <span id="cb13-5"><a></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(population_city) <span class="kw">AS</span> max_pop</span>
 <span id="cb13-6"><a></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
 <span id="cb13-7"><a></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region <span class="kw">AND</span> cc.population_city <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span>
-<span id="cb13-8"><a></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-8"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="fonctions-qui-retournent-un-type-composé" class="title-slide slide level1 center" data-background-color="#1c191c">
 <h1>Fonctions qui retournent un type composé</h1>
 <hr>
@@ -663,7 +665,7 @@ plpgsql |</code></pre>
 <span id="cb14-11"><a></a><span class="kw">SELECT</span> r.name_city,  r.population_city</span>
 <span id="cb14-12"><a></a><span class="kw">FROM</span> r </span>
 <span id="cb14-13"><a></a><span class="kw">WHERE</span> r.rnk <span class="op">=</span> <span class="dv">1</span> ;</span>
-<span id="cb14-14"><a></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-14"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table" class="slide level2 center">
 <h2>Fonctions qui retournent un type composé défini par les lignes d’une table</h2>
@@ -680,7 +682,7 @@ plpgsql |</code></pre>
 <span id="cb15-9"><a></a>  <span class="kw">SELECT</span> r.<span class="kw">id</span>, r.name_city, r.countrycode, r.district, r.population_city</span>
 <span id="cb15-10"><a></a>  <span class="kw">FROM</span> r </span>
 <span id="cb15-11"><a></a>  <span class="kw">WHERE</span> r.rnk <span class="op">=</span> <span class="dv">1</span> ;</span>
-<span id="cb15-12"><a></a>  $$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-12"><a></a>  $$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="fonctions-qui-retournent-une-table" class="slide level2 center">
 <h2>Fonctions qui retournent une table</h2>
@@ -697,7 +699,7 @@ plpgsql |</code></pre>
 <span id="cb16-5"><a></a><span class="kw">SELECT</span> cc.name_city </span>
 <span id="cb16-6"><a></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
 <span id="cb16-7"><a></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region ;</span>
-<span id="cb16-8"><a></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-8"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="table-de-même-schéma-quune-autre-table" class="slide level2 center">
 <h2>Table de même schéma qu’une autre table</h2>
@@ -712,7 +714,7 @@ plpgsql |</code></pre>
 <span id="cb17-5"><a></a><span class="kw">SELECT</span> cc.<span class="op">*</span> </span>
 <span id="cb17-6"><a></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
 <span id="cb17-7"><a></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region ;</span>
-<span id="cb17-8"><a></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-8"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="autres-langages" class="slide level2 center">
 <h2>Autres langages</h2>
@@ -738,7 +740,7 @@ plpgsql |</code></pre>
 <span id="cb18-5"><a></a>  <span class="kw">SELECT</span> customer_id </span>
 <span id="cb18-6"><a></a>  <span class="kw">FROM</span> sakila.rental</span>
 <span id="cb18-7"><a></a>  <span class="kw">WHERE</span> return_date <span class="kw">IS</span> <span class="kw">NULL</span> <span class="kw">AND</span> inventory_id <span class="op">=</span> p_inventory_id ;</span>
-<span id="cb18-8"><a></a>$$ LANGUAGE <span class="st">'sql'</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-8"><a></a>$$ LANGUAGE <span class="st">'sql'</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="fonctions-de-sakila" class="slide level2 center">
 <h2>Fonctions de <code>sakila</code></h2>
@@ -753,13 +755,13 @@ plpgsql |</code></pre>
 <span id="cb19-9"><a></a>     <span class="kw">WHERE</span> film_id <span class="op">=</span> $<span class="dv">1</span></span>
 <span id="cb19-10"><a></a>     <span class="kw">AND</span> store_id <span class="op">=</span> $<span class="dv">2</span></span>
 <span id="cb19-11"><a></a>     <span class="kw">AND</span> sakila.inventory_in_stock(inventory_id);</span>
-<span id="cb19-12"><a></a>$$ LANGUAGE sql ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-12"><a></a>$$ LANGUAGE sql ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="invocation" class="slide level2 center">
 <h2>Invocation</h2>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb20-2"><a></a><span class="kw">FROM</span> sakila.film_in_stock(<span class="dv">12</span>, <span class="dv">1</span>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-2"><a></a><span class="kw">FROM</span> sakila.film_in_stock(<span class="dv">12</span>, <span class="dv">1</span>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
 <thead>
 <tr class="header">
@@ -805,7 +807,7 @@ plpgsql |</code></pre>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> co_asia <span class="kw">AS</span></span>
 <span id="cb21-2"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
 <span id="cb21-3"><a></a><span class="kw">FROM</span> world.country </span>
-<span id="cb21-4"><a></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Asia'</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-4"><a></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Asia'</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="interroger-une-vue" class="slide level2 center">
 <h2>Interroger une vue</h2>
@@ -813,7 +815,7 @@ plpgsql |</code></pre>
 <div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">SELECT</span> region, <span class="fu">sum</span>(population_country) <span class="kw">AS</span> pop </span>
 <span id="cb22-2"><a></a><span class="kw">FROM</span> co_asia </span>
 <span id="cb22-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> region </span>
-<span id="cb22-4"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> pop <span class="kw">DESC</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-4"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> pop <span class="kw">DESC</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <pre><code>region                   |pop       |
 -------------------------+----------+
 Eastern Asia             |1507328000|
@@ -846,7 +848,7 @@ Middle East              | 188380700|</code></pre>
 <p>Cette instruction :</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">UPDATE</span> co_asia</span>
 <span id="cb24-2"><a></a></span>
-<span id="cb24-3"><a></a><span class="kw">SET</span> continent<span class="op">=</span><span class="st">'Antarctica'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-3"><a></a><span class="kw">SET</span> continent<span class="op">=</span><span class="st">'Antarctica'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>… est légale</p>
 <p>–</p>
 <p>Mais, après exécution :</p>
@@ -863,7 +865,7 @@ Middle East              | 188380700|</code></pre>
 <span id="cb25-4"><a></a><span class="kw">FROM</span> world.country </span>
 <span id="cb25-5"><a></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Asia'</span> </span>
 <span id="cb25-6"><a></a></span>
-<span id="cb25-7"><a></a><span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-7"><a></a><span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ajouter cette modification lors de la création de la vue et PostgreSQL s’opposera à une tentative d’insertion hors de la vue ou à une tentative de mise à jour qui placerait des tuples hors de la vue</p>
 </section>
 <section id="smaller" class="slide level2 center">
@@ -884,7 +886,7 @@ Middle East              | 188380700|</code></pre>
 <span id="cb26-14"><a></a>     <span class="kw">LEFT</span> <span class="kw">JOIN</span> sakila.film_actor fa <span class="kw">ON</span> a.actor_id <span class="op">=</span> fa.actor_id</span>
 <span id="cb26-15"><a></a>     <span class="kw">LEFT</span> <span class="kw">JOIN</span> sakila.film_category fc <span class="kw">ON</span> fa.film_id <span class="op">=</span> fc.film_id</span>
 <span id="cb26-16"><a></a>     <span class="kw">LEFT</span> <span class="kw">JOIN</span> sakila.<span class="kw">category</span> c <span class="kw">ON</span> fc.category_id <span class="op">=</span> c.category_id</span>
-<span id="cb26-17"><a></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> a.actor_id, a.first_name, a.last_name;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-17"><a></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> a.actor_id, a.first_name, a.last_name;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="vues-multi-tables-exemple-de-vue-sur-world-smaller" class="slide level2 center">
 <h2>Vues multi-tables : exemple de vue sur <code>world</code> {smaller}</h2>
@@ -900,7 +902,7 @@ Middle East              | 188380700|</code></pre>
 <span id="cb27-10"><a></a>       world.city ci </span>
 <span id="cb27-11"><a></a>       <span class="kw">ON</span> (cn.countrycode <span class="op">=</span> ci.countrycode)</span>
 <span id="cb27-12"><a></a></span>
-<span id="cb27-13"><a></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> cn.countrycode, cn.name_country, cn.region;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb27-13"><a></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> cn.countrycode, cn.name_country, cn.region;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="https://stackoverflow.com/questions/2560946/postgresql-group-concat-equivalent">Stackoverflow</a></p>
 </section>
 <section id="insertionmise-à-joursuppression-sur-les-vues-multi-tables" class="slide level2 center">
@@ -908,7 +910,7 @@ Middle East              | 188380700|</code></pre>
 <p>Problème : quelles tables doivent être modifiées ?</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a><span class="kw">DELETE</span> </span>
 <span id="cb28-2"><a></a><span class="kw">FROM</span> boucheron.country_info</span>
-<span id="cb28-3"><a></a><span class="kw">WHERE</span> countrycode <span class="op">=</span> <span class="st">'FRA'</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-3"><a></a><span class="kw">WHERE</span> countrycode <span class="op">=</span> <span class="st">'FRA'</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p>supprimer les lignes de <code>country</code> ?</p></li>
 <li><p>supprimer les lignes de <code>city</code> ?</p></li>
@@ -942,7 +944,7 @@ Middle East              | 188380700|</code></pre>
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>MA15Y030 – Bases de Données – L3 MIASHS – UParis Cité</p>
+<p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 </section>
@@ -1199,12 +1201,12 @@ Middle East              | 188380700|</code></pre>
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Copié");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Copié");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",
@@ -1262,6 +1264,13 @@ Middle East              | 188380700|</code></pre>
             if (link.dataset.originalHref !== undefined) {
               link.href = link.dataset.originalHref;
             }
+              // target, if specified
+              link.setAttribute("target", "_blank");
+              if (link.getAttribute("rel") === null) {
+                link.setAttribute("rel", "noopener");
+              }
+              // default icon
+              link.classList.add("external");
           }
         }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

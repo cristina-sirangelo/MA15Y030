@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="fr-FR"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -12,7 +12,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.47">
-<meta name="author" content="Stéphane Boucheron">
+<meta name="author" content="Équipe BD">
 <title>MA15Y030 - Automne 2024 – BD : Fonctions et extension PlpgSQL de SQL</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,6 +387,7 @@
     }
   </style>
 <meta property="og:title" content="BD : Fonctions et extension PlpgSQL de SQL – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
@@ -394,19 +395,20 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center"><h1 class="title">BD : Fonctions et extension PlpgSQL de SQL</h1>
+  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Stéphane Boucheron 
+Équipe BD 
 </div>
         <p class="quarto-title-affiliation">
-            LPSM Université Paris-Cité
+            <a href="https://u-paris.fr">LPSM Université Paris-Cité</a>
           </p>
     </div>
 </div>
 
-</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Roadmap</h2>
+</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/fonctions-plpgsql-introduction-et-exemples" id="/toc-fonctions-plpgsql-introduction-et-exemples">Fonctions plpgSQL: introduction et exemples</a></li>
 <li><a href="#/un-premier-cas-fonctions-issues-du-sch%C3%A9ma-sakila" id="/toc-un-premier-cas-fonctions-issues-du-schéma-sakila">Un premier cas : fonctions issues du schéma <code>sakila</code></a></li>
@@ -474,7 +476,7 @@ Stéphane Boucheron
 <li>si toutes les locations de ce DVD sont déjà terminées (<code>return_date</code> n’est pas nul)</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a><span class="co">-- AN ITEM IS IN-STOCK IF THERE ARE EITHER NO ROWS IN THE rental TABLE</span></span>
-<span id="cb1-2"><a></a><span class="co">-- FOR THE ITEM OR ALL ROWS HAVE return_date POPULATED</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a></a><span class="co">-- FOR THE ITEM OR ALL ROWS HAVE return_date POPULATED</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="fonction-inventory_in_stock-1" class="slide level2 smaller center"><h2>Fonction <code>inventory_in_stock</code>
 </h2>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> sakila.inventory_in_stock(p_inventory_id <span class="dt">integer</span>)</span>
@@ -502,11 +504,11 @@ Stéphane Boucheron
 <span id="cb2-23"><a></a>    <span class="cf">ELSE</span></span>
 <span id="cb2-24"><a></a>      <span class="kw">RETURN</span> <span class="kw">TRUE</span>;</span>
 <span id="cb2-25"><a></a>    <span class="cf">END</span> <span class="cf">IF</span>;</span>
-<span id="cb2-26"><a></a><span class="cf">END</span> $function$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-26"><a></a><span class="cf">END</span> $function$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center"><div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="co">-- Permissions</span></span>
 <span id="cb3-2"><a></a></span>
 <span id="cb3-3"><a></a><span class="kw">ALTER</span> <span class="kw">FUNCTION</span> sakila.inventory_in_stock(int4) OWNER <span class="kw">TO</span> postgres;</span>
-<span id="cb3-4"><a></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">ON</span> <span class="kw">FUNCTION</span> sakila.inventory_in_stock(int4) <span class="kw">TO</span> postgres;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-4"><a></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">ON</span> <span class="kw">FUNCTION</span> sakila.inventory_in_stock(int4) <span class="kw">TO</span> postgres;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="section" class="slide level2 center"><h2><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i></h2>
 <ul>
 <li><code>SELECT ... INTO ...</code></li>
@@ -528,7 +530,7 @@ Stéphane Boucheron
 <p>Déterminer pour chaque usager (<em>schéma</em>) le nombre de tuples dans la table <code>ville_pays</code> de cet usager.</p>
 <p>Pour chaque schéma <code>schema</code>, on veut évaluer une requête</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) </span>
-<span id="cb4-2"><a></a><span class="kw">FROM</span> <span class="kw">schema</span>.ville_pays ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-2"><a></a><span class="kw">FROM</span> <span class="kw">schema</span>.ville_pays ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Ici <code>schema</code> doit être calculé en interrogeant le SGBD</p>
 <div class="fragment">
 <p>Situation inédite :</p>
@@ -540,11 +542,11 @@ Stéphane Boucheron
 </h2>
 <p>On va s’aider des tables d’administration du SGBD</p>
 <p>Chaque usager correspond à un <code>role</code> et ce rôle correspond dans notre cas à un schema créé à partir du rôle via l’instruction</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">CREATE</span> <span class="kw">SCHEMA</span> <span class="kw">AUTHORIZATION</span> user_name ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">CREATE</span> <span class="kw">SCHEMA</span> <span class="kw">AUTHORIZATION</span> user_name ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On a envie d’écrire une requête comme</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> username.tournaments ; </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">FROM</span> username.tournaments ; </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>où <code>username</code> est collectée à partir de</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">SELECT</span> usename  <span class="kw">FROM</span> pg_catalog.pg_user ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">SELECT</span> usename  <span class="kw">FROM</span> pg_catalog.pg_user ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="deux-schémas-pour-ladministration-la-métabase" class="slide level2 center scrollable"><h2>Deux schémas pour l’administration : la <strong>métabase</strong>
 </h2>
 <ol type="1">
@@ -578,7 +580,7 @@ Stéphane Boucheron
 <span id="cb8-10"><a></a>| passwd       | text    |             |</span>
 <span id="cb8-11"><a></a>| valuntil     | abstime |             |</span>
 <span id="cb8-12"><a></a>| useconfig    | text[]  |             |</span>
-<span id="cb8-13"><a></a>+--------------+---------+-------------+</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-13"><a></a>+--------------+---------+-------------+</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <p><code>pg_user</code> nous renseigne sur :</p>
 <ul>
@@ -603,13 +605,13 @@ Stéphane Boucheron
 <span id="cb9-10"><a></a>| bd_2023   | DBeaver <span class="dv">22</span>.<span class="fl">2.0</span> <span class="op">-</span> SQLEditor <span class="op">&lt;</span>Script<span class="op">-</span><span class="fl">4.</span>sql<span class="op">&gt;</span> | <span class="dv">127</span>.<span class="dv">0</span>.<span class="fl">0.1</span>     | <span class="dv">2022</span><span class="op">-</span><span class="dv">10</span><span class="op">-</span><span class="dv">04</span> <span class="dv">22</span><span class="ch">:48:59</span><span class="fl">.958616</span><span class="op">+</span><span class="dv">02</span> | idle    |</span>
 <span id="cb9-11"><a></a>| bd_2023   | pgcli                                     | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>        | <span class="dv">2022</span><span class="op">-</span><span class="dv">10</span><span class="op">-</span><span class="dv">04</span> <span class="dv">23</span><span class="ch">:23:19</span><span class="fl">.739258</span><span class="op">+</span><span class="dv">02</span> | active  |</span>
 <span id="cb9-12"><a></a>| bd_2023   | pgcli                                     | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>        | <span class="dv">2022</span><span class="op">-</span><span class="dv">10</span><span class="op">-</span><span class="dv">04</span> <span class="dv">23</span><span class="ch">:23:19</span><span class="fl">.770006</span><span class="op">+</span><span class="dv">02</span> | idle    |</span>
-<span id="cb9-13"><a></a><span class="op">+</span><span class="co">-----------+-------------------------------------------+---------------+-------------------------------+---------+</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-13"><a></a><span class="op">+</span><span class="co">-----------+-------------------------------------------+---------------+-------------------------------+---------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center"><p>Renseigne sur les utilisateurs ayant une session en cours sur la base <code>bd_2023</code></p>
 </section><section id="tentative" class="slide level2 center"><h2>Tentative</h2>
 <p>On engendre <em>dynamiquement</em> une série de requêtes par une instruction de la forme :</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">SELECT</span> </span>
 <span id="cb10-2"><a></a>    <span class="st">'SELECT '</span> <span class="op">||</span> quote_literal(usename) <span class="op">||</span> <span class="st">', COUNT(*)  FROM '</span> <span class="op">||</span> usename <span class="op">||</span> <span class="st">'.ville_pays ;'</span></span>
-<span id="cb10-3"><a></a><span class="kw">FROM</span> pg_catalog.pg_user  ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-3"><a></a><span class="kw">FROM</span> pg_catalog.pg_user  ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-brain" aria-label="brain"></i> A quoi sert <code>quote_literal()</code> ?</p>
 </section><section id="le-résultat-est-une-table-de-chaines-de-caractères" class="slide level2 smaller center"><h2>Le résultat est une table de chaines de caractères</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a>rqt                                                      |</span>
@@ -619,7 +621,7 @@ Stéphane Boucheron
 <span id="cb11-5"><a></a><span class="kw">SELECT</span> <span class="st">'aalahy99'</span>, <span class="fu">COUNT</span>(<span class="op">*</span>)  <span class="kw">FROM</span> aalahy99.ville_pays ;  |</span>
 <span id="cb11-6"><a></a><span class="kw">SELECT</span> <span class="st">'etemam'</span>, <span class="fu">COUNT</span>(<span class="op">*</span>)  <span class="kw">FROM</span> etemam.ville_pays ;      |</span>
 <span id="cb11-7"><a></a><span class="kw">SELECT</span> <span class="st">'durand'</span>, <span class="fu">COUNT</span>(<span class="op">*</span>)  <span class="kw">FROM</span> durand.ville_pays ;      |</span>
-<span id="cb11-8"><a></a><span class="op">..</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-8"><a></a><span class="op">..</span>.</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p>Tel quel, cela ne fonctionnera pas !</p>
 <ul>
@@ -646,12 +648,12 @@ Stéphane Boucheron
 <span id="cb12-16"><a></a><span class="st">  result:=result || usename || '</span>: <span class="st">' ||resp| '</span>; <span class="st">';   #&lt;&lt; </span></span>
 <span id="cb12-17"><a></a><span class="st">END LOOP ;</span></span>
 <span id="cb12-18"><a></a><span class="st">RETURN result ; #&lt;&lt; </span></span>
-<span id="cb12-19"><a></a><span class="st">END;$$ ;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-19"><a></a><span class="st">END;$$ ;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center"><p>Nous utilisons une des structures itératives de <code>plpgSQL</code> :</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="cf">FOR</span> v <span class="kw">IN</span> expression </span>
 <span id="cb13-2"><a></a><span class="cf">LOOP</span></span>
 <span id="cb13-3"><a></a>  instructions</span>
-<span id="cb13-4"><a></a><span class="cf">END</span> <span class="cf">LOOP</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-4"><a></a><span class="cf">END</span> <span class="cf">LOOP</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <ul>
 <li>On itère sur les tuples de la requête <code>SELECT u.usename  ...</code>
@@ -704,7 +706,7 @@ Stéphane Boucheron
 </ul></section><section id="exemple" class="slide level2 center"><h2>Exemple</h2>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">SELECT</span> routine_catalog, routine_schema, routine_name, data_type, security_type</span>
 <span id="cb14-2"><a></a><span class="kw">FROM</span> information_schema.routines    #<span class="op">&lt;&lt;</span> </span>
-<span id="cb14-3"><a></a><span class="kw">WHERE</span> routine_type<span class="op">=</span><span class="st">'FUNCTION'</span> <span class="kw">AND</span> specific_schema<span class="op">=</span><span class="st">'sakila'</span>   #<span class="op">&lt;&lt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-3"><a></a><span class="kw">WHERE</span> routine_type<span class="op">=</span><span class="st">'FUNCTION'</span> <span class="kw">AND</span> specific_schema<span class="op">=</span><span class="st">'sakila'</span>   #<span class="op">&lt;&lt;</span> </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <pre><code>routine_catalog|routine_schema|routine_name              |data_type   |security_type|
 ---------------+--------------+--------------------------+------------+-------------+
@@ -737,7 +739,7 @@ bd_2023        |sakila        |rewards_report            |USER-DEFINED|DEFINER  
 <span id="cb16-12"><a></a>tmpSQL TEXT;</span>
 <span id="cb16-13"><a></a><span class="cf">BEGIN</span></span>
 <span id="cb16-14"><a></a><span class="op">..</span>.</span>
-<span id="cb16-15"><a></a><span class="cf">END</span> $$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-15"><a></a><span class="cf">END</span> $$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Détermine la liste des bons clients qui beaucoup consommé durant le dernier mois écoulé</p>
 </section><section class="slide level2 center"><div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> sakila.rewards_report(min_monthly_purchases <span class="dt">integer</span>, min_dollar_amount_purchased <span class="dt">numeric</span>)</span>
 <span id="cb17-2"><a></a> RETURNS SETOF sakila.customer</span>
@@ -803,7 +805,7 @@ bd_2023        |sakila        |rewards_report            |USER-DEFINED|DEFINER  
 <span id="cb17-62"><a></a></span>
 <span id="cb17-63"><a></a><span class="kw">ALTER</span> <span class="kw">FUNCTION</span> sakila.rewards_report(int4, <span class="dt">numeric</span>) OWNER <span class="kw">TO</span> postgres;</span>
 <span id="cb17-64"><a></a><span class="kw">GRANT</span> <span class="kw">ALL</span> <span class="kw">ON</span> <span class="kw">FUNCTION</span> sakila.rewards_report(int4, <span class="dt">numeric</span>) <span class="kw">TO</span> postgres;</span>
-<span id="cb17-65"><a></a></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-65"><a></a></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center"><blockquote>
 <p>Whenever you create a new table, PostgreSQL automatically creates a composite type based on the structure of the table. This allows you to treat table rows as objects in their own right. You’ll appreciate this automatic type creation when you write functions that loop through tables. pgAdmin doesn’t make the automatic type creation obvious because it does not list them under the types node, but rest assured that they are there</p>
 </blockquote>
@@ -831,7 +833,7 @@ bd_2023        |sakila        |rewards_report            |USER-DEFINED|DEFINER  
 <span id="cb18-10"><a></a>    last_month_start <span class="op">:=</span> <span class="fu">CURRENT_DATE</span> <span class="op">-</span> <span class="st">'3 month'</span>:<span class="ch">:interval</span>;</span>
 <span id="cb18-11"><a></a>    last_month_start <span class="op">:=</span> <span class="fu">to_date</span>((<span class="fu">extract</span>(<span class="dt">YEAR</span> <span class="kw">FROM</span> last_month_start) <span class="op">||</span> <span class="st">'-'</span> <span class="op">||</span> <span class="fu">extract</span>(<span class="dt">MONTH</span> <span class="kw">FROM</span> last_month_start) <span class="op">||</span> <span class="st">'-01'</span>),<span class="st">'YYYY-MM-DD'</span>);</span>
 <span id="cb18-12"><a></a>    last_month_end <span class="op">:=</span> <span class="fu">LAST_DAY</span>(last_month_start);</span>
-<span id="cb18-13"><a></a><span class="op">..</span>.</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-13"><a></a><span class="op">..</span>.</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> <code>RAISE EXCEPTION 'msg'</code></p>
 <p>termine (en erreur) l’exécution de la fonction envoie un message d’erreur</p>
@@ -856,7 +858,7 @@ bd_2023        |sakila        |rewards_report            |USER-DEFINED|DEFINER  
 <span id="cb19-16"><a></a>        <span class="st">'AND COUNT(customer_id) &gt; '</span> <span class="op">||</span> </span>
 <span id="cb19-17"><a></a>        min_monthly_purchases ;</span>
 <span id="cb19-18"><a></a></span>
-<span id="cb19-19"><a></a>    <span class="kw">EXECUTE</span> tmpSQL;  #<span class="op">&lt;&lt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-19"><a></a>    <span class="kw">EXECUTE</span> tmpSQL;  #<span class="op">&lt;&lt;</span> </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="create-temporary-table-..." class="slide level2 center"><h2>
 <i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> <code>CREATE TEMPORARY TABLE ...</code>
 </h2>
@@ -882,7 +884,7 @@ bd_2023        |sakila        |rewards_report            |USER-DEFINED|DEFINER  
 <span id="cb20-12"><a></a></span>
 <span id="cb20-13"><a></a><span class="kw">RETURN</span>;   #<span class="op">&lt;&lt;</span></span>
 <span id="cb20-14"><a></a><span class="cf">END</span></span>
-<span id="cb20-15"><a></a>$function$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-15"><a></a>$function$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center"><h4 id="for-rr-in-execute-..."><code>FOR rr IN EXECUTE ...</code></h4>
 <h4 id="return-next-rr"><code>RETURN NEXT rr</code></h4>
 </section><section class="slide level2 center"><p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Les requêtes dynamiques sont-elles vraiment nécessaires ?</p>
@@ -891,7 +893,7 @@ bd_2023        |sakila        |rewards_report            |USER-DEFINED|DEFINER  
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>MA15Y030 – Bases de Données – L3 MIASHS – UParis Cité</p>
+<p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 </section>
@@ -1163,12 +1165,12 @@ bd_2023        |sakila        |rewards_report            |USER-DEFINED|DEFINER  
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Copié");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Copié");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",
@@ -1226,6 +1228,13 @@ bd_2023        |sakila        |rewards_report            |USER-DEFINED|DEFINER  
             if (link.dataset.originalHref !== undefined) {
               link.href = link.dataset.originalHref;
             }
+              // target, if specified
+              link.setAttribute("target", "_blank");
+              if (link.getAttribute("rel") === null) {
+                link.setAttribute("rel", "noopener");
+              }
+              // default icon
+              link.classList.add("external");
           }
         }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

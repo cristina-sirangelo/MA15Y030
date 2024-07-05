@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="fr-FR"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -12,7 +12,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.47">
 
-  <meta name="author" content="Stéphane Boucheron">
+  <meta name="author" content="Équipe BD">
   <title>MA15Y030 - Automne 2024 – BD II: SQL II</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -387,6 +387,7 @@
     }
   </style>
 <meta property="og:title" content="BD II: SQL II – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
@@ -395,21 +396,22 @@
 
 <section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
   <h1 class="title">BD II: SQL II</h1>
+  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
 <div class="quarto-title-author-name">
-Stéphane Boucheron 
+Équipe BD 
 </div>
         <p class="quarto-title-affiliation">
-            LPSM Université Paris-Cité
+            <a href="https://u-paris.fr">LPSM Université Paris-Cité</a>
           </p>
     </div>
 </div>
 
 </section><section id="TOC">
 <nav role="doc-toc"> 
-<h2 id="toc-title">Roadmap</h2>
+<h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/opérateurs-ensemblistes" id="/toc-opérateurs-ensemblistes">Opérateurs ensemblistes</a></li>
 <li><a href="#/requêtes-imbriquées" id="/toc-requêtes-imbriquées">Requêtes imbriquées</a></li>
@@ -431,17 +433,17 @@ Stéphane Boucheron
 <ul>
 <li>Intersection ( <span class="math inline">\(\cap\)</span> ) : les tuples qui sont à la fois dans la requête 1 et dans la requête 2</li>
 </ul>
-<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a>  <span class="op">&lt;</span>requete1<span class="op">&gt;</span> <span class="kw">INTERSECT</span> <span class="op">&lt;</span>requete2<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a>  <span class="op">&lt;</span>requete1<span class="op">&gt;</span> <span class="kw">INTERSECT</span> <span class="op">&lt;</span>requete2<span class="op">&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>–</p>
 <ul>
 <li>Union ( <span class="math inline">\(\cup\)</span> ) : les tuples de la requête 1 et ceux de la requête 2</li>
 </ul>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a>  <span class="op">&lt;</span>requete1<span class="op">&gt;</span> <span class="kw">UNION</span> <span class="op">&lt;</span>requete2<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a>  <span class="op">&lt;</span>requete1<span class="op">&gt;</span> <span class="kw">UNION</span> <span class="op">&lt;</span>requete2<span class="op">&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>–</p>
 <ul>
 <li>Différence ( <span class="math inline">\(\backslash\)</span> ) : les tuples de la requête 1 qui ne sont pas des tuples de la requête 2</li>
 </ul>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a>  <span class="op">&lt;</span>requete1<span class="op">&gt;</span> <span class="kw">EXCEPT</span> <span class="op">&lt;</span>requete2<span class="op">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a>  <span class="op">&lt;</span>requete1<span class="op">&gt;</span> <span class="kw">EXCEPT</span> <span class="op">&lt;</span>requete2<span class="op">&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="exemple-pour-except" class="slide level2 center">
 <h2>Exemple pour <code>EXCEPT</code></h2>
@@ -449,7 +451,7 @@ Stéphane Boucheron
 <span id="cb4-2"><a></a></span>
 <span id="cb4-3"><a></a>Piece(NomP, Prix, Couleur)</span>
 <span id="cb4-4"><a></a></span>
-<span id="cb4-5"><a></a>Livraison(NumLiv, NomP, NomF, DateLiv, Quantite)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb4-5"><a></a>Livraison(NumLiv, NomP, NomF, DateLiv, Quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Fournisseurs qui ont livré la pièce x22 mais pas la pièce x21</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a>  <span class="kw">SELECT</span> NomF </span>
 <span id="cb5-2"><a></a>  <span class="kw">FROM</span> Livraison </span>
@@ -459,7 +461,7 @@ Stéphane Boucheron
 <span id="cb5-6"><a></a>  </span>
 <span id="cb5-7"><a></a>  <span class="kw">SELECT</span> NomF</span>
 <span id="cb5-8"><a></a>  <span class="kw">FROM</span> Livraison </span>
-<span id="cb5-9"><a></a>  <span class="kw">WHERE</span> NomP<span class="op">=</span><span class="st">'x21'</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-9"><a></a>  <span class="kw">WHERE</span> NomP<span class="op">=</span><span class="st">'x21'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="requêtes-imbriquées" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -489,7 +491,7 @@ Stéphane Boucheron
 <li><p>Opérateur <code>IN</code> déjà vu pour exprimer que l’attribut est à valeur dans une certaine liste</p></li>
 <li><p>Nouvelle utilisation de <code>IN</code> avec des sous-requêtes.</p></li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="op">&lt;</span>attribut<span class="op">&gt;</span> [<span class="kw">NOT</span>] <span class="kw">IN</span> (<span class="op">&lt;</span>sous<span class="op">-</span>requete<span class="op">&gt;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="op">&lt;</span>attribut<span class="op">&gt;</span> [<span class="kw">NOT</span>] <span class="kw">IN</span> (<span class="op">&lt;</span>sous<span class="op">-</span>requete<span class="op">&gt;</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Evaluée à vraie si <attribut> appartient au résultat de la sous-requête</attribut></p>
 </section>
 <section id="utilisation-de-sous-requêtes-in-1" class="slide level2 center">
@@ -502,7 +504,7 @@ Stéphane Boucheron
 <span id="cb7-4"><a></a></span>
 <span id="cb7-5"><a></a><span class="kw">WHERE</span> NomF <span class="kw">IN</span> ( <span class="kw">SELECT</span> NomF  #<span class="op">&lt;&lt;</span></span>
 <span id="cb7-6"><a></a>                <span class="kw">FROM</span> Livraison #<span class="op">&lt;&lt;</span></span>
-<span id="cb7-7"><a></a>                <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>) ;  #<span class="op">&lt;&lt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a></a>                <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>) ;  #<span class="op">&lt;&lt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>]</p>
 <p>–</p>
 <p>.fl.w-50.pa2[ est équivalente à :</p>
@@ -511,7 +513,7 @@ Stéphane Boucheron
 <span id="cb8-3"><a></a><span class="kw">FROM</span> Fournisseur F, Livraison L </span>
 <span id="cb8-4"><a></a></span>
 <span id="cb8-5"><a></a><span class="kw">WHERE</span>  (F. NomF <span class="op">=</span> L. NomF) <span class="kw">AND</span> </span>
-<span id="cb8-6"><a></a>       (L. NomP <span class="op">=</span> <span class="st">'x21'</span>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-6"><a></a>       (L. NomP <span class="op">=</span> <span class="st">'x21'</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>]</p>
 </section>
 <section id="utilisation-de-sous-requêtes-in-2" class="slide level2 center">
@@ -525,7 +527,7 @@ Stéphane Boucheron
 <span id="cb9-6"><a></a>    <span class="kw">WHERE</span> NomF <span class="kw">IN</span> (<span class="kw">SELECT</span> NomF   #<span class="op">&lt;&lt;</span></span>
 <span id="cb9-7"><a></a>                 <span class="kw">FROM</span> Fournisseur   #<span class="op">&lt;&lt;</span></span>
 <span id="cb9-8"><a></a>                     <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Paris'</span>)  #<span class="op">&lt;&lt;</span></span>
-<span id="cb9-9"><a></a>);  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-9"><a></a>);  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>–</p>
 <p>est équivalente à</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> P.Couleur</span>
@@ -534,7 +536,7 @@ Stéphane Boucheron
 <span id="cb10-4"><a></a></span>
 <span id="cb10-5"><a></a><span class="kw">WHERE</span> P.NomP <span class="op">=</span> L.NomP <span class="kw">AND</span></span>
 <span id="cb10-6"><a></a>      L.NomF <span class="op">=</span> F.NomF   </span>
-<span id="cb10-7"><a></a>      VilleF <span class="op">=</span> <span class="st">'Paris'</span>  ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-7"><a></a>      VilleF <span class="op">=</span> <span class="st">'Paris'</span>  ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="utilisation-de-sous-requêtes-in-3" class="slide level2 center">
 <h2>Utilisation de sous-requêtes : <code>IN</code></h2>
@@ -548,7 +550,7 @@ Stéphane Boucheron
 <span id="cb11-3"><a></a><span class="kw">WHERE</span> NomP <span class="kw">NOT</span> <span class="kw">IN</span>    (</span>
 <span id="cb11-4"><a></a>    <span class="kw">SELECT</span> NomP   #<span class="op">&lt;&lt;</span></span>
 <span id="cb11-5"><a></a>    <span class="kw">FROM</span>  Livraison  #<span class="op">&lt;&lt;</span></span>
-<span id="cb11-6"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Equivalence en algèbre relationnelle :</p>
 <p><span class="math display">\[\pi_{\text{NomP}}(\text{Piece}) - \pi_{\text{NomP}}(\text{Livraison})\]</span></p>
 <p>…. Une des façons de coder la .blue[différence] en SQL</p>
@@ -561,13 +563,13 @@ Stéphane Boucheron
 <span id="cb12-3"><a></a>  <span class="kw">SELECT</span> capital </span>
 <span id="cb12-4"><a></a>  <span class="kw">FROM</span> country</span>
 <span id="cb12-5"><a></a>  <span class="kw">WHERE</span> population_city<span class="op">&gt;=</span>population_country<span class="op">*</span>.<span class="dv">5</span></span>
-<span id="cb12-6"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>–</p>
 <p>est équivalente à :</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">SELECT</span> name_city </span>
 <span id="cb13-2"><a></a><span class="kw">FROM</span> country <span class="kw">JOIN</span> city </span>
 <span id="cb13-3"><a></a>     <span class="kw">ON</span> capital<span class="op">=</span><span class="kw">id</span></span>
-<span id="cb13-4"><a></a><span class="kw">WHERE</span> population_city<span class="op">&gt;=</span>population_country<span class="op">*</span>.<span class="dv">5</span>;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-4"><a></a><span class="kw">WHERE</span> population_city<span class="op">&gt;=</span>population_country<span class="op">*</span>.<span class="dv">5</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="opérateur-all-et-any" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -577,10 +579,10 @@ Stéphane Boucheron
 <section id="utilisation-de-sous-requêtes-any-all" class="slide level2 center">
 <h2>Utilisation de sous-requêtes : <code>ANY</code>, <code>ALL</code></h2>
 <p>Deux nouveaux opérateurs manipulant des sous-requêtes : <code>ANY</code>, <code>ALL</code></p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="op">&lt;</span>attributs<span class="op">&gt;</span> <span class="op">=</span>|<span class="op">&lt;&gt;</span>|<span class="op">&lt;=</span>|<span class="op">&lt;</span>|<span class="op">&gt;</span>|<span class="op">=&gt;</span> <span class="kw">ANY</span> (<span class="op">&lt;</span>sous<span class="op">-</span>requete<span class="op">&gt;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="op">&lt;</span>attributs<span class="op">&gt;</span> <span class="op">=</span>|<span class="op">&lt;&gt;</span>|<span class="op">&lt;=</span>|<span class="op">&lt;</span>|<span class="op">&gt;</span>|<span class="op">=&gt;</span> <span class="kw">ANY</span> (<span class="op">&lt;</span>sous<span class="op">-</span>requete<span class="op">&gt;</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>évaluée à vraie si au moins un des résultats de la sous requête vérifie la comparaison avec <code>&lt;attributs&gt;</code></p>
 <div class="fragment">
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="op">&lt;</span>attributs<span class="op">&gt;</span> <span class="op">=</span>|<span class="op">&lt;&gt;</span>|<span class="op">&lt;=</span>|<span class="op">&lt;</span>|<span class="op">&gt;</span>|<span class="op">=&gt;</span> <span class="kw">ALL</span> (<span class="op">&lt;</span>sous<span class="op">-</span>requete<span class="op">&gt;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="op">&lt;</span>attributs<span class="op">&gt;</span> <span class="op">=</span>|<span class="op">&lt;&gt;</span>|<span class="op">&lt;=</span>|<span class="op">&lt;</span>|<span class="op">&gt;</span>|<span class="op">=&gt;</span> <span class="kw">ALL</span> (<span class="op">&lt;</span>sous<span class="op">-</span>requete<span class="op">&gt;</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>évaluée à vraie si tous les résultats de la sous-requête vérifient la comparaison avec <code>&lt;attributs&gt;</code></p>
 </div>
 <div class="fragment">
@@ -597,7 +599,7 @@ Stéphane Boucheron
 <span id="cb16-3"><a></a><span class="kw">WHERE</span> NomF <span class="op">=</span> <span class="kw">ANY</span> (</span>
 <span id="cb16-4"><a></a>    <span class="kw">SELECT</span> NomF</span>
 <span id="cb16-5"><a></a>    <span class="kw">FROM</span> Livraison</span>
-<span id="cb16-6"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span> );</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-6"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span> );</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="utilisation-de-sous-requêtes-any-all-2" class="slide level2 center">
 <h2>Utilisation de sous-requêtes : <code>ANY</code>, <code>ALL</code></h2>
@@ -605,7 +607,7 @@ Stéphane Boucheron
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb17-2"><a></a><span class="kw">FROM</span> Livraison</span>
 <span id="cb17-3"><a></a><span class="kw">WHERE</span> Quantite <span class="op">&gt;=</span> <span class="kw">ALL</span> (</span>
-<span id="cb17-4"><a></a>    <span class="kw">SELECT</span> Quantite <span class="kw">FROM</span> Livraison);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb17-4"><a></a>    <span class="kw">SELECT</span> Quantite <span class="kw">FROM</span> Livraison);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="utilisation-de-sous-requêtes-any-all-3" class="slide level2 center">
 <h2>Utilisation de sous-requêtes : <code>ANY</code>, <code>ALL</code></h2>
@@ -616,7 +618,7 @@ Stéphane Boucheron
 <span id="cb18-4"><a></a>      P.Prix<span class="op">&gt;=</span><span class="kw">ALL</span> (</span>
 <span id="cb18-5"><a></a>        <span class="kw">SELECT</span> Prix </span>
 <span id="cb18-6"><a></a>        <span class="kw">FROM</span> Piece</span>
-<span id="cb18-7"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="utilisation-de-sous-requêtes-any-all-4" class="slide level2 center">
 <h2>Utilisation de sous-requêtes : <code>ANY</code>, <code>ALL</code></h2>
@@ -627,7 +629,7 @@ Stéphane Boucheron
 <span id="cb19-4"><a></a>    <span class="kw">SELECT</span> c2.population_city </span>
 <span id="cb19-5"><a></a>    <span class="kw">FROM</span> city <span class="kw">as</span> c2</span>
 <span id="cb19-6"><a></a>    <span class="kw">WHERE</span> c1.countrycode<span class="op">=</span>c2.countrycode</span>
-<span id="cb19-7"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="opérateur-exists" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -636,7 +638,7 @@ Stéphane Boucheron
 </section>
 <section id="utilisation-de-sous-requêtes-exists" class="slide level2 center">
 <h2>Utilisation de sous-requêtes : <code>EXISTS</code></h2>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a>[<span class="kw">NOT</span>] <span class="kw">EXISTS</span> (<span class="op">&lt;</span>sous<span class="op">-</span>requete<span class="op">&gt;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a>[<span class="kw">NOT</span>] <span class="kw">EXISTS</span> (<span class="op">&lt;</span>sous<span class="op">-</span>requete<span class="op">&gt;</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>est évaluée à vraie si la sous-requête renvoie au moins un résultat.</p>
 <div class="fragment">
 <p>Nom et prix des pièces qui ont été livrées</p>
@@ -646,7 +648,7 @@ Stéphane Boucheron
 <span id="cb21-4"><a></a>  <span class="kw">SELECT</span> <span class="op">*</span> </span>
 <span id="cb21-5"><a></a>  <span class="kw">FROM</span> Livraison </span>
 <span id="cb21-6"><a></a>  <span class="kw">WHERE</span> Livraison.NomP <span class="op">=</span> P.NomP</span>
-<span id="cb21-7"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb21-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Différence avec <code>ANY</code></p>
@@ -664,7 +666,7 @@ Stéphane Boucheron
 <span id="cb22-5"><a></a>    <span class="kw">SELECT</span> <span class="op">*</span> </span>
 <span id="cb22-6"><a></a>    <span class="kw">FROM</span> Livraison L1 </span>
 <span id="cb22-7"><a></a>    <span class="kw">WHERE</span> L2.NomP<span class="op">=</span><span class="st">'a22'</span> <span class="kw">AND</span> L2.NomF<span class="op">=</span>L.NomF</span>
-<span id="cb22-8"><a></a>  );</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb22-8"><a></a>  );</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="utilisation-de-sous-requêtes-exists-2" class="slide level2 center">
 <h2>Utilisation de sous-requêtes : <code>EXISTS</code></h2>
@@ -675,7 +677,7 @@ Stéphane Boucheron
 <span id="cb23-4"><a></a>  <span class="kw">SELECT</span> <span class="op">*</span> </span>
 <span id="cb23-5"><a></a>  <span class="kw">FROM</span> world.countrylanguage <span class="kw">AS</span> cl</span>
 <span id="cb23-6"><a></a>  <span class="kw">WHERE</span> co.countrycode <span class="op">=</span> cl.countrycode  <span class="kw">AND</span> cl.isofficial</span>
-<span id="cb23-7"><a></a>);</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section>
 <section>
 <section id="opérateur-lateral" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -728,11 +730,11 @@ Stéphane Boucheron
 <span id="cb24-3"><a></a>  <span class="kw">SELECT</span> name_city       #<span class="op">&lt;&lt;</span></span>
 <span id="cb24-4"><a></a>  <span class="kw">FROM</span> city              #<span class="op">&lt;&lt;</span></span>
 <span id="cb24-5"><a></a>  <span class="kw">WHERE</span> city.countrycode<span class="op">=</span>country.countrycode) ss  #<span class="op">&lt;&lt;</span> </span>
-<span id="cb24-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> name_country;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb24-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> name_country;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>équivalent à</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">select</span> name_country, name_city </span>
 <span id="cb25-2"><a></a><span class="kw">from</span> country <span class="kw">natural</span> <span class="kw">join</span> city</span>
-<span id="cb25-3"><a></a><span class="kw">order</span> <span class="kw">by</span> name_country;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-3"><a></a><span class="kw">order</span> <span class="kw">by</span> name_country;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> <code>LATERAL</code> est surtout utilisé quand la colonne référencée est nécessaire au calcul des lignes à joindre</p>
 </section>
 <section id="lateral-en-action-sur-world" class="slide level2 center">
@@ -748,7 +750,7 @@ Stéphane Boucheron
 <span id="cb26-7"><a></a></span>
 <span id="cb26-8"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> name_city </span>
 <span id="cb26-9"><a></a></span>
-<span id="cb26-10"><a></a><span class="kw">LIMIT</span> <span class="dv">10</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb26-10"><a></a><span class="kw">LIMIT</span> <span class="dv">10</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <table class="caption-top">
 <thead>
@@ -811,7 +813,7 @@ Stéphane Boucheron
 <span id="cb27-9"><a></a>                  <span class="kw">WHERE</span> better_off.countrycode<span class="op">=</span>c.countrycode <span class="kw">AND</span>  #<span class="op">&lt;&lt;</span></span>
 <span id="cb27-10"><a></a>                          population_city<span class="op">&gt;</span> <span class="dv">2000000</span></span>
 <span id="cb27-11"><a></a>) <span class="kw">AS</span> big_capital </span>
-<span id="cb27-12"><a></a><span class="kw">ON</span> <span class="kw">TRUE</span> ;  #<span class="op">&lt;&lt;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div><table class="caption-top">
+<span id="cb27-12"><a></a><span class="kw">ON</span> <span class="kw">TRUE</span> ;  #<span class="op">&lt;&lt;</span> </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div><table class="caption-top">
 <thead>
 <tr class="header">
 <th style="text-align: left;">Country</th>
@@ -853,7 +855,7 @@ Stéphane Boucheron
 <span id="cb28-9"><a></a>)</span>
 <span id="cb28-10"><a></a><span class="kw">SELECT</span> <span class="op">..</span>.</span>
 <span id="cb28-11"><a></a><span class="kw">FROM</span>   <span class="op">..</span>. <span class="co">-- possible reference to r, s </span></span>
-<span id="cb28-12"><a></a><span class="kw">WHERE</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-12"><a></a><span class="kw">WHERE</span> </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 <p>Une clause <code>WITH</code> permet d’écrire des requêtes intermédiaires et de décomposer une requête complexe</p>
 <p>Ces expressions/requêtes sont souvent désignées par le vocable <code>Common Table Expressions</code> ou CTEs</p>
@@ -874,7 +876,7 @@ Stéphane Boucheron
 <span id="cb29-10"><a></a>)</span>
 <span id="cb29-11"><a></a><span class="kw">SELECT</span> bo.countrycode, name_country, lifeexpectancy</span>
 <span id="cb29-12"><a></a><span class="kw">FROM</span> better_off bo <span class="kw">JOIN</span> big_capital bc <span class="kw">ON</span></span>
-<span id="cb29-13"><a></a>  (bo.countrycode<span class="op">=</span>bc.countrycode <span class="kw">AND</span> bc.<span class="kw">id</span><span class="op">=</span>bo.capital) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb29-13"><a></a>  (bo.countrycode<span class="op">=</span>bc.countrycode <span class="kw">AND</span> bc.<span class="kw">id</span><span class="op">=</span>bo.capital) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
 <h1>Fin</h1>
@@ -882,7 +884,7 @@ Stéphane Boucheron
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
-<p>MA15Y030 – Bases de Données – L3 MIASHS – UParis Cité</p>
+<p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 </section>
@@ -1139,12 +1141,12 @@ Stéphane Boucheron
         // flash "checked"
         button.classList.add('code-copy-button-checked');
         var currentTitle = button.getAttribute("title");
-        button.setAttribute("title", "Copied!");
+        button.setAttribute("title", "Copié");
         let tooltip;
         if (window.bootstrap) {
           button.setAttribute("data-bs-toggle", "tooltip");
           button.setAttribute("data-bs-placement", "left");
-          button.setAttribute("data-bs-title", "Copied!");
+          button.setAttribute("data-bs-title", "Copié");
           tooltip = new bootstrap.Tooltip(button, 
             { trigger: "manual", 
               customClass: "code-copy-button-tooltip",
@@ -1202,6 +1204,13 @@ Stéphane Boucheron
             if (link.dataset.originalHref !== undefined) {
               link.href = link.dataset.originalHref;
             }
+              // target, if specified
+              link.setAttribute("target", "_blank");
+              if (link.getAttribute("rel") === null) {
+                link.setAttribute("rel", "noopener");
+              }
+              // default icon
+              link.classList.add("external");
           }
         }
       function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
