@@ -1,4 +1,9 @@
 ---
+title: "TD 10: Normalisation"
+subtitle: "Fenêtres et fonctions SQL"
+date: "2024-11-29"
+
+
 format:
   pdf:
     code-annotations: below

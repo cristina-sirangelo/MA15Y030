@@ -1,5 +1,9 @@
 ---
-title: "TD 2 : SQL "
+title: "TD 2: SQL"
+subtitle: "SQL Interrogation de données"
+date: "2024-09-27"
+
+
 format:
   pdf:
     code-annotations: below

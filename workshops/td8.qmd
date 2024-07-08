@@ -1,4 +1,8 @@
 ---
+title: "TD 11: Normalisation et dépendances"
+subtitle: "Normalisation et dépendances"
+date: "2024-12-06"
+
 format:
   pdf:
     code-annotations: below

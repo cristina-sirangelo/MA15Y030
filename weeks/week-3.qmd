@@ -1,6 +1,6 @@
 ---
-title: "Semaine 2"
-subtitle: "Algèbre relationnelle et SQL"
+title: "Semaine 3"
+subtitle: "SQL"
 editor: source
 ---
 
@@ -14,7 +14,7 @@ editor: source
 
 ## Préparer
 
-Requêtes du TD 1 [TD 1](/workshops/td1.html) 
+Finir requêtes du TD 1 [TD 1](/workshops/td1.html) 
 
 ## Cours magistral : diapositives
 
@@ -22,14 +22,15 @@ Requêtes du TD 1 [TD 1](/workshops/td1.html)
 
 [SQL requêtes élémentaires](/slides/SQL_1.html)
 
+[SQL requêtes imbriqués](/slides/SQL_2.html)
 
-## Exercices : TD 1
+## Exercices : TD 2
 
-[html](/workshops/td1.html)  [pdf](/workshops/td1.pdf)
+[html](/workshops/td2.html)  [pdf](/workshops/td2.pdf)
 
-<!-- ## Solutions du  TD 1  (Semaine 1)
+## Solutions du  TD 1  (Semaine 2)
 
-[html](/solutions/td1.html)  [pdf](/solutions/td1.pdf) -->
+[html](/solutions/td1.html)  [pdf](/solutions/td1.pdf)
 
 
 ## Travail personnel

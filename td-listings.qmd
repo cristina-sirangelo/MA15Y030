@@ -1,0 +1,11 @@
+---
+title: "Feuilles d'exercices"
+listing:
+  contents: 
+    - "workshops/*.qmd"
+  fields: [date, title, subtitle] 
+  type: table  
+  table-striped: true
+  table-hover: true
+  sort: date
+---

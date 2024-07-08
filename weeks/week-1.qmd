@@ -7,7 +7,8 @@ editor: source
 ::: callout-important
 
 -   Cours magistral en Amphi 1 Olympe de Gouges 
--   TD/TP 2004-2006 Étage 2 Sophie Germain
+-   Vendredi 13 septembre 2024 de 14h à 15h30
+-   {{< fa cal >}} [Emploi du temps](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3)
 
 :::
 
@@ -21,19 +22,17 @@ editor: source
 
 [Introduction à l'algèbre relationnelle](/slides/SQL_0.html){target="_blank"}
 
+[]
+
 ## Exercices : TD 1
+
+Vous pouvez commencer à aborder les questions de la première feuille de TD
 
 [html](/workshops/td1.html)  [pdf](/workshops/td1.pdf)
 
-<!-- ## Solutions : TD 1
+## Logistique
 
-[html](/solutions/workshops/td1.html)  [pdf](/solutions/workshops/td1.pdf) -->
-
-
-## Travail personnel
-
-
-[CC 1 2023-24](/exams/cc1-2023-10-27.html)
+Pensez à activer votre compte ENT. Vous en aurez besoin pour accéder au serveur PostGres utilisé en TP/TD. 
 
 <br><br>
 

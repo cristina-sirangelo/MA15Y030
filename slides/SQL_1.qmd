@@ -1,5 +1,7 @@
 ---
 title: "BD II: SQL I"
+subtitle: "Langage Manipulation de Données 1"
+date: "2024-09-20"
 ---
 
 
@@ -86,8 +88,9 @@ WHERE <condition> ;
 
 traduit l'expression
 
-$\pi_{\text{<liste attribut>}}(\sigma_{\text{<condition>}}(\text{<table>}))$
+$\Pi_{\text{<liste attribut>}}(\sigma_{\text{<condition>}}(\text{<table>}))$
 
+Ou `\sigma(R, Condition) | \Pi(<liste attribut>)`
 
 :::
 
@@ -143,6 +146,33 @@ FROM <liste de tables>
 :::::
 
 
+```{r}
+#| eval: true
+stopifnot(
+  require(DBI),
+  require(RPostgres)
+)
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+con <- DBI::dbConnect(
+  RPostgres::Postgres(),
+  dbname = 'bd_2023-24',
+  host = 'localhost',
+  port = 5436,
+  user = 'boucheron',
+  password = 'Tabor1959@lpma' # rstudioapi::askForPassword() # insert your password here
+)
+```
+
+```{sql}
+--| connection:  con
+--| eval: false
+SET search_path TO world ;
+```
 
 ## Requêtes simples sur exemple jouet
 
@@ -165,17 +195,24 @@ Piece(NomP, Prix, Couleur)
 ::: {.column}
 
 
-```{.sql}
-SELECT NomF, Ville
 
-FROM Fournisseur ;
+```{sql}
+--| connection:  con
+--| eval: false
+--| echo: true
+
+SELECT co.name_country, co.region
+FROM country co
+WHERE co.continent='Europe' 
+LIMIT 5 ;
 ```
+
 
 
 
 Equivalent à :
 
-$$\pi_{\text{NomF, Ville}}(\text{Fournisseur})$$
+$$\Pi_{\text{NomF, region}}(\text{country})$$
 
 :::
 

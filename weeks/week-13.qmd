@@ -1,0 +1,38 @@
+---
+title: "Semaine 13"
+subtitle: "Fin TD/TP et CC3"
+editor: source
+---
+
+::: callout-important
+
+-   TD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-16h45
+-   {{< fa cal >}} [Emploi du temps](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3)
+-   {{< fa mug-hot >}} {{< fa mug-hot >}} {{< fa mug-hot >}} **Contrôle continu III** 17h-18h15 Salle à déterminer
+
+
+:::
+
+## Préparer
+
+Finir  TD 11 [TD 11](/workshops/td11.html) 
+
+
+## Exercices : TD 12
+
+[html](/workshops/td12.html)  [pdf](/workshops/td12.pdf)
+
+## Solutions du  TD 11  (Semaine 12)
+
+[html](/solutions/td11.html)  [pdf](/solutions/td11.pdf)
+
+
+## Travail personnel
+
+[CC 1 2023-24](/exams/cc1-2023-10-27.html)
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+retour à [Agenda](/ "Agenda du cours") ⏎
+:::

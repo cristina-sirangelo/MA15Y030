@@ -1,4 +1,9 @@
 ---
+title: "TD 3: SQL"
+subtitle: "SQL Interrogation de données, requêtes complexes"
+date: "2024-10-04"
+
+
 format:
   pdf:
     code-annotations: below

@@ -1,6 +1,6 @@
 ---
-title: "Semaine 2"
-subtitle: "Algèbre relationnelle et SQL"
+title: "Semaine 10"
+subtitle: "Normalisation"
 editor: source
 ---
 
@@ -10,26 +10,25 @@ editor: source
 -   TD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15
 -   {{< fa cal >}} [Emploi du temps](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3)
 
+
 :::
 
 ## Préparer
 
-Requêtes du TD 1 [TD 1](/workshops/td1.html) 
+Finir  TD 8 [TD 8](/workshops/td8.html) 
 
 ## Cours magistral : diapositives
 
-[Introduction à l'algèbre relationnelle](/slides/SQL_0.html)
-
-[SQL requêtes élémentaires](/slides/SQL_1.html)
+[Normalisation I]()
 
 
-## Exercices : TD 1
+## Exercices : TD 9
 
-[html](/workshops/td1.html)  [pdf](/workshops/td1.pdf)
+[html](/workshops/td9.html)  [pdf](/workshops/td9.pdf)
 
-<!-- ## Solutions du  TD 1  (Semaine 1)
+## Solutions du  TD 8  (Semaine 9)
 
-[html](/solutions/td1.html)  [pdf](/solutions/td1.pdf) -->
+[html](/solutions/td8.html)  [pdf](/solutions/td8.pdf)
 
 
 ## Travail personnel

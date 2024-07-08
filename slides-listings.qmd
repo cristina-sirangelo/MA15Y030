@@ -1,0 +1,10 @@
+---
+title: "Diapositives"
+listing:
+  contents: 
+    - "slides/*.qmd"
+  type: table  
+  table-striped: true
+  table-hover: true
+  sort: date
+---

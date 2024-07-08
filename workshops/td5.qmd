@@ -1,4 +1,9 @@
 ---
+title: "TD 9: Normalisation et dépendances"
+subtitle: "Dépendances fonctionnelles"
+date: "2024-11-22"
+
+
 format:
   pdf:
     code-annotations: below

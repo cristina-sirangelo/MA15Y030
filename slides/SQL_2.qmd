@@ -1,6 +1,7 @@
 ---
 title: "BD II: SQL II"
-
+subtitle: "Langage Manipulation de Données 2 : requêtes imbriquées"
+date: "2024-09-20"
 ---
 
 
@@ -20,28 +21,28 @@ title: "BD II: SQL II"
 {{< fa triangle-exclamation >}} Les deux tables doivent avoir des **schémas identiques**
 
 
-- Intersection ( $\cap$ ) : les tuples qui sont à la fois dans la requête 1 
-    et dans  la requête 2
+- Intersection ( $\cap$ ) : les tuples qui sont à la fois dans la requête 1 et dans  la requête 2
 
 ```{.sql}
-  <requete1> INTERSECT <requete2>
+<requete1> INTERSECT <requete2>
 ```
 
---
+. . .
 
 - Union ( $\cup$ )  :  les tuples de la requête 1 et ceux de la  requête 2
 
 ```{.sql}
-  <requete1> UNION <requete2>
+<requete1> UNION <requete2>
 ```
 
---
+. . .
+
 
 - Différence ( $\backslash$ ) :  les tuples de la requête 1 qui ne sont pas des tuples 
 de la requête 2
 
 ```{.sql}
-  <requete1> EXCEPT <requete2>
+<requete1> EXCEPT <requete2>
 ```
 
 
@@ -50,24 +51,25 @@ de la requête 2
 ## Exemple pour `EXCEPT`
 
 ```{.sql}
-Fournisseur (NomF, VilleF, AdresseF) 
+`Fournisseur (NomF, VilleF, AdresseF)` 
 
-Piece(NomP, Prix, Couleur)
+`Piece(NomP, Prix, Couleur)`
 
-Livraison(NumLiv, NomP, NomF, DateLiv, Quantite)
+`Livraison(NumLiv, NomP, NomF, DateLiv, Quantite)`
 ```
 
-Fournisseurs qui ont livré la pièce x22 mais pas la pièce x21
-```{.sql}
-  SELECT NomF 
-  FROM Livraison 
-  WHERE NomP='x22'
+Fournisseurs qui ont livré la pièce `x22` mais pas la pièce `x21`
 
-  EXCEPT #<<
-  
-  SELECT NomF
-  FROM Livraison 
-  WHERE NomP='x21';
+```{.sql}
+SELECT NomF 
+FROM Livraison 
+WHERE NomP='x22'
+
+EXCEPT 
+
+SELECT NomF
+FROM Livraison 
+WHERE NomP='x21';
 ```
 
 
@@ -122,22 +124,30 @@ sous-requête
 
 Lister les villes de fournisseurs qui ont livré la pièce 'x21'.
 
-.fl.w-50.pa2[
+
+::::: {.columns}
+
+
+::: {.column}
 
 ```{.sql}
 SELECT DISTINCT VilleF 
 
 FROM Fournisseur 
 
-WHERE NomF IN ( SELECT NomF  #<<
-                FROM Livraison #<<
-                WHERE NomP = 'x21') ;  #<<
-```                        
-]
+WHERE NomF IN ( 
+  SELECT NomF  
+  FROM Livraison 
+  WHERE NomP = 'x21'
+) ;  
+```                       
 
---
+:::
 
-.fl.w-50.pa2[
+
+
+::: {.column}
+
 est équivalente à :
 
 ```{.sql}
@@ -145,10 +155,18 @@ SELECT DISTINCT F.VilleF
 
 FROM Fournisseur F, Livraison L 
 
-WHERE  (F. NomF = L. NomF) AND 
-       (L. NomP = 'x21');
+WHERE (F. NomF = L. NomF) AND 
+  (L. NomP = 'x21');
 ```
-]
+
+:::
+
+
+
+:::::
+
+
+
 
 
 ---
@@ -163,13 +181,15 @@ FROM Piece
 WHERE NomP IN (   
 	SELECT NomP  #<< 
   FROM Livraison  #<< 
-	WHERE NomF IN (SELECT NomF   #<<
-                 FROM Fournisseur   #<<
-             		 WHERE VilleF='Paris')  #<<
-);  
+	WHERE NomF IN (
+    SELECT NomF   #<<
+    FROM Fournisseur   #<<
+    WHERE VilleF='Paris'
+    )  #<<
+  );  
 ```
 
---
+. . .
 
 est équivalente à
 
@@ -178,13 +198,14 @@ SELECT DISTINCT P.Couleur
 
 FROM Piece P, Livraison L, Fournisseur F
 
-WHERE P.NomP = L.NomP AND
-      L.NomF = F.NomF 	
-      VilleF = 'Paris'  ;
+WHERE 
+  P.NomP = L.NomP AND
+  L.NomF = F.NomF AND	
+  VilleF = 'Paris'  ;
 ```
 
 
----
+
 
 ## Utilisation de sous-requêtes : `IN`
 
@@ -198,9 +219,9 @@ Lister les noms de pièces qui n'ont jamais été livrées.
 ```{.sql}
 SELECT NomP
 FROM Piece P 
-WHERE NomP NOT IN    (
-    SELECT NomP   #<<
-    FROM  Livraison  #<<
+WHERE NomP NOT IN  (
+  SELECT NomP   #<<
+  FROM  Livraison  #<<
 );
 ```
 
@@ -208,10 +229,10 @@ Equivalence en algèbre relationnelle :
 
 $$\pi_{\text{NomP}}(\text{Piece}) - \pi_{\text{NomP}}(\text{Livraison})$$
 
-.... Une des façons de coder la .blue[différence] en SQL
+.... Une des façons de coder la *différence* en SQL
 
 
----
+
 
 
 
@@ -228,21 +249,20 @@ WHERE id IN (
 );
 ```
 
---
+. . .
 
 est équivalente à :
+
 
 ```{.sql}
 SELECT name_city 
 FROM country JOIN city 
-     ON capital=id
+  ON capital=id
 WHERE population_city>=population_country*.5;
 ```
 
 
 # Opérateur ALL et ANY  {background-color="#1c191c"}
-
-
 
 
 ## Utilisation de sous-requêtes : `ANY`, `ALL`
@@ -257,6 +277,7 @@ Deux nouveaux opérateurs manipulant des sous-requêtes : `ANY`, `ALL`
 
 . . .
 
+
 ```{.sql}
 <attributs> =|<>|<=|<|>|=> ALL (<sous-requete>)
 ```
@@ -266,7 +287,7 @@ Deux nouveaux opérateurs manipulant des sous-requêtes : `ANY`, `ALL`
 . . .
 
 {{< fa hand-point-right >}}
-.blue[`<attributs>`]: peut être une *liste* d'attributs
+`<attributs>`: peut être une *liste* d'attributs
 
 
 
@@ -283,7 +304,8 @@ FROM Fournisseur
 WHERE NomF = ANY (
 	SELECT NomF
 	FROM Livraison
-	WHERE NomP = 'x21' );
+	WHERE NomP = 'x21' 
+);
 ```
 
 
@@ -301,7 +323,9 @@ Information sur la commande dont la quantité de ièces livrées était la plus 
 SELECT *
 FROM Livraison
 WHERE Quantite >= ALL (
-	SELECT Quantite FROM Livraison);
+	SELECT Quantite 
+  FROM Livraison
+);
 ```
 
 
@@ -315,9 +339,9 @@ Noms et prix des pièces livrées les plus chères
 SELECT P.NomP, P.Prix 
 FROM Livraison L, Piece P
 WHERE L.NomP = P.NomP AND 
-      P.Prix>=ALL (
-        SELECT Prix 
-        FROM Piece
+  P.Prix>=ALL (
+    SELECT Prix 
+    FROM Piece
 );
 ```
 
@@ -332,9 +356,9 @@ La ville la plus peuplée de chaque pays
 SELECT c1.name_city 
 FROM city as c1
 WHERE population_city >= ALL (
-    SELECT c2.population_city 
-    FROM city as c2
-    WHERE c1.countrycode=c2.countrycode
+  SELECT c2.population_city 
+  FROM city as c2
+  WHERE c1.countrycode=c2.countrycode
 );
 ```
 
@@ -368,7 +392,7 @@ WHERE EXISTS (
 
 {{< fa hand-point-right >}} Différence avec `ANY` 
 
-L' utilisation de `EXISTS` s'apparente à une condition booléenne. 
+L'utilisation de `EXISTS` s'apparente à une condition booléenne. 
 
 Pas de test sur la valeur d'un attribut particulier.
 
@@ -415,7 +439,12 @@ WHERE EXISTS (
 but they enable some powerful new queries that were previously only tractable with procedural code. 
 In this post, I'll walk through a conversion funnel analysis that wouldn't be possible in PostgreSQL 9.2.
 
-.fr[https://heap.io/blog/postgresqls-powerful-new-join-type-lateral]
+::: {.aside}
+
+https://heap.io/blog/postgresqls-powerful-new-join-type-lateral
+
+:::
+
 
 ---
 
@@ -460,10 +489,11 @@ On peut parler de *sous-requête paramétrée*
 
 ```{.sql}
 SELECT name_country, name_city 
-FROM country, LATERAL (  #<<
-  SELECT name_city       #<<
-  FROM city              #<<
-  WHERE city.countrycode=country.countrycode) ss  #<< 
+FROM country, LATERAL (  
+  SELECT name_city       
+  FROM city              
+  WHERE city.countrycode=country.countrycode
+) ss   
 ORDER BY name_country;
 ```
 
@@ -471,9 +501,9 @@ ORDER BY name_country;
 équivalent à 
 
 ```{.sql}
-select name_country, name_city 
-from country natural join city
-order by name_country;
+SELECT name_country, name_city 
+FROM country NATURAL JOIN city
+ORDER BY name_country;
 ```
 
 
@@ -491,10 +521,11 @@ order by name_country;
 ```{.sql}
 SELECT name_country, name_city 
 
-FROM country, LATERAL ( #<<
-  SELECT name_city  #<<
-  FROM city  #<<
-  WHERE city.countrycode=country.countrycode) ss #<< 
+FROM country, LATERAL ( 
+  SELECT name_city  
+  FROM city  
+  WHERE city.countrycode=country.countrycode
+  ) ss  
 
 ORDER BY name_city 
 
@@ -520,7 +551,7 @@ LIMIT 10 ;
 
 :::
 
-::::: <!-- end columns -->
+:::::
 
 
 
@@ -529,17 +560,20 @@ LIMIT 10 ;
 
 ```{.sql}
 SELECT	name_country,	name_city, lifeexpectancy
-FROM (SELECT countrycode,	name_country, lifeexpectancy
-		  FROM country
-		  WHERE gnpold >0 AND gnp / gnpold > 1.1
-     ) AS better_off 
-JOIN LATERAL (SELECT c.countrycode, name_city  #<< 
-		          FROM country c
-		          JOIN city ON (capital = id)
-		          WHERE better_off.countrycode=c.countrycode AND  #<<
-			              population_city> 2000000
-) AS big_capital 
-ON TRUE ;  #<< 
+FROM (
+  SELECT countrycode,	name_country, lifeexpectancy
+  FROM country
+	WHERE gnpold >0 AND gnp / gnpold > 1.1
+  ) AS better_off 
+  JOIN LATERAL (
+    SELECT c.countrycode, name_city  #<< 
+		FROM country c
+		  JOIN city ON (capital = id)
+		WHERE 
+      better_off.countrycode=c.countrycode AND  
+			population_city> 2000000
+    ) AS big_capital 
+ON TRUE ;   
 ```
 
 

@@ -1,5 +1,7 @@
 ---
-title: "TD I: Algèbre relationnelle"
+title: "TD 1: Algèbre relationnelle"
+subtitle: "Logistique et Algèbre relationnelle"
+date: "2024-09-20"
 
 format:
   pdf:

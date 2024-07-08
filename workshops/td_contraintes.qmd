@@ -1,18 +1,22 @@
 ---
-title: "TD : Contraintes"
+title: "TD 6 : Contraintes"
+subtitle: "Définition de données Contraintes"
+date: "2024-10-25"
+
+
 format:
   pdf:
     code-annotations: below
     keep-tex: false
     code-fold: false
     toc: false
-    output-file: td-contraintes.pdf
+    output-file: td6.pdf
     include-in-header:
-      - text: "\\lhead{{\\sf  Base de données \\\\ TD contraintes }}"
+      - text: "\\lhead{{\\sf  Base de données \\\\ TD 6: contraintes }}"
   html:
     embed-resources: true
     code-fold: true
-    output-file: td-contraintes.html
+    output-file: td6.html
 params:
     year: 2024 
     curriculum: "L3 MIASHS/Ingémath"

@@ -1,9 +1,13 @@
 ---
 title: "BD IV: SQL III"
+subtitle: "Langage Manipulation de Données 3 : Aggrégation/Fenêtres/Partitions"
+date: "2024-09-27"
 ---
 
 
-```{.r, include=FALSE}
+```{r}
+#| echo: false
+#| eval: false
 library(DBI)
 db <- dbConnect(RSQLite::SQLite(), dbname = "sql.sqlite")
 knitr::opts_chunk$set(connection = "db")
@@ -177,15 +181,17 @@ Nom des fournisseurs ayant effectué plus de $10$ livraisons.
 ```{.sql}
 SELECT F.NomF 
 FROM Fournisseur F 
-WHERE (SELECT Count (*)     
-          FROM Livraison L     
-          WHERE F.NomF = L.NomF) >= 10;  
+WHERE (
+  SELECT Count (*)     
+  FROM Livraison L     
+  WHERE F.NomF = L.NomF
+) >= 10;  
 ```
 
 ![](/images/prod-liv-fourn.png)
 
 
-## Musée des horreurs   {smaller}
+## Musée des horreurs   {.smaller}
 
 
 
@@ -303,7 +309,7 @@ Les opérateurs (`MAX`, `SUM`, etc) s'appliquent à chaque groupe de relations.
 
 
 
-## Exemple   {smaller}
+## Exemple   {.smaller}
 
 Dans le schéma `world`, quel est le `gnp` moyen par `region` sur le continent `Europe` ?
 
@@ -321,7 +327,7 @@ ORDER BY avg_gnp DESC;
 ```
 
 
-|**region**          |**avg_gnp**|**max_gnp**|**min_gnp**|**min_life_exp**|
+|**region**      |**avg_gnp**|**max_gnp**|**min_gnp**|**min_life_exp**|
 |:---------------|------:|------:|------:|-----------:|
 |Nordic Countries|  28.00|  32.66|   0.00|        76.5|
 |Western Europe  |  25.50|  37.46|  22.82|        77.1|
@@ -419,7 +425,8 @@ FROM Employe
 WHERE NumDep IN (
   SELECT NumDep 
   FROM Departement 
-  WHERE NomDept='Financier') 
+  WHERE NomDept='Financier'
+) 
 GROUP BY Fonction 
 HAVING AVG(Salaire) >= 10000 
 ORDER BY Fonction;
@@ -529,8 +536,10 @@ On projette  le résultat sur les cinq colonnes pertinentes.
 
 ```{.sql}
 SELECT region, name_country, lifeexpectancy, 
-	   rank() OVER (PARTITION BY region   
-	   				ORDER BY lifeexpectancy DESC)  
+	rank() OVER (
+    PARTITION BY region   
+	  ORDER BY lifeexpectancy DESC
+  )  
 FROM country 
 WHERE region LIKE '%Countries'
 ORDER BY region, lifeexpectancy DESC 
@@ -553,9 +562,11 @@ LIMIT 6 ;
 
 ```{.sql}
 SELECT 
-	region, name_country , 
-	sum(gnp) OVER (PARTITION BY region  
-				   ORDER BY gnp)     
+	region, name_country, 
+	sum(gnp) OVER (
+    PARTITION BY region  
+		ORDER BY gnp
+)     
 FROM country c 
 WHERE region LIKE '%Europe' 
 LIMIT 6;
@@ -598,17 +609,18 @@ Pour chaque continent, afficher les trois pays ayant l'espérance de vie à la n
 
 ```{.sql}
 SELECT continent, 
-       name_country, 
-       lifeexpectancy, 
-       pos
+  name_country, 
+  lifeexpectancy, 
+  pos
 FROM
   (SELECT continent, 
-          name_country, 
-          lifeexpectancy,
-          rank() OVER (PARTITION BY continent 
-                       ORDER BY lifeexpectancy DESC) AS pos
-     FROM country
-     WHERE lifeexpectancy IS NOT NULL
+    name_country, 
+    lifeexpectancy,
+    rank() OVER (
+      PARTITION BY continent 
+      ORDER BY lifeexpectancy DESC) AS pos
+  FROM country
+  WHERE lifeexpectancy IS NOT NULL
   ) AS ws
 WHERE pos <= 3;
 ```
@@ -621,17 +633,18 @@ WHERE pos <= 3;
 ```{.sql}
 WITH ws AS (
   SELECT continent, 
-         name_country, 
-         lifeexpectancy,
-         rank() OVER (PARTITION BY continent 
-                      ORDER BY lifeexpectancy DESC) AS pos
-     FROM country
-     WHERE lifeexpectancy IS NOT NULL
+    name_country, 
+    lifeexpectancy,
+    rank() OVER (
+      PARTITION BY continent 
+      ORDER BY lifeexpectancy DESC) AS pos
+  FROM country
+  WHERE lifeexpectancy IS NOT NULL
 ) 
 SELECT continent, 
-       name_country, 
-       lifeexpectancy, 
-       pos
+  name_country, 
+  lifeexpectancy, 
+  pos
 FROM ws   
 WHERE pos <= 3;
 ```
@@ -639,7 +652,7 @@ WHERE pos <= 3;
 
 ---
 
-## Exemple  {smaller}
+## Exemple  {.smaller}
 
 Afficher le pays le plus peuplé 
 
@@ -650,16 +663,19 @@ Afficher le pays le plus peuplé
 
 ```{.sql}
 SELECT S.name_country, 
-       S.continent, 
-       S.population_country
+  S.continent, 
+  S.population_country
 FROM (
   SELECT max(population_country) AS mpc 
-  FROM country c) AS R 
-    JOIN LATERAL  (    
-	SELECT * 
-	FROM country c2 
-	WHERE c2.population_country >= R.mpc) AS S 
-	ON (TRUE);
+  FROM country c
+  ) AS R 
+  JOIN LATERAL (    
+	  SELECT * 
+	  FROM country c2 
+	  WHERE c2.population_country >= R.mpc
+    ) AS S 
+    ON (TRUE)
+) ;
 ```
 
 :::
@@ -673,14 +689,15 @@ SELECT c.name_country,
        c.population_country
 FROM (
 	SELECT max(population_country) AS mpc 
-	FROM country c2) AS S
+	FROM country c2
+  ) AS S
   JOIN country c 
   ON (c.population_country >= S.mpc)    
 ;
 ```
 
 :::
-::::: <!-- end columns -->
+:::::
 
 
 
@@ -693,7 +710,7 @@ China       |Asia     |        1277558000|
 
 ---
 
-## Exemple  (suite)  {smaller}
+## Exemple  (suite)  {.smaller}
 
 Afficher le pays le plus peuplé 
 
@@ -725,7 +742,7 @@ WHERE population_country >= mpc ;
 ```
 
 :::
-::::: <!-- end columns -->
+::::: 
 
 ```
 name_country|continent|population_country|
@@ -736,7 +753,7 @@ China       |Asia     |        1277558000|
 
 ---
 
-## Exemple  {smaller}
+## Exemple  {.smaller}
 
 Afficher les 10 pays les plus peuplés
 
@@ -748,6 +765,7 @@ WITH S AS (
          OVER (ORDER BY population_country DESC) AS rpc  
 	FROM world.country c
 )
+
 SELECT name_country, continent, population_country
 FROM S   
 WHERE rpc <= 10 
@@ -788,7 +806,7 @@ de tables de contingences (*contingency tables*).
 
 ---
 
-## `ROLLUP`  {smaller}
+## `ROLLUP`  {.smaller}
 
 ```{.sql}
 SELECT continent, region, max(lifeexpectancy)
@@ -822,7 +840,7 @@ GROUP BY GROUPING SETS ((c1, c2), (c1), (c2), ());
 
 {{< fa hand-point-right >}} `ROLLUP` and `CUBE` are special cases of `GROUPING SETS`
 
-## `GROUPING SETS`  (suite)  {smaller}
+## `GROUPING SETS`  (suite)  {.smaller}
 
 ```{.sql}
 SELECT continent, region, max(lifeexpectancy)
@@ -849,7 +867,7 @@ ORDER BY continent, region ;
 
 ```{.sql}
 SELECT c1, c2, c3,
-    aggregate (c4) 
+  aggregate (c4) 
 FROM table_name
 GROUP BY CUBE (c1, c2, c3);  
 ```
@@ -861,7 +879,7 @@ GROUP BY CUBE (c1, c2, c3);
 SELECT continent, region, governmentform, count(*) AS cnt, max(lifeexpectancy)
 FROM country c 
 WHERE continent LIKE '%America'
-GROUP BY CUBE   (continent, region, governmentform)   
+GROUP BY CUBE (continent, region, governmentform)   
 HAVING COUNT(*) > 5;
 ```
 
@@ -899,7 +917,7 @@ HAVING COUNT(*) > 5;
 
 ---
 
-## Compter les formes de gouvernement et les région dans les Amériques  {smaller}
+## Compter les formes de gouvernement et les région dans les Amériques  {.smaller}
 
 
 ```{.sql}

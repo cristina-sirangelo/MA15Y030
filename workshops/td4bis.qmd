@@ -1,17 +1,21 @@
 ---
+title: "TD 5: SQL"
+subtitle: "Fenêtres et fonctions SQL"
+date: "2024-10-18"
+
 format:
   pdf:
     code-annotations: below
     keep-tex: false
     code-fold: false
     toc: false
-    output-file: td4bis.pdf
+    output-file: td5.pdf
     include-in-header:
-      - text: "\\lhead{{\\sf  Base de données \\\\ TD 4 Bis}}"
+      - text: "\\lhead{{\\sf  Base de données \\\\ TD 5}}"
   html:
     embed-resources: true
     code-fold: true
-    output-file: td4bis.html
+    output-file: td5.html
 params:
     year: 2024 
     curriculum: "L3 MIASHS/Ingémath"

@@ -1,35 +1,36 @@
 ---
-title: "Semaine 2"
-subtitle: "Algèbre relationnelle et SQL"
+title: "Semaine 9"
+subtitle: "Modélisation et CC 2"
 editor: source
 ---
-
+ 
 ::: callout-important
 
 -   Cours magistral en Amphi. 1 Olympe de Gouges 14h-15h30
 -   TD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15
 -   {{< fa cal >}} [Emploi du temps](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3)
+-   {{< fa mug-hot >}} {{< fa mug-hot >}} **Contrôle continu II** 17h-18h15 Salle à déterminer
+
 
 :::
 
 ## Préparer
 
-Requêtes du TD 1 [TD 1](/workshops/td1.html) 
+Finir  TD 7 [TD 7](/workshops/td7.html) 
 
 ## Cours magistral : diapositives
 
-[Introduction à l'algèbre relationnelle](/slides/SQL_0.html)
+[Modélisation I]()
 
-[SQL requêtes élémentaires](/slides/SQL_1.html)
+[Modélisation II]()
 
+## Exercices : TD 8
 
-## Exercices : TD 1
+[html](/workshops/td8.html)  [pdf](/workshops/td8.pdf)
 
-[html](/workshops/td1.html)  [pdf](/workshops/td1.pdf)
+## Solutions du  TD 7  (Semaine 8)
 
-<!-- ## Solutions du  TD 1  (Semaine 1)
-
-[html](/solutions/td1.html)  [pdf](/solutions/td1.pdf) -->
+[html](/solutions/td7.html)  [pdf](/solutions/td7.pdf)
 
 
 ## Travail personnel

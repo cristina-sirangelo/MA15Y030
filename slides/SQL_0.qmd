@@ -1,5 +1,7 @@
 ---
 title: "BD I: Algèbre Relationnelle"
+subtitle: "Cadre formel pour la manipulation de tables"
+date: "2024-09-13"
 ---
 
 
@@ -1392,20 +1394,6 @@ $$R \bowtie^+ S$$
 ::::: {.columns}
 ::: {.column}
 
-`TrDep`
-
-|  **hdep**   | **dest**   | **num** |
-|:----------------:|:--------------|--------:|
-|    13h15         | Lyon          |     213 |
-|    13h29         | Marseille     |    1024 |
-
-
-`TrArr`
-
-| **harr**      | **prov**     | **num**   |
-|:----------------:|:--------------|--------:|
-|    13h39         | Avignon        |     43       |
-|    15h15         | Paris          |     213       |
 
 :::
 ::: {.column}
@@ -1413,11 +1401,6 @@ $$R \bowtie^+ S$$
 $$\text{TrDep} \bowtie^+ \text{TrArr}$$
 
 
-| **hdep**         | **dest**         | **num** | **harr**       | **prov**     |
-|:-----------------:|:------------------|------:|:----------------:|:----------------|
-|    13h15              | Lyon               |     213           |     15h15         | Paris       |
-|    13h29              | Marseille          |    1024           |     -          |  -              |
-|   -              | -           |    43          |     13h39          | Avignon                    |
 
 :::
 :::::

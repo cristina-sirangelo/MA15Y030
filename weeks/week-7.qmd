@@ -1,0 +1,47 @@
+---
+title: "Semaine 7"
+subtitle: "Fonctions SQL et requêtes préparées"
+editor: source
+---
+
+::: callout-important
+
+-   Cours magistral en Amphi. 1 Olympe de Gouges 14h-15h30
+-   TD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-16h45
+-   {{< fa cal >}} [Emploi du temps](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3)
+-   {{< fa mug-hot >}} **Contrôle continu I** 17h-18h15 Salle à déterminer
+
+
+:::
+
+## Préparer
+
+Finir requêtes du TD 6 [TD 6](/workshops/td6.html) 
+
+## Cours magistral : diapositives
+
+[Définition de données](/slides/LDD_0.html)
+
+[Contraintes I](/slides/LDD_1.html)
+
+[Contraintes II](/slides/LDD_2.html)
+
+
+## Exercices : TD 6
+
+[html](/workshops/td6.html)  [pdf](/workshops/td6.pdf)
+
+## Solutions du  TD 5  (Semaine 6)
+
+[html](/solutions/td5.html)  [pdf](/solutions/td5.pdf)
+
+
+## Travail personnel
+
+[CC 1 2023-24](/exams/cc1-2023-10-27.html)
+
+<br><br>
+
+::: {style="font-size: 0.875em;"}
+retour à [Agenda](/ "Agenda du cours") ⏎
+:::
