@@ -1,0 +1,847 @@
+---
+title: "BD : `dplyr` une mise oeuvre de l'Algèbre Relationnelle"
+subtitle: "Bases de Données Licences MIASHS et Mathématiques"
+author: "Équipe BD"
+institute: "Université de Paris"
+date: "2025-03-31"
+
+execute: 
+  echo: true
+  eval: true
+---
+
+
+# `dplyr`
+
+
+## Table `babynames`
+
+```{r}
+stopifnot(
+  require(dplyr),
+  require(tibble),
+  require(babynames),
+  require(gt)
+)
+```
+
+
+```{r}
+babynames |> 
+  glimpse()
+```
+
+---
+
+```{r}
+babynames[1:5,] |> 
+  gt()
+```
+
+# LMD : Opérateurs  {background-color="#1c191c"}
+
+
+
+## Opérateurs de base
+
+
+::: {.callout-important}
+
+
+### Liste des opérateurs
+
+L'algèbre relationnelle est d'abord un *Langage de Manipulation de Données& (LMD)}.
+
+
+- Union: $\Large{\cup}$  
+
+- Intersection: $\Large{\cap}$ 
+
+- Différence: $\Large{\backslash}$ 
+
+- Projection:  $\Large{\Pi}$  
+
+- Sélection: $\Large{\sigma}$ 
+
+- Produit cartésien:  $\Large{\times}$ 
+
+- Renommage:  $\Large{\rho}$ 
+
+
+s'appliquent à des relations pour produire d'autres relations (le résultat).
+
+:::
+
+
+## Union $\cup$ et intersection  $\cap$
+
+::: {.callout-important}
+
+### Définition
+
+- L'*union* et l'*intersection* sont des  opérations portant sur deux relations $R_1$ et $R_2$ de **même  schéma**
+
+- $T=R_1\cup R_2$  est  constituée des tuples appartenant à $R_1$ *ou* à
+$R_2$.
+
+- $T=R_1\cap R_2$  est  constituée des tuples appartenant à $R_1$ *et* à
+$R_2$.
+
+- Les Schémas de  $R_1\cup R_2$, $R_1\cap R_2$ sont les mêmes que ceux de $R_1$  et  $R_2$
+
+:::
+
+## Union et intersection
+
+## Exemple
+
+::::: {.columns}
+
+::: {.column}
+
+**Train 1**
+
+| **h-dep**   | **dest**            | **num**           |
+|:--------:|:-----------------|:----------------|
+|    13h15    | Lyon         |     213         |
+|    13h29    | Marseille    |    1024         |
+|    14h15    | Lyon         |    214          |
+
+
+**Train 2**
+
+| **h-dep**   | **dest**             | **num**            |
+|:--------:|:-----------------|:----------------|
+|    13h39   | Avignon       |     43          |
+|    14h15   | Lyon          |     214         |
+
+:::
+
+::: {.column}
+
+**Train 1 $\cup$ Train 2**
+
+| **h-dep**   | **dest**     |    **num**      |
+|:-----------:|:-------------|:----------------|
+|    13h15    | Lyon         |     213         |
+|    13h29    | Marseille    |    1024         |
+|    14h15    | Lyon         |    214          |
+|    13h39    | Avignon      |     43          |
+
+
+**Train 1 $\cap$ Train 2**
+
+| **h-dep**   | **dest**             | **num**            |
+|:--------:|:-----------------|----------------:|
+|    14h15    | Lyon         |    214          |
+
+:::
+
+:::::
+
+
+
+## Différence
+
+
+::: {.callout-important}
+
+### Définition
+
+
+- La **différence** de deux relations $R_1$ et $R_2$ (de même schéma) est une relation $T$
+
+- de même schéma que $R_1$ et $R_2$ 
+
+- constituée des tuples appartenant à $R_1$ et n'appartenant pas à $R_2$.
+
+
+- On note $T = R_1 - R_2$.
+
+:::
+
+. . .
+
+::: {.callout-caution}
+
+### Opération non *commutative* !
+
+R_1 - R_2\neq  R_2 - R_1$ (en général).
+
+
+:::
+
+
+
+## Différence : exemple
+
+
+::::: {.columns}
+
+
+::: {.column}
+
+:::
+
+::: {.column}
+
+
+:::
+
+:::::
+
+
+
+
+## Produit Cartésien
+
+
+
+::: {.callout-important}
+
+### Définition
+
+- Soient:
+  -  $R_1$ de schéma $R_1(A_1,A_2,...,A_k)$
+  -  $R_2$ de schéma $R_2(B_1,B_2,...,B_\ell)$
+  -  avec $A_i\neq B_j$, pour tout $i=1,...,k$, $j=1,..,\ell$
+
+-  Dans le contexte "classique" : $R_1 \times R_2= \{(e_1,e_2): e_1\in R_1, e_2\in R_2\}$
+
+- $R=R_1 \times R_2$  de schéma $R(A_1,A_2,...,A_k,B_1,B_2,...,B_\ell)$. Le schéma de $R$ est *l'union* des schémas de $R_1$ et $R_2$
+
+:::
+
+::: {.callout-caution}
+
+### Attention 
+
+En algèbre relationnelle, cette opération est commutative  ( $R_1\times R_2 = R_2\times R_1$ ) et associative
+ 
+:::
+
+## Produit cartésien :
+
+
+::: {.callout-important}
+
+###  Définition formelle
+
+$R=R_1\times R_2$ est la relation de schéma $R(A_1,A_2,...,A_k,B_1,B_2,...,B_\ell)$ vérifiant~:
+
+
+- Pour tout $t\in R$, il existe $t_1\in R_1$, $t_2\in R_2$  ($\forall t \in R, \exists t_1 \in R_1, \exists t_2 \in R_2, \ldots$) tels que :
+
+$$t.A_1=t_1.A_1, \ldots, t.A_k=t_1.A_k,\quad t.B_1=t_2.B_1, \ldots, t.B_\ell=t_2.B_\ell$$
+
+- Réciproquement, pour tout $t_1\in R_1$, $t_2\in R_2$ , il existe $t\in R$ tels que :
+
+$$t.A_1=t_1.A_1, \ldots, t.A_k=t_1.A_k,\quad \text{et} \quad t.B_1=t_2.B_1, \ldots, t.B_\ell=t_2.B_\ell$$
+
+$$\forall t_1 \in R_1, \forall t_2 \in R_2, \exists t \in R, \qquad  t.A_1=t_1.A_1, \ldots, t.A_k=t_1.A_k,\quad \text{et} \quad t.B_1=t_2.B_1, \ldots, t.B_\ell=t_2.B_\ell$$
+:::
+
+
+
+## Produit cartésien avec `dplyr`: `dplyr::cross_join()`
+
+
+$R \times S$ se traduit en 
+
+```{.r}
+cross_join(R, S)
+```
+
+
+## Projection  ( $\Large{\pi}$ )
+
+
+::: {.callout-important}
+
+### Définition
+
+- La *projection* d'une relation $R$ de schéma $R(A_1,\dots, A_k)$
+ sur les attributs $A_{i_1}, \dots, A_{i_p}$, $i_1,..., i_p\in \{1,...,k\}$,  est la relation $S$
+  - de schéma $S(A_{i_1}, \dots,A_{i_p})$
+  - dont les tuples sont obtenus par élimination des attributs
+non mentionnés dans $A_{i_1}, \dots, A_{i_p}$ (et par élimination
+des doublons).
+  - On note $S = \pi_{A_{i_1}, \dots, A_{i_p}} (R)$.
+
+- Définition formelle :
+
+$$s\in S\quad  \iff \quad \exists t\in R, \forall n\in\left\{1,\dots,p\right\}\qquad s.A_{i_n}=t.A_{i_n}$$
+
+:::
+
+
+Implicitement, on a *élimination des doublons* car une projection peut produire plusieurs fois le même tuple.
+
+
+## Projection avec `dplyr::select()`
+
+$S = \pi_{A_{i_1}, \dots, A_{i_p}} (R)$ se traduit en 
+
+```{.r}
+S <- dplyr::select(R, Ai1, Ai2, ..., Aip)
+```
+
+
+## Projection : Exemples
+
+
+
+## Projection vitaminée (`tidy selection`)
+
+
+
+## Sélection  ( $\Large{\sigma}$ ) 
+
+
+::: {.callout-important}
+
+### Définition
+
+- La *sélection* d'une relation $R$
+par une condition $C$ est une relation $S$
+
+  - de même schéma que $R$ 
+
+  - dont les tuples sont ceux de $R$ qui satisfont la condition $C$.
+
+- On note $S = \sigma_C (R)$.
+
+- La condition $C$  
+
+  - s'exprime à l'aide des noms d'attributs de la relation ou de constantes (pour les opérandes)
+
+  - on peut utiliser des opérateurs arithmétiques de comparaison ( $=, \neq, \leq, \geq, <, >$ ) ainsi que des connecteurs logiques ( $\lnot, \land, \lor$ )..
+
+:::
+
+## Sélection avec `dplyr::filter`
+
+
+$S = \sigma_C (R)$  se traduit en
+
+```{.r}
+S <- dplyr::filter(R, C)
+```
+
+
+## Sélection : Exemple
+
+
+
+## Renommage
+
+::: {.callout-important}
+
+### Définition
+
+- Soit  $R$ de schéma $R(A_1,\dots, A_k)$, le *renommage* d'un attribut $A_i$, $i\leq k$, en $B$ est une relation $S$ :
+  - de même contenu  (mêmes lignes)
+  - de schéma $S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)$
+  - On le note $S=\rho_{A_i\mapsto B}(R)$
+
+:::
+
+
+## Renommage avec `dplyr::rename()`
+
+$S=\rho_{A_i\mapsto B}(R)$  se traduit en 
+
+```{.r}
+S <- dplyr::rename(R, B=Ai)
+```
+
+## Exemple
+
+	
+
+
+
+
+*Utilité* Va permettre d'étendre certains opérateurs pour des relations de schémas non-disjoints
+
+
+# Composer les opérations avec `\>` (pipe)
+
+## Les opérateurs comme fonctions
+
+$\pi_{Ai1, Aip}\left(\sigma_C(R)\right)$
+
+se traduit en 
+
+```{.r}
+dplyr::select(dplyr::filter(R, C), Ai1, ..., Aip)
+```
+
+qui s'avère difficile à lire, surtout si on compose plus d'opérations élémentaires 
+
+La composition de fonctions se conçoit facilement mais l'expression correspondante est difficile à lire 
+
+## Réécriture de la composition avec `|>`
+
+```{.r}
+S <- dplyr::select(dplyr::filter(R, C), Ai1, ..., Aip)
+```
+
+peut être réécrite en
+
+```{.r}
+S <- R |> 
+  dplyr::filter(C) |>
+  dplyr::select(Ai1,.., Aip)
+```
+
+
+
+# Opérations complémentaires : les jointures  {background-color="#1c191c"}
+
+
+## Les jointures
+
+On va définir des opérations pratiques pour la manipulation de données~: les *jointures*
+
+- Jointure
+
+- Jointure *naturelle*
+
+- $\theta$-jointure et équi-jointure
+
+
+
+## Jointure
+
+
+::: {.callout-important}
+
+### Définition
+
+La jointure $T=R_1\bowtie_C R_2$ de deux relations $R_1$ et $R_2$ de schémas disjoints sous la condition $C$ est la relation $T$:
+
+- de schéma la *concaténation* des schémas de $R_1$ et $R_2$
+
+- formée des tuples du produit cartésien $R_1  \times R_2$ qui satisfont la condition $C$
+
+
+Règles de formation de la *condition de jointure* : comme pour la sélection
+
+
+:::
+
+
+::: {.callout-important}
+
+### Définition formelle
+
+$$R_1 \bowtie_C R_2 = \sigma_C(R_1\times R_2)$$
+
+:::
+
+
+## Exemple
+
+`TrDep`
+
+|  **hdep**   | **dest**   | **numdep** |
+|:----------------:|:--------------|--------:|
+|    13h15         | Lyon          |     213 |
+|    13h29         | Marseille     |    1024 |
+
+
+`TrArr`
+
+| **harr**      | **prov**     | **numarr**   |
+|:----------------:|:--------------|--------:|
+|    13h39         | Avignon        |     43       |
+|    15h15         | Paris          |     213       |
+
+
+
+$\texttt{TrDep} \bowtie_{\text{numdep} > \text{numar}} \texttt{TrArr}$
+
+| **hdep**         | **dest**         | **numdep** | **harr**       | **prov**         | **numarr** |
+|:----------------:|:--------------|--------:|:----------------:|:--------------|--------:|
+|    13h15              | Lyon               |     213           |     13h39          | Avignon            |     43  |        |
+|    13h29              | Marseille          |    1024           |     13h39          | Avignon            |     43   |        |
+|    13h29              | Marseille          |    1024           |     15h15          | Paris              |     213   |       |
+
+
+## Équi-jointure, $\theta$-jointure
+
+
+::: {.callout-important}
+
+### Équi-jointure  
+
+Jointure avec égalité entre attributs de types comparables
+
+:::
+
+
+$$\texttt{TrDep} \bowtie_{\text{numdep} = \text{numarr}} \texttt{TrArr}$$
+
+|**hdep**         | **dest**         | **numdep** | **harr**       | **prov**         | **numarr** |
+|:----------------:|:--------------|--------:|:----------------:|:--------------|--------:|
+|  13h15          | Lyon             |     213    |     15h15      | Paris            |     213    |
+
+
+. . .
+
+::: {.callout-important}
+
+### $\theta$-*jointure*
+
+Condition de jointure entre attributs de types comparables et avec un opérateur différent de l'égalité, c'est-à-dire dans $\left\{<,>,\leq,\geq, \neq\right\}$.
+
+$$\text{TrDep} \bowtie_{\text{numdep} > \text{numarr}} \text{TrArr}$$
+
+:::
+ 
+
+
+
+
+
+## Jointure naturelle
+
+::: {.callout-important}
+
+### Définition
+
+C'est une équi-jointure concernant les attributs communs (même nom et même type) de deux relations   
+
+On ne garde dans le résultat qu'une copie des attributs communs {{< fa  triangle-exclamation >}}
+
+:::
+
+
+On considère
+
+- $R_1$ d'attributs $A_1,..,A_k,B_1,...,B_h$
+
+- $R_2$ d'attributs $A_1,..,A_k,B_{h+1},...,B_\ell$
+
+- $A_1,..., A_k$ : attributs communs et $\{B_1,...,B_h\}\cap \{ B_{h+1},...,B_\ell \}=\emptyset$
+
+- Soit $A'_1, ...., A'_k$ tels que $\{A_1,..., A_k\}\cap \{ A'_1, ...., A'_k \}=\emptyset$
+
+
+
+## Jointure naturelle  (formalisation)
+
+Considérons $S$ d'attributs $A_1',..,A_k',B_{h+1},...,B_l$ définie par :
+
+$$S=\rho_{A_1\mapsto A_1'}(\rho_{A_2\mapsto A_2'}(\cdots (\rho_{A_k\mapsto A_k'}(R_2)\cdots ))$$
+
+
+La *jointure naturelle* sur deux relations $R_1$ et $R_2$ est la relation
+
+- d'attributs $A_1,..,A_k,B_1,...,B_h, B_{h+1},...,B_\ell$
+
+- définie par :
+
+$$\pi_{A_1,..,A_k,B_1,...,B_h, B_{h+1},...,B_\ell}(R_1\bowtie_{C} S)$$
+
+
+où $C$ est $(A_1=A_1') \wedge (A_2=A'_2) \wedge \ldots \wedge (A_k=A_k')$
+
+{{< fa  hand-point-right >}} on réalise une équi-jointure sur tous les attributs communs et on ne garde qu'un seul "exemplaire" de ces attributs communs par projection.
+
+On note cette opération : $R_1 \bowtie R_2$.
+
+. . .
+
+
+
+Pour éviter le renommage, on peut décider de préfixer les noms des attributs par ceux de la relation. La condition $C$ devient :
+
+$$(R_1.A_1=R_2.A_1) \wedge \ldots \wedge (R_1.A_k=R_2.A_k)$$
+
+
+
+
+
+## Exemple de Jointure naturelle
+
+::::: {.columns}
+::: {.column}
+
+`TrDep`
+
+|  **hdep**   | **dest**   | **num** |
+|:----------------:|:--------------|--------:|
+|    13h15         | Lyon          |     213 |
+|    13h29         | Marseille     |    1024 |
+
+
+`TrArr`
+
+| **harr**      | **prov**     | **num**   |
+|:----------------:|:--------------|--------:|
+|    13h39         | Avignon        |     43       |
+|    15h15         | Paris          |     213       |
+
+:::
+::: {.column}
+
+
+$$\text{TrDep} \bowtie \text{TrArr}$$ 
+
+| **hdep**         | **dest**         | **num** | **harr**       | **prov**      |
+|:-----------------:|:----------------|--------:|:--------------:|--------------:|
+|    13h15          | Lyon            |     213 |     15h15      | Paris         |
+
+:::
+
+:::::
+
+
+## Exemples de requêtes
+
+Base constituée des trois tables suivantes:
+
+
+`fournisseurs(fno, nom, adresse, ville)`
+
+`produits(pno, design, prix, poids, couleur)`
+
+`commandes(cno, fno, pno, qte)`
+
+
+
+## Exemples de requêtes (suite) 
+
+- déterminer les numéros des fournisseurs ayant comme nom "Durand"
+
+
+$$\pi_{\text{fno}} \bigl( \sigma_{\text{nom}=\text{'Durand'}} (\text{fournisseurs})\bigr)$$
+
+
+- déterminer les références, prix et quantités des produits commandés à plus de 10 exemplaires.
+
+
+$$\pi_{\text{pno,prix,qte}} \bigl( \sigma_{\text{qte}>10} (\text{commandes} \bowtie \text{produits})\bigr)$$
+
+
+
+
+
+# Encore des opérations...  {background-color="#1c191c"}
+
+
+
+
+## Jointure externe
+
+::: {.callout-note}
+
+### Perte d'information dans jointure naturelle
+
+Les tuples ne satisfaisant pas la condition (non appariés) disparaissent
+
+:::
+
+::: {.callout-important}
+
+### Définition
+
+<!-- TODO -->
+
+On ajoute symboliquement" une ligne dont les valeurs sont vides (ou avec valeur spéciale `NULL`) pour garder les tuples initiaux "non satisfaisants" après la jointure
+
+On note cette opération entre deux relations $R$ et $S$  :
+
+$$R \bowtie^+ S$$
+
+:::
+
+
+## Jointure externe (exemple)
+
+
+::::: {.columns}
+::: {.column}
+
+`TrDep`
+
+|  **hdep**   | **dest**   | **num** |
+|:----------------:|:--------------|--------:|
+|    13h15         | Lyon          |     213 |
+|    13h29         | Marseille     |    1024 |
+
+
+`TrArr`
+
+| **harr**      | **prov**     | **num**   |
+|:----------------:|:--------------|--------:|
+|    13h39         | Avignon        |     43       |
+|    15h15         | Paris          |     213       |
+
+:::
+::: {.column}
+
+$$\text{TrDep} \bowtie^+ \text{TrArr}$$
+
+
+| **hdep**         | **dest**         | **num** | **harr**       | **prov**     |
+|:-----------------:|:------------------|------:|:----------------:|:----------------|
+|    13h15              | Lyon               |     213           |     15h15         | Paris       |
+|    13h29              | Marseille          |    1024           |     -          |  -              |
+|   -              | -           |    43          |     13h39          | Avignon                    |
+
+:::
+:::::
+
+## Division
+
+::: {.callout-important}
+
+### Définition
+
+La *division* ou *quotient*
+
+- d'une relation $R$ de schéma
+$R(A_1,A_2,\dots,A_k)$
+
+- par une relation $S$ de schéma
+$S(A_{p+1},\dots ,A_k)$
+
+est la relation $T$ de schéma $T(A_1, \dots, A_p)$ formée des tuples qui complétés par chaque tuple
+de $S$ donnent un tuple de $R$.
+
+Autrement dit
+
+$$\begin{array}{l} t\in T(A_1,\dots,A_p)  \quad \Longleftrightarrow \\
+\forall s\in S(A_{p+1},\dots ,A_k) \quad \exists r\in R \quad \begin{cases}
+t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \end{cases} \end{array}$$
+
+
+On note 
+$$T = R \div S$$
+
+
+
+:::
+
+
+## Division (exemple)
+
+
+::: {.columns}
+::: {.column}
+
+`Voyage` : contient  pour chaque numéro de
+client la ville de départ et d'arrivée des voyages qu'il a
+effectué
+
+
+| **numclient**  | **vdep**   | **varr**|
+|---------------:|:-----------------|:----------------|
+|   1           | Paris              | Marseille    |
+|   3           | Marseille          | Lyon  |
+|   1            | Paris              | Nantes |
+|   5            | Marseille          | Avignon |
+|   4           | Paris              | Nantes   |
+|   3           | Paris              | Marseille |
+|   2           | Caen               | Le Mans   |
+|   3           | Paris              | Nantes |
+
+:::
+::: {.column}
+
+
+`Villes` contient des couples  villes de départ/villes d'arrivée
+
+
+| **vdep**   | **varr** |
+|:-------------|:---------------|
+|  Paris             | Marseille       |
+|  Paris             | Nantes          |
+
+:::
+
+:::
+
+
+
+
+## Division (exemple, suite)
+
+
+$$\texttt{Voyage} \div \texttt{Villes}$$
+
+
+| **numclient** |
+|-------------:|
+|  1          |
+|  3             |
+
+*Résultat* :  numéros des clients ayant
+effectué tous les voyages entre les villes de la table `Villes` (i.e. à la fois un Paris-Marseille et un Paris-Nantes.)
+
+
+
+## Interdéfinissabilité des opérateurs
+
+
+- L'union, la différence, le produit cartésien, la sélection et la projection et le renommage sont *suffisants* pour définir tous les opérateurs que l'on a vu.
+
+- Mais avoir un panier  plus large d'opérateurs simplifie l'écriture des requêtes.
+
+
+
+
+
+Quelques définitions
+
+- Pour la *Jointure* : $R \bowtie_C S \equiv \sigma_C (R \times S)$
+
+
+- Pour l'*intersection* : $A \cap B = A \cup B - ((B - A) \cup (A - B))$
+
+
+
+## Définition de la division
+
+::: {.callout-important}
+
+### Formalisation
+
+Soient  $R$ de schéma
+$R(A_1,A_2,\dots,A_k)$, $S$ de schéma
+$S(A_{p+1},\dots ,A_k)$
+
+est la relation $T= R \div S$ de schéma $T(A_1, \dots, A_p)$.
+
+\begin{center}
+\begin{tikzpicture}
+%\Tree [.$\pi_{pno,prix,qte}$ [.$\sigma_{qte>10}$ [.$\bowtie_{pno}$ [.commandes ] [.produit ] ] ] ]
+\Tree [.$-$ [.$\pi_{A_1,...,A_p}$ $R$ ] [.$\pi_{A_1,...,A_p}$ [.$-$ [.$\times$ [.$\pi_{A_1,...,A_p}$ $R$ ] [.S ] ] [.R ] ] ] ]
+%[.$\pi_{A_1,...,A_p}$ [.- [.\times [.$\pi_{A_1,...,A_p}$ $R$ ] [.S ] ] [.R ] ]
+\end{tikzpicture}
+\end{center}
+
+:::
+
+# The story    {background-color="#1c191c"}
+
+
+##  From Wikipedia {smaller}
+
+> In the 1960s and 1970s he worked out his theories of data arrangement, issuing his paper "A Relational Model of Data for Large Shared Data Banks"[14] in 1970, after an internal IBM paper one year earlier.[15] To his disappointment, IBM proved slow to exploit his suggestions until commercial rivals started implementing them.[16]
+
+> Initially, IBM refused to implement the relational model to preserve revenue from IMS/DB.[citation needed] Codd then showed IBM customers the potential of the implementation of its model, and they in turn pressured IBM. Then IBM included in its Future Systems project a System R subproject – but put in charge of it developers who were not thoroughly familiar with Codd's ideas, and isolated the team from Codd.[citation needed] As a result, they did not use Codd's own Alpha language but created a non-relational one, SEQUEL. Even so, SEQUEL was so superior to pre-relational systems that it was copied, in 1979, based on pre-launch papers presented at conferences, by Larry Ellison, of Relational Software Inc, in his Oracle Database, which actually reached market before SQL/DS – because of the then-already proprietary status of the original name, SEQUEL had been renamed SQL.
+
+> Codd continued to develop and extend his relational model, sometimes in collaboration with Christopher J. Date. One of the normalised forms, the Boyce–Codd normal form, is named after him.
+
+> Codd's theorem, a result proven in his seminal work on the relational model, equates the expressive power of relational algebra and relational calculus.[14]
+
+
+
+
+# Fin  {background-color="#1c191c"}
+
+

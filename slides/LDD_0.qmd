@@ -1,0 +1,1061 @@
+---
+title: "BD II: SQL LDD"
+subtitle: "Définition de données"
+date: "2024-10-11"
+
+execute: 
+  eval: false
+  echo: true
+---
+
+
+```{r, include=FALSE, eval=FALSE, echo=FALSE}
+tryCatch({
+    drv <- dbDriver("PostgreSQL")
+    print("Connecting to Database…")
+    connec <- dbConnect(drv,
+                 dbname = "bd_2018",
+                 host = "localhost",
+                 port = 5432,
+                 user = "postgres",
+                 password = "postgres")
+    print("Database Connected!")
+    },
+    error=function(cond) {
+            print("Unable to connect to Database.")
+    })
+
+dbSendQuery(connec, "SET search_path TO world ;")
+
+res <- dbSendQuery(connec,
+"SELECT
+    region, name ,
+sum(gnp) OVER (PARTITION BY region
+                ORDER BY gnp)
+FROM world.country c
+WHERE region LIKE '%Europe'
+LIMIT 6;"
+)
+
+foo <- dbFetch(res)
+
+
+dbDisconnect(connec)
+```
+
+
+
+# Introduction  {background-color="#1c191c"}
+
+
+
+## Définition de données
+
+
+SQL est un monde à part entière
+
+On peut :
+
+- Interroger des données par des requêtes (déjà vu en partie)
+
+- Administrer les bases de données :
+
+    - Créer celles-ci : définition des tables (schémas, etc), contraintes..
+
+    - Créer de nouvelles données, en insérer, supprimer, mettre à jour, etc
+
+    - Créer et gérer les utilisateurs, leurs droits sur les objets de la base,
+
+    - ...
+
+. . .
+
+Dans ce cours : création des tables (version simplifiée) et des données
+
+
+# Création de tables  {background-color="#1c191c"}
+
+
+## Création de tables
+
+
+- Instruction : `CREATE TABLE ...`
+
+
+Permet de définir :
+
+
+- Les noms et les domaines (*type*) des attributs ainsi que des **contraintes d'intégrité** comme :
+
+    - Contraintes de *clés primaires* (`PRIMARY KEY`)
+
+    - Contraintes *référentielles* (clés étrangères  `FOREIGN KEY`, par exemple)
+
+
+- Des contraintes assez générales (de contrôle des données)
+
+- Des index (pour la recherche et l'exécution efficaces)
+
+
+## Création de tables : noms et domaines d'attributs
+
+
+Chaque relation est définie par un nom de relation et une liste d'attributs
+
+
+```{.sql}
+CREATE TABLE <nom_relation> (
+  <element de relation>
+  <,element de relation>*
+  <,contrainte de relation>* );
+```
+ 
+. . .
+
+Chaque attribut est défini par un nom d'attribut et un type de données
+
+```{.sql}
+<element de relation> ::= <nom_attrib><type_donnees>[<contrainte_attrib>*]
+```
+
+. . .
+
+::: {.callout-note}
+
+### Exemples de types
+
+```{.sql}
+<type_donnees> ::=  VARCHAR <longueur>| INT | REAL | DATE
+```
+
+::: 
+
+
+
+## Exemple  {.smaller}
+
+Schéma:
+
+```{verbatim}
+fournisseur(nomf, villef),
+piece(nomp, prix, couleur),
+livraison(numliv, nomf, nomp, dateliv, quantite)
+```
+
+```{.sql}
+CREATE TABLE fournisseur(
+	nomf VARCHAR(20),
+	villef VARCHAR(20)
+);
+
+CREATE TABLE piece(
+	nomp VARCHAR(20),
+	prix REAL,
+	couleur VARCHAR(15)
+);
+```
+
+## Exemple avec valeurs par défaut {.smaller}
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|5-6"
+CREATE TABLE livraison(
+	numLiv INT,
+	nomf VARCHAR(20),
+	nomp VARCHAR(20),
+	dateliv DATE DEFAULT NOW(),
+	quantite INT DEFAULT 1
+);
+```
+
+. . .
+
+::: {.callout-note}
+
+### Valeurs par défaut
+
+- Pour `dateliv`, c'est la date courante lors de l'insertion de la ligne dans la table
+
+- Pour `quantite`, c'est une constante 
+
+:::
+
+---
+
+## Exemple : schéma `world`  {.smaller}
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|7-8"
+CREATE TABLE world.city (
+	id int4 NOT NULL,
+	name_city text NOT NULL,
+	countrycode bpchar(3) NOT NULL,
+	district text NOT NULL,
+	population_city int4 NOT NULL,
+	CONSTRAINT city_pkey
+        PRIMARY KEY (id)
+);
+```
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|4-5"
+CREATE TABLE world.code_continent (
+	continent name NOT NULL,
+	codecontinent int4 NOT NULL,
+	CONSTRAINT code_continent_pk
+        PRIMARY KEY (codecontinent)
+);
+```
+
+## Exemple : schéma `world`  avec clé primaire composée {.smaller}
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|6-7"
+CREATE TABLE world.countrylanguage (
+	countrycode bpchar(3) NOT NULL,
+	"language" text NOT NULL,
+	isofficial bool NOT NULL,
+	percentage float4 NOT NULL,
+	CONSTRAINT countrylanguage_pkey
+        PRIMARY KEY (countrycode, language)
+);
+```
+. . .
+
+::: {.callout-note}
+
+### Attention
+
+Une clé peut être composée de plusieurs attributs
+
+:::
+---
+
+
+![](/images/layout_world.png)
+
+
+
+
+## Exemple: schéma `world` (suite)   {.smaller}
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|17-24"
+CREATE TABLE world.country (
+	countrycode bpchar(3) NOT NULL,
+	name_country text NOT NULL,
+	continent text NOT NULL,
+	region text NOT NULL,
+	surfacearea float4 NOT NULL,
+	indepyear int2 NULL,
+	population_country int4 NOT NULL,
+	lifeexpectancy float4 NULL,
+	gnp numeric(10, 2) NULL,
+	gnpold numeric(10, 2) NULL,
+	localname text NOT NULL,
+	governmentform text NOT NULL,
+	headofstate text NULL,
+	capital int4 NULL,
+	code2 bpchar(2) NOT NULL,
+	CONSTRAINT country_continent_check CHECK (
+        ((continent = 'Asia'::text) OR (
+            continent = 'Europe'::text) OR
+            (continent = 'North America'::text) OR
+            (continent = 'Africa'::text) OR
+            (continent = 'Oceania'::text) OR
+            (continent = 'Antarctica'::text) OR
+            (continent = 'South America'::text))),
+	CONSTRAINT country_pkey PRIMARY KEY (countrycode)
+);
+```
+
+---
+
+
+
+![](/images/layout_world.png)
+
+---
+
+
+## Suppression d'une table
+
+```{.sql}
+DROP TABLE fournisseur;
+DROP TABLE piece;
+DROP TABLE livraison;
+```
+
+::: {.callout-caution}
+
+### Suppression n'est pas vidange
+
+Supprimer une table, c'est supprimer son contenu (vidange) mais aussi son schéma 
+
+:::
+
+# Insertion, mise à jour, suppression  {background-color="#1c191c"}
+
+
+## Contenu des relations
+
+
+On peut gérer le contenu des tables directement dans le langage `SQL`.
+
+On peut donc :
+
+::: {.incremental}
+
+- Ajouter des tuples à une table : `INSERT INTO ...`
+
+- Mettre à jour des tuples d'une relation : `UPDATE ...`
+
+- Supprimer des tuples : `DELETE FROM ...`
+
+:::
+
+
+## Insertion de tuples
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "1|2|3"
+INSERT INTO <nom_relation>
+	[(nom_attrib [, nom_attrib]*)]
+	VALUES (valeur [, valeur]*);
+```
+
+
+Exemple
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "1|3|"
+INSERT INTO piece VALUES('x21', 1.51, 'rouge');
+
+INSERT INTO piece (nomp,couleur) VALUES('x22', 'vert');
+
++--------+--------+-----------+
+| nomp   | prix   | couleur   |
+|--------+--------+-----------|
+| x21    | 1.51   | rouge     |
+| x22    | <null> | vert      |
++--------+--------+-----------+
+```
+
+
+::: {.callout-attention}
+
+### Attention
+
+- Les valeurs doivent être fournies dans l'ordre de déclaration des attributs
+- Les valeurs non spécifiées sont  affectées à `NULL`
+
+:::
+
+
+
+
+## Insertion, exemple  {.smaller}
+
+
+```{.sql}
+INSERT INTO world.country
+(countrycode, name_country, continent,
+ region, surfacearea, indepyear, population_country,
+ lifeexpectancy, gnp, gnpold,
+ localname, governmentform, headofstate, capital, code2)
+VALUES(
+    'SYL', 'Syldavia', 'Europe',
+    'Eastern Europe', 200000, 1918, 21345717,
+    81.2, 25213, 24878,
+    'Syldavie', 'Constitutional Monarchy', 'Ottokar II', 0, 'SY'
+);
+```
+
+
+---
+
+
+
+
+
+![](/images/layout_world.png)
+
+
+## 
+
+::: {.aside}
+
+La dernière partie du constructeur multiligne, qui commence avec  `VALUES`
+est souvent appelée la *liste de valeurs*. 
+
+:::
+
+::: {.aside}
+
+Une liste de valeurs peut être définie sans référene à une table existante et 
+définir à la volée une nouvelle table virtuelle/éphémère.
+:::
+
+. . .
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "4-5|6|"
+SELECT *
+FROM (
+  VALUES
+    ('robe', 'logged in', '2011-01-10 10:15 AM EST'::timestamptz),
+    ('lhsu', 'logged out', '2011-01-11 10:20 AM EST'::timestamptz)
+) AS l (user_name, description, log_ts);
+```
+
+::: {.callout-note}
+
+Quand on utilise `VALUES` pour définir une table virtuelle, 
+il faut spécifier le nom des colonnes. 
+
+Par défaut, les types des colonnes sont inférés. Si l'inférence de type n'est pas possible, il faut effectuer explicitement des conversions de type comme ici avec `::timestamptz`. 
+
+
+:::
+
+
+
+## Exemple : Insertion de tuples
+
+```{.sql}
+INSERT INTO livraison
+    VALUES
+    (1, 'fournisseur1', 'x21', '2019-07-13', 2);
+```
+
+. . .
+
+```{.sql}
+-- Avec des colonnes pas renseignées
+
+INSERT INTO livraison
+   (numliv, dateliv, quantite)
+    VALUES
+   (2, '2018-07-29', 10);
+```
+
+. . .
+
+```{.sql}
++----------+--------------+--------+------------+------------+
+| numliv   | nomf         | nomp   | dateliv    | quantite   |
+|----------+--------------+--------+------------+------------|
+| 1        | fournisseur1 | x21    | 2019-07-13 | 2          |
+| 2        | <null>       | <null> | 2018-07-29 | 10         |
++----------+--------------+--------+------------+------------+
+```
+
+
+::: {.callout-note}
+
+### Rappel
+
+- Les valeurs doivent être fournies dans l'ordre de déclaration des attributs
+- Les valeurs non spécifiées sont  affectées à `NULL`.
+
+:::
+
+
+
+## Insertion de tuples par requête
+
+- On peut faire une insertion par le biais d'une requête
+
+- La clause `VALUES` est remplacée par une requête
+
+- Les résultats de la requête sont insérés comme valeurs dans la table
+
+. . .
+
+::: {.callout-note}
+
+### Alimentation d'une nouvelle table à l'aide des données d'une autre
+
+```{.sql}
+INSERT INTO FournisseursParisiens (
+  SELECT *
+  FROM Fournisseur
+  WHERE VilleF='Paris'
+);
+```
+
+:::
+
+## Mise à jour
+
+
+- On peut mettre à jour des tuples existants par le biais d'une requête
+
+  - Soit tous les tuples de la table,
+  - Soit l'ensemble des tuples vérifiants une condition donnée
+
+. . .
+
+```{.sql}
+UPDATE nom_relation
+SET nom_attribut = <expression de valeur>
+[ , nom_attribut = <expression de valeur> ]*
+[ WHERE <condition de recherche> ];
+```
+
+
+
+## Mise à jour de tuples
+
+Le `WHERE` permet de sélectionner les tuples à mettre à jour
+
+```{.sql}
+UPDATE Fournisseur
+    SET VilleF='St.Petersburg'
+    WHERE VilleF='Leningrad';
+```
+
+On peut aussi effectuer des opérations sur les tuples à mettre à jour.
+
+
+::: {.callout-note}
+
+### La clause `<expression de valeur>` peut être :
+
+- `NULL`
+
+- Une constante (explicite ou via une requête)
+
+- Une expression arithmétique sur les attributs de la table à modifier
+
+:::
+
+
+
+## Mise à jour de tuples (exemple)
+
+Augmentation du prix d'une pièce
+
+```{.sql}
+UPDATE Piece
+SET Prix = Prix * 1.05
+    WHERE NomP = 'x21';
+```
+
+
+
+## Mise à jour par requête
+
+```{.sql}
+UPDATE Piece
+SET Prix = (
+    SELECT Prix
+    FROM Piece
+    WHERE NomP = 'x21'
+)
+WHERE Prix <= 1000;
+```
+
+
+## Suppression de tuples : syntaxe
+
+
+```{.sql}
+DELETE FROM <nom_relation>
+[WHERE <condition de recherche>];
+```
+
+
+
+### Exemple
+
+```{.sql}
+DELETE FROM Fournisseur
+WHERE NomF = 'FastDelivery';
+```
+
+On supprime dans `Fournisseur` les tuples correspondant au fournisseur nommé `'FastDelivery'`
+
+
+## Suppression de tuples avec requête imbriquée
+
+
+```{.sql}
+DELETE FROM Livraison
+WHERE NomP IN (
+    SELECT NomP
+    FROM Piece
+    WHERE Couleur='Rouge'
+);
+```
+
+
+
+## `DELETE FROM <table> USING <t> WHERE ... `  
+
+::: {.aside}
+
+Souvent, lorsque vous supprimez des données d'une table, 
+vous souhaitez supprimer ces données en fonction de leur présence
+dans un autre ensemble de données. 
+
+Spécifiez cet ensemble supplémentaire avec le prédicat `USING`
+
+:::
+
+
+##   {.smaller}
+
+```{.sql}
+CREATE TABLE chaprot.city () 
+  INHERITS (world.city) ;
+
+CREATE TABLE chaprot.country () 
+  INHERITS (world.country) ;
+
+INSERT INTO chaprot.country (
+	SELECT * 
+    FROM world.country
+	WHERE continent = 'Europe' 
+);
+
+INSERT INTO chaprot.city (
+	SELECT ci.*  
+    FROM world.city ci NATURAL JOIN 
+      world.country co
+	WHERE co.continent = 'Europe'
+) ;
+```
+
+
+## `DELETE FROM <table> USING <t> WHERE ... `   {.smaller}
+
+::: {.aside}
+
+Souvent, lorsque vous supprimez des données d'une table, 
+vous souhaitez supprimer ces données en fonction de leur présence
+dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat `USING`
+
+:::
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "1|2|"
+DELETE FROM chaprot.city 
+USING chaprot.country AS co
+WHERE city.countrycode = co.countrycode AND 
+  co.region= 'Eastern Europe' AND 
+  co.indepyear = 1991 ;
+```
+
+---
+
+## {{< fa brain >}}
+
+La requête suivante pose-t'elle problème ?
+
+```{.sql}
+DELETE FROM Piece
+WHERE NomP IN (
+  SELECT NomP
+  FROM Livraison
+  WHERE Quantite>10
+);
+```
+
+. . .
+
+Peut-être.
+
+Cela dépend des contraintes d'intégrité qui pèsent sur la base
+
+# Intégrité référentielle   {background-color="#1c191c"}
+
+## Maintien de l'intégrité référentielle (un problème)
+
+La dernière requête renvoie à un problème plus général que l'on illustre à l'aide des tables
+`Livraison` et `Piece`, notées `L` et `P`.
+
+. . .
+
+Il y a problème quand :
+
+
+- On cherche à insérer dans `L` un tuple dont la valeur de `NomP` n'existe pas dans `P`
+
+- On cherche à mettre à jour un tuple de `L` avec une valeur de `NomP` qui  n'existe pas dans `P`
+
+- On efface de  `P`, un tuple dont la valeur du champs `NomP` apparait comme valeur  d'un tuple de `L`
+
+- On met à jour le champs `NomP` d'un tuple de `P` alors que l'ancienne valeur de ce champs est présente comme valeur de `NomP` dans `L`
+
+
+## Maintien de l'intégrité référentielle (politiques possibles)
+
+Plusieurs politiques possibles pour régler ces problèmes
+
+- *Par défaut* : le système rejette toute modification ne respectant pas les contraintes d'intégrité
+
+. . . 
+
+- *En cascade* : les modifications sur l'attribut référencé sont effectués aussi sur  l'attribut qui référence (la clé étrangère)
+
+Exemple : mise à jour de `P.NomP` répercutée sur `L.NomP`. Effacement répercuté aussi..
+
+. . . 
+
+- *Set-Null* :  les modifications sur l'attribut référencé sont répercuté sur l'attribut qui référence en mettant sa valeur à `NULL`.
+
+
+
+
+## Maintien de l'intégrité référentielle (exemple)  {.smaller}
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "1-2|3|6-8"
+CREATE TABLE Livraison (
+    NumLiv INT(10) PRIMARY KEY,
+    NomF VARCHAR(30) NOT NULL REFERENCES Fournisseur,
+    DateLiv DATE,
+    Quantite INT(8);
+    NomP VARCHAR(30) REFERENCES Piece
+      ON DELETE SET NULL
+      ON UPDATE CASCADE
+)
+```
+
+##
+
+Cette déclaration force :
+
+- à répercuter l'effacement d'un tuple dans `Piece` en mettant tous les champs `L.NomP` à `NULL`  lorsque ceux-ci avait pour valeur celle de `P.NomP` effacée.
+
+- à répercuter la mise à jour d'un tuple dans `Piece` (pour ce qui concerne le champs `NomP`) dans les tuples de `Livraison` concernés.
+
+
+
+# Contraintes  {background-color="#1c191c"}
+
+
+---
+
+{{< fa triangle-exclamation >}} La définition d'un schéma de base ne s'arrête pas à la définition des
+tables, des colonnes et des types des colonnes
+
+
+Les *contraintes* décrivent des propriétés que devront vérifier
+toutes les mises en oeuvre (instances) du schémas *durant toute leur durée de vie*
+
+
+{{< fa hand-point-right >}}  Pour spécifier une *contrainte*, il suffit de préciser que le
+résultat d'une certaine requête doit toujours être vide
+
+
+
+## Famille de contraintes
+
+- Contrainte de **type**  (attribut)
+
+- Contrainte de **non-nullité**   (attribut)
+
+- Contrainte de **vérification**  (tuple)
+
+- Contrainte de **clé primaire**  (table)
+
+- Contrainte d'**unicité** (table)
+
+- Contrainte d'**unicité avancée** (table)
+
+- Contraintes d'**exclusion**  (table)
+
+- Contrainte de **clé étrangère** (multi-tables)
+
+
+
+
+## Contraintes élémentaires
+
+
+Spécifier le type d'un attribut, c'est le contraindre
+
+
+{{< fa book >}} Consulter la liste des constructions de type possible
+
+[http://www.postgresql.org/docs/current/interactive/datatype.html](http://www.postgresql.org/docs/current/interactive/datatype.html)
+
+
+Il faut essayer d'utiliser autant que possible ces types pour préciser
+les contenus des colonnes.
+
+
+
+
+## Les valeurs nulles
+
+Imposer qu'une colonne soit toujours renseignée
+
+{{< fa hand-point-right >}} La présence possible des valeurs nulles rend beaucoup d'opérations
+complexes
+
+::: {.callout-note}
+
+### {{< fa brain >}}
+
+Il faut avoir en tête que en `SQL`, les booléens peuvent avoir
+trois valeurs : `TRUE, FALSE` et `NULL` et que le fait
+qu'une expression ne vaille pas `FALSE` ne veut pas dire qu'elle
+vaut `TRUE` ...
+
+:::
+
+. . .
+
+{{< fa hand-point-right >}} Pour imposer qu'une colonne soit renseignée
+
+Préciser, après le type : `NOT NULL`
+
+
+![](/images/layout_world.png)
+
+
+## Contraintes élémentaires : clé primaire
+
+Quand on précise que `code` est clé primaire de `country_code`, on impose que la requête suivante renvoie toujours une table vide:
+
+```{.sql}
+SELECT cc1.code, cc2.code
+FROM country_code cc1 JOIN
+  country_code cc2
+WHERE 
+  cc1.code = cc2.code AND
+  cc1.country <> cc2.country  ;
+```
+
+::: {.callout-note}
+
+### La requête est une jointure de la table sur elle-même (auto-jointure)
+
+:::
+
+. . .
+
+Imposer 
+
+∀ s, t,  `country`(t) `country(s)`, t.`code`=s.`code`  ⇒  t.`country` = s.`country`
+
+c'est imposer
+
+¬ (∃ s, t,  `country`(t) `country(s)`, t.`code`=s.`code` ∧  t.`country` ≠ s.`country`)
+
+
+## Quelques remarques
+
+
+- Une contrainte d'attribut concerne un seul attribut
+
+- Si valeur NULL impossible : `NOT NULL`
+
+- Si l'attribut est une **clé** : `PRIMARY KEY`
+
+- **Unicité** de l'attribut : `UNIQUE`
+
+- **Contrainte référentielle** :
+
+.f6[`REFERENCES <relation référencée>[(<attribut référencé>)]`]
+
+- Définir  une valeur par **défaut** : `DEFAULT <valeur>`
+
+
+
+::: {.callout-caution}
+
+### Attention 
+
+les types disponibles (mais pas seulement) diffèrent grandement suivant les SGBD (`Mysql`, `Postgresql`, `Oracle`, `SQL Server`, ...)
+
+:::
+
+
+## Exemple de contrainte de clé primaire
+
+```{.sql}
+Fournisseur (NomF, VilleF, AdresseF)
+Piece(NomP, Prix, Couleur)
+Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)
+```
+
+
+```{.sql}
+CREATE TABLE Piece (
+    NomP	VARCHAR(30) PRIMARY KEY,
+    Prix	INT(10),
+    Couleur VARCHAR(15));
+```
+
+ou bien :
+
+```{.sql}
+CREATE TABLE Piece (
+    NomP	VARCHAR(30),
+    Prix	INT(10),
+    Couleur VARCHAR(15),
+    PRIMARY KEY(NomP));
+```
+
+
+
+
+## Contraintes d'unicité 
+
+
+```{.sql}
+CREATE TABLE sakila."language" (
+	language_id serial4 NOT NULL,
+	"name" bpchar(20) NOT NULL,
+	last_update timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT language_pkey PRIMARY KEY (language_id)
+);
+```
+
+On voudrait aussi imposer que `"name"` satisfît une contrainte d'unicité
+
+. . . 
+
+```{.sql}
+CREATE TABLE uname."language" (
+	language_id int4 NULL,
+	"name" bpchar(20) NULL,
+	last_update timestamp NULL,
+	CONSTRAINT language_un UNIQUE ("name"),
+	CONSTRAINT language_pk PRIMARY KEY (language_id)
+);
+```
+
+
+## Contraintes d'unicité avancées
+
+
+```{.sql}
+INSERT INTO colors(color, hex)
+    VALUES 
+        ('blue', '0000FF'), 
+        ('red', 'FF0000'), 
+        ('green', '00FF00')
+    ON CONFLICT DO NOTHING ;
+```
+
+Someone could come and put in a different case 'Blue' in our system, and
+we'd then have two different cased blues. 
+
+. . .
+
+To remedy this, we can put a
+unique index on our table:
+
+```{.sql}
+CREATE UNIQUE INDEX uidx_colors_lcolor 
+    ON colors 
+    USING btree(lower(color));
+```
+
+. . .
+
+As before, if we tried to insert a 'Blue', we'd be prevented from doing so
+and the `ON CONFLICT DO NOTHING` would result in nothing happening.
+
+If we really wanted to spell the colors as given to us, we could use code like
+that given in Example 7-18.
+
+```{.sql}
+ON CONFLICT DO UPDATE
+INSERT INTO colors(color, hex)
+    VALUES
+        ('Blue', '0000FF'), 
+        ('Red', 'FF0000'), 
+        ('Green', '00FF00')
+ON CONFLICT(lower(color))
+
+DO UPDATE SET color = EXCLUDED.color, hex = EXCLUDED.hex;
+```
+
+
+
+## Contraintes référentielles/clé étrangère
+
+
+Une contrainte de **clé étrangère** sur une collection de colonnes stipule que
+
+. . . 
+
+> pour tout tuple de la table *émettrice*, la combinaison des
+> valeurs des colonnes impliquées se trouve aussi dans un tuple la table *cible*
+
+
+
+
+---
+
+## Exemple de contrainte référentielle
+
+
+```{.sql}
+Fournisseur (NomF, VilleF, AdresseF)
+Piece(NomP, Prix, Couleur)
+Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)
+```
+
+
+```{.sql}
+CREATE TABLE Livraison (
+    NumLiv int(10) PRIMARY KEY,
+    NomF VARCHAR(30) NOT NULL REFERENCES Fournisseur,
+    NomP VARCHAR(30) NOT NULL REFERENCES Piece,
+    DateLiv DATE,
+    Quantite Int(8);
+```
+
+
+
+# Résumé  {background-color="#1c191c"}
+
+
+---
+
+
+- On a vu comment créer  des tables (de façon simplifiée) et gérer le contenu de celles-ci
+
+- On peut spécifier bien plus de contraintes dans la partie création de tables
+
+- L'ajout ou la suppression de données n'est pas libre : les contraintes (de clés notamment) doivent être satisfaites après
+l'exécution des mises à jours
+
+
+
+
+
+# Fin {background-color="#1c191c"}

@@ -8,18 +8,22 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
+<link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/grid-htext-1.0.0/grid_htext.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.47">
-
-  <meta name="author" content="Équipe BD">
-  <title>MA15Y030 - Automne 2024 – BD II: SQL LDD</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
-  <style>
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.47">
+<meta name="author" content="Équipe BD">
+<meta name="dcterms.date" content="2024-10-11">
+<title>MA15Y030 - Automne 2024 – BD II: SQL LDD</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -61,46 +65,48 @@
       }
     pre.numberSource { margin-left: 3em;  padding-left: 4px; }
     div.sourceCode
-      { color: #cccccc; background-color: #303030; }
+      { color: #657b83; background-color: #fdf6e3; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span.al { color: #ffcfaf; } /* Alert */
-    code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
-    code span.at { } /* Attribute */
-    code span.bn { color: #dca3a3; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #f0dfaf; } /* ControlFlow */
-    code span.ch { color: #dca3a3; } /* Char */
-    code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
-    code span.co { color: #7f9f7f; } /* Comment */
-    code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
-    code span.do { color: #7f9f7f; } /* Documentation */
-    code span.dt { color: #dfdfbf; } /* DataType */
-    code span.dv { color: #dcdccc; } /* DecVal */
-    code span.er { color: #c3bf9f; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #c0bed1; } /* Float */
-    code span.fu { color: #efef8f; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
-    code span.kw { color: #f0dfaf; } /* Keyword */
-    code span.op { color: #f0efd0; } /* Operator */
-    code span.ot { color: #efef8f; } /* Other */
-    code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
-    code span.sc { color: #dca3a3; } /* SpecialChar */
-    code span.ss { color: #cc9393; } /* SpecialString */
-    code span.st { color: #cc9393; } /* String */
-    code span.va { } /* Variable */
-    code span.vs { color: #cc9393; } /* VerbatimString */
-    code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+    code span { color: #657b83; } /* Normal */
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #268bd2; } /* Annotation */
+    code span.at { color: #268bd2; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #cb4b16; } /* BuiltIn */
+    code span.cf { color: #859900; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #2aa198; } /* Char */
+    code span.cn { color: #2aa198; font-weight: bold; } /* Constant */
+    code span.co { color: #93a1a1; font-style: italic; } /* Comment */
+    code span.cv { color: #2aa198; } /* CommentVar */
+    code span.do { color: #dc322f; } /* Documentation */
+    code span.dt { color: #b58900; font-weight: bold; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #dc322f; text-decoration: underline; } /* Error */
+    code span.ex { color: #268bd2; font-weight: bold; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #b58900; } /* Information */
+    code span.kw { color: #859900; font-weight: bold; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #268bd2; background-color: #eee8d5; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #dc322f; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #268bd2; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #cb4b16; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
-  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+<link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -298,7 +304,7 @@
   }
 
   </style>
-  <style type="text/css">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -387,16 +393,15 @@
     }
   </style>
 <meta property="og:title" content="BD II: SQL LDD – MA15Y030 - Automne 2024">
-<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
+<meta property="og:description" content="Définition de données">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
-  <h1 class="title">BD II: SQL LDD</h1>
-  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
+<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center"><h1 class="title">BD II: SQL LDD</h1>
+  <p class="subtitle">Définition de données</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -409,104 +414,82 @@
     </div>
 </div>
 
-</section><section id="TOC">
-<nav role="doc-toc"> 
-<h2 id="toc-title">Plan</h2>
+  <p class="date">2024-10-11</p>
+</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
 <ul>
-<li><a href="#/insertion-mise-à-jour-suppression" id="/toc-insertion-mise-à-jour-suppression">Insertion, mise à jour, suppression</a></li>
-<li><a href="#/intégrité-référentielle" id="/toc-intégrité-référentielle">Intégrité référentielle</a></li>
+<li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
+<li><a href="#/cr%C3%A9ation-de-tables" id="/toc-création-de-tables">Création de tables</a></li>
+<li><a href="#/insertion-mise-%C3%A0-jour-suppression" id="/toc-insertion-mise-à-jour-suppression">Insertion, mise à jour, suppression</a></li>
+<li><a href="#/int%C3%A9grit%C3%A9-r%C3%A9f%C3%A9rentielle" id="/toc-intégrité-référentielle">Intégrité référentielle</a></li>
 <li><a href="#/contraintes" id="/toc-contraintes">Contraintes</a></li>
-<li><a href="#/résumé" id="/toc-résumé">Résumé</a></li>
+<li><a href="#/r%C3%A9sum%C3%A9" id="/toc-résumé">Résumé</a></li>
 <li><a href="#/fin" id="/toc-fin">Fin</a></li>
+</ul></nav></section><section><section id="introduction" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Introduction</h1>
+
+</section><section id="définition-de-données" class="slide level2 center"><h2>Définition de données</h2>
+<p>SQL est un monde à part entière</p>
+<p>On peut :</p>
+<ul>
+<li><p>Interroger des données par des requêtes (déjà vu en partie)</p></li>
+<li>
+<p>Administrer les bases de données :</p>
+<ul>
+<li><p>Créer celles-ci : définition des tables (schémas, etc), contraintes..</p></li>
+<li><p>Créer de nouvelles données, en insérer, supprimer, mettre à jour, etc</p></li>
+<li><p>Créer et gérer les utilisateurs, leurs droits sur les objets de la base,</p></li>
+<li><p>…</p></li>
 </ul>
-</nav>
-</section>
-<section class="slide level2 center">
+</li>
+</ul>
+<div class="fragment">
+<p>Dans ce cours : création des tables (version simplifiée) et des données</p>
+</div>
+</section></section><section><section id="création-de-tables" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Création de tables</h1>
 
-<p>```{.r, include=FALSE, eval=FALSE, echo=FALSE} tryCatch({ drv &lt;- dbDriver(“PostgreSQL”) print(“Connecting to Database…”) connec &lt;- dbConnect(drv, dbname = “bd_2018”, host = “localhost”, port = 5432, user = “postgres”, password = “postgres”) print(“Database Connected!”) }, error=function(cond) { print(“Unable to connect to Database.”) })</p>
-<p>dbSendQuery(connec, “SET search_path TO world ;”)</p>
-<p>res &lt;- dbSendQuery(connec, “SELECT region, name , sum(gnp) OVER (PARTITION BY region ORDER BY gnp) FROM world.country c WHERE region LIKE ‘%Europe’ LIMIT 6;” )</p>
-<p>foo &lt;- dbFetch(res)</p>
-<p>dbDisconnect(connec)</p>
-<pre><code>
-
-
-# Introduction  {background-color="#1c191c"}
-
-
-
-## Définition de données
-
-
-SQL est un monde à part entière
-
-On peut :
-
-- Interroger des données par des requêtes (déjà vu en partie)
-
-- Administrer les bases de données. C'est-à-dire :
-
-    - Créer celles-ci : définition des tables (schémas, etc), contraintes..
-
-    - Créer de nouvelles données, en insérer, supprimer, mettre à jour, etc
-
-    - Créer et gérer les utilisateurs, leurs droits sur les objets de la base,
-
-    - ...
-
-Dans ce cours : création des tables (version simplifiée) et des données
-
-
-
-
-# Création de tables  {background-color="#1c191c"}
-
-
-
-
-## Création de tables
-
-
-- Instruction : `CREATE TABLE ...`
-
-
-Permet de définir :
-
-
-- Les noms et les domaines (*type*) des attributs ainsi que des **contraintes d'intégrité** comme :
-
-    - Contraintes de clés primaires
-
-    - Contraintes référentielles (clés étrangères, par exemple)
-
-
-- Des contraintes assez générales (de contrôle des données)
-
-- Des index (pour la recherche et l'exécution efficaces)
-
-
-## Création de tables : noms et domaines d'attributs
-
-
-Chaque relation est définie par un nom de relation et une liste d'attributs
-
-
-```{.sql}
-CREATE TABLE &lt;nom_relation&gt; (
-  &lt;element de relation&gt;
-  &lt;,element de relation&gt;*
-  &lt;,contrainte de relation&gt;* );</code></pre>
+</section><section id="création-de-tables-1" class="slide level2 center"><h2>Création de tables</h2>
+<ul>
+<li>Instruction : <code>CREATE TABLE ...</code>
+</li>
+</ul>
+<p>Permet de définir :</p>
+<ul>
+<li>
+<p>Les noms et les domaines (<em>type</em>) des attributs ainsi que des <strong>contraintes d’intégrité</strong> comme :</p>
+<ul>
+<li><p>Contraintes de <em>clés primaires</em> (<code>PRIMARY KEY</code>)</p></li>
+<li><p>Contraintes <em>référentielles</em> (clés étrangères <code>FOREIGN KEY</code>, par exemple)</p></li>
+</ul>
+</li>
+<li><p>Des contraintes assez générales (de contrôle des données)</p></li>
+<li><p>Des index (pour la recherche et l’exécution efficaces)</p></li>
+</ul></section><section id="création-de-tables-noms-et-domaines-dattributs" class="slide level2 center"><h2>Création de tables : noms et domaines d’attributs</h2>
+<p>Chaque relation est définie par un nom de relation et une liste d’attributs</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span> (</span>
+<span id="cb1-2"><a></a>  <span class="op">&lt;</span>element de relation<span class="op">&gt;</span></span>
+<span id="cb1-3"><a></a>  <span class="op">&lt;</span>,element de relation<span class="op">&gt;*</span></span>
+<span id="cb1-4"><a></a>  <span class="op">&lt;</span>,contrainte de relation<span class="op">&gt;*</span> );</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <p>Chaque attribut est défini par un nom d’attribut et un type de données</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="op">&lt;</span>element de relation<span class="op">&gt;</span> :<span class="op">:=</span></span>
-<span id="cb2-2"><a></a><span class="op">&lt;</span>nom_attrib<span class="op">&gt;&lt;</span>type_donnees<span class="op">&gt;</span>[<span class="op">&lt;</span>contrainte_attrib<span class="op">&gt;*</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Exemples de types:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="op">&lt;</span>type_donnees<span class="op">&gt;</span> :<span class="op">:=</span></span>
-<span id="cb3-2"><a></a><span class="dt">VARCHAR</span> <span class="op">&lt;</span>longueur<span class="op">&gt;</span>| <span class="dt">INT</span> | <span class="dt">REAL</span> | <span class="dt">DATE</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="exemple" class="slide level2 center">
-<h2>Exemple</h2>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="op">&lt;</span>element de relation<span class="op">&gt;</span> :<span class="op">:=</span> <span class="op">&lt;</span>nom_attrib<span class="op">&gt;&lt;</span>type_donnees<span class="op">&gt;</span>[<span class="op">&lt;</span>contrainte_attrib<span class="op">&gt;*</span>]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemples de types</strong></p>
+</div>
+<div class="callout-content">
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="op">&lt;</span>type_donnees<span class="op">&gt;</span> :<span class="op">:=</span>  <span class="dt">VARCHAR</span> <span class="op">&lt;</span>longueur<span class="op">&gt;</span>| <span class="dt">INT</span> | <span class="dt">REAL</span> | <span class="dt">DATE</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="exemple" class="slide level2 smaller center"><h2>Exemple</h2>
 <p>Schéma:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource {verbatim} number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a></a>fournisseur(nomf, villef),</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a></a>fournisseur(nomf, villef),</span>
 <span id="cb4-2"><a></a>piece(nomp, prix, couleur),</span>
 <span id="cb4-3"><a></a>livraison(numliv, nomf, nomp, dateliv, quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
@@ -518,307 +501,414 @@ CREATE TABLE &lt;nom_relation&gt; (
 <span id="cb5-7"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb5-8"><a></a>    prix <span class="dt">REAL</span>,</span>
 <span id="cb5-9"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>)</span>
-<span id="cb5-10"><a></a>);</span>
-<span id="cb5-11"><a></a></span>
-<span id="cb5-12"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> livraison(</span>
-<span id="cb5-13"><a></a>    numLiv <span class="dt">INT</span>,</span>
-<span id="cb5-14"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb5-15"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb5-16"><a></a>    dateliv <span class="dt">DATE</span> <span class="kw">DEFAULT</span> NOW(),</span>
-<span id="cb5-17"><a></a>    quantite <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span></span>
-<span id="cb5-18"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="exemple-schéma-world-smaller" class="slide level2 center">
-<h2>Exemple : schéma <code>world</code> {smaller}</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.city (</span>
-<span id="cb6-2"><a></a>    <span class="kw">id</span> int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-3"><a></a>    name_city text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-4"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-5"><a></a>    district text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-6"><a></a>    population_city int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-7"><a></a>    <span class="kw">CONSTRAINT</span> city_pkey</span>
-<span id="cb6-8"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">id</span>)</span>
-<span id="cb6-9"><a></a>);</span>
-<span id="cb6-10"><a></a></span>
-<span id="cb6-11"><a></a></span>
-<span id="cb6-12"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.code_continent (</span>
-<span id="cb6-13"><a></a>    continent name <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-14"><a></a>    codecontinent float4 <span class="kw">NULL</span>,</span>
-<span id="cb6-15"><a></a>    <span class="kw">CONSTRAINT</span> code_continent_pk</span>
-<span id="cb6-16"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (continent)</span>
-<span id="cb6-17"><a></a>);</span>
-<span id="cb6-18"><a></a></span>
-<span id="cb6-19"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.countrylanguage (</span>
-<span id="cb6-20"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-21"><a></a>    <span class="ot">"language"</span> text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-22"><a></a>    isofficial bool <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-23"><a></a>    percentage float4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-24"><a></a>    <span class="kw">CONSTRAINT</span> countrylanguage_pkey</span>
-<span id="cb6-25"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode, language)</span>
-<span id="cb6-26"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section class="slide level2 center">
+<span id="cb5-10"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="exemple-avec-valeurs-par-défaut" class="slide level2 smaller center"><h2>Exemple avec valeurs par défaut</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|5-6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> livraison(</span>
+<span id="cb6-2"><a></a>    numLiv <span class="dt">INT</span>,</span>
+<span id="cb6-3"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb6-4"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
+<span id="cb6-5"><a></a>    dateliv <span class="dt">DATE</span> <span class="kw">DEFAULT</span> NOW(),</span>
+<span id="cb6-6"><a></a>    quantite <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span></span>
+<span id="cb6-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Valeurs par défaut</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><p>Pour <code>dateliv</code>, c’est la date courante lors de l’insertion de la ligne dans la table</p></li>
+<li><p>Pour <code>quantite</code>, c’est une constante</p></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section><section id="exemple-schéma-world" class="slide level2 smaller center"><h2>Exemple : schéma <code>world</code>
+</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|7-8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.city (</span>
+<span id="cb7-2"><a></a>    <span class="kw">id</span> int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-3"><a></a>    name_city text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-4"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-5"><a></a>    district text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-6"><a></a>    population_city int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb7-7"><a></a>    <span class="kw">CONSTRAINT</span> city_pkey</span>
+<span id="cb7-8"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (<span class="kw">id</span>)</span>
+<span id="cb7-9"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="|4-5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.code_continent (</span>
+<span id="cb8-2"><a></a>    continent name <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb8-3"><a></a>    codecontinent int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb8-4"><a></a>    <span class="kw">CONSTRAINT</span> code_continent_pk</span>
+<span id="cb8-5"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (codecontinent)</span>
+<span id="cb8-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="exemple-schéma-world-avec-clé-primaire-composée" class="slide level2 smaller center"><h2>Exemple : schéma <code>world</code> avec clé primaire composée</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9" data-code-line-numbers="|6-7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.countrylanguage (</span>
+<span id="cb9-2"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb9-3"><a></a>    <span class="ot">"language"</span> text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb9-4"><a></a>    isofficial bool <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb9-5"><a></a>    percentage float4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb9-6"><a></a>    <span class="kw">CONSTRAINT</span> countrylanguage_pkey</span>
+<span id="cb9-7"><a></a>        <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode, language)</span>
+<span id="cb9-8"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Attention</strong></p>
+</div>
+<div class="callout-content">
+<p>Une clé peut être composée de plusieurs attributs</p>
+</div>
+</div>
+</div>
+</div>
+</section><section class="slide level2 center">
+<img data-src="../images/layout_world.png" class="r-stretch"></section><section id="exemple-schéma-world-suite" class="slide level2 smaller center"><h2>Exemple: schéma <code>world</code> (suite)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10" data-code-line-numbers="|17-24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.country (</span>
+<span id="cb10-2"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-3"><a></a>    name_country text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-4"><a></a>    continent text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-5"><a></a>    region text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-6"><a></a>    surfacearea float4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-7"><a></a>    indepyear int2 <span class="kw">NULL</span>,</span>
+<span id="cb10-8"><a></a>    population_country int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-9"><a></a>    lifeexpectancy float4 <span class="kw">NULL</span>,</span>
+<span id="cb10-10"><a></a>    gnp <span class="dt">numeric</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,</span>
+<span id="cb10-11"><a></a>    gnpold <span class="dt">numeric</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,</span>
+<span id="cb10-12"><a></a>    localname text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-13"><a></a>    governmentform text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-14"><a></a>    headofstate text <span class="kw">NULL</span>,</span>
+<span id="cb10-15"><a></a>    capital int4 <span class="kw">NULL</span>,</span>
+<span id="cb10-16"><a></a>    code2 bpchar(<span class="dv">2</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb10-17"><a></a>    <span class="kw">CONSTRAINT</span> country_continent_check <span class="kw">CHECK</span> (</span>
+<span id="cb10-18"><a></a>        ((continent <span class="op">=</span> <span class="st">'Asia'</span>:<span class="ch">:text</span>) <span class="kw">OR</span> (</span>
+<span id="cb10-19"><a></a>            continent <span class="op">=</span> <span class="st">'Europe'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb10-20"><a></a>            (continent <span class="op">=</span> <span class="st">'North America'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb10-21"><a></a>            (continent <span class="op">=</span> <span class="st">'Africa'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb10-22"><a></a>            (continent <span class="op">=</span> <span class="st">'Oceania'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb10-23"><a></a>            (continent <span class="op">=</span> <span class="st">'Antarctica'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
+<span id="cb10-24"><a></a>            (continent <span class="op">=</span> <span class="st">'South America'</span>:<span class="ch">:text</span>))),</span>
+<span id="cb10-25"><a></a>    <span class="kw">CONSTRAINT</span> country_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode)</span>
+<span id="cb10-26"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section class="slide level2 center">
+<img data-src="../images/layout_world.png" class="r-stretch"></section><section id="suppression-dune-table" class="slide level2 center"><h2>Suppression d’une table</h2>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> fournisseur;</span>
+<span id="cb11-2"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> piece;</span>
+<span id="cb11-3"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> livraison;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Suppression n’est pas vidange</strong></p>
+</div>
+<div class="callout-content">
+<p>Supprimer une table, c’est supprimer son contenu (vidange) mais aussi son schéma</p>
+</div>
+</div>
+</div>
+</section></section><section><section id="insertion-mise-à-jour-suppression" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Insertion, mise à jour, suppression</h1>
 
-
-<img data-src="../images/bd_2023-world.png" class="r-stretch"></section>
-<section id="exemple-schéma-world-suite-smaller" class="slide level2 center">
-<h2>Exemple: schéma <code>world</code> (suite) {smaller}</h2>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.country (</span>
-<span id="cb7-2"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-3"><a></a>    name_country text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-4"><a></a>    continent text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-5"><a></a>    region text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-6"><a></a>    surfacearea float4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-7"><a></a>    indepyear int2 <span class="kw">NULL</span>,</span>
-<span id="cb7-8"><a></a>    population_country int4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-9"><a></a>    lifeexpectancy float4 <span class="kw">NULL</span>,</span>
-<span id="cb7-10"><a></a>    gnp <span class="dt">numeric</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,</span>
-<span id="cb7-11"><a></a>    gnpold <span class="dt">numeric</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,</span>
-<span id="cb7-12"><a></a>    localname text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-13"><a></a>    governmentform text <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-14"><a></a>    headofstate text <span class="kw">NULL</span>,</span>
-<span id="cb7-15"><a></a>    capital int4 <span class="kw">NULL</span>,</span>
-<span id="cb7-16"><a></a>    code2 bpchar(<span class="dv">2</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb7-17"><a></a>    <span class="kw">CONSTRAINT</span> country_continent_check <span class="kw">CHECK</span> (</span>
-<span id="cb7-18"><a></a>        ((continent <span class="op">=</span> <span class="st">'Asia'</span>:<span class="ch">:text</span>) <span class="kw">OR</span> (</span>
-<span id="cb7-19"><a></a>            continent <span class="op">=</span> <span class="st">'Europe'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-20"><a></a>            (continent <span class="op">=</span> <span class="st">'North America'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-21"><a></a>            (continent <span class="op">=</span> <span class="st">'Africa'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-22"><a></a>            (continent <span class="op">=</span> <span class="st">'Oceania'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-23"><a></a>            (continent <span class="op">=</span> <span class="st">'Antarctica'</span>:<span class="ch">:text</span>) <span class="kw">OR</span></span>
-<span id="cb7-24"><a></a>            (continent <span class="op">=</span> <span class="st">'South America'</span>:<span class="ch">:text</span>))),</span>
-<span id="cb7-25"><a></a>    <span class="kw">CONSTRAINT</span> country_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode)</span>
-<span id="cb7-26"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section class="slide level2 center">
-
-
-<img data-src="../images/bd_2023-world.png" class="r-stretch"></section>
-<section id="suppression-dune-table" class="slide level2 center">
-<h2>Suppression d’une table</h2>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> fournisseur;</span>
-<span id="cb8-2"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> piece;</span>
-<span id="cb8-3"><a></a><span class="kw">DROP</span> <span class="kw">TABLE</span> livraison;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section>
-<section id="insertion-mise-à-jour-suppression" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Insertion, mise à jour, suppression</h1>
-
-</section>
-<section id="contenu-des-relations" class="slide level2 center">
-<h2>Contenu des relations</h2>
+</section><section id="contenu-des-relations" class="slide level2 center"><h2>Contenu des relations</h2>
 <p>On peut gérer le contenu des tables directement dans le langage <code>SQL</code>.</p>
 <p>On peut donc :</p>
+<div>
 <ul>
-<li><p>Ajouter des tuples à une table : <code>INSERT INTO ...</code></p></li>
-<li><p>Mettre à jour des tuples d’une relation : <code>UPDATE ...</code></p></li>
-<li><p>Supprimer des tuples : <code>DELETE FROM ...</code></p></li>
+<li class="fragment"><p>Ajouter des tuples à une table : <code>INSERT INTO ...</code></p></li>
+<li class="fragment"><p>Mettre à jour des tuples d’une relation : <code>UPDATE ...</code></p></li>
+<li class="fragment"><p>Supprimer des tuples : <code>DELETE FROM ...</code></p></li>
 </ul>
-</section>
-<section id="insertion-de-tuples" class="slide level2 center">
-<h2>Insertion de tuples</h2>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
-<span id="cb9-2"><a></a>    [(nom_attrib [, nom_attrib]<span class="op">*</span>)]</span>
-<span id="cb9-3"><a></a>    <span class="kw">VALUES</span> (valeur [, valeur]<span class="op">*</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="insertion-de-tuples" class="slide level2 center"><h2>Insertion de tuples</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
+<span id="cb12-2"><a></a>    [(nom_attrib [, nom_attrib]<span class="op">*</span>)]</span>
+<span id="cb12-3"><a></a>    <span class="kw">VALUES</span> (valeur [, valeur]<span class="op">*</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Exemple</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="st">'rouge'</span>);</span>
-<span id="cb10-2"><a></a></span>
-<span id="cb10-3"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece (nomp,couleur) <span class="kw">VALUES</span>(<span class="st">'x22'</span>, <span class="st">'vert'</span>);</span>
-<span id="cb10-4"><a></a></span>
-<span id="cb10-5"><a></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span>
-<span id="cb10-6"><a></a>| nomp   | prix   | couleur   |</span>
-<span id="cb10-7"><a></a>|<span class="co">--------+--------+-----------|</span></span>
-<span id="cb10-8"><a></a>| x21    | <span class="fl">1.51</span>   | rouge     |</span>
-<span id="cb10-9"><a></a>| x22    | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | vert      |</span>
-<span id="cb10-10"><a></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li><p>Les valeurs doivent être fournies dans l’ordre de déclaration des attributs</p></li>
-<li><p>Les valeurs non spécifiées sont affectées à <code>NULL</code>.</p></li>
-</ul>
-</section>
-<section id="insertion-exemple-smaller" class="slide level2 center">
-<h2>Insertion, exemple {smaller}</h2>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> world.country</span>
-<span id="cb11-2"><a></a>(countrycode, name_country, continent,</span>
-<span id="cb11-3"><a></a> region, surfacearea, indepyear, population_country,</span>
-<span id="cb11-4"><a></a> lifeexpectancy, gnp, gnpold,</span>
-<span id="cb11-5"><a></a> localname, governmentform, headofstate, capital, code2)</span>
-<span id="cb11-6"><a></a><span class="kw">VALUES</span>(</span>
-<span id="cb11-7"><a></a>    <span class="st">'SYL'</span>, <span class="st">'Syldavia'</span>, <span class="st">'Europe'</span>,</span>
-<span id="cb11-8"><a></a>    <span class="st">'Eastern Europe'</span>, <span class="dv">200000</span>, <span class="dv">1918</span>, <span class="dv">21345717</span>,</span>
-<span id="cb11-9"><a></a>    <span class="fl">81.2</span>, <span class="dv">25213</span>, <span class="dv">24878</span>,</span>
-<span id="cb11-10"><a></a>    <span class="st">'Syldavie'</span>, <span class="st">'Constitutional Monarchy'</span>, <span class="st">'Ottokar II'</span>, <span class="dv">0</span>, <span class="st">'SY'</span></span>
-<span id="cb11-11"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section class="slide level2 center">
-
-
-<img data-src="./images/bd_2023-world.png" class="r-stretch"><blockquote>
-<p>The latter portion of the multirow constructor, starting with the VALUES keyword, is often referred to as a values list.</p>
-</blockquote>
-<blockquote>
-<p>A values list can stand alone and effectively creates a table on the fly. Using a multirow constructor as a virtual table</p>
-</blockquote>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb12-2"><a></a><span class="kw">FROM</span> (</span>
-<span id="cb12-3"><a></a>    <span class="kw">VALUES</span></span>
-<span id="cb12-4"><a></a>        (<span class="st">'robe'</span>, <span class="st">'logged in'</span>, <span class="st">'2011-01-10 10:15 AM EST'</span>:<span class="ch">:timestamptz</span>),</span>
-<span id="cb12-5"><a></a>        (<span class="st">'lhsu'</span>, <span class="st">'logged out'</span>, <span class="st">'2011-01-11 10:20 AM EST'</span>:<span class="ch">:timestamptz</span>)</span>
-<span id="cb12-6"><a></a>) <span class="kw">AS</span> l (user_name, description, log_ts);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<blockquote>
-<p>When you use <code>VALUES</code> as a stand-in for a virtual table, you need to specify the names for the columns. You also need to explicitly cast the values to the data types in the table if the parser can’t infer the data type from the data.</p>
-</blockquote>
-</section>
-<section id="insertion-de-tuples-1" class="slide level2 center">
-<h2>Insertion de tuples</h2>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> livraison</span>
-<span id="cb13-2"><a></a>    <span class="kw">VALUES</span></span>
-<span id="cb13-3"><a></a>    (<span class="dv">1</span>, <span class="st">'fournisseur1'</span>, <span class="st">'x21'</span>, <span class="st">'2019-07-13'</span>, <span class="dv">2</span>);</span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="1|3|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="st">'rouge'</span>);</span>
+<span id="cb13-2"><a></a></span>
+<span id="cb13-3"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece (nomp,couleur) <span class="kw">VALUES</span>(<span class="st">'x22'</span>, <span class="st">'vert'</span>);</span>
 <span id="cb13-4"><a></a></span>
-<span id="cb13-5"><a></a><span class="co">-- Avec des colonnes pas renseignées</span></span>
-<span id="cb13-6"><a></a></span>
-<span id="cb13-7"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> livraison</span>
-<span id="cb13-8"><a></a>   (numliv, dateliv, quantite)</span>
-<span id="cb13-9"><a></a>    <span class="kw">VALUES</span></span>
-<span id="cb13-10"><a></a>   (<span class="dv">2</span>, <span class="st">'2018-07-29'</span>, <span class="dv">10</span>);</span>
-<span id="cb13-11"><a></a></span>
-<span id="cb13-12"><a></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span>
-<span id="cb13-13"><a></a>| numliv   | nomf         | nomp   | dateliv    | quantite   |</span>
-<span id="cb13-14"><a></a>|<span class="co">----------+--------------+--------+------------+------------|</span></span>
-<span id="cb13-15"><a></a>| <span class="dv">1</span>        | fournisseur1 | x21    | <span class="dv">2019</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">13</span> | <span class="dv">2</span>          |</span>
-<span id="cb13-16"><a></a>| <span class="dv">2</span>        | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>       | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | <span class="dv">2018</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">29</span> | <span class="dv">10</span>         |</span>
-<span id="cb13-17"><a></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-5"><a></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span>
+<span id="cb13-6"><a></a>| nomp   | prix   | couleur   |</span>
+<span id="cb13-7"><a></a>|<span class="co">--------+--------+-----------|</span></span>
+<span id="cb13-8"><a></a>| x21    | <span class="fl">1.51</span>   | rouge     |</span>
+<span id="cb13-9"><a></a>| x22    | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | vert      |</span>
+<span id="cb13-10"><a></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="attention-1" class="callout-attention"><h3>Attention</h3>
 <ul>
-<li><p>Les valeurs doivent être fournies dans l’ordre de déclaration des attributs</p></li>
-<li><p>Les valeurs non spécifiées sont affectées à <code>NULL</code>.</p></li>
+<li>Les valeurs doivent être fournies dans l’ordre de déclaration des attributs</li>
+<li>Les valeurs non spécifiées sont affectées à <code>NULL</code>
+</li>
+</ul></section></section><section id="insertion-exemple" class="slide level2 smaller center"><h2>Insertion, exemple</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> world.country</span>
+<span id="cb14-2"><a></a>(countrycode, name_country, continent,</span>
+<span id="cb14-3"><a></a> region, surfacearea, indepyear, population_country,</span>
+<span id="cb14-4"><a></a> lifeexpectancy, gnp, gnpold,</span>
+<span id="cb14-5"><a></a> localname, governmentform, headofstate, capital, code2)</span>
+<span id="cb14-6"><a></a><span class="kw">VALUES</span>(</span>
+<span id="cb14-7"><a></a>    <span class="st">'SYL'</span>, <span class="st">'Syldavia'</span>, <span class="st">'Europe'</span>,</span>
+<span id="cb14-8"><a></a>    <span class="st">'Eastern Europe'</span>, <span class="dv">200000</span>, <span class="dv">1918</span>, <span class="dv">21345717</span>,</span>
+<span id="cb14-9"><a></a>    <span class="fl">81.2</span>, <span class="dv">25213</span>, <span class="dv">24878</span>,</span>
+<span id="cb14-10"><a></a>    <span class="st">'Syldavie'</span>, <span class="st">'Constitutional Monarchy'</span>, <span class="st">'Ottokar II'</span>, <span class="dv">0</span>, <span class="st">'SY'</span></span>
+<span id="cb14-11"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section class="slide level2 center">
+<img data-src="../images/layout_world.png" class="r-stretch"></section><section id="section" class="slide level2 center"><h2></h2>
+
+
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15" data-code-line-numbers="4-5|6|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb15-2"><a></a><span class="kw">FROM</span> (</span>
+<span id="cb15-3"><a></a>  <span class="kw">VALUES</span></span>
+<span id="cb15-4"><a></a>    (<span class="st">'robe'</span>, <span class="st">'logged in'</span>, <span class="st">'2011-01-10 10:15 AM EST'</span>:<span class="ch">:timestamptz</span>),</span>
+<span id="cb15-5"><a></a>    (<span class="st">'lhsu'</span>, <span class="st">'logged out'</span>, <span class="st">'2011-01-11 10:20 AM EST'</span>:<span class="ch">:timestamptz</span>)</span>
+<span id="cb15-6"><a></a>) <span class="kw">AS</span> l (user_name, description, log_ts);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Quand on utilise <code>VALUES</code> pour définir une table virtuelle, il faut spécifier le nom des colonnes.</p>
+<p>Par défaut, les types des colonnes sont inférés. Si l’inférence de type n’est pas possible, il faut effectuer explicitement des conversions de type comme ici avec <code>::timestamptz</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<aside><div>
+<p>La dernière partie du constructeur multiligne, qui commence avec <code>VALUES</code> est souvent appelée la <em>liste de valeurs</em>.</p>
+</div><div>
+<p>Une liste de valeurs peut être définie sans référene à une table existante et définir à la volée une nouvelle table virtuelle/éphémère.</p>
+</div></aside></section><section id="exemple-insertion-de-tuples" class="slide level2 center"><h2>Exemple : Insertion de tuples</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> livraison</span>
+<span id="cb16-2"><a></a>    <span class="kw">VALUES</span></span>
+<span id="cb16-3"><a></a>    (<span class="dv">1</span>, <span class="st">'fournisseur1'</span>, <span class="st">'x21'</span>, <span class="st">'2019-07-13'</span>, <span class="dv">2</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="co">-- Avec des colonnes pas renseignées</span></span>
+<span id="cb17-2"><a></a></span>
+<span id="cb17-3"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> livraison</span>
+<span id="cb17-4"><a></a>   (numliv, dateliv, quantite)</span>
+<span id="cb17-5"><a></a>    <span class="kw">VALUES</span></span>
+<span id="cb17-6"><a></a>   (<span class="dv">2</span>, <span class="st">'2018-07-29'</span>, <span class="dv">10</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span>
+<span id="cb18-2"><a></a>| numliv   | nomf         | nomp   | dateliv    | quantite   |</span>
+<span id="cb18-3"><a></a>|<span class="co">----------+--------------+--------+------------+------------|</span></span>
+<span id="cb18-4"><a></a>| <span class="dv">1</span>        | fournisseur1 | x21    | <span class="dv">2019</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">13</span> | <span class="dv">2</span>          |</span>
+<span id="cb18-5"><a></a>| <span class="dv">2</span>        | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span>       | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | <span class="dv">2018</span><span class="op">-</span><span class="dv">07</span><span class="op">-</span><span class="dv">29</span> | <span class="dv">10</span>         |</span>
+<span id="cb18-6"><a></a><span class="op">+</span><span class="co">----------+--------------+--------+------------+------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Rappel</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Les valeurs doivent être fournies dans l’ordre de déclaration des attributs</li>
+<li>Les valeurs non spécifiées sont affectées à <code>NULL</code>.</li>
 </ul>
-</section>
-<section id="insertion-de-tuples-par-requête" class="slide level2 center">
-<h2>Insertion de tuples par requête</h2>
+</div>
+</div>
+</div>
+</div>
+</section><section id="insertion-de-tuples-par-requête" class="slide level2 center"><h2>Insertion de tuples par requête</h2>
 <ul>
 <li><p>On peut faire une insertion par le biais d’une requête</p></li>
 <li><p>La clause <code>VALUES</code> est remplacée par une requête</p></li>
 <li><p>Les résultats de la requête sont insérés comme valeurs dans la table</p></li>
 </ul>
-<p>Exemple : Alimentation d’une nouvelle table à l’aide des données d’une autre</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> FournisseursParisiens</span>
-<span id="cb14-2"><a></a>    (<span class="kw">SELECT</span> <span class="op">*</span></span>
-<span id="cb14-3"><a></a>     <span class="kw">FROM</span> Fournisseur</span>
-<span id="cb14-4"><a></a>     <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Paris'</span></span>
-<span id="cb14-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="mise-à-jour" class="slide level2 center">
-<h2>Mise à jour</h2>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Alimentation d’une nouvelle table à l’aide des données d’une autre</strong></p>
+</div>
+<div class="callout-content">
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> FournisseursParisiens (</span>
+<span id="cb19-2"><a></a>  <span class="kw">SELECT</span> <span class="op">*</span></span>
+<span id="cb19-3"><a></a>  <span class="kw">FROM</span> Fournisseur</span>
+<span id="cb19-4"><a></a>  <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Paris'</span></span>
+<span id="cb19-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section><section id="mise-à-jour" class="slide level2 center"><h2>Mise à jour</h2>
 <ul>
-<li><p>On peut mettre à jour des tuples existants par le biais d’une requête</p>
+<li>
+<p>On peut mettre à jour des tuples existants par le biais d’une requête</p>
 <ul>
 <li>Soit tous les tuples de la table,</li>
 <li>Soit l’ensemble des tuples vérifiants une condition donnée</li>
-</ul></li>
 </ul>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">UPDATE</span> nom_relation</span>
-<span id="cb15-2"><a></a><span class="kw">SET</span> nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span></span>
-<span id="cb15-3"><a></a>[ , nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span> ]<span class="op">*</span></span>
-<span id="cb15-4"><a></a>[ <span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span> ];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="mise-à-jour-de-tuples" class="slide level2 center">
-<h2>Mise à jour de tuples</h2>
+</li>
+</ul>
+<div class="fragment">
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">UPDATE</span> nom_relation</span>
+<span id="cb20-2"><a></a><span class="kw">SET</span> nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span></span>
+<span id="cb20-3"><a></a>[ , nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span> ]<span class="op">*</span></span>
+<span id="cb20-4"><a></a>[ <span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span> ];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="mise-à-jour-de-tuples" class="slide level2 center"><h2>Mise à jour de tuples</h2>
 <p>Le <code>WHERE</code> permet de sélectionner les tuples à mettre à jour</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">UPDATE</span> Fournisseur</span>
-<span id="cb16-2"><a></a>    <span class="kw">SET</span> VilleF<span class="op">=</span><span class="st">'St.Petersburg'</span></span>
-<span id="cb16-3"><a></a>    <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Leningrad'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">UPDATE</span> Fournisseur</span>
+<span id="cb21-2"><a></a>    <span class="kw">SET</span> VilleF<span class="op">=</span><span class="st">'St.Petersburg'</span></span>
+<span id="cb21-3"><a></a>    <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Leningrad'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On peut aussi effectuer des opérations sur les tuples à mettre à jour.</p>
-<p>La clause <code>&lt;expression de valeur&gt;</code> peut être :</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>La clause <code>&lt;expression de valeur&gt;</code> peut être :</strong></p>
+</div>
+<div class="callout-content">
 <ul>
 <li><p><code>NULL</code></p></li>
 <li><p>Une constante (explicite ou via une requête)</p></li>
 <li><p>Une expression arithmétique sur les attributs de la table à modifier</p></li>
 </ul>
-</section>
-<section id="mise-à-jour-de-tuples-exemple" class="slide level2 center">
-<h2>Mise à jour de tuples (exemple)</h2>
+</div>
+</div>
+</div>
+</section><section id="mise-à-jour-de-tuples-exemple" class="slide level2 center"><h2>Mise à jour de tuples (exemple)</h2>
 <p>Augmentation du prix d’une pièce</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">UPDATE</span> Piece</span>
-<span id="cb17-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> Prix <span class="op">*</span> <span class="fl">1.05</span></span>
-<span id="cb17-3"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="mise-à-jour-par-requête" class="slide level2 center">
-<h2>Mise à jour par requête</h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="kw">UPDATE</span> Piece</span>
-<span id="cb18-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> (</span>
-<span id="cb18-3"><a></a>    <span class="kw">SELECT</span> Prix</span>
-<span id="cb18-4"><a></a>    <span class="kw">FROM</span> Piece</span>
-<span id="cb18-5"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span></span>
-<span id="cb18-6"><a></a>)</span>
-<span id="cb18-7"><a></a><span class="kw">WHERE</span> Prix <span class="op">&lt;=</span> <span class="dv">1000</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="suppression-de-tuples-syntaxe" class="slide level2 center">
-<h2>Suppression de tuples : syntaxe</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
-<span id="cb19-2"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span>];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">UPDATE</span> Piece</span>
+<span id="cb22-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> Prix <span class="op">*</span> <span class="fl">1.05</span></span>
+<span id="cb22-3"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="mise-à-jour-par-requête" class="slide level2 center"><h2>Mise à jour par requête</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a><span class="kw">UPDATE</span> Piece</span>
+<span id="cb23-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> (</span>
+<span id="cb23-3"><a></a>    <span class="kw">SELECT</span> Prix</span>
+<span id="cb23-4"><a></a>    <span class="kw">FROM</span> Piece</span>
+<span id="cb23-5"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span></span>
+<span id="cb23-6"><a></a>)</span>
+<span id="cb23-7"><a></a><span class="kw">WHERE</span> Prix <span class="op">&lt;=</span> <span class="dv">1000</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="suppression-de-tuples-syntaxe" class="slide level2 center"><h2>Suppression de tuples : syntaxe</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
+<span id="cb24-2"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span>];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <h3 id="exemple-1">Exemple</h3>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Fournisseur</span>
-<span id="cb20-2"><a></a><span class="kw">WHERE</span> NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Fournisseur</span>
+<span id="cb25-2"><a></a><span class="kw">WHERE</span> NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On supprime dans <code>Fournisseur</code> les tuples correspondant au fournisseur nommé <code>'FastDelivery'</code></p>
-</section>
-<section id="suppression-de-tuples-avec-requête-imbriquée" class="slide level2 center">
-<h2>Suppression de tuples avec requête imbriquée</h2>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Livraison</span>
-<span id="cb21-2"><a></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
-<span id="cb21-3"><a></a>    <span class="kw">SELECT</span> NomP</span>
-<span id="cb21-4"><a></a>    <span class="kw">FROM</span> Piece</span>
-<span id="cb21-5"><a></a>    <span class="kw">WHERE</span> Couleur<span class="op">=</span><span class="st">'Rouge'</span></span>
-<span id="cb21-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="delete-from-table-using-t-where-...-smaller" class="slide level2 center">
-<h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code> {smaller}</h2>
-<blockquote>
-<p>Souvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat <code>USING</code></p>
-</blockquote>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.city () INHERITS (world.city) ;</span>
-<span id="cb22-2"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.country () INHERITS (world.country) ;</span>
-<span id="cb22-3"><a></a></span>
-<span id="cb22-4"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.country (</span>
-<span id="cb22-5"><a></a>    <span class="kw">SELECT</span> <span class="op">*</span> <span class="kw">FROM</span> world.country</span>
-<span id="cb22-6"><a></a>    <span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
-<span id="cb22-7"><a></a>);</span>
-<span id="cb22-8"><a></a></span>
-<span id="cb22-9"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.city (</span>
-<span id="cb22-10"><a></a>    <span class="kw">SELECT</span> ci.<span class="op">*</span>  <span class="kw">FROM</span> world.city ci <span class="kw">NATURAL</span> <span class="kw">JOIN</span> world.country co</span>
-<span id="cb22-11"><a></a>    <span class="kw">WHERE</span> co.continent <span class="op">=</span> <span class="st">'Europe'</span></span>
-<span id="cb22-12"><a></a>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="delete-from-table-using-t-where-..." class="slide level2 center">
-<h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code></h2>
-<blockquote>
-<p>Souvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat <code>USING</code></p>
-</blockquote>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> chaprot.city </span>
-<span id="cb23-2"><a></a><span class="kw">USING</span> chaprot.country <span class="kw">AS</span> co</span>
-<span id="cb23-3"><a></a><span class="kw">WHERE</span> city.countrycode <span class="op">=</span> co.countrycode <span class="kw">AND</span> </span>
-<span id="cb23-4"><a></a>      co.region<span class="op">=</span> <span class="st">'Eastern Europe'</span> <span class="kw">AND</span> </span>
-<span id="cb23-5"><a></a>      co.indepyear <span class="op">=</span> <span class="dv">1991</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section class="slide level2 center">
+</div>
+</section><section id="suppression-de-tuples-avec-requête-imbriquée" class="slide level2 center"><h2>Suppression de tuples avec requête imbriquée</h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Livraison</span>
+<span id="cb26-2"><a></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
+<span id="cb26-3"><a></a>    <span class="kw">SELECT</span> NomP</span>
+<span id="cb26-4"><a></a>    <span class="kw">FROM</span> Piece</span>
+<span id="cb26-5"><a></a>    <span class="kw">WHERE</span> Couleur<span class="op">=</span><span class="st">'Rouge'</span></span>
+<span id="cb26-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="delete-from-table-using-t-where-..." class="slide level2 center"><h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code></h2>
 
+<aside><div>
+<p>Souvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données.</p>
+<p>Spécifiez cet ensemble supplémentaire avec le prédicat <code>USING</code></p>
+</div></aside></section><section id="section-1" class="slide level2 smaller center"><h2></h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.city () </span>
+<span id="cb27-2"><a></a>  INHERITS (world.city) ;</span>
+<span id="cb27-3"><a></a></span>
+<span id="cb27-4"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.country () </span>
+<span id="cb27-5"><a></a>  INHERITS (world.country) ;</span>
+<span id="cb27-6"><a></a></span>
+<span id="cb27-7"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.country (</span>
+<span id="cb27-8"><a></a>    <span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb27-9"><a></a>    <span class="kw">FROM</span> world.country</span>
+<span id="cb27-10"><a></a>    <span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
+<span id="cb27-11"><a></a>);</span>
+<span id="cb27-12"><a></a></span>
+<span id="cb27-13"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.city (</span>
+<span id="cb27-14"><a></a>    <span class="kw">SELECT</span> ci.<span class="op">*</span>  </span>
+<span id="cb27-15"><a></a>    <span class="kw">FROM</span> world.city ci <span class="kw">NATURAL</span> <span class="kw">JOIN</span> </span>
+<span id="cb27-16"><a></a>      world.country co</span>
+<span id="cb27-17"><a></a>    <span class="kw">WHERE</span> co.continent <span class="op">=</span> <span class="st">'Europe'</span></span>
+<span id="cb27-18"><a></a>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="delete-from-table-using-t-where-...-1" class="slide level2 smaller center"><h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code></h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Astuce</strong></p>
+</div>
+<div class="callout-content">
+<p>Souvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat <code>USING</code></p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28" data-code-line-numbers="1|2|3-5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> chaprot.city </span>
+<span id="cb28-2"><a></a><span class="kw">USING</span> chaprot.country <span class="kw">AS</span> co</span>
+<span id="cb28-3"><a></a><span class="kw">WHERE</span> city.countrycode <span class="op">=</span> co.countrycode <span class="kw">AND</span> </span>
+<span id="cb28-4"><a></a>  co.region<span class="op">=</span> <span class="st">'Eastern Europe'</span> <span class="kw">AND</span> </span>
+<span id="cb28-5"><a></a>  co.indepyear <span class="op">=</span> <span class="dv">1991</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section class="slide level2 center"><div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
 <p>La requête suivante pose-t’elle problème ?</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Piece</span>
-<span id="cb24-2"><a></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
-<span id="cb24-3"><a></a>    <span class="kw">SELECT</span> NomP</span>
-<span id="cb24-4"><a></a>    <span class="kw">FROM</span> Livraison</span>
-<span id="cb24-5"><a></a>    <span class="kw">WHERE</span> Quantite<span class="op">&gt;</span><span class="dv">10</span></span>
-<span id="cb24-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Peut-être.</p>
+</div>
+</div>
+</div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Piece</span>
+<span id="cb29-2"><a></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
+<span id="cb29-3"><a></a>  <span class="kw">SELECT</span> NomP</span>
+<span id="cb29-4"><a></a>  <span class="kw">FROM</span> Livraison</span>
+<span id="cb29-5"><a></a>  <span class="kw">WHERE</span> Quantite<span class="op">&gt;</span><span class="dv">10</span></span>
+<span id="cb29-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<p>Peut-être</p>
+</div>
+<div class="fragment">
 <p>Cela dépend des contraintes d’intégrité qui pèsent sur la base</p>
-</section></section>
-<section>
-<section id="intégrité-référentielle" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Intégrité référentielle</h1>
+</div>
+</section></section><section><section id="intégrité-référentielle" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Intégrité référentielle</h1>
 
-</section>
-<section id="maintien-de-lintégrité-référentielle-un-problème" class="slide level2 center">
-<h2>Maintien de l’intégrité référentielle (un problème)</h2>
+</section><section id="maintien-de-lintégrité-référentielle-un-problème" class="slide level2 center"><h2>Maintien de l’intégrité référentielle (un problème)</h2>
 <p>La dernière requête renvoie à un problème plus général que l’on illustre à l’aide des tables <code>Livraison</code> et <code>Piece</code>, notées <code>L</code> et <code>P</code>.</p>
+<div class="fragment">
 <p>Il y a problème quand :</p>
 <ul>
 <li><p>On cherche à insérer dans <code>L</code> un tuple dont la valeur de <code>NomP</code> n’existe pas dans <code>P</code></p></li>
@@ -826,56 +916,48 @@ CREATE TABLE &lt;nom_relation&gt; (
 <li><p>On efface de <code>P</code>, un tuple dont la valeur du champs <code>NomP</code> apparait comme valeur d’un tuple de <code>L</code></p></li>
 <li><p>On met à jour le champs <code>NomP</code> d’un tuple de <code>P</code> alors que l’ancienne valeur de ce champs est présente comme valeur de <code>NomP</code> dans <code>L</code></p></li>
 </ul>
-</section>
-<section id="maintien-de-lintégrité-référentielle-politiques-possibles" class="slide level2 center">
-<h2>Maintien de l’intégrité référentielle (politiques possibles)</h2>
+</div>
+</section><section id="maintien-de-lintégrité-référentielle-politiques-possibles" class="slide level2 center"><h2>Maintien de l’intégrité référentielle (politiques possibles)</h2>
 <p>Plusieurs politiques possibles pour régler ces problèmes</p>
 <ul>
-<li><em>Par défaut</em> : le système rejette toute modification ne respectant pas les contraintes d’intégrité</li>
+<li>
+<em>Par défaut</em> : le système rejette toute modification ne respectant pas les contraintes d’intégrité</li>
 </ul>
 <div class="fragment">
 <ul>
-<li><em>En cascade</em> : les modifications sur l’attribut référencé sont effectués aussi sur l’attribut qui référence (la clé étrangère)</li>
+<li>
+<em>En cascade</em> : les modifications sur l’attribut référencé sont effectués aussi sur l’attribut qui référence (la clé étrangère)</li>
 </ul>
 <p>Exemple : mise à jour de <code>P.NomP</code> répercutée sur <code>L.NomP</code>. Effacement répercuté aussi..</p>
 </div>
 <div class="fragment">
 <ul>
-<li><em>Set-Null</em> : les modifications sur l’attribut référencé sont répercuté sur l’attribut qui référence en mettant sa valeur à <code>NULL</code>.</li>
+<li>
+<em>Set-Null</em> : les modifications sur l’attribut référencé sont répercuté sur l’attribut qui référence en mettant sa valeur à <code>NULL</code>.</li>
 </ul>
 </div>
-</section>
-<section id="maintien-de-lintégrité-référentielle-exemple" class="slide level2 center">
-<h2>Maintien de l’intégrité référentielle (exemple)</h2>
-<p><em>Exemple de syntaxe</em></p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
-<span id="cb25-2"><a></a>    NumLiv <span class="dt">INT</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb25-3"><a></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
-<span id="cb25-4"><a></a>    DateLiv <span class="dt">DATE</span>,</span>
-<span id="cb25-5"><a></a>    Quantite <span class="dt">INT</span>(<span class="dv">8</span>);</span>
-<span id="cb25-6"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">REFERENCES</span> Piece</span>
-<span id="cb25-7"><a></a>      <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span></span>
-<span id="cb25-8"><a></a>      <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span></span>
-<span id="cb25-9"><a></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Cette déclaration force :</p>
+</section><section id="maintien-de-lintégrité-référentielle-exemple" class="slide level2 smaller center"><h2>Maintien de l’intégrité référentielle (exemple)</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="1-2|3|6-8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
+<span id="cb30-2"><a></a>    NumLiv <span class="dt">INT</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb30-3"><a></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
+<span id="cb30-4"><a></a>    DateLiv <span class="dt">DATE</span>,</span>
+<span id="cb30-5"><a></a>    Quantite <span class="dt">INT</span>(<span class="dv">8</span>);</span>
+<span id="cb30-6"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">REFERENCES</span> Piece</span>
+<span id="cb30-7"><a></a>      <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span></span>
+<span id="cb30-8"><a></a>      <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span></span>
+<span id="cb30-9"><a></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section class="slide level2 center"><p>Cette déclaration force :</p>
 <ul>
 <li><p>à répercuter l’effacement d’un tuple dans <code>Piece</code> en mettant tous les champs <code>L.NomP</code> à <code>NULL</code> lorsque ceux-ci avait pour valeur celle de <code>P.NomP</code> effacée.</p></li>
 <li><p>à répercuter la mise à jour d’un tuple dans <code>Piece</code> (pour ce qui concerne le champs <code>NomP</code>) dans les tuples de <code>Livraison</code> concernés.</p></li>
-</ul>
-</section></section>
-<section>
-<section id="contraintes" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Contraintes</h1>
+</ul></section></section><section><section id="contraintes" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contraintes</h1>
 
-</section>
-<section class="slide level2 center">
-
-<p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> La définition d’un schéma de base ne s’arrête pas à la définition des tables, des colonnes et des types des colonnes</p>
+</section><section class="slide level2 center"><p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> La définition d’un schéma de base ne s’arrête pas à la définition des tables, des colonnes et des types des colonnes</p>
 <p>Les <em>contraintes</em> décrivent des propriétés que devront vérifier toutes les mises en oeuvre (instances) du schémas <em>durant toute leur durée de vie</em></p>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Pour spécifier une <em>contrainte</em>, il suffit de préciser que le résultat d’une certaine requête doit toujours être vide</p>
-</section>
-<section id="famille-de-contraintes" class="slide level2 center">
-<h2>Famille de contraintes</h2>
+</section><section id="famille-de-contraintes" class="slide level2 center"><h2>Famille de contraintes</h2>
 <ul>
 <li><p>Contrainte de <strong>type</strong> (attribut)</p></li>
 <li><p>Contrainte de <strong>non-nullité</strong> (attribut)</p></li>
@@ -885,46 +967,44 @@ CREATE TABLE &lt;nom_relation&gt; (
 <li><p>Contrainte d’<strong>unicité avancée</strong> (table)</p></li>
 <li><p>Contraintes d’<strong>exclusion</strong> (table)</p></li>
 <li><p>Contrainte de <strong>clé étrangère</strong> (multi-tables)</p></li>
-</ul>
-</section>
-<section id="contraintes-élémentaires" class="slide level2 center">
-<h2>Contraintes élémentaires</h2>
+</ul></section><section id="contraintes-élémentaires" class="slide level2 center"><h2>Contraintes élémentaires</h2>
 <p>Spécifier le type d’un attribut, c’est le contraindre</p>
 <p><i class="fa-solid fa-book" aria-label="book"></i> Consulter la liste des constructions de type possible</p>
-<p><a href="http://www.postgresql.org/docs/9.4/interactive/datatype.html">http://www.postgresql.org/docs/9.4/interactive/datatype.html</a></p>
+<p><a href="http://www.postgresql.org/docs/current/interactive/datatype.html">http://www.postgresql.org/docs/current/interactive/datatype.html</a></p>
 <p>Il faut essayer d’utiliser autant que possible ces types pour préciser les contenus des colonnes.</p>
-</section>
-<section id="les-valeurs-nulles" class="slide level2 center">
-<h2>Les valeurs nulles</h2>
+</section><section id="les-valeurs-nulles" class="slide level2 center"><h2>Les valeurs nulles</h2>
 <p>Imposer qu’une colonne soit toujours renseignée</p>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> La présence possible des valeurs nulles rend beaucoup d’opérations complexes</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
 <p>Il faut avoir en tête que en <code>SQL</code>, les booléens peuvent avoir trois valeurs : <code>TRUE, FALSE</code> et <code>NULL</code> et que le fait qu’une expression ne vaille pas <code>FALSE</code> ne veut pas dire qu’elle vaut <code>TRUE</code> …</p>
+</div>
+</div>
+</div>
+<div class="fragment">
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Pour imposer qu’une colonne soit renseignée</p>
 <p>Préciser, après le type : <code>NOT NULL</code></p>
-
-<img data-src="../images/world-country-details.png" class="r-stretch"></section>
-<section id="contraintes-élémentaires-clé-primaire" class="slide level2 center">
-<h2>Contraintes élémentaires : clé primaire</h2>
-<p>Quand on précise que <code>code</code> est clé primaire de <code>country_code</code>, on impose que la requête suivante renvoie toujours une table vide:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">SELECT</span> cc1.code, cc2.code</span>
-<span id="cb26-2"><a></a><span class="kw">FROM</span> country_code cc1 <span class="kw">JOIN</span></span>
-<span id="cb26-3"><a></a>     country_code cc2</span>
-<span id="cb26-4"><a></a><span class="kw">WHERE</span> cc1.code <span class="op">=</span> cc2.code <span class="kw">AND</span></span>
-<span id="cb26-5"><a></a>      cc1.country <span class="op">&lt;&gt;</span> cc2.country  ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>La requête est une jointure de la table sur elle-même</p>
-</section>
-<section id="quelques-remarques" class="slide level2 center">
-<h2>Quelques remarques</h2>
+</div>
+</section><section class="slide level2 center">
+<img data-src="../images/layout_world.png" class="r-stretch"></section><section id="quelques-remarques" class="slide level2 center"><h2>Quelques remarques</h2>
+<p>Une contrainte d’attribut concerne un seul attribut</p>
 <ul>
-<li><p>Une contrainte d’attribut concerne un seul attribut</p></li>
 <li><p>Si valeur NULL impossible : <code>NOT NULL</code></p></li>
 <li><p>Si l’attribut est une <strong>clé</strong> : <code>PRIMARY KEY</code></p></li>
 <li><p><strong>Unicité</strong> de l’attribut : <code>UNIQUE</code></p></li>
 <li><p><strong>Contrainte référentielle</strong> :</p></li>
 </ul>
-<p>.f6[<code>REFERENCES &lt;relation référencée&gt;[(&lt;attribut référencé&gt;)]</code>]</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a></a><span class="kw">REFERENCES</span> <span class="op">&lt;</span>relation référencée<span class="op">&gt;</span>[(<span class="op">&lt;</span>attribut référencé<span class="op">&gt;</span>)]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>Définir une valeur par <strong>défaut</strong> : <code>DEFAULT &lt;valeur&gt;</code></li>
+<li>Définir une valeur par <strong>défaut</strong> : <code>DEFAULT &lt;valeur&gt;</code>
+</li>
 </ul>
 <div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
@@ -939,107 +1019,104 @@ CREATE TABLE &lt;nom_relation&gt; (
 </div>
 </div>
 </div>
-</section>
-<section id="exemple-de-contrainte-de-clé-primaire" class="slide level2 center">
-<h2>Exemple de contrainte de clé primaire</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
-<span id="cb27-2"><a></a>Piece(NomP, Prix, Couleur)</span>
-<span id="cb27-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
-<span id="cb28-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb28-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
-<span id="cb28-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>ou bien :</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
-<span id="cb29-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>),</span>
-<span id="cb29-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
-<span id="cb29-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
-<span id="cb29-5"><a></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(NomP));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="contraintes-dunicité" class="slide level2 center">
-<h2>Contraintes d’unicité</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> sakila.<span class="ot">"language"</span> (</span>
-<span id="cb30-2"><a></a>    language_id serial4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb30-3"><a></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb30-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> now(),</span>
-<span id="cb30-5"><a></a>    <span class="kw">CONSTRAINT</span> language_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
-<span id="cb30-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="exemple-de-contrainte-de-clé-primaire" class="slide level2 center"><h2>Exemple de contrainte de clé primaire</h2>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
+<span id="cb32-2"><a></a>Piece(NomP, Prix, Couleur)</span>
+<span id="cb32-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="2|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
+<span id="cb33-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb33-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
+<span id="cb33-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>)</span>
+<span id="cb33-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>ou :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34" data-code-line-numbers="5|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
+<span id="cb34-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>),</span>
+<span id="cb34-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
+<span id="cb34-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
+<span id="cb34-5"><a></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(NomP)</span>
+<span id="cb34-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section><section id="contraintes-dunicité" class="slide level2 center"><h2>Contraintes d’unicité</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35" data-code-line-numbers="5|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> pagila.<span class="ot">"language"</span> (</span>
+<span id="cb35-2"><a></a>    language_id serial4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb35-3"><a></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
+<span id="cb35-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> now(),</span>
+<span id="cb35-5"><a></a>    <span class="kw">CONSTRAINT</span> language_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
+<span id="cb35-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>On voudrait aussi imposer que <code>"name"</code> satisfît une contrainte d’unicité</p>
 <div class="fragment">
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> uname.<span class="ot">"language"</span> (</span>
-<span id="cb31-2"><a></a>    language_id int4 <span class="kw">NULL</span>,</span>
-<span id="cb31-3"><a></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NULL</span>,</span>
-<span id="cb31-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NULL</span>,</span>
-<span id="cb31-5"><a></a>    <span class="kw">CONSTRAINT</span> language_un <span class="kw">UNIQUE</span> (<span class="ot">"name"</span>),</span>
-<span id="cb31-6"><a></a>    <span class="kw">CONSTRAINT</span> language_pk <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
-<span id="cb31-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="5|5-6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> uname.<span class="ot">"language"</span> (</span>
+<span id="cb36-2"><a></a>    language_id int4 <span class="kw">NULL</span>,</span>
+<span id="cb36-3"><a></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NULL</span>,</span>
+<span id="cb36-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NULL</span>,</span>
+<span id="cb36-5"><a></a>    <span class="kw">CONSTRAINT</span> language_un <span class="kw">UNIQUE</span> (<span class="ot">"name"</span>),</span>
+<span id="cb36-6"><a></a>    <span class="kw">CONSTRAINT</span> language_pk <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
+<span id="cb36-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="contraintes-dunicité-avancées" class="slide level2 center">
-<h2>Contraintes d’unicité avancées</h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
-<span id="cb32-2"><a></a>    <span class="kw">VALUES</span> </span>
-<span id="cb32-3"><a></a>        (<span class="st">'blue'</span>, <span class="st">'0000FF'</span>), </span>
-<span id="cb32-4"><a></a>        (<span class="st">'red'</span>, <span class="st">'FF0000'</span>), </span>
-<span id="cb32-5"><a></a>        (<span class="st">'green'</span>, <span class="st">'00FF00'</span>)</span>
-<span id="cb32-6"><a></a>    <span class="kw">ON</span> CONFLICT DO <span class="kw">NOTHING</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Someone could come and put in a different case ‘Blue’ in our system, and we’d then have two different cased blues.</p>
-<div class="fragment">
-<p>To remedy this, we can put a unique index on our table:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a></a><span class="kw">CREATE</span> <span class="kw">UNIQUE</span> <span class="kw">INDEX</span> uidx_colors_lcolor </span>
-<span id="cb33-2"><a></a>    <span class="kw">ON</span> colors </span>
-<span id="cb33-3"><a></a>    <span class="kw">USING</span> btree(<span class="fu">lower</span>(color));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="fragment">
-<p>As before, if we tried to insert a ‘Blue’, we’d be prevented from doing so and the <code>ON CONFLICT DO NOTHING</code> would result in nothing happening.</p>
-<p>If we really wanted to spell the colors as given to us, we could use code like that given in Example 7-18.</p>
-<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a></a><span class="kw">ON</span> CONFLICT DO <span class="kw">UPDATE</span></span>
-<span id="cb34-2"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
-<span id="cb34-3"><a></a>    <span class="kw">VALUES</span></span>
-<span id="cb34-4"><a></a>        (<span class="st">'Blue'</span>, <span class="st">'0000FF'</span>), </span>
-<span id="cb34-5"><a></a>        (<span class="st">'Red'</span>, <span class="st">'FF0000'</span>), </span>
-<span id="cb34-6"><a></a>        (<span class="st">'Green'</span>, <span class="st">'00FF00'</span>)</span>
-<span id="cb34-7"><a></a><span class="kw">ON</span> CONFLICT(<span class="fu">lower</span>(color))</span>
-<span id="cb34-8"><a></a></span>
-<span id="cb34-9"><a></a>DO <span class="kw">UPDATE</span> <span class="kw">SET</span> color <span class="op">=</span> EXCLUDED.color, hex <span class="op">=</span> EXCLUDED.hex;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="contraintes-dunicité-avancées" class="slide level2 center"><h2>Contraintes d’unicité avancées</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37" data-code-line-numbers="6|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
+<span id="cb37-2"><a></a>    <span class="kw">VALUES</span> </span>
+<span id="cb37-3"><a></a>        (<span class="st">'blue'</span>, <span class="st">'0000FF'</span>), </span>
+<span id="cb37-4"><a></a>        (<span class="st">'red'</span>, <span class="st">'FF0000'</span>), </span>
+<span id="cb37-5"><a></a>        (<span class="st">'green'</span>, <span class="st">'00FF00'</span>)</span>
+<span id="cb37-6"><a></a>    <span class="kw">ON</span> CONFLICT DO <span class="kw">NOTHING</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="contraintes-référentiellesclé-étrangère" class="slide level2 center">
-<h2>Contraintes référentielles/clé étrangère</h2>
+<p>Quelqu’un pourrait tenter d’insérer un “blue” différent dans notre système, et nous aurions alors deux “blue” différents.</p>
+</section><section class="slide level2 center"><p>Pour éviter cela, on peut imposer une <em>contrainte d’unicité</em></p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb38-1"><a></a><span class="kw">CREATE</span> <span class="kw">UNIQUE</span> <span class="kw">INDEX</span> uidx_colors_lcolor </span>
+<span id="cb38-2"><a></a>    <span class="kw">ON</span> colors </span>
+<span id="cb38-3"><a></a>    <span class="kw">USING</span> btree(<span class="fu">lower</span>(color));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Comme auparavant, si nous essayions d’insérer un autre “blue”, nous en serions empêchés.</p>
+</section><section class="slide level2 center"><p>Si nous voulions vraiment épeler les couleurs telles qu’elles nous sont données, nous pourrions utiliser un code comme celui de</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
+<span id="cb39-2"><a></a>    <span class="kw">VALUES</span></span>
+<span id="cb39-3"><a></a>        (<span class="st">'Blue'</span>, <span class="st">'0000FF'</span>), </span>
+<span id="cb39-4"><a></a>        (<span class="st">'Red'</span>, <span class="st">'FF0000'</span>), </span>
+<span id="cb39-5"><a></a>        (<span class="st">'Green'</span>, <span class="st">'00FF00'</span>)</span>
+<span id="cb39-6"><a></a><span class="kw">ON</span> CONFLICT(<span class="fu">lower</span>(color))</span>
+<span id="cb39-7"><a></a>DO <span class="kw">UPDATE</span> <span class="kw">SET</span> color <span class="op">=</span> EXCLUDED.color, hex <span class="op">=</span> EXCLUDED.hex;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+<aside><div>
+<ul>
+<li><a href="https://www.postgresql.org/docs/current/sql-insert.html">https://www.postgresql.org/docs/current/sql-insert.html</a></li>
+<li><a href="https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT">https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT</a></li>
+</ul>
+</div></aside></section><section id="contraintes-référentiellesclé-étrangère" class="slide level2 center"><h2>Contraintes référentielles/clé étrangère</h2>
 <p>Une contrainte de <strong>clé étrangère</strong> sur une collection de colonnes stipule que</p>
 <div class="fragment">
-<blockquote>
 <p>pour tout tuple de la table <em>émettrice</em>, la combinaison des valeurs des colonnes impliquées se trouve aussi dans un tuple la table <em>cible</em></p>
-</blockquote>
 </div>
-</section>
-<section id="exemple-de-contrainte-référentielle" class="slide level2 center">
-<h2>Exemple de contrainte référentielle</h2>
-<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
-<span id="cb35-2"><a></a>Piece(NomP, Prix, Couleur)</span>
-<span id="cb35-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
-<span id="cb36-2"><a></a>    NumLiv <span class="dt">int</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb36-3"><a></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
-<span id="cb36-4"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Piece,</span>
-<span id="cb36-5"><a></a>    DateLiv <span class="dt">DATE</span>,</span>
-<span id="cb36-6"><a></a>    Quantite <span class="dt">Int</span>(<span class="dv">8</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="résumé" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Résumé</h1>
+</section><section id="exemple-de-contrainte-référentielle" class="slide level2 center"><h2>Exemple de contrainte référentielle</h2>
+<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
+<span id="cb40-2"><a></a>Piece(NomP, Prix, Couleur)</span>
+<span id="cb40-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41" data-code-line-numbers="3-4|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb41-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
+<span id="cb41-2"><a></a>    NumLiv <span class="dt">int</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
+<span id="cb41-3"><a></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
+<span id="cb41-4"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Piece,</span>
+<span id="cb41-5"><a></a>    DateLiv <span class="dt">DATE</span>,</span>
+<span id="cb41-6"><a></a>    Quantite <span class="dt">Int</span>(<span class="dv">8</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section></section><section><section id="résumé" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Résumé</h1>
 
-</section>
-<section class="slide level2 center">
-
-<ul>
+</section><section class="slide level2 center"><ul>
 <li><p>On a vu comment créer des tables (de façon simplifiée) et gérer le contenu de celles-ci</p></li>
 <li><p>On peut spécifier bien plus de contraintes dans la partie création de tables</p></li>
 <li><p>L’ajout ou la suppression de données n’est pas libre : les contraintes (de clés notamment) doivent être satisfaites après l’exécution des mises à jours</p></li>
-</ul>
-</section></section>
-<section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Fin</h1>
+</ul></section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
@@ -1047,27 +1124,25 @@ CREATE TABLE &lt;nom_relation&gt; (
 <p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
+<div class="reveal-header">
+<div class="header-logo" data-header-logo-link="https://revealjs.com">
+<img data-src="../images/reveal_logo.svg">
+</div>
+<div class="sc-title">
+<p> </p>
+</div>
+<div class="header-text">
+<p>Bases de Données</p>
+</div>
+<div class="sb-title">
+<p> </p>
+</div>
+</div>
 </section>
-    </div>
+</div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../site_libs/revealjs/plugin/search/search.js"></script><script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1257,8 +1332,42 @@ CREATE TABLE &lt;nom_relation&gt; (
           RevealZoom
         ]
       });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
+    </script><script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script><script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1604,6 +1713,6 @@ CREATE TABLE &lt;nom_relation&gt; (
       }
     });
     </script>
-    
+
 
 </body></html>

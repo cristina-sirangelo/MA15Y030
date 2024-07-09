@@ -1,0 +1,46 @@
+[
+  {
+    "listing": "/slides-listings.html",
+    "items": [
+      "/slides/BD_intro.html",
+      "/slides/SQL_0.html",
+      "/slides/SQL_1.html",
+      "/slides/SQL_2.html",
+      "/slides/SQL_3.html",
+      "/slides/LDD_0.html",
+      "/slides/SQL_4.html",
+      "/slides/LDD_1.html",
+      "/slides/LDD_2.html",
+      "/slides/SQL_5.html",
+      "/slides/SQL_6.html",
+      "/slides/SQL_7.html",
+      "/slides/BD_admin_1.html",
+      "/slides/BD_admin_2.html",
+      "/slides/DF_norm_1.html",
+      "/slides/DF_norm_2.html",
+      "/slides/DF_norm_3.html",
+      "/slides/DF_norm_4.html"
+    ]
+  },
+  {
+    "listing": "/td-listings.html",
+    "items": [
+      "/workshops/td1.html",
+      "/workshops/td2.html",
+      "/workshops/td3.html",
+      "/workshops/td4.html",
+      "/workshops/td5.html",
+      "/workshops/td6.html",
+      "/workshops/td7.html",
+      "/workshops/td8.html",
+      "/workshops/td9.html",
+      "/workshops/td10.html",
+      "/workshops/td11.html",
+      "/workshops/td-recap-sql.html",
+      "/workshops/td-admin.html",
+      "/workshops/td-fonction1.html",
+      "/workshops/td-fonction3.html",
+      "/workshops/nycflights-schema.html"
+    ]
+  }
+]

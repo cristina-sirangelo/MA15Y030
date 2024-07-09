@@ -1,24 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/td-contraintes.html</loc>
-    <lastmod>2024-07-01T19:59:51.483Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/workshops/td9.html</loc>
+    <lastmod>2024-07-08T13:14:39.952Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/td10.html</loc>
-    <lastmod>2024-07-01T19:46:48.307Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/workshops/td7.html</loc>
+    <lastmod>2024-07-08T14:31:48.276Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/td4bis.html</loc>
-    <lastmod>2024-07-01T19:46:04.064Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/workshops/td5.html</loc>
+    <lastmod>2024-07-08T13:16:05.224Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td3.html</loc>
-    <lastmod>2024-07-01T19:45:47.180Z</lastmod>
+    <lastmod>2024-07-08T13:26:24.356Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/workshops/td11.html</loc>
+    <lastmod>2024-07-08T13:12:31.724Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td-recap-sql.html</loc>
-    <lastmod>2024-07-01T19:48:34.741Z</lastmod>
+    <lastmod>2024-07-08T14:41:52.048Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/nycflights-schema.html</loc>
@@ -30,71 +34,123 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td-admin.html</loc>
-    <lastmod>2024-07-01T20:00:14.174Z</lastmod>
+    <lastmod>2024-07-08T14:38:43.612Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-2.html</loc>
-    <lastmod>2024-06-29T20:55:51.580Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-9.html</loc>
+    <lastmod>2024-07-08T10:30:25.500Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/project-tips-resources.html</loc>
-    <lastmod>2024-06-26T11:51:06.960Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-7.html</loc>
+    <lastmod>2024-07-08T10:30:34.160Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/cours-syllabus.html</loc>
-    <lastmod>2024-07-05T09:31:04.235Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-5.html</loc>
+    <lastmod>2024-07-08T09:11:22.380Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/cours-liens.html</loc>
-    <lastmod>2024-06-26T11:51:06.888Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-3.html</loc>
+    <lastmod>2024-07-08T09:00:32.080Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/cours-apercu.html</loc>
-    <lastmod>2024-06-26T18:02:06.610Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-13.html</loc>
+    <lastmod>2024-07-08T10:30:07.540Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/computing-pipelines.html</loc>
-    <lastmod>2024-06-26T17:54:01.249Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-11.html</loc>
+    <lastmod>2024-07-08T10:12:56.144Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/computing-cloudbeaver.html</loc>
-    <lastmod>2024-07-02T11:19:44.705Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-1.html</loc>
+    <lastmod>2024-07-08T08:57:24.480Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/computing-access.html</loc>
-    <lastmod>2024-07-04T11:59:00.524Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/computing-dbeaver.html</loc>
-    <lastmod>2024-07-02T13:43:25.926Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/computing-troubleshooting.html</loc>
-    <lastmod>2024-06-26T11:51:06.884Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/cours-equipe.html</loc>
-    <lastmod>2024-06-26T11:51:06.884Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/cours-support.html</loc>
-    <lastmod>2024-07-01T20:34:48.262Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/slides-listings.html</loc>
+    <lastmod>2024-07-09T07:28:28.416Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/project-description.html</loc>
     <lastmod>2024-06-26T11:51:06.960Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-1.html</loc>
-    <lastmod>2024-07-04T15:22:08.444Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/cours-support.html</loc>
+    <lastmod>2024-07-01T20:34:48.262Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/cours-equipe.html</loc>
+    <lastmod>2024-06-26T11:51:06.884Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/computing-troubleshooting.html</loc>
+    <lastmod>2024-06-26T11:51:06.884Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/computing-dbeaver.html</loc>
+    <lastmod>2024-07-02T13:43:25.926Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/computing-access.html</loc>
+    <lastmod>2024-07-06T20:23:35.827Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/computing-cloudbeaver.html</loc>
+    <lastmod>2024-07-02T11:19:44.705Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/computing-pipelines.html</loc>
+    <lastmod>2024-06-26T17:54:01.249Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/cours-apercu.html</loc>
+    <lastmod>2024-06-26T18:02:06.610Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/cours-liens.html</loc>
+    <lastmod>2024-06-26T11:51:06.888Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/cours-syllabus.html</loc>
+    <lastmod>2024-07-05T09:31:04.235Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/project-tips-resources.html</loc>
+    <lastmod>2024-06-26T11:51:06.960Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/td-listings.html</loc>
+    <lastmod>2024-07-09T07:27:10.536Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-10.html</loc>
+    <lastmod>2024-07-08T10:10:58.220Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-12.html</loc>
+    <lastmod>2024-07-08T10:20:32.364Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-2.html</loc>
+    <lastmod>2024-07-08T08:59:25.284Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-4.html</loc>
+    <lastmod>2024-07-08T09:03:33.216Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-6.html</loc>
+    <lastmod>2024-07-08T09:13:44.272Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/weeks/week-8.html</loc>
+    <lastmod>2024-07-08T09:58:40.220Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td-fonction1.html</loc>
-    <lastmod>2024-07-01T19:47:20.867Z</lastmod>
+    <lastmod>2024-07-08T14:39:44.636Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td1.html</loc>
-    <lastmod>2024-07-05T09:29:01.484Z</lastmod>
+    <lastmod>2024-07-08T13:24:02.496Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/index.html</loc>
@@ -102,31 +158,35 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td-fonction3.html</loc>
-    <lastmod>2024-07-01T19:47:46.170Z</lastmod>
+    <lastmod>2024-07-08T14:40:44.868Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/workshops/td10.html</loc>
+    <lastmod>2024-07-08T13:10:56.076Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td2.html</loc>
-    <lastmod>2024-07-01T19:45:35.081Z</lastmod>
+    <lastmod>2024-07-08T13:25:23.416Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/workshops/td4.html</loc>
-    <lastmod>2024-07-01T19:45:22.201Z</lastmod>
+    <lastmod>2024-07-08T13:26:33.948Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/td9.html</loc>
-    <lastmod>2024-07-01T20:01:29.509Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/workshops/td6.html</loc>
+    <lastmod>2024-07-08T13:17:47.576Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/workshops/td11.html</loc>
-    <lastmod>2024-07-01T19:46:58.003Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/workshops/td8.html</loc>
+    <lastmod>2024-07-08T14:32:54.688Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/slides/LDD_0.html</loc>
+    <lastmod>2024-07-09T12:49:24.368Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/DF_norm_1.html</loc>
     <lastmod>2024-06-27T11:24:06.352Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/slides/LDD_0.html</loc>
-    <lastmod>2024-06-27T10:01:48.060Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/DF_norm_4.html</loc>
@@ -134,7 +194,7 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_4.html</loc>
-    <lastmod>2024-06-27T09:36:53.008Z</lastmod>
+    <lastmod>2024-07-09T15:13:15.568Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/BD_admin_1.html</loc>
@@ -142,11 +202,11 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_3.html</loc>
-    <lastmod>2024-06-27T09:24:25.204Z</lastmod>
+    <lastmod>2024-07-09T15:16:43.460Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/BD_intro.html</loc>
-    <lastmod>2024-07-03T19:28:16.873Z</lastmod>
+    <lastmod>2024-07-09T15:19:20.844Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/BD_admin_2.html</loc>
@@ -154,11 +214,11 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_2.html</loc>
-    <lastmod>2024-06-27T08:16:51.084Z</lastmod>
+    <lastmod>2024-07-09T15:15:52.080Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_0.html</loc>
-    <lastmod>2024-07-05T21:03:36.662Z</lastmod>
+    <lastmod>2024-07-09T15:14:38.172Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/DF_norm_3.html</loc>
@@ -166,82 +226,90 @@
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_1.html</loc>
-    <lastmod>2024-06-27T10:14:17.848Z</lastmod>
+    <lastmod>2024-07-09T15:15:08.432Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_7.html</loc>
-    <lastmod>2024-07-04T15:22:02.740Z</lastmod>
+    <lastmod>2024-07-09T15:18:07.236Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/LDD_2.html</loc>
-    <lastmod>2024-06-27T11:43:45.984Z</lastmod>
+    <lastmod>2024-07-08T14:51:04.472Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_6.html</loc>
-    <lastmod>2024-06-27T10:13:08.056Z</lastmod>
+    <lastmod>2024-07-08T14:47:44.844Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/SQL_5.html</loc>
-    <lastmod>2024-06-27T11:40:17.596Z</lastmod>
+    <lastmod>2024-07-09T15:17:15.368Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/LDD_1.html</loc>
-    <lastmod>2024-06-27T10:15:26.132Z</lastmod>
+    <lastmod>2024-07-08T14:50:32.408Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/slides/DF_norm_2.html</loc>
     <lastmod>2024-06-27T14:13:54.156Z</lastmod>
   </url>
   <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td10.html</loc>
-    <lastmod>2024-07-01T19:46:48.307Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td-admin.html</loc>
-    <lastmod>2024-07-01T20:00:14.174Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td1.html</loc>
-    <lastmod>2024-07-05T09:29:01.484Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td3.html</loc>
-    <lastmod>2024-07-01T19:45:47.180Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td9.html</loc>
-    <lastmod>2024-07-01T20:01:29.509Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td4.html</loc>
-    <lastmod>2024-07-01T19:45:22.201Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td-fonction3.html</loc>
-    <lastmod>2024-07-01T19:47:46.170Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td2.html</loc>
-    <lastmod>2024-07-01T19:45:35.081Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td11.html</loc>
-    <lastmod>2024-07-01T19:46:58.003Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td4bis.html</loc>
-    <lastmod>2024-07-01T19:46:04.064Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td-fonction1.html</loc>
-    <lastmod>2024-07-01T19:47:20.867Z</lastmod>
-  </url>
-  <url>
-    <loc>https://s-v-b.github.io/MA15Y030/solutions/td-contraintes.html</loc>
-    <lastmod>2024-07-01T19:59:51.483Z</lastmod>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td6.html</loc>
+    <lastmod>2024-07-08T13:17:47.576Z</lastmod>
   </url>
   <url>
     <loc>https://s-v-b.github.io/MA15Y030/solutions/td-recap-sql.html</loc>
-    <lastmod>2024-07-01T19:48:34.741Z</lastmod>
+    <lastmod>2024-07-08T14:41:52.048Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td11.html</loc>
+    <lastmod>2024-07-08T13:12:31.724Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td9.html</loc>
+    <lastmod>2024-07-08T13:14:39.952Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td3.html</loc>
+    <lastmod>2024-07-08T13:26:24.356Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td8.html</loc>
+    <lastmod>2024-07-08T14:32:54.688Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td2.html</loc>
+    <lastmod>2024-07-08T13:25:23.416Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td10.html</loc>
+    <lastmod>2024-07-08T13:10:56.076Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td-fonction3.html</loc>
+    <lastmod>2024-07-08T14:40:44.868Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td4.html</loc>
+    <lastmod>2024-07-08T13:26:33.948Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td5.html</loc>
+    <lastmod>2024-07-08T13:16:05.224Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td-fonction1.html</loc>
+    <lastmod>2024-07-08T14:39:44.636Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td1.html</loc>
+    <lastmod>2024-07-08T13:24:02.496Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td-admin.html</loc>
+    <lastmod>2024-07-08T14:38:43.612Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/solutions/td7.html</loc>
+    <lastmod>2024-07-08T14:31:48.276Z</lastmod>
   </url>
 </urlset>

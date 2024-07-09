@@ -1,0 +1,641 @@
+---
+title: "BD II: SQL I"
+subtitle: "Langage Manipulation de Données 1"
+date: "2024-09-20"
+---
+
+
+# Introduction  {background-color="#1c191c"}
+
+
+
+
+##  SQL : Structured Query Language
+
+
+SQL est langage permettant :
+
+- _interrogation_ des données (requêtes)
+
+- _définition_ des données et des contraintes structurelles sur celles-ci
+
+- _manipulation_ des données (insertion, suppression, mise à
+  jour)
+
+- définition des _vues_ et des _index_
+
+- _administration_ des bases de données
+
+
+
+## Plusieurs fois normalisés par l'ISO ...
+
+- SQL-86,
+- SQL-89,
+- SQL-92,
+- SQL-99.
+- ...
+- SQL-2003
+- SQL-2008
+- SQL-2011
+- SQL-2016
+- ...
+
+Nous utiliserons le dialecte [`PostgreSQL`](https://www.postgresql.org)
+
+
+
+A standard is reviewed every 5 years (roughly)
+
+[ISO/IEC 9075 from www.iso.org](https://www.iso.org/standard/63555.html)
+
+
+
+## SQL
+
+:::::: {.columns}
+
+::: {.column}
+
+Une instruction SQL permet de _combiner_ :
+
+- restriction/filtrage (sélection) $\sigma$
+
+- projection $\pi$
+
+- renommage $\rho$
+
+-  ...
+
+
+:::
+
+. . .
+
+::: {.column}
+
+L'instruction
+
+
+```{.sql}
+SELECT <liste attribut>
+
+FROM <table>
+
+WHERE <condition> ;
+```
+
+
+traduit l'expression
+
+$\Pi_{\text{<liste attribut>}}(\sigma_{\text{<condition>}}(\text{<table>}))$
+
+Ou `\sigma(R, Condition) | \Pi(<liste attribut>)`
+
+:::
+
+::::::
+
+
+
+---
+
+On peut faire autrement : dans les extensions du langage `R`, notamment celles qui relèvent de `tidyverse`, on associe des fonctions à chaque opérateur de l'algèbre
+relationnelle. Pour opérateurs qui portent sur une seule table, le premier argument
+de chaque fonction est toujours la table sur laquelle on opère. Les autres arguments
+sont soit les attributs de projection, soit la spécification d'une condition de sélection, soit ...
+
+L'usage d'un opérateur `pipe` (comme dans Unix) permet de composer de facon lisible les opérations.
+
+```
+<table> |>
+  filter(<condition> ) |>
+  select(<liste attribut>) |> 
+  ...
+```
+
+
+
+## Syntaxe - requêtes simples
+
+
+:::::: {.columns}
+
+::: {.column}
+
+```{.sql}
+SELECT [DISTINCT] * | <liste attribut>
+
+FROM <liste de tables>
+
+[WHERE <condition>] ;
+```
+
+:::
+
+::: {.column}
+
+- `*` : sélection de tous les attributs (le schéma reste inchangé)
+
+- `[...]` : clause, expression facultative.
+
+- `DISTINCT` : supprime les doublons.
+
+:::
+
+:::::
+
+
+```{r}
+#| eval: true
+stopifnot(
+  require(DBI),
+  require(RPostgres)
+)
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+con <- DBI::dbConnect(
+  RPostgres::Postgres(),
+  dbname = 'bd_2023-24',
+  host = 'localhost',
+  port = 5436,
+  user = 'boucheron',
+  password = 'Tabor1959@lpma' # rstudioapi::askForPassword() # insert your password here
+)
+```
+
+```{sql}
+--| connection:  con
+--| eval: false
+SET search_path TO world ;
+```
+
+## Requêtes simples sur exemple jouet
+
+
+:::::: {.columns}
+
+::: {.column}
+
+```{.sql}
+Employe(Nu, NomE, Annee, Tel, Nudept)
+
+Fournisseur (NomF, Ville, Adresse)
+
+Piece(NomP, Prix, Couleur)
+```
+
+:::
+
+
+::: {.column}
+
+
+
+```{sql}
+--| connection:  con
+--| eval: false
+--| echo: true
+
+SELECT co.name_country, co.region
+FROM country co
+WHERE co.continent='Europe' 
+LIMIT 5 ;
+```
+
+
+
+
+Equivalent à :
+
+$$\Pi_{\text{NomF, region}}(\text{country})$$
+
+:::
+
+::::::
+
+
+
+---
+
+
+```{.sql}
+SELECT *
+
+FROM Fournisseur ;
+```
+
+Equivalent à : `Fournisseur`
+
+
+```{.sql}
+SELECT *
+
+FROM Fournisseur
+
+WHERE Ville='Paris' ;
+```
+
+Equivalent à : $\sigma_{\texttt{Ville}=\texttt{'Paris'}}(\texttt{Fournisseur})$
+
+
+# Requêtes mono-relation {background-color="#1c191c"}
+
+
+
+## Structure de base
+
+La structure de base d'une requête s'appuie sur les trois mots
+clés suivants :
+
+- .red[`SELECT`] correspond à l'opérateur de projection sur la liste d'attributs demandée, il peut aussi être suivi de fonctions d'attributs
+
+- .red[`FROM`] indique la ou les relations concernées
+
+- .red[`WHERE`] précise une condition et correspond à l'opération de restriction/sélection en algèbre relationnelle.
+
+
+---
+
+## Syntaxe de la condition de filtrage (`WHERE ...`)
+
+
+Une condition se construit à l'aide des opérations suivantes :
+
+- *Comparaison* avec opérateurs : .red[`=, <>, >,<, >=, <=`]
+
+```{.sql}
+SELECT *
+
+FROM Employe
+
+WHERE NomE <>'Durand'  ;  #<<
+```
+
+
+
+## Syntaxe de la condition de filtrage (`WHERE ...`)
+
+*Combinaison* de conditions à l'aide des opérateurs logiques:  .red[`AND`, `OR`, `NOT`]
+
+```{.sql}
+SELECT DISTINCT NomF
+
+FROM Fournisseur
+
+WHERE (Ville='Londres') OR (Ville='Paris');  #<<
+```
+
+
+{{< fa triangle-exclamation >}} Attention aux priorités dans l'évaluation des expressions logiques
+
+
+{{< fa skull >}} Attention aux valeurs manquantes
+ 
+---
+
+
+## Syntaxe de la condition `WHERE ...` (suite)
+
+Test *BETWEEN* permettant de vérifier si la valeur d'un attribut est comprise entre deux constantes
+
+
+```{.sql}
+SELECT NomE
+
+FROM Employe
+
+WHERE Annee BETWEEN '22/06/03' AND '25/09/03';   #<<
+```
+
+
+{{< fa triangle-exclamation >}} Éviter de manipuler les dates et heures comme des chaînes de caractères
+
+---
+
+## Syntaxe de la condition `WHERE ...` (suite)
+
+- Test à .red[`NULL`] signifiant que la valeur est égale à `NULL` (c-à-d est inconnue)
+
+```{.sql}
+SELECT *
+
+FROM Employe
+
+WHERE Tel IS NULL;    #<<
+```
+
+{{< fa skull >}} Attention aux valeurs manquantes
+---
+
+## Syntaxe de la condition `WHERE ...` (suite)
+
+
+Test d'*appartenance* .red[`IN`] qui permet de vérifier si la valeur d'un attribut appartient à une liste de constantes,
+
+```{.sql}
+SELECT *
+
+FROM Fournisseur
+
+WHERE Ville IN ('Paris', 'Londres');   #<<
+```
+
+---
+
+## Syntaxe de la condition `WHERE ...` (suite)
+
+Test .red[`LIKE`] permettant de vérifier si un attribut de type chaîne de
+caractères contient une ou plusieurs sous-chaînes
+
+$\_$ : remplace n'importe quel caractère
+
+$\%$ : remplace n'importe quelle chaîne de caractères.
+
+```{.sql}
+SELECT Ville
+
+FROM Fournisseur
+
+WHERE Ville LIKE 'Saint%';
+```
+
+
+
+
+
+# Requêtes multi-relations  {background-color="#1c191c"}
+
+
+
+
+## Requêtes multi-relations
+
+Quand l'information est dispersée sur plusieurs tables, on utilise des *jointures*
+
+
+
+
+## On peut :
+
+
+- utiliser plusieurs tables dans la clause `FROM`
+
+- faire intervenir des conditions complexes impliquant ces tables dans la clause `WHERE`
+
+
+
+
+
+
+## Détails du schema `World`
+
+Images et tables créées grâce à [DbSchema](https://dbschema.com)
+
+
+
+
+## Diagramme en pattes de corbeau
+
+![img](/images/~LayoutwithSampleTools.svg)
+
+
+
+## Table world.city 
+
+| | | |
+|---|---|---|
+| * &#128273;  &#11019; | id| integer  |
+| * | name| text  |
+| * | countrycode| char(3)  |
+| * | district| text  |
+| * | population| integer  |
+
+
+
+
+## Table world.country 
+
+| | | |
+|---|---|---|
+| * &#128273;  &#11019; | code| char(3)  |
+| * | name| text  |
+| * | continent| text  |
+| * | region| text  |
+| * | surfacearea| real  |
+|  | indepyear| smallint  |
+| * | population| integer  |
+|  | lifeexpectancy| real  |
+|  | gnp| numeric(10,2)  |
+|  | gnpold| numeric(10,2)  |
+| * | localname| text  |
+| * | governmentform| text  |
+|  | headofstate| text  |
+| &#11016; | capital| integer  |
+| * | code2| char(2)  |
+
+
+### Foreign Keys
+
+| | | |
+|---|---|---|
+|  | country_capital_fkey | ( capital ) ref [world.city](#city) (id) |
+
+
+### Constraints
+
+| | |
+|---|---|
+| country_continent_check | ((continent = 'Asia'::text) OR (continent = 'Europe'::text) OR (continent = 'North America'::text) OR (continent = 'Africa'::text) OR (continent = 'Oceania'::text) OR (continent = 'Antarctica'::text) OR (continent = 'South America'::text)) |
+
+
+
+
+## Table world.countrylanguage 
+
+| | | |
+|---|---|---|
+| * &#128273;  &#11016; | countrycode| char(3)  |
+| * &#128273;  | language| text  |
+| * | isofficial| boolean  |
+| * | percentage| real  |
+
+
+### Foreign Keys
+
+| | | |
+|---|---|---|
+|  | countrylanguage_countrycode_fkey | ( countrycode ) ref [world.country](#country) (code) |
+
+
+
+
+##  Première jointure sur schéma `world`
+
+Quels sont les pays qui portent le même nom que leur capitale ?
+
+. . .
+
+```{.sql}
+SELECT name_country
+
+FROM country, city   #<< 
+
+WHERE capital=id AND name_country=name_city;
+```
+
+qui correspond à
+
+$$\pi_{\text{name_country}}\Bigl(
+\sigma_{\text{capital}=\text{id} \wedge \text{name_country}=\text{name_city}}(\text{country }\times \text{city}) \Bigr)$$
+
+autrement dit
+
+$$\pi_{\text{name_country}}\Bigl(
+\text{country} \bowtie_{\text{capital}=\text{id} \wedge  \text{name_country}=\text{name_city}} \text{city})
+ \Bigr)$$
+
+
+
+## Syntaxe normalisée pour les jointures~: *JOIN* et *ON*
+
+Quels sont les pays qui portent le même nom que leur capitale ?
+
+```{.sql}
+SELECT name_country
+
+FROM country JOIN city   #<<
+
+ON capital=id    #<<
+
+WHERE name_country=name_city;
+```
+
+qui correspond à
+
+$$\pi_{\text{name_country}}\Bigl(
+\sigma_{\text{capital}=id \wedge  \text{name_country}=\text{name_city}}(\text{country} \times \text{city}) \Bigr)$$
+
+
+
+## Renommage
+
+
+Si on veut faire une jointure d'une table avec elle-même, on utilise *AS*
+pour obtenir deux tables de noms différents
+
+- Quels sont les noms de ville qui apparaissent dans deux pays différents~?
+
+
+```{.sql}
+SELECT DISTINCT c1.name_city, c1.countrycode, c2.countrycode
+
+FROM city AS c1 JOIN city AS c2   #<<
+
+  ON c1.countrycode!=c2.countrycode AND c1.name_city=c2.name_city  #<<
+
+ORDER BY c1.name_city;
+```
+
+
+
+
+## Jointure naturelle
+
+Quels sont les noms des pays où le français est parlé ?
+
+
+```{.sql}
+SELECT name_country
+
+FROM country, countrylanguage
+
+WHERE country.countrycode=countrylanguage.countrycode
+      AND language='French';
+```
+
+Syntaxe normalisée pour la jointure naturelle~: *NATURAL JOIN*
+
+```{.sql}
+SELECT name_country
+
+FROM country NATURAL JOIN countrylanguage   #<< 
+
+WHERE language='French';
+```
+
+
+
+## Jointure naturelle (suite)
+
+Quels sont les pays dont une ville a le même nom qu'une langue parlée dans ce pays~?
+
+```{.sql}
+SELECT DISTINCT name_country, name_city, language
+
+FROM country NATURAL JOIN  #<<
+     city natural JOIN     #<<
+     countrylanguage       #<<
+
+WHERE language=name_city;
+```
+
+
+---  
+
+![](/images/LayoutwithSampleTools.png)
+
+
+
+
+
+## Jointure externe
+
+
+
+- *LEFT OUTER JOIN* (resp. *RIGHT OUTER JOIN*) : on garde les tuples de la table de gauche (resp. droite) qui n'ont pas de complément dans l'autre table, la condition étant spécifiée dans la clause *ON*
+
+- *FULL OUTER JOIN* : on garde les tuples de chacune des tables qui n'ont pas de complément.
+
+- On complète les valeurs non renseignées par *NULL*
+
+
+
+## Exemple de jointure externe
+
+
+
+- Certains pays n'ont pas de capitale : la requête
+
+```{.sql}
+SELECT name_country
+
+FROM country
+
+WHERE capital IS NULL;
+```
+
+renvoie 8 lignes.
+
+
+
+- Quels sont les pays qui n'ont pas de capitale ou portent le même nom que leur capitale~?
+
+```{.sql}
+SELECT name_country, name_city
+
+FROM country LEFT OUTER JOIN city   #<<
+     ON capital=id                  #<<
+
+WHERE name_city IS NULL OR name_country=name_city ;  #<< 
+```
+
+
+
+
+
+# Fin   {background-color="#1c191c"}

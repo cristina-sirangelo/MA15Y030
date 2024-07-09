@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Semaine 1 – MA15Y030 - Automne 2024</title>
+<title>Semaine 2 – MA15Y030 - Automne 2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -29,6 +29,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../weeks/week-3.html" rel="next">
 <link href="../weeks/week-1.html" rel="prev">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -41,6 +42,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -70,8 +73,8 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<meta property="og:title" content="Semaine 1 – MA15Y030 - Automne 2024">
-<meta property="og:description" content="Introduction aux Bases de Données/Algèbre relationnelle">
+<meta property="og:title" content="Semaine 2 – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Algèbre relationnelle et SQL">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 
@@ -84,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-1.html">Weekly materials</a></li><li class="breadcrumb-item"><a href="../weeks/week-2.html">Week 2</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-1.html">Journal</a></li><li class="breadcrumb-item"><a href="../weeks/week-2.html">Semaine 2</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -189,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Computing</span></a>
+ <span class="menu-text">Support</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -198,65 +201,120 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Access</span></a>
+ <span class="menu-text">Accès Informatique</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-dbeaver.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">dbeaver</span></a>
+ <span class="menu-text">Client dbeaver</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Troubleshooting</span></a>
+ <span class="menu-text">Dépannage</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides-listings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diapositives</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../td-listings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercices</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Project</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Journal</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../project-description.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Description</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../project-tips-resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tips + resources</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Weekly materials</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1</span></a>
+ <span class="menu-text">Semaine 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-2.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Week 2</span></a>
+ <span class="menu-text">Semaine 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 13</span></a>
   </div>
 </li>
       </ul>
@@ -273,8 +331,7 @@ ul.task-list li input[type="checkbox"] {
   <ul>
   <li><a href="#préparer" id="toc-préparer" class="nav-link active" data-scroll-target="#préparer">Préparer</a></li>
   <li><a href="#cours-magistral-diapositives" id="toc-cours-magistral-diapositives" class="nav-link" data-scroll-target="#cours-magistral-diapositives">Cours magistral : diapositives</a></li>
-  <li><a href="#exercices-td-2" id="toc-exercices-td-2" class="nav-link" data-scroll-target="#exercices-td-2">Exercices : TD 2</a></li>
-  <li><a href="#solutions-du-td-1-semaine-1" id="toc-solutions-du-td-1-semaine-1" class="nav-link" data-scroll-target="#solutions-du-td-1-semaine-1">Solutions du TD 1 (Semaine 1)</a></li>
+  <li><a href="#exercices-td-1" id="toc-exercices-td-1" class="nav-link" data-scroll-target="#exercices-td-1">Exercices : TD 1</a></li>
   <li><a href="#travail-personnel" id="toc-travail-personnel" class="nav-link" data-scroll-target="#travail-personnel">Travail personnel</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/weeks/week-2.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -282,10 +339,10 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-1.html">Weekly materials</a></li><li class="breadcrumb-item"><a href="../weeks/week-2.html">Week 2</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../weeks/week-1.html">Journal</a></li><li class="breadcrumb-item"><a href="../weeks/week-2.html">Semaine 2</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Semaine 1</h1>
-<p class="subtitle lead">Introduction aux Bases de Données/Algèbre relationnelle</p>
+<h1 class="title">Semaine 2</h1>
+<p class="subtitle lead">Algèbre relationnelle et SQL</p>
 </div>
 
 
@@ -313,27 +370,27 @@ Important
 </div>
 <div class="callout-body-container callout-body">
 <ul>
-<li>Cours magistral en Amphi 1 Olympe de Gouges</li>
-<li>TD/TP 2004-2006 Étage 2 Sophie Germain</li>
+<li>Cours magistral en Amphi. 1 Olympe de Gouges 14h-15h30</li>
+<li>TD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15</li>
+<li><i class="fa-solid fa-cal" aria-label="cal"></i> <a href="https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3">Emploi du temps</a></li>
 </ul>
 </div>
 </div>
 <section id="préparer" class="level2">
 <h2 class="anchored" data-anchor-id="préparer">Préparer</h2>
-<p>Finir requêtes du TD 1 <a href="../workshops/td1.html">TD 1</a></p>
+<p>Requêtes du TD 1 <a href="../workshops/td1.html">TD 1</a></p>
 </section>
 <section id="cours-magistral-diapositives" class="level2">
 <h2 class="anchored" data-anchor-id="cours-magistral-diapositives">Cours magistral : diapositives</h2>
 <p><a href="../slides/SQL_0.html">Introduction à l’algèbre relationnelle</a></p>
 <p><a href="../slides/SQL_1.html">SQL requêtes élémentaires</a></p>
 </section>
-<section id="exercices-td-2" class="level2">
-<h2 class="anchored" data-anchor-id="exercices-td-2">Exercices : TD 2</h2>
-<p><a href="../workshops/td2.html">html</a> <a href="../workshops/td2.pdf">pdf</a></p>
-</section>
-<section id="solutions-du-td-1-semaine-1" class="level2">
-<h2 class="anchored" data-anchor-id="solutions-du-td-1-semaine-1">Solutions du TD 1 (Semaine 1)</h2>
-<p><a href="../solutions/td1.html">html</a> <a href="../solutions/td1.pdf">pdf</a></p>
+<section id="exercices-td-1" class="level2">
+<h2 class="anchored" data-anchor-id="exercices-td-1">Exercices : TD 1</h2>
+<p><a href="../workshops/td1.html">html</a> <a href="../workshops/td1.pdf">pdf</a></p>
+<!-- ## Solutions du  TD 1  (Semaine 1)
+
+[html](/solutions/td1.html)  [pdf](/solutions/td1.pdf) -->
 </section>
 <section id="travail-personnel" class="level2">
 <h2 class="anchored" data-anchor-id="travail-personnel">Travail personnel</h2>
@@ -918,11 +975,14 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../weeks/week-1.html" class="pagination-link" aria-label="Week 1">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Week 1</span>
+      <a href="../weeks/week-1.html" class="pagination-link" aria-label="Semaine 1">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Semaine 1</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../weeks/week-3.html" class="pagination-link" aria-label="Semaine 3">
+        <span class="nav-page-text">Semaine 3</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

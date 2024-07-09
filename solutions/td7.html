@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="dcterms.date" content="2024-11-08">
 
-<title>td4bis – MA15Y030 - Automne 2024</title>
+<title>TD 7 : Contraintes (suite) – MA15Y030 - Automne 2024</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -18,40 +19,6 @@ ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
 width: 0.8em;
 margin: 0 0.8em 0.2em -1em;  vertical-align: middle;
-}
-
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-{ counter-reset: source-line 0; }
-pre.numberSource code > span
-{ position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-{ content: counter(source-line);
-position: relative; left: -1em; text-align: right; vertical-align: baseline;
-border: none; display: inline-block;
--webkit-touch-callout: none; -webkit-user-select: none;
--khtml-user-select: none; -moz-user-select: none;
--ms-user-select: none; user-select: none;
-padding: 0 4px; width: 4em;
-}
-pre.numberSource { margin-left: 3em; padding-left: 4px; }
-div.sourceCode
-{ }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -4734,8 +4701,8 @@ vertical-align: -.125em;
 }</script>
 
 
-<meta property="og:title" content="MA15Y030 - Automne 2024">
-<meta property="og:description" content="Page maison pour MA15Y030 - Bases de données, Licence MIASHS Automne 2024.">
+<meta property="og:title" content="TD 7 : Contraintes (suite) – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Définition de données et Contraintes">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 
@@ -4748,7 +4715,7 @@ vertical-align: -.125em;
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">TD 7 : Contraintes (suite)</li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -4853,7 +4820,7 @@ vertical-align: -.125em;
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
- <span class="menu-text">Computing</span></a>
+ <span class="menu-text">Support</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -4862,27 +4829,39 @@ vertical-align: -.125em;
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-access.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Access</span></a>
+ <span class="menu-text">Accès Informatique</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-dbeaver.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">dbeaver</span></a>
+ <span class="menu-text">Client dbeaver</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Troubleshooting</span></a>
+ <span class="menu-text">Dépannage</span></a>
   </div>
 </li>
       </ul>
   </li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../slides-listings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Diapositives</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../td-listings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Exercices</span></a>
+  </div>
+</li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
- <span class="menu-text">Project</span></a>
+ <span class="menu-text">Journal</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -4890,37 +4869,80 @@ vertical-align: -.125em;
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../project-description.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Description</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../project-tips-resources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Tips + resources</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
- <span class="menu-text">Weekly materials</span></a>
-          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="../weeks/week-1.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 1</span></a>
+ <span class="menu-text">Semaine 1</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../weeks/week-2.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Week 2</span></a>
+ <span class="menu-text">Semaine 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 3</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-4.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-5.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-6.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-7.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-8.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-9.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../weeks/week-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Semaine 13</span></a>
   </div>
 </li>
       </ul>
@@ -4931,33 +4953,35 @@ vertical-align: -.125em;
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-   
-  <ul class="collapse">
-  <li><a href="#fonctions-fenêtreswindow-functions" id="toc-fonctions-fenêtreswindow-functions" class="nav-link active" data-scroll-target="#fonctions-fenêtreswindow-functions">Fonctions fenêtres/Window functions</a>
-  <ul class="collapse">
-  <li><a href="#over-partition-by" id="toc-over-partition-by" class="nav-link" data-scroll-target="#over-partition-by">OVER (PARTITION BY …)</a></li>
-  <li><a href="#over-partition-by-order-by" id="toc-over-partition-by-order-by" class="nav-link" data-scroll-target="#over-partition-by-order-by">OVER (PARTITION BY … ORDER BY)</a></li>
-  <li><a href="#rank-over" id="toc-rank-over" class="nav-link" data-scroll-target="#rank-over">RANK() OVER ()</a></li>
-  <li><a href="#autres-types-de-fenêtres" id="toc-autres-types-de-fenêtres" class="nav-link" data-scroll-target="#autres-types-de-fenêtres">Autres types de fenêtres</a></li>
-  </ul></li>
-  <li><a href="#fonctions-en-langage-sql" id="toc-fonctions-en-langage-sql" class="nav-link" data-scroll-target="#fonctions-en-langage-sql">Fonctions en langage SQL</a>
-  <ul class="collapse">
-  <li><a href="#forme-générale" id="toc-forme-générale" class="nav-link" data-scroll-target="#forme-générale">Forme générale</a></li>
-  <li><a href="#fonctions-qui-retournent-un-type-simple" id="toc-fonctions-qui-retournent-un-type-simple" class="nav-link" data-scroll-target="#fonctions-qui-retournent-un-type-simple">Fonctions qui retournent un type simple</a></li>
-  <li><a href="#fonctions-qui-retournent-un-type-composé" id="toc-fonctions-qui-retournent-un-type-composé" class="nav-link" data-scroll-target="#fonctions-qui-retournent-un-type-composé">Fonctions qui retournent un type composé</a></li>
-  <li><a href="#fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table" id="toc-fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table" class="nav-link" data-scroll-target="#fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table">Fonctions qui retournent un type composé défini par les lignes d’une table</a></li>
-  <li><a href="#fonctions-qui-retournent-une-table" id="toc-fonctions-qui-retournent-une-table" class="nav-link" data-scroll-target="#fonctions-qui-retournent-une-table">Fonctions qui retournent une table</a></li>
-  </ul></li>
-  <li><a href="#schéma-babynames" id="toc-schéma-babynames" class="nav-link" data-scroll-target="#schéma-babynames">Schéma <code>babynames</code></a></li>
-  <li><a href="#exercices" id="toc-exercices" class="nav-link" data-scroll-target="#exercices">Exercices</a></li>
-  </ul>
-<div class="toc-actions"><ul class="collapse"><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/solutions/td4bis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div><div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="td4bis.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></nav>
-    </div>
+        
+    <div class="quarto-alternate-formats"><h2>Other Formats</h2><ul><li><a href="td7.pdf"><i class="bi bi-file-pdf"></i>PDF</a></li></ul></div></div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">TD 7 : Contraintes (suite)</h1>
+<p class="subtitle lead">Définition de données et Contraintes</p>
+</div>
 
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 8, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
 
 
 <div class="callout callout-style-simple callout-warning callout-titled">
@@ -4993,428 +5017,8 @@ Avec solutions
 </div>
 </div>
 </div>
-<section id="fonctions-fenêtreswindow-functions" class="level1">
-<h1>Fonctions fenêtres/Window functions</h1>
-<p>Une <em>fonction fenêtre</em> effectue un calcul sur un ensemble de lignes de table qui sont liées d’une manière ou d’une autre à la ligne actuelle. Ceci est comparable au type de calcul qui peut être effectué avec une <em>fonction d’agrégation</em>. Toutefois, les <em>fonctions de fenêtre</em> n’entraînent pas le regroupement des lignes en une unique ligne de sortie, comme le feraient des appels d’agrégats sans fenêtre. Au contraire, avec les <em>fonctions fenêtres</em> les lignes conservent leurs identités distinctes.</p>
-<p>Pour chaque ligne du résultat, les fonctions fenêtres calculent sur un ensemble de lignes. Cet ensemble de lignes est défini par l’adverbe <code>OVER</code>.</p>
-<section id="over-partition-by" class="level2">
-<h2 class="anchored" data-anchor-id="over-partition-by">OVER (PARTITION BY …)</h2>
-<p>Cette construction peut être combinée avec n’importe quelle fonction d’aggrégation.</p>
-<p>Cette requête indique pour chaque ville, la “population moyenne” des villes de ce pays (cette moyenne n’a aucun sens).</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="kw">id</span>, name_city, population_city, </span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">avg</span>(population_city) <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> countrycode)  <span class="kw">AS</span> avg_pop</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world.city;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Sans le mécanisme de fenêtrage, on pourrait obtenir le résultat au prix d’une jointure</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a> <span class="kw">WITH</span> tmp <span class="kw">AS</span> (</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> c.countrycode, <span class="fu">AVG</span>(c.population_city) <span class="kw">AS</span> avg_pop</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> world.city c</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> c.countrycode</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a> ) </span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> cc.<span class="kw">id</span>, cc.name_city, cc.population_city, tmp.avg_pop</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> world.city cc <span class="kw">NATURAL</span> <span class="kw">JOIN</span> tmp;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="over-partition-by-order-by" class="level2">
-<h2 class="anchored" data-anchor-id="over-partition-by-order-by">OVER (PARTITION BY … ORDER BY)</h2>
-<p>On peut partitioner et trier.</p>
-<p>Cette construction est très pratique pour ranger les tuples d’un sous-groupe.</p>
-<p>Dans <code>world</code>, si on veut ranger les langues parlées dans un pays par popularité décroissante, on peut procéder ainsi.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> countrycode, LANGUAGE, </span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> countrycode <span class="kw">ORDER</span> <span class="kw">BY</span> percentage <span class="kw">DESC</span>)  <span class="kw">AS</span> rnk</span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world.countrylanguage ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="rank-over" class="level2">
-<h2 class="anchored" data-anchor-id="rank-over">RANK() OVER ()</h2>
-<p>On peut ne pas partitionner en utilisant l’expression <code>OVER ()</code>. Par exemple, si on veut obtenir le rang des tuples d’une table sur un tri particulier.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> countrycode, name_country, </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>       <span class="fu">RANK</span>() <span class="kw">OVER</span> (<span class="kw">ORDER</span> <span class="kw">BY</span> population_country <span class="kw">DESC</span>)  <span class="kw">AS</span> rnk</span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world.country ;  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="autres-types-de-fenêtres" class="level2">
-<h2 class="anchored" data-anchor-id="autres-types-de-fenêtres">Autres types de fenêtres</h2>
-<p>La construction <code>OVER ( ...)</code> n’est pas utilisée exclusivement avec des partitions (peut-être triviales), on peut aussi définir des fenêtres glissantes.</p>
-<p>Les <em>fonctions fenêtre</em> ne sont autorisées que dans la liste <code>SELECT</code> et la clause <code>ORDER BY</code> de la requête. Elles sont interdites ailleurs, par exemple dans les clauses <code>GROUP BY</code>, <code>HAVING</code> et <code>WHERE</code>.</p>
-</section>
-</section>
-<section id="fonctions-en-langage-sql" class="level1">
-<h1>Fonctions en langage SQL</h1>
-<section id="forme-générale" class="level2">
-<h2 class="anchored" data-anchor-id="forme-générale">Forme générale</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span>  schema_name.func_name(p_arg1 p_arg1_datatype, <span class="op">..</span>., [<span class="kw">OUT</span> o_arg1 o_arg1_datatype, <span class="op">..</span>.])</span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>RETURNS <span class="kw">some</span> <span class="kw">type</span> | <span class="dt">RECORD</span> | SETOF <span class="kw">some</span> <span class="kw">type</span> | <span class="kw">TABLE</span> (<span class="op">..</span>) </span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>LANGUAGE SQL <span class="kw">AS</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>SQL statement ;</span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>SQL statement ;</span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a><span class="op">..</span>.</span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>SQL statement ;</span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fonctions-qui-retournent-un-type-simple" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-qui-retournent-un-type-simple">Fonctions qui retournent un type simple</h2>
-<p>Dans le schéma <code>world</code>, on veut écrire une fonction qui prend en argument une région et renvoie la population maximale parmi les capitales de la région (voir td2 requête 1).</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> username.taille_max_capitale_region(p_region text)</span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>RETURNS <span class="dt">INTEGER</span> LANGUAGE SQL <span class="kw">AS</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(population_city) <span class="kw">AS</span> max_pop</span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region <span class="kw">AND</span> cc.population_city <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fonctions-qui-retournent-un-type-composé" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-qui-retournent-un-type-composé">Fonctions qui retournent un type composé</h2>
-<p>Dans le schéma <code>world</code>, on veut écrire une fonction qui prend en argument une région et renvoie le nom et la population de la capitale la plus peuplée de cette région (voir td2 requête 1).</p>
-<p>On peut utiliser le <em>qualifiant</em> <code>OUT</code> pour désigner des paramètres de sortie.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> username.capitale(p_region text, <span class="kw">OUT</span> o_name_capital TEXT, <span class="kw">OUT</span> o_population_capital <span class="dt">INTEGER</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>RETURNS <span class="dt">RECORD</span>  LANGUAGE SQL <span class="kw">AS</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> r <span class="kw">AS</span>(</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> cc.<span class="op">*</span>, <span class="fu">RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> c.region </span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                            <span class="kw">ORDER</span> <span class="kw">BY</span> cc.population_city <span class="kw">DESC</span>) <span class="kw">AS</span> rnk</span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> c.region<span class="op">=</span>p_region)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> r.name_city,  r.population_city</span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> r </span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> r.rnk <span class="op">=</span> <span class="dv">1</span> ;</span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table">Fonctions qui retournent un type composé défini par les lignes d’une table</h2>
-<p>Dans le schéma <code>world</code>, on veut écrire une fonction qui prend en argument une région et renvoie la description de la capitale la plus peuplée de cette région (voir td2 requête 1).</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> username.capitale(p_region text)</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>RETURNS world.city  LANGUAGE SQL <span class="kw">AS</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> r <span class="kw">AS</span>(</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> cc.<span class="op">*</span>, <span class="fu">RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> c.region </span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                            <span class="kw">ORDER</span> <span class="kw">BY</span> cc.population_city <span class="kw">DESC</span>) <span class="kw">AS</span> rnk</span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> c.region<span class="op">=</span>p_region</span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> r.<span class="kw">id</span>, r.name_city, r.countrycode, r.district, r.population_city</span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> r </span>
-<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> r.rnk <span class="op">=</span> <span class="dv">1</span> ;</span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fonctions-qui-retournent-une-table" class="level2">
-<h2 class="anchored" data-anchor-id="fonctions-qui-retournent-une-table">Fonctions qui retournent une table</h2>
-<p>Dans le schéma <code>world</code>, on veut écrire une fonction qui prend en argument une région et renvoie la table des capitales de la région (voir td2 requête 1).</p>
-<section id="table-de-schéma-explicite" class="level3">
-<h3 class="anchored" data-anchor-id="table-de-schéma-explicite">Table de schéma explicite</h3>
-<p>On se contente d’abord de renvoyer le nom de la capitale. On explicite le schéma de la table résultat</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> username.capitales_region(p_region text)</span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>RETURNS <span class="kw">TABLE</span> (name_capital text) LANGUAGE SQL <span class="kw">AS</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> cc.name_city </span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region ;</span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="table-de-même-schéma-quune-autre-table" class="level3">
-<h3 class="anchored" data-anchor-id="table-de-même-schéma-quune-autre-table">Table de même schéma qu’une autre table</h3>
-<p><a href="https://www.postgresql.org/docs/15/xfunc-sql.html">Documentation</a></p>
-<p>On veut maintenant récupérer une table de même schéma que <code>city</code>.</p>
-<div class="callout callout-style-simple callout-tip">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>La solution est très simple. On profite de ce qu’à chaque table correspond un type de même nom et on utilise le mot-clé <code>SETOF</code>.</p>
-</div>
-</div>
-</div>
-<div class="sourceCode" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> username.capitales_region_large(p_region text)</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>RETURNS SETOF world.city  LANGUAGE SQL <span class="kw">AS</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> cc.<span class="op">*</span> </span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region ;</span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-</section>
-<section id="schéma-babynames" class="level1">
-<h1>Schéma <code>babynames</code></h1>
-<p>Les données sont construites et mises à disposition par l’INSEE <a href="https://www.insee.fr/fr/accueil">https://www.insee.fr/fr/accueil</a>, disponibles ici: <a href="https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip">https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip</a></p>
-<p>Cet ensemble de données s’est développé depuis un certain temps. Il a été pris en compte par les des chercheurs en sciences sociales depuis des décennies. Les prénoms sont censés donner un aperçu d’une variété de phénomènes, y compris l’observance religieuse. phénomènes, y compris l’observance religieuse.</p>
-<p>Un aperçu de l’ensemble des travaux peut être trouvé dans <em>L’archipel français</em> de Jérome Fourquet, Le Seuil, 2019.</p>
-<p><a href="https://www.seuil.com/ouvrage/l-archipel-francais-jerome-fourquet/9782021406023">https://www.seuil.com/ouvrage/l-archipel-francais-jerome-fourquet/9782021406023</a>.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SET</span> search_path <span class="kw">TO</span> babynames ;</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>\d  bebes</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="kw">Table</span> <span class="ot">&quot;babynames.bebes&quot;</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="kw">Column</span> |  <span class="kw">Type</span>   | Collation | Nullable | <span class="kw">Default</span> </span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co">--------+---------+-----------+----------+---------</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>sexe   | text    |           |          | </span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>prenom | text    |           |          | </span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>annee  | <span class="dt">integer</span> |           |          | </span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>nombre | <span class="dt">integer</span> |           |          | </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Chaque tuple nous indique le <code>nombre</code> de nouveaux-nés de genre <code>sexe</code>, prénommés <code>prenom</code> mis au monde durant l’année <code>annee</code> en France.</p>
-</section>
-<section id="exercices" class="level1">
-<h1>Exercices</h1>
-<ul>
-<li>Pour chaque année, chaque sexe, donner les dix prénoms les plus populaires et leur rang de popularité.</li>
-</ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>#| unilur<span class="op">-</span>solution: <span class="kw">true</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> R <span class="kw">AS</span> (</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> annee, sexe, prenom, <span class="fu">RANK</span>() <span class="kw">OVER</span>(<span class="kw">PARTITION</span> <span class="kw">BY</span> (annee, sexe)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="kw">ORDER</span> <span class="kw">BY</span> nombre <span class="kw">DESC</span>) <span class="kw">AS</span> rnk</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> babynames.bebes</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> annee, sexe, prenom, rnk</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> R</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> rnk <span class="op">&lt;=</span> <span class="dv">10</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Créer dans votre schéma personnel une vue <code>top_10</code> qui, interrogée, renvoie le résultat de la requête précédente</li>
-</ul>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="annotated-cell-13"><pre class="sourceCode sql code-annotation-code code-with-copy code-annotated"><code class="sourceCode sql"><a class="code-annotation-anchor" data-target-cell="annotated-cell-13" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-13-1" class="code-annotation-target"><a href="#annotated-cell-13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> babynames.top_10 <span class="kw">AS</span></span>
-<span id="annotated-cell-13-2"><a href="#annotated-cell-13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WITH</span> R <span class="kw">AS</span> (</span>
-<span id="annotated-cell-13-3"><a href="#annotated-cell-13-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> annee, sexe, prenom, <span class="fu">RANK</span>() <span class="kw">OVER</span>(<span class="kw">PARTITION</span> <span class="kw">BY</span> (annee, sexe) <span class="kw">ORDER</span> <span class="kw">BY</span> nombre <span class="kw">DESC</span>) <span class="kw">AS</span> rnk</span>
-<span id="annotated-cell-13-4"><a href="#annotated-cell-13-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> babynames.bebes</span>
-<span id="annotated-cell-13-5"><a href="#annotated-cell-13-5" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="annotated-cell-13-6"><a href="#annotated-cell-13-6" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="annotated-cell-13-7"><a href="#annotated-cell-13-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> annee, sexe, prenom, rnk</span>
-<span id="annotated-cell-13-8"><a href="#annotated-cell-13-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> R</span>
-<span id="annotated-cell-13-9"><a href="#annotated-cell-13-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> rnk <span class="op">&lt;=</span> <span class="dv">10</span></span>
-<span id="annotated-cell-13-10"><a href="#annotated-cell-13-10" aria-hidden="true" tabindex="-1"></a>;</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-13" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-13" data-code-lines="1" data-code-annotation="1">Remplacer <code>babynames.top_10</code> par <code>username.top_10</code>.</span>
-</dd>
-</dl>
-</div>
-</div>
-<ul>
-<li>Écrire une fonction qui prend en argument un prénom et renvoie une table de schéma <code>(annee, sexe, rang)</code> et indique le rang du prénom pour chaque année et chaque sexe.</li>
-</ul>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb13"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> babynames.fonc_td4bis_1(p_prenom TEXT) </span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>RETURNS <span class="kw">TABLE</span>(annee INT4, sexe TEXT, rang INT4)</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>LANGUAGE SQL <span class="kw">AS</span>  </span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> R <span class="kw">AS</span> (</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> annee, sexe, prenom, <span class="fu">RANK</span>() <span class="kw">OVER</span>(<span class="kw">PARTITION</span> <span class="kw">BY</span> (annee, sexe) <span class="kw">ORDER</span> <span class="kw">BY</span> nombre <span class="kw">DESC</span>) <span class="kw">AS</span> rnk</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> babynames.bebes</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> annee:<span class="ch">:int4</span>, sexe:<span class="ch">:text</span>, rnk:<span class="ch">:int4</span></span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> R</span>
-<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> prenom <span class="op">=</span> p_prenom ;</span>
-<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="callout callout-style-simple callout-caution">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Remplacer <code>babynames.fonc_td4bis_1</code> par <code>username.fonc_td4bis_1</code>.</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<ul>
-<li>Pour chaque année et sexe, calculez le nombre total de naissances.</li>
-</ul>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb14"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a># unilur<span class="op">-</span>solution: <span class="kw">true</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> b.annee, b.sexe, <span class="fu">SUM</span>(nombre) <span class="kw">AS</span> nb</span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> babynames.bebes b</span>
-<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="kw">GROUP</span> <span class="kw">BY</span> b.annee, b.sexe  ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<ul>
-<li>Créer dans votre schéma personnel une vue <code>naissances_sexe_annee</code> qui, interrogée, renvoie le résultat de la requête précédente</li>
-</ul>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb15"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a># unilur<span class="op">-</span>solution: <span class="kw">true</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> babynames.naissances_sexe_annee <span class="kw">AS</span>(</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> b.annee, b.sexe, <span class="fu">SUM</span>(nombre)  <span class="kw">AS</span> nb</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> babynames.bebes b</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> b.annee, b.sexe</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<ul>
-<li>Pour chaque année, calculez le rapport entre nombre total de naissances féminines et nombre total de naissances masculines.</li>
-</ul>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>On effectue avec les outils SQL une opération qui s’appelle un <em>pivot en forme élargie</em>.</p>
-</div>
-</div>
-</div>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb16"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> R <span class="kw">AS</span> (</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">SELECT</span> b.annee, b.sexe, <span class="fu">SUM</span>(nombre)  <span class="kw">AS</span> nb</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> babynames.bebes b</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a> <span class="kw">GROUP</span> <span class="kw">BY</span> b.annee, b.sexe</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> r1.annee, r1.nb:<span class="ch">:float4</span><span class="op">/</span>r2.nb:<span class="ch">:float4</span> <span class="kw">AS</span> ratio</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> R r1 <span class="kw">JOIN</span> R r2 <span class="kw">ON</span>(r1.annee<span class="op">=</span>r2.annee)</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> r1.sexe<span class="op">=</span><span class="dv">2</span> <span class="kw">AND</span> r2.sexe<span class="op">=</span><span class="dv">1</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<ul>
-<li>Créer dans votre schéma personnel une vue <code>naissances_sexe_annee</code> qui, interrogée, renvoie le résultat de la requête précédente.</li>
-</ul>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb17"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> babynames.naissances_f_h_annee <span class="kw">AS</span> (</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> r1.annee, r1.nb <span class="kw">AS</span> nb_f, r2.nb <span class="kw">AS</span> nb_h</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> babynames.naissances_sexe_annee r1 <span class="kw">JOIN</span> babynames.naissances_sexe_annee r2 <span class="kw">ON</span>(r1.annee<span class="op">=</span>r2.annee)</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> r1.sexe<span class="op">=</span><span class="st">&#39;2&#39;</span> <span class="kw">AND</span> r2.sexe<span class="op">=</span><span class="st">&#39;1&#39;</span></span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<ul>
-<li>Pour chaque année, calculez le rapport entre nombre total de naissances féminines et nombre total de naissances</li>
-</ul>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="annotated-cell-19"><pre class="sourceCode sql code-annotation-code code-with-copy code-annotated"><code class="sourceCode sql"><span id="annotated-cell-19-1"><a href="#annotated-cell-19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> R <span class="kw">AS</span> (</span>
-<span id="annotated-cell-19-2"><a href="#annotated-cell-19-2" aria-hidden="true" tabindex="-1"></a> <span class="kw">SELECT</span> b.annee, b.sexe, <span class="fu">SUM</span>(nombre)  <span class="kw">AS</span> nb</span>
-<span id="annotated-cell-19-3"><a href="#annotated-cell-19-3" aria-hidden="true" tabindex="-1"></a> <span class="kw">FROM</span> babynames.bebes b</span>
-<span id="annotated-cell-19-4"><a href="#annotated-cell-19-4" aria-hidden="true" tabindex="-1"></a> <span class="kw">GROUP</span> <span class="kw">BY</span> b.annee, b.sexe</span>
-<span id="annotated-cell-19-5"><a href="#annotated-cell-19-5" aria-hidden="true" tabindex="-1"></a>)</span>
-<a class="code-annotation-anchor" data-target-cell="annotated-cell-19" data-target-annotation="1" onclick="event.preventDefault();">1</a><span id="annotated-cell-19-6" class="code-annotation-target"><a href="#annotated-cell-19-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> r1.annee, r1.nb:<span class="ch">:float4</span><span class="op">/</span>(r1.nb:<span class="ch">:float4</span> <span class="op">+</span> r2.nb:<span class="ch">:float4</span>) <span class="kw">AS</span> ratio</span>
-<span id="annotated-cell-19-7"><a href="#annotated-cell-19-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> R r1 <span class="kw">JOIN</span> R r2 <span class="kw">ON</span>(r1.annee<span class="op">=</span>r2.annee)</span>
-<span id="annotated-cell-19-8"><a href="#annotated-cell-19-8" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> r1.sexe<span class="op">=</span><span class="st">&#39;2&#39;</span> <span class="kw">AND</span> r2.sexe<span class="op">=</span><span class="st">&#39;1&#39;</span> ;</span><div class="code-annotation-gutter-bg"></div><div class="code-annotation-gutter"></div></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<dl class="code-annotation-container-grid">
-<dt data-target-cell="annotated-cell-19" data-target-annotation="1">1</dt>
-<dd>
-<span data-code-cell="annotated-cell-19" data-code-lines="6" data-code-annotation="1">Pourquoi est-il utile de réaliser une coercition de type sur <code>nb</code> avec <code>nb::float4</code> ?</span>
-</dd>
-</dl>
-</div>
-</div>
-<ul>
-<li>Créer dans votre schéma personnel une vue `naissances_sexe_annee qui, interrogée, renvoie le résultat de la requête précédente</li>
-</ul>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb18"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> babynames.naissances_sexe_annee <span class="kw">AS</span> (</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">SELECT</span> b.annee, b.sexe, <span class="fu">SUM</span>(nombre)  <span class="kw">AS</span> nb</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="kw">FROM</span> babynames.bebes b</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>    <span class="kw">GROUP</span> <span class="kw">BY</span> b.annee, b.sexe</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>) ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<ul>
-<li>Écrire une fonction qui prend en argument une année <code>yyyy</code> et renvoie une table de schéma <code>(annee, sexe, prenom, prop)</code> où <code>prenom</code> est un des dix prénoms les plus populaires donné en l’aneee <code>yyyy</code> et calculer la proportion de nouveaux-nés portant ce prénom année par année.</li>
-</ul>
-<p>Tenez compte du fait que certains noms peuvent avoir une occurrence nulle pendant certaines années.</p>
-<div class="callout callout-style-simple callout-tip callout-titled" title="Solution">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Solution
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<div class="sourceCode" id="cb19"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> babynames.fonc_td4bis_2(p_annee int4)</span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>RETURNS <span class="kw">TABLE</span>(annee int4, sexe TEXT, prenom TEXT, prop float4) LANGUAGE SQL <span class="kw">AS</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>$$</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> r <span class="kw">AS</span> (</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> sexe, prenom</span>
-<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> babynames.top_10 t</span>
-<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>  <span class="kw">WHERE</span> t.annee<span class="op">=</span>p_annee</span>
-<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>), s <span class="kw">AS</span> (</span>
-<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> b.annee, r.sexe, r.prenom, b.nombre</span>
-<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> r  <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> babynames.bebes b</span>
-<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>  <span class="kw">ON</span>(r.sexe<span class="op">=</span>b.sexe <span class="kw">AND</span> r.prenom<span class="op">=</span>b.prenom)</span>
-<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> s.annee, s.sexe, s.prenom, s.nombre:<span class="ch">:float4</span><span class="op">/</span>nsa.nb:<span class="ch">:float4</span> <span class="kw">AS</span> prop</span>
-<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> s <span class="kw">JOIN</span> babynames.naissances_sexe_annee nsa</span>
-<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a><span class="kw">ON</span> (s.annee<span class="op">=</span>nsa.annee  <span class="kw">AND</span>  s.sexe<span class="op">=</span>nsa.sexe) ;</span>
-<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>$$ ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<p><a href="https://www.postgresql.org/docs/15/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS">https://www.postgresql.org/docs/15/sql-expressions.html#SYNTAX-WINDOW-FUNCTIONS</a></p>
 
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -5994,7 +5598,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div>   
     <div class="nav-footer-center">
        
-    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/solutions/td4bis.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
+    <div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/solutions/td7.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div>
     <div class="nav-footer-right">
 <p>This page is built with blood, sweat, tears, and <a href="https://quarto.org/">Quarto</a>.</p>
 </div>

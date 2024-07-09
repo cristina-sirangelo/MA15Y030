@@ -8,18 +8,22 @@
 <link href="../site_libs/quarto-html/light-border.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
+<link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/grid-htext-1.0.0/grid_htext.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.47">
-
-  <meta name="author" content="Équipe BD">
-  <title>MA15Y030 - Automne 2024 – BD V: Fonctions SQL et Vues</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
-  <style>
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.47">
+<meta name="author" content="Équipe BD">
+<meta name="dcterms.date" content="2024-10-11">
+<title>MA15Y030 - Automne 2024 – Fonctions SQL et Vues</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -61,46 +65,48 @@
       }
     pre.numberSource { margin-left: 3em;  padding-left: 4px; }
     div.sourceCode
-      { color: #cccccc; background-color: #303030; }
+      { color: #657b83; background-color: #fdf6e3; }
     @media screen {
     pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
     }
-    code span.al { color: #ffcfaf; } /* Alert */
-    code span.an { color: #7f9f7f; font-weight: bold; } /* Annotation */
-    code span.at { } /* Attribute */
-    code span.bn { color: #dca3a3; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #f0dfaf; } /* ControlFlow */
-    code span.ch { color: #dca3a3; } /* Char */
-    code span.cn { color: #dca3a3; font-weight: bold; } /* Constant */
-    code span.co { color: #7f9f7f; } /* Comment */
-    code span.cv { color: #7f9f7f; font-weight: bold; } /* CommentVar */
-    code span.do { color: #7f9f7f; } /* Documentation */
-    code span.dt { color: #dfdfbf; } /* DataType */
-    code span.dv { color: #dcdccc; } /* DecVal */
-    code span.er { color: #c3bf9f; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #c0bed1; } /* Float */
-    code span.fu { color: #efef8f; } /* Function */
-    code span.im { } /* Import */
-    code span.in { color: #7f9f7f; font-weight: bold; } /* Information */
-    code span.kw { color: #f0dfaf; } /* Keyword */
-    code span.op { color: #f0efd0; } /* Operator */
-    code span.ot { color: #efef8f; } /* Other */
-    code span.pp { color: #ffcfaf; font-weight: bold; } /* Preprocessor */
-    code span.sc { color: #dca3a3; } /* SpecialChar */
-    code span.ss { color: #cc9393; } /* SpecialString */
-    code span.st { color: #cc9393; } /* String */
-    code span.va { } /* Variable */
-    code span.vs { color: #cc9393; } /* VerbatimString */
-    code span.wa { color: #7f9f7f; font-weight: bold; } /* Warning */
+    code span { color: #657b83; } /* Normal */
+    code span.al { color: #d33682; font-weight: bold; } /* Alert */
+    code span.an { color: #268bd2; } /* Annotation */
+    code span.at { color: #268bd2; } /* Attribute */
+    code span.bn { color: #2aa198; } /* BaseN */
+    code span.bu { color: #cb4b16; } /* BuiltIn */
+    code span.cf { color: #859900; font-weight: bold; } /* ControlFlow */
+    code span.ch { color: #2aa198; } /* Char */
+    code span.cn { color: #2aa198; font-weight: bold; } /* Constant */
+    code span.co { color: #93a1a1; font-style: italic; } /* Comment */
+    code span.cv { color: #2aa198; } /* CommentVar */
+    code span.do { color: #dc322f; } /* Documentation */
+    code span.dt { color: #b58900; font-weight: bold; } /* DataType */
+    code span.dv { color: #2aa198; } /* DecVal */
+    code span.er { color: #dc322f; text-decoration: underline; } /* Error */
+    code span.ex { color: #268bd2; font-weight: bold; } /* Extension */
+    code span.fl { color: #2aa198; } /* Float */
+    code span.fu { color: #268bd2; } /* Function */
+    code span.im { color: #2aa198; } /* Import */
+    code span.in { color: #b58900; } /* Information */
+    code span.kw { color: #859900; font-weight: bold; } /* Keyword */
+    code span.op { color: #859900; } /* Operator */
+    code span.ot { color: #859900; } /* Other */
+    code span.pp { color: #cb4b16; } /* Preprocessor */
+    code span.re { color: #268bd2; background-color: #eee8d5; } /* RegionMarker */
+    code span.sc { color: #dc322f; } /* SpecialChar */
+    code span.ss { color: #dc322f; } /* SpecialString */
+    code span.st { color: #2aa198; } /* String */
+    code span.va { color: #268bd2; } /* Variable */
+    code span.vs { color: #2aa198; } /* VerbatimString */
+    code span.wa { color: #cb4b16; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
-  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+<link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -298,7 +304,7 @@
   }
 
   </style>
-  <style type="text/css">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -386,17 +392,16 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="BD V: Fonctions SQL et Vues – MA15Y030 - Automne 2024">
-<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
+<meta property="og:title" content="Fonctions SQL et Vues – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Fonctions SQL. Vues. Requêtes préparées">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
-  <h1 class="title">BD V: Fonctions SQL et Vues</h1>
-  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
+<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center"><h1 class="title">Fonctions SQL et Vues</h1>
+  <p class="subtitle">Fonctions SQL. Vues. Requêtes préparées</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -409,71 +414,53 @@
     </div>
 </div>
 
-</section><section id="TOC">
-<nav role="doc-toc"> 
-<h2 id="toc-title">Plan</h2>
+  <p class="date">2024-10-11</p>
+</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
 <ul>
-<li><a href="#/requêtes-paramétrées-pourquoi" id="/toc-requêtes-paramétrées-pourquoi">Requêtes paramétrées : pourquoi ?</a></li>
-<li><a href="#/fonctions-sql-version-postgresql-définition" id="/toc-fonctions-sql-version-postgresql-définition">Fonctions SQL (version PostGreSQL): définition</a></li>
-</ul>
-</nav>
-</section>
-<section class="slide level2 center">
+<li><a href="#/requ%C3%AAtes-param%C3%A9tr%C3%A9es-pourquoi" id="/toc-requêtes-paramétrées-pourquoi">Requêtes paramétrées : pourquoi ?</a></li>
+<li><a href="#/fonctions-sql-version-postgresql-d%C3%A9finition" id="/toc-fonctions-sql-version-postgresql-définition">Fonctions SQL (version PostGreSQL): définition</a></li>
+<li><a href="#/fonctions-qui-retournent-un-type-compos%C3%A9" id="/toc-fonctions-qui-retournent-un-type-composé">Fonctions qui retournent un type composé</a></li>
+<li><a href="#/fonctions-sql-usages" id="/toc-fonctions-sql-usages">Fonctions SQL: usages</a></li>
+<li><a href="#/vues-pourquoi" id="/toc-vues-pourquoi">Vues : pourquoi ?</a></li>
+<li><a href="#/references" id="/toc-references">References</a></li>
+<li><a href="#/fin" id="/toc-fin">Fin</a></li>
+</ul></nav></section><section><section id="requêtes-paramétrées-pourquoi" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Requêtes paramétrées : pourquoi ?</h1>
 
-<p><code>{.r, include=FALSE} library(DBI) db &lt;- dbConnect(RSQLite::SQLite(), dbname = "sql.sqlite") knitr::opts_chunk$set(connection = "db")</code></p>
-</section>
-<section>
-<section id="requêtes-paramétrées-pourquoi" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Requêtes paramétrées : pourquoi ?</h1>
-
-</section>
-<section class="slide level2 center">
-
-<blockquote>
+</section><section class="slide level2 center"><blockquote>
 <p>SQL is much like chess—a few hours to learn, a lifetime to master</p>
 </blockquote>
-</section>
-<section id="pourquoi" class="slide level2 center">
-<h2>Pourquoi ?</h2>
-<p>Lorsqu’une collection de requêtes de même forme est utilisée sur une base de données, il est pertinent de préparer ces requêtes</p>
-<p>Les objectifs de cette préparation sont divers</p>
+</section><section id="pourquoi" class="slide level2 center"><h2>Pourquoi ?</h2>
+<p>Lorsqu’une collection de requêtes de même forme est utilisée sur une base de données, il est pertinent de <em>préparer</em> ces requêtes</p>
+<p>Les objectifs de cette préparation sont divers:</p>
 <ul>
 <li><p>éviter de coder de façon répétitive</p></li>
 <li><p>permettre une planification en amont des requêtes</p></li>
 <li><p>éviter de recalculer des jointures coûteuses</p></li>
 <li><p>…</p></li>
 </ul>
-</section>
-<section id="comment" class="slide level2 center">
-<h2>Comment ?</h2>
+
+<aside><div>
+<p>On cherche à suivre le principe <code>DRY</code> (Don’t Repeat Yourself) plutôt que la routine <code>WET</code> (Write Everything Twice ou We Enjoy Typing)</p>
+</div></aside></section><section id="comment" class="slide level2 center"><h2>Comment ?</h2>
 <p>Les SGBD relationnels offrent une gamme d’outils pour combler ces besoins</p>
 <ul>
 <li><p>Les <code>PREPARED STATEMENT</code></p></li>
 <li><p>Les <strong>fonctions</strong></p></li>
 <li><p>Les <strong>vues</strong></p></li>
-</ul>
-</section></section>
-<section>
-<section id="fonctions-sql-version-postgresql-définition" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Fonctions SQL (version PostGreSQL): définition</h1>
+</ul></section></section><section><section id="fonctions-sql-version-postgresql-définition" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fonctions SQL (version PostGreSQL): définition</h1>
 
-</section>
-<section class="slide level2 center">
-
-<blockquote>
+</section><section class="slide level2 center"><blockquote>
 <p>Dans SQL et dans PostgreSQL en particulier , il est possible de définir des fonctions ou procédures persistantes (<code>STORED PROCEDURE</code>)</p>
 </blockquote>
 <blockquote>
 <p>Ces fonctions sont des <em>objets permanents</em> d’un schéma (comme les tables, vues, utilisateurs, etc)</p>
 </blockquote>
 <blockquote>
-<p>Elle permettent de regrouper un traitement complexe en un seul programme que l’on peut appeler à tout moment si on en a le droit</p>
+<p>Elles permettent de regrouper un traitement complexe en un seul programme que l’on peut appeler à tout moment si on en a le droit</p>
 </blockquote>
-</section>
-<section id="syntaxe-générale-des-fonctions" class="slide level2 center">
-<h2>Syntaxe générale des fonctions</h2>
+</section><section id="syntaxe-générale-des-fonctions" class="slide level2 center"><h2>Syntaxe générale des fonctions</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> </span>
-<span id="cb1-2"><a></a>    func_name(arg1 arg1_datatype <span class="kw">DEFAULT</span> arg1_default)</span>
+<span id="cb1-2"><a></a>  func_name(arg1 arg1_datatype <span class="kw">DEFAULT</span> arg1_default)</span>
 <span id="cb1-3"><a></a></span>
 <span id="cb1-4"><a></a>RETURNS <span class="kw">some</span> <span class="kw">type</span> | <span class="kw">set</span> <span class="kw">of</span> <span class="kw">some</span> <span class="kw">type</span> | <span class="kw">TABLE</span> (<span class="op">..</span>) <span class="kw">AS</span></span>
 <span id="cb1-5"><a></a>$$</span>
@@ -486,87 +473,111 @@
 <div class="column">
 <p><code>langage_of_function</code> peut prendre différentes valeurs :</p>
 <ul>
-<li><code>SQL</code> (<em>Trusted</em>)</li>
-<li><code>PL/pgSQL</code> (<em>Trusted</em>)</li>
+<li>
+<code>SQL</code> (<em>Trusted</em>)</li>
+<li>
+<code>PL/pgSQL</code> (<em>Trusted</em>)</li>
 <li><code>C</code></li>
-<li><code>PL/Python</code> (<em>Untrusted</em>)</li>
+<li>
+<code>PL/Python</code> (<em>Untrusted</em>)</li>
 <li>…</li>
 </ul>
 </div><div class="column">
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="kw">SELECT</span> lanname </span>
 <span id="cb2-2"><a></a><span class="kw">FROM</span> pg_language;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<pre><code>lanname |
---------+
-internal|
-c       |
-sql     |
-plpgsql |</code></pre>
-</div><p>::::: <!-- end columns --></p><hr><section id="signature-de-la-fonction" class="slide level2 center">
-<h2>Signature de la fonction</h2>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a>lanname |</span>
+<span id="cb3-2"><a></a><span class="co">--------+</span></span>
+<span id="cb3-3"><a></a>internal|</span>
+<span id="cb3-4"><a></a>c       |</span>
+<span id="cb3-5"><a></a>sql     |</span>
+<span id="cb3-6"><a></a>plpgsql |</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
+</section><section id="signature-de-la-fonction" class="slide level2 center"><h2>Signature de la fonction</h2>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> </span>
-<span id="cb4-2"><a></a>    <span class="op">&lt;</span>func_name<span class="op">&gt;</span>(<span class="op">&lt;</span>arg1<span class="op">&gt;</span> <span class="op">&lt;</span>arg1_datatype<span class="op">&gt;</span> [<span class="kw">DEFAULT</span> <span class="op">&lt;</span>arg1_default<span class="op">&gt;</span>])</span>
+<span id="cb4-2"><a></a>  <span class="op">&lt;</span>func_name<span class="op">&gt;</span>(<span class="op">&lt;</span>arg1<span class="op">&gt;</span> <span class="op">&lt;</span>arg1_datatype<span class="op">&gt;</span> [<span class="kw">DEFAULT</span> <span class="op">&lt;</span>arg1_default<span class="op">&gt;</span>])</span>
 <span id="cb4-3"><a></a></span>
 <span id="cb4-4"><a></a>RETURNS <span class="op">&lt;</span><span class="kw">some</span> <span class="kw">type</span><span class="op">&gt;</span> | SETOF <span class="op">&lt;</span><span class="kw">some</span> <span class="kw">type</span><span class="op">&gt;</span> | <span class="kw">TABLE</span> (<span class="op">..</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>La signature d’une fonction est formée par - le nom de la fonction - la liste des arguments (nom et type attendu) - le type du résultat retourné par la fonction</p>
-</section><section id="signature-de-la-fonction-suite" class="slide level2 center">
-<h2>Signature de la fonction (suite)</h2>
+<p>La signature d’une fonction est formée par:</p>
 <ul>
-<li><p><code>&lt;arg1_datatype&gt;</code>:</p>
+<li>le nom de la fonction <code>&lt;func_name&gt;</code>
+</li>
+<li>la liste des arguments (nom <code>&lt;arg1&gt;</code> et type attendu <arg1_datatype>)</arg1_datatype>
+</li>
+<li>le type du résultat retourné par la fonction</li>
+</ul></section><section id="signature-de-la-fonction-suite" class="slide level2 center"><h2>Signature de la fonction (suite)</h2>
 <ul>
-<li>type prédéfini ou non, voir <code>CREATE TYPE ...</code></li>
-<li>type de colonne d’une table : <code>country.countrycode%TYPE</code></li>
+<li>
+<p><code>&lt;arg1_datatype&gt;</code>:</p>
+<ul>
+<li>type prédéfini ou non, voir <code>CREATE TYPE ...</code>
+</li>
+<li>type de colonne d’une table : <code>country.countrycode%TYPE</code>
+</li>
 <li>type des tuples d’une table : <code>country%ROWTYPE</code>…</li>
-</ul></li>
+</ul>
+</li>
 <li><p><code>&lt;arg1_default&gt;</code>: litéral ou expression</p></li>
-<li><p>Type du résultat:</p>
+<li>
+<p>Type du résultat:</p>
 <ul>
 <li>type prédéfini ou non</li>
-<li><code>SETOF ...</code> (table)</li>
-<li>Table</li>
-</ul></li>
+<li>
+<code>SETOF ...</code> (table)</li>
+<li><code>TABLE (...)</code></li>
 </ul>
-<hr>
-<blockquote>
-<p>Arguments can have default values, which allow the caller of the function to omit them.</p>
+</li>
+</ul>
+
+<aside><div>
+<p>Chaque schéma de table définit (implicitement) un type</p>
+</div></aside></section><section class="slide level2 center"><blockquote>
+<p>Les arguments peuvent avoir des valeurs par défaut. Cela permet à l’appelant d’ommettre ces arguments.</p>
 </blockquote>
 <blockquote>
-<p>Optional arguments must be positioned after nonoptional arguments in the function definition.</p>
+<p>Les arguments optionnels doivent être déclarés après les arguments non-optionnels dans la signature de la fonction.</p>
 </blockquote>
-<hr>
-</section><section id="types-définis-par-lusager" class="slide level2 center">
-<h2>Types définis par l’usager</h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">CREATE</span> <span class="kw">TYPE</span>  type_utilisateur <span class="kw">AS</span> </span>
-<span id="cb5-2"><a></a>  (<span class="op">&lt;</span>identifiant<span class="op">&gt;</span> <span class="op">&lt;</span><span class="kw">type</span> défini<span class="op">&gt;</span>) </span>
-<span id="cb5-3"><a></a>   [, <span class="op">&lt;</span>identifiant<span class="op">&gt;</span> <span class="op">&lt;</span><span class="kw">type</span> défini<span class="op">&gt;</span>]<span class="op">*</span></span>
+</section><section id="types-définis-par-lusager" class="slide level2 center"><h2>Types définis par l’usager</h2>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">CREATE</span> <span class="kw">TYPE</span>  type_utilisateur <span class="kw">AS</span> (</span>
+<span id="cb5-2"><a></a>  <span class="op">&lt;</span>identifiant<span class="op">&gt;</span> <span class="op">&lt;</span><span class="kw">type</span> défini<span class="op">&gt;</span></span>
+<span id="cb5-3"><a></a>  [, <span class="op">&lt;</span>identifiant<span class="op">&gt;</span> <span class="op">&lt;</span><span class="kw">type</span> défini<span class="op">&gt;</span>]<span class="op">*</span></span>
 <span id="cb5-4"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Usage pour une création de table</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> <span class="op">&lt;</span>nom de <span class="kw">table</span><span class="op">&gt;</span> <span class="kw">OF</span> </span>
 <span id="cb6-2"><a></a>  type_utilisateur</span>
 <span id="cb6-3"><a></a>  (<span class="kw">CONSTRAINT</span> <span class="op">&lt;</span>nom de contrainte<span class="op">&gt;</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>  (<span class="op">&lt;</span>nom de colonne<span class="op">&gt;</span>));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Pratique pour créer des tables de même schéma</p>
-</section><section id="section" class="slide level2 center">
-<h2><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i></h2>
-<p>quand on crée une table, PostgreSQL crée automatiquement un type associé</p>
-</section><section id="exemple" class="slide level2 center">
-<h2>Exemple</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>quand on crée une table, PostgreSQL crée automatiquement un type associé (bis)</p>
+</div>
+</div>
+</div>
+</section><section id="exemple" class="slide level2 center"><h2>Exemple</h2>
 <ul>
 <li>Définition d’un type</li>
 </ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">CREATE</span> <span class="kw">TYPE</span> basic_user <span class="kw">AS</span> (user_name <span class="dt">varchar</span>(<span class="dv">50</span>), pwd <span class="dt">varchar</span>(<span class="dv">10</span>));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">CREATE</span> <span class="kw">TYPE</span> basic_user <span class="kw">AS</span> (</span>
+<span id="cb7-2"><a></a>  user_name <span class="dt">varchar</span>(<span class="dv">50</span>), </span>
+<span id="cb7-3"><a></a>  pwd <span class="dt">varchar</span>(<span class="dv">10</span>)</span>
+<span id="cb7-4"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Usage du type défini par usager</li>
 </ul>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> super_users <span class="kw">OF</span> basic_user </span>
 <span id="cb8-2"><a></a>  (<span class="kw">CONSTRAINT</span> pk_su <span class="kw">PRIMARY</span> <span class="kw">KEY</span>  (user_name));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="annotations" class="slide level2 center">
-<h2>Annotations</h2>
+</section><section id="annotations" class="slide level2 center"><h2>Annotations</h2>
 <p>Les définitions de fonctions comportent parfois des qualifications supplémentaires</p>
 <ul>
 <li><p><code>VOLATILITY</code>: <code>IMMUTABLE</code>, <code>STABLE</code>, <code>VOLATILE</code> (default)</p></li>
 <li><p><code>SECURITY</code> : <code>SECURITY DEFINER</code>, <code>SECURITY INVOKER</code></p></li>
-</ul>
-</section><section id="les-fonctions-écrites-en-langage-sql" class="slide level2 center">
-<h2>Les fonctions écrites en langage SQL</h2>
+</ul></section><section id="les-fonctions-écrites-en-langage-sql" class="slide level2 center"><h2>Les fonctions écrites en langage SQL</h2>
 <p>SQL est d’abord un langage permettant d’émettre des requêtes, il peut aussi être utilisé pour écrire des fonctions</p>
 <p>Dans PostgreSQL, l’utilisation d’un morceau de SQL existant est facile :</p>
 <ul>
@@ -574,27 +585,26 @@ plpgsql |</code></pre>
 <li><p>ajoutez un en-tête et une conclusion fonctionnels</p></li>
 </ul>
 <p>et … vous avez terminé <i class="fa-solid fa-champagne-glasses" aria-label="champagne-glasses"></i></p>
-</section><section id="les-fonctions-écrites-en-langage-sql-suite" class="slide level2 center">
-<h2>Les fonctions écrites en langage SQL (suite)</h2>
+</section><section id="les-fonctions-écrites-en-langage-sql-suite" class="slide level2 center"><h2>Les fonctions écrites en langage SQL (suite)</h2>
 <p>Mais cette facilité a un prix <i class="fa-solid fa-face-frown" aria-label="face-frown"></i></p>
 <p>Vous ne pouvez pas :</p>
 <ul>
 <li><p>utiliser des structures de contrôle (boucles, alternatives) ou des définitions de variables locales</p></li>
 <li><p>exécuter des instructions SQL <em>dynamiques</em> que vous assemblez à la volée en utilisant les arguments passés dans la fonction</p></li>
 </ul>
+<div class="fragment">
 <p>Mais, tout de même</p>
 <ul>
 <li>le planificateur de requêtes peut examiner une fonction SQL et en optimiser l’exécution</li>
 </ul>
-<hr>
-<blockquote>
-<p>SQL functions execute an arbitrary list of SQL statements, returning the result of the last query in the list.</p>
+</div>
+</section><section class="slide level2 center"><blockquote>
+<p>Les fonstions SQL exécutent une suite arbitraire d’expressions (requêtes) SQL, elles renvoient le résultat de la dernièrere requête.</p>
 </blockquote>
 <blockquote>
 <p>In the simple (non-set) case, the first row of the last query’s result will be returned. Bear in mind that “the first row” of a multirow result is not well-defined unless you use ORDER BY. If the last query happens to return no rows at all, the null value will be returned.</p>
 </blockquote>
-</section><section id="corps-de-la-fonction" class="slide level2 center">
-<h2>Corps de la fonction</h2>
+</section><section id="corps-de-la-fonction" class="slide level2 center"><h2>Corps de la fonction</h2>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> La syntaxe du corps de la fonction dépend du <code>language_of_function</code></p>
 <p>Dans le cas où <code>language_of_function</code> est <code>SQL</code></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a>$$</span>
@@ -602,15 +612,13 @@ plpgsql |</code></pre>
 <span id="cb9-3"><a></a><span class="kw">BODY</span> <span class="kw">of</span> <span class="kw">function</span></span>
 <span id="cb9-4"><a></a></span>
 <span id="cb9-5"><a></a>$$</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="références-aux-argument" class="slide level2 center">
-<h2>Références aux argument</h2>
+</section><section id="références-aux-argument" class="slide level2 center"><h2>Références aux argument</h2>
 <p>On peut faire références aux arguments en les nommant dans le corps de la fonction</p>
 <p>Si les arguments ne sont pas nommés, vous faites référence aux arguments par leur position dans la signature : <code>$1</code>, <code>$2</code>, <code>$3</code>, etc</p>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Si vous nommez les arguments, vous pouvez utiliser la notation</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a>big_elephant(name <span class="op">=&gt;</span> <span class="st">'Wooly'</span>, ear_size <span class="op">=&gt;</span> <span class="fl">1.2</span>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>lors des appels à la fonction</p>
-</section><section id="exemple-1" class="slide level2 center">
-<h2>Exemple</h2>
+</section><section id="exemple-1" class="slide level2 center"><h2>Exemple</h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> </span>
 <span id="cb11-2"><a></a>  write_to_log(param_user_name <span class="dt">varchar</span>,</span>
 <span id="cb11-3"><a></a>               param_description text)</span>
@@ -626,49 +634,50 @@ plpgsql |</code></pre>
 <p>Invocation</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> write_to_log(<span class="st">'alex'</span>, </span>
 <span id="cb12-2"><a></a>    <span class="st">'Logged in at 11:59 AM.'</span>) <span class="kw">AS</span> new_id;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-<p>Les fonctions SQL peuvent retourner des ensembles</p>
+</div>
+</section><section class="slide level2 center"><p>Les fonctions SQL peuvent retourner des ensembles</p>
 <p>Trois manières de faire:</p>
 <ul>
 <li><p>ANSI SQL standard: <code>RETURNS TABLE</code></p></li>
 <li><p>spécifier des paramètres <code>OUT</code> et retourner <code>SETOF RECORD</code></p></li>
 <li><p>types de données composés <code>SETOF ...</code></p></li>
-</ul>
-<hr>
-</div>
-</section><section id="exemple-de-fonction-retournant-un-type-simple" class="slide level2 center">
-<h2>Exemple de fonction retournant un type simple</h2>
+</ul></section><section id="exemple-de-fonction-retournant-un-type-simple" class="slide level2 center"><h2>Exemple de fonction retournant un type simple</h2>
 <p>Dans le schéma <code>world</code>, on veut écrire une fonction qui prend en argument une région et renvoie la population maximale parmi les capitales de la région</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> username.taille_max_capitale_region(p_region text)</span>
-<span id="cb13-2"><a></a>RETURNS <span class="dt">INTEGER</span> </span>
-<span id="cb13-3"><a></a>LANGUAGE SQL <span class="kw">AS</span></span>
-<span id="cb13-4"><a></a>$$</span>
-<span id="cb13-5"><a></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(population_city) <span class="kw">AS</span> max_pop</span>
-<span id="cb13-6"><a></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
-<span id="cb13-7"><a></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region <span class="kw">AND</span> cc.population_city <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span>
-<span id="cb13-8"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="fonctions-qui-retournent-un-type-composé" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Fonctions qui retournent un type composé</h1>
-<hr>
-<p>Dans le schéma <code>world</code>, on veut écrire une fonction qui prend en argument une région et renvoie le nom et la population de la capitale la plus peuplée de cette région</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> </span>
+<span id="cb13-2"><a></a>  <span class="kw">FUNCTION</span> username.taille_max_capitale_region(p_region text)</span>
+<span id="cb13-3"><a></a>  RETURNS <span class="dt">INTEGER</span> </span>
+<span id="cb13-4"><a></a>  LANGUAGE SQL <span class="kw">AS</span></span>
+<span id="cb13-5"><a></a>$$</span>
+<span id="cb13-6"><a></a><span class="kw">SELECT</span> <span class="fu">MAX</span>(population_city) <span class="kw">AS</span> max_pop</span>
+<span id="cb13-7"><a></a><span class="kw">FROM</span> world.country c </span>
+<span id="cb13-8"><a></a>  <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
+<span id="cb13-9"><a></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region <span class="kw">AND</span></span>
+<span id="cb13-10"><a></a> cc.population_city <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span>;</span>
+<span id="cb13-11"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section><section><section id="fonctions-qui-retournent-un-type-composé" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fonctions qui retournent un type composé</h1>
+
+</section><section class="slide level2 center"><p>Dans le schéma <code>world</code>, on veut écrire une fonction qui prend en argument une région et renvoie le nom et la population de la capitale la plus peuplée de cette région</p>
 <p>On peut utiliser le qualifiant <code>OUT</code> pour désigner des paramètres de sortie.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> username.capitale(p_region text, </span>
-<span id="cb14-2"><a></a>    <span class="kw">OUT</span> o_name_capital TEXT, </span>
-<span id="cb14-3"><a></a>    <span class="kw">OUT</span> o_population_capital <span class="dt">INTEGER</span>)</span>
-<span id="cb14-4"><a></a>RETURNS <span class="dt">RECORD</span>  </span>
-<span id="cb14-5"><a></a>LANGUAGE SQL <span class="kw">AS</span></span>
-<span id="cb14-6"><a></a>$$</span>
-<span id="cb14-7"><a></a><span class="kw">WITH</span> r <span class="kw">AS</span>(</span>
-<span id="cb14-8"><a></a>  <span class="kw">SELECT</span> cc.<span class="op">*</span>, <span class="fu">RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> c.region <span class="kw">ORDER</span> <span class="kw">BY</span> cc.population_city <span class="kw">DESC</span>) <span class="kw">AS</span> rnk</span>
-<span id="cb14-9"><a></a>  <span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
-<span id="cb14-10"><a></a>  <span class="kw">WHERE</span> c.region<span class="op">=</span>p_region)</span>
-<span id="cb14-11"><a></a><span class="kw">SELECT</span> r.name_city,  r.population_city</span>
-<span id="cb14-12"><a></a><span class="kw">FROM</span> r </span>
-<span id="cb14-13"><a></a><span class="kw">WHERE</span> r.rnk <span class="op">=</span> <span class="dv">1</span> ;</span>
-<span id="cb14-14"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table" class="slide level2 center">
-<h2>Fonctions qui retournent un type composé défini par les lignes d’une table</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> </span>
+<span id="cb14-2"><a></a>  <span class="kw">FUNCTION</span> username.capitale(</span>
+<span id="cb14-3"><a></a>    p_region text, </span>
+<span id="cb14-4"><a></a>    <span class="kw">OUT</span> o_name_capital TEXT, </span>
+<span id="cb14-5"><a></a>    <span class="kw">OUT</span> o_population_capital <span class="dt">INTEGER</span>)</span>
+<span id="cb14-6"><a></a>  RETURNS <span class="dt">RECORD</span>  </span>
+<span id="cb14-7"><a></a>  LANGUAGE SQL <span class="kw">AS</span></span>
+<span id="cb14-8"><a></a>$$</span>
+<span id="cb14-9"><a></a><span class="kw">WITH</span> r <span class="kw">AS</span> (</span>
+<span id="cb14-10"><a></a>  <span class="kw">SELECT</span> cc.<span class="op">*</span>, <span class="fu">RANK</span>() <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> c.region <span class="kw">ORDER</span> <span class="kw">BY</span> cc.population_city <span class="kw">DESC</span>) <span class="kw">AS</span> rnk</span>
+<span id="cb14-11"><a></a>  <span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> </span>
+<span id="cb14-12"><a></a>    world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
+<span id="cb14-13"><a></a>  <span class="kw">WHERE</span> c.region<span class="op">=</span>p_region</span>
+<span id="cb14-14"><a></a>)</span>
+<span id="cb14-15"><a></a></span>
+<span id="cb14-16"><a></a><span class="kw">SELECT</span> r.name_city,  r.population_city</span>
+<span id="cb14-17"><a></a><span class="kw">FROM</span> r </span>
+<span id="cb14-18"><a></a><span class="kw">WHERE</span> r.rnk <span class="op">=</span> <span class="dv">1</span> ;</span>
+<span id="cb14-19"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="fonctions-qui-retournent-un-type-composé-défini-par-les-lignes-dune-table" class="slide level2 center"><h2>Fonctions qui retournent un type composé défini par les lignes d’une table</h2>
 <p>Dans le schéma <code>world</code>, on veut écrire une fonction qui prend en argument une région et renvoie la description de la capitale la plus peuplée de cette région</p>
 <p>On se contente de nommer la table pour indiquer que le résultat doit avoir même structure qu’une ligne de la table</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a>  <span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> username.capitale(p_region text)</span>
@@ -683,13 +692,9 @@ plpgsql |</code></pre>
 <span id="cb15-10"><a></a>  <span class="kw">FROM</span> r </span>
 <span id="cb15-11"><a></a>  <span class="kw">WHERE</span> r.rnk <span class="op">=</span> <span class="dv">1</span> ;</span>
 <span id="cb15-12"><a></a>  $$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fonctions-qui-retournent-une-table" class="slide level2 center">
-<h2>Fonctions qui retournent une table</h2>
+</section><section id="fonctions-qui-retournent-une-table" class="slide level2 center"><h2>Fonctions qui retournent une table</h2>
 <p>Dans le schéma <code>world</code>, on veut écrire une fonction qui prend en argument une région et renvoie la table des capitales de la région</p>
-</section>
-<section id="table-de-schéma-explicite" class="slide level2 center">
-<h2>Table de schéma explicite</h2>
+</section><section id="table-de-schéma-explicite" class="slide level2 center"><h2>Table de schéma explicite</h2>
 <p>On se contente d’abord de renvoyer le nom de la capitale.</p>
 <p>On explicite le schéma de la table résultat</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> username.capitales_region(p_region text)</span>
@@ -700,9 +705,7 @@ plpgsql |</code></pre>
 <span id="cb16-6"><a></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
 <span id="cb16-7"><a></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region ;</span>
 <span id="cb16-8"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="table-de-même-schéma-quune-autre-table" class="slide level2 center">
-<h2>Table de même schéma qu’une autre table</h2>
+</section><section id="table-de-même-schéma-quune-autre-table" class="slide level2 center"><h2>Table de même schéma qu’une autre table</h2>
 <p><a href="https://www.postgresql.org/docs/15/xfunc-sql.html">https://www.postgresql.org/docs/15/xfunc-sql.html</a></p>
 <p>On veut maintenant récupérer une table de même schéma que <code>city</code>.</p>
 <p>La solution est très simple.</p>
@@ -715,35 +718,28 @@ plpgsql |</code></pre>
 <span id="cb17-6"><a></a><span class="kw">FROM</span> world.country c <span class="kw">JOIN</span> world.city cc <span class="kw">ON</span> (c.capital<span class="op">=</span>cc.<span class="kw">id</span>)</span>
 <span id="cb17-7"><a></a><span class="kw">WHERE</span> c.region<span class="op">=</span>p_region ;</span>
 <span id="cb17-8"><a></a>$$ ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="autres-langages" class="slide level2 center">
-<h2>Autres langages</h2>
+</section><section id="autres-langages" class="slide level2 center"><h2>Autres langages</h2>
 <ul>
 <li><p>PL/pgSQL</p></li>
 <li><p>C</p></li>
 <li><p>PL/Python</p></li>
 <li><p>PL/R</p></li>
 <li><p>…</p></li>
-</ul>
-</section>
-<section id="fonctions-sql-usages" class="title-slide slide level1 center">
-<h1>Fonctions SQL: usages</h1>
-<hr>
+</ul></section></section><section><section id="fonctions-sql-usages" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fonctions SQL: usages</h1>
 
-<img data-src="../images//bd_2023-sakila.png" class="r-stretch"></section>
-<section id="fonction-reprise-depuis-sakila" class="slide level2 center">
-<h2>Fonction reprise depuis <code>sakila</code></h2>
+</section><section class="slide level2 center">
+<img data-src="../images/pagila_full.png" class="r-stretch"></section><section id="fonction-reprise-depuis-pagila" class="slide level2 center"><h2>Fonction reprise depuis <code>pagila</code>
+</h2>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> <span class="fu">user</span>.inventory_held_by_customer(</span>
 <span id="cb18-2"><a></a>    p_inventory_id <span class="dt">integer</span>,</span>
 <span id="cb18-3"><a></a>    <span class="kw">OUT</span> customer_id int2) <span class="kw">AS</span> </span>
 <span id="cb18-4"><a></a>$$</span>
 <span id="cb18-5"><a></a>  <span class="kw">SELECT</span> customer_id </span>
-<span id="cb18-6"><a></a>  <span class="kw">FROM</span> sakila.rental</span>
+<span id="cb18-6"><a></a>  <span class="kw">FROM</span> pagila.rental</span>
 <span id="cb18-7"><a></a>  <span class="kw">WHERE</span> return_date <span class="kw">IS</span> <span class="kw">NULL</span> <span class="kw">AND</span> inventory_id <span class="op">=</span> p_inventory_id ;</span>
 <span id="cb18-8"><a></a>$$ LANGUAGE <span class="st">'sql'</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="fonctions-de-sakila" class="slide level2 center">
-<h2>Fonctions de <code>sakila</code></h2>
+</section><section id="fonctions-de-pagila" class="slide level2 center"><h2>Fonctions de <code>pagila</code>
+</h2>
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">FUNCTION</span> uname.film_in_stock(</span>
 <span id="cb19-2"><a></a>  p_film_id <span class="dt">integer</span>, </span>
 <span id="cb19-3"><a></a>  p_store_id <span class="dt">integer</span>, </span>
@@ -751,23 +747,18 @@ plpgsql |</code></pre>
 <span id="cb19-5"><a></a> RETURNS SETOF <span class="dt">integer</span></span>
 <span id="cb19-6"><a></a><span class="kw">AS</span> $$</span>
 <span id="cb19-7"><a></a>     <span class="kw">SELECT</span> inventory_id</span>
-<span id="cb19-8"><a></a>     <span class="kw">FROM</span> sakila.inventory</span>
+<span id="cb19-8"><a></a>     <span class="kw">FROM</span> pagila.inventory</span>
 <span id="cb19-9"><a></a>     <span class="kw">WHERE</span> film_id <span class="op">=</span> $<span class="dv">1</span></span>
 <span id="cb19-10"><a></a>     <span class="kw">AND</span> store_id <span class="op">=</span> $<span class="dv">2</span></span>
-<span id="cb19-11"><a></a>     <span class="kw">AND</span> sakila.inventory_in_stock(inventory_id);</span>
+<span id="cb19-11"><a></a>     <span class="kw">AND</span> pagila.inventory_in_stock(inventory_id);</span>
 <span id="cb19-12"><a></a>$$ LANGUAGE sql ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<hr>
-</section>
-<section id="invocation" class="slide level2 center">
-<h2>Invocation</h2>
+</section><section id="invocation" class="slide level2 center"><h2>Invocation</h2>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb20-2"><a></a><span class="kw">FROM</span> sakila.film_in_stock(<span class="dv">12</span>, <span class="dv">1</span>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-2"><a></a><span class="kw">FROM</span> pagila.film_in_stock(<span class="dv">12</span>, <span class="dv">1</span>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: right;">p_film_count</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">60</td>
@@ -779,38 +770,42 @@ plpgsql |</code></pre>
 <td style="text-align: right;">62</td>
 </tr>
 </tbody>
-</table>
-</section>
-<section id="vues-pourquoi" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Vues : pourquoi ?</h1>
-<hr>
+</table></section></section><section><section id="vues-pourquoi" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Vues : pourquoi ?</h1>
+
+</section><section id="section-1" class="slide level2 smaller center"><h2></h2>
 <blockquote>
-<p>Almost all relational database products offer views as a level of abstraction from tables. In a view, you can query multiple tables and present additional derived columns based on complex calculations.</p>
+<p>Presque tous les SGBD relationnels proposent des vues comme niveau d’abstraction des tables. Dans une vue, vous pouvez interroger plusieurs tables et présenter des colonnes dérivées supplémentaires basées sur des calculs complexes.</p>
 </blockquote>
 <blockquote>
-<p>Views are generally read-only, but PostgreSQL allows you to update the underlying data by updating the view, provided that the view draws from a single table.</p>
+<p>Les vues sont généralement en lecture seule, mais PostgreSQL vous permet de mettre à jour les données sous-jacentes en mettant à jour la vue, à condition que la vue provienne d’une seule table.</p>
 </blockquote>
 <blockquote>
-<p>To update data from views that join multiple tables, you need to create a trigger against the view.</p>
+<p>Pour mettre à jour des données à partir de vues qui joignent plusieurs tables, vous devez créer une gachette contre la vue.</p>
 </blockquote>
 <blockquote>
-<p>Version 9.3 introduced materialized views, which cache data to speed up commonly used queries at the sacrifice of having the most up-to-date data.</p>
+<p>Les vues matérialisées mettent en cache les données afin d’accélérer les requêtes les plus courantes, au détriment des données les plus récentes.</p>
 </blockquote>
-</section>
-<section id="motivation" class="slide level2 center">
-<h2>Motivation</h2>
-<p>Si vous vous retrouvez à écrire tous les jours la même requête, créer une vue</p>
+</section><section id="motivation" class="slide level2 center"><h2>Motivation</h2>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Astuce</strong></p>
+</div>
+<div class="callout-content">
+<p>Si vous vous retrouvez à écrire tous les jours la même requête, créer une vue !</p>
+</div>
+</div>
+</div>
 <p>Une vue n’est rien d’autre qu’une requête stockée de façon persistante</p>
-</section>
-<section id="vues-sur-une-seule-table" class="slide level2 center">
-<h2>Vues sur une seule table</h2>
+</section><section id="vues-sur-une-seule-table" class="slide level2 center"><h2>Vues sur une seule table</h2>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> co_asia <span class="kw">AS</span></span>
 <span id="cb21-2"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
 <span id="cb21-3"><a></a><span class="kw">FROM</span> world.country </span>
 <span id="cb21-4"><a></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Asia'</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="interroger-une-vue" class="slide level2 center">
-<h2>Interroger une vue</h2>
+</section><section id="interroger-une-vue" class="slide level2 center"><h2>Interroger une vue</h2>
 <p>Une vue s’interroge comme une table :</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">SELECT</span> region, <span class="fu">sum</span>(population_country) <span class="kw">AS</span> pop </span>
 <span id="cb22-2"><a></a><span class="kw">FROM</span> co_asia </span>
@@ -822,9 +817,7 @@ Eastern Asia             |1507328000|
 Southern and Central Asia|1490776000|
 Southeast Asia           | 518541000|
 Middle East              | 188380700|</code></pre>
-</section>
-<section id="vues-et-manipulation-de-données" class="slide level2 center">
-<h2>Vues et manipulation de données</h2>
+</section><section id="vues-et-manipulation-de-données" class="slide level2 center"><h2>Vues et manipulation de données</h2>
 <p>Si</p>
 <ul>
 <li>la vue (<code>VIEW</code>) provient d’une table unique</li>
@@ -837,59 +830,65 @@ Middle East              | 188380700|</code></pre>
 <li>supprimer</li>
 <li>mettre à jour</li>
 </ul>
-<h4 id="exemple-2">Exemple</h4>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Exemple</strong></p>
+</div>
+<div class="callout-content">
 <ul>
-<li>La vue <code>co_asia</code> provient d’une unique table : <code>world.country</code></li>
-<li>La vue <code>co_asia</code> contient la <em>clé primaire</em> <code>countrycode</code> de la table <code>world.country</code></li>
+<li>La vue <code>co_asia</code> provient d’une unique table : <code>world.country</code>
+</li>
+<li>La vue <code>co_asia</code> contient la <em>clé primaire</em> <code>countrycode</code> de la table <code>world.country</code>
+</li>
 </ul>
-</section>
-<section id="section-1" class="slide level2 center">
-<h2><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i></h2>
+</div>
+</div>
+</div>
+</section><section id="section-2" class="slide level2 center"><h2><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i></h2>
 <p>Cette instruction :</p>
 <div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">UPDATE</span> co_asia</span>
-<span id="cb24-2"><a></a></span>
-<span id="cb24-3"><a></a><span class="kw">SET</span> continent<span class="op">=</span><span class="st">'Antarctica'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>… est légale</p>
+<span id="cb24-2"><a></a>  <span class="kw">SET</span> continent<span class="op">=</span><span class="st">'Antarctica'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>… est légale !</p>
 <p>–</p>
 <p>Mais, après exécution :</p>
 <ul>
 <li><p>la vue <code>co_asia</code> est vide <i class="fa-solid fa-face-frown" aria-label="face-frown"></i></p></li>
 <li><p>les pays d’Asie de <code>country</code> sont délocalisés en Antarctique <i class="fa-solid fa-face-laugh" aria-label="face-laugh"></i></p></li>
-</ul>
-</section>
-<section id="pour-éviter-ca-with-check-option" class="slide level2 center">
-<h2>Pour éviter ca : <code>WITH CHECK OPTION</code></h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> boucheron.co_asia <span class="kw">AS</span></span>
-<span id="cb25-2"><a></a></span>
-<span id="cb25-3"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb25-4"><a></a><span class="kw">FROM</span> world.country </span>
-<span id="cb25-5"><a></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Asia'</span> </span>
-<span id="cb25-6"><a></a></span>
-<span id="cb25-7"><a></a><span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</ul></section><section id="pour-éviter-ca-with-check-option" class="slide level2 center"><h2>Pour éviter ca : <code>WITH CHECK OPTION</code>
+</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25" data-code-line-numbers="|6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> boucheron.co_asia <span class="kw">AS</span></span>
+<span id="cb25-2"><a></a>  <span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb25-3"><a></a>  <span class="kw">FROM</span> world.country </span>
+<span id="cb25-4"><a></a>  <span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Asia'</span> </span>
+<span id="cb25-5"><a></a></span>
+<span id="cb25-6"><a></a><span class="kw">WITH</span> <span class="kw">CHECK</span> <span class="kw">OPTION</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Ajouter cette modification lors de la création de la vue et PostgreSQL s’opposera à une tentative d’insertion hors de la vue ou à une tentative de mise à jour qui placerait des tuples hors de la vue</p>
-</section>
-<section id="smaller" class="slide level2 center">
-<h2>{smaller}</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> sakila.actor_info</span>
+</section><section id="section-3" class="slide level2 smaller center"><h2></h2>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> pagila.actor_info</span>
 <span id="cb26-2"><a></a><span class="kw">AS</span> <span class="kw">SELECT</span> a.actor_id,</span>
 <span id="cb26-3"><a></a>    a.first_name,</span>
 <span id="cb26-4"><a></a>    a.last_name,</span>
-<span id="cb26-5"><a></a>    sakila.group_concat(<span class="kw">DISTINCT</span> (c.name:<span class="ch">:text</span> <span class="op">||</span> <span class="st">': '</span>:<span class="ch">:text</span>) <span class="op">||</span> </span>
-<span id="cb26-6"><a></a>        (( <span class="kw">SELECT</span> sakila.group_concat(f.title:<span class="ch">:text</span>) <span class="kw">AS</span> group_concat</span>
-<span id="cb26-7"><a></a>           <span class="kw">FROM</span> sakila.film f</span>
-<span id="cb26-8"><a></a>             <span class="kw">JOIN</span> sakila.film_category fc_1 <span class="kw">ON</span> f.film_id <span class="op">=</span> fc_1.film_id</span>
-<span id="cb26-9"><a></a>             <span class="kw">JOIN</span> sakila.film_actor fa_1 <span class="kw">ON</span> f.film_id <span class="op">=</span> fa_1.film_id</span>
+<span id="cb26-5"><a></a>    pagila.group_concat(<span class="kw">DISTINCT</span> (c.name:<span class="ch">:text</span> <span class="op">||</span> <span class="st">': '</span>:<span class="ch">:text</span>) <span class="op">||</span> </span>
+<span id="cb26-6"><a></a>        (( <span class="kw">SELECT</span> pagila.group_concat(f.title:<span class="ch">:text</span>) <span class="kw">AS</span> group_concat</span>
+<span id="cb26-7"><a></a>           <span class="kw">FROM</span> pagila.film f</span>
+<span id="cb26-8"><a></a>             <span class="kw">JOIN</span> pagila.film_category fc_1 <span class="kw">ON</span> f.film_id <span class="op">=</span> fc_1.film_id</span>
+<span id="cb26-9"><a></a>             <span class="kw">JOIN</span> pagila.film_actor fa_1 <span class="kw">ON</span> f.film_id <span class="op">=</span> fa_1.film_id</span>
 <span id="cb26-10"><a></a>          <span class="kw">WHERE</span> fc_1.category_id <span class="op">=</span> c.category_id <span class="kw">AND</span> fa_1.actor_id <span class="op">=</span> a.actor_id</span>
 <span id="cb26-11"><a></a>          <span class="kw">GROUP</span> <span class="kw">BY</span> fa_1.actor_id))</span>
 <span id="cb26-12"><a></a>        ) <span class="kw">AS</span> film_info</span>
-<span id="cb26-13"><a></a>   <span class="kw">FROM</span> sakila.actor a</span>
-<span id="cb26-14"><a></a>     <span class="kw">LEFT</span> <span class="kw">JOIN</span> sakila.film_actor fa <span class="kw">ON</span> a.actor_id <span class="op">=</span> fa.actor_id</span>
-<span id="cb26-15"><a></a>     <span class="kw">LEFT</span> <span class="kw">JOIN</span> sakila.film_category fc <span class="kw">ON</span> fa.film_id <span class="op">=</span> fc.film_id</span>
-<span id="cb26-16"><a></a>     <span class="kw">LEFT</span> <span class="kw">JOIN</span> sakila.<span class="kw">category</span> c <span class="kw">ON</span> fc.category_id <span class="op">=</span> c.category_id</span>
+<span id="cb26-13"><a></a>   <span class="kw">FROM</span> pagila.actor a</span>
+<span id="cb26-14"><a></a>     <span class="kw">LEFT</span> <span class="kw">JOIN</span> pagila.film_actor fa <span class="kw">ON</span> a.actor_id <span class="op">=</span> fa.actor_id</span>
+<span id="cb26-15"><a></a>     <span class="kw">LEFT</span> <span class="kw">JOIN</span> pagila.film_category fc <span class="kw">ON</span> fa.film_id <span class="op">=</span> fc.film_id</span>
+<span id="cb26-16"><a></a>     <span class="kw">LEFT</span> <span class="kw">JOIN</span> pagila.<span class="kw">category</span> c <span class="kw">ON</span> fc.category_id <span class="op">=</span> c.category_id</span>
 <span id="cb26-17"><a></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> a.actor_id, a.first_name, a.last_name;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="vues-multi-tables-exemple-de-vue-sur-world-smaller" class="slide level2 center">
-<h2>Vues multi-tables : exemple de vue sur <code>world</code> {smaller}</h2>
+</section><section id="vues-multi-tables-exemple-de-vue-sur-world" class="slide level2 smaller center"><h2>Vues multi-tables : exemple de vue sur <code>world</code>
+</h2>
 <div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a><span class="kw">CREATE</span> <span class="kw">OR</span> <span class="kw">REPLACE</span> <span class="kw">VIEW</span> country_info <span class="kw">AS</span></span>
 <span id="cb27-2"><a></a></span>
 <span id="cb27-3"><a></a>  <span class="kw">SELECT</span></span>
@@ -904,9 +903,7 @@ Middle East              | 188380700|</code></pre>
 <span id="cb27-12"><a></a></span>
 <span id="cb27-13"><a></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> cn.countrycode, cn.name_country, cn.region;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><a href="https://stackoverflow.com/questions/2560946/postgresql-group-concat-equivalent">Stackoverflow</a></p>
-</section>
-<section id="insertionmise-à-joursuppression-sur-les-vues-multi-tables" class="slide level2 center">
-<h2>Insertion/Mise à jour/Suppression sur les vues multi-tables</h2>
+</section><section id="insertionmise-à-joursuppression-sur-les-vues-multi-tables" class="slide level2 center"><h2>Insertion/Mise à jour/Suppression sur les vues multi-tables</h2>
 <p>Problème : quelles tables doivent être modifiées ?</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a><span class="kw">DELETE</span> </span>
 <span id="cb28-2"><a></a><span class="kw">FROM</span> boucheron.country_info</span>
@@ -916,30 +913,26 @@ Middle East              | 188380700|</code></pre>
 <li><p>supprimer les lignes de <code>city</code> ?</p></li>
 </ul>
 <p><a href="http://www.postgresonline.com/journal/archives/11-Database-Abstraction-with-updatable-Views.html">Database abstraction</a></p>
-</section>
-<section id="vues-matérialisées" class="slide level2 center">
-<h2>Vues matérialisées</h2>
+</section><section id="vues-matérialisées" class="slide level2 center"><h2>Vues matérialisées</h2>
 <p>Les vue matérialisées <em>cachent</em> les données récupérées</p>
 <p>Cela se produit</p>
 <ul>
 <li><p>lors de la création de la vue et</p></li>
 <li><p>lorsque on exécute <code>REFRESH MATERIALIZED VIEW ...</code></p></li>
-</ul>
-<hr>
-<blockquote>
-<p>When you mark a view as materialized, it will requery the data only when you issue the <code>REFRESH</code> command. - The upside is that you’re not wasting resources running complex queries repeatedly; - the downside is that you might not have the most up-todate data when you use the view.</p>
+</ul></section><section class="slide level2 center"><blockquote>
+<p>Lorsque vous marquez une vue comme matérialisée, elle n’interrogera à nouveau les données que lorsque vous lancerez la commande <code>REFRESH</code>.</p>
 </blockquote>
-</section>
-<section id="references" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>References</h1>
-<hr>
-<ul>
+<blockquote>
+<p>L’avantage est que vous ne gaspillez pas de ressources en exécutant des requêtes complexes à plusieurs reprises ;</p>
+</blockquote>
+<blockquote>
+<p>lL’inconvénient est que vous risquez de ne pas avoir les données les plus à jour lorsque vous utilisez la vue.</p>
+</blockquote>
+</section></section><section><section id="references" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>References</h1>
+
+</section><section class="slide level2 center"><ul>
 <li><a href="https://planet.postgresql.org">Postgresql Bloggers</a></li>
-</ul>
-<hr>
-</section>
-<section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Fin</h1>
+</ul></section><section class="slide level2 center"></section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
 <p><img src="../images/logo.png" class="slide-logo"></p>
@@ -947,30 +940,25 @@ Middle East              | 188380700|</code></pre>
 <p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
-</section>
-
+<div class="reveal-header">
+<div class="header-logo" data-header-logo-link="https://revealjs.com">
+<img data-src="../images/reveal_logo.svg">
 </div>
-</section></section>
-    </div>
+<div class="sc-title">
+<p> </p>
+</div>
+<div class="header-text">
+<p>Fonctions SQL et Vues</p>
+</div>
+<div class="sb-title">
+<p> </p>
+</div>
+</div>
+</section>
+</div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../site_libs/revealjs/plugin/search/search.js"></script><script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1160,8 +1148,42 @@ Middle East              | 188380700|</code></pre>
           RevealZoom
         ]
       });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
+    </script><script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script><script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1507,6 +1529,6 @@ Middle East              | 188380700|</code></pre>
       }
     });
     </script>
-    
+
 
 </body></html>

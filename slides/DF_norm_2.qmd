@@ -1,0 +1,1564 @@
+---
+title: "BD xxx : Normalisation II"
+---
+
+```{r}
+#| echo: false
+#| eval: false
+library(DBI)
+db <- dbConnect(RSQLite::SQLite(), dbname = "sql.sqlite")
+knitr::opts_chunk$set(connection = "db")
+```
+
+# Introduction  {background-color="#1c191c"}
+
+
+
+## Rappel : Propriétés d'une décomposition
+
+
+- Soit $\mathcal{A}$ un schéma de relation et $\Sigma$ un ensemble de DF sur $\mathcal{A}$.
+
+Soit $\left\{\mathcal{A}_1,\dots, \mathcal{A}_k\right\}$ une décomposition du schéma $\mathcal{A}$, on a 
+
+1. $\mathcal{A}_i\not=\emptyset$, $1\le i\le k$ et 
+2. $\mathcal{A} = \bigcup_{i=1}^k \mathcal{A}_i$
+
+. . .
+
+- On ne peut pas décomposer arbitrairement, toutes les décompositions ne sont pas intéressantes
+
+- Conditions pour une décomposition *raisonnable* :
+  - [ ] *sans perte d'information*
+  - [ ] *sans perte de dépendance fonctionnelle*
+
+---
+
+
+## Projection d'un ensemble de DF
+
+
+::: {.callout-important}
+
+### Définition
+
+Soit $\mathcal{A}$ un schéma de relation ($\mathcal{A}$ est un ensemble d'attributs) et $\Sigma$
+un ensemble de DF sur $\mathcal{A}$
+
+Soit $\mathcal{A}_1\subset\mathcal{A}$ un sous-ensemble d'attributs
+
+$$\pi^{}_{\mathcal{A}_1}(\Sigma)=\left\{ X\to Y \mid \Sigma⊧ X\to Y \text{ et } X,Y\subset\mathcal{A}_1\right\}$$
+
+Autrement dit $\pi_{\mathcal{A}_1}(\Sigma)$ est l'ensemble des DF de la forme $X\to Y$ impliquée par $\Sigma$ et
+telle que $X\subset\mathcal{A}_1$ et $Y\subset \mathcal{A}_1$
+
+:::
+
+
+
+## Caractérisation
+
+si $X\subset \mathcal{A}_1$ on l'équivalence
+$$X\to Y \in \pi_{\mathcal{A}_1}(\Sigma) \iff Y\subset\left\{X\right\}^+\cap\mathcal{A}_1$$
+
+
+## Exemple
+
+- $\mathcal{A}=\left\{A,B,C\right\}$ et $\Sigma=\left\{A\to B, B\to C, C\to A\right\}$
+
+- $\pi_{\left\{A,B\right\}}(\Sigma)$ est équivalent à $\left\{A\to B, B\to A\right\}$
+
+
+
+
+
+## Calcul de $\pi_{\mathcal{A}_1}(\Sigma)$
+
+On calcule un ensemble de DF équivalent à $\pi_{\mathcal{A}_1}(\Sigma)$
+
+## **Algorithme**
+
+$P := \emptyset$
+
+- pour tout $X\subset \mathcal{A}_1$ tel que $X\not=\emptyset$ et $X\not=\mathcal{A}_1$ 
+  - calculer $Y=X^+\cap\mathcal{A}_1$ et ajouter $X\to Y$ à $P$\\
+  - renvoyer $P$
+
+L'ensemble de DF obtenu est équivalent à $\pi_{\mathcal{A}_1}(\Sigma)$
+
+*Très coûteux !*
+
+Le nombre de sous-ensembles $X$ considérés est $2^{\#\mathcal{A}_1}-2$
+
+---
+
+## Exemple
+
+
+
+- $\mathcal{A}=\left\{A,B,C,D,E\right\}$ et $\Sigma=\left\{A\to C, BC\to D, AD\to E\right\}$
+
+- $\pi_{AC}(\Sigma)$ est équivalent à $\left\{A\to C\right\}$  car $\left\{A\right\}^+=\left\{A,C\right\}$ et $\left\{C\right\}^+=\left\{C\right\}$
+
+- $\pi_{ABD}(\Sigma)$ est équivalent à $\left\{AB\to D\right\}$
+car $\left\{A\right\}^+=\left\{A,C\right\}$, $\left\{B\right\}^+=\left\{D\right\}$, $\left\{D\right\}^+=\left\{D\right\}$,
+$\left\{A,B\right\}^+=\left\{A,B,C,D,E\right\}$, $\left\{A,D\right\}^+=\left\{A,D,C,E\right\}$, $\left\{B,D\right\}^+=\left\{B,D\right\}$
+
+- $\pi_{ABCE}(\Sigma)$ est équivalent à $\left\{A\to C, AB \to CE, AE\to C, ABC\to E, ABE\to C\right\}$
+  - $A^+=AC \quad B^+=B \quad C^+=C \quad E^+=E$
+  - $AB^+=ABCDE \quad AC^+=AC \quad AE^+=AEC$  $BC^+=BCD \quad BE^+=BE \quad CE^+=CE$
+  - $ABC^+=ABCDE \quad ABE^+=ABECD$ $BCE^+=BCED \quad ACE^+=ACE$
+
+- Simplification : $\pi_{ABCE}(\Sigma)$ équivaut à $\left\{A\to C, AB\to E\right\}$
+
+
+
+
+---
+
+# Décomposition sans perte de DF {background-color="#1c191c"}
+
+---
+
+::: {.callout-important}
+
+### Définition
+
+- Soit $\mathcal{A}$ un schéma de relation et $\Sigma$ un ensemble de DF sur $\mathcal{A}$.
+- Soit $\left\{\mathcal{A}_1,\dots, \mathcal{A}_k\right\}$ une décomposition du schéma $\mathcal{A}$
+$\mathcal{A}_i\not=\emptyset$, $1\le i\le k$ et $\mathcal{A} = \bigcup_{i=1}^k \mathcal{A}_i$
+
+La décomposition $\left\{\mathcal{A}_1,\dots, \mathcal{A}_k\right\}$ préserve $\Sigma$
+si l'ensemble des dépendances fonctionnelles locales $\bigcup_{i=1}^k \pi_{\mathcal{A}_i}(\Sigma)$ est équivalent à $\Sigma$
+
+:::
+
+Puisque $\Sigma$ implique $\bigcup_{i=1}^k \pi_{\mathcal{A}_i}(\Sigma)$, la décomposition préserve $\Sigma$ si et seulement si toutes les DF de $\Sigma$ sont impliquées par les DF locales
+
+
+## Algorithme
+
+- C'est une extension de l'algorithme de fermeture permet de tester si une décomposition est sans perte de DF
+(sans devoir calculer les $\pi_{\mathcal{A}_i}(\Sigma)$)
+
+- Soit $X\to Y$ une DF de $\Sigma$
+
+
+## Algorithme pour tester si $X\to Y$ est impliquée par $\bigcup_{i=1}^k \pi_{\mathcal{A}_i}(\Sigma)$
+
+
+- $Z := X$
+
+- tant que $Z$ change faire
+  - pour tout $i=1,\dots, k$ faire
+    - $Z:= Z \cup \bigpar{ (Z\cap \mathcal{A}_i)^+ \cap \mathcal{A}_i}$
+  - fin pour tout\\
+- fin tant que
+
+- Si $Y\not\subset Z$ la réponse est NON, sinon la réponse est OUI
+
+## Exemple
+
+
+
+- $\mathcal{A}=\left\{A,B,C,D\right\}$, $\mathcal{A}_1=\left\{A,B\right\}$, $\mathcal{A}_2=\left\{B,C\right\}$, $\mathcal{A}_3=\left\{C,D\right\}$
+
+- $\Sigma=\left\{A\to B, B\to C, C\to D, D\to A\right\}$
+
+- Est-ce que la décomposition $\left\{\mathcal{A}_1,\mathcal{A}_2,\mathcal{A}_3\right\}$ préserve $\Sigma$ :
+
+- Les DF locales impliquent $A\to B$, $B\to C$, $C\to D$ (elles sont DF locales)
+
+- Est-ce que les DF locales impliquent $D\to A$ :
+
+Commencer avec $Z=\left\{D\right\}$
+
+$(\left\{D\right\}\cap\left\{CD\right\})^+\cap\left\{CD\right\}=\left\{D\right\}^+\cap\left\{CD\right\}=\left\{DABC\right\}\cap\left\{CD\right\}=\left\{C\right\}$, ajouter $C$
+
+$(DC\cap BC)^+\cap BC=C^+\cap BC=CDAB\cap BC=B$, ajouter $B$
+
+$(DCB\cap AB)^+\cap AB=B^+\cap AB=BCDA \cap AB$, ajouter $A$
+
+$DCBA$ contient $A$ donc $D\to A$ est préservé
+
+
+
+
+---
+
+## Exemple
+
+
+
+- $\mathcal{A}=\left\{Ville, CP, Rue, Numero\right\}$
+
+- $\Sigma=\left\{CP\to Ville, Ville\, Rue\, Numero\to CP\right\}$
+
+- $\mathcal{A}_1=\left\{Ville, CP\right\}$\quad $\mathcal{A}_2=\left\{Rue, Numero, CP\right\}$
+
+- Est-ce que la décomposition $\left\{\mathcal{A}_1,\mathcal{A}_2$ préserve $\Sigma$ :
+
+
+
+- $CP\to Ville$ est préservée car elle est locale à $\mathcal{A}_1$
+
+- Est-ce que $Ville\, Rue\, Numero\to CP$ est préservée :
+
+$Z:=\left\{Ville, Rue, Numero\right\}$
+
+$\bigpar{Z\cap \left\{Ville, CP\right\}}^+\cap \left\{Ville, CP\right\}=\left\{Ville\right\}$, *rien à ajouter*
+
+$\bigpar{Z\cap \left\{Rue, Numero, CP\right\}}^+\cap \left\{Rue, Numero, CP\right\}=\left\{Rue, Numero\right\}$, *rien à ajouter*
+
+Donc `Ville, Rue, Numero → CP` n'est pas préservée
+
+---
+
+
+# Décomposition FNBC  {background-color="#1c191c"}
+
+
+
+---
+
+
+## Conception du modèle relationnel
+
+Une première approche pour concevoir un modèle relationnel (l'ensemble des schémas d'une bd) consiste à :
+
+
+- identifier les attributs d'intérêt
+
+- répartir les attributs dans plusieurs relations
+
+
+
+
+- Comment savoir si le modèle relationnel est *bon* ?
+
+- Si ce n'est pas le cas : y a-t-il des techniques pour le transformer en un *bon* modèle :
+
+
+
+
+
+---
+
+## Qualité d'un schéma
+
+Quelles sont de ``bonnes propriétés" d'un schéma :
+
+
+**Exemple**
+
+Attributs relatifs à des vendeurs, produits et livraisons
+
+```	
+V# : numéro du vendeur
+	Vnom : nom du vendeur
+	Vville : ville du vendeur
+
+P# : numéro du produit
+	Pnom : nom du produit
+	Pville : ville où le produit est stocké
+	Qte : quantité de produit livrée au vendeur
+```
+
+---
+
+## Qualité d'un schéma
+
+
+
+- Un schéma relationnel possible : une seule relation R avec tous les attributs
+
+```
+R(V#, Vnom, Vville, P#, Pnom, Pville, Qte)
+```
+
+- C'est une mauvaise modélisation. 
+
+. . .
+
+- Pourquoi :
+
+
+
+
+---
+
+## Qualité d'un schéma relationnel  {.smaller}
+
+
+
+- **Redondance**
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\bf `V#` & \bf Vnom & \bf Vville & \bf P\# & \bf Pnom & \bf Pville & \bf Qte \\
+\hline
+3 & MagicV & Paris & \dots & \dots & \dots & \dots \\
+3 & MagicV & Paris & \dots & \dots & \dots & \dots \\
+2 & IdealB & Lyon & \dots & \dots & \dots & \dots \\
+2 & IdealB & Lyon & \dots & \dots & \dots & \dots \\
+\hline
+\end{tabular}
+
+
+Vnom et Vville sont déterminés par `V#`, c'est-à-dire
+si deux livraisons ont le même `V#`, elles ont aussi le même Vville et le même Vnom
+
+- **Anomalies de mise à jour**\\
+Vnom ou Vville pourrait être mis à jour dans une livraison et pas dans une autre, ce qui donnerait une incohérence. Pour éviter cela, la mise à jour est coûteuse
+
+- Anomalies d'insertion
+
+On ne peut pas enregistrer un vendeur s'il ne reçoit pas de livraison
+
+- **Anomalies de suppression**
+
+Si on supprime toutes les livraisons à un vendeur, on perd toute l'information sur ce vendeur
+
+
+
+---
+
+## Qualité d'un schéma relationnel
+
+
+
+- Un ``bon" schéma
+
+\bleu{
+\begin{align*}
+&\text{Vendeur(`V#`, Vnom, Vville)}\quad \text{Clef : `V#`}\\
+&\text{Produit(P\#, Pnom, Pville)} \quad \text{Clef : P\#}\\
+&\text{Livraison(`V#`, P\#, Qte)} \quad \text{Clef : (`V#`,P\#)}
+\end{align*}
+}
+
+- Plus d'anomalie ! Comment y arriver :
+
+- La théorie de la normalisation des bd relationnelles fournit
+
+
+- la notion de forme normale : propriétés d'un schéma qui garantissent l'absence de redondance et des anomalies qui en dérivent. Ces propriétés sont définies par rapport à un ensemble de contraintes
+
+- des techniques de normalisation : passage d'un schéma arbitraire (mauvais) à un schéma en forme normale (obtenu typiquement par décomposition)
+
+
+
+
+
+
+---
+
+
+
+## Dépendances fonctionnelles
+
+
+
+- Une dépendance fonctionnelle est une forme particulière de \bleu{contrainte d'intégrité} portant sur une relation
+
+- C'est la réalité qu'on modélise qui impose ces contraintes
+
+- Exemple :
+- 
+$$ \text{R(`V#`, Vnom, Vville, P\#, Pnom, Pville, Qte)} $$
+Un ensemble de dépendances fonctionnelles qu'on peut raisonnablement supposer :\\
+\bleu{
+`V#` $→$ Vnom Vville\\
+P\# $→$ Pnom Pville\\
+`V#` P\#$→$ Qte}
+
+- Cela signifie que l'on ne considère que des relations R qui satisfont :\\
+- si 2 tuples de R ont la même valeur de `V#` alors ils ont la même valeur de Vnom et Vville\\
+- si 2 tuples de R ont la même valeur de P\# alors ils ont la même valeur de Pnom et Pville\\
+- \dots
+
+
+
+
+---
+
+## DF exemple
+
+
+{\small
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\bf `V#` & \bf Vnom & \bf Vville & \bf P\# & \bf Pnom & \bf Pville & \bf Qte \\
+\hline
+3 & MagicV & Paris & 322 & manteau & Lille & 2 \\
+1 & StarV & Rome & 546 & veste & Rome & 1 \\
+3 & MagicV & Paris & 322 & manteau & Lille & 5 \\
+2 & IdealB & Lyon & 145 & jupe & Paris & 7 \\
+2 & IdealB & Lyon & 234 & jupe & Lille & 1 \\
+\hline
+\end{tabular}
+}
+
+\vspace{1cm}
+
+
+-
+R satisfait `V#` $→$ Vnom Vville et P\# $→$ Pnom Pville
+
+-
+R viole `V#` P\#$→$ Qte
+
+
+
+---
+
+## Exemple
+
+
+Schéma Films(titre, année, durée, genre, producteur, acteur)
+
+{\tiny
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\bf titre & \bf année & \bf durée & \bf genre & \bf producteur & \bf acteur \\
+\hline
+Star Wars & 1977 & 124 & SciFi & Fox & Carrie Fisher \\
+Star Wars & 1977 & 124 & SciFi & Fox & Mark Hamill \\
+Star Wars & 1977 & 124 & SciFi & Fox & Harrison Ford \\
+Gone With The Wind & 1939 & 231 & drame & MGM & Vivien Leigh\\
+Wayne's World & 1992 & 95 & comédie & Paramount & Dana Carvey\\
+Wayne's World & 1992 & 95 & comédie & Paramount & Mike Meyers\\
+\hline
+\end{tabular}
+}
+
+
+
+
+
+- On sait qu'il n'y a pas 2 films de même nom qui sortent la même année. On a donc la dépendance suivante
+
+```
+titre, année → durée, genre, producteur
+```
+
+
+La DF `titre, année → acteur` est certainement fausse
+puisqu'un film fait intervenir en général plusieurs acteurs.
+
+A-t-on la DF  `titre, acteur → année, durée, genre, producteur` ?
+
+
+
+---
+
+
+## Définition d'une dépendance fonctionnelle
+
+
+
+- Soit $\mathcal{A}$ un schéma de relation ($\mathcal{A}$ est un ensemble d'attributs)
+
+- Une dépendance fonctionnelle sur $\mathcal{A}$ est une expression de la forme
+$X → Y$ où $X\subset\mathcal{A}$ et $Y\subset \mathcal{A}$
+
+- Une relation $R$ de schéma $\mathcal{A}$ satisfait $X → Y$
+si pour tous tuples $s,t \in R$ on a
+$$\bigl(\forall A\in X\ s.A=t.A\bigr) \Longrightarrow \bigl(\forall A\in Y\ s.A=t.A\bigr)$$
+
+(si $s$ et $t$ coïncident sur $X$ alors $s$ et $t$ coïncident sur $Y$)
+
+- Une relation $R$ satisfait un ensemble $\Sigma$ de DF si $R$ satisfait chaque DF de $\Sigma$
+
+
+
+
+
+## Exemples et dépendance élémentaire
+
+Dans la base **pagila**, relation `Actor` : 
+
+
+-  `Actor_id → last_name, first_name`
+
+- car `Actor_id` est une clé...
+
+
+
+::: {.callout-important}
+
+
+### Définition (dépendance élémentaire)
+
+$A_1,...,A_p → Y$ est une dépendance élémentaire si, 
+
+pour tout $j\leq p$ :  $A_1,...,A_{j-1},A_{j+1},...,A_p \not→ Y$
+
+:::
+
+
+
+## Exemple
+
+
+- `No_insee → sexe, mois_naiss, jour_naiss` est  élémentaire.
+
+- `No_insee, jour_naiss → sexe, mois_naiss, ville_naiss` n'est pas élémentaire ... `No_insee` suffit.
+
+
+
+
+---
+
+## Dépendance fonctionnelle triviale
+
+
+Une DF triviale est une DF satisfaite par toute relation
+
+## Définition (dépendance triviale)
+
+Soient $X,Y\subset \mathcal{A}$.  
+
+- $X→ Y$ est une dépendance triviale si $Y \subset X$
+
+## Exemple
+
+
+`No_insee → No_insee` est  triviale
+
+
+
+
+---
+
+## Implication pour les  DF
+
+
+
+- Soit $\mathcal{A}$ un schéma de relation ($\mathcal{A}$ est un ensemble d'attributs) et $\Sigma$
+un ensemble de DF sur $\mathcal{A}$
+
+- Exemple : $\mathcal{A}=\left\{A,B,C\right\}$ et $\Sigma=\left\{A→ B, B→ C\right\}$
+
+- Les DF données impliquent d'autres DF additionnelles
+
+
+
+Exemple : $A→ B$ et $B→ C$ impliquent $A→ C$
+
+c'est-à-dire
+
+toute relation de schéma $\mathcal{A}$ qui satisfait $A→ B$ et $B→ C$ satisfait également $A→ C$
+
+
+- Autre exemple :
+
+$A→ C$, $BC→ D$, $AD→ E$ impliquent $AB→ E$
+
+
+
+
+
+## Implication de Dépendance Fonctionnelle  
+
+
+::: {.callout-important}
+
+### Définition
+
+Un ensemble $\Sigma$ de DF implique une autre DF $X→ Y$ si
+toute relation qui satisfait $\Sigma$ satisfait également $X→ Y$.
+
+:::
+
+::: {.callout-note}
+
+### Notation
+
+pour $\Sigma$ implique $X→ Y$ : $\Sigma ⊧ X→ Y$
+
+:::
+
+
+## Exemple
+
+$\Sigma=\left\{A→ B, B→ C\right\}$ implique
+
+$A→ B$, $B→ C$, $A→ C$, $A,B→ C$,\dots
+
+mais aussi les DF triviales $A→ A$, $AB→ A$, ...
+
+
+---
+
+
+## Règles d'Armstrong
+
+::: {.callout-note}
+
+### Trois règles d'inférence faciles à vérifier :
+
+- *Transitivité* : $\left\{ X→ Y, Y→ Z\right\} ⊧ X→ Z$
+
+- *Augmentation* : $X→ Y ⊧ \left\{X,Z\right\} → \left\{Y,Z\right\}$
+
+- *Réflexivité* : $\emptyset ⊧ \left\{X,Y\right\}→ X$  (DF triviale)
+
+:::
+
+
+---
+
+::: {.callout-important}
+
+### Théorème
+
+$\Sigma ⊧ X→ Y$ 
+
+si et seulement si 
+
+$X→ Y$ peut-être dérivée de $\Sigma$ par applications successives des trois règles ci-dessus.
+
+:::
+
+---
+
+Des 3 règles d'Armstrong, on déduit d'autres règles :
+
+*Union* : $\left\{X→ Y, X→ Z\right\} ⊧ X→ \left\{Y,Z\right\}$
+
+*Séparation* : $X→\left\{Y,Z\right\} ⊧ X→ Y$
+
+
+
+---
+
+## Clef et super-clef
+
+Soit $\mathcal{A}$ un schéma et $\Sigma$ une ensemble de DF sur $\mathcal{A}$.
+
+::: {.callout-important}
+
+### Définition
+
+Un ensemble d'attributs $X$ est une *super-clef* si
+
+$\Sigma ⊧ X→ \mathcal{A}$
+
+c-à-d si $X$ détermine tous les attributs de $\mathcal{A}$
+
+:::
+
+---
+
+::: {.callout-important}
+
+### Définition
+
+Un ensemble d'attributs $X$ est une *clef* si 
+
+- $X$ est une super-clef et 
+- si tout sous-ensemble $Y\subset X$ tel que $Y\not=X$ n'est pas une super-clef
+
+:::
+
+---
+
+## Exemple
+
+
+$R(A,B,C)$ ET  $\Sigma=\left\{A→ B, B→ C\right\}$
+
+- Super-clefs : $A$, $AB$, $AC$, $ABC$
+
+- Clef : $A$ (la seule)
+
+
+---
+
+
+## Equivalence de deux ensembles de DF
+
+Soit $\Sigma$ et $\Sigma'$ deux ensemble de DF sur un schéma $\mathcal{A}$
+
+
+::: {.callout-important}
+
+### Définition
+
+On dit que $\Sigma$ implique $\Sigma'$ 
+
+si 
+
+$\Sigma$ implique toutes les DF de $\Sigma'$
+
+On le note $\Sigma⊧\Sigma'$
+
+:::
+
+
+## Exemple
+
+
+- $\mathcal{A}=\left\{A,B,C,D\right\}$, 
+- $\Sigma=\left\{AB→ C, C→ A, BC→ D\right\}$
+- $\Sigma'=\left\{AB→ D\right\}$  
+
+. . .
+
+$\Sigma⊧\Sigma'$
+
+---
+
+::: {.callout-important}
+
+### Définition
+
+$\Sigma$ est équivalent à $\Sigma'$ si $\Sigma⊧\Sigma'$ et $\Sigma'⊧\Sigma$
+
+:::
+
+---
+
+### Exemples
+
+
+- $X→ A_1,\dots,A_n$ est équivalent à $X→ A_1$, \dots, $X→ A_n$
+
+- $XY→ YZ$ est équivalent à $XY→ Z$
+
+
+
+
+# Fermeture d'un ensemble d'attributs  {background-color="#1c191c"}
+
+---
+
+::: {.callout-note}
+
+### Question principale
+
+Comment vérifier si un ensemble $\Sigma$ de DF implique une DF $X→ Y$ ?
+
+:::
+
+...
+
+Par les équivalences présentées précédemment, la question se ramène à :
+
+::: {.callout-note}
+
+Comment vérifier si un ensemble $\Sigma$ de DF implique une DF $X→ A$ ?
+
+où $A$ est un attribut
+
+:::
+
+
+---
+
+## Fermeture d'un ensemble d'attributs
+
+Soit $X \subset\mathcal{A}$ un sous-ensemble d'attributs et $\Sigma$ un ensemble de DF sur $\mathcal{A}$
+
+::: {.callout-important}
+
+### Définition
+
+La fermeture de $X$ par rapport à $\Sigma$ est
+$$X^+=\left\{ A\in\mathcal{A} \mid \Sigma ⊧ X→ A \right\}$$
+
+Autrement dit $X^+$ est l'ensemble des attributs déterminés par $X$
+
+:::
+
+
+
+
+
+## Exemple
+
+$R(ABCDE)$  $\Sigma=\left\{AB→ C, C→ D, E→ D\right\}$
+
+. . .
+
+$\left\{A,B\right\}^+=\left\{A,B,C,D\right\}$
+
+
+## Algorithme pour calculer une fermeture
+
+Soit $\Sigma$ un ensemble de DF sur un schéma $\mathcal{A}$ et $X\subset\mathcal{A}$
+
+
+### Algorithme
+
+
+- $X_c := X$
+- Tant qu'il existe $Y→ Z$ dans $\Sigma$ tel que $Y\subset X_c$ et $Z\not\subset X_c$, 
+  - $X_c:= X_c \cup Z$
+  
+- renvoyer $X_c$
+
+
+---
+
+
+
+- $X_c$ grandit à chaque itération
+
+- Comme $\mathcal{A}$ est fini, l'algorithme se termine en au plus $\mathcal{A}$ itérations
+
+
+
+---
+
+## Exemple de calcul de fermeture
+
+$\mathcal{A}=\left\{ABCDEF\right\}$ $\Sigma=\left\{A→ C, BC→ D, AD→ E\right\}$ $X=\left\{A,B\right\}$
+
+
+
+- $X_c=\left\{A,B\right\}$
+
+- $A→ C$ donc on obtient $X_c=\left\{A,B,C\right\}$
+
+- $BC→ D$ donc on obtient $X_c=\left\{A,B,C,D\right\}$
+
+- $AD→ E$ donc on obtient $X_c=\left\{A,B,C,D, E\right\}$
+
+- On obtient $X^+=\left\{A,B,C,D, E\right\}$
+
+
+
+
+---
+
+
+## Correction de l'algorithme de fermeture
+
+
+
+
+- L'algorithme calcule uniquement des attributs dans la fermeture car
+on a toujours $X_c\subset X^+$
+
+- L'algorithme calcule tous les attributs dans la fermeture i.e.\ $X_c=X^+$ quand l'algorithme se termine
+
+**Preuve :** Supposons que $A\notin X_c$ quand l'algorithme se termine. La relation $R=\left\{t_1,t_2\right\}$ suivante (où c$\not=$d)
+
+
+\begin{center}
+
+{\small
+\begin{tabular}{c|c|c|c|}
+\hline
+&\bf $X_c$ & A & \bf \dots \\
+\hline
+\bleu{$t_1$}& aa\dots a & c & cc\dots c \\
+\bleu{$t_2$} &aa\dots a & d & dd\dots d \\
+\hline
+\end{tabular}
+}
+satisfait $\Sigma$
+\end{center}
+
+car pour toute DF $Y→ Z$ telle que $Y\subset X_c$ on a $Z\subset X_c$.
+Mais $R$ ne satisfait pas $X→ A$. Donc $A\notin X^+$.
+
+
+
+
+---
+
+## Calcul de la fermeture transitive : exemple
+
+
+
+- soit $R$ d'ensemble d'attributs $\mathcal{A} =\{A,B,C,D,E,F,G\}$ 
+
+- Soit $X=\{B,D\}$
+
+- Soit $\Sigma$ constituée des DF suivantes :
+
+::: {.columns}
+::: {.column}
+
+- $A,B → C$ 
+- $C → A$ 
+- $B,C → D$ 
+- $A,C,D → B$ 
+- $F→ A,C$
+
+:::
+
+::: {.column}
+
+- $D → E,G$ 
+- $B,E → C$ 
+- $C,G → B,D$ 
+- $C,E → A,G$ 
+- 
+:::
+::: 
+
+
+- Montrer que  $X^+=\{A,B,C,D,E,G\}$
+
+
+- Donner une clef de $R$
+
+
+
+
+---
+
+
+# Forme normale de Boyce-Codd (FNBC)   {background-color="#1c191c"}
+
+---
+
+::: {.callout-important}
+
+### Définition
+
+Un schéma $\mathcal{A}$ est en FNBC par rapport à un ensemble de dépendances fonctionnelles $\Sigma$ sur $\mathcal{A}$ si pour toute DF $X→ Y$ impliquée par $\Sigma$ avec $Y\not\subset X$, $X$ est une super-clef
+
+
+:::
+
+
+
+- Autrement dit $(\mathcal{A},\Sigma)$ est en FNBC si pour toute DF non triviale impliquée par $\Sigma$, le membre de gauche est une super-clef
+
+- *Ne pas représenter la même information deux fois*
+
+- Soit $\Sigma'$ un ensemble de DF équivalent à $\Sigma$.
+$(\mathcal{A},\Sigma)$ est en FNBC si et seulement si pour toute DF non triviale de $\Sigma'$, le membre de gauche est une super-clef}
+
+puisque toute DF impliquée par $\Sigma$ peut être obtenue à partir des DF de $\Sigma'$ en utilisant les règles d'Armstrong.
+
+
+
+---
+
+## FNBC : exemple 1
+
+
+
+- Schéma $\mathcal{A}=\left\{ \texttt{V#, Vnom, Vville, P#, Pnom, Pville, Qte} \right\}$
+
+- Ensemble de dépendances fonctionnelles $\Sigma$ :
+
+```
+V# → Vnom Vville
+P#  → Pnom Pville 
+V# P# →  Qte
+```
+
+$\mathcal{A}$ n'est pas en FNBC par rapport $\Sigma$.
+
+En effet:  ni `V#` ni P# ne sont des super-clefs
+
+
+
+---
+
+## FNBC : exemple 2
+
+Schéma `Films(titre, année, durée, genre, producteur, acteur)`
+
+
+
+- On a la dépendance suivante
+
+`titre, année → durée, genre, producteur`
+
+- `titre, année, acteur` est la seule clef
+
+- La DF `titre, année → durée, genre, producteur` viole la condition de FNBC
+
+
+
+---
+
+## FNBC : exemple 3
+
+Trois schémas en FNBC :
+
+\begin{align*}
+&\texttt{Vendeur(V#, Vnom, Vville)}\quad \texttt{Clef : V#}\\
+&\texttt{Produit(P#, Pnom, Pville)} \quad \texttt{Clef : P#}\\
+&\texttt{Livraison(V#, P#, Qte)} \quad \texttt{Clef : (V#,P#)}
+\end{align*}
+
+
+---
+
+## Schéma avec deux attributs
+
+
+::: {.callout-important}
+
+### Proposition
+
+Soit $\mathcal{A}=\left\{A,B\right\}$ un schéma avec deux attributs et $\Sigma$ un ensemble de DF non triviales
+
+$\mathcal{A}$ est toujours en FNBC par rapport à $\Sigma$
+
+:::
+
+---
+
+## Preuve 
+
+on distingue 4 cas
+
+- $\Sigma=\emptyset$
+
+- $\Sigma=\left\{A→ B\right\}$
+
+- $\Sigma=\left\{B→ A\right\}$
+
+- $\Sigma=\left\{A→ B, B→ A\right\}$
+
+
+
+
+
+
+---
+
+
+# Décomposition d'une relation   {background-color="#1c191c"}
+
+
+---
+
+## Décomposition d'un schéma de relation
+
+
+
+- Soit $\mathcal{A}$ un schéma de relation
+
+- Un décomposition de $\mathcal{A}$ est un ensemble $\left\{\mathcal{A}_1,\dots, \mathcal{A}_k\right\}$
+de sous-ensembles de $\mathcal{A}$ tel que
+  1. $\mathcal{A}_i\not=\emptyset$, $1\le i\le k$, et 
+  2. $\mathcal{A} = \bigcup_{i=1}^k \mathcal{A}_i$
+
+
+
+## Exemple
+
+\begin{align*}
+&\text{Vendeur(`V#`, Vnom, Vville)}\\
+&\text{Produit(P\#, Pnom, Pville)}\\
+&\text{Livraison(`V#`, P\#, Qte)}
+\end{align*}
+
+est une décomposition du schéma
+
+`R(V#, Vnom, Vville, P#, Pnom, Pville, Qte)`
+
+
+
+---
+
+## Exemple de décomposition
+
+
+
+- Schéma : `Films(titre, année, durée, genre, producteur, acteur)`
+
+- Une décomposition :
+- 
+```
+Films1(titre, année, durée, genre, producteur)
+Films2(titre, année, acteur)
+```
+
+- Films1 est FNBC par rapport à $\Sigma_1=\left\{\texttt{titre, année} → \texttt{durée, genre, producteur}\right\}$
+
+- Films2 est en FNBC par rapport à $\Sigma_2=\emptyset$
+
+
+
+---
+
+## Propriétés d'une décomposition
+
+
+
+- On ne peut pas décomposer arbitrairement, toutes les décompositions ne sont pas intéressantes
+
+- Conditions pour une décomposition *raisonnable* :
+
+- Décomposition *sans perte d'information*
+
+- Décomposition sans perte de dépendance fonctionnelle
+
+
+# Décomposition sans perte d'information  {background-color="#1c191c"}
+
+## Décomposition sans perte d'information
+
+
+
+- Idée : Si on remplace le schéma `(V#, Vnom, Vville, P#, Pnom, Pville, Qte)`
+par les trois schémas
+
+\begin{align*}
+&\texttt{Vendeur(V#, Vnom, Vville)}\\
+&\texttt{Produit(P#, Pnom, Pville)}\\
+&\texttt{Livraison(V#, P#, Qte)}
+\end{align*}
+
+alors au lieu de stocker une relation $R(\texttt{V#, Vnom, Vville, P#, Pnom, Pville, Qte})$, on stockera
+ses projections
+
+$$\pi_{\texttt{V#,Vnom,Vville}}(R) \quad \pi_{\texttt{P#,Pnom,Pville}}(R) \quad \pi_{\texttt{V#,P#,Qte}}(R)$$
+
+- Peut-on retrouver $R$ à partir de ces trois projections ?
+
+
+
+
+---
+
+## Décomposition sans perte d'information
+
+
+
+- La décomposition doit garantir que pour toute relation R, ses projections contiennent
+la même information que R au sens que l'on doit pouvoir reconstruire R à partir de ses projections
+
+- Comment tenter de reconstruire R à partir de ses projections :
+- 
+On considère la *jointure naturelle*
+
+$$\pi_{\texttt{V#,Vnom,Vville}}(R) \bowtie \pi_{\texttt{P#,Pnom,Pville}}(R) \bowtie \pi_{\texttt{V#,P#,Qte}}(R) $$
+
+
+
+
+---
+
+## Décomposition sans perte d'information
+
+
+
+- La propriété souhaitée s'écrit donc
+$$R = \pi_{\texttt{V#,Vnom,Vville}}(R) \bowtie \pi_{\texttt{P#,Pnom,Pville}}(R) \bowtie \pi_{\texttt{V#,P#,Qte}}(R)$$
+
+pour toute relation `R(V#, Vnom, Vville, P#, Pnom, Pville, Qte` satisfaisant les DF
+
+- Est-ce vrai ?
+
+- Intuitivement, oui : à partir d'un tuple de `Livraison(V#,P#,Qte)`
+  - `V#` permet de récupérer toutes les informations sur le vendeur `(V# → Vnom Vville)`
+  - `P#` permet de récupérer toutes les informations sur le produit `(P# → Pnom Pville)`
+
+
+{{< fa hand-point-right >}} La propriété d'être sans perte d'information est liée à l'ensemble de DF considéré
+
+
+
+---
+
+## Décomposition sans perte d'information (lossless join)
+
+::: {.callout-important}
+
+### Définition
+
+
+Soit $\mathcal{A}$ un schéma de relation et $\Sigma$ un ensemble de DF sur $\mathcal{A}$.
+
+Une décomposition $\left\{\mathcal{A}_1,\dots, \mathcal{A}_k \right\}$ est sans perte d'information par rapport à $\Sigma$
+si pour toute relation R de schéma $\mathcal{A}$ satisfaisant $\Sigma$ on a
+$$R= \pi_{\mathcal{A}_1}(R) \bowtie \pi_{\mathcal{A}_2}(R) \bowtie\dots\bowtie\pi_{\mathcal{A}_k}(R)$$
+
+:::
+
+---
+
+## Exemple de décomposition avec perte d'information
+
+
+- $\mathcal{A}=\left\{A,B,C\right\}$ $\Sigma=\left\{AB→ C\right\}$
+
+- décomposition $\mathcal{A}_1=\left\{A,B\right\}$ et  $\mathcal{A}_2=\left\{B,C\right\}$
+
+- Soit $R$ la relation
+
+\begin{tabular}{|c|c|c|}
+\hline
+\bf A &\bf  B & \bf C \\
+\hline
+ 1 & 2 & 3 \\
+4 & 2 & 5 \\
+\hline
+\end{tabular}
+
+
+- $\pi_{AB}(R)={
+\begin{tabular}{|c|c|}
+\hline
+\bf A &\bf  B \\
+\hline
+ 1 & 2  \\
+4 & 2  \\
+\hline
+\end{tabular}
+}$
+et $\pi_{BC}(R)={
+\begin{tabular}{|c|c|}
+\hline
+\bf B &\bf  C \\
+\hline
+ 2 & 3  \\
+2 & 5  \\
+\hline
+\end{tabular}
+}$
+
+- $\pi_{AB}(R) \bowtie \pi_{BC}(R)=
+\begin{tabular}{|c|c|c|}
+\hline
+\bf A &\bf  B & \bf C \\
+\hline
+ 1 & 2 & 3 \\
+4 & 2 & 5 \\
+\mathcal{A}lert 1 & \mathcal{A}lert 2 & \mathcal{A}lert 5 \\
+\mathcal{A}lert 4 & \mathcal{A}lert 2 & \mathcal{A}lert 3 \\
+\hline
+\end{tabular}$
+
+
+
+# Algorithme de poursuite  {background-color="#1c191c"}
+
+## Algorithme de poursuite
+
+
+
+- Comment déterminer si une décomposition est sans perte d'information :
+
+- Si $R$ est une relation de schéma $\mathcal{A}$ on a toujours que
+ $$R\subset \pi_{\mathcal{A}_1}(R) \bowtie \pi_{\mathcal{A}_2}(R) \bowtie\dots\bowtie\pi_{\mathcal{A}_k}(R)$$
+ 
+ par définition de la jointure naturelle et de la projection
+ 
+ - Le seul problème est que les jointures peut générer des tuples supplémentaires
+ 
+ - Mais comme $R$ est supposée vérifier les DF de $\Sigma$, l'inclusion inverse est garantie dans certains cas
+
+- Pour le savoir, un algorithme simple existe appelé algorithme de poursuite
+
+
+
+
+---
+
+## Algorithme de poursuite : exemple
+
+Si on remplace le schéma `(V#, Vnom, Vville, P\#, Pnom, Pville, Qte)`
+
+par
+
+\begin{align*}
+&\texttt{Vendeur(V#, Vnom, Vville)}\\
+&\texttt{Produit(P#, Pnom, Pville)}\\
+&\texttt{Livraison(V#, P#, Qte)}
+\end{align*}
+
+A-t-on
+$$\pi_{\texttt{V#,Vnom,Vville}}(R) \bowtie \pi_{\texttt{P#,Pnom,Pville}}(R) \bowtie \pi_{\texttt{V#,P#,Qte}}(R)\subset R\quad ?$$
+
+Soit $t$ un tuple dans la jointure
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\bf `V#` &\bf  Vnom & \bf Vville & \bf P\# & \bf Pnom & \bf Pville & \bf Qte \\
+\hline
+ $a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ \\
+\hline
+\end{tabular}
+
+
+---
+
+## Algorithme de poursuite : exemple
+
+
+
+-
+Soit $t$ un tuple dans la jointure
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+\bf `V#` &\bf  Vnom & \bf Vville & \bf P\# & \bf Pnom & \bf Pville & \bf Qte \\
+\hline
+$a$ & $b$ & $c$ & $d$ & $e$ & $f$ & $g$ \\
+\hline
+\end{tabular}
+
+
+- $(a, b, c)\in \pi_{`V#`,Vnom,Vville}(R)$ donc
+il existe $e_1, f_1, g_1$ tels que  $(a, b, c, d_1, e_1, f_1, g_1) \in R$
+
+- $(d,e,f) \in \pi_{P\#,Pnom,Pville}(R)$ donc il existe $a_2, b_2, c_2, g_2$ tels que
+$(a_2, b_2, c_2, d, e, f, g_2)\in R$
+
+- $(a,d,g)\in \pi_{`V#`,P\#,Qte}(R)$ donc il existe $b_3,c_3,e_3,f_3$ tels que
+$(a,b_3,c_3,d,e_3,f_3,g)\in R$
+
+
+- On peut le représenter comme ceci :
+  
+\begin{tabular}{c|c|c|c|c|c|c|c|}
+\hline
+&\bf `V#` &\bf  Vnom & \bf Vville & \bf P\# & \bf Pnom & \bf Pville & \bf Qte \\
+\hline
+Vendeur & .red[$a$] & .red[$b$] & .red[$c$] & $d_1$ & $e_1$ & $f_1$ & $g_1$ \\
+Produit & $a_2$ & $b_2$ & $c_2$ & .red[$d$] & .red[$e$] & .red[$f$] & $g_2$ \\
+Livraison & .red[$a$] & $b_3$ & $c_3$ & .red[$d$] & $e_3$ & $f_3$ & .red[$g$] \\
+\hline
+\end{tabular}
+
+
+
+
+---
+
+## Algorithme de poursuite : exemple
+
+
+
+
+\begin{tabular}{c|c|c|c|c|c|c|c|}
+\hline
+&\bf `V#` &\bf  Vnom & \bf Vville & \bf P\# & \bf Pnom & \bf Pville & \bf Qte \\
+\hline
+Vendeur & .red[$a$] & .red[$b$] & .red[$c$] & $d_1$ & $e_1$ & $f_1$ & $g_1$ \\
+Produit & $a_2$ & $b_2$ & $c_2$ & .red[$d$] & .red[$e$] & .red[$f$] & $g_2$ \\
+Livraison & .red[$a$] & $b_3$ & $c_3$ & .red[$d$] & $e_3$ & $f_3$ & .red[$g$] \\
+\hline
+\end{tabular}
+
+
+- `V# → Vnom, Vville` donc $b_3=b$ et $c_3=c$
+
+
+\begin{tabular}{c|c|c|c|c|c|c|c|}
+\hline
+&\bf `V#` &\bf  Vnom & \bf Vville & \bf P\# & \bf Pnom & \bf Pville & \bf Qte \\
+\hline
+Vendeur & .red[$a$] & .red[$b$] & .red[$c$] & $d_1$ & $e_1$ & $f_1$ & $g_1$ \\
+Produit & $a_2$ & $b_2$ & $c_2$ & .red[$d$] & .red[$e$] & .red[$f$] & $g_2$ \\
+Livraison & .red[$a$] & $b$ & $c$ & .red[$d$] & $e_3$ & $f_3$ & .red[$g$] \\
+\hline
+\end{tabular}
+
+
+
+- P\#$→$ Pnom, Pville donc $e_3=e$ et $f_3=f$
+
+\begin{tabular}{c|c|c|c|c|c|c|c|}
+\hline
+&\bf `V#` &\bf  Vnom & \bf Vville & \bf P\# & \bf Pnom & \bf Pville & \bf Qte \\
+\hline
+Vendeur & .red[$a$] & .red[$b$] & .red[$c$] & $d_1$ & $e_1$ & $f_1$ & $g_1$ \\
+Produit & $a_2$ & $b_2$ & $c_2$ & .red[$d$] & .red[$e$] & .red[$f$] & $g_2$ \\
+Livraison & .red[$a$] & $b$ & $c$ & .red[$d$] & $e$ & $f$ & .red[$g$] \\
+\hline
+\end{tabular}
+
+
+- On a obtenu une ligne égale au tuple $t=(a,b,c,d,e,f,g)$ donc $t\in R$.
+On en déduit que la décomposition est SPI.
+
+
+
+---
+
+## Algorithme de poursuite : cas général
+
+
+
+- **Entrée** : un schéma $\mathcal{A}$, une décomposition $\left\{\mathcal{A}_1,\dots,\mathcal{A}_k}$ et un ensemble $\Sigma$ de DF
+
+- Pour chaque attribut de $\mathcal{A}$, choisir un symbole (par exemple $a$, $b$, $c$, $\dots$). La correspondance doit être injective.
+
+- Construire un tableau dont les colonnes sont les attributs de $\mathcal{A}$
+  
+Le tableau a une ligne pour chaque $\mathcal{A}_i$
+
+Sur la ligne associée à $\mathcal{A}_i$, les positions correspondant à $\mathcal{A}_i$ sont remplies avec les symboles choisis.
+
+Les autres positions sont remplies avec les symboles indicés par $i$
+
+- Répéter tant que possible : s'il existe une DF $X→ Y$ dans $\Sigma$ et deux lignes du tableau
+en accord sur $X$, égaliser ces deux lignes sur $Y$
+
+- **Sortie** : Si on obtient une ligne sans valeur indicée, la décomposition est sans perte d'information, sinon il y a perte d'information
+
+
+
+
+---
+
+## Algorithme de poursuite - cas général 
+
+A nouveau, en d'autres termes:
+
+
+
+- Si deux tuples s'accordent sur la partie gauche d'une DF, leur partie droite doit être égale
+
+
+- Dans ce cas, remplacer les attributs d'un des deux tuples correspondant à  la partie droite par les valeurs de l'autre. En privilégiant si possible les valeurs sans indice (qui viennent de $R$) sur les valeurs indicées (qui sont arbitraires).
+
+
+- Si on obtient un tuple sans valeur indicées i.e. $t$, on peut déduire que  $t$ est bien dans $R$. La décomposition est sans perte.
+
+
+
+
+## Algorithme de poursuite : exemple 2
+
+Considérons l'exemple : 
+
+$$\mathcal{A}=\left\{A,B,C,D\right\}$$
+
+avec $\mathcal{A}_1=\{A,B\}$, $\mathcal{A}_2=\{B,C\}$ et $\mathcal{A}_3=\{C,D\}$
+
+Soit $\Sigma=\{{C}→{D}; {B}→{A}\}$.
+
+Soit $t=(a,b,c,d)$. Soit $t_1,t_2,t_3$ les tuples de $R$ suivants:
+
+$$\begin{array}{c||c|c|c|c|}
+\hline & A & B & C & D  \\\hline 
+\hline t_1 & a & b &  c_1& d_1  \\ 
+\hline t_2 & a_2 & b & c & d_2  \\ 
+\hline  t_3 & a_3& b_3 & c & d  \\ 
+\hline 
+\end{array}$$
+
+Ici, on a pris  $c_1,d_1, a_2,d_2, a_3,b_3$ comme valeurs variables et $a,b,c,d$ comme constantes.
+
+
+---
+
+## Algorithme de poursuite - exemple 2
+
+
+$$\begin{array}{|c|c|c|c|}
+\hline A & B & C & D  \\\hline 
+\hline a & b &  c_1& d_1  \\ 
+\hline a_2 & b & c & d_2  \\ 
+\hline  a_3& b_3 & c & d  \\ 
+\hline 
+\end{array}$$
+
+Par la dépendance ${B}→{A}$, il vient : 
+
+$$\begin{array}{|c|c|c|c|}
+\hline A & B & C & D  \\\hline 
+\hline a & b &  c_1& d_1  \\ 
+\hline {\color{red} a} & b & c & d_2  \\ 
+\hline  a_3& b_3 & c & d  \\ 
+\hline 
+\end{array}$$
+
+
+---
+
+
+
+## Algorithme de poursuite : exemple 2
+
+
+$$\begin{array}{|c|c|c|c|}
+\hline A & B & C & D  \\\hline 
+\hline a & b &  c_1& d_1  \\ 
+\hline {\color{red} a} & b & c & d_2  \\ 
+\hline  a_3& b_3 & c & d  \\ 
+\hline 
+\end{array}$$
+
+Par la dépendance ${C}→{D}$, il vient : 
+
+$$\begin{array}{|c|c|c|c|}
+\hline A & B & C & D  \\\hline 
+\hline a & b &  c_1& d_1  \\ 
+\hline {\color{red} a} & b & c & {\color{red} d}  \\ 
+\hline  a_3& b_3 & c & d  \\ 
+\hline 
+\end{array}$$
+
+On a bien fait apparaître $t$ qui appartient donc à  $R$.
+
+---
+
+## Algorithme de poursuite - exemple 3
+
+
+Considérons toujours l'exemple : $\mathcal{A}=\left\{A,B,C,D\right\}$ avec\\
+$\mathcal{A}_1=\{A,B\}$, $\mathcal{A}_2=\{B,C\}$ et $\mathcal{A}_3=\{C,D\}$\\
+Mais avec  $\Sigma=\{{B}→{AD}\}$.
+
+
+$$\begin{array}{|c|c|c|c|}
+\hline A & B & C & D  \\\hline 
+\hline a & b &  c_1& d_1  \\ 
+\hline a_2 & b & c & d_2  \\ 
+\hline  a_3& b_3 & c & d  \\ 
+\hline 
+\end{array}$$
+
+Dans ce cas, en utilisant la seule DF ${B}→{AD}$, on obtient $a_2=a$ et $d_1=d_2$ :
+
+
+$$\begin{array}{|c|c|c|c|}
+\hline A & B & C & D  \\\hline 
+\hline a & b &  c_1& d_1  \\ 
+\hline a & b & c & d_1 \\ 
+\hline  a_3& b_3 & c & d  \\ 
+\hline 
+\end{array}$$
+
+Mais on ne peut aller plus loin : $t=(a,b,c,d)$ n'est pas dans $R$ en général.
+
+---
+
+# Projection d'un ensemble de dépendances fonctionnelles  {background-color="#1c191c"}
+
+
+
+---
+
+
+
+
+# 3NF Decomposition Algorithm {background-color="#1c191c"}
+
+---
+
+Given a set $\Sigma$ of fd's, a minimal cover of $\Sigma$ is a set $\Sigma'$ of fd's such that
+
+
+- chaque DF de $\Sigma'$ est de la forme $X→ A$, où $A$ est un attribut
+
+- $\Sigma'$ et $\Sigma$ sont équivalents
+
+- aucun sous-ensemble propre de $\Sigma'$ implique $\Sigma$
+
+- pour toute dépendance $X→ A$ de $\Sigma'$, il n'existe pas de sous-ensemble propre $Y\subset X$ tel que $\Sigma⊧ Y→ A$
+
+
+
+
+---
+
+# Fin   {background-color="#1c191c"}
+
