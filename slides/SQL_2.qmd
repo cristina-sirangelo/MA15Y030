@@ -2,6 +2,10 @@
 title: "BD II: SQL II"
 subtitle: "Langage Manipulation de Données 2 : requêtes imbriquées"
 date: "2024-09-20"
+
+format: 
+  revealjs:
+    header: "Requêtes SQL II : Requêtes imbriquées"
 ---
 
 

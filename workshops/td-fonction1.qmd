@@ -1,5 +1,9 @@
 ---
 title: "TD Fonctions I : Langage `plpgsql`"
+subtitle: "Fonctions PL/PGSQL sur pagila"
+date: "2025-02-28"
+
+
 format:
   pdf:
     code-annotations: below

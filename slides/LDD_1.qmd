@@ -1,5 +1,7 @@
 ---
 title: "BD : Contraintes"
+subtitle: "Définition de données: Contraintes"
+date: "2024-10-18"
 ---
 
 ```{r}

@@ -1,5 +1,7 @@
 ---
 title: "BD VII: Corriger le schéma World"
+subtitle: "Définition de données: Contraintes/Ingénieurie"
+date: "2024-10-25"
 ---
 
 ```{.r}

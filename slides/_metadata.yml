@@ -8,10 +8,12 @@ format:
     footer: "[MA15Y030](http://s-v-b.github.io/MA15Y030) -- Bases de Données -- L3 MIASHS -- UParis Cité"
 
     smaller: false
-    highlight-style: zenburn
+    highlight-style: solarized
+    
     code-fold: false
     code-link: true
     code-annotations: hover
+
     slide-number: c/t
     show-slide-number: all
     scrollable: true
@@ -27,8 +29,18 @@ format:
 
     link-external-icon: true
     link-external-newwindow: true
+
+    header: Bases de Données
+    header-logo: /images/reveal_logo.svg
+    header-logo-link: "https://revealjs.com"
+
+
     title-slide-attributes:
       data-background-color: "#1c191c"
+
+
+filters:
+  - reveal-header
 
 # filters:
 #   - d2
@@ -39,7 +51,6 @@ format:
 execute: 
   echo: true
   eval: false
-
 
 toc: true
 toc-depth: 1

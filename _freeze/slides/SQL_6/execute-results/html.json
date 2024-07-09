@@ -1,8 +1,8 @@
 {
-  "hash": "2f7e3672f786e9594582312d2d9f7da3",
+  "hash": "816029da2613207d7f723f42b2197db0",
   "result": {
     "engine": "knitr",
-    "markdown": "---\ntitle: \"BD : Transactions\"\n\nexecute: \n  echo: true\n  eval: false\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(DBI)\ndb <- dbConnect(RSQLite::SQLite(), dbname = \"sql.sqlite\")\nknitr::opts_chunk$set(connection = \"db\")\n```\n:::\n\n\n\n# Introduction\n",
+    "markdown": "---\ntitle: \"BD : Transactions\"\ndate: \"2025-02-29\"\nexecute: \n  echo: true\n  eval: false\n---\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(DBI)\ndb <- dbConnect(RSQLite::SQLite(), dbname = \"sql.sqlite\")\nknitr::opts_chunk$set(connection = \"db\")\n```\n:::\n\n\n\n# Introduction\n",
     "supporting": [],
     "filters": [
       "rmarkdown/pagebreak.lua"

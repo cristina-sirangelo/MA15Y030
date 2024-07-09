@@ -1,5 +1,8 @@
 ---
 title: "TD Récapitulatif SQL"
+subtitle: "TD révision générale"
+date: "2024-12-13"
+
 format:
   pdf:
     code-annotations: below

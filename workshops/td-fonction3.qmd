@@ -1,5 +1,8 @@
 ---
 title: "TD Fonctions II (Fonctions PL/PgSQL)"
+subtitle: "Fontions PL/PgSQL (suite)"
+date: "2025-03-31"
+
 format:
   pdf:
     code-annotations: below

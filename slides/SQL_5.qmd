@@ -1,7 +1,12 @@
 ---
 title: 'BD : Fonctions et extension PlpgSQL de SQL'
+date: "2025-01-31"
 
 engine: knitr
+
+format: 
+  revealjs:
+    header: "Fonctions et extension PlpgSQL de SQL"
 ---
 
 

@@ -4,8 +4,12 @@ listing:
   contents: 
     - "workshops/*.qmd"
   fields: [date, title, subtitle] 
+  field-display-names: 
+    title: "Titre"
+    subtitle: "Description"
   type: table  
   table-striped: true
   table-hover: true
   sort: date
+
 ---

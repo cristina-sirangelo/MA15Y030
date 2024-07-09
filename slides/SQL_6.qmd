@@ -1,6 +1,6 @@
 ---
 title: "BD : Transactions"
-
+date: "2025-02-29"
 execute: 
   echo: true
   eval: false

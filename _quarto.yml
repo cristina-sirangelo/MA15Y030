@@ -64,20 +64,18 @@ website:
             text: Liens
           - href: cours-faq.qmd
             text: FAQ
-      - section: "Computing"
+      - section: "Support"
         contents:
           - href: computing-access.qmd
-            text: Access
+            text: "Accès Informatique"
           - href: computing-dbeaver.qmd
-            text: dbeaver
+            text: "Client dbeaver"
           - href: computing-troubleshooting.qmd
-            text: Troubleshooting
-      - section: "Project"
-        contents:
-          - href: project-description.qmd
-            text: Description
-          - href: project-tips-resources.qmd
-            text: Tips + resources
+            text: Dépannage
+      - href: slides-listings.qmd
+        text: Diapositives
+      - href: td-listings.qmd
+        text: Exercices
       - section: "Journal"
         contents:
           - href: weeks/week-1.qmd
