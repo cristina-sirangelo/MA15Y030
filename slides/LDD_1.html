@@ -456,13 +456,25 @@
 </section><section id="consulter-la-liste-des-types" class="slide level2 center"><h2>Consulter la liste des types</h2>
 <p><a href="https://docs.postgresql.fr/docs/current/datatype.html">https://docs.postgresql.fr/docs/current/datatype.html</a></p>
 <p>Il faut essayer d’utiliser ces types pour préciser les contenus des colonnes</p>
-<p><i class="fa-solid fa-skull-crossbones" aria-label="skull-crossbones"></i> Les types disponibles diffèrent d’un SGBD à l’autre (<code>Mysql</code>, <code>Postgres</code>, <code>Oracle</code>, <code>SQL Server</code>, …)</p>
-</section><section class="slide level2 center"></section></section><section><section id="contrainte-de-vérification" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte de vérification</h1>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Mise en garde</strong></p>
+</div>
+<div class="callout-content">
+<p>Les types disponibles diffèrent d’un SGBD à l’autre (<code>Mysql</code>, <code>Postgres</code>, <code>Oracle</code>, <code>SQL Server</code>, …)</p>
+</div>
+</div>
+</div>
+</section></section><section><section id="contrainte-de-vérification" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte de vérification</h1>
 
 </section><section id="contraintes-de-tuple" class="slide level2 center"><h2>Contraintes de tuple</h2>
 <p>Une <strong>contrainte de tuple</strong> peut être vérifiée tuple par tuple (ligne par ligne)</p>
 <div class="fragment">
-<p>Lors d’une insertion ou d’une modification de tuple, il suffit de vérifier que la contrainte est respectée par le nouveau tuple</p>
+<p>Lors d’une insertion ou d’une modification de tuple, il <em>suffit</em> de vérifier que la contrainte est respectée par le nouveau tuple</p>
 </div>
 </section><section id="exemple" class="slide level2 center"><h2>Exemple</h2>
 <p>Dans un tuple de <code>Piece</code>, on devrait toujours avoir une valeur du prix positive.</p>
@@ -470,26 +482,40 @@
 </section><section id="exemple-suite" class="slide level2 center"><h2>Exemple (suite)</h2>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
 <span id="cb1-2"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb1-3"><a></a>    prix MONEY <span class="kw">CHECK</span> (prix<span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:money</span>), #<span class="op">&lt;&lt;</span></span>
+<span id="cb1-3"><a></a>    prix MONEY <span class="kw">CHECK</span> (prix<span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:money</span>), </span>
 <span id="cb1-4"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>)</span>
 <span id="cb1-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
 <p>Have a look at <a href="https://www.postgresql.org/docs/current/datatype-money.html">PostGres Monetary type</a></p>
 </div>
-</section><section id="exemple-world.country-smaller" class="slide level2 center"><h2>Exemple <code>world.country</code> {smaller}</h2>
+</div>
+</div>
+</div>
+</section><section id="exemple-world.country" class="slide level2 smaller center"><h2>Exemple <code>world.country</code>
+</h2>
 <p>Dans un tuple de <code>country</code>, les colonnes numériques ne devraient pas prendre de valeur négative</p>
 <div class="fragment">
-<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.country (</span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2" data-code-line-numbers="|6,9,17-22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.country (</span>
 <span id="cb2-2"><a></a>    countrycode BPCHAR(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb2-3"><a></a>    name_country TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb2-4"><a></a>    continent TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb2-5"><a></a>    region TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb2-6"><a></a>    surfacearea FLOAT4 <span class="kw">CHECK</span> (surfacearea<span class="op">&gt;=</span> <span class="dv">0</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>, #<span class="op">&lt;&lt;</span></span>
+<span id="cb2-6"><a></a>    surfacearea FLOAT4 <span class="kw">CHECK</span> (surfacearea<span class="op">&gt;=</span> <span class="dv">0</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>, </span>
 <span id="cb2-7"><a></a>    indepyear INT2 <span class="kw">NULL</span>,</span>
 <span id="cb2-8"><a></a>    population_country INT4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb2-9"><a></a>    lifeexpectancy FLOAT4 <span class="kw">CHECK</span> (lifeexpectancy<span class="op">&gt;=</span> <span class="dv">0</span>) <span class="kw">NULL</span>, #<span class="op">&lt;&lt;</span></span>
-<span id="cb2-10"><a></a>    gnp <span class="dt">NUMERIC</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,    #<span class="op">&lt;&lt;</span></span>
-<span id="cb2-11"><a></a>    gnpold <span class="dt">NUMERIC</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,  #<span class="op">&lt;&lt;</span></span>
+<span id="cb2-9"><a></a>    lifeexpectancy FLOAT4 <span class="kw">CHECK</span> (lifeexpectancy<span class="op">&gt;=</span> <span class="dv">0</span>) <span class="kw">NULL</span>, </span>
+<span id="cb2-10"><a></a>    gnp <span class="dt">NUMERIC</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,    </span>
+<span id="cb2-11"><a></a>    gnpold <span class="dt">NUMERIC</span>(<span class="dv">10</span>, <span class="dv">2</span>) <span class="kw">NULL</span>,  </span>
 <span id="cb2-12"><a></a>    localname TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb2-13"><a></a>    governmentform TEXT <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb2-14"><a></a>    headofstate TEXT <span class="kw">NULL</span>,</span>
@@ -503,16 +529,21 @@
 <span id="cb2-22"><a></a>    <span class="kw">CONSTRAINT</span> country_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (countrycode)</span>
 <span id="cb2-23"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+</div>
 </section><section id="contrainte-de-vérification---exemple-suite" class="slide level2 center"><h2>Contrainte de vérification - Exemple (suite)</h2>
-<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3" data-code-line-numbers="|3,4,6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
 <span id="cb3-2"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb3-3"><a></a>    prix moNey <span class="kw">CHECK</span> (prix<span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:money</span>),  #<span class="op">&lt;&lt;</span></span>
-<span id="cb3-4"><a></a>    prix_promo MONEY <span class="kw">CHECK</span> (prix_promo <span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>), #<span class="op">&lt;&lt;</span></span>
+<span id="cb3-3"><a></a>    prix moNey <span class="kw">CHECK</span> (prix<span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:money</span>),  </span>
+<span id="cb3-4"><a></a>    prix_promo MONEY <span class="kw">CHECK</span> (prix_promo <span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>), </span>
 <span id="cb3-5"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
-<span id="cb3-6"><a></a>    <span class="kw">CHECK</span>(prix <span class="op">&gt;</span> prix_promo) #<span class="op">&lt;&lt;</span></span>
+<span id="cb3-6"><a></a>    <span class="kw">CHECK</span>(prix <span class="op">&gt;</span> prix_promo) </span>
 <span id="cb3-7"><a></a>); </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <div class="fragment">
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="fl">1.61</span>,<span class="st">'rouge'</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece </span>
+<span id="cb4-2"><a></a>  <span class="kw">VALUES</span></span>
+<span id="cb4-3"><a></a>  (<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="fl">1.61</span>,<span class="st">'rouge'</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><code>ERROR:  new row for relation "piece" violates check constraint piece_check</code> <i class="fa-solid fa-face-angry" aria-label="face-angry"></i></p>
 </div>
 <div class="fragment">
@@ -526,17 +557,41 @@
 <p>Comme une expression composée vaut parfois <code>NULL</code> si l’un des opérandes vaut lui-même <code>NULL</code>, les contraintes <code>CHECK</code> ne suffisent pas à prévenir l’insertion de valeurs nulles</p>
 </div>
 <div class="fragment">
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Astuce</strong></p>
+</div>
+<div class="callout-content">
 <p>Il faut compléter les contraintes de tuple avec des <em>contraintes de non-nullité</em></p>
+</div>
+</div>
+</div>
 </div>
 </section><section class="slide level2 center"></section></section><section><section id="contrainte-de-non-nullité-not-null" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte de non-nullité (NOT NULL)</h1>
 
 </section><section id="pourquoi-imposer-quune-colonne-soit-toujours-renseignée" class="slide level2 center"><h2>Pourquoi imposer qu’une colonne soit toujours renseignée ?</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
 <p>La présence possible des valeurs nulles rend beaucoup d’opérations complexes</p>
 <p>Il faut avoir en tête que en <code>SQL</code>,</p>
 <ul>
 <li><p>les booléens peuvent avoir trois valeurs : <code>TRUE, FALSE</code> et <code>NULL</code> et que</p></li>
 <li><p>le fait qu’une expression ne vaille pas <code>FALSE</code> ne veut pas dire qu’elle vaut <code>TRUE</code> …</p></li>
 </ul>
+</div>
+</div>
+</div>
 <div class="fragment">
 <p>Pour imposer qu’une colonne soit renseignée :</p>
 <ul>
@@ -545,49 +600,88 @@
 </ul>
 </div>
 </section><section id="contrainte-de-non-nullité-exemple" class="slide level2 center"><h2>Contrainte de non-nullité (Exemple)</h2>
-<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
 <span id="cb6-2"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb6-3"><a></a>    prix MONEY <span class="kw">CHECK</span> (prix<span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>),  #<span class="op">&lt;&lt;</span></span>
-<span id="cb6-4"><a></a>    prix_promo MONEY <span class="kw">CHECK</span> (prix_promo <span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>),  #<span class="op">&lt;&lt;</span></span>
+<span id="cb6-3"><a></a>    prix MONEY <span class="kw">CHECK</span> (prix<span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>),  </span>
+<span id="cb6-4"><a></a>    prix_promo MONEY <span class="kw">CHECK</span> (prix_promo <span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>),  </span>
 <span id="cb6-5"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
-<span id="cb6-6"><a></a>    <span class="kw">CHECK</span> (prix <span class="op">&gt;</span> prix_promo)   #<span class="op">&lt;&lt;</span></span>
+<span id="cb6-6"><a></a>    <span class="kw">CHECK</span> (prix <span class="op">&gt;</span> prix_promo)   </span>
 <span id="cb6-7"><a></a>); </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section class="slide level2 center"></section></section><section><section id="contrainte-dunicité" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte d’unicité</h1>
+</div>
+</section></section><section><section id="contrainte-dunicité" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte d’unicité</h1>
 
 </section><section id="contrainte-dunicité-1" class="slide level2 center"><h2>Contrainte d’unicité</h2>
 <ul>
 <li><p>Les contraintes d’unicité garantissent l’unicité des données contenues dans une colonne ou un groupe de colonnes par rapport à toutes les lignes de la table</p></li>
 <li><p>C’est une <em>contrainte de table</em> puisqu’elle fait intervenir tous les tuples de la table</p></li>
-</ul>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
-<span id="cb7-2"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>, #<span class="op">&lt;&lt;</span> </span>
+</ul></section><section class="slide level2 center"><div class="cell">
+<div class="sourceCode cell-code" id="cb7" data-code-line-numbers="|2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb7-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> piece(</span>
+<span id="cb7-2"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">UNIQUE</span>,  </span>
 <span id="cb7-3"><a></a>    prix money <span class="kw">CHECK</span> (prix<span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:money</span>),</span>
 <span id="cb7-4"><a></a>    prix_promo MONEY <span class="kw">CHECK</span> (prix_promo <span class="op">&gt;=</span> <span class="dv">0</span>:<span class="ch">:MONEY</span>),</span>
 <span id="cb7-5"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
 <span id="cb7-6"><a></a>    <span class="kw">CHECK</span> (prix <span class="op">&gt;</span> prix_promo)</span>
-<span id="cb7-7"><a></a>);</span>
-<span id="cb7-8"><a></a> </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section><section id="contrainte-dunicité-2" class="slide level2 center"><h2>Contrainte d’unicité</h2>
-<ul>
-<li>La contrainte d’unicité peut porter sur un groupe de colonnes</li>
-</ul>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>La contrainte d’unicité peut porter sur un <em>groupe de colonnes</em></p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8" data-code-line-numbers="|4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
 <span id="cb8-2"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
 <span id="cb8-3"><a></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb8-4"><a></a>    <span class="kw">UNIQUE</span>(nomf, villef)  #<span class="op">&lt;&lt;</span></span>
+<span id="cb8-4"><a></a>    <span class="kw">UNIQUE</span>(nomf, villef)  </span>
 <span id="cb8-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Il ne peut pas avoir deux lignes identiques dans la table <code>fournisseur</code>
-</li>
-</ul></section><section class="slide level2 center"></section></section><section><section id="clef-primaire" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Clef primaire</h1>
+</div>
+
+<aside><div>
+<p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Il ne peut pas y avoir deux lignes identiques dans la table <code>fournisseur</code></p>
+</div></aside></section><section class="slide level2 center"></section></section><section><section id="clef-primaire" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Clef primaire</h1>
 
 </section><section id="clef-primaire-primary-key" class="slide level2 center"><h2>Clef primaire : <strong>PRIMARY KEY</strong>
 </h2>
-<ul>
-<li><p>Une contrainte de type clef primaire indique qu’une colonne, ou un groupe de colonnes, peuvent être utilisée comme un identifiant unique de ligne pour cette table.</p></li>
-<li><p>Ceci nécessite que les valeurs soient à la fois uniques et <code>NON NULL</code></p></li>
-<li><p>Les définitions de table suivantes acceptent de ce fait les mêmes données</p></li>
-</ul>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>Une contrainte de type <em>clef primaire</em> indique qu’une colonne, ou un groupe de colonnes, peuvent être utilisée comme un <em>identifiant</em> unique de ligne pour cette table.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Ceci nécessite que les valeurs soient à la fois uniques et <code>NON NULL</code>.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Les définitions de table suivantes acceptent de ce fait les mêmes données</p>
 <div class="columns">
 <div class="column">
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
@@ -599,11 +693,14 @@
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
 <span id="cb10-2"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb10-3"><a></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
-<span id="cb10-4"><a></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (nomf, villef)  #<span class="op">&lt;&lt;</span></span>
+<span id="cb10-4"><a></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (nomf, villef)  </span>
 <span id="cb10-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
+
+</div>
+<aside><div>
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Une table a au plus une clef primaire</p>
-</section><section class="slide level2 center"></section></section><section><section id="clef-étrangère" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Clef étrangère</h1>
+</div></aside></section><section class="slide level2 center"></section></section><section><section id="clef-étrangère" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Clef étrangère</h1>
 
 </section><section id="clef-étrangère-1" class="slide level2 center"><h2>Clef étrangère</h2>
 <ul>
@@ -634,80 +731,99 @@
 <li><p>Soit également une table <code>livraison</code> qui stocke les livraisons de ces pièces</p></li>
 <li><p>Il est intéressant de s’assurer que la table <code>livraison</code> ne contient que des références de pièces et de fournisseurs qui existent dans la base</p></li>
 </ul>
-<p>Pour cela, deux contraintes de <em>clef étrangère</em> sont émises par la table des livraisons</p>
+<p>Pour cela, deux contraintes de <em>clef étrangère</em> sont <em>émises</em> par la table des livraisons</p>
 <ul>
-<li>Une contrainte référence <code>piece</code>
+<li>Une contrainte <em>référence</em> <code>piece</code>
 </li>
-<li>Une contrainte référence <code>fournisseur</code>
+<li>Une contrainte <em>référence</em> <code>fournisseur</code>
 </li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> livraison(</span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13" data-code-line-numbers="|3,4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> livraison(</span>
 <span id="cb13-2"><a></a>    numliv <span class="dt">INT</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb13-3"><a></a>    idf <span class="dt">INT</span> <span class="kw">REFERENCES</span> fournisseur,  #<span class="op">&lt;&lt;</span> </span>
-<span id="cb13-4"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">REFERENCES</span> piece,  #<span class="op">&lt;&lt;</span></span>
+<span id="cb13-3"><a></a>    idf <span class="dt">INT</span> <span class="kw">REFERENCES</span> fournisseur,   </span>
+<span id="cb13-4"><a></a>    nomp <span class="dt">VARCHAR</span>(<span class="dv">20</span>) <span class="kw">REFERENCES</span> piece,  </span>
 <span id="cb13-5"><a></a>    dateLiv <span class="dt">DATE</span> <span class="kw">DEFAULT</span> NOW(),</span>
 <span id="cb13-6"><a></a>    quantite <span class="dt">INT</span> <span class="kw">DEFAULT</span> <span class="dv">1</span> <span class="kw">CHECK</span> (quantite<span class="op">&gt;=</span><span class="dv">0</span>)</span>
 <span id="cb13-7"><a></a>);</span>
 <span id="cb13-8"><a></a> </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="fragment">
+
+</div>
+<aside><div>
 <ul>
 <li><p>Il est désormais impossible de créer des livraisons pour lesquelles les valeurs non <code>NULL</code> de <code>nomp</code> n’apparaissent pas dans la table <code>piece</code> et les valeurs non <code>NULL</code> de <code>idf</code> n’apparaissent pas dans la table <code>fournisseur</code></p></li>
 <li><p>On dit que la table des livraisons est la table qui référence et la table des pièces est la table référencée</p></li>
-</ul></section><section id="définition-de-world.countrylanguage" class="slide level2 center"><h2>Définition de world.countrylanguage</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb14-1"><a></a>+-------------+--------------+-------------+</span>
-<span id="cb14-2"><a></a>| Column      | Type         | Modifiers   |</span>
-<span id="cb14-3"><a></a>|-------------+--------------+-------------|</span>
-<span id="cb14-4"><a></a>| countrycode | character(3) |  not null   |</span>
-<span id="cb14-5"><a></a>| language    | text         |  not null   |</span>
-<span id="cb14-6"><a></a>| isofficial  | boolean      |  not null   |</span>
-<span id="cb14-7"><a></a>| percentage  | real         |  not null   |</span>
-<span id="cb14-8"><a></a>+-------------+--------------+-------------+</span>
-<span id="cb14-9"><a></a>Indexes:</span>
-<span id="cb14-10"><a></a>    "countrylanguage_pkey" PRIMARY KEY, btree (countrycode, language)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="définition-de-world.country-smaller" class="slide level2 center"><h2>Définition de world.country {smaller}</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb15-1"><a></a>+--------------------+---------------+-------------+</span>
-<span id="cb15-2"><a></a>| Column             | Type          | Modifiers   |</span>
-<span id="cb15-3"><a></a>|--------------------+---------------+-------------|</span>
-<span id="cb15-4"><a></a>| countrycode        | character(3)  |  not null   |</span>
-<span id="cb15-5"><a></a>| name_country       | text          |  not null   |</span>
-<span id="cb15-6"><a></a>| continent          | text          |  not null   |</span>
-<span id="cb15-7"><a></a>| region             | text          |  not null   |</span>
-<span id="cb15-8"><a></a>| surfacearea        | real          |  not null   |</span>
-<span id="cb15-9"><a></a>| indepyear          | smallint      |             |</span>
-<span id="cb15-10"><a></a>| population_country | integer       |  not null   |</span>
-<span id="cb15-11"><a></a>| lifeexpectancy     | real          |             |</span>
-<span id="cb15-12"><a></a>| gnp                | numeric(10,2) |             |</span>
-<span id="cb15-13"><a></a>| gnpold             | numeric(10,2) |             |</span>
-<span id="cb15-14"><a></a>| localname          | text          |  not null   |</span>
-<span id="cb15-15"><a></a>| governmentform     | text          |  not null   |</span>
+</ul>
+</div></aside></section><section id="définition-de-world.countrylanguage" class="slide level2 center"><h2>Définition de <code>world.countrylanguage</code>
+</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="op">+</span><span class="co">-------------+--------------+-------------+</span></span>
+<span id="cb14-2"><a></a>| <span class="kw">Column</span>      | <span class="kw">Type</span>         | Modifiers   |</span>
+<span id="cb14-3"><a></a>|<span class="co">-------------+--------------+-------------|</span></span>
+<span id="cb14-4"><a></a>| countrycode | <span class="dt">character</span>(<span class="dv">3</span>) |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb14-5"><a></a>| language    | text         |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb14-6"><a></a>| isofficial  | <span class="dt">boolean</span>      |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb14-7"><a></a>| percentage  | <span class="dt">real</span>         |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb14-8"><a></a><span class="op">+</span><span class="co">-------------+--------------+-------------+</span></span>
+<span id="cb14-9"><a></a><span class="kw">Indexes</span>:</span>
+<span id="cb14-10"><a></a>    <span class="ot">"countrylanguage_pkey"</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>, btree (countrycode, language)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="définition-de-world.country" class="slide level2 smaller center"><h2>Définition de <code>world.country</code>
+</h2>
+<div class="columns">
+<div class="column">
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="op">+</span><span class="co">--------------------+---------------+-------------+</span></span>
+<span id="cb15-2"><a></a>| <span class="kw">Column</span>             | <span class="kw">Type</span>          | Modifiers   |</span>
+<span id="cb15-3"><a></a>|<span class="co">--------------------+---------------+-------------|</span></span>
+<span id="cb15-4"><a></a>| countrycode        | <span class="dt">character</span>(<span class="dv">3</span>)  |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb15-5"><a></a>| name_country       | text          |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb15-6"><a></a>| continent          | text          |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb15-7"><a></a>| region             | text          |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb15-8"><a></a>| surfacearea        | <span class="dt">real</span>          |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb15-9"><a></a>| indepyear          | <span class="dt">smallint</span>      |             |</span>
+<span id="cb15-10"><a></a>| population_country | <span class="dt">integer</span>       |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb15-11"><a></a>| lifeexpectancy     | <span class="dt">real</span>          |             |</span>
+<span id="cb15-12"><a></a>| gnp                | <span class="dt">numeric</span>(<span class="dv">10</span>,<span class="dv">2</span>) |             |</span>
+<span id="cb15-13"><a></a>| gnpold             | <span class="dt">numeric</span>(<span class="dv">10</span>,<span class="dv">2</span>) |             |</span>
+<span id="cb15-14"><a></a>| localname          | text          |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb15-15"><a></a>| governmentform     | text          |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
 <span id="cb15-16"><a></a>| headofstate        | text          |             |</span>
-<span id="cb15-17"><a></a>| capital            | integer       |             |</span>
-<span id="cb15-18"><a></a>| code2              | character(2)  |  not null   |</span>
-<span id="cb15-19"><a></a>+--------------------+---------------+-------------+</span>
-<span id="cb15-20"><a></a>Indexes:</span>
-<span id="cb15-21"><a></a>    "country_pkey" PRIMARY KEY, btree (countrycode)</span>
-<span id="cb15-22"><a></a>Check constraints:</span>
-<span id="cb15-23"><a></a>    "country_continent_check" CHECK</span>
-<span id="cb15-24"><a></a>    (continent = 'Asia'::text OR continent = 'Europe'::text</span>
-<span id="cb15-25"><a></a>    OR continent = 'North America'::text</span>
-<span id="cb15-26"><a></a>    OR continent = 'Africa'::text OR continent = 'Oceania'::text </span>
-<span id="cb15-27"><a></a>    OR continent = 'Antarctica'::text OR continent = 'South America'::text)</span>
-<span id="cb15-28"><a></a>Foreign-key constraints:</span>
-<span id="cb15-29"><a></a>    "country_capital_fkey" FOREIGN KEY (capital) REFERENCES world.city(id)  #&lt;&lt;</span>
-<span id="cb15-30"><a></a>Referenced by:</span>
-<span id="cb15-31"><a></a>    TABLE "world.countrylanguage"</span>
-<span id="cb15-32"><a></a>    CONSTRAINT "countrylanguage_countrycode_fkey" FOREIGN KEY (countrycode)</span>
-<span id="cb15-33"><a></a>    REFERENCES country(countrycode)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb15-17"><a></a>| capital            | <span class="dt">integer</span>       |             |</span>
+<span id="cb15-18"><a></a>| code2              | <span class="dt">character</span>(<span class="dv">2</span>)  |  <span class="kw">not</span> <span class="kw">null</span>   |</span>
+<span id="cb15-19"><a></a><span class="op">+</span><span class="co">--------------------+---------------+-------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">Indexes</span>:</span>
+<span id="cb16-2"><a></a>    <span class="ot">"country_pkey"</span> <span class="kw">PRIMARY</span> <span class="kw">KEY</span>, btree (countrycode)</span>
+<span id="cb16-3"><a></a><span class="kw">Check</span> <span class="kw">constraints</span>:</span>
+<span id="cb16-4"><a></a>    <span class="ot">"country_continent_check"</span> <span class="kw">CHECK</span></span>
+<span id="cb16-5"><a></a>    (continent <span class="op">=</span> <span class="st">'Asia'</span>:<span class="ch">:text</span> <span class="kw">OR</span> </span>
+<span id="cb16-6"><a></a>      continent <span class="op">=</span> <span class="st">'Europe'</span>:<span class="ch">:text</span> <span class="kw">OR</span> </span>
+<span id="cb16-7"><a></a>      continent <span class="op">=</span> <span class="st">'North America'</span>:<span class="ch">:text</span> <span class="kw">OR</span> </span>
+<span id="cb16-8"><a></a>      continent <span class="op">=</span> <span class="st">'Africa'</span>:<span class="ch">:text</span> <span class="kw">OR</span> </span>
+<span id="cb16-9"><a></a>      continent <span class="op">=</span> <span class="st">'Oceania'</span>:<span class="ch">:text</span> <span class="kw">OR</span> </span>
+<span id="cb16-10"><a></a>      continent <span class="op">=</span> <span class="st">'Antarctica'</span>:<span class="ch">:text</span> <span class="kw">OR</span> </span>
+<span id="cb16-11"><a></a>      continent <span class="op">=</span> <span class="st">'South America'</span>:<span class="ch">:text</span>)</span>
+<span id="cb16-12"><a></a><span class="kw">Foreign</span><span class="op">-</span><span class="kw">key</span> <span class="kw">constraints</span>:</span>
+<span id="cb16-13"><a></a>    <span class="ot">"country_capital_fkey"</span> </span>
+<span id="cb16-14"><a></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (capital) </span>
+<span id="cb16-15"><a></a>        <span class="kw">REFERENCES</span> world.city(<span class="kw">id</span>)  </span>
+<span id="cb16-16"><a></a>Referenced <span class="kw">by</span>:</span>
+<span id="cb16-17"><a></a>    <span class="kw">TABLE</span> <span class="ot">"world.countrylanguage"</span></span>
+<span id="cb16-18"><a></a>    <span class="kw">CONSTRAINT</span> <span class="ot">"countrylanguage_countrycode_fkey"</span> </span>
+<span id="cb16-19"><a></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (countrycode)</span>
+<span id="cb16-20"><a></a>        <span class="kw">REFERENCES</span> country(countrycode)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
 </section><section id="foreign-keys-emitted-by-world.country" class="slide level2 center"><h2>Foreign keys emitted by <code>world.country</code>
 </h2>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> world.country <span class="kw">ADD</span> </span>
-<span id="cb16-2"><a></a>    <span class="kw">CONSTRAINT</span> country_capital_fkey </span>
-<span id="cb16-3"><a></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (capital)   #<span class="op">&lt;&lt;</span></span>
-<span id="cb16-4"><a></a>        <span class="kw">REFERENCES</span> world.city(<span class="kw">id</span>);  #<span class="op">&lt;&lt;</span></span>
-<span id="cb16-5"><a></a></span>
-<span id="cb16-6"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> world.country </span>
-<span id="cb16-7"><a></a>    <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> country_fk </span>
-<span id="cb16-8"><a></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent)   #<span class="op">&lt;&lt;</span></span>
-<span id="cb16-9"><a></a>        <span class="kw">REFERENCES</span> world.code_continent(continent);  #<span class="op">&lt;&lt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> world.country <span class="kw">ADD</span> </span>
+<span id="cb17-2"><a></a>    <span class="kw">CONSTRAINT</span> country_capital_fkey </span>
+<span id="cb17-3"><a></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (capital)   </span>
+<span id="cb17-4"><a></a>        <span class="kw">REFERENCES</span> world.city(<span class="kw">id</span>);  </span>
+<span id="cb17-5"><a></a></span>
+<span id="cb17-6"><a></a><span class="kw">ALTER</span> <span class="kw">TABLE</span> world.country </span>
+<span id="cb17-7"><a></a>    <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> country_fk </span>
+<span id="cb17-8"><a></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent)   </span>
+<span id="cb17-9"><a></a>        <span class="kw">REFERENCES</span> world.code_continent(continent);  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center"></section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">

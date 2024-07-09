@@ -4369,7 +4369,7 @@
     "href": "slides/LDD_1.html#consulter-la-liste-des-types",
     "title": "BD : Contraintes",
     "section": "Consulter la liste des types",
-    "text": "Consulter la liste des types\nhttps://docs.postgresql.fr/docs/current/datatype.html\nIl faut essayer d’utiliser ces types pour préciser les contenus des colonnes\n Les types disponibles diffèrent d’un SGBD à l’autre (Mysql, Postgres, Oracle, SQL Server, …)"
+    "text": "Consulter la liste des types\nhttps://docs.postgresql.fr/docs/current/datatype.html\nIl faut essayer d’utiliser ces types pour préciser les contenus des colonnes\n\n\n\n\n\n\nMise en garde\n\n\nLes types disponibles diffèrent d’un SGBD à l’autre (Mysql, Postgres, Oracle, SQL Server, …)"
   },
   {
     "objectID": "slides/LDD_1.html#contraintes-de-tuple",
@@ -4390,7 +4390,7 @@
     "href": "slides/LDD_1.html#exemple-suite",
     "title": "BD : Contraintes",
     "section": "Exemple (suite)",
-    "text": "Exemple (suite)\nCREATE TABLE piece(\n    nomp VARCHAR(20),\n    prix MONEY CHECK (prix&gt;= 0::money), #&lt;&lt;\n    couleur VARCHAR(15)\n);\n\nHave a look at PostGres Monetary type"
+    "text": "Exemple (suite)\nCREATE TABLE piece(\n    nomp VARCHAR(20),\n    prix MONEY CHECK (prix&gt;= 0::money), \n    couleur VARCHAR(15)\n);\n\n\n\n\n\n\n\nNote\n\n\nHave a look at PostGres Monetary type"
   },
   {
     "objectID": "slides/LDD_1.html#exemple-world.country-smaller",
@@ -4404,49 +4404,49 @@
     "href": "slides/LDD_1.html#contrainte-de-vérification---exemple-suite",
     "title": "BD : Contraintes",
     "section": "Contrainte de vérification - Exemple (suite)",
-    "text": "Contrainte de vérification - Exemple (suite)\nCREATE TABLE piece(\n    nomp VARCHAR(20),\n    prix moNey CHECK (prix&gt;= 0::money),  #&lt;&lt;\n    prix_promo MONEY CHECK (prix_promo &gt;= 0::MONEY), #&lt;&lt;\n    couleur VARCHAR(15),\n    CHECK(prix &gt; prix_promo) #&lt;&lt;\n); \n\nINSERT INTO piece VALUES('x21', 1.51, 1.61,'rouge');\nERROR:  new row for relation \"piece\" violates check constraint piece_check \n\n\nINSERT INTO piece VALUES('x21', 1.51, null,'rouge');\nest accepté"
+    "text": "Contrainte de vérification - Exemple (suite)\n\nCREATE TABLE piece(\n    nomp VARCHAR(20),\n    prix moNey CHECK (prix&gt;= 0::money),  \n    prix_promo MONEY CHECK (prix_promo &gt;= 0::MONEY), \n    couleur VARCHAR(15),\n    CHECK(prix &gt; prix_promo) \n); \n\n\nINSERT INTO piece \n  VALUES\n  ('x21', 1.51, 1.61,'rouge');\nERROR:  new row for relation \"piece\" violates check constraint piece_check \n\n\nINSERT INTO piece VALUES('x21', 1.51, null,'rouge');\nest accepté"
   },
   {
     "objectID": "slides/LDD_1.html#valeurs-nulles-et-contraintes-de-tuple",
     "href": "slides/LDD_1.html#valeurs-nulles-et-contraintes-de-tuple",
     "title": "BD : Contraintes",
     "section": "\n Valeurs nulles et contraintes de tuple",
-    "text": "Valeurs nulles et contraintes de tuple\nLes contraintes CHECK sont satisfaites si l’expression associée vaut TRUE ou NULL\n\nComme une expression composée vaut parfois NULL si l’un des opérandes vaut lui-même NULL, les contraintes CHECK ne suffisent pas à prévenir l’insertion de valeurs nulles\n\n\nIl faut compléter les contraintes de tuple avec des contraintes de non-nullité"
+    "text": "Valeurs nulles et contraintes de tuple\nLes contraintes CHECK sont satisfaites si l’expression associée vaut TRUE ou NULL\n\nComme une expression composée vaut parfois NULL si l’un des opérandes vaut lui-même NULL, les contraintes CHECK ne suffisent pas à prévenir l’insertion de valeurs nulles\n\n\n\n\n\n\n\n\nAstuce\n\n\nIl faut compléter les contraintes de tuple avec des contraintes de non-nullité"
   },
   {
     "objectID": "slides/LDD_1.html#pourquoi-imposer-quune-colonne-soit-toujours-renseignée",
     "href": "slides/LDD_1.html#pourquoi-imposer-quune-colonne-soit-toujours-renseignée",
     "title": "BD : Contraintes",
     "section": "Pourquoi imposer qu’une colonne soit toujours renseignée ?",
-    "text": "Pourquoi imposer qu’une colonne soit toujours renseignée ?\nLa présence possible des valeurs nulles rend beaucoup d’opérations complexes\nIl faut avoir en tête que en SQL,\n\nles booléens peuvent avoir trois valeurs : TRUE, FALSE et NULL et que\nle fait qu’une expression ne vaille pas FALSE ne veut pas dire qu’elle vaut TRUE …\n\n\nPour imposer qu’une colonne soit renseignée :\n\npréciser après le type : NOT NULL"
+    "text": "Pourquoi imposer qu’une colonne soit toujours renseignée ?\n\n\n\n\n\n\nImportant\n\n\nLa présence possible des valeurs nulles rend beaucoup d’opérations complexes\nIl faut avoir en tête que en SQL,\n\nles booléens peuvent avoir trois valeurs : TRUE, FALSE et NULL et que\nle fait qu’une expression ne vaille pas FALSE ne veut pas dire qu’elle vaut TRUE …\n\n\n\n\n\nPour imposer qu’une colonne soit renseignée :\n\npréciser après le type : NOT NULL"
   },
   {
     "objectID": "slides/LDD_1.html#contrainte-de-non-nullité-exemple",
     "href": "slides/LDD_1.html#contrainte-de-non-nullité-exemple",
     "title": "BD : Contraintes",
     "section": "Contrainte de non-nullité (Exemple)",
-    "text": "Contrainte de non-nullité (Exemple)\nCREATE TABLE piece(\n    nomp VARCHAR(20) NOT NULL,\n    prix MONEY CHECK (prix&gt;= 0::MONEY),  #&lt;&lt;\n    prix_promo MONEY CHECK (prix_promo &gt;= 0::MONEY),  #&lt;&lt;\n    couleur VARCHAR(15),\n    CHECK (prix &gt; prix_promo)   #&lt;&lt;\n);"
+    "text": "Contrainte de non-nullité (Exemple)\n\nCREATE TABLE piece(\n    nomp VARCHAR(20) NOT NULL,\n    prix MONEY CHECK (prix&gt;= 0::MONEY),  \n    prix_promo MONEY CHECK (prix_promo &gt;= 0::MONEY),  \n    couleur VARCHAR(15),\n    CHECK (prix &gt; prix_promo)   \n);"
   },
   {
     "objectID": "slides/LDD_1.html#contrainte-dunicité-1",
     "href": "slides/LDD_1.html#contrainte-dunicité-1",
     "title": "BD : Contraintes",
     "section": "Contrainte d’unicité",
-    "text": "Contrainte d’unicité\n\nLes contraintes d’unicité garantissent l’unicité des données contenues dans une colonne ou un groupe de colonnes par rapport à toutes les lignes de la table\nC’est une contrainte de table puisqu’elle fait intervenir tous les tuples de la table\n\nCREATE TABLE piece(\n    nomp VARCHAR(20) NOT NULL UNIQUE, #&lt;&lt; \n    prix money CHECK (prix&gt;= 0::money),\n    prix_promo MONEY CHECK (prix_promo &gt;= 0::MONEY),\n    couleur VARCHAR(15),\n    CHECK (prix &gt; prix_promo)\n);"
+    "text": "Contrainte d’unicité\n\nLes contraintes d’unicité garantissent l’unicité des données contenues dans une colonne ou un groupe de colonnes par rapport à toutes les lignes de la table\nC’est une contrainte de table puisqu’elle fait intervenir tous les tuples de la table"
   },
   {
     "objectID": "slides/LDD_1.html#contrainte-dunicité-2",
     "href": "slides/LDD_1.html#contrainte-dunicité-2",
     "title": "BD : Contraintes",
     "section": "Contrainte d’unicité",
-    "text": "Contrainte d’unicité\n\nLa contrainte d’unicité peut porter sur un groupe de colonnes\n\nCREATE TABLE fournisseur(\n    nomf VARCHAR(20) NOT NULL,\n    villef VARCHAR(20) NOT NULL,\n    UNIQUE(nomf, villef)  #&lt;&lt;\n);\n\nIl ne peut pas avoir deux lignes identiques dans la table fournisseur"
+    "text": "Contrainte d’unicité\n\n\n\n\n\n\nNote\n\n\nLa contrainte d’unicité peut porter sur un groupe de colonnes\n\n\n\n\nCREATE TABLE fournisseur(\n    nomf VARCHAR(20) NOT NULL,\n    villef VARCHAR(20) NOT NULL,\n    UNIQUE(nomf, villef)  \n);\n\n\n\n Il ne peut pas y avoir deux lignes identiques dans la table fournisseur"
   },
   {
     "objectID": "slides/LDD_1.html#clef-primaire-primary-key",
     "href": "slides/LDD_1.html#clef-primaire-primary-key",
     "title": "BD : Contraintes",
     "section": "Clef primaire : PRIMARY KEY\n",
-    "text": "Clef primaire : PRIMARY KEY\n\n\nUne contrainte de type clef primaire indique qu’une colonne, ou un groupe de colonnes, peuvent être utilisée comme un identifiant unique de ligne pour cette table.\nCeci nécessite que les valeurs soient à la fois uniques et NON NULL\nLes définitions de table suivantes acceptent de ce fait les mêmes données\n\n\n\nCREATE TABLE fournisseur(\n    nomf VARCHAR(20) NOT NULL,\n    villef VARCHAR(20) NOT NULL,\n    UNIQUE(nomf, villef)  \n);\n\nCREATE TABLE fournisseur(\n    nomf VARCHAR(20),\n    villef VARCHAR(20),\n    PRIMARY KEY (nomf, villef)  #&lt;&lt;\n);\n\n Une table a au plus une clef primaire"
+    "text": "Clef primaire : PRIMARY KEY\n\n\n\n\n\n\n\nDéfinition\n\n\nUne contrainte de type clef primaire indique qu’une colonne, ou un groupe de colonnes, peuvent être utilisée comme un identifiant unique de ligne pour cette table.\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nCeci nécessite que les valeurs soient à la fois uniques et NON NULL.\n\n\n\n\n\nLes définitions de table suivantes acceptent de ce fait les mêmes données\n\n\nCREATE TABLE fournisseur(\n    nomf VARCHAR(20) NOT NULL,\n    villef VARCHAR(20) NOT NULL,\n    UNIQUE(nomf, villef)  \n);\n\nCREATE TABLE fournisseur(\n    nomf VARCHAR(20),\n    villef VARCHAR(20),\n    PRIMARY KEY (nomf, villef)  \n);\n\n\n\n\n Une table a au plus une clef primaire"
   },
   {
     "objectID": "slides/LDD_1.html#clef-étrangère-1",
@@ -4460,14 +4460,14 @@
     "href": "slides/LDD_1.html#clef-étrangère-references",
     "title": "BD : Contraintes",
     "section": "Clef étrangère : REFERENCES",
-    "text": "Clef étrangère : REFERENCES\n\nSoit également une table livraison qui stocke les livraisons de ces pièces\nIl est intéressant de s’assurer que la table livraison ne contient que des références de pièces et de fournisseurs qui existent dans la base\n\nPour cela, deux contraintes de clef étrangère sont émises par la table des livraisons\n\nUne contrainte référence piece\n\nUne contrainte référence fournisseur\n\n\nCREATE TABLE livraison(\n    numliv INT PRIMARY KEY,\n    idf INT REFERENCES fournisseur,  #&lt;&lt; \n    nomp VARCHAR(20) REFERENCES piece,  #&lt;&lt;\n    dateLiv DATE DEFAULT NOW(),\n    quantite INT DEFAULT 1 CHECK (quantite&gt;=0)\n);\n \n\nIl est désormais impossible de créer des livraisons pour lesquelles les valeurs non NULL de nomp n’apparaissent pas dans la table piece et les valeurs non NULL de idf n’apparaissent pas dans la table fournisseur\nOn dit que la table des livraisons est la table qui référence et la table des pièces est la table référencée"
+    "text": "Clef étrangère : REFERENCES\n\nSoit également une table livraison qui stocke les livraisons de ces pièces\nIl est intéressant de s’assurer que la table livraison ne contient que des références de pièces et de fournisseurs qui existent dans la base\n\nPour cela, deux contraintes de clef étrangère sont émises par la table des livraisons\n\nUne contrainte référence piece\n\nUne contrainte référence fournisseur\n\n\n\nCREATE TABLE livraison(\n    numliv INT PRIMARY KEY,\n    idf INT REFERENCES fournisseur,   \n    nomp VARCHAR(20) REFERENCES piece,  \n    dateLiv DATE DEFAULT NOW(),\n    quantite INT DEFAULT 1 CHECK (quantite&gt;=0)\n);\n \n\n\n\n\n\n\nIl est désormais impossible de créer des livraisons pour lesquelles les valeurs non NULL de nomp n’apparaissent pas dans la table piece et les valeurs non NULL de idf n’apparaissent pas dans la table fournisseur\nOn dit que la table des livraisons est la table qui référence et la table des pièces est la table référencée"
   },
   {
     "objectID": "slides/LDD_1.html#définition-de-world.countrylanguage",
     "href": "slides/LDD_1.html#définition-de-world.countrylanguage",
     "title": "BD : Contraintes",
-    "section": "Définition de world.countrylanguage",
-    "text": "Définition de world.countrylanguage\n+-------------+--------------+-------------+\n| Column      | Type         | Modifiers   |\n|-------------+--------------+-------------|\n| countrycode | character(3) |  not null   |\n| language    | text         |  not null   |\n| isofficial  | boolean      |  not null   |\n| percentage  | real         |  not null   |\n+-------------+--------------+-------------+\nIndexes:\n    \"countrylanguage_pkey\" PRIMARY KEY, btree (countrycode, language)"
+    "section": "Définition de world.countrylanguage\n",
+    "text": "Définition de world.countrylanguage\n\n+-------------+--------------+-------------+\n| Column      | Type         | Modifiers   |\n|-------------+--------------+-------------|\n| countrycode | character(3) |  not null   |\n| language    | text         |  not null   |\n| isofficial  | boolean      |  not null   |\n| percentage  | real         |  not null   |\n+-------------+--------------+-------------+\nIndexes:\n    \"countrylanguage_pkey\" PRIMARY KEY, btree (countrycode, language)"
   },
   {
     "objectID": "slides/LDD_1.html#définition-de-world.country-smaller",
@@ -4481,7 +4481,7 @@
     "href": "slides/LDD_1.html#foreign-keys-emitted-by-world.country",
     "title": "BD : Contraintes",
     "section": "Foreign keys emitted by world.country\n",
-    "text": "Foreign keys emitted by world.country\n\nALTER TABLE world.country ADD \n    CONSTRAINT country_capital_fkey \n        FOREIGN KEY (capital)   #&lt;&lt;\n        REFERENCES world.city(id);  #&lt;&lt;\n\nALTER TABLE world.country \n    ADD CONSTRAINT country_fk \n        FOREIGN KEY (continent)   #&lt;&lt;\n        REFERENCES world.code_continent(continent);  #&lt;&lt;"
+    "text": "Foreign keys emitted by world.country\n\nALTER TABLE world.country ADD \n    CONSTRAINT country_capital_fkey \n        FOREIGN KEY (capital)   \n        REFERENCES world.city(id);  \n\nALTER TABLE world.country \n    ADD CONSTRAINT country_fk \n        FOREIGN KEY (continent)   \n        REFERENCES world.code_continent(continent);"
   },
   {
     "objectID": "slides/DF_norm_2.html#rappel-propriétés-dune-décomposition",
@@ -5266,5 +5266,19 @@
     "title": "TD 7 : Contraintes (suite)",
     "section": "",
     "text": "Avec solutions\n\n\n\n\n\n\n\n\n\n\n\n\n\nL3 MIASHS/Ingémath\nUniversité Paris Cité\nAnnée 2024-2025\nCourse Homepage\n\nMoodle"
+  },
+  {
+    "objectID": "slides/LDD_1.html#exemple-world.country",
+    "href": "slides/LDD_1.html#exemple-world.country",
+    "title": "BD : Contraintes",
+    "section": "Exemple world.country\n",
+    "text": "Exemple world.country\n\nDans un tuple de country, les colonnes numériques ne devraient pas prendre de valeur négative\n\n\nCREATE TABLE world.country (\n    countrycode BPCHAR(3) NOT NULL,\n    name_country TEXT NOT NULL,\n    continent TEXT NOT NULL,\n    region TEXT NOT NULL,\n    surfacearea FLOAT4 CHECK (surfacearea&gt;= 0) NOT NULL, \n    indepyear INT2 NULL,\n    population_country INT4 NOT NULL,\n    lifeexpectancy FLOAT4 CHECK (lifeexpectancy&gt;= 0) NULL, \n    gnp NUMERIC(10, 2) NULL,    \n    gnpold NUMERIC(10, 2) NULL,  \n    localname TEXT NOT NULL,\n    governmentform TEXT NOT NULL,\n    headofstate TEXT NULL,\n    capital INT4 NULL,\n    code2 BPCHAR(2) NOT NULL,\n    CONSTRAINT country_continent_check CHECK (\n        ((continent = 'Asia'::text) OR (continent = 'Europe'::text) OR \n         (continent = 'North America'::text) OR (continent = 'Africa'::text) OR \n         (continent = 'Oceania'::text) OR (continent = 'Antarctica'::text) OR \n         (continent = 'South America'::text))),\n    CONSTRAINT country_pkey PRIMARY KEY (countrycode)\n);"
+  },
+  {
+    "objectID": "slides/LDD_1.html#définition-de-world.country",
+    "href": "slides/LDD_1.html#définition-de-world.country",
+    "title": "BD : Contraintes",
+    "section": "Définition de world.country\n",
+    "text": "Définition de world.country\n\n\n\n+--------------------+---------------+-------------+\n| Column             | Type          | Modifiers   |\n|--------------------+---------------+-------------|\n| countrycode        | character(3)  |  not null   |\n| name_country       | text          |  not null   |\n| continent          | text          |  not null   |\n| region             | text          |  not null   |\n| surfacearea        | real          |  not null   |\n| indepyear          | smallint      |             |\n| population_country | integer       |  not null   |\n| lifeexpectancy     | real          |             |\n| gnp                | numeric(10,2) |             |\n| gnpold             | numeric(10,2) |             |\n| localname          | text          |  not null   |\n| governmentform     | text          |  not null   |\n| headofstate        | text          |             |\n| capital            | integer       |             |\n| code2              | character(2)  |  not null   |\n+--------------------+---------------+-------------+\n\nIndexes:\n    \"country_pkey\" PRIMARY KEY, btree (countrycode)\nCheck constraints:\n    \"country_continent_check\" CHECK\n    (continent = 'Asia'::text OR \n      continent = 'Europe'::text OR \n      continent = 'North America'::text OR \n      continent = 'Africa'::text OR \n      continent = 'Oceania'::text OR \n      continent = 'Antarctica'::text OR \n      continent = 'South America'::text)\nForeign-key constraints:\n    \"country_capital_fkey\" \n        FOREIGN KEY (capital) \n        REFERENCES world.city(id)  \nReferenced by:\n    TABLE \"world.countrylanguage\"\n    CONSTRAINT \"countrylanguage_countrycode_fkey\" \n        FOREIGN KEY (countrycode)\n        REFERENCES country(countrycode)"
   }
 ]
