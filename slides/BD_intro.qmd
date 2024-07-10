@@ -3,11 +3,11 @@ title: "BD I: Introduction aux SGBD"
 subtitle: "Bases de Données Licences MIASHS et Mathématiques"
 author: "Équipe BD"
 institute: "Université Paris Cité"
-date: "2024-06-23"
+date: "2024-09-13"
 
 format: 
   revealjs:
-    header: "Les Bases de Données. Survol"
+    header: "Les Bases de Données : survol"
 ---
 
 

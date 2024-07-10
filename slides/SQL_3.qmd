@@ -5,7 +5,7 @@ date: "2024-09-27"
 
 format: 
   revealjs:
-    header: "Requêtes SQL III : Aggrégation/Fenêtres/Partition"
+    header: "Requêtes SQL : Aggrégation/Fenêtres/Partition"
 ---
 
 

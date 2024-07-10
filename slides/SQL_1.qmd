@@ -5,7 +5,7 @@ date: "2024-09-20"
 
 format: 
   revealjs:
-    header: "Requêtes SQL : Interrogation"
+    header: "Requêtes SQL simples"
 ---
 
 

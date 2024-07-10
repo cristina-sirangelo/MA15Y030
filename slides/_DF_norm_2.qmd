@@ -1,5 +1,12 @@
 ---
-title: "BD xxx : Normalisation II"
+title: "Normalisation II"
+subtitle: "Dépendances Fonctionnelles. Fermetures. Formes normales"
+date: "2025-11-27"
+
+format: 
+  revealjs:
+    header: "Dépendances Fonctionnelles. Fermetures. Décomposition FNBC"
+
 ---
 
 ```{r}
@@ -114,7 +121,7 @@ $\left\{A,B\right\}^+=\left\{A,B,C,D,E\right\}$, $\left\{A,D\right\}^+=\left\{A,
 
 
 
----
+
 
 # Décomposition sans perte de DF {background-color="#1c191c"}
 
@@ -184,7 +191,7 @@ $DCBA$ contient $A$ donc $D\to A$ est préservé
 
 
 
----
+
 
 ## Exemple
 
@@ -212,14 +219,14 @@ $\bigpar{Z\cap \left\{Rue, Numero, CP\right\}}^+\cap \left\{Rue, Numero, CP\righ
 
 Donc `Ville, Rue, Numero → CP` n'est pas préservée
 
----
+
 
 
 # Décomposition FNBC  {background-color="#1c191c"}
 
 
 
----
+
 
 
 ## Conception du modèle relationnel

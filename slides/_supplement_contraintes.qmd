@@ -1,0 +1,357 @@
+# Intégrité référentielle   {background-color="#1c191c"}
+
+## Maintien de l'intégrité référentielle (un problème)
+
+La dernière requête renvoie à un problème plus général que l'on illustre à l'aide des tables
+`Livraison` et `Piece`, notées `L` et `P`.
+
+. . .
+
+Il y a problème quand :
+
+
+- On cherche à insérer dans `L` un tuple dont la valeur de `NomP` n'existe pas dans `P`
+
+- On cherche à mettre à jour un tuple de `L` avec une valeur de `NomP` qui  n'existe pas dans `P`
+
+- On efface de  `P`, un tuple dont la valeur du champs `NomP` apparait comme valeur  d'un tuple de `L`
+
+- On met à jour le champs `NomP` d'un tuple de `P` alors que l'ancienne valeur de ce champs est présente comme valeur de `NomP` dans `L`
+
+
+## Maintien de l'intégrité référentielle (politiques possibles)
+
+Plusieurs politiques possibles pour régler ces problèmes
+
+- *Par défaut* : le système rejette toute modification ne respectant pas les contraintes d'intégrité
+
+. . . 
+
+- *En cascade* : les modifications sur l'attribut référencé sont effectués aussi sur  l'attribut qui référence (la clé étrangère)
+
+Exemple : mise à jour de `P.NomP` répercutée sur `L.NomP`. Effacement répercuté aussi..
+
+. . . 
+
+- *Set-Null* :  les modifications sur l'attribut référencé sont répercuté sur l'attribut qui référence en mettant sa valeur à `NULL`.
+
+
+
+
+## Maintien de l'intégrité référentielle (exemple)  {.smaller}
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "1-2|3|6-8"
+CREATE TABLE Livraison (
+    NumLiv INT(10) PRIMARY KEY,
+    NomF VARCHAR(30) NOT NULL REFERENCES Fournisseur,
+    DateLiv DATE,
+    Quantite INT(8);
+    NomP VARCHAR(30) REFERENCES Piece
+      ON DELETE SET NULL
+      ON UPDATE CASCADE
+)
+```
+
+---
+
+Cette déclaration force :
+
+- à répercuter l'effacement d'un tuple dans `Piece` en mettant tous les champs `L.NomP` à `NULL`  lorsque ceux-ci avait pour valeur celle de `P.NomP` effacée.
+
+- à répercuter la mise à jour d'un tuple dans `Piece` (pour ce qui concerne le champs `NomP`) dans les tuples de `Livraison` concernés.
+
+
+
+# Contraintes  {background-color="#1c191c"}
+
+
+---
+
+{{< fa triangle-exclamation >}} La définition d'un schéma de base ne s'arrête pas à la définition des
+tables, des colonnes et des types des colonnes
+
+
+Les *contraintes* décrivent des propriétés que devront vérifier
+toutes les mises en oeuvre (instances) du schémas *durant toute leur durée de vie*
+
+
+{{< fa hand-point-right >}}  Pour spécifier une *contrainte*, il suffit de préciser que le
+résultat d'une certaine requête doit toujours être vide
+
+
+
+## Famille de contraintes
+
+- Contraintes d'attribut 
+
+  - Contrainte de **type**  
+  - Contrainte de **non-nullité**   
+
+. . .
+
+- Contraintes de tupe 
+
+  - Contrainte de **vérification**  
+
+. . .
+
+- Contraintes de table 
+    
+  - Contrainte de **clé primaire**  
+  - Contrainte d'**unicité** 
+  - Contrainte d'**unicité avancée** 
+  - Contraintes d'**exclusion**  
+
+. . .
+
+- Contraintes multi-tables  
+  - Contraintes  de **clé étrangère** 
+
+
+
+
+## Contraintes élémentaires
+
+
+Spécifier le type d'un attribut, c'est le contraindre
+
+
+{{< fa book >}} Consulter la liste des constructions de type possible
+
+[http://www.postgresql.org/docs/current/interactive/datatype.html](http://www.postgresql.org/docs/current/interactive/datatype.html)
+
+
+Il faut essayer d'utiliser autant que possible ces types pour préciser
+les contenus des colonnes.
+
+
+
+
+## Les valeurs nulles
+
+Imposer qu'une colonne soit toujours renseignée
+
+{{< fa hand-point-right >}} La présence possible des valeurs nulles rend beaucoup d'opérations
+complexes
+
+::: {.callout-note}
+
+### {{< fa brain >}}
+
+Il faut avoir en tête que en `SQL`, les booléens peuvent avoir
+trois valeurs : `TRUE, FALSE` et `NULL` et que le fait
+qu'une expression ne vaille pas `FALSE` ne veut pas dire qu'elle
+vaut `TRUE` ...
+
+:::
+
+. . .
+
+{{< fa hand-point-right >}} Pour imposer qu'une colonne soit renseignée
+
+Préciser, après le type : `NOT NULL`
+
+---
+
+![](/images/layout_world.png)
+
+
+
+
+## Quelques remarques
+
+
+Une contrainte d'attribut concerne un seul attribut
+
+- Si valeur NULL impossible : `NOT NULL`
+
+- Si l'attribut est une **clé** : `PRIMARY KEY`
+
+- **Unicité** de l'attribut : `UNIQUE`
+
+- **Contrainte référentielle** :
+
+```{.sql}
+REFERENCES <relation référencée>[(<attribut référencé>)]
+```
+
+- Définir  une valeur par **défaut** : `DEFAULT <valeur>`
+
+
+
+::: {.callout-caution}
+
+### Attention 
+
+les types disponibles (mais pas seulement) diffèrent grandement suivant les SGBD (`Mysql`, `Postgresql`, `Oracle`, `SQL Server`, ...)
+
+:::
+
+
+## Exemple de contrainte de clé primaire
+
+```{.sql}
+Fournisseur (NomF, VilleF, AdresseF)
+Piece(NomP, Prix, Couleur)
+Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)
+```
+
+. . .
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "2|"
+CREATE TABLE Piece (
+    NomP	VARCHAR(30) PRIMARY KEY,
+    Prix	INT(10),
+    Couleur VARCHAR(15)
+);
+```
+
+ou :
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "5|"
+CREATE TABLE Piece (
+    NomP	VARCHAR(30),
+    Prix	INT(10),
+    Couleur VARCHAR(15),
+    PRIMARY KEY(NomP)
+);
+```
+
+
+
+
+## Contraintes d'unicité 
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "5|"
+CREATE TABLE pagila."language" (
+	language_id serial4 NOT NULL,
+	"name" bpchar(20) NOT NULL,
+	last_update timestamp NOT NULL DEFAULT now(),
+	CONSTRAINT language_pkey PRIMARY KEY (language_id)
+);
+```
+
+On voudrait aussi imposer que `"name"` satisfît une contrainte d'unicité
+
+. . . 
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "5|5-6"
+CREATE TABLE uname."language" (
+	language_id int4 NULL,
+	"name" bpchar(20) NULL,
+	last_update timestamp NULL,
+	CONSTRAINT language_un UNIQUE ("name"),
+	CONSTRAINT language_pk PRIMARY KEY (language_id)
+);
+```
+
+
+## Contraintes d'unicité avancées
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "6|"
+INSERT INTO colors(color, hex)
+    VALUES 
+        ('blue', '0000FF'), 
+        ('red', 'FF0000'), 
+        ('green', '00FF00')
+    ON CONFLICT DO NOTHING ;
+```
+
+Quelqu'un pourrait tenter d'insérer un "blue" différent dans notre système, et nous aurions alors deux "blue" différents.
+
+---
+
+
+Pour éviter cela, on peut imposer une *contrainte d'unicité*
+
+```{.sql}
+CREATE UNIQUE INDEX uidx_colors_lcolor 
+    ON colors 
+    USING btree(lower(color));
+```
+
+Comme auparavant, si nous essayions d'insérer un autre "blue", nous en serions empêchés.
+
+
+---
+
+
+Si nous voulions vraiment épeler les couleurs telles qu'elles nous sont données, 
+nous pourrions utiliser un code comme celui de 
+
+```{.sql}
+INSERT INTO colors(color, hex)
+    VALUES
+        ('Blue', '0000FF'), 
+        ('Red', 'FF0000'), 
+        ('Green', '00FF00')
+ON CONFLICT(lower(color))
+DO UPDATE SET color = EXCLUDED.color, hex = EXCLUDED.hex;
+```
+
+
+::: {.aside}
+
+- [https://www.postgresql.org/docs/current/sql-insert.html](https://www.postgresql.org/docs/current/sql-insert.html)
+- [https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT](https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT)
+
+:::
+
+## Contraintes référentielles/clé étrangère
+
+
+Une contrainte de **clé étrangère** sur une collection de colonnes stipule que
+
+. . . 
+
+pour tout tuple de la table *émettrice*, la combinaison des
+valeurs des colonnes impliquées se trouve aussi dans un tuple la table *cible*
+
+
+
+
+---
+
+## Exemple de contrainte référentielle
+
+
+```{.sql}
+Fournisseur (NomF, VilleF, AdresseF)
+Piece(NomP, Prix, Couleur)
+Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)
+```
+
+. . .
+
+```{sql}
+--| echo: true
+--| eval: false
+--| code-line-numbers: "3-4|"
+CREATE TABLE Livraison (
+    NumLiv int(10) PRIMARY KEY,
+    NomF VARCHAR(30) NOT NULL REFERENCES Fournisseur,
+    NomP VARCHAR(30) NOT NULL REFERENCES Piece,
+    DateLiv DATE,
+    Quantite Int(8);
+```

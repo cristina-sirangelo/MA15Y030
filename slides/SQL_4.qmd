@@ -1,7 +1,7 @@
 ---
 title: "Fonctions SQL et Vues"
-subtitle: "Fonctions SQL. Vues. Requêtes préparées"
-date: "2024-10-11"
+subtitle: "Fonctions SQL. Vues"
+date: "2024-10-18"
 
 format: 
   revealjs:

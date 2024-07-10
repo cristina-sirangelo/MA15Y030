@@ -1,183 +1,51 @@
 ---
-title: "BD xxx : Normalisation"
----
+title: "Normalisation II : Décomposition FN3"
+subtitle: "Pertes de Dépendances Fonctionnelles. Décomposition FN3"
+date: "2024-11-29"
 
-# Problème {background-color="#1c191c"}
-
----
-
-- Redondance
-
-- Maintenance 
-
----
-
-# Dépendance(s) fonctionnelle(s)  {background-color="#1c191c"}
+format: 
+  revealjs:
+    header: "Pertes de Dépendances Fonctionnelles. Décomposition FN3"
 
 
 ---
 
-## Définition : DF 
 
----
 
-## Règles d'Armstrong
-
-1. ...
-2. ...
-3. ...
-
----
-
-## Équivalence entre ensembles de dépendances fonctionnelles
-
-
----
-
-# Fermeture d'un ensemble d'attributs  {background-color="#1c191c"}
-
----
-
-## Définition 
-
-$X^+$
-
----
-
-## Définition : super-clé 
-
-$X \subseteq \mathcal{A}$ est une super-clé de $\mathcal{A}$ relativement à $\Sigma$ ssi $X^+ =\mathcal{A}$
-
----
-
-## Définition : clé 
-
-Une clé est une super-clé minimale au sens de l'inclusion
-
----
-
-# Formme Normale de Boyce-Codd (FNBC)  {background-color="#1c191c"}
-
----
-
-## Définition 
-
-Soit $\mathcal{A}$  un schéma et $\Sigma$ un ensemble de dépendances fonctionnelles sur $\mathcal{A}$, 
-
-le schéma $\mathcal{A}$ est en FNBC 
-
-ssi 
-
-pour toute dépendance fonctionnelle $X \rightarrow Y$ *non-triviale* impliquée par $\Sigma$,
-$X$ est une super-clé de $\mathcal{A}$, soit  $\mathcal{A} \subseteq X^+$
-
----
-
-## Exemples et contre-exemples 
-
-
-
----
-
-## Proposition
-
-Tout schéma à deux attributs est en FNBC
-
----
-
-## Vérification de la normalité
-
-
----
-
-## Définition : décomposirion 
-
----
-
-## Algorithme de décomposition en FNBC
-
-
----
-
-## Proposition
-
-- L'algorithme termine en un nombre fini d'itérations 
-
-- Le résultat est une décomposition en FNBC
-
----
-
-# Perte d'information(s)   {background-color="#1c191c"}
-
----
-
-## Définition : Décomposition sans Perte d'Information
-
-
-
----
-
-## Algorithme de poursuite (*chase*) pour détecter la perte d'information 
-
-
----
-
-## Proposition 
-
-----
-
-- L'algorithme  de poursuite termine en un nombre fini d'itérations 
-
-- L'algorithme est correct
-
----
-
-## Preuve (terminaison)
-
-
----
-
-## Preuve (correction)
-
-
----
-
-## Proposition 
-
-L'algorithme de décomposition en FNBC fournit une décomposition sans Perte d'Information
-
----
-
-## Preuve 
-
-
----
 
 # Perte de dépendances fonctionnelles   {background-color="#1c191c"}
 
----
+
 
 ## Définition : Projection d'une dépendance fonctionnelle sur un sous-schéma
 
----
+
 
 ## Définition : perte de dépendance fonctionnelle
 
----
+
+
+
+# Détection de perte de DF {background-color="#1c191c"}
+
+
+
+
+# Décomposition FNBC et pertes de DF {background-color="#1c191c"}
+
+
+
+
 
 # Forme Normale 3 (FN3)   {background-color="#1c191c"}
 
 
----
-
 ## Définition : forme normale 3 (FN3)
 
 
----
+# Algorithme de Décomposition en FN3  {background-color="#1c191c"}
 
-## Algorithme de Décomposition en FN3
 
----
 
 ## Proposition
 
@@ -191,26 +59,27 @@ La décomposition produite par l'algorithme est
 
 - sans perte de dépendances fonctionnelles
 
----
+
 
 ## Preuve (terminaison)
 
 
----
+
 
 ## Preuve (FN3)
 
 
----
-
 ## Preuve (sans PI)
 
 
----
+
+# Décomposition en FN3 sans perte de DF {background-color="#1c191c"}
+
+
 
 ## Preuve (sans perte de DF)
 
 
----
+
 
 # Fin   {background-color="#1c191c"}
