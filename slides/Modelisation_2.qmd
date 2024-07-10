@@ -1,0 +1,13 @@
+---
+title: "Modélisation II : "
+subtitle: "Traduction des modèles ER: Pattes de corbeaux, Relationnel"
+date: "2024-11-15"
+
+format: 
+  revealjs:
+    header: "Traduction des modes ER. Pattes de corbeaux. Modèles relationnels"
+
+
+---
+
+
