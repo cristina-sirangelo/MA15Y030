@@ -214,14 +214,16 @@ V# P# ⟶ Qte
 Schéma `Films(titre, année, durée, genre, producteur, acteur)`
 
 | titre |  année |  durée |  genre |  producteur |  acteur |
-|:------|:----------|----------:|:----------|:---------------|:-----------|
+|:------|:---------:|----------:|:----------|:---------------|:-----------|
 |Star Wars | 1977 | 124 | SciFi | Fox | Carrie Fisher |
 |Star Wars | 1977 | 124 | SciFi | Fox | Mark Hamill |
 | Star Wars | 1977 | 124 | SciFi | Fox | Harrison Ford |
 |Gone With The Wind | 1939 | 231 | drame | MGM | Vivien Leigh|
 |Wayne's World | 1992 | 95 | comédie | Paramount | Dana Carvey|
 |Wayne's World | 1992 | 95 | comédie | Paramount | Mike Meyers|
+| ... | | | | | |
 
+---
 
 - On sait qu'il n'y a pas 2 films de même nom qui sortent la même année. On a donc la dépendance suivante
 
@@ -234,7 +236,6 @@ est certainement fausse puisqu'un film fait intervenir en général plusieurs ac
 - A-t-on la DF `titre, acteur ⟶ année, durée, genre, producteur` ?
 
 
----
 
 ## Définition d'une dépendance fonctionnelle
 
@@ -376,7 +377,7 @@ toute relation qui satisfait $\Sigma$ satisfait également $X\rightarrow Y$.
 
 Notation pour $\Sigma$ implique $X\rightarrow Y$ :
 
-$ $\Sigma \models X \rightarrow Y$$
+$$\Sigma \models X \rightarrow Y$$
 
 :::
 
@@ -412,6 +413,7 @@ Trois règles d'inférence (facile à vérifier) :
 
 :::
 
+
 ---
 
 ::: {.callout-important}
@@ -425,6 +427,12 @@ si et seulement si
 $X\rightarrow Y$ peut-être dérivée de $\Sigma$ par applications successives des trois règles d'Armstrong
 
 :::
+
+
+## Preuve
+
+
+### {{< fa person-chalkboard >}}
 
 
 ---
@@ -601,6 +609,43 @@ Soit $\Sigma$ un ensemble de DF sur un schéma $\mathcal{A}$ et $X\subset\mathca
 
 ### Algorithme
 
+
+##  {.smaller}
+
+
+```pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+
+\begin{algorithm}
+\caption{Fermeture}
+\begin{algorithmic}
+\Procedure{Fermeture}{$X, Σ$}
+
+\State $X^c ←  X$
+
+\Repeat
+  \State stop ← \True
+  \For{$(Y → Z) ∈ Σ$}
+    \If{$Y ⊆ Z ∧ Z ⊄ X^c$}
+      \State $X^c ←  X^c ∪ Z$
+      \State stop ← \False
+    \EndIf
+  \EndFor
+\Until{stop}
+
+\Return $X^c$
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+```
+
+##
+
 ```{.r}
 Xc <-  X
 
@@ -616,6 +661,13 @@ return Xc
 - `Xc` grandit à chaque itération
 
 Comme $\mathcal{A}$ est fini, l'algorithme se termine en au plus $|\mathcal{A}|$ itérations
+
+
+## Preuve de la correction de l'algorithme de fermeture
+
+
+### {{< fa person-chalkboard >}}
+
 
 
 ## Exemple de calcul de fermeture
@@ -643,8 +695,7 @@ on a toujours $X_c\subset X^+$
 
 ---
 
-
-**Preuve** :
+::: {.proof}
 
 Supposons que $A\notin X_c$ quand l'algorithme se termine
 
@@ -661,6 +712,8 @@ satisfait $\Sigma$
 car pour toute DF $Y\rightarrow Z$ telle que $Y\subset X_c$ on a $Z\subset X_c$.
 
 Mais $R$ ne satisfait pas $X\rightarrow A$. Donc $A\notin X^+$.
+
+:::
 
 
 ## Calcul de la fermeture transitive : exemple
@@ -752,7 +805,7 @@ En effet  toute DF impliquée par $\Sigma$ peut être obtenue à partir des DF d
 
 ## FNBC : exemple 1
 
-- Schéma $\mathcal{A}=\{\text{V#, Vnom, Vville, P#, Pnom, Pville, Qte}\}$
+- Schéma $\mathcal{A}=\{\texttt{V\#, Vnom, Vville, P\#, Pnom, Pville, Qte}\}$
 
 Ensemble de dépendances fonctionnelles $\Sigma$ :
 
@@ -815,7 +868,7 @@ $\mathcal{A}$ est toujours en FNBC par rapport à $\Sigma$
 
 . . .
 
-**Preuve** :
+::: {.proof}
 
 On distingue 4 cas
 
@@ -824,6 +877,7 @@ On distingue 4 cas
 - $\Sigma=\{B\rightarrow A\}$
 - $\Sigma=\{A\rightarrow B, B\rightarrow A\}$
 
+:::
 
 
 
@@ -854,7 +908,7 @@ $$\mathcal{A}_i\not=\emptyset, 1\le i\le k, \quad \text{ et } \quad \mathcal{A} 
 ## Exemple de décomposition I
  
 
-```
+```{verbatim}
 Vendeur(V#, Vnom, Vville)
 Produit(P#, Pnom, Pville)
 Livraison(V#, P#, Qte)
@@ -862,7 +916,9 @@ Livraison(V#, P#, Qte)
 
 est une décomposition du schéma
 
-`R(V#, Vnom, Vville, P#, Pnom, Pville, Qte)`
+```{verbatim}
+R(V#, Vnom, Vville, P#, Pnom, Pville, Qte)
+```
 
 
 ---
@@ -916,20 +972,24 @@ Toutes les décompositions ne sont pas intéressantes
 
 Idée : Si on remplace le schéma
 
-`(V#, Vnom, Vville, P#, Pnom, Pville, Qte)`
+```{verbatim}
+(V#, Vnom, Vville, P#, Pnom, Pville, Qte)
+```
 
 par les trois schémas
 
-```
+```{verbatim}
 Vendeur(V#, Vnom, Vville)
 Produit(P#, Pnom, Pville)
 Livraison(V#, P#, Qte)
 ```
 
 alors au lieu de stocker une relation `R(V#, Vnom, Vville, P#, Pnom, Pville, Qte)`, on stockera
-ses projections
+ses projections:
 
-$$\pi_{\texttt{V#,Vnom,Vville}}(\texttt{R}) \qquad \pi_{\texttt{P#,Pnom,Pville}}(\texttt{R}) \quad \pi_{\texttt{V#,P#,Qte}}(\texttt{R})$$
+
+$$\pi_{\texttt{V\#,Vnom,Vville}}(\texttt{R}) \qquad \pi_{\texttt{P\#,Pnom,Pville}}(\texttt{R}) \qquad \pi_{\texttt{V\#,P\#,Qte}}(\texttt{R})$$
+
 
 {{< fa brain >}} Peut-on retrouver `R` à partir de ces trois projections ?
 
@@ -948,7 +1008,7 @@ la même information que `R` au sens que l'on doit pouvoir reconstruire `R` à p
 
 On considère la *jointure naturelle*
 
-$$\pi_{\texttt{V#,Vnom,Vville}}(\texttt{R}) \bowtie \pi_{\texttt{P#,Pnom,Pville}}(\texttt{R}) \bowtie \pi_{\texttt{V#,P#,Qte}}(\texttt{R})$$
+$$\pi_{\texttt{V\#,Vnom,Vville}}(\texttt{R}) \bowtie \pi_{\texttt{P\#,Pnom,Pville}}(\texttt{R}) \bowtie \pi_{\texttt{V\#,P\#,Qte}}(\texttt{R})$$
 
 
 
@@ -960,7 +1020,7 @@ $$\pi_{\texttt{V#,Vnom,Vville}}(\texttt{R}) \bowtie \pi_{\texttt{P#,Pnom,Pville}
 
 La propriété souhaitée s'écrit donc
 
-$$R = \pi_{\texttt{V#,Vnom,Vville}}(\texttt{R}) \bowtie \pi_{\texttt{P#,Pnom,Pville}}(\texttt{R}) \bowtie \pi_{\texttt{V#,P#,Qte}}(\texttt{R})$$
+$$R = \pi_{\texttt{V\#,Vnom,Vville}}(\texttt{R}) \bowtie \pi_{\texttt{P\#,Pnom,Pville}}(\texttt{R}) \bowtie \pi_{\texttt{V\#,P\#,Qte}}(\texttt{R})$$
 
 pour toute relation `R(V#, Vnom, Vville, P#, Pnom, Pville, Qte)` satisfaisant les DF
 
@@ -997,14 +1057,14 @@ $$R= \pi_{\mathcal{A}_1}(R) \bowtie \pi_{\mathcal{A}_2}(R) \bowtie...\bowtie\pi_
 :::
 
 
-## Exemple de décomposition avec perte d'information
+## Exemple de décomposition avec perte d'information  {.smaller}
 
 $\mathcal{A}=\{A,B,C\} \quad  \Sigma=\{AB\rightarrow C\}$
 
 Décomposition $\mathcal{A}_1=\{A,B\}  \quad  \mathcal{A}_2=\{B,C\}$
 
 ::::: {.columns}
-::: {.column}
+::: {.column width="30%"}
 
 Soit $R$ la relation
 
@@ -1015,7 +1075,7 @@ Soit $R$ la relation
 
 :::
 
-::: {.column}
+::: {.column width="30%"}
 
 $\pi_{AB}(R)=$
 
@@ -1025,7 +1085,9 @@ $\pi_{AB}(R)=$
 | 4 | 2  |
 
 :::
-::: {.column}
+
+
+::: {.column width="30%"}
 
 $\pi_{BC}(R)=$
 
@@ -1066,12 +1128,12 @@ $$R\subset \pi_{\mathcal{A}_1}(R) \bowtie \pi_{\mathcal{A}_2}(R) \bowtie...\bowt
 par définition de la jointure naturelle et de la projection
 
 - Le seul problème est que les jointures peuvent générer des tuples supplémentaires
-- Mais comme $R$ est supposée vérifier les DF de $\Sigma$, l'inclusion inverse est garantie dans certains cas
+- Mais comme $R$ est supposée vérifier les DF de $\Sigma$, l'inclusion inverse est garantie dans *certains cas*
 - Pour le savoir, un algorithme simple existe appelé *algorithme de poursuite*
 
 
 
----
+
 
 
 
@@ -1081,7 +1143,7 @@ par définition de la jointure naturelle et de la projection
 Si on remplace le schéma `(V#, Vnom, Vville, P#, Pnom, Pville, Qte)`
 par
 
-```
+```{verbatim}
 Vendeur(V#, Vnom, Vville)}
 Produit(P#, Pnom, Pville)}
 Livraison(V#, P#, Qte)
@@ -1089,7 +1151,7 @@ Livraison(V#, P#, Qte)
 
 A-t-on
 
-$$\pi_{\texttt{V#,Vnom,Vville}}(\texttt{R}) \bowtie \pi_{\texttt{P#,Pnom,Pville}}(\texttt{R}) \bowtie \pi_{\texttt{V#,P#,Qte}}(R) \subset \texttt{R} \quad ?$$
+$$\pi_{\texttt{V\#,Vnom,Vville}}(\texttt{R}) \bowtie \pi_{\texttt{P\#,Pnom,Pville}}(\texttt{R}) \bowtie \pi_{\texttt{V\#,P\#,Qte}}(R) \subset \texttt{R} \quad ?$$
 
 ---
 
@@ -1104,7 +1166,7 @@ Soit $t$ un tuple dans la jointure
 
 
 
-## Algorithme de poursuite : exemple
+## Algorithme de poursuite : exemple  {.smaller}
 
 
 Soit $t$ un tuple dans la jointure
@@ -1114,36 +1176,36 @@ Soit $t$ un tuple dans la jointure
 | $a$ | $b$ | $c$ | $d$ | $e$ | $f$ | $g$ |
 
 
-- $(a, b, c)\in \pi_{\texttt{V#,Vnom,Vville}}(\texttt{R})$ donc
+- $(a, b, c)\in \pi_{\texttt{V\#,Vnom,Vville}}(\texttt{R})$ donc
 il existe $e_1, f_1, g_1$ tels que  $(a, b, c, d_1, e_1, f_1, g_1) \in \texttt{R}$
 
-- $(d,e,f) \in \pi_{\texttt{P#,Pnom,Pville}}(\texttt{R})$ donc il existe $a_2, b_2, c_2, g_2$ tels que
+- $(d,e,f) \in \pi_{\texttt{P\#,Pnom,Pville}}(\texttt{R})$ donc il existe $a_2, b_2, c_2, g_2$ tels que
 $(a_2, b_2, c_2, d, e, f, g_2)\in \texttt{R}$
 
-- $(a,d,g)\in \pi_{\texttt{V#,P#,Qte}}(R)$ donc il existe $b_3,c_3,e_3,f_3$ tels que
+- $(a,d,g)\in \pi_{\texttt{V\#,P\#,Qte}}(R)$ donc il existe $b_3,c_3,e_3,f_3$ tels que
 $(a,b_3,c_3,d,e_3,f_3,g)\in \texttt{R}$
 
 - On peut le représenter comme ceci :
 
 | `V#` |  `Vnom` |  `Vville` |  `P#` |  `Pnom` |  `Pville` |  `Qte` |
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-|Vendeur | .red[ $a$ ] | .red[ $b$ ] | .red[ $c$ ] | $d_1$ | $e_1$ | $f_1$ | $g_1$ |
-|Produit | $a_2$ | $b_2$ | $c_2$ | .red[ $d$ ] | .red[ $e$ ] | .red[ $f$ ] | $g_2$ |
-|Livraison | .red[ $a$ ] | $b_3$ | $c_3$ | .red[ $d$ ] | $e_3$ | $f_3$ | .red[ $g$ ] |
+|Vendeur | $a$  | $b$  | $c$  | $d_1$ | $e_1$ | $f_1$ | $g_1$ |
+|Produit | $a_2$ | $b_2$ | $c_2$ | $d$  | $e$  | $f$  | $g_2$ |
+|Livraison | .$a$  | $b_3$ | $c_3$ | $d$  | $e_3$ | $f_3$ | $g$  |
 
 
 
 
 
 
-## Algorithme de poursuite : exemple
+## Algorithme de poursuite : exemple   {.smaller}
 
 
 | `V#` |  `Vnom` |  `Vville` |  `P#` |  `Pnom` |  `Pville` |  `Qte` |
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-|Vendeur | .red[ $a$ ] | .red[ $b$ ] | .red[ $c$ ] | $d_1$ | $e_1$ | $f_1$ | $g_1$ |
-|Produit | $a_2$ | $b_2$ | $c_2$ | .red[ $d$ ] | .red[ $e$ ] | .red[ $f$ ] | $g_2$ |
-|Livraison | .red[ $a$ ] | $b_3$ | $c_3$ | .red[ $d$ ] | $e_3$ | $f_3$ | .red[ $g$ ] |
+|Vendeur | $a$  | $b$  | $c$  | $d_1$ | $e_1$ | $f_1$ | $g_1$ |
+|Produit | $a_2$ | $b_2$ | $c_2$ | $d$  | $e$  | $f$  | $g_2$ |
+|Livraison | $a$  | $b_3$ | $c_3$ | $d$  | $e_3$ | $f_3$ | $g$  |
 
 
 
@@ -1151,22 +1213,22 @@ $(a,b_3,c_3,d,e_3,f_3,g)\in \texttt{R}$
 
 | `V#` |  `Vnom` |  `Vville` |  `P#` |  `Pnom` |  `Pville` |  `Qte` |
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-|Vendeur | .red[ $a$ ] | .red[ $b$ ] | .red[ $c$ ] | $d_1$ | $e_1$ | $f_1$ | $g_1$ |
-|Produit | $a_2$ | $b_2$ | $c_2$ | .red[ $d$ ] | .red[ $e$ ] | .red[ $f$ ] | $g_2$ |
-|Livraison | .red[ $a$ ] | $b$ | $c$ | .red[ $d$ ] | $e_3$ | $f_3$ | .red[ $g$ ] |
+|Vendeur | $a$  | $b$  | $c$  | $d_1$ | $e_1$ | $f_1$ | $g_1$ |
+|Produit | $a_2$ | $b_2$ | $c_2$ | $d$  | $e$  | $f$  | $g_2$ |
+|Livraison | $a$  | $b$ | $c$ | $d$  | $e_3$ | $f_3$ | $g$  |
 
 
 
-## Algorithme de poursuite : exemple (suite)
+## Algorithme de poursuite : exemple (suite)  {.smaller}
 
 - `P#⟶ Pnom, Pville` donc $e_3=e$ et $f_3=f$
 
 
 | `V#` |  `Vnom` |  `Vville` |  `P#` |  `Pnom` |  `Pville` |  `Qte` |
 |:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
-|Vendeur | .red[ $a$ ] | .red[ $b$ ] | .red[ $c$ ] | $d_1$ | $e_1$ | $f_1$ | $g_1$ |
-|Produit | $a_2$ | $b_2$ | $c_2$ | .red[ $d$ ] | .red[ $e$ ] | .red[ $f$ ] | $g_2$ |
-|Livraison | .red[ $a$ ] | $b$ | $c$ | .red[ $d$ ] | $e$ | $f$ | .red[ $g$ ] |
+|Vendeur | $a$  | $b$  | $c$  | $d_1$ | $e_1$ | $f_1$ | $g_1$ |
+|Produit | $a_2$ | $b_2$ | $c_2$ | $d$  | $e$  | $f$  | $g_2$ |
+|Livraison | $a$  | $b$ | $c$ | $d$  | $e$ | $f$ | $g$  |
 
 - On a obtenu une ligne égale au tuple $t=(a,b,c,d,e,f,g)$ donc $t\in \texttt{R}$.
 
@@ -1192,9 +1254,15 @@ en accord sur $X$, égaliser ces deux lignes sur $Y$
 
 - **Sortie** : Si on obtient une ligne sans valeur indicée, la décomposition est sans perte d'information, sinon il y a perte d'information
 
+## 
 
+::: {.proof}
 
-## Algorithme de poursuite : exemple 2
+### {{< fa person-chalkboard >}}
+
+:::
+
+## Algorithme de poursuite : exemple 2 {.smaller}
 
 Considérons l'exemple : $\mathcal{A}=\{A,B,C,D\}$ avec $\mathcal{A}_1=\{A,B\}$, $\mathcal{A}_2=\{B,C\}$ et $\mathcal{A}_3=\{C,D\}$
 
@@ -1214,7 +1282,7 @@ On a pris  $c_1,d_1, a_2,d_2, a_3,b_3$ comme valeurs variables et `a,b,c,d` comm
 
 
 
-## Algorithme de poursuite - exemple 2
+## Algorithme de poursuite - exemple 2  {.smaller}
 
 
 |  | A | B | C | D  |
@@ -1229,12 +1297,12 @@ Par la dépendance ${B}\rightarrow{A}$, il vient :
 |  | A | B | C | D  |
 |:----|:----:|:----:|:----:|:----:|
 | $t_1$ | `a` | `b` |  $c_1$| $d_1$  |
-| $t_2$ | .red[ `a` ] | `b` | `c` | $d_2$  |
+| $t_2$ | `a`  | `b` | `c` | $d_2$  |
 | $t_3$ | $a_3$ | $b_3$ | `c` | `d`  |
 
 
 
-## Algorithme de poursuite : exemple 2
+## Algorithme de poursuite : exemple 2 {.smaller}
 
 
 Par la dépendance ${C}\rightarrow{D}$, il vient :
@@ -1249,7 +1317,7 @@ On a bien fait apparaître $t$ qui appartient donc à  $R$.
 
 
 
-## Algorithme de poursuite - exemple 3
+## Algorithme de poursuite - exemple 3 {.smaller}
 
 Considérons toujours l'exemple : $\mathcal{A}=\{A,B,C,D\}$ avec
 
@@ -1276,9 +1344,13 @@ Dans ce cas, en utilisant la seule DF ${B}\rightarrow{AD}$, on obtient $a_2=a$ e
 | `a` | `b` | `c` | $d_1$  |
 |  $a_3$ | $b_3$ | `c` | `d`  |
 
+::: {.callout-note}
 
 Mais on ne peut aller plus loin : la jointure des projections contient
 des tuples qui ne sont pas dans la relation originelle
+
+:::
+
 
 
 

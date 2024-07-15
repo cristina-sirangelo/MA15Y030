@@ -6,48 +6,461 @@ date: "2024-11-29"
 format: 
   revealjs:
     header: "Pertes de Dépendances Fonctionnelles. Décomposition FN3"
-
-
 ---
 
+
+# Décompositions : rappels {background-color="#1c191c"}
+
+
+# Projection d'un ensemble de dépendances fonctionnelles {background-color="#1c191c"}
+
+
+## Projection d'un ensemble de DF
+
+Soientt $\mathcal{A}$ un schéma de relation ($\mathcal{A}$ est un ensemble d'attributs) et $\Sigma$ un ensemble de DF sur $\mathcal{A}$
+
+Soit $\mathcal{A}_1\subset  \mathcal{A}$ un sous-ensemble  d'attributs
+
+::: {.callout-important}
+
+### Définition
+
+$$\pi_{\mathcal{A}_1}(\Sigma)=\left\{ X\to Y \mid \Sigma\models X\to Y \text{ et } X,Y\subset \mathcal{A}_1\right\}$$
+
+:::
+
+::: {.aside}
+
+$\pi_{\mathcal{A}_1}(\Sigma)$ est l'ensemble des DF de la forme $X\to Y$ impliquées par $\Sigma$ et telles que $X\subset \mathcal{A}_1$ et $Y\subset \mathcal{A}_1$
+
+:::
+
+
+::: {.callout-important}
+
+### Caractérisation
+
+Si $X\subset {\mathcal{A}}_1$ on a l'équivalence
+$$X\to Y \in \pi_{{\mathcal{A}}_1}(\Sigma) \iff Y\subset\left\{X\right\}^+∩{\mathcal{A}}_1$$
+
+
+:::
+
+
+## Exemple
+
+-   ${\mathcal{A}}=\left\{A,B,C\right\}$ et
+    $\Sigma=\left\{A\to B, B\to C, C\to A\right\}$
+
+-   $\pi^{}_{\left\{A,B\right\}}(\Sigma)$ est équivalent à
+    $\left\{A\to B, B\to A\right\}$
+
+
+
+
+## Calcul de $\pi_{{\mathcal{A}}_1}(\Sigma)$ 
+
+On calcule un ensemble de DF équivalent à $\pi_{\mathcal{A}_1}(\Sigma)$
+
+```pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+
+\begin{algorithm}
+\caption{Projection de DF}
+\begin{algorithmic}
+\Procedure{Projection}{$\mathcal{A}_1, Σ$}
+
+\State P ← ∅
+
+\For{$X ⊂ \mathcal{A}_1$, $X ≠ ∅$, $X ≠ \mathcal{A}_1$}
+  \State Y ← $X^+ ∩ \mathcal{A}_1$  
+  \State P ← P ∪ $\{ X → Y\}$
+\EndFor
+
+\Return P
+
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+```
+
+
+::: {.aside}
+
+L'ensemble de DF obtenu est équivalent à $\pi_{{\mathcal{A}}_1}(\Sigma)$\
+[Très coûteux !]{.alert} Le nombre de sous-ensembles $X$ considérés est
+$2^{\#{\mathcal{A}}_1}-2$
+:::
+
+
+## Exemple  {.smaller}
+
+-   ${\mathcal{A}}=\left\{A,B,C,D,E\right\}$ et
+    [$\Sigma=\left\{A\to C, BC\to D, AD\to E\right\}$]{.alert}
+
+. . .
+
+-   $\pi_{AC}(\Sigma)$ est équivalent à $\left\{A\to C\right\}$ car\
+    $\left\{A\right\}^+=\left\{A,C\right\}$ et
+    $\left\{C\right\}^+=\left\{C\right\}$
+
+. . .
+
+-   $\pi_{ABD}(\Sigma)$ est équivalent à $\left\{AB\to D\right\}$ car\
+    $\left\{A\right\}^+=\left\{A,C\right\}$,
+    $\left\{B\right\}^+=\left\{D\right\}$,
+    $\left\{D\right\}^+=\left\{D\right\}$,\
+    $\left\{A,B\right\}^+=\left\{A,B,C,D,E\right\}$,
+    $\left\{A,D\right\}^+=\left\{A,D,C,E\right\}$,
+    $\left\{B,D\right\}^+=\left\{B,D\right\}$
+
+. . .
+
+-   $\pi_{ABCE}(\Sigma)$ est équivalent à
+    $\left\{A\to C, AB \to CE, AE\to C, ABC\to E, ABE\to C\right\}$\
+    $A^+=AC \quad B^+=B \quad C^+=C \quad E^+=E$\
+    $AB^+=ABCDE \quad AC^+=AC \quad AE^+=AEC$\
+    $BC^+=BCD \quad BE^+=BE \quad CE^+=CE$\
+    $ABC^+=ABCDE \quad ABE^+=ABECD$\
+    $BCE^+=BCED \quad ACE^+=ACE$
+
+. . .
+
+-   Simplification : $\pi_{ABCE}(\Sigma)$ équivaut à
+    $\left\{A\to C, AB\to E\right\}$
 
 
 
 # Perte de dépendances fonctionnelles   {background-color="#1c191c"}
 
 
+## Préservation de dépendances fonctionnelles
 
-## Définition : Projection d'une dépendance fonctionnelle sur un sous-schéma
+::: {.callout-important}
+
+###  Définition
+
+Soit $\mathcal{A}$ un schéma de relation et $\Sigma$ un ensemble de DF sur $\mathcal{A}$.
+
+Soit $\left\{ \mathcal{A}_1,\dots, \mathcal{A}_k\right\}$ une décomposition du schéma $\mathcal{A}$
+($\mathcal{A}_i\neq \emptyset, 1\leq i\leq k$ et $\mathcal{A}= \bigcup_{i=1}^k \mathcal{A}_i$)
+
+La décomposition $\left\{\mathcal{A}_1,\dots, \mathcal{A}_k\right\}$ *préserve* $\Sigma$
+si l'ensemble des *dépendances fonctionnelles locales*
+$\bigcup_{i=1}^k \pi_{\mathcal{A}_i}(\Sigma)$ est équivalent à $\Sigma$
+
+:::
 
 
+::: {.aside}
 
-## Définition : perte de dépendance fonctionnelle
+Puisque $\Sigma ⊧ \bigcup_{i=1}^k \pi_{\mathcal{A}_i}(\Sigma)$, la décomposition
+préserve $\Sigma$ si et seulement si toutes les DF de $\Sigma$ sont impliquées par les DF locales
+
+:::
 
 
+## Exemple : perte de dépendance fonctionnelle
 
 
 # Détection de perte de DF {background-color="#1c191c"}
 
 
+## Algorithme pour tester si  $\bigcup_{i=1}^k \pi_{\mathcal{A}_i}(\Sigma) \models X \rightarrow Y$  {.smaller}
+
+
+##  {.smaller}
+
+
+```pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+
+\begin{algorithm}
+\caption{X → Y est-elle impliquée par les dépendances projetées?}
+\begin{algorithmic}
+\Procedure{Implique}{$\left\{ \mathcal{A}_1,\dots, \mathcal{A}_k\right\}, Σ, X, Y$}
+
+\State Z ← X
+\State continuer ← \True
+
+\While{continuer}
+  \State $W ← Z$
+  \For{i ∈ 1, ..., k}
+    \State $W ← W ∪ \bigl((W ∩ \mathcal{A}_i)^+ ∩ \mathcal{A}_i\bigr)$
+  \EndFor
+  \If{W ≠ Z}
+        \State Z ← W
+  \Else
+        \State continuer ← \False
+  \EndIf
+\EndWhile
+
+\If{Y ⊆ Z}
+  \Return \True
+\Else
+  \Return \False
+\EndIf 
+
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+```
+
+
+
+## Exemple I  {.smaller}
+
+
+- $\mathcal{A}=\left\{A,B,C,D\right\}$, 
+- $\mathcal{A}_1=\left\{A,B\right\}$, $\mathcal{A}_2=\left\{B,C\right\}$, $\mathcal{A}_3=\left\{C,D\right\}$
+
+- $\Sigma=\left\{A\to B, B\to C, C\to D, D\to A\right\}$
+
+- Est-ce que la décomposition $\left\{\mathcal{A}_1,\mathcal{A}_2,\mathcal{A}_3\right\}$ préserve $\Sigma$ ?
+
+. . .
+
+- Les DF locales impliquent $A\to B$, $B\to C$, $C\to D$ (ce sont DF locales)
+
+. . .
+
+- Est-ce que les DF locales impliquent $D\to A$ ?
+
+. . . 
+
+Commencer avec $Z ← \{D\}$
+
+::: {.incremental}
+
+1. $(\{D\}∩\{CD\})^+ ∩ \{CD\}=\{D\}^+ ∩\{CD\}=\{DABC\} ∩ \{CD\}=\{CD\}$, ajouter $C$
+
+2. $(\{DC\}∩ \{BC\})^+ ∩ \{BC\}=\{C\}^+ ∩ \{BC\}=\{CDAB\}∩ \{BC=B\}$, ajouter $B$
+
+3. $(\{DCB\}∩ \{AB\})^+ ∩ \{AB\}=\{B\}^+ ∩ \{AB\}=\{BCDA\} ∩ \{AB\}$, ajouter $A$
+
+4. $\{DCBA\}$ contient $A$ donc $D\to A$ est préservée
+
+:::
+
+## Exemple II {.smaller}
+
+
+- $\mathcal{A}=$ `{Ville, CP, Rue, Numero}`
+
+- $\Sigma=$ `{ CP →  Ville, {Ville, Rue, Numero} → CP}`
+
+- $\mathcal{A}_1=$ `{Ville, CP}` $\mathcal{A}_2=$ `{Rue, Numero, CP}`
+
+- Est-ce que la décomposition  $\{\mathcal{A}_1, \mathcal{A}_2 \}$ préserve $\Sigma$ ?
+
+. . .
+
+- `CP →  Ville` est préservée car elle est locale à $\mathcal{A}_1$
+
+
+. . .
+
+
+- Est-ce que `{Ville, Rue, Numero} → CP` est préservée par $\mathcal{A}_1, \mathcal{A}_2$ ?
+
+. . .
+
+
+`Z ← {Ville, Rue, Numero}`
+
+1. $(\texttt{Z} ∩ \texttt{{Ville, CP}})^+$ ∩ `{Ville, CP}` = `{Ville}`  *rien à ajouter*
+
+2. $(\texttt{Z} ∩ \texttt{{Rue, Numero, CP}})^+$ ∩ `{Rue, Numero, CP}` = `{Rue, Numero}`, *rien à ajouter*
+
+. . .
+
+Donc `Ville, Rue, Numero → CP` n'est pas préservée  {{< fa frown >}}
 
 
 # Décomposition FNBC et pertes de DF {background-color="#1c191c"}
 
 
+## Rappels 
+
+::: {.callout-important}
+
+### Définition
+
+TODO 
+
+:::
+
+::: {.callout-important}
+
+### Proposition
+
+TODO
+
+:::
+
+## Limites de la décomposition FNBC
+  
+::: {.callout-note}
+
+Il existe des couples schéma/Ensemble de DFs ($\mathcal{A}, \Sigma$) pour lesquels toute décomposition FNBC entraine une perte de Dépendance Fonctionnell
+
+:::
+
+## {.smaller}
 
 
+$\mathcal{A} =$ `{Ville, Rue, Numéro, #Bureau_vote}`
+
+`Σ = { Ville, Nom, Rue → #Bureau_vote,  #Bureau_vote  →  Ville }`
+
+. . .
+
+Deux clés `Ville, Nom, Rue` et `#Bureau_vote, Nom, Rue`
+
+. . .
+
+`#Bureau_vote  →  Ville` ne satisfait pas le critère FNBC
+
+. . .
+
+L'algorithme de décomposition en FNBC conduit à la décomposition `{#Bureau_vote,Ville}` et `{#Bureau_vote, Nom, Rue}`
+
+La DF `Ville, Nom, Rue → #Bureau_vote` n'est pas préservée
+
+La décomposition préserve l'information (SPI) mais pas les dépendances fonctionnelles. 
+
+
+## Limites de la décomposition FNBC (suite)
+
+On peut vérifier que *toute* décomposition FNBC de $\mathcal{A}$ ne préserve pas les dépendances fonctionnelles. 
+
+
+`TODO`
+
+
+# Couverture irredondante d'un ensemble de DF {background-color="#1c191c"}
+
+
+---
+
+::: {.callout-important}
+
+### Définition
+
+Soit  $\Sigma$ un ensemble de DF, une *couverture minimale/irredondante* de  $\Sigma$ est un ensemble $\Sigma'$ de DF qui vérifie :
+
+- Chaque DF de $\Sigma'$ est de la forme $X → A$, où $A$ est un attribut
+
+- $\Sigma'$ et $\Sigma$ sont équivalents  ($\Sigma \models \Sigma'$  et $\Sigma' \models \Sigma$)
+
+- Aucun sous-ensemble propre de $\Sigma'$ n'implique $\Sigma$
+
+- Pour toute dépendance $X → A$ de $\Sigma'$, il n'existe pas de sous-ensemble propre $Ym\subset X$ tel que $\Sigma ⊧ Y→ A$
+
+:::
 
 # Forme Normale 3 (FN3)   {background-color="#1c191c"}
 
 
 ## Définition : forme normale 3 (FN3)
 
+::: {.callout-important}
+
+Un schéma relationnel $\mathcal{A}$ est en forme normale 3 (FN3) relativement à un ensemble de DF Σ ssi 
+pour toute dépendance non triviale `X → Y`de Σ, on a 
+
+- le membre gauche `X` est une super-clé  *ou*
+- le membre droit `Y` fait partie d'une clé
+
+:::
+
+
+::: {.aside}
+
+Le schéma $\mathcal{A} =$ `{Ville, Rue, Numéro, #Bureau_vote}` est en FN3 relativement à `Σ = { Ville, Nom, Rue → #Bureau_vote,  #Bureau_vote  →  Ville }`
+
+Mais ce schéma n'est pas en FNBC.
+
+:::
+
+
+## Pourquoi deux notions de forme normale ?
+
+::: {.callout-note}
+
+### Proposition 
+
+Si un schéma $\mathcal{A}$ est en forme normale Boyce-Codd (FNBC) relativement à un ensemble de DF Σ, alors $\mathcal{A}$ est en forme normale 3 (FN3) relativement à  Σ
+
+:::
+
+::: {.aside}
+
+La réciproque est fausse
+
+:::
+
+
+## Exercice 
+
+$\mathcal{A}=$ `(A, B, C, D, E)` et `Σ={A → C, BC → D, AD → E}`
+
+- Quelles sont les clés ?
+- Le schéma est-il en FNBC ?
+- Si non, propopsez une décomposition SPI en FNBC. Est-elle sans perte de DF?
+- Le schéma est-il en FN3 ? 
+
+## Intérêt  de la forme normale 3 (FN3)
+
+Redondance limitée
+
+. . .
+
+Possibilité de décomposition SPI et sans perte de Dépendances Fonctionnelles
+
+
 
 # Algorithme de Décomposition en FN3  {background-color="#1c191c"}
 
 
+## Algorithme  {.smaller}
+
+
+```pseudocode
+#| html-indent-size: "1.2em"
+#| html-comment-delimiter: "//"
+#| html-line-number: true
+#| html-line-number-punc: ":"
+#| html-no-end: false
+
+\begin{algorithm}
+\caption{Décomposition FN3}
+\begin{algorithmic}
+\Procedure{Décomposition_FN3}{$\mathcal{A}, Σ$}
+
+
+\EndProcedure
+
+\end{algorithmic}
+\end{algorithm}
+```
 
 ## Proposition
+
+
+::: {.callout-important}
+
+### Proposition 
 
 L'algorithme termine en un nombre fini d'itérations
 
@@ -59,11 +472,10 @@ La décomposition produite par l'algorithme est
 
 - sans perte de dépendances fonctionnelles
 
+:::
 
 
 ## Preuve (terminaison)
-
-
 
 
 ## Preuve (FN3)
@@ -73,11 +485,14 @@ La décomposition produite par l'algorithme est
 
 
 
-# Décomposition en FN3 sans perte de DF {background-color="#1c191c"}
-
-
-
 ## Preuve (sans perte de DF)
+
+
+
+# Au delà des DFs {background-color="#1c191c"}
+
+
+
 
 
 

@@ -4,7 +4,7 @@
 format: 
   revealjs:
     theme: [default, "custom-rladies.scss"]
-    logo: /images/logo.png
+    # logo: /images/logo.png
     footer: "[MA15Y030](http://s-v-b.github.io/MA15Y030) -- Bases de Données -- L3 MIASHS -- UParis Cité"
 
     smaller: false
@@ -30,17 +30,45 @@ format:
     link-external-icon: true
     link-external-newwindow: true
 
-    header: Bases de Données
-    header-logo: /images/reveal_logo.svg
-    header-logo-link: "https://revealjs.com"
+
+    header-logo: /images/logo.png
+    header-logo-link: "https://u-paris.fr"
 
 
     title-slide-attributes:
       data-background-color: "#1c191c"
+  
+    include-in-header:
+      text: |
+        <script>
+        MathJax = {
+          loader: {
+            load: ['[tex]/boldsymbol']
+          },
+          tex: {
+            tags: "all",
+            inlineMath: [['$','$'], ['\\(','\\)']],
+            displayMath: [['$$','$$'], ['\\[','\\]']],
+            processEscapes: true,
+            processEnvironments: true,
+            packages: {
+              '[+]': ['boldsymbol']
+            }
+          }
+        };
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
 
 
 filters:
   - reveal-header
+  - pseudocode
+
+pseudocode:
+  caption-prefix: "Algorithme"
+  reference-prefix: "Algorithme"
+  caption-number: true
 
 # filters:
 #   - d2
