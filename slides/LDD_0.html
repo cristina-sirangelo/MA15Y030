@@ -11,12 +11,14 @@
 <script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
 <link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/grid-htext-1.0.0/grid_htext.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
+<link href="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.47">
 <meta name="author" content="Équipe BD">
-<meta name="dcterms.date" content="2024-10-11">
+<meta name="dcterms.date" content="2024-10-04">
 <title>MA15Y030 - Automne 2024 – BD II: SQL LDD</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -392,6 +394,23 @@
       margin-right: 0; 
     }
   </style>
+<script>
+  MathJax = {
+    loader: {
+      load: ['[tex]/boldsymbol']
+    },
+    tex: {
+      tags: "all",
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {
+        '[+]': ['boldsymbol']
+      }
+    }
+  };
+  </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <meta property="og:title" content="BD II: SQL LDD – MA15Y030 - Automne 2024">
 <meta property="og:description" content="Définition de données">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
@@ -414,14 +433,12 @@
     </div>
 </div>
 
-  <p class="date">2024-10-11</p>
+  <p class="date">2024-10-04</p>
 </section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
 <li><a href="#/cr%C3%A9ation-de-tables" id="/toc-création-de-tables">Création de tables</a></li>
 <li><a href="#/insertion-mise-%C3%A0-jour-suppression" id="/toc-insertion-mise-à-jour-suppression">Insertion, mise à jour, suppression</a></li>
-<li><a href="#/int%C3%A9grit%C3%A9-r%C3%A9f%C3%A9rentielle" id="/toc-intégrité-référentielle">Intégrité référentielle</a></li>
-<li><a href="#/contraintes" id="/toc-contraintes">Contraintes</a></li>
 <li><a href="#/r%C3%A9sum%C3%A9" id="/toc-résumé">Résumé</a></li>
 <li><a href="#/fin" id="/toc-fin">Fin</a></li>
 </ul></nav></section><section><section id="introduction" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Introduction</h1>
@@ -904,212 +921,6 @@
 <div class="fragment">
 <p>Cela dépend des contraintes d’intégrité qui pèsent sur la base</p>
 </div>
-</section></section><section><section id="intégrité-référentielle" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Intégrité référentielle</h1>
-
-</section><section id="maintien-de-lintégrité-référentielle-un-problème" class="slide level2 center"><h2>Maintien de l’intégrité référentielle (un problème)</h2>
-<p>La dernière requête renvoie à un problème plus général que l’on illustre à l’aide des tables <code>Livraison</code> et <code>Piece</code>, notées <code>L</code> et <code>P</code>.</p>
-<div class="fragment">
-<p>Il y a problème quand :</p>
-<ul>
-<li><p>On cherche à insérer dans <code>L</code> un tuple dont la valeur de <code>NomP</code> n’existe pas dans <code>P</code></p></li>
-<li><p>On cherche à mettre à jour un tuple de <code>L</code> avec une valeur de <code>NomP</code> qui n’existe pas dans <code>P</code></p></li>
-<li><p>On efface de <code>P</code>, un tuple dont la valeur du champs <code>NomP</code> apparait comme valeur d’un tuple de <code>L</code></p></li>
-<li><p>On met à jour le champs <code>NomP</code> d’un tuple de <code>P</code> alors que l’ancienne valeur de ce champs est présente comme valeur de <code>NomP</code> dans <code>L</code></p></li>
-</ul>
-</div>
-</section><section id="maintien-de-lintégrité-référentielle-politiques-possibles" class="slide level2 center"><h2>Maintien de l’intégrité référentielle (politiques possibles)</h2>
-<p>Plusieurs politiques possibles pour régler ces problèmes</p>
-<ul>
-<li>
-<em>Par défaut</em> : le système rejette toute modification ne respectant pas les contraintes d’intégrité</li>
-</ul>
-<div class="fragment">
-<ul>
-<li>
-<em>En cascade</em> : les modifications sur l’attribut référencé sont effectués aussi sur l’attribut qui référence (la clé étrangère)</li>
-</ul>
-<p>Exemple : mise à jour de <code>P.NomP</code> répercutée sur <code>L.NomP</code>. Effacement répercuté aussi..</p>
-</div>
-<div class="fragment">
-<ul>
-<li>
-<em>Set-Null</em> : les modifications sur l’attribut référencé sont répercuté sur l’attribut qui référence en mettant sa valeur à <code>NULL</code>.</li>
-</ul>
-</div>
-</section><section id="maintien-de-lintégrité-référentielle-exemple" class="slide level2 smaller center"><h2>Maintien de l’intégrité référentielle (exemple)</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb30" data-code-line-numbers="1-2|3|6-8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
-<span id="cb30-2"><a></a>    NumLiv <span class="dt">INT</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb30-3"><a></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
-<span id="cb30-4"><a></a>    DateLiv <span class="dt">DATE</span>,</span>
-<span id="cb30-5"><a></a>    Quantite <span class="dt">INT</span>(<span class="dv">8</span>);</span>
-<span id="cb30-6"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">REFERENCES</span> Piece</span>
-<span id="cb30-7"><a></a>      <span class="kw">ON</span> <span class="kw">DELETE</span> <span class="kw">SET</span> <span class="kw">NULL</span></span>
-<span id="cb30-8"><a></a>      <span class="kw">ON</span> <span class="kw">UPDATE</span> <span class="kw">CASCADE</span></span>
-<span id="cb30-9"><a></a>)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section><section class="slide level2 center"><p>Cette déclaration force :</p>
-<ul>
-<li><p>à répercuter l’effacement d’un tuple dans <code>Piece</code> en mettant tous les champs <code>L.NomP</code> à <code>NULL</code> lorsque ceux-ci avait pour valeur celle de <code>P.NomP</code> effacée.</p></li>
-<li><p>à répercuter la mise à jour d’un tuple dans <code>Piece</code> (pour ce qui concerne le champs <code>NomP</code>) dans les tuples de <code>Livraison</code> concernés.</p></li>
-</ul></section></section><section><section id="contraintes" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contraintes</h1>
-
-</section><section class="slide level2 center"><p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> La définition d’un schéma de base ne s’arrête pas à la définition des tables, des colonnes et des types des colonnes</p>
-<p>Les <em>contraintes</em> décrivent des propriétés que devront vérifier toutes les mises en oeuvre (instances) du schémas <em>durant toute leur durée de vie</em></p>
-<p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Pour spécifier une <em>contrainte</em>, il suffit de préciser que le résultat d’une certaine requête doit toujours être vide</p>
-</section><section id="famille-de-contraintes" class="slide level2 center"><h2>Famille de contraintes</h2>
-<ul>
-<li><p>Contrainte de <strong>type</strong> (attribut)</p></li>
-<li><p>Contrainte de <strong>non-nullité</strong> (attribut)</p></li>
-<li><p>Contrainte de <strong>vérification</strong> (tuple)</p></li>
-<li><p>Contrainte de <strong>clé primaire</strong> (table)</p></li>
-<li><p>Contrainte d’<strong>unicité</strong> (table)</p></li>
-<li><p>Contrainte d’<strong>unicité avancée</strong> (table)</p></li>
-<li><p>Contraintes d’<strong>exclusion</strong> (table)</p></li>
-<li><p>Contrainte de <strong>clé étrangère</strong> (multi-tables)</p></li>
-</ul></section><section id="contraintes-élémentaires" class="slide level2 center"><h2>Contraintes élémentaires</h2>
-<p>Spécifier le type d’un attribut, c’est le contraindre</p>
-<p><i class="fa-solid fa-book" aria-label="book"></i> Consulter la liste des constructions de type possible</p>
-<p><a href="http://www.postgresql.org/docs/current/interactive/datatype.html">http://www.postgresql.org/docs/current/interactive/datatype.html</a></p>
-<p>Il faut essayer d’utiliser autant que possible ces types pour préciser les contenus des colonnes.</p>
-</section><section id="les-valeurs-nulles" class="slide level2 center"><h2>Les valeurs nulles</h2>
-<p>Imposer qu’une colonne soit toujours renseignée</p>
-<p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> La présence possible des valeurs nulles rend beaucoup d’opérations complexes</p>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Il faut avoir en tête que en <code>SQL</code>, les booléens peuvent avoir trois valeurs : <code>TRUE, FALSE</code> et <code>NULL</code> et que le fait qu’une expression ne vaille pas <code>FALSE</code> ne veut pas dire qu’elle vaut <code>TRUE</code> …</p>
-</div>
-</div>
-</div>
-<div class="fragment">
-<p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Pour imposer qu’une colonne soit renseignée</p>
-<p>Préciser, après le type : <code>NOT NULL</code></p>
-</div>
-</section><section class="slide level2 center">
-<img data-src="../images/layout_world.png" class="r-stretch"></section><section id="quelques-remarques" class="slide level2 center"><h2>Quelques remarques</h2>
-<p>Une contrainte d’attribut concerne un seul attribut</p>
-<ul>
-<li><p>Si valeur NULL impossible : <code>NOT NULL</code></p></li>
-<li><p>Si l’attribut est une <strong>clé</strong> : <code>PRIMARY KEY</code></p></li>
-<li><p><strong>Unicité</strong> de l’attribut : <code>UNIQUE</code></p></li>
-<li><p><strong>Contrainte référentielle</strong> :</p></li>
-</ul>
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a></a><span class="kw">REFERENCES</span> <span class="op">&lt;</span>relation référencée<span class="op">&gt;</span>[(<span class="op">&lt;</span>attribut référencé<span class="op">&gt;</span>)]</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<ul>
-<li>Définir une valeur par <strong>défaut</strong> : <code>DEFAULT &lt;valeur&gt;</code>
-</li>
-</ul>
-<div class="callout callout-caution callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Attention</strong></p>
-</div>
-<div class="callout-content">
-<p>les types disponibles (mais pas seulement) diffèrent grandement suivant les SGBD (<code>Mysql</code>, <code>Postgresql</code>, <code>Oracle</code>, <code>SQL Server</code>, …)</p>
-</div>
-</div>
-</div>
-</section><section id="exemple-de-contrainte-de-clé-primaire" class="slide level2 center"><h2>Exemple de contrainte de clé primaire</h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
-<span id="cb32-2"><a></a>Piece(NomP, Prix, Couleur)</span>
-<span id="cb32-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb33" data-code-line-numbers="2|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
-<span id="cb33-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb33-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
-<span id="cb33-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>)</span>
-<span id="cb33-5"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>ou :</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb34" data-code-line-numbers="5|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Piece (</span>
-<span id="cb34-2"><a></a>    NomP    <span class="dt">VARCHAR</span>(<span class="dv">30</span>),</span>
-<span id="cb34-3"><a></a>    Prix    <span class="dt">INT</span>(<span class="dv">10</span>),</span>
-<span id="cb34-4"><a></a>    Couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>),</span>
-<span id="cb34-5"><a></a>    <span class="kw">PRIMARY</span> <span class="kw">KEY</span>(NomP)</span>
-<span id="cb34-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section><section id="contraintes-dunicité" class="slide level2 center"><h2>Contraintes d’unicité</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb35" data-code-line-numbers="5|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> pagila.<span class="ot">"language"</span> (</span>
-<span id="cb35-2"><a></a>    language_id serial4 <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb35-3"><a></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
-<span id="cb35-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">DEFAULT</span> now(),</span>
-<span id="cb35-5"><a></a>    <span class="kw">CONSTRAINT</span> language_pkey <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
-<span id="cb35-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>On voudrait aussi imposer que <code>"name"</code> satisfît une contrainte d’unicité</p>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb36" data-code-line-numbers="5|5-6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> uname.<span class="ot">"language"</span> (</span>
-<span id="cb36-2"><a></a>    language_id int4 <span class="kw">NULL</span>,</span>
-<span id="cb36-3"><a></a>    <span class="ot">"name"</span> bpchar(<span class="dv">20</span>) <span class="kw">NULL</span>,</span>
-<span id="cb36-4"><a></a>    last_update <span class="dt">timestamp</span> <span class="kw">NULL</span>,</span>
-<span id="cb36-5"><a></a>    <span class="kw">CONSTRAINT</span> language_un <span class="kw">UNIQUE</span> (<span class="ot">"name"</span>),</span>
-<span id="cb36-6"><a></a>    <span class="kw">CONSTRAINT</span> language_pk <span class="kw">PRIMARY</span> <span class="kw">KEY</span> (language_id)</span>
-<span id="cb36-7"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-</section><section id="contraintes-dunicité-avancées" class="slide level2 center"><h2>Contraintes d’unicité avancées</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb37" data-code-line-numbers="6|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
-<span id="cb37-2"><a></a>    <span class="kw">VALUES</span> </span>
-<span id="cb37-3"><a></a>        (<span class="st">'blue'</span>, <span class="st">'0000FF'</span>), </span>
-<span id="cb37-4"><a></a>        (<span class="st">'red'</span>, <span class="st">'FF0000'</span>), </span>
-<span id="cb37-5"><a></a>        (<span class="st">'green'</span>, <span class="st">'00FF00'</span>)</span>
-<span id="cb37-6"><a></a>    <span class="kw">ON</span> CONFLICT DO <span class="kw">NOTHING</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Quelqu’un pourrait tenter d’insérer un “blue” différent dans notre système, et nous aurions alors deux “blue” différents.</p>
-</section><section class="slide level2 center"><p>Pour éviter cela, on peut imposer une <em>contrainte d’unicité</em></p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb38-1"><a></a><span class="kw">CREATE</span> <span class="kw">UNIQUE</span> <span class="kw">INDEX</span> uidx_colors_lcolor </span>
-<span id="cb38-2"><a></a>    <span class="kw">ON</span> colors </span>
-<span id="cb38-3"><a></a>    <span class="kw">USING</span> btree(<span class="fu">lower</span>(color));</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>Comme auparavant, si nous essayions d’insérer un autre “blue”, nous en serions empêchés.</p>
-</section><section class="slide level2 center"><p>Si nous voulions vraiment épeler les couleurs telles qu’elles nous sont données, nous pourrions utiliser un code comme celui de</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> colors(color, hex)</span>
-<span id="cb39-2"><a></a>    <span class="kw">VALUES</span></span>
-<span id="cb39-3"><a></a>        (<span class="st">'Blue'</span>, <span class="st">'0000FF'</span>), </span>
-<span id="cb39-4"><a></a>        (<span class="st">'Red'</span>, <span class="st">'FF0000'</span>), </span>
-<span id="cb39-5"><a></a>        (<span class="st">'Green'</span>, <span class="st">'00FF00'</span>)</span>
-<span id="cb39-6"><a></a><span class="kw">ON</span> CONFLICT(<span class="fu">lower</span>(color))</span>
-<span id="cb39-7"><a></a>DO <span class="kw">UPDATE</span> <span class="kw">SET</span> color <span class="op">=</span> EXCLUDED.color, hex <span class="op">=</span> EXCLUDED.hex;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-
-<aside><div>
-<ul>
-<li><a href="https://www.postgresql.org/docs/current/sql-insert.html">https://www.postgresql.org/docs/current/sql-insert.html</a></li>
-<li><a href="https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT">https://www.postgresql.org/docs/current/sql-insert.html#SQL-ON-CONFLICT</a></li>
-</ul>
-</div></aside></section><section id="contraintes-référentiellesclé-étrangère" class="slide level2 center"><h2>Contraintes référentielles/clé étrangère</h2>
-<p>Une contrainte de <strong>clé étrangère</strong> sur une collection de colonnes stipule que</p>
-<div class="fragment">
-<p>pour tout tuple de la table <em>émettrice</em>, la combinaison des valeurs des colonnes impliquées se trouve aussi dans un tuple la table <em>cible</em></p>
-</div>
-</section><section id="exemple-de-contrainte-référentielle" class="slide level2 center"><h2>Exemple de contrainte référentielle</h2>
-<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a></a>Fournisseur (NomF, VilleF, AdresseF)</span>
-<span id="cb40-2"><a></a>Piece(NomP, Prix, Couleur)</span>
-<span id="cb40-3"><a></a>Livraison(NumLiv,NomP,NomF,DateLiv,Quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="fragment">
-<div class="cell">
-<div class="sourceCode cell-code" id="cb41" data-code-line-numbers="3-4|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb41-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> Livraison (</span>
-<span id="cb41-2"><a></a>    NumLiv <span class="dt">int</span>(<span class="dv">10</span>) <span class="kw">PRIMARY</span> <span class="kw">KEY</span>,</span>
-<span id="cb41-3"><a></a>    NomF <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Fournisseur,</span>
-<span id="cb41-4"><a></a>    NomP <span class="dt">VARCHAR</span>(<span class="dv">30</span>) <span class="kw">NOT</span> <span class="kw">NULL</span> <span class="kw">REFERENCES</span> Piece,</span>
-<span id="cb41-5"><a></a>    DateLiv <span class="dt">DATE</span>,</span>
-<span id="cb41-6"><a></a>    Quantite <span class="dt">Int</span>(<span class="dv">8</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
 </section></section><section><section id="résumé" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Résumé</h1>
 
 </section><section class="slide level2 center"><ul>
@@ -1119,20 +930,19 @@
 </ul></section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
-<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 <div class="reveal-header">
-<div class="header-logo" data-header-logo-link="https://revealjs.com">
-<img data-src="../images/reveal_logo.svg">
+<div class="header-logo" data-header-logo-link="https://u-paris.fr">
+<img data-src="../images/logo.png">
 </div>
 <div class="sc-title">
 <p> </p>
 </div>
 <div class="header-text">
-<p>Bases de Données</p>
+<p>SQL : Définition de données, Insertion, …</p>
 </div>
 <div class="sb-title">
 <p> </p>
@@ -1712,7 +1522,37 @@
         }
       }
     });
-    </script>
+    </script><script type="text/javascript">
+        (function(d) {
+          d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+            let pseudocodeOptions = {
+              indentSize: el.dataset.indentSize || "1.2em",
+              commentDelimiter: el.dataset.commentDelimiter || "//",
+              lineNumber: el.dataset.lineNumber === "true" ? true : false,
+              lineNumberPunc: el.dataset.lineNumberPunc || ":",
+              noEnd: el.dataset.noEnd === "true" ? true : false,
+              titlePrefix: el.dataset.captionPrefix || "Algorithm"
+            };
+            pseudocode.renderElement(el.querySelector(".pseudocode"), pseudocodeOptions);
+          });
+        })(document);
+        (function(d) {
+          d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+            let captionSpan = el.querySelector(".ps-root > .ps-algorithm > .ps-line > .ps-keyword")
+            if (captionSpan !== null) {
+              let captionPrefix = el.dataset.captionPrefix + " ";
+              let captionNumber = "";
+              if (el.dataset.pseudocodeNumber) {
+                captionNumber = el.dataset.pseudocodeNumber + " ";
+                if (el.dataset.chapterLevel) {
+                  captionNumber = el.dataset.chapterLevel + "." + captionNumber;
+                }
+              }
+              captionSpan.innerHTML = captionPrefix + captionNumber;
+            }
+          });
+        })(document);
+        </script>
 
 
 </body></html>

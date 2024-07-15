@@ -11,12 +11,14 @@
 <script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
 <link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/grid-htext-1.0.0/grid_htext.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
+<link href="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
 <meta name="generator" content="quarto-1.5.47">
 <meta name="author" content="Équipe BD">
-<meta name="dcterms.date" content="2024-10-18">
+<meta name="dcterms.date" content="2024-10-11">
 <title>MA15Y030 - Automne 2024 – BD : Contraintes</title>
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
@@ -392,6 +394,23 @@
       margin-right: 0; 
     }
   </style>
+<script>
+  MathJax = {
+    loader: {
+      load: ['[tex]/boldsymbol']
+    },
+    tex: {
+      tags: "all",
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {
+        '[+]': ['boldsymbol']
+      }
+    }
+  };
+  </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <meta property="og:title" content="BD : Contraintes – MA15Y030 - Automne 2024">
 <meta property="og:description" content="Définition de données: Contraintes">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
@@ -414,12 +433,12 @@
     </div>
 </div>
 
-  <p class="date">2024-10-18</p>
+  <p class="date">2024-10-11</p>
 </section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
 <li><a href="#/contraintes-de-type" id="/toc-contraintes-de-type">Contraintes de type</a></li>
-<li><a href="#/contrainte-de-v%C3%A9rification" id="/toc-contrainte-de-vérification">Contrainte de vérification</a></li>
+<li><a href="#/contrainte-de-v%C3%A9rification-check" id="/toc-contrainte-de-vérification-check">Contrainte de vérification <code>CHECK</code></a></li>
 <li><a href="#/contrainte-de-non-nullit%C3%A9-not-null" id="/toc-contrainte-de-non-nullité-not-null">Contrainte de non-nullité (NOT NULL)</a></li>
 <li><a href="#/contrainte-dunicit%C3%A9" id="/toc-contrainte-dunicité">Contrainte d’unicité</a></li>
 <li><a href="#/clef-primaire" id="/toc-clef-primaire">Clef primaire</a></li>
@@ -436,26 +455,99 @@
 <li>Les <em>contraintes</em> décrivent des propriétés que devront vérifier toutes les mises en oeuvre (instances) du schéma <em>durant toute sa durée de vie</em>
 </li>
 </ul>
+<p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> La définition d’un schéma de base ne s’arrête pas à la définition des tables, des colonnes et des types des colonnes</p>
+<p>Les <em>contraintes</em> décrivent des propriétés que devront vérifier toutes les mises en oeuvre (instances) du schémas <em>durant toute leur durée de vie</em></p>
+<p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Pour spécifier une <em>contrainte</em>, il suffit de préciser que le résultat d’une certaine requête doit toujours être vide</p>
 </div>
-</section><section class="slide level2 center"></section></section><section><section id="contraintes-de-type" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contraintes de type</h1>
+</section><section id="famille-de-contraintes" class="slide level2 center"><h2>Famille de contraintes</h2>
+<ul>
+<li>
+<p>Contraintes d’attribut</p>
+<ul>
+<li>Contrainte de <strong>type</strong><br>
+</li>
+<li>Contrainte de <strong>non-nullité</strong>
+</li>
+</ul>
+</li>
+</ul>
+<div class="fragment">
+<ul>
+<li>
+<p>Contraintes de tupe</p>
+<ul>
+<li>Contrainte de <strong>vérification</strong>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>
+<p>Contraintes de table</p>
+<ul>
+<li>Contrainte de <strong>clé primaire</strong><br>
+</li>
+<li>Contrainte d’<strong>unicité</strong>
+</li>
+<li>Contrainte d’<strong>unicité avancée</strong>
+</li>
+<li>Contraintes d’<strong>exclusion</strong>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Contraintes multi-tables
+<ul>
+<li>Contraintes de <strong>clé étrangère</strong>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+</section></section><section><section id="contraintes-de-type" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contraintes de type</h1>
 
 </section><section id="contrainte-de-type" class="slide level2 center"><h2>Contrainte de type</h2>
-<p>Une contrainte de type spécifie le type d’une colonne</p>
+<p>Une contrainte de type spécifie le type/domaine d’une colonne</p>
 <p>Les contrainte de type sont les plus simples à mettre en oeuvre.</p>
 <div class="fragment">
 <p>Au delà des types de base <code>varchar, integer, ...</code> <code>PostgreSQL</code> propose des types sophistiqués pour :</p>
 <ul>
-<li>dates,</li>
-<li>les estampilles avec ou sans fuseau horaire,</li>
+<li>
+<a href="https://www.postgresql.org/docs/current/datatype-datetime.html">dates</a>,</li>
+<li>
+<a href="https://www.postgresql.org/docs/current/datatype-datetime.html#DATATYPE-DATETIME-INPUT-TIME-STAMPS">les estampilles avec ou sans fuseau horaire</a>,</li>
 <li>des types intervalles (<code>rangetype</code>),</li>
-<li>des types énumérés,</li>
-<li>des types tableaux,</li>
+<li>
+<a href="https://www.postgresql.org/docs/current/datatype-enum.html">des types énumérés</a>,</li>
+<li>
+<a href="https://www.postgresql.org/docs/current/arrays.html">des types tableaux</a>,</li>
 <li>etc</li>
 </ul>
 </div>
 </section><section id="consulter-la-liste-des-types" class="slide level2 center"><h2>Consulter la liste des types</h2>
 <p><a href="https://docs.postgresql.fr/docs/current/datatype.html">https://docs.postgresql.fr/docs/current/datatype.html</a></p>
 <p>Il faut essayer d’utiliser ces types pour préciser les contenus des colonnes</p>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Conseil</strong></p>
+</div>
+<div class="callout-content">
+<p>Il faut essayer d’utiliser autant que possible ces types pour préciser les contenus des colonnes</p>
+<p>Cela permet de contraindre les contenus</p>
+<p>Cela permet d’utiliser une foule de fonctions de manipulation très pratiques, notamment pour l’arithmétique du temps</p>
+</div>
+</div>
+</div>
+<div class="fragment">
 <div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -469,7 +561,9 @@
 </div>
 </div>
 </div>
-</section></section><section><section id="contrainte-de-vérification" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte de vérification</h1>
+</div>
+</section></section><section><section id="contrainte-de-vérification-check" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte de vérification <code>CHECK</code>
+</h1>
 
 </section><section id="contraintes-de-tuple" class="slide level2 center"><h2>Contraintes de tuple</h2>
 <p>Une <strong>contrainte de tuple</strong> peut être vérifiée tuple par tuple (ligne par ligne)</p>
@@ -571,7 +665,7 @@
 </div>
 </div>
 </div>
-</section><section class="slide level2 center"></section></section><section><section id="contrainte-de-non-nullité-not-null" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte de non-nullité (NOT NULL)</h1>
+</section></section><section><section id="contrainte-de-non-nullité-not-null" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Contrainte de non-nullité (NOT NULL)</h1>
 
 </section><section id="pourquoi-imposer-quune-colonne-soit-toujours-renseignée" class="slide level2 center"><h2>Pourquoi imposer qu’une colonne soit toujours renseignée ?</h2>
 <div class="callout callout-important callout-titled callout-style-default">
@@ -648,7 +742,7 @@
 
 <aside><div>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Il ne peut pas y avoir deux lignes identiques dans la table <code>fournisseur</code></p>
-</div></aside></section><section class="slide level2 center"></section></section><section><section id="clef-primaire" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Clef primaire</h1>
+</div></aside></section></section><section><section id="clef-primaire" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Clef primaire</h1>
 
 </section><section id="clef-primaire-primary-key" class="slide level2 center"><h2>Clef primaire : <strong>PRIMARY KEY</strong>
 </h2>
@@ -700,7 +794,7 @@
 </div>
 <aside><div>
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Une table a au plus une clef primaire</p>
-</div></aside></section><section class="slide level2 center"></section></section><section><section id="clef-étrangère" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Clef étrangère</h1>
+</div></aside></section></section><section><section id="clef-étrangère" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Clef étrangère</h1>
 
 </section><section id="clef-étrangère-1" class="slide level2 center"><h2>Clef étrangère</h2>
 <ul>
@@ -824,23 +918,22 @@
 <span id="cb17-7"><a></a>    <span class="kw">ADD</span> <span class="kw">CONSTRAINT</span> country_fk </span>
 <span id="cb17-8"><a></a>        <span class="kw">FOREIGN</span> <span class="kw">KEY</span> (continent)   </span>
 <span id="cb17-9"><a></a>        <span class="kw">REFERENCES</span> world.code_continent(continent);  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section class="slide level2 center"></section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
+</section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
-<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 <div class="reveal-header">
-<div class="header-logo" data-header-logo-link="https://revealjs.com">
-<img data-src="../images/reveal_logo.svg">
+<div class="header-logo" data-header-logo-link="https://u-paris.fr">
+<img data-src="../images/logo.png">
 </div>
 <div class="sc-title">
 <p> </p>
 </div>
 <div class="header-text">
-<p>Bases de Données</p>
+<p>Contraintes</p>
 </div>
 <div class="sb-title">
 <p> </p>
@@ -1420,7 +1513,37 @@
         }
       }
     });
-    </script>
+    </script><script type="text/javascript">
+        (function(d) {
+          d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+            let pseudocodeOptions = {
+              indentSize: el.dataset.indentSize || "1.2em",
+              commentDelimiter: el.dataset.commentDelimiter || "//",
+              lineNumber: el.dataset.lineNumber === "true" ? true : false,
+              lineNumberPunc: el.dataset.lineNumberPunc || ":",
+              noEnd: el.dataset.noEnd === "true" ? true : false,
+              titlePrefix: el.dataset.captionPrefix || "Algorithm"
+            };
+            pseudocode.renderElement(el.querySelector(".pseudocode"), pseudocodeOptions);
+          });
+        })(document);
+        (function(d) {
+          d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+            let captionSpan = el.querySelector(".ps-root > .ps-algorithm > .ps-line > .ps-keyword")
+            if (captionSpan !== null) {
+              let captionPrefix = el.dataset.captionPrefix + " ";
+              let captionNumber = "";
+              if (el.dataset.pseudocodeNumber) {
+                captionNumber = el.dataset.pseudocodeNumber + " ";
+                if (el.dataset.chapterLevel) {
+                  captionNumber = el.dataset.chapterLevel + "." + captionNumber;
+                }
+              }
+              captionSpan.innerHTML = captionPrefix + captionNumber;
+            }
+          });
+        })(document);
+        </script>
 
 
 </body></html>

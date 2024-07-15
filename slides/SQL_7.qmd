@@ -8,6 +8,10 @@ date: "2025-03-31"
 execute: 
   echo: true
   eval: true
+
+format: 
+  revealjs:
+    header: "L'agèbre relationnelle en R: dplyr"
 ---
 
 

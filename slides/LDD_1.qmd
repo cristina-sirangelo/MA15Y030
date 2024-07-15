@@ -1,7 +1,11 @@
 ---
 title: "BD : Contraintes"
 subtitle: "Définition de données: Contraintes"
-date: "2024-10-18"
+date: "2024-10-11"
+
+format: 
+  revealjs:
+    header: "Contraintes"
 ---
 
 ```{r}
@@ -31,15 +35,54 @@ tables, des colonnes et des types des colonnes
 - Les *contraintes* décrivent des propriétés que devront vérifier
 toutes les mises en oeuvre (instances) du schéma *durant toute sa durée de vie*
 
----
+{{< fa triangle-exclamation >}} La définition d'un schéma de base ne s'arrête pas à la définition des
+tables, des colonnes et des types des colonnes
+
+
+Les *contraintes* décrivent des propriétés que devront vérifier
+toutes les mises en oeuvre (instances) du schémas *durant toute leur durée de vie*
+
+
+{{< fa hand-point-right >}}  Pour spécifier une *contrainte*, il suffit de préciser que le
+résultat d'une certaine requête doit toujours être vide
+
+
+
+## Famille de contraintes
+
+- Contraintes d'attribut 
+
+  - Contrainte de **type**  
+  - Contrainte de **non-nullité**   
+
+. . .
+
+- Contraintes de tupe 
+
+  - Contrainte de **vérification**  
+
+. . .
+
+- Contraintes de table 
+    
+  - Contrainte de **clé primaire**  
+  - Contrainte d'**unicité** 
+  - Contrainte d'**unicité avancée** 
+  - Contraintes d'**exclusion**  
+
+. . .
+
+- Contraintes multi-tables  
+  - Contraintes  de **clé étrangère** 
+
 
 # Contraintes de type  {background-color="#1c191c"}
 
----
+
 
 ## Contrainte de type
 
-Une contrainte de type spécifie le type d'une colonne
+Une contrainte de type spécifie le type/domaine  d'une colonne
 
 Les contrainte de type sont les plus simples à mettre en oeuvre. 
 
@@ -48,15 +91,15 @@ Les contrainte de type sont les plus simples à mettre en oeuvre.
 Au delà des types de base `varchar, integer, ...`  `PostgreSQL` propose
 des types sophistiqués pour :
 
-- dates, 
-- les estampilles avec ou sans
-fuseau horaire, 
+- [dates](https://www.postgresql.org/docs/current/datatype-datetime.html), 
+- [les estampilles avec ou sans
+fuseau horaire](https://www.postgresql.org/docs/current/datatype-datetime.html#DATATYPE-DATETIME-INPUT-TIME-STAMPS), 
 - des types intervalles (`rangetype`), 
-- des types énumérés, 
-- des types tableaux, 
+- [des types énumérés](https://www.postgresql.org/docs/current/datatype-enum.html), 
+- [des types tableaux](https://www.postgresql.org/docs/current/arrays.html), 
 - etc
 
----
+
 
 ## Consulter la liste des types
 
@@ -65,14 +108,32 @@ fuseau horaire,
 
 Il faut essayer d'utiliser ces types pour préciser les contenus des colonnes
 
-{{< fa skull-crossbones >}} Les types disponibles diffèrent d'un SGBD à l'autre (`Mysql`, `Postgres`, `Oracle`, `SQL Server`, ...)
+::: {.callout-tip}
 
----
+### Conseil 
+
+Il faut essayer d'utiliser autant que possible ces types pour préciser les contenus des colonnes
+
+Cela permet de contraindre les contenus 
+
+Cela permet d'utiliser une foule de fonctions de manipulation très pratiques, notamment pour l'arithmétique du temps
+
+:::
+
+. . .
+
+::: {.callout-caution}
+
+### {{< fa skull-crossbones >}} 
+
+Les types disponibles diffèrent d'un SGBD à l'autre (`Mysql`, `Postgres`, `Oracle`, `SQL Server`, ...)
+
+:::
 
 
-# Contrainte de vérification  {background-color="#1c191c"}
+# Contrainte de vérification `CHECK` {background-color="#1c191c"}
 
----
+
 
 ## Contraintes de tuple
 
@@ -80,10 +141,10 @@ Une **contrainte de tuple** peut être vérifiée tuple par tuple (ligne par lig
 
 . . . 
 
-Lors d'une insertion ou d'une modification de tuple, il suffit de
+Lors d'une insertion ou d'une modification de tuple, il *suffit* de
 vérifier que la contrainte est respectée par le nouveau tuple 
 
----
+
 
 ## Exemple
 
@@ -94,25 +155,30 @@ On peut imposer cela en
 ajoutant au schéma de la table  `Piece` une contrainte de
 type  `CHECK`
 
----
+
 
 ## Exemple (suite)
 
 ```{.sql}
 CREATE TABLE piece(
     nomp VARCHAR(20),
-    prix MONEY CHECK (prix>= 0::money), #<<
+    prix MONEY CHECK (prix>= 0::money), 
     couleur VARCHAR(15)
 );
 ```
 
 . . . 
 
+::: {.callout-note}
+
 Have a look at [PostGres Monetary type](https://www.postgresql.org/docs/current/datatype-money.html)
 
----
+:::
 
-## Exemple `world.country`  {smaller}
+
+
+
+## Exemple `world.country`  {.smaller}
 
 Dans un tuple de `country`, les colonnes numériques ne devraient
 pas prendre de valeur négative
@@ -120,18 +186,21 @@ pas prendre de valeur négative
 . . .
 
 
-```{.sql}
+```{sql}
+--| echo: true
+--| eval: false
+--| code-line-numbers: "|6,9,17-22"
 CREATE TABLE world.country (
 	countrycode BPCHAR(3) NOT NULL,
 	name_country TEXT NOT NULL,
 	continent TEXT NOT NULL,
 	region TEXT NOT NULL,
-    surfacearea FLOAT4 CHECK (surfacearea>= 0) NOT NULL, #<<
+    surfacearea FLOAT4 CHECK (surfacearea>= 0) NOT NULL, 
 	indepyear INT2 NULL,
     population_country INT4 NOT NULL,
-    lifeexpectancy FLOAT4 CHECK (lifeexpectancy>= 0) NULL, #<<
-    gnp NUMERIC(10, 2) NULL,    #<<
-    gnpold NUMERIC(10, 2) NULL,  #<<
+    lifeexpectancy FLOAT4 CHECK (lifeexpectancy>= 0) NULL, 
+    gnp NUMERIC(10, 2) NULL,    
+    gnpold NUMERIC(10, 2) NULL,  
 	localname TEXT NOT NULL,
 	governmentform TEXT NOT NULL,
 	headofstate TEXT NULL,
@@ -151,21 +220,27 @@ CREATE TABLE world.country (
 ## Contrainte de vérification - Exemple (suite)
 
 
-```{.sql}
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|3,4,6"
 CREATE TABLE piece(
     nomp VARCHAR(20),
-    prix moNey CHECK (prix>= 0::money),  #<<
-    prix_promo MONEY CHECK (prix_promo >= 0::MONEY), #<<
+    prix moNey CHECK (prix>= 0::money),  
+    prix_promo MONEY CHECK (prix_promo >= 0::MONEY), 
     couleur VARCHAR(15),
-    CHECK(prix > prix_promo) #<<
+    CHECK(prix > prix_promo) 
 ); 
 ```
 
 . . . 
 
 ```{.sql}
-INSERT INTO piece VALUES('x21', 1.51, 1.61,'rouge');
+INSERT INTO piece 
+  VALUES
+  ('x21', 1.51, 1.61,'rouge');
 ```
+
 `ERROR:  new row for relation "piece" violates check constraint piece_check` {{< fa face-angry >}}
 
 . . . 
@@ -173,12 +248,12 @@ INSERT INTO piece VALUES('x21', 1.51, 1.61,'rouge');
 ```{.sql}
 INSERT INTO piece VALUES('x21', 1.51, null,'rouge');
 ```
+
 est accepté  {{< fa champagne-glasses >}}
 
 
 
 
----
 
 ## {{< fa triangle-exclamation >}}  Valeurs nulles et  contraintes de tuple
 
@@ -192,16 +267,22 @@ suffisent pas à prévenir l'insertion de valeurs nulles
 
 . . . 
 
+::: {.callout-tip}
+
 Il faut  compléter les contraintes de tuple  avec des *contraintes de non-nullité*
 
----
+:::
+
+
 
 # Contrainte de non-nullité  (NOT NULL)  {background-color="#1c191c"}
 
----
+
  
 
 ## Pourquoi imposer qu'une colonne soit toujours renseignée ?
+
+::: {.callout-important}
 
 La présence possible des valeurs nulles rend beaucoup d'opérations complexes 
 
@@ -212,6 +293,8 @@ Il faut avoir en tête que en `SQL`,
 - le fait qu'une expression ne vaille pas  `FALSE` ne veut pas dire qu'elle
 vaut  `TRUE` ...
  
+:::
+
 . . . 
 
 Pour imposer qu'une colonne soit renseignée :
@@ -219,25 +302,27 @@ Pour imposer qu'une colonne soit renseignée :
 - préciser après le type : `NOT NULL`
 
 
----
+
 
 ## Contrainte de non-nullité (Exemple)
 
-```{.sql}
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|2"
 CREATE TABLE piece(
     nomp VARCHAR(20) NOT NULL,
-    prix MONEY CHECK (prix>= 0::MONEY),  #<<
-    prix_promo MONEY CHECK (prix_promo >= 0::MONEY),  #<<
+    prix MONEY CHECK (prix>= 0::MONEY),  
+    prix_promo MONEY CHECK (prix_promo >= 0::MONEY),  
     couleur VARCHAR(15),
-    CHECK (prix > prix_promo)   #<<
+    CHECK (prix > prix_promo)   
 ); 
 ```
 
----
+
 
 # Contrainte d'unicité  {background-color="#1c191c"}
 
----
 
 
 ## Contrainte d'unicité
@@ -247,53 +332,75 @@ ou un groupe de colonnes par rapport à toutes les lignes de la table
 
 - C'est une *contrainte de table* puisqu'elle fait intervenir tous les tuples de la table
 
+---
 
-```{.sql}
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|2"
 CREATE TABLE piece(
-    nomp VARCHAR(20) NOT NULL UNIQUE, #<< 
+    nomp VARCHAR(20) NOT NULL UNIQUE,  
     prix money CHECK (prix>= 0::money),
     prix_promo MONEY CHECK (prix_promo >= 0::MONEY),
     couleur VARCHAR(15),
     CHECK (prix > prix_promo)
 );
- 
 ```
 
-
-
-
----
 
 ## Contrainte d'unicité   
 
-- La contrainte d'unicité peut porter sur un groupe de colonnes
+::: {.callout-note}
 
-```{.sql}
+La contrainte d'unicité peut porter sur un *groupe de colonnes*
+
+:::
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|4"
 CREATE TABLE fournisseur(
     nomf VARCHAR(20) NOT NULL,
     villef VARCHAR(20) NOT NULL,
-    UNIQUE(nomf, villef)  #<<
+    UNIQUE(nomf, villef)  
 );
 ```
-- Il ne peut pas avoir deux lignes identiques dans la table `fournisseur`
+
+::: {.aside}
+
+{{< fa hand-point-right >}} Il ne peut pas y avoir deux lignes identiques dans la table `fournisseur`
+
+:::
 
 
----
 
 # Clef primaire  {background-color="#1c191c"}
 
----
  
 
 ## Clef primaire : **PRIMARY KEY**
 
+::: {.callout-important}
 
-- Une contrainte de type clef primaire indique qu'une colonne, ou un groupe de colonnes, 
-peuvent être utilisée comme un identifiant unique de ligne pour cette table.
+### Définition
 
-- Ceci nécessite que les valeurs soient à la fois uniques et `NON NULL`
+Une contrainte de type *clef primaire* indique qu'une colonne, ou un groupe de colonnes, 
+peuvent être utilisée comme un *identifiant* unique de ligne pour cette table.
 
-- Les définitions de table suivantes acceptent de ce fait les mêmes données
+:::
+
+. . .
+
+::: {.callout-note}
+
+Ceci nécessite que les valeurs soient à la fois uniques et `NON NULL`. 
+
+:::
+
+. . .
+
+Les définitions de table suivantes acceptent de ce fait les mêmes données
 
 ::::: {.columns}
 
@@ -312,20 +419,24 @@ CREATE TABLE fournisseur(
 CREATE TABLE fournisseur(
     nomf VARCHAR(20),
     villef VARCHAR(20),
-    PRIMARY KEY (nomf, villef)  #<<
+    PRIMARY KEY (nomf, villef)  
 );
 ```
 :::
 
 :::::
 
+::: {.aside}
+
 {{< fa triangle-exclamation >}} Une table a au plus une clef primaire
 
----
+:::
+
+
 
 # Clef étrangère  {background-color="#1c191c"}
 
----
+
 
 ## Clef étrangère
 
@@ -367,7 +478,7 @@ CREATE TABLE piece(
 
 :::::
 
----
+
 
 ## Clef étrangère : REFERENCES
 
@@ -376,32 +487,40 @@ CREATE TABLE piece(
 - Il est intéressant de s'assurer que la table  `livraison` ne contient que des 
 références de pièces et de fournisseurs qui existent dans la base
 
-Pour cela, deux  contraintes de *clef étrangère* sont  émises par la table des livraisons 
+Pour cela, deux  contraintes de *clef étrangère* sont  *émises* par la table des livraisons 
 
-- Une contrainte référence  `piece` 
-- Une contrainte référence  `fournisseur`
+- Une contrainte *référence*  `piece` 
+- Une contrainte *référence*  `fournisseur`
 
-```{.sql}
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|3,4"
 CREATE TABLE livraison(
     numliv INT PRIMARY KEY,
-    idf INT REFERENCES fournisseur,  #<< 
-    nomp VARCHAR(20) REFERENCES piece,  #<<
+    idf INT REFERENCES fournisseur,   
+    nomp VARCHAR(20) REFERENCES piece,  
     dateLiv DATE DEFAULT NOW(),
     quantite INT DEFAULT 1 CHECK (quantite>=0)
 );
  
 ```
 
+. . .
+
+::: {.aside}
+
 - Il est désormais impossible de créer des livraisons pour lesquelles les valeurs non `NULL` de `nomp` 
 n'apparaissent pas dans la table `piece` et les valeurs non `NULL` de `idf` n'apparaissent pas dans la table `fournisseur`
 
 - On dit que la table des livraisons est la table qui référence et la table des pièces est la table référencée
 
----
+:::
 
-## Définition de world.countrylanguage
 
-```{verbatim}                                                                                                
+## Définition de `world.countrylanguage`
+
+```{.sql}                                                                                                
 +-------------+--------------+-------------+
 | Column      | Type         | Modifiers   |
 |-------------+--------------+-------------|
@@ -415,14 +534,12 @@ Indexes:
 ```
 
 
+## Définition de `world.country`  {.smaller}
 
----
+::::: {.columns}
+::: {.column}
 
-## Définition de world.country  {smaller}
-
-
-
-```{verbatim}                                                                                                
+```{.sql}                                                                                                
 +--------------------+---------------+-------------+
 | Column             | Type          | Modifiers   |
 |--------------------+---------------+-------------|
@@ -442,25 +559,40 @@ Indexes:
 | capital            | integer       |             |
 | code2              | character(2)  |  not null   |
 +--------------------+---------------+-------------+
+```
+
+:::
+
+::: {.column}
+
+```{.sql}
 Indexes:
     "country_pkey" PRIMARY KEY, btree (countrycode)
 Check constraints:
     "country_continent_check" CHECK
-    (continent = 'Asia'::text OR continent = 'Europe'::text
-    OR continent = 'North America'::text
-    OR continent = 'Africa'::text OR continent = 'Oceania'::text 
-    OR continent = 'Antarctica'::text OR continent = 'South America'::text)
+    (continent = 'Asia'::text OR 
+      continent = 'Europe'::text OR 
+      continent = 'North America'::text OR 
+      continent = 'Africa'::text OR 
+      continent = 'Oceania'::text OR 
+      continent = 'Antarctica'::text OR 
+      continent = 'South America'::text)
 Foreign-key constraints:
-    "country_capital_fkey" FOREIGN KEY (capital) REFERENCES world.city(id)  #<<
+    "country_capital_fkey" 
+        FOREIGN KEY (capital) 
+        REFERENCES world.city(id)  
 Referenced by:
     TABLE "world.countrylanguage"
-    CONSTRAINT "countrylanguage_countrycode_fkey" FOREIGN KEY (countrycode)
-    REFERENCES country(countrycode)
+    CONSTRAINT "countrylanguage_countrycode_fkey" 
+        FOREIGN KEY (countrycode)
+        REFERENCES country(countrycode)
 ```
 
+:::
+
+:::::
 
 
----
 
 ## Foreign keys emitted by `world.country`
 
@@ -468,16 +600,16 @@ Referenced by:
 ```{.sql}
 ALTER TABLE world.country ADD 
     CONSTRAINT country_capital_fkey 
-        FOREIGN KEY (capital)   #<<
-        REFERENCES world.city(id);  #<<
+        FOREIGN KEY (capital)   
+        REFERENCES world.city(id);  
 
 ALTER TABLE world.country 
     ADD CONSTRAINT country_fk 
-        FOREIGN KEY (continent)   #<<
-        REFERENCES world.code_continent(continent);  #<<
+        FOREIGN KEY (continent)   
+        REFERENCES world.code_continent(continent);  
 ```
 
 
----
+
 
 # Fin {background-color="#1c191c"}

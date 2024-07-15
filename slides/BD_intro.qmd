@@ -3,33 +3,11 @@ title: "BD I: Introduction aux SGBD"
 subtitle: "Bases de Données Licences MIASHS et Mathématiques"
 author: "Équipe BD"
 institute: "Université Paris Cité"
-date: "2024-06-23"
-
+date: "2024-09-13"
 
 format: 
   revealjs:
-    theme: [default, "custom-rladies.scss"]
-    logo: /images/logo.png
-    footer: "MA15Y030 -- Bases de Données -- L3 MIASHS -- UParis Cité"
-    highlight-style: zenburn
-    code-fold: false
-    code-link: true
-    code-annotations: hover
-    slide-number: c/t
-    show-slide-number: all
-    smaller: false
-    scrollable: true
-    preview-links: true
-    navigation-mode: vertical
-    controls-layout: bottom-right
-    controls-tutorial: true
-    title-slide-attributes:
-      data-background-color: "#1c191c"
-
-
-execute: 
-  echo: true
-  eval: false
+    header: "Les Bases de Données : survol"
 ---
 
 

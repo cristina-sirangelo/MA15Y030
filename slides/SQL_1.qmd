@@ -2,6 +2,10 @@
 title: "BD II: SQL I"
 subtitle: "Langage Manipulation de Données 1"
 date: "2024-09-20"
+
+format: 
+  revealjs:
+    header: "Requêtes SQL simples"
 ---
 
 

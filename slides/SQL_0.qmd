@@ -2,6 +2,10 @@
 title: "BD I: Algèbre Relationnelle"
 subtitle: "Cadre formel pour la manipulation de tables"
 date: "2024-09-13"
+
+format: 
+  revealjs:
+    header: "Algèbre Relationnelle"
 ---
 
 

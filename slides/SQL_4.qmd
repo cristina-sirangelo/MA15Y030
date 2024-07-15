@@ -1,7 +1,11 @@
 ---
-title: "BD V: Fonctions SQL et Vues"
-subtitle: "Fonctions SQL, Vues,  Requêtes préparées"
-date: "2024-10-11"
+title: "Fonctions SQL et Vues"
+subtitle: "Fonctions SQL. Vues"
+date: "2024-10-18"
+
+format: 
+  revealjs:
+    header: "Fonctions SQL et Vues"
 ---
 
 
@@ -31,7 +35,7 @@ knitr::opts_chunk$set(connection = "db")
 Lorsqu'une collection de requêtes de même forme est utilisée sur une base de données, 
 il est pertinent de *préparer* ces requêtes
 
-Les objectifs de cette préparation sont divers
+Les objectifs de cette préparation sont divers: 
 
 - éviter de coder de façon répétitive 
 
@@ -142,7 +146,8 @@ CREATE OR REPLACE FUNCTION
 RETURNS <some type> | SETOF <some type> | TABLE (..)
 ```
 
-La signature d'une fonction est formée par 
+La signature d'une fonction est formée par:
+
 - le nom de la fonction  `<func_name>`
 - la liste des arguments (nom `<arg1>` et type attendu <arg1_datatype>)
 - le type du résultat retourné par la fonction
@@ -505,11 +510,11 @@ $$ ;
 
 ---
 
-![](/images//bd_2023-sakila.png)
+![](/images/pagila_full.png)
 
 
 
-## Fonction reprise depuis `sakila`
+## Fonction reprise depuis `pagila`
 
 ```{.sql}
 CREATE OR REPLACE FUNCTION user.inventory_held_by_customer(
@@ -517,14 +522,14 @@ CREATE OR REPLACE FUNCTION user.inventory_held_by_customer(
     OUT customer_id int2) AS 
 $$
   SELECT customer_id 
-  FROM sakila.rental
+  FROM pagila.rental
   WHERE return_date IS NULL AND inventory_id = p_inventory_id ;
 $$ LANGUAGE 'sql' ;
 ```
 
 
 
-## Fonctions de `sakila`
+## Fonctions de `pagila`
 
 ```{.sql}
 CREATE OR REPLACE FUNCTION uname.film_in_stock(
@@ -534,10 +539,10 @@ CREATE OR REPLACE FUNCTION uname.film_in_stock(
  RETURNS SETOF integer
 AS $$
      SELECT inventory_id
-     FROM sakila.inventory
+     FROM pagila.inventory
      WHERE film_id = $1
      AND store_id = $2
-     AND sakila.inventory_in_stock(inventory_id);
+     AND pagila.inventory_in_stock(inventory_id);
 $$ LANGUAGE sql ;
 ```
 ---
@@ -547,7 +552,7 @@ $$ LANGUAGE sql ;
 
 ```{.sql}
 SELECT * 
-FROM sakila.film_in_stock(12, 1) ;
+FROM pagila.film_in_stock(12, 1) ;
 ```
 
 
@@ -562,27 +567,25 @@ FROM sakila.film_in_stock(12, 1) ;
 
 
 
----
+## {.smaller}
 
-> Almost all relational database products offer views as a level of
-abstraction from tables. In a view, you can query multiple tables and
-present additional derived columns based on complex calculations. 
+> Presque tous les SGBD relationnels proposent des vues comme niveau d'abstraction des tables. Dans une vue, vous pouvez interroger plusieurs tables et présenter des colonnes dérivées supplémentaires basées sur des calculs complexes. 
 
-> Views are generally read-only, but PostgreSQL allows you to update the
-underlying data by updating the view, provided that the view draws from
-a single table. 
+> Les vues sont généralement en lecture seule, mais PostgreSQL vous permet de mettre à jour les données sous-jacentes en mettant à jour la vue, à condition que la vue provienne d'une seule table. 
 
-> To update data from views that join multiple tables, you
-need to create a trigger against the view. 
+> Pour mettre à jour des données à partir de vues qui joignent plusieurs tables, vous devez créer une gachette contre la vue.
 
-> Version 9.3 introduced materialized views, which cache data to speed up commonly used queries
-at the sacrifice of having the most up-to-date data. 
+>  Les vues matérialisées mettent en cache les données afin d'accélérer les requêtes les plus courantes, au détriment des données les plus récentes. 
 
 
 
 ## Motivation
 
-Si vous vous retrouvez à écrire tous les jours la même requête, créer une vue
+::: {.callout-tip}
+
+Si vous vous retrouvez à écrire tous les jours la même requête, créer une vue !
+
+:::
 
 Une vue n'est rien d'autre qu'une requête stockée de façon persistante
 
@@ -638,11 +641,14 @@ on peut modifier la table au travers de la vue. On peut
 - supprimer 
 - mettre à jour
 
-#### Exemple
+::: {.callout-note}
+
+### Exemple
 
 - La vue `co_asia` provient d'une unique table : `world.country`
 - La vue `co_asia` contient la *clé primaire* `countrycode` de la table `world.country` 
 
+:::
 
 
 
@@ -653,12 +659,11 @@ Cette instruction :
 
 ```{.sql}
 UPDATE co_asia
-
-SET continent='Antarctica';
+  SET continent='Antarctica';
 
 ```
 
-... est légale
+... est légale !
 
 --
 
@@ -673,12 +678,14 @@ Mais, après exécution :
 
 ## Pour éviter ca : `WITH CHECK OPTION `
 
-```{.sql}
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "|6"
 CREATE OR REPLACE VIEW boucheron.co_asia AS
-
-SELECT * 
-FROM world.country 
-WHERE continent = 'Asia' 
+  SELECT * 
+  FROM world.country 
+  WHERE continent = 'Asia' 
 
 WITH CHECK OPTION ;
 ```
@@ -694,22 +701,22 @@ PostgreSQL s'opposera à une tentative d'insertion hors de la vue ou
 
 
 ```{.sql}
-CREATE OR REPLACE VIEW sakila.actor_info
+CREATE OR REPLACE VIEW pagila.actor_info
 AS SELECT a.actor_id,
     a.first_name,
     a.last_name,
-    sakila.group_concat(DISTINCT (c.name::text || ': '::text) || 
-        (( SELECT sakila.group_concat(f.title::text) AS group_concat
-           FROM sakila.film f
-             JOIN sakila.film_category fc_1 ON f.film_id = fc_1.film_id
-             JOIN sakila.film_actor fa_1 ON f.film_id = fa_1.film_id
+    pagila.group_concat(DISTINCT (c.name::text || ': '::text) || 
+        (( SELECT pagila.group_concat(f.title::text) AS group_concat
+           FROM pagila.film f
+             JOIN pagila.film_category fc_1 ON f.film_id = fc_1.film_id
+             JOIN pagila.film_actor fa_1 ON f.film_id = fa_1.film_id
           WHERE fc_1.category_id = c.category_id AND fa_1.actor_id = a.actor_id
           GROUP BY fa_1.actor_id))
         ) AS film_info
-   FROM sakila.actor a
-     LEFT JOIN sakila.film_actor fa ON a.actor_id = fa.actor_id
-     LEFT JOIN sakila.film_category fc ON fa.film_id = fc.film_id
-     LEFT JOIN sakila.category c ON fc.category_id = c.category_id
+   FROM pagila.actor a
+     LEFT JOIN pagila.film_actor fa ON a.actor_id = fa.actor_id
+     LEFT JOIN pagila.film_category fc ON fa.film_id = fc.film_id
+     LEFT JOIN pagila.category c ON fc.category_id = c.category_id
   GROUP BY a.actor_id, a.first_name, a.last_name;
 ```
 
@@ -770,13 +777,12 @@ Cela se produit
 
 ---
 
+> Lorsque vous marquez une vue comme matérialisée, elle n'interrogera à nouveau les données que lorsque vous lancerez la commande `REFRESH`.
 
-> When you mark a view as materialized, it will requery the data only when you issue the `REFRESH`
-command. 
-> - The upside is that you're not wasting resources running complex
-queries repeatedly; 
-> - the downside is that you might not have the most up-todate
-data when you use the view. 
+> L'avantage est que vous ne gaspillez pas de ressources en exécutant des requêtes complexes à plusieurs reprises ; 
+
+> lL'inconvénient est que vous risquez de ne pas avoir les données les plus à jour lorsque vous utilisez la vue.
+
 
 
 

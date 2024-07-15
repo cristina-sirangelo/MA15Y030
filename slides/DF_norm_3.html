@@ -10,11 +10,16 @@
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.js" defer="true"></script>
 <link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/grid-htext-1.0.0/grid_htext.css" rel="stylesheet"><meta charset="utf-8">
+<link href="../site_libs/quarto-contrib/grid-htext-1.0.0/grid_htext.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
+<link href="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.5.47">
 
   <meta name="author" content="Équipe BD">
-  <title>MA15Y030 - Automne 2024 – BD xxx : Normalisation</title>
+  <meta name="dcterms.date" content="2024-11-29">
+  <title>MA15Y030 - Automne 2024 – Normalisation II : Décomposition FN3</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -324,8 +329,26 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="BD xxx : Normalisation – MA15Y030 - Automne 2024">
-<meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
+  <script>
+  MathJax = {
+    loader: {
+      load: ['[tex]/boldsymbol']
+    },
+    tex: {
+      tags: "all",
+      inlineMath: [['$','$'], ['\\(','\\)']],
+      displayMath: [['$$','$$'], ['\\[','\\]']],
+      processEscapes: true,
+      processEnvironments: true,
+      packages: {
+        '[+]': ['boldsymbol']
+      }
+    }
+  };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+<meta property="og:title" content="Normalisation II : Décomposition FN3 – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Pertes de Dépendances Fonctionnelles. Décomposition FN3">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 <body class="quarto-light">
@@ -333,8 +356,8 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
-  <h1 class="title">BD xxx : Normalisation</h1>
-  <p class="subtitle"><a href="https://s-v-b.github.io/MA15Y030/">Bases de Données Licences MIASHS et Mathématiques</a></p>
+  <h1 class="title">Normalisation II : Décomposition FN3</h1>
+  <p class="subtitle">Pertes de Dépendances Fonctionnelles. Décomposition FN3</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -347,166 +370,323 @@
     </div>
 </div>
 
+  <p class="date">2024-11-29</p>
 </section><section id="TOC">
 <nav role="doc-toc"> 
 <h2 id="toc-title">Plan</h2>
 <ul>
-<li><a href="#/problème" id="/toc-problème">Problème</a></li>
-<li><a href="#/dépendances-fonctionnelles" id="/toc-dépendances-fonctionnelles">Dépendance(s) fonctionnelle(s)</a></li>
-<li><a href="#/fermeture-dun-ensemble-dattributs" id="/toc-fermeture-dun-ensemble-dattributs">Fermeture d’un ensemble d’attributs</a></li>
-<li><a href="#/formme-normale-de-boyce-codd-fnbc" id="/toc-formme-normale-de-boyce-codd-fnbc">Formme Normale de Boyce-Codd (FNBC)</a></li>
-<li><a href="#/perte-dinformations" id="/toc-perte-dinformations">Perte d’information(s)</a></li>
+<li><a href="#/décompositions-rappels" id="/toc-décompositions-rappels">Décompositions : rappels</a></li>
+<li><a href="#/projection-dun-ensemble-de-dépendances-fonctionnelles" id="/toc-projection-dun-ensemble-de-dépendances-fonctionnelles">Projection d’un ensemble de dépendances fonctionnelles</a></li>
 <li><a href="#/perte-de-dépendances-fonctionnelles" id="/toc-perte-de-dépendances-fonctionnelles">Perte de dépendances fonctionnelles</a></li>
+<li><a href="#/détection-de-perte-de-df" id="/toc-détection-de-perte-de-df">Détection de perte de DF</a></li>
+<li><a href="#/décomposition-fnbc-et-pertes-de-df" id="/toc-décomposition-fnbc-et-pertes-de-df">Décomposition FNBC et pertes de DF</a></li>
+<li><a href="#/couverture-irredondante-dun-ensemble-de-df" id="/toc-couverture-irredondante-dun-ensemble-de-df">Couverture irredondante d’un ensemble de DF</a></li>
 <li><a href="#/forme-normale-3-fn3" id="/toc-forme-normale-3-fn3">Forme Normale 3 (FN3)</a></li>
+<li><a href="#/algorithme-de-décomposition-en-fn3" id="/toc-algorithme-de-décomposition-en-fn3">Algorithme de Décomposition en FN3</a></li>
+<li><a href="#/au-delà-des-dfs" id="/toc-au-delà-des-dfs">Au delà des DFs</a></li>
 <li><a href="#/fin" id="/toc-fin">Fin</a></li>
 </ul>
 </nav>
 </section>
-<section>
-<section id="problème" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Problème</h1>
+<section id="décompositions-rappels" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Décompositions : rappels</h1>
 
 </section>
-<section class="slide level2 center">
 
+<section>
+<section id="projection-dun-ensemble-de-dépendances-fonctionnelles" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Projection d’un ensemble de dépendances fonctionnelles</h1>
+
+</section>
+<section id="projection-dun-ensemble-de-df" class="slide level2 center">
+<h2>Projection d’un ensemble de DF</h2>
+<p>Soientt <span class="math inline">\(\mathcal{A}\)</span> un schéma de relation (<span class="math inline">\(\mathcal{A}\)</span> est un ensemble d’attributs) et <span class="math inline">\(\Sigma\)</span> un ensemble de DF sur <span class="math inline">\(\mathcal{A}\)</span></p>
+<p>Soit <span class="math inline">\(\mathcal{A}_1\subset  \mathcal{A}\)</span> un sous-ensemble d’attributs</p>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p><span class="math display">\[\pi_{\mathcal{A}_1}(\Sigma)=\left\{ X\to Y \mid \Sigma\models X\to Y \text{ et } X,Y\subset \mathcal{A}_1\right\}\]</span></p>
+</div>
+</div>
+</div>
+
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Caractérisation</strong></p>
+</div>
+<div class="callout-content">
+<p>Si <span class="math inline">\(X\subset {\mathcal{A}}_1\)</span> on a l’équivalence <span class="math display">\[X\to Y \in \pi_{{\mathcal{A}}_1}(\Sigma) \iff Y\subset\left\{X\right\}^+∩{\mathcal{A}}_1\]</span></p>
+</div>
+</div>
+</div>
+<aside><div>
+<p><span class="math inline">\(\pi_{\mathcal{A}_1}(\Sigma)\)</span> est l’ensemble des DF de la forme <span class="math inline">\(X\to Y\)</span> impliquées par <span class="math inline">\(\Sigma\)</span> et telles que <span class="math inline">\(X\subset \mathcal{A}_1\)</span> et <span class="math inline">\(Y\subset \mathcal{A}_1\)</span></p>
+</div></aside></section>
+<section id="exemple" class="slide level2 center">
+<h2>Exemple</h2>
 <ul>
-<li><p>Redondance</p></li>
-<li><p>Maintenance</p></li>
+<li><p><span class="math inline">\({\mathcal{A}}=\left\{A,B,C\right\}\)</span> et <span class="math inline">\(\Sigma=\left\{A\to B, B\to C, C\to A\right\}\)</span></p></li>
+<li><p><span class="math inline">\(\pi^{}_{\left\{A,B\right\}}(\Sigma)\)</span> est équivalent à <span class="math inline">\(\left\{A\to B, B\to A\right\}\)</span></p></li>
 </ul>
 </section>
-<section class="slide level2 center">
+<section id="calcul-de-pi_mathcala_1sigma" class="slide level2 center">
+<h2>Calcul de <span class="math inline">\(\pi_{{\mathcal{A}}_1}(\Sigma)\)</span></h2>
+<p>On calcule un ensemble de DF équivalent à <span class="math inline">\(\pi_{\mathcal{A}_1}(\Sigma)\)</span></p>
+<div class="pseudocode-container quarto-float" data-no-end="false" data-line-number="true" data-line-number-punc=":" data-indent-size="1.2em" data-pseudocode-number="1" data-comment-delimiter="//" data-caption-prefix="Algorithme">
+<div class="pseudocode">
+\begin{algorithm} \caption{Projection de DF} \begin{algorithmic} \Procedure{Projection}{$\mathcal{A}_1, Σ$} \State P ← ∅ \For{$X ⊂ \mathcal{A}_1$, $X ≠ ∅$, $X ≠ \mathcal{A}_1$} \State Y ← $X^+ ∩ \mathcal{A}_1$ \State P ← P ∪ $\{ X → Y\}$ \EndFor \Return P \EndProcedure \end{algorithmic} \end{algorithm}
+</div>
+</div>
 
-</section></section>
-<section>
-<section id="dépendances-fonctionnelles" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Dépendance(s) fonctionnelle(s)</h1>
-
-</section>
-<section id="définition-df" class="slide level2 center">
-<h2>Définition : DF</h2>
-</section>
-<section id="règles-darmstrong" class="slide level2 center scrollable">
-<h2>Règles d’Armstrong</h2>
-<ol type="1">
-<li>…</li>
-<li>…</li>
-<li>…</li>
-</ol>
-</section>
-<section id="équivalence-entre-ensembles-de-dépendances-fonctionnelles" class="slide level2 center">
-<h2>Équivalence entre ensembles de dépendances fonctionnelles</h2>
-</section>
-<section class="slide level2 center">
-
-</section></section>
-<section>
-<section id="fermeture-dun-ensemble-dattributs" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Fermeture d’un ensemble d’attributs</h1>
-
-</section>
-<section id="définition" class="slide level2 center">
-<h2>Définition</h2>
-<p><span class="math inline">\(X^+\)</span></p>
-</section>
-<section id="définition-super-clé" class="slide level2 center">
-<h2>Définition : super-clé</h2>
-<p><span class="math inline">\(X \subseteq \mathcal{A}\)</span> est une super-clé de <span class="math inline">\(\mathcal{A}\)</span> relativement à <span class="math inline">\(\Sigma\)</span> ssi <span class="math inline">\(X^+ =\mathcal{A}\)</span></p>
-</section>
-<section id="définition-clé" class="slide level2 center">
-<h2>Définition : clé</h2>
-<p>Une clé est une super-clé minimale au sens de l’inclusion</p>
-</section>
-<section class="slide level2 center">
-
-</section></section>
-<section>
-<section id="formme-normale-de-boyce-codd-fnbc" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Formme Normale de Boyce-Codd (FNBC)</h1>
-
-</section>
-<section id="définition-1" class="slide level2 center">
-<h2>Définition</h2>
-<p>Soit <span class="math inline">\(\mathcal{A}\)</span> un schéma et <span class="math inline">\(\Sigma\)</span> un ensemble de dépendances fonctionnelles sur <span class="math inline">\(\mathcal{A}\)</span>,</p>
-<p>le schéma <span class="math inline">\(\mathcal{A}\)</span> est en FNBC</p>
-<p>ssi</p>
-<p>pour toute dépendance fonctionnelle <span class="math inline">\(X \rightarrow Y\)</span> <em>non-triviale</em> impliquée par <span class="math inline">\(\Sigma\)</span>, <span class="math inline">\(X\)</span> est une super-clé de <span class="math inline">\(\mathcal{A}\)</span>, soit <span class="math inline">\(\mathcal{A} \subseteq X^+\)</span></p>
-</section>
-<section id="exemples-et-contre-exemples" class="slide level2 center">
-<h2>Exemples et contre-exemples</h2>
-</section>
-<section id="proposition" class="slide level2 center">
-<h2>Proposition</h2>
-<p>Tout schéma à deux attributs est en FNBC</p>
-</section>
-<section id="vérification-de-la-normalité" class="slide level2 center">
-<h2>Vérification de la normalité</h2>
-</section>
-<section id="définition-décomposirion" class="slide level2 center">
-<h2>Définition : décomposirion</h2>
-</section>
-<section id="algorithme-de-décomposition-en-fnbc" class="slide level2 center">
-<h2>Algorithme de décomposition en FNBC</h2>
-</section>
-<section id="proposition-1" class="slide level2 center">
-<h2>Proposition</h2>
+<aside><div>
+<p>L’ensemble de DF obtenu est équivalent à <span class="math inline">\(\pi_{{\mathcal{A}}_1}(\Sigma)\)</span><br>
+<span class="alert">Très coûteux !</span> Le nombre de sous-ensembles <span class="math inline">\(X\)</span> considérés est <span class="math inline">\(2^{\#{\mathcal{A}}_1}-2\)</span></p>
+</div></aside></section>
+<section id="exemple-1" class="slide level2 smaller center">
+<h2>Exemple</h2>
 <ul>
-<li><p>L’algorithme termine en un nombre fini d’itérations</p></li>
-<li><p>Le résultat est une décomposition en FNBC</p></li>
+<li><span class="math inline">\({\mathcal{A}}=\left\{A,B,C,D,E\right\}\)</span> et <span class="alert"><span class="math inline">\(\Sigma=\left\{A\to C, BC\to D, AD\to E\right\}\)</span></span></li>
 </ul>
-</section>
-<section class="slide level2 center">
-
-</section></section>
-<section>
-<section id="perte-dinformations" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Perte d’information(s)</h1>
-
-</section>
-<section id="définition-décomposition-sans-perte-dinformation" class="slide level2 center">
-<h2>Définition : Décomposition sans Perte d’Information</h2>
-</section>
-<section id="algorithme-de-poursuite-chase-pour-détecter-la-perte-dinformation" class="slide level2 center">
-<h2>Algorithme de poursuite (<em>chase</em>) pour détecter la perte d’information</h2>
-</section>
-<section id="proposition-2" class="slide level2 center">
-<h2>Proposition</h2>
-</section>
-<section class="slide level2 center">
-
+<div class="fragment">
 <ul>
-<li><p>L’algorithme de poursuite termine en un nombre fini d’itérations</p></li>
-<li><p>L’algorithme est correct</p></li>
+<li><span class="math inline">\(\pi_{AC}(\Sigma)\)</span> est équivalent à <span class="math inline">\(\left\{A\to C\right\}\)</span> car<br>
+<span class="math inline">\(\left\{A\right\}^+=\left\{A,C\right\}\)</span> et <span class="math inline">\(\left\{C\right\}^+=\left\{C\right\}\)</span></li>
 </ul>
-</section>
-<section id="preuve-terminaison" class="slide level2 center">
-<h2>Preuve (terminaison)</h2>
-</section>
-<section id="preuve-correction" class="slide level2 center">
-<h2>Preuve (correction)</h2>
-</section>
-<section id="proposition-3" class="slide level2 center">
-<h2>Proposition</h2>
-<p>L’algorithme de décomposition en FNBC fournit une décomposition sans Perte d’Information</p>
-</section>
-<section id="preuve" class="slide level2 center">
-<h2>Preuve</h2>
-</section>
-<section class="slide level2 center">
-
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(\pi_{ABD}(\Sigma)\)</span> est équivalent à <span class="math inline">\(\left\{AB\to D\right\}\)</span> car<br>
+<span class="math inline">\(\left\{A\right\}^+=\left\{A,C\right\}\)</span>, <span class="math inline">\(\left\{B\right\}^+=\left\{D\right\}\)</span>, <span class="math inline">\(\left\{D\right\}^+=\left\{D\right\}\)</span>,<br>
+<span class="math inline">\(\left\{A,B\right\}^+=\left\{A,B,C,D,E\right\}\)</span>, <span class="math inline">\(\left\{A,D\right\}^+=\left\{A,D,C,E\right\}\)</span>, <span class="math inline">\(\left\{B,D\right\}^+=\left\{B,D\right\}\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li><span class="math inline">\(\pi_{ABCE}(\Sigma)\)</span> est équivalent à <span class="math inline">\(\left\{A\to C, AB \to CE, AE\to C, ABC\to E, ABE\to C\right\}\)</span><br>
+<span class="math inline">\(A^+=AC \quad B^+=B \quad C^+=C \quad E^+=E\)</span><br>
+<span class="math inline">\(AB^+=ABCDE \quad AC^+=AC \quad AE^+=AEC\)</span><br>
+<span class="math inline">\(BC^+=BCD \quad BE^+=BE \quad CE^+=CE\)</span><br>
+<span class="math inline">\(ABC^+=ABCDE \quad ABE^+=ABECD\)</span><br>
+<span class="math inline">\(BCE^+=BCED \quad ACE^+=ACE\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Simplification&nbsp;: <span class="math inline">\(\pi_{ABCE}(\Sigma)\)</span> équivaut à <span class="math inline">\(\left\{A\to C, AB\to E\right\}\)</span></li>
+</ul>
+</div>
 </section></section>
 <section>
 <section id="perte-de-dépendances-fonctionnelles" class="title-slide slide level1 center" data-background-color="#1c191c">
 <h1>Perte de dépendances fonctionnelles</h1>
 
 </section>
-<section id="définition-projection-dune-dépendance-fonctionnelle-sur-un-sous-schéma" class="slide level2 center">
-<h2>Définition : Projection d’une dépendance fonctionnelle sur un sous-schéma</h2>
+<section id="préservation-de-dépendances-fonctionnelles" class="slide level2 center">
+<h2>Préservation de dépendances fonctionnelles</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>Soit <span class="math inline">\(\mathcal{A}\)</span> un schéma de relation et <span class="math inline">\(\Sigma\)</span> un ensemble de DF sur <span class="math inline">\(\mathcal{A}\)</span>.</p>
+<p>Soit <span class="math inline">\(\left\{ \mathcal{A}_1,\dots, \mathcal{A}_k\right\}\)</span> une décomposition du schéma <span class="math inline">\(\mathcal{A}\)</span> (<span class="math inline">\(\mathcal{A}_i\neq \emptyset, 1\leq i\leq k\)</span> et <span class="math inline">\(\mathcal{A}= \bigcup_{i=1}^k \mathcal{A}_i\)</span>)</p>
+<p>La décomposition <span class="math inline">\(\left\{\mathcal{A}_1,\dots, \mathcal{A}_k\right\}\)</span> <em>préserve</em> <span class="math inline">\(\Sigma\)</span> si l’ensemble des <em>dépendances fonctionnelles locales</em> <span class="math inline">\(\bigcup_{i=1}^k \pi_{\mathcal{A}_i}(\Sigma)\)</span> est équivalent à <span class="math inline">\(\Sigma\)</span></p>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Puisque <span class="math inline">\(\Sigma ⊧ \bigcup_{i=1}^k \pi_{\mathcal{A}_i}(\Sigma)\)</span>, la décomposition préserve <span class="math inline">\(\Sigma\)</span> si et seulement si toutes les DF de <span class="math inline">\(\Sigma\)</span> sont impliquées par les DF locales</p>
+</div></aside></section>
+<section id="exemple-perte-de-dépendance-fonctionnelle" class="slide level2 center">
+<h2>Exemple : perte de dépendance fonctionnelle</h2>
+</section></section>
+<section>
+<section id="détection-de-perte-de-df" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Détection de perte de DF</h1>
+
 </section>
-<section id="définition-perte-de-dépendance-fonctionnelle" class="slide level2 center">
-<h2>Définition : perte de dépendance fonctionnelle</h2>
+<section id="algorithme-pour-tester-si-bigcup_i1k-pi_mathcala_isigma-models-x-rightarrow-y" class="slide level2 smaller center">
+<h2>Algorithme pour tester si <span class="math inline">\(\bigcup_{i=1}^k \pi_{\mathcal{A}_i}(\Sigma) \models X \rightarrow Y\)</span></h2>
+</section>
+<section id="section" class="slide level2 smaller center">
+<h2></h2>
+<div class="pseudocode-container quarto-float" data-no-end="false" data-line-number="true" data-line-number-punc=":" data-indent-size="1.2em" data-pseudocode-number="1" data-comment-delimiter="//" data-caption-prefix="Algorithme">
+<div class="pseudocode">
+\begin{algorithm} \caption{X → Y est-elle impliquée par les dépendances projetées?} \begin{algorithmic} \Procedure{Implique}{$\left\{ \mathcal{A}_1,\dots, \mathcal{A}_k\right\}, Σ, X, Y$} \State Z ← X \State continuer ← \True \While{continuer} \State $W ← Z$ \For{i ∈ 1, ..., k} \State $W ← W ∪ \bigl((W ∩ \mathcal{A}_i)^+ ∩ \mathcal{A}_i\bigr)$ \EndFor \If{W ≠ Z} \State Z ← W \Else \State continuer ← \False \EndIf \EndWhile \If{Y ⊆ Z} \Return \True \Else \Return \False \EndIf \EndProcedure \end{algorithmic} \end{algorithm}
+</div>
+</div>
+</section>
+<section id="exemple-i" class="slide level2 smaller center scrollable">
+<h2>Exemple I</h2>
+<ul>
+<li><p><span class="math inline">\(\mathcal{A}=\left\{A,B,C,D\right\}\)</span>,</p></li>
+<li><p><span class="math inline">\(\mathcal{A}_1=\left\{A,B\right\}\)</span>, <span class="math inline">\(\mathcal{A}_2=\left\{B,C\right\}\)</span>, <span class="math inline">\(\mathcal{A}_3=\left\{C,D\right\}\)</span></p></li>
+<li><p><span class="math inline">\(\Sigma=\left\{A\to B, B\to C, C\to D, D\to A\right\}\)</span></p></li>
+<li><p>Est-ce que la décomposition <span class="math inline">\(\left\{\mathcal{A}_1,\mathcal{A}_2,\mathcal{A}_3\right\}\)</span> préserve <span class="math inline">\(\Sigma\)</span> ?</p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li>Les DF locales impliquent <span class="math inline">\(A\to B\)</span>, <span class="math inline">\(B\to C\)</span>, <span class="math inline">\(C\to D\)</span> (ce sont DF locales)</li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Est-ce que les DF locales impliquent <span class="math inline">\(D\to A\)</span> ?</li>
+</ul>
+</div>
+<div class="fragment">
+<p>Commencer avec <span class="math inline">\(Z ← \{D\}\)</span></p>
+<div>
+<ol type="1">
+<li class="fragment"><p><span class="math inline">\((\{D\}∩\{CD\})^+ ∩ \{CD\}=\{D\}^+ ∩\{CD\}=\{DABC\} ∩ \{CD\}=\{CD\}\)</span>, ajouter <span class="math inline">\(C\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\((\{DC\}∩ \{BC\})^+ ∩ \{BC\}=\{C\}^+ ∩ \{BC\}=\{CDAB\}∩ \{BC=B\}\)</span>, ajouter <span class="math inline">\(B\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\((\{DCB\}∩ \{AB\})^+ ∩ \{AB\}=\{B\}^+ ∩ \{AB\}=\{BCDA\} ∩ \{AB\}\)</span>, ajouter <span class="math inline">\(A\)</span></p></li>
+<li class="fragment"><p><span class="math inline">\(\{DCBA\}\)</span> contient <span class="math inline">\(A\)</span> donc <span class="math inline">\(D\to A\)</span> est préservée</p></li>
+</ol>
+</div>
+</div>
+</section>
+<section id="exemple-ii" class="slide level2 smaller center scrollable">
+<h2>Exemple II</h2>
+<ul>
+<li><p><span class="math inline">\(\mathcal{A}=\)</span> <code>{Ville, CP, Rue, Numero}</code></p></li>
+<li><p><span class="math inline">\(\Sigma=\)</span> <code>{ CP →  Ville, {Ville, Rue, Numero} → CP}</code></p></li>
+<li><p><span class="math inline">\(\mathcal{A}_1=\)</span> <code>{Ville, CP}</code> <span class="math inline">\(\mathcal{A}_2=\)</span> <code>{Rue, Numero, CP}</code></p></li>
+<li><p>Est-ce que la décomposition <span class="math inline">\(\{\mathcal{A}_1, \mathcal{A}_2 \}\)</span> préserve <span class="math inline">\(\Sigma\)</span> ?</p></li>
+</ul>
+<div class="fragment">
+<ul>
+<li><code>CP →  Ville</code> est préservée car elle est locale à <span class="math inline">\(\mathcal{A}_1\)</span></li>
+</ul>
+</div>
+<div class="fragment">
+<ul>
+<li>Est-ce que <code>{Ville, Rue, Numero} → CP</code> est préservée par <span class="math inline">\(\mathcal{A}_1, \mathcal{A}_2\)</span> ?</li>
+</ul>
+</div>
+<div class="fragment">
+<p><code>Z ← {Ville, Rue, Numero}</code></p>
+<ol type="1">
+<li><p><span class="math inline">\((\texttt{Z} ∩ \texttt{{Ville, CP}})^+\)</span> ∩ <code>{Ville, CP}</code> = <code>{Ville}</code> <em>rien à ajouter</em></p></li>
+<li><p><span class="math inline">\((\texttt{Z} ∩ \texttt{{Rue, Numero, CP}})^+\)</span> ∩ <code>{Rue, Numero, CP}</code> = <code>{Rue, Numero}</code>, <em>rien à ajouter</em></p></li>
+</ol>
+</div>
+<div class="fragment">
+<p>Donc <code>Ville, Rue, Numero → CP</code> n’est pas préservée <i class="fa-solid fa-frown" aria-label="frown"></i></p>
+</div>
+</section></section>
+<section>
+<section id="décomposition-fnbc-et-pertes-de-df" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Décomposition FNBC et pertes de DF</h1>
+
+</section>
+<section id="rappels" class="slide level2 center">
+<h2>Rappels</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>TODO</p>
+</div>
+</div>
+</div>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Proposition</strong></p>
+</div>
+<div class="callout-content">
+<p>TODO</p>
+</div>
+</div>
+</div>
+</section>
+<section id="limites-de-la-décomposition-fnbc" class="slide level2 center">
+<h2>Limites de la décomposition FNBC</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Il existe des couples schéma/Ensemble de DFs (<span class="math inline">\(\mathcal{A}, \Sigma\)</span>) pour lesquels toute décomposition FNBC entraine une perte de Dépendance Fonctionnell</p>
+</div>
+</div>
+</div>
+</section>
+<section id="section-1" class="slide level2 smaller center">
+<h2></h2>
+<p><span class="math inline">\(\mathcal{A} =\)</span> <code>{Ville, Rue, Numéro, #Bureau_vote}</code></p>
+<p><code>Σ = { Ville, Nom, Rue → #Bureau_vote,  #Bureau_vote  →  Ville }</code></p>
+<div class="fragment">
+<p>Deux clés <code>Ville, Nom, Rue</code> et <code>#Bureau_vote, Nom, Rue</code></p>
+</div>
+<div class="fragment">
+<p><code>#Bureau_vote  →  Ville</code> ne satisfait pas le critère FNBC</p>
+</div>
+<div class="fragment">
+<p>L’algorithme de décomposition en FNBC conduit à la décomposition <code>{#Bureau_vote,Ville}</code> et <code>{#Bureau_vote, Nom, Rue}</code></p>
+<p>La DF <code>Ville, Nom, Rue → #Bureau_vote</code> n’est pas préservée</p>
+<p>La décomposition préserve l’information (SPI) mais pas les dépendances fonctionnelles.</p>
+</div>
+</section>
+<section id="limites-de-la-décomposition-fnbc-suite" class="slide level2 center">
+<h2>Limites de la décomposition FNBC (suite)</h2>
+<p>On peut vérifier que <em>toute</em> décomposition FNBC de <span class="math inline">\(\mathcal{A}\)</span> ne préserve pas les dépendances fonctionnelles.</p>
+<p><code>TODO</code></p>
+</section></section>
+<section>
+<section id="couverture-irredondante-dun-ensemble-de-df" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Couverture irredondante d’un ensemble de DF</h1>
+
 </section>
 <section class="slide level2 center">
 
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>Soit <span class="math inline">\(\Sigma\)</span> un ensemble de DF, une <em>couverture minimale/irredondante</em> de <span class="math inline">\(\Sigma\)</span> est un ensemble <span class="math inline">\(\Sigma'\)</span> de DF qui vérifie :</p>
+<ul>
+<li><p>Chaque DF de <span class="math inline">\(\Sigma'\)</span> est de la forme <span class="math inline">\(X → A\)</span>, où <span class="math inline">\(A\)</span> est un attribut</p></li>
+<li><p><span class="math inline">\(\Sigma'\)</span> et <span class="math inline">\(\Sigma\)</span> sont équivalents (<span class="math inline">\(\Sigma \models \Sigma'\)</span> et <span class="math inline">\(\Sigma' \models \Sigma\)</span>)</p></li>
+<li><p>Aucun sous-ensemble propre de <span class="math inline">\(\Sigma'\)</span> n’implique <span class="math inline">\(\Sigma\)</span></p></li>
+<li><p>Pour toute dépendance <span class="math inline">\(X → A\)</span> de <span class="math inline">\(\Sigma'\)</span>, il n’existe pas de sous-ensemble propre <span class="math inline">\(Ym\subset X\)</span> tel que <span class="math inline">\(\Sigma ⊧ Y→ A\)</span></p></li>
+</ul>
+</div>
+</div>
+</div>
 </section></section>
 <section>
 <section id="forme-normale-3-fn3" class="title-slide slide level1 center" data-background-color="#1c191c">
@@ -515,12 +695,88 @@
 </section>
 <section id="définition-forme-normale-3-fn3" class="slide level2 center">
 <h2>Définition : forme normale 3 (FN3)</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Important</strong></p>
+</div>
+<div class="callout-content">
+<p>Un schéma relationnel <span class="math inline">\(\mathcal{A}\)</span> est en forme normale 3 (FN3) relativement à un ensemble de DF Σ ssi pour toute dépendance non triviale <code>X → Y</code>de Σ, on a</p>
+<ul>
+<li>le membre gauche <code>X</code> est une super-clé <em>ou</em></li>
+<li>le membre droit <code>Y</code> fait partie d’une clé</li>
+</ul>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>Le schéma <span class="math inline">\(\mathcal{A} =\)</span> <code>{Ville, Rue, Numéro, #Bureau_vote}</code> est en FN3 relativement à <code>Σ = { Ville, Nom, Rue → #Bureau_vote,  #Bureau_vote  →  Ville }</code></p>
+<p>Mais ce schéma n’est pas en FNBC.</p>
+</div></aside></section>
+<section id="pourquoi-deux-notions-de-forme-normale" class="slide level2 center">
+<h2>Pourquoi deux notions de forme normale ?</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Proposition</strong></p>
+</div>
+<div class="callout-content">
+<p>Si un schéma <span class="math inline">\(\mathcal{A}\)</span> est en forme normale Boyce-Codd (FNBC) relativement à un ensemble de DF Σ, alors <span class="math inline">\(\mathcal{A}\)</span> est en forme normale 3 (FN3) relativement à Σ</p>
+</div>
+</div>
+</div>
+
+<aside><div>
+<p>La réciproque est fausse</p>
+</div></aside></section>
+<section id="exercice" class="slide level2 center">
+<h2>Exercice</h2>
+<p><span class="math inline">\(\mathcal{A}=\)</span> <code>(A, B, C, D, E)</code> et <code>Σ={A → C, BC → D, AD → E}</code></p>
+<ul>
+<li>Quelles sont les clés ?</li>
+<li>Le schéma est-il en FNBC ?</li>
+<li>Si non, propopsez une décomposition SPI en FNBC. Est-elle sans perte de DF?</li>
+<li>Le schéma est-il en FN3 ?</li>
+</ul>
 </section>
-<section id="algorithme-de-décomposition-en-fn3" class="slide level2 center">
-<h2>Algorithme de Décomposition en FN3</h2>
+<section id="intérêt-de-la-forme-normale-3-fn3" class="slide level2 center">
+<h2>Intérêt de la forme normale 3 (FN3)</h2>
+<p>Redondance limitée</p>
+<div class="fragment">
+<p>Possibilité de décomposition SPI et sans perte de Dépendances Fonctionnelles</p>
+</div>
+</section></section>
+<section>
+<section id="algorithme-de-décomposition-en-fn3" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Algorithme de Décomposition en FN3</h1>
+
 </section>
-<section id="proposition-4" class="slide level2 center">
+<section id="algorithme" class="slide level2 smaller center">
+<h2>Algorithme</h2>
+<div class="pseudocode-container quarto-float" data-no-end="false" data-line-number="true" data-line-number-punc=":" data-indent-size="1.2em" data-pseudocode-number="1" data-comment-delimiter="//" data-caption-prefix="Algorithme">
+<div class="pseudocode">
+\begin{algorithm} \caption{Décomposition FN3} \begin{algorithmic} \Procedure{Décomposition_FN3}{$\mathcal{A}, Σ$} \EndProcedure \end{algorithmic} \end{algorithm}
+</div>
+</div>
+</section>
+<section id="proposition-2" class="slide level2 center">
 <h2>Proposition</h2>
+<div class="callout callout-important callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Proposition</strong></p>
+</div>
+<div class="callout-content">
 <p>L’algorithme termine en un nombre fini d’itérations</p>
 <p>La décomposition produite par l’algorithme est</p>
 <ul>
@@ -528,8 +784,11 @@
 <li><p>sans perte d’information</p></li>
 <li><p>sans perte de dépendances fonctionnelles</p></li>
 </ul>
+</div>
+</div>
+</div>
 </section>
-<section id="preuve-terminaison-1" class="slide level2 center">
+<section id="preuve-terminaison" class="slide level2 center">
 <h2>Preuve (terminaison)</h2>
 </section>
 <section id="preuve-fn3" class="slide level2 center">
@@ -540,28 +799,29 @@
 </section>
 <section id="preuve-sans-perte-de-df" class="slide level2 center">
 <h2>Preuve (sans perte de DF)</h2>
-</section>
-<section class="slide level2 center">
-
 </section></section>
+<section id="au-delà-des-dfs" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Au delà des DFs</h1>
+
+</section>
+
 <section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
 <h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
-<p><img src="../images/logo.png" class="slide-logo"></p>
 <div class="footer footer-default">
 <p><a href="http://s-v-b.github.io/MA15Y030">MA15Y030</a> – Bases de Données – L3 MIASHS – UParis Cité</p>
 </div>
 </div>
 <div class="reveal-header">
-<div class="header-logo" data-header-logo-link="https://revealjs.com">
-<img data-src="../images/reveal_logo.svg">
+<div class="header-logo" data-header-logo-link="https://u-paris.fr">
+<img data-src="../images/logo.png">
 </div>
 <div class="sc-title">
 <p> </p>
 </div>
 <div class="header-text">
-<p>Bases de Données</p>
+<p>Pertes de Dépendances Fonctionnelles. Décomposition FN3</p>
 </div>
 <div class="sb-title">
 <p> </p>
@@ -1124,6 +1384,38 @@
       }
     });
     </script>
+        <script type="text/javascript">
+        (function(d) {
+          d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+            let pseudocodeOptions = {
+              indentSize: el.dataset.indentSize || "1.2em",
+              commentDelimiter: el.dataset.commentDelimiter || "//",
+              lineNumber: el.dataset.lineNumber === "true" ? true : false,
+              lineNumberPunc: el.dataset.lineNumberPunc || ":",
+              noEnd: el.dataset.noEnd === "true" ? true : false,
+              titlePrefix: el.dataset.captionPrefix || "Algorithm"
+            };
+            pseudocode.renderElement(el.querySelector(".pseudocode"), pseudocodeOptions);
+          });
+        })(document);
+        (function(d) {
+          d.querySelectorAll(".pseudocode-container").forEach(function(el) {
+            let captionSpan = el.querySelector(".ps-root > .ps-algorithm > .ps-line > .ps-keyword")
+            if (captionSpan !== null) {
+              let captionPrefix = el.dataset.captionPrefix + " ";
+              let captionNumber = "";
+              if (el.dataset.pseudocodeNumber) {
+                captionNumber = el.dataset.pseudocodeNumber + " ";
+                if (el.dataset.chapterLevel) {
+                  captionNumber = el.dataset.chapterLevel + "." + captionNumber;
+                }
+              }
+              captionSpan.innerHTML = captionPrefix + captionNumber;
+            }
+          });
+        })(document);
+        </script>
+      
     
 
 </body></html>

@@ -2,6 +2,10 @@
 title: "BD IV: SQL III"
 subtitle: "Langage Manipulation de Données 3 : Aggrégation/Fenêtres/Partitions"
 date: "2024-09-27"
+
+format: 
+  revealjs:
+    header: "Requêtes SQL : Aggrégation/Fenêtres/Partition"
 ---
 
 
@@ -89,7 +93,9 @@ FROM Livraison L, Piece P
 WHERE L.NomP=P.NomP AND L.NomF = 'FastDelivery';
 ```
 
----
+
+
+##   {visibility="hidden"}
 
 ![](/images/prod-liv-fourn.png)
 
@@ -110,6 +116,7 @@ maximum des valeurs prises par `<nomattribut>`
 
 . . .
 
+
 ```{.sql}
 MIN (<nomattribut>)  
 ```
@@ -117,8 +124,15 @@ MIN (<nomattribut>)
 minimum des valeurs prises par  `<nomattribut>` 
 
 
+::: {.callout-caution}
+
+### {{< fa mug-hot >}}
 
 Attention aux valeurs nulles !
+
+`NULL = MIN(NULL, 3, 100)` ou `3 = MIN(NULL, 3, 100)` ?
+
+:::
 
 . . .
 
@@ -131,10 +145,7 @@ WHERE NomP = 'x21';
 ```
 
 
-![](/images/prod-liv-fourn.png)
-
-
-
+<!-- ![](/images/prod-liv-fourn.png) -->
 
 
 
@@ -167,9 +178,7 @@ WHERE NomP = 'x21';
 ```
 
 
-![](/images/prod-liv-fourn.png)
-
-
+<!-- ![](/images/prod-liv-fourn.png) -->
 
 
 ## Fonctions de calcul  : exemples
@@ -178,7 +187,12 @@ Exemple de combinaison de quelques opérations et fonctions
 
 Nom des fournisseurs ayant effectué plus de $10$ livraisons.
 
-```{.sql}
+. . .
+
+```{sql}
+--| eval: false
+--| echo: false
+--| code-line-numbers: "1-2|4-6|"
 SELECT F.NomF 
 FROM Fournisseur F 
 WHERE (
@@ -188,22 +202,53 @@ WHERE (
 ) >= 10;  
 ```
 
-![](/images/prod-liv-fourn.png)
+<!-- ![](/images/prod-liv-fourn.png) -->
 
 
 ## Musée des horreurs   {.smaller}
 
-
+Trouver les régions où au moins un pays possède une espérance de vie inférieure à `50`
 
 ```{.sql}
 SELECT DISTINCT continent, region
 FROM country c 
-WHERE (SELECT MIN(d.lifeexpectancy)     
-       FROM country d    
-       WHERE c.region=d.region) < 50    
+WHERE (
+  SELECT MIN(d.lifeexpectancy)     
+  FROM country d    
+  WHERE c.region=d.region
+  ) < 50    
 ORDER BY continent, region;
 ```
 
+|**Continent**    |**Region**                   |
+|:------------|:------------------------|
+|Africa       |Central Africa           |
+|Africa       |Eastern Africa           |
+|Africa       |Northern Africa          |
+|Africa       |Southern Africa          |
+|Africa       |Western Africa           |
+|Asia         |Southeast Asia           |
+|Asia         |Southern and Central Asia|
+|North America|Caribbean                |
+
+
+::: {.aside}
+
+Pourquoi cette requête est-elle horrible ?
+
+:::
+
+
+## {.smaller}
+
+On peut faire plus simple (et plus efficace) dans le case présent
+
+```{.sql}
+SELECT DISTINCT continent, region
+FROM country c 
+WHERE c.lifeexpectancy <50 
+ORDER BY continent, region;
+```
 
 
 |**Continent**    |**Region**                   |
@@ -218,8 +263,34 @@ ORDER BY continent, region;
 |North America|Caribbean                |
 
 
+---
 
-## Fonctions de calcul  : exemples
+Mais si on veut lister les régions où tous les pays ont une espèrance de  vie supérieure à 50 ?
+
+. . .
+
+Pourquoi pas ?
+
+```{.sql}
+SELECT DISTINCT continent, region
+FROM country c 
+WHERE (
+  SELECT MIN(d.lifeexpectancy)     
+  FROM country d    
+  WHERE c.region=d.region
+  ) > 50    
+ORDER BY continent, region;
+```
+
+::: {.aside}
+
+Combien de fois calculez vous l'espérance de minimale pour chaque région ?
+
+:::
+
+
+
+## Fonctions de calcul : exemples
 
 Utilisation d'opérateur arithmétique entre les différents attributs d'un même tuple...  
 
@@ -228,11 +299,9 @@ Prix de revient des commandes livrées par le fournisseur `FD`
 ```{.sql}
 SELECT L.NomP, P.Prix*L.Quantite 
 FROM Livraison F, Piece P 
-WHERE P.NomP=L.NomP AND L.NomF='FD';
+WHERE P.NomP=L.NomP AND
+  L.NomF='FD';
 ```
-
-
-
 
 
 # Partitions,  `GROUP BY` {background-color="#1c191c"}
@@ -254,7 +323,7 @@ Exemple d'utilisation : regrouper les livraisons par numéro de fournisseur et p
 
 
 
-## Partition de résultats de requêtes
+## Partition de résultats de requêtes   {.smaller}
 
 Schéma général
 
@@ -293,8 +362,6 @@ FROM Livraison
 GROUP BY NomF;
 ```
 
-
-
 Livraison
 
 |NomF |  NomP | NumL | Quantite | DateLiv |
@@ -305,8 +372,6 @@ Livraison
 
 
 Les opérateurs (`MAX`, `SUM`, etc) s'appliquent à chaque groupe de relations.
-
-
 
 
 ## Exemple   {.smaller}
@@ -350,14 +415,10 @@ FROM Livraison
 GROUP BY NomP;
 ```
 
-. . .
-
-{{< fa brain >}}
+##
 
 
-
-
-Cette requête n'est pas correcte {{< fa skull >}}
+La requête suivante  requête n'est pas correcte 
 
 ```{.sql}
 SELECT NomF, NomP, MAX(Quantite) 
@@ -367,7 +428,14 @@ GROUP BY NomF;
 
 . . .
 
+::: {.callout-important}
+
+### {{< fa skull >}}
+
 Les attributs présents dans le `SELECT` sont forcémment présents dans le `GROUP BY`.  
+
+:::
+
 
 
 
@@ -437,7 +505,7 @@ Sur les relations d'une base `employé` (tables `Departement`,`Employe`, ...)
 
 
 
-## Retour au musée des horreurs
+## Retour au musée des horreurs  {.smaller}
 
 
 
@@ -463,7 +531,7 @@ ORDER BY continent, region ;
 
 
 
-## Exemple d'aggrégation 
+## Exemple d'aggrégation {visibility="hidden"}
 
 Dans le schéma `world`, 
 
@@ -476,18 +544,33 @@ Dans le schéma `world`,
 
 Une **fonction fenêtre** effectue un calcul sur un (sous)-ensemble de lignes de la table qui sont liées  à la ligne courante. 
 
+. . .
+
+::: {.callout-note}
+
 C'est comparable au type de calcul effectué avec une fonction d'agrégation. 
 
-Mais les fonctions de fenêtre ne regroupement pas les lignes en une seule ligne de sortie. Au contraire, les lignes conservent leurs identités distinctes. En coulisses, la fonction de fenêtre est capable d'accéder à plus que la ligne actuelle du résultat de la requête.
+:::
 
-## Exemple 
+. . .
+
+Mais les fonctions de fenêtre ne regroupement pas les lignes en une seule ligne de sortie. 
+
+Au contraire, les lignes conservent leurs identités distinctes. 
+
+En coulisses, la fonction de fenêtre est capable d'accéder à plus que la ligne actuelle du résultat de la requête.
+
+## Exemple {.smaller}
 
 Dans le schéma `world`, présenter pour chaque pays dont la région comprend le motif 
 `Countries`, l'espérance de vie, l'espérance de vie maximale et minimale dans la région.
 
 
 
-```{.sql}
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "2-3|1-4|"
 SELECT region, name_country, lifeexpectancy, 
 	   min(lifeexpectancy) OVER (PARTITION BY region),  
 	   max(lifeexpectancy) OVER (PARTITION BY region)   
@@ -507,31 +590,40 @@ LIMIT 6 ;
 |Nordic Countries|Faroe Islands         |          78.4|76.5|79.6|
 
 
-## Calculer une fonction fenêtre sans invoquer `OVER (...)`
+## Calculer une fonction fenêtre sans invoquer `OVER (...)`   {.smaller}
 
 
-Pour calculer ce résultat sans fonctions fenêtres, on effectue une partition selon la `region`, une aggrégation par groupe 
-pour calculer `min(lifeexpectancy)` et `max(lifeexpectancy)`
-On obtient une table à trois colonnes `region, min, max`
+Pour calculer ce résultat sans fonctions fenêtres,
 
-Enfin, on calcule une (équi)-jointure avec la table `country` originelle sur  la colonne commune `region`
+1. on effectue une partition selon la `region`, une aggrégation par groupe 
+pour calculer `min(lifeexpectancy)` et `max(lifeexpectancy)`. On obtient une table à trois colonnes.
 
-On projette  le résultat sur les cinq colonnes pertinentes. 
+1. on calcule une (équi)-jointure avec la table `country` originelle sur  la colonne commune `region`
+
+2. on projette  le résultat sur les cinq colonnes pertinentes. 
+
+. . .
+
+```{sql}
+--| eval: false
+--| echo: true
+
+WITH R AS (
+  SELECT region, min(lifeexpectancy) AS minlex, max(lifeexpectancy) AS maxlex
+  FROM country
+  WHERE region LIKE '%Countries' AND lifeexpectancy IS NOT NULL 
+  GROUP BY region
+)
+
+SELECT region, name_country, lifeexpectancy, minlex, maxlex
+FROM country co NATURAL JOIN R
+```
 
 
 
-|Region          | Name of country      |Life expectancy|min |max |
-|----------------|----------------------|--------------|----|----|
-|Baltic Countries|Latvia                |          68.4|68.4|69.5|
-|Baltic Countries|Lithuania             |          69.1|68.4|69.5|
-|Baltic Countries|Estonia               |          69.5|68.4|69.5|
-|Nordic Countries|Denmark               |          76.5|76.5|79.6|
-|Nordic Countries|Finland               |          77.4|76.5|79.6|
-|Nordic Countries|Faroe Islands         |          78.4|76.5|79.6|
 
 
-
-## Variations
+## Variations   {.smaller}
 
 
 ```{.sql}
@@ -556,9 +648,13 @@ LIMIT 6 ;
 |Nordic Countries|Sweden                |          79.6|   2|
 |Nordic Countries|Iceland               |          79.4|   3|
 
+::: {.aside}
 
+Que se passe-t-il avec les valeurs nulles ?
 
-## Sommes cumulées par groupes selon un ordre
+:::
+
+## Sommes cumulées par groupes selon un ordre   {.smaller}
 
 ```{.sql}
 SELECT 
@@ -587,20 +683,31 @@ LIMIT 6;
 
 ---
 
-Les fonctions de fenêtre ne sont autorisées que dans la liste SELECT et la clause ORDER BY de la requête. 
+::: {.callout-caution}
 
-Elles sont interdites ailleurs, par exemple dans les clauses GROUP BY, HAVING et WHERE. 
+Les fonctions de fenêtre ne sont autorisées que dans la liste `SELECT` et la clause `ORDER BY` de la requête. 
+
+Elles sont interdites ailleurs, par exemple dans les clauses `GROUP BY`, `HAVING` et `WHERE`. 
 
 En effet, elles s'exécutent logiquement après le traitement de ces clauses. 
 
-De même, les fonctions de fenêtre s'exécutent après les fonctions d'agrégation habituelles. 
+:::
 
-Cela signifie qu'il est valable d'inclure un appel de fonction d'agrégation 
+. . .
+
+::: {.callout-caution}
+
+De même, les fonctions de fenêtre s'exécutent *après* les fonctions d'agrégation habituelles. 
+
+Cela signifie qu'il est pertinent d'inclure un appel de fonction d'agrégation 
 dans les arguments d'une fonction de fenêtre, mais pas l'inverse.
+
+:::
+
 
 ---
 
-## Exemple  
+## Exemple  {.smaller}
 
 
 Pour chaque continent, afficher les trois pays ayant l'espérance de vie à la naissance la plus élevée
@@ -627,7 +734,7 @@ WHERE pos <= 3;
 
 ---
 
-##  Avec `WITH ...` et les CTEs 
+##  Avec `WITH ...` et les CTEs   {.smaller}
 
 
 ```{.sql}
@@ -674,11 +781,13 @@ FROM (
 	  FROM country c2 
 	  WHERE c2.population_country >= R.mpc
     ) AS S 
-    ON (TRUE)
+  ON (TRUE)
 ) ;
 ```
 
 :::
+
+
 ::: {.column}
 
 
@@ -701,7 +810,7 @@ FROM (
 
 
 
-```
+```{.sql}
 name_country|continent|population_country|
 ------------+---------+------------------+
 China       |Asia     |        1277558000|
@@ -744,7 +853,7 @@ WHERE population_country >= mpc ;
 :::
 ::::: 
 
-```
+```{.sql}
 name_country|continent|population_country|
 ------------+---------+------------------+
 China       |Asia     |        1277558000|
@@ -762,7 +871,7 @@ Afficher les 10 pays les plus peuplés
 ```{.sql}
 WITH S AS (        
 	SELECT c.*, rank() 
-         OVER (ORDER BY population_country DESC) AS rpc  
+    OVER (ORDER BY population_country DESC) AS rpc  
 	FROM world.country c
 )
 
@@ -775,7 +884,7 @@ ORDER BY rpc DESC;
 . . .
 
 
-```
+```{.sql}
 name_country      |continent    |population_country|
 ------------------+-------------+------------------+
 China             |Asia         |        1277558000|
@@ -808,7 +917,10 @@ de tables de contingences (*contingency tables*).
 
 ## `ROLLUP`  {.smaller}
 
-```{.sql}
+```{sql}
+--| echo: true
+--| eval: false
+--| code-line-numbers: "|4"
 SELECT continent, region, max(lifeexpectancy)
 FROM country c 
 WHERE continent LIKE '%America'
@@ -818,6 +930,7 @@ ORDER BY continent, region ;
 
 
 
+```{.sql}
 |Continent    |Region         |max |
 |:------------|:--------------|---:|
 |North America|Caribbean      |78.9|
@@ -827,12 +940,15 @@ ORDER BY continent, region ;
 |South America|South America  |76.1|
 |South America|               |76.1|
 |             |               |79.4|
+```
 
 
+## GROUPING SETS  {.smaller}
 
-## GROUPING SETS
-
-```{.sql}
+```{sql}
+--| echo: true
+--| eval: false
+--| code-line-numbers: "|3"
 SELECT c1, c2, aggregate_function(c3)
 FROM table_name
 GROUP BY GROUPING SETS ((c1, c2), (c1), (c2), ());   
@@ -851,7 +967,7 @@ ORDER BY continent, region ;
 ```
 
 
-
+```{.sql}
 |Continent    |Region         |max |
 |:------------|:--------------|---:|
 |North America|Caribbean      |78.9|
@@ -861,11 +977,14 @@ ORDER BY continent, region ;
 |South America|South America  |76.1|
 |South America|               |76.1|
 |             |               |79.4|
-
+```
 
 ## `CUBE`
 
-```{.sql}
+```{sql}
+--| echo: true
+--| eval: false
+--| code-line-numbers: "|4"
 SELECT c1, c2, c3,
   aggregate (c4) 
 FROM table_name
@@ -875,18 +994,23 @@ GROUP BY CUBE (c1, c2, c3);
 ---
 
 
-```{.sql}
-SELECT continent, region, governmentform, count(*) AS cnt, max(lifeexpectancy)
+```{sql}
+--| echo: true
+--| eval: false
+--| code-line-numbers: "|2,3,6"
+SELECT continent, region, governmentform, 
+       count(*) AS cnt, 
+       max(lifeexpectancy)
 FROM country c 
 WHERE continent LIKE '%America'
 GROUP BY CUBE (continent, region, governmentform)   
 HAVING COUNT(*) > 5;
 ```
 
----
+## {.smaller}
 
 
-```
+```{.sql}
 |Continent    |Region       |Governmentf   |cnt|max |
 |:------------|:------------|:-------------|:--|:---|
 |             |               |                             | 51|79.4|
@@ -920,7 +1044,10 @@ HAVING COUNT(*) > 5;
 ## Compter les formes de gouvernement et les région dans les Amériques  {.smaller}
 
 
-```{.sql}
+```{sql}
+--| echo: true
+--| eval: false
+--| code-line-numbers: "|4,5,8"
 SELECT  
 	   region, 
 	   governmentform, 
@@ -933,8 +1060,10 @@ HAVING COUNT(*) > 0
 ORDER BY region, cnt DESC;
 ```
 
+## Compter les formes de gouvernement et les région dans les Amériques  {.smaller}
 
-```  
+
+```{.sql}  
 region         |governmentform                              |cnt|max |
 ---------------+--------------------------------------------+---+----+
 Caribbean      |                                            | 24|78.9|
@@ -954,7 +1083,7 @@ Caribbean      |Republic                                    |  4|73.4|
 
 
 
-# Résumé
+# Résumé  {background-color="#1c191c"}
 
 
 
@@ -986,7 +1115,7 @@ FROM <relations>             -- la/les table/s qui émettent les données
 
 ### Avis 
 
-All SQL queries will contain some combination of these clauses. If you remember nothing else, remember this!
+Toutes les requêtes  SQL contiennent une combinaison de ces clauses. Retenez au moins cela!
 
 :::
 
