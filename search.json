@@ -682,6 +682,129 @@
     "text": "Overall grading\nThe grade breakdown is as follows:\n\n\n\nTotal\n100 pts\n\n\n\n\nTopic ideas\n5 pts\n\n\nProject proposal\n10 pts\n\n\nPeer review\n10 pts\n\n\nWritten report\n40 pts\n\n\nSlides + video presentation\n20 pts\n\n\nReproducibility + organization\n5 pts\n\n\nVideo comments\n5 pts\n\n\nPeer teamwork evaluation\n5 pts\n\n\n\nNote: No late project reports or videos are accepted.\n\nGrading summary\nGrading of the project will take into account the following:\n\nContent - What is the quality of research and/or policy question and relevancy of data to those questions?\nCorrectness - Are statistical procedures carried out and explained correctly?\nWriting and Presentation - What is the quality of the statistical presentation, writing, and explanations?\nCreativity and Critical Thought - Is the project carefully thought out? Are the limitations carefully considered? Does it appear that time and effort went into the planning and implementation of the project?\n\nA general breakdown of scoring is as follows:\n\n90%-100%: Outstanding effort. Student understands how to apply all statistical concepts, can put the results into a cogent argument, can identify weaknesses in the argument, and can clearly communicate the results to others.\n80%-89%: Good effort. Student understands most of the concepts, puts together an adequate argument, identifies some weaknesses of their argument, and communicates most results clearly to others.\n70%-79%: Passing effort. Student has misunderstanding of concepts in several areas, has some trouble putting results together in a cogent argument, and communication of results is sometimes unclear.\n60%-69%: Struggling effort. Student is making some effort, but has misunderstanding of many concepts and is unable to put together a cogent argument. Communication of results is unclear.\nBelow 60%: Student is not making a sufficient effort.\n\n\n\nLate work policy\nThere is no late work accepted on this project. Be sure to turn in your work early to avoid any technological mishaps."
   },
   {
+    "objectID": "cours-syllabus.html",
+    "href": "cours-syllabus.html",
+    "title": "Syllabus",
+    "section": "",
+    "text": "Télécharger “PDF du syllabus”\n\n\n\n\n\n\nOrganisation\n\n\n\n\n\n\n\n\n\n\n\n\n\nJour\nHoraire\nLieu\n\n\n\n\nCours\nVendredi\n13:15 - 14:45\nOlympe de Gouges Amphi I\n\n\nTD/TP 1\nVendredi\n15:15 - 17:45\nSophie Germain 2004\n\n\nTD/TP 2\nVendredi\n15:15 - 17:45\nSophie Germain 2005\n\n\nTD/TP 3\nVendredi\n15:15 - 17:45\nSophie Germain 2006\n\n\n\n\n\n\n\n\n\n\n\nObjectifs\n\n\n\nAprès avoir suivi ce cours, vous serez capable de …\n\n…\n…\n\n\n\n\n\n\n\n\n\nUniversité Paris Cité\n\n\n\n\nCharte Université Paris Cité\nDémarches et accessibilité\nCentre de contact\nRelais handicap\n\n\n\n\n\n\n\n\n\nCommunication \n\n\n\nLes supports matériels du cours sont accessible à partir de s-v-b.github.io/MA15Y030\nLes annonces sont diffusées via Moodle\nInscrivez-vous au portail Moodle pour être informé\n\n\n\n\n\n\n\n\nSupport \n\n\n\n\npsql\npgcli\ndbeaver\n\n\n\n\n\n\n\n\n\nRéférences \n\n\n\n\nDatabase Systems: The Complete Book (DS:CB), by Hector Garcia-Molina, Jeff Ullman, and Jennifer Widom\nFoundations of databases. Abiteboul, Hull et Vianu\nDocumentation PostGres\nNext Generation Databases NoSQLand Big Data, Guy Harrison\nGuy Harrison Blog\nDatabases trends and applications\n\n\n\n\n\n\n\n\n\nCours magistraux et Travaux dirigés \n\n\n\n\n\n\n\n\n\n\n\n\nContrôle des connaissances \n\n\n\n\nContrôle continu Trois épreuves sur table :\n\n\\(\\textsf{CC}_1\\) (1 heure)\n\\(\\textsf{CC}_2\\) (1 heure)\n\\(\\textsf{CC}_3\\) (1 heure)\n\nExamen\n\n\\(\\textsf{CT}\\) (2 heures)\n\nNotation\n\nLa note finale de session I est calculée selon la formule :\n\\[\\frac{1}{6}\\left\\{\\max( \\textsf{CC}_1,\\textsf{CT}) + \\max(\\textsf{CC}_2,\\textsf{CT}) + \\max(\\textsf{CC}_3,\\textsf{CT}) \\right\\} + \\frac{1}{2} \\textsf{CT}\\]\nLa note de session II (seconde chance) est égale à la note obtenue à l’épreuve sur table de seconde chance.\n\nConsultation des copies\nAssiduité\n\n\n\n\n\n\n\n\n\nTrucs\n\n\n\n\n\n\n\n\n\n\n\n\nIntégrité universitaire\n\n\n\nTL;DR: Pas de triche!\n\n\n\n\n\n\n\n\nSauvez les dates ! \n\n\n\n\nSeptembre 13: Début du cours\nSeptembre 20: Début des TD/TP\nOctobre 25: Contrôle continu I\nOctobre 26-Novembre 3: Pause de la Toussaint\nNovembre 8 : Reprise des cours et TD\nNovembre 15: Contrôle continu II\nDécembre 6: Fin du cours magistral\nDécembre 13: Contrôle continu III\nJanvier ??: Contrôle terminal\nJuin ??: Deuxième chance\n\nCliquer ici pour le calendrier universitaire de Université Paris Cité.\nCliquer ici pour l’emploi du temps de la Licence MIASHS",
+    "crumbs": [
+      "Course information",
+      "Syllabus"
+    ]
+  },
+  {
+    "objectID": "cours-liens.html",
+    "href": "cours-liens.html",
+    "title": "Useful links",
+    "section": "",
+    "text": "RStudio containers\n🔗 on Duke Container Manager\n\n\nCourse GitHub organization\n🔗 on GitHub\n\n\nDiscussion forum\n🔗 on Sakai\n\n\nLecture streaming and recordings\n🔗 on Panopto\n\n\nGradebook\n🔗 on Sakai\n\n\nVirtual meetings\n🔗 on Sakai",
+    "crumbs": [
+      "Course information",
+      "Liens"
+    ]
+  },
+  {
+    "objectID": "cours-apercu.html",
+    "href": "cours-apercu.html",
+    "title": "MA15Y030: Introduction aux Bases de Données",
+    "section": "",
+    "text": "twitter\n  \n  \n    \n     Github\n  \n\n  \n  \nApprendre à interroger une base de données relationnelle\nApprendre à lire un schéma de base de données\nApprendre à concevoir une base de données\nApprendre à améliorer une base de données",
+    "crumbs": [
+      "Course information",
+      "Aperçu"
+    ]
+  },
+  {
+    "objectID": "computing-troubleshooting.html",
+    "href": "computing-troubleshooting.html",
+    "title": "Computing troubleshooting",
+    "section": "",
+    "text": "If you’re having difficulty launching a dbeaver session from your reserved container, go to  and scroll down to Teaching and Learning Tools. Under this heading you’ll find an entry called Container Manager (CMGR Coursework Containers).\n\nIf the status shows something other than Operational, this means there is a known incident with the containers. Check back later to see if it’s been resolved. If there’s a deadline coming up soon, post on the course forum to let us know that there’s an issue. We can look into how quickly it might get resolved and decide on what to do about the deadline accordingly. Note: We don’t anticipate this to happen regularly, the systems are Operational a huge majority of the time!\nIf the status shows Operational, this means the system is expected to be working. Check your internet connection, if need be, restart your computer to ensure a fresh new connection. If your issue persists, post on the course forum with details on what you’ve tried and the errors you see (including verbatim errors and/or screenshots).\nEither way you can also fill out the form here, which will notify us They’ll be able to help diagnose the issue.",
+    "crumbs": [
+      "Support",
+      "Dépannage"
+    ]
+  },
+  {
+    "objectID": "computing-dbeaver.html",
+    "href": "computing-dbeaver.html",
+    "title": "Client dbeaver",
+    "section": "",
+    "text": "Installer\n\n\nSurvol\n Explorer les possibilités du client\n\n\n\n\n\n\nConfigurer une connexion\n\n\n\n\n\n\n\nOnglet Main\n\nConnect by Host,\n\nHost: localhost,\nPort: 5434 (ou un autre nombre exotique)\nDatabase: bd_2023-24\nDécocher `Show all databases\n\nAuthentification: Database Native\n\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save password\n\n\n\nOnglet PostgreSQL\nOnglet SSH\n\nCocher Use SSH Tunnel\nSettings\n\nHost/IP: localhost\nPort 22\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save credentials\n\nJump servers\n\nJump #1 etu-pgsql.math.univ-paris-diderot.fr username Password\nTarget localhost:22 username Password\n\n\n\n\n\nUtiliser une connexion\n\n\nDéfinir et utiliser un projet\n\nConnections\nBookmarks\nDashboards\nDiagrams\nScripts\n\n\n\nÉditeur SQL",
+    "crumbs": [
+      "Support",
+      "Client dbeaver"
+    ]
+  },
+  {
+    "objectID": "computing-access.html",
+    "href": "computing-access.html",
+    "title": "Moyens de calcul",
+    "section": "",
+    "text": "Serveur\nLe cours et les TP\n\nServeur PostGreSQL\nMachine dédiée : etu-pgsql.math.univ-paris-diderot.fr\n\n\n\nClients\n\npsql\npgcli\ndbeaver\nvs code avec greffon\n\n\n\nConnexions ssh (Linux/MacOS)\nPour accéder au serveur Postgres (SGBD), il faut d’abord se connecter à la machine qui héberge ce serveur etu-pgsql.math.univ-paris-diderot.fr.\nPour se connecter à etu-pgsql.math.univ-paris-diderot.fr, on utilise le protocole ssh, avec son identifiant et son mot de passe ENT.\n$ ssh username@etu-pgsql.math.univ-paris-diderot.fr\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\nLast login: ..................\n....\n....\nThis fortune brought to you by:\n$FreeBSD$\n[username@etu-pgsql ~]$ ...\nAttention : pas d’écho lorsque vous saisissez votre mot de passe.\nOn peut maintenant se connecter au serveur Postgres, toujours avec son identifiant et son mot de passe ENT\nIci, nous proposons d’utiliser le client pgcli :\n[username@etu-pgsql ~]$ pgcli -d bd_2023-24 \nPassword for username: \nServer: PostgreSQL 13.8\nVersion: 3.5.0\nHome: http://pgcli.com\nuserame@/tmp:bd_2023-24&gt; \n\n\n\n\n\n\nPourquoi préciser -d bd_2023-24 ?\n\n\n\nbd_2023-24 est un des catalogues hébergés par le serveur PostGres. bd_2023-24 contient les schemas sur lesquels nous travaillerons.\n\n\nNous sommes maintenant dans une session du serveur\nusername@/tmp:bd_2023-24&gt; \\conninfo\nYou are connected to database \"bd_2023-24\" as user \"username\" on socket \"/tmp\" at port \"None\".\nTime: 0.000s\nPour obtenir de l’aide, utiliser la commande \\d? et laissez vous guider.\nNous nous intéresserons en général à un ensemble de tables formant un schéma. Ici, nous choisissons comme schéma par défaut world et nous affichons les tables du schéma.\nusername@/tmp:bd_2023-24&gt; set search_path to world ;\nSET\nTime: 0.001s\nusername@/tmp:bd_2023-24&gt; \\dt\n+--------+-----------------+-------+-----------+\n| Schema | Name            | Type  | Owner     |\n|--------+-----------------+-------+-----------|\n| world  | city            | table | boucheron |\n| world  | country         | table | boucheron |\n| world  | countrylanguage | table | boucheron |\n+--------+-----------------+-------+-----------+\nSELECT 3\nTime: 0.011s\nusername@/tmp:bd_2023-24&gt; ...\n\n\nConnexions ssh sous windows\n\n\n\nConnexions ssh avec tunnel\n$ ssh -f username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\n$ \n\n\n\n\n\n\nRenvoi de port -L 5436:localhost:5432\n\n\n\n\n\n\n\n\n\n\n\n\nPourquoi -N ?\n\n\n\n\n\n\nOn peut maintenant lancer un client sur sa propre machine (localhost) en précisant qu’on s’adresse au port local 5436 (ou le port que vous choisissez), la requête de conexion au serveur PostGres distant sera transmise par le tunnel : elle sera envoyée sur le port officiel 5432 de la machine distante. Une fois la session établie, tout se passsera comme précédemment (ou presque).\n$ pgcli -d bd_2023-24 -h localhost -p 5436 -u username\nServer: PostgreSQL 13.8\nVersion: 3.5.0\nHome: http://pgcli.com\nbd_2023-24&gt; \\dn\n+----------------+--------------+\n| Name           | Owner        |\n|----------------+--------------|\n...\n...\n\n\nClient dbeaver\nLe mécanisme du tunnel ssh peut être utilisé pour connecter un client plus ambitieux au serveur. Le client dbeaver est particulièrement facile à utiliser.\n\n\nClient VS Code + extensions SQLTools\nSi vous êtes déjà habitué à l’éditeur Visual Studio Code (VS Code), vous pouvez utiliser l’extension SQLToos et son pilote ‘PostgreSQL/Cockroach’.\nVotre configuration de connexion devrait ressembler à :\n{\n  \"label\": \"etu-pgsql\",\n  \"host\": \"localhost\",\n  \"user\": \"&lt;identifiant ENT&gt;\",\n  \"port\": 5436,\n  \"ssl\": false,\n  \"database\": \"bd_2023-24\",\n  \"schema\": \"world\",\n  \"password\": \"Ask on connect\"\n}\nIl faut par ailleurs ouvrir un tunnel SSH dans un terminal\n$ ssh -f username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\n$ \nen remplaçant username par votre identifiant ENT.\n\n\n\nrstudio",
+    "crumbs": [
+      "Support",
+      "Accès Informatique"
+    ]
+  },
+  {
+    "objectID": "computing-cloudbeaver.html",
+    "href": "computing-cloudbeaver.html",
+    "title": "Client CloudBeaver",
+    "section": "",
+    "text": "Démonstration\nDémo\n\n\nInstaller\n\n\nDocker\n\n\nConfigurer une connexion\n\nOnglet Main\n\nConnect by Host,\n\nHost: localhost,\nPort: 5434 (ou un autre nombre exotique)\nDatabase: bd_2023-24\nDécocher `Show all databases\n\nAuthentification: Database Native\n\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save password\n\n\n\nOnglet PostgreSQL\nOnglet SSH\n\nCocher Use SSH Tunnel\nSettings\n\nHost/IP: localhost\nPort 22\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save credentials\n\nJump servers\n\nJump #1 etu-pgsql.math.univ-paris-diderot.fr username Password\nTarget localhost:22 username Password\n\n\n\n\n\nUtiliser une connexion\n\n\nDéfinir et utiliser un projet\n\nConnections\nBookmarks\nDashboards\nDiagrams\nScripts\n\n\n\nÉditeur SQL\n\n\n\n\n\nConnexions ssh (Linux/MacOS)\nPour accéder au serveur Postgres (SGBD), il faut d’abord se connecter à la machine qui héberge ce serveur etu-pgsql.math.univ-paris-diderot.fr.\nPour se connecter à etu-pgsql.math.univ-paris-diderot.fr, on utilise le protocole ssh, avec son identifiant et son mot de passe ENT.\n$ ssh username@etu-pgsql.math.univ-paris-diderot.fr\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\nLast login: ..................\n....\n....\nThis fortune brought to you by:\n$FreeBSD$\n[username@etu-pgsql ~]$ ...\nAttention : pas d’écho lorsque vous saisissez votre mot de passe.\nOn peut maintenant se connecter au serveur Postgres, toujours avec son identifiant et son mot de passe ENT\nIci, nous proposons d’utiliser le client pgcli :\n[username@etu-pgsql ~]$ pgcli -d bd_2023-24 \nPassword for username: \nServer: PostgreSQL 13.8\nVersion: 3.5.0\nHome: http://pgcli.com\nuserame@/tmp:bd_2023-24&gt; \n\n\n\n\n\n\nPourquoi préciser -d bd_2023-24 ?\n\n\n\nbd_2023-24 est un des catalogues hébergés par le serveur PostGres. bd_2023-24 contient les schemas sur lesquels nous travaillerons.\n\n\nNous sommes maintenant dans une session du serveur\nusername@/tmp:bd_2023-24&gt; \\conninfo\nYou are connected to database \"bd_2023-24\" as user \"username\" on socket \"/tmp\" at port \"None\".\nTime: 0.000s\nPour obtenir de l’aide, utiliser la commande \\d? et laissez vous guider.\nNous nous intéresserons en général à un ensemble de tables formant un schéma. Ici, nous choisissons comme schéma par défaut world et nous affichons les tables du schéma.\nusername@/tmp:bd_2023-24&gt; set search_path to world ;\nSET\nTime: 0.001s\nusername@/tmp:bd_2023-24&gt; \\dt\n+--------+-----------------+-------+-----------+\n| Schema | Name            | Type  | Owner     |\n|--------+-----------------+-------+-----------|\n| world  | city            | table | boucheron |\n| world  | country         | table | boucheron |\n| world  | countrylanguage | table | boucheron |\n+--------+-----------------+-------+-----------+\nSELECT 3\nTime: 0.011s\nusername@/tmp:bd_2023-24&gt; ...\n\n\nConnexions ssh sous windows\n\n\n\nConnexions ssh avec tunnel\n$ ssh -f username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\n$ \n\n\n\n\n\n\nRenvoi de port -L 5436:localhost:5432\n\n\n\n\n\n\n\n\n\n\n\n\nPourquoi -N ?\n\n\n\n\n\n\nOn peut maintenant lancer un client sur sa propre machine (localhost) en précisant qu’on s’adresse au port local 5436 (ou le port que vous choisissez), la requête de conexion au serveur PostGres distant sera transmise par le tunnel : elle sera envoyée sur le port officiel 5432 de la machine distante. Une fois la session établie, tout se passsera comme précédemment (ou presque).\n$ pgcli -d bd_2023-24 -h localhost -p 5436 -u username\nServer: PostgreSQL 13.8\nVersion: 3.5.0\nHome: http://pgcli.com\nbd_2023-24&gt; \\dn\n+----------------+--------------+\n| Name           | Owner        |\n|----------------+--------------|\n...\n...\n\n\nClient dbeaver\nLe mécanisme du tunnel ssh peut être utilisé pour connecter un client plus ambitieux au serveur. Le client dbeaver est particulièrement facile à utiliser."
+  },
+  {
+    "objectID": "computing-pipelines.html",
+    "href": "computing-pipelines.html",
+    "title": "Pipelines",
+    "section": "",
+    "text": "Interroger une base de données avec R (via ODBC)\n\n\nInterroger une base de données avec Python (via ODBC)"
+  },
+  {
+    "objectID": "corriges-tds.html",
+    "href": "corriges-tds.html",
+    "title": "Corrigés",
+    "section": "",
+    "text": "Order By\n       Default\n         \n          Titre\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Description\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitre\n\n\nDescription\n\n\n\n\n\n\nSep 20, 2024\n\n\nTD 1 2024-25\n\n\nRequêtes, SQL\n\n\n\n\nSep 27, 2024\n\n\nTD 2 2024-25\n\n\nRequêtes, SQL\n\n\n\n\nOct 4, 2024\n\n\nTD 3 2024-25\n\n\nRequêtes, SQL\n\n\n\n\nOct 11, 2024\n\n\nTD 4 2024-25\n\n\nRequêtes, Aggrégation, Fenêtres\n\n\n\n\nOct 18, 2024\n\n\nTD 5 2024-25\n\n\nRequêtes Aggrégation, Fenêtres\n\n\n\n\nOct 25, 2024\n\n\nTD 6 2024-25\n\n\nContraintes\n\n\n\n\nNov 8, 2024\n\n\nTD 7 2024-25\n\n\nContraintes\n\n\n\n\nNov 15, 2024\n\n\nTD 8 2024-25\n\n\nModélisation\n\n\n\n\nNov 22, 2024\n\n\nTD 9 2024-25\n\n\nModélisation\n\n\n\n\nNov 29, 2024\n\n\nTD 10 2024-25\n\n\nNormalisation\n\n\n\n\nDec 6, 2024\n\n\nTD 11 2024-25\n\n\nNormalisation\n\n\n\n\n\nNo matching items",
+    "crumbs": [
+      "Corrections"
+    ]
+  },
+  {
+    "objectID": "cours-equipe.html",
+    "href": "cours-equipe.html",
+    "title": "Équipe enseignante",
+    "section": "",
+    "text": "S. Boucheron Professeur de Mathématiques à l’Université Paris Cité/Laboratoire de Probabilités, Statistiques et Modélisatiion LPSM.",
+    "crumbs": [
+      "Course information",
+      "Équipe"
+    ]
+  },
+  {
+    "objectID": "cours-equipe.html#cours",
+    "href": "cours-equipe.html#cours",
+    "title": "Équipe enseignante",
+    "section": "",
+    "text": "S. Boucheron Professeur de Mathématiques à l’Université Paris Cité/Laboratoire de Probabilités, Statistiques et Modélisatiion LPSM.",
+    "crumbs": [
+      "Course information",
+      "Équipe"
+    ]
+  },
+  {
+    "objectID": "cours-equipe.html#travaux-dirigés",
+    "href": "cours-equipe.html#travaux-dirigés",
+    "title": "Équipe enseignante",
+    "section": "Travaux dirigés",
+    "text": "Travaux dirigés\n\n\n\n\n\n\n\n\n\n\nNom\nHoraire\nSalle\n\n\n\n\n\nStéphane Boucheron\nVendredi 14h45 - 17h15\n2004 Sophie Germain\n\n\n\nSylvain Schmitz\nVendredi 14h45 - 17h15\n2005 Sophie Germain\n\n\n\nxxx xxx\nVendredi 14h45 - 17h15\n2006 Sophie Germain",
+    "crumbs": [
+      "Course information",
+      "Équipe"
+    ]
+  },
+  {
     "objectID": "cours-support.html",
     "href": "cours-support.html",
     "title": "Course support",
@@ -759,116 +882,13 @@
     ]
   },
   {
-    "objectID": "cours-equipe.html",
-    "href": "cours-equipe.html",
-    "title": "Équipe enseignante",
+    "objectID": "exams-listings.html",
+    "href": "exams-listings.html",
+    "title": "Annales",
     "section": "",
-    "text": "S. Boucheron Professeur de Mathématiques à l’Université Paris Cité/Laboratoire de Probabilités, Statistiques et Modélisatiion LPSM.",
+    "text": "Order By\n       Default\n         \n          Titre\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Description\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitre\n\n\nDescription\n\n\n\n\n\n\nJun 19, 2024\n\n\nCT 2 2023-24\n\n\nRequêtes Aggrégation, Fenêtres, nycflights\n\n\n\n\nJan 8, 2024\n\n\nCT 1 2023-24\n\n\nModélisation, Normalisation, Requêtes Aggrégation, Fenêtres, nycflights\n\n\n\n\nDec 8, 2023\n\n\nCC 3 2023-24\n\n\nModélisation, Aggrégation, Fenêtres, French-Towns\n\n\n\n\nNov 24, 2023\n\n\nCC 2 2023-24\n\n\nAggrégation, Fenêtres, world\n\n\n\n\nOct 27, 2023\n\n\nCC 1 2023-24\n\n\nRequêtes, world\n\n\n\n\nNov 25, 2022\n\n\nCC 2 2022-23\n\n\nAggrégation, Fenêtres, nycflights, babynames\n\n\n\n\nNov 13, 2022\n\n\nCC 3-4 2022-23\n\n\nAggrégation, Fenêtres, nycflights\n\n\n\n\nNov 3, 2022\n\n\nCC 3-3 2022-23\n\n\nAggrégation, Fenêtres, nycflights\n\n\n\n\nOct 21, 2022\n\n\nCC 3-2 2022-23\n\n\nAggrégation, Fenêtres, babynames\n\n\n\n\nOct 14, 2022\n\n\nCC 3-1 2022-23\n\n\nAggrégation, Fenêtres, world\n\n\n\n\n\nNo matching items",
     "crumbs": [
-      "Course information",
-      "Équipe"
-    ]
-  },
-  {
-    "objectID": "cours-equipe.html#cours",
-    "href": "cours-equipe.html#cours",
-    "title": "Équipe enseignante",
-    "section": "",
-    "text": "S. Boucheron Professeur de Mathématiques à l’Université Paris Cité/Laboratoire de Probabilités, Statistiques et Modélisatiion LPSM.",
-    "crumbs": [
-      "Course information",
-      "Équipe"
-    ]
-  },
-  {
-    "objectID": "cours-equipe.html#travaux-dirigés",
-    "href": "cours-equipe.html#travaux-dirigés",
-    "title": "Équipe enseignante",
-    "section": "Travaux dirigés",
-    "text": "Travaux dirigés\n\n\n\n\n\n\n\n\n\n\nNom\nHoraire\nSalle\n\n\n\n\n\nStéphane Boucheron\nVendredi 14h45 - 17h15\n2004 Sophie Germain\n\n\n\nSylvain Schmitz\nVendredi 14h45 - 17h15\n2005 Sophie Germain\n\n\n\nxxx xxx\nVendredi 14h45 - 17h15\n2006 Sophie Germain",
-    "crumbs": [
-      "Course information",
-      "Équipe"
-    ]
-  },
-  {
-    "objectID": "computing-troubleshooting.html",
-    "href": "computing-troubleshooting.html",
-    "title": "Computing troubleshooting",
-    "section": "",
-    "text": "If you’re having difficulty launching a dbeaver session from your reserved container, go to  and scroll down to Teaching and Learning Tools. Under this heading you’ll find an entry called Container Manager (CMGR Coursework Containers).\n\nIf the status shows something other than Operational, this means there is a known incident with the containers. Check back later to see if it’s been resolved. If there’s a deadline coming up soon, post on the course forum to let us know that there’s an issue. We can look into how quickly it might get resolved and decide on what to do about the deadline accordingly. Note: We don’t anticipate this to happen regularly, the systems are Operational a huge majority of the time!\nIf the status shows Operational, this means the system is expected to be working. Check your internet connection, if need be, restart your computer to ensure a fresh new connection. If your issue persists, post on the course forum with details on what you’ve tried and the errors you see (including verbatim errors and/or screenshots).\nEither way you can also fill out the form here, which will notify us They’ll be able to help diagnose the issue.",
-    "crumbs": [
-      "Support",
-      "Dépannage"
-    ]
-  },
-  {
-    "objectID": "computing-dbeaver.html",
-    "href": "computing-dbeaver.html",
-    "title": "Client dbeaver",
-    "section": "",
-    "text": "Installer\n\n\nSurvol\n Explorer les possibilités du client\n\n\n\n\n\n\nConfigurer une connexion\n\n\n\n\n\n\n\nOnglet Main\n\nConnect by Host,\n\nHost: localhost,\nPort: 5434 (ou un autre nombre exotique)\nDatabase: bd_2023-24\nDécocher `Show all databases\n\nAuthentification: Database Native\n\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save password\n\n\n\nOnglet PostgreSQL\nOnglet SSH\n\nCocher Use SSH Tunnel\nSettings\n\nHost/IP: localhost\nPort 22\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save credentials\n\nJump servers\n\nJump #1 etu-pgsql.math.univ-paris-diderot.fr username Password\nTarget localhost:22 username Password\n\n\n\n\n\nUtiliser une connexion\n\n\nDéfinir et utiliser un projet\n\nConnections\nBookmarks\nDashboards\nDiagrams\nScripts\n\n\n\nÉditeur SQL",
-    "crumbs": [
-      "Support",
-      "Client dbeaver"
-    ]
-  },
-  {
-    "objectID": "computing-access.html",
-    "href": "computing-access.html",
-    "title": "Moyens de calcul",
-    "section": "",
-    "text": "Serveur\nLe cours et les TP\n\nServeur PostGreSQL\nMachine dédiée : etu-pgsql.math.univ-paris-diderot.fr\n\n\n\nClients\n\npsql\npgcli\ndbeaver\nvs code avec greffon\n\n\n\nConnexions ssh (Linux/MacOS)\nPour accéder au serveur Postgres (SGBD), il faut d’abord se connecter à la machine qui héberge ce serveur etu-pgsql.math.univ-paris-diderot.fr.\nPour se connecter à etu-pgsql.math.univ-paris-diderot.fr, on utilise le protocole ssh, avec son identifiant et son mot de passe ENT.\n$ ssh username@etu-pgsql.math.univ-paris-diderot.fr\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\nLast login: ..................\n....\n....\nThis fortune brought to you by:\n$FreeBSD$\n[username@etu-pgsql ~]$ ...\nAttention : pas d’écho lorsque vous saisissez votre mot de passe.\nOn peut maintenant se connecter au serveur Postgres, toujours avec son identifiant et son mot de passe ENT\nIci, nous proposons d’utiliser le client pgcli :\n[username@etu-pgsql ~]$ pgcli -d bd_2023-24 \nPassword for username: \nServer: PostgreSQL 13.8\nVersion: 3.5.0\nHome: http://pgcli.com\nuserame@/tmp:bd_2023-24&gt; \n\n\n\n\n\n\nPourquoi préciser -d bd_2023-24 ?\n\n\n\nbd_2023-24 est un des catalogues hébergés par le serveur PostGres. bd_2023-24 contient les schemas sur lesquels nous travaillerons.\n\n\nNous sommes maintenant dans une session du serveur\nusername@/tmp:bd_2023-24&gt; \\conninfo\nYou are connected to database \"bd_2023-24\" as user \"username\" on socket \"/tmp\" at port \"None\".\nTime: 0.000s\nPour obtenir de l’aide, utiliser la commande \\d? et laissez vous guider.\nNous nous intéresserons en général à un ensemble de tables formant un schéma. Ici, nous choisissons comme schéma par défaut world et nous affichons les tables du schéma.\nusername@/tmp:bd_2023-24&gt; set search_path to world ;\nSET\nTime: 0.001s\nusername@/tmp:bd_2023-24&gt; \\dt\n+--------+-----------------+-------+-----------+\n| Schema | Name            | Type  | Owner     |\n|--------+-----------------+-------+-----------|\n| world  | city            | table | boucheron |\n| world  | country         | table | boucheron |\n| world  | countrylanguage | table | boucheron |\n+--------+-----------------+-------+-----------+\nSELECT 3\nTime: 0.011s\nusername@/tmp:bd_2023-24&gt; ...\n\n\nConnexions ssh sous windows\n\n\n\nConnexions ssh avec tunnel\n$ ssh -f username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\n$ \n\n\n\n\n\n\nRenvoi de port -L 5436:localhost:5432\n\n\n\n\n\n\n\n\n\n\n\n\nPourquoi -N ?\n\n\n\n\n\n\nOn peut maintenant lancer un client sur sa propre machine (localhost) en précisant qu’on s’adresse au port local 5436 (ou le port que vous choisissez), la requête de conexion au serveur PostGres distant sera transmise par le tunnel : elle sera envoyée sur le port officiel 5432 de la machine distante. Une fois la session établie, tout se passsera comme précédemment (ou presque).\n$ pgcli -d bd_2023-24 -h localhost -p 5436 -u username\nServer: PostgreSQL 13.8\nVersion: 3.5.0\nHome: http://pgcli.com\nbd_2023-24&gt; \\dn\n+----------------+--------------+\n| Name           | Owner        |\n|----------------+--------------|\n...\n...\n\n\nClient dbeaver\nLe mécanisme du tunnel ssh peut être utilisé pour connecter un client plus ambitieux au serveur. Le client dbeaver est particulièrement facile à utiliser.\n\n\nClient VS Code + extensions SQLTools\nSi vous êtes déjà habitué à l’éditeur Visual Studio Code (VS Code), vous pouvez utiliser l’extension SQLToos et son pilote ‘PostgreSQL/Cockroach’.\nVotre configuration de connexion devrait ressembler à :\n{\n  \"label\": \"etu-pgsql\",\n  \"host\": \"localhost\",\n  \"user\": \"&lt;identifiant ENT&gt;\",\n  \"port\": 5436,\n  \"ssl\": false,\n  \"database\": \"bd_2023-24\",\n  \"schema\": \"world\",\n  \"password\": \"Ask on connect\"\n}\nIl faut par ailleurs ouvrir un tunnel SSH dans un terminal\n$ ssh -f username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\n$ \nen remplaçant username par votre identifiant ENT.\n\n\n\nrstudio",
-    "crumbs": [
-      "Support",
-      "Accès Informatique"
-    ]
-  },
-  {
-    "objectID": "computing-cloudbeaver.html",
-    "href": "computing-cloudbeaver.html",
-    "title": "Client CloudBeaver",
-    "section": "",
-    "text": "Démonstration\nDémo\n\n\nInstaller\n\n\nDocker\n\n\nConfigurer une connexion\n\nOnglet Main\n\nConnect by Host,\n\nHost: localhost,\nPort: 5434 (ou un autre nombre exotique)\nDatabase: bd_2023-24\nDécocher `Show all databases\n\nAuthentification: Database Native\n\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save password\n\n\n\nOnglet PostgreSQL\nOnglet SSH\n\nCocher Use SSH Tunnel\nSettings\n\nHost/IP: localhost\nPort 22\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save credentials\n\nJump servers\n\nJump #1 etu-pgsql.math.univ-paris-diderot.fr username Password\nTarget localhost:22 username Password\n\n\n\n\n\nUtiliser une connexion\n\n\nDéfinir et utiliser un projet\n\nConnections\nBookmarks\nDashboards\nDiagrams\nScripts\n\n\n\nÉditeur SQL\n\n\n\n\n\nConnexions ssh (Linux/MacOS)\nPour accéder au serveur Postgres (SGBD), il faut d’abord se connecter à la machine qui héberge ce serveur etu-pgsql.math.univ-paris-diderot.fr.\nPour se connecter à etu-pgsql.math.univ-paris-diderot.fr, on utilise le protocole ssh, avec son identifiant et son mot de passe ENT.\n$ ssh username@etu-pgsql.math.univ-paris-diderot.fr\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\nLast login: ..................\n....\n....\nThis fortune brought to you by:\n$FreeBSD$\n[username@etu-pgsql ~]$ ...\nAttention : pas d’écho lorsque vous saisissez votre mot de passe.\nOn peut maintenant se connecter au serveur Postgres, toujours avec son identifiant et son mot de passe ENT\nIci, nous proposons d’utiliser le client pgcli :\n[username@etu-pgsql ~]$ pgcli -d bd_2023-24 \nPassword for username: \nServer: PostgreSQL 13.8\nVersion: 3.5.0\nHome: http://pgcli.com\nuserame@/tmp:bd_2023-24&gt; \n\n\n\n\n\n\nPourquoi préciser -d bd_2023-24 ?\n\n\n\nbd_2023-24 est un des catalogues hébergés par le serveur PostGres. bd_2023-24 contient les schemas sur lesquels nous travaillerons.\n\n\nNous sommes maintenant dans une session du serveur\nusername@/tmp:bd_2023-24&gt; \\conninfo\nYou are connected to database \"bd_2023-24\" as user \"username\" on socket \"/tmp\" at port \"None\".\nTime: 0.000s\nPour obtenir de l’aide, utiliser la commande \\d? et laissez vous guider.\nNous nous intéresserons en général à un ensemble de tables formant un schéma. Ici, nous choisissons comme schéma par défaut world et nous affichons les tables du schéma.\nusername@/tmp:bd_2023-24&gt; set search_path to world ;\nSET\nTime: 0.001s\nusername@/tmp:bd_2023-24&gt; \\dt\n+--------+-----------------+-------+-----------+\n| Schema | Name            | Type  | Owner     |\n|--------+-----------------+-------+-----------|\n| world  | city            | table | boucheron |\n| world  | country         | table | boucheron |\n| world  | countrylanguage | table | boucheron |\n+--------+-----------------+-------+-----------+\nSELECT 3\nTime: 0.011s\nusername@/tmp:bd_2023-24&gt; ...\n\n\nConnexions ssh sous windows\n\n\n\nConnexions ssh avec tunnel\n$ ssh -f username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N\n(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:\n$ \n\n\n\n\n\n\nRenvoi de port -L 5436:localhost:5432\n\n\n\n\n\n\n\n\n\n\n\n\nPourquoi -N ?\n\n\n\n\n\n\nOn peut maintenant lancer un client sur sa propre machine (localhost) en précisant qu’on s’adresse au port local 5436 (ou le port que vous choisissez), la requête de conexion au serveur PostGres distant sera transmise par le tunnel : elle sera envoyée sur le port officiel 5432 de la machine distante. Une fois la session établie, tout se passsera comme précédemment (ou presque).\n$ pgcli -d bd_2023-24 -h localhost -p 5436 -u username\nServer: PostgreSQL 13.8\nVersion: 3.5.0\nHome: http://pgcli.com\nbd_2023-24&gt; \\dn\n+----------------+--------------+\n| Name           | Owner        |\n|----------------+--------------|\n...\n...\n\n\nClient dbeaver\nLe mécanisme du tunnel ssh peut être utilisé pour connecter un client plus ambitieux au serveur. Le client dbeaver est particulièrement facile à utiliser."
-  },
-  {
-    "objectID": "computing-pipelines.html",
-    "href": "computing-pipelines.html",
-    "title": "Pipelines",
-    "section": "",
-    "text": "Interroger une base de données avec R (via ODBC)\n\n\nInterroger une base de données avec Python (via ODBC)"
-  },
-  {
-    "objectID": "cours-apercu.html",
-    "href": "cours-apercu.html",
-    "title": "MA15Y030: Introduction aux Bases de Données",
-    "section": "",
-    "text": "twitter\n  \n  \n    \n     Github\n  \n\n  \n  \nApprendre à interroger une base de données relationnelle\nApprendre à lire un schéma de base de données\nApprendre à concevoir une base de données\nApprendre à améliorer une base de données",
-    "crumbs": [
-      "Course information",
-      "Aperçu"
-    ]
-  },
-  {
-    "objectID": "cours-liens.html",
-    "href": "cours-liens.html",
-    "title": "Useful links",
-    "section": "",
-    "text": "RStudio containers\n🔗 on Duke Container Manager\n\n\nCourse GitHub organization\n🔗 on GitHub\n\n\nDiscussion forum\n🔗 on Sakai\n\n\nLecture streaming and recordings\n🔗 on Panopto\n\n\nGradebook\n🔗 on Sakai\n\n\nVirtual meetings\n🔗 on Sakai",
-    "crumbs": [
-      "Course information",
-      "Liens"
-    ]
-  },
-  {
-    "objectID": "cours-syllabus.html",
-    "href": "cours-syllabus.html",
-    "title": "Syllabus",
-    "section": "",
-    "text": "Télécharger “PDF du syllabus”\n\n\n\n\n\n\nOrganisation\n\n\n\n\n\n\n\n\n\n\n\n\n\nJour\nHoraire\nLieu\n\n\n\n\nCours\nVendredi\n13:15 - 14:45\nOlympe de Gouges Amphi I\n\n\nTD/TP 1\nVendredi\n15:15 - 17:45\nSophie Germain 2004\n\n\nTD/TP 2\nVendredi\n15:15 - 17:45\nSophie Germain 2005\n\n\nTD/TP 3\nVendredi\n15:15 - 17:45\nSophie Germain 2006\n\n\n\n\n\n\n\n\n\n\n\nObjectifs\n\n\n\nAprès avoir suivi ce cours, vous serez capable de …\n\n…\n…\n\n\n\n\n\n\n\n\n\nUniversité Paris Cité\n\n\n\n\nCharte Université Paris Cité\nDémarches et accessibilité\nCentre de contact\nRelais handicap\n\n\n\n\n\n\n\n\n\nCommunication \n\n\n\nLes supports matériels du cours sont accessible à partir de s-v-b.github.io/MA15Y030\nLes annonces sont diffusées via Moodle\nInscrivez-vous au portail Moodle pour être informé\n\n\n\n\n\n\n\n\nSupport \n\n\n\n\npsql\npgcli\ndbeaver\n\n\n\n\n\n\n\n\n\nRéférences \n\n\n\n\nDatabase Systems: The Complete Book (DS:CB), by Hector Garcia-Molina, Jeff Ullman, and Jennifer Widom\nFoundations of databases. Abiteboul, Hull et Vianu\nDocumentation PostGres\nNext Generation Databases NoSQLand Big Data, Guy Harrison\nGuy Harrison Blog\nDatabases trends and applications\n\n\n\n\n\n\n\n\n\nCours magistraux et Travaux dirigés \n\n\n\n\n\n\n\n\n\n\n\n\nContrôle des connaissances \n\n\n\n\nContrôle continu Trois épreuves sur table :\n\n\\(\\textsf{CC}_1\\) (1 heure)\n\\(\\textsf{CC}_2\\) (1 heure)\n\\(\\textsf{CC}_3\\) (1 heure)\n\nExamen\n\n\\(\\textsf{CT}\\) (2 heures)\n\nNotation\n\nLa note finale de session I est calculée selon la formule :\n\\[\\frac{1}{6}\\left\\{\\max( \\textsf{CC}_1,\\textsf{CT}) + \\max(\\textsf{CC}_2,\\textsf{CT}) + \\max(\\textsf{CC}_3,\\textsf{CT}) \\right\\} + \\frac{1}{2} \\textsf{CT}\\]\nLa note de session II (seconde chance) est égale à la note obtenue à l’épreuve sur table de seconde chance.\n\nConsultation des copies\nAssiduité\n\n\n\n\n\n\n\n\n\nTrucs\n\n\n\n\n\n\n\n\n\n\n\n\nIntégrité universitaire\n\n\n\nTL;DR: Pas de triche!\n\n\n\n\n\n\n\n\nSauvez les dates ! \n\n\n\n\nSeptembre 13: Début du cours\nSeptembre 20: Début des TD/TP\nOctobre 25: Contrôle continu I\nOctobre 26-Novembre 3: Pause de la Toussaint\nNovembre 8 : Reprise des cours et TD\nNovembre 15: Contrôle continu II\nDécembre 6: Fin du cours magistral\nDécembre 13: Contrôle continu III\nJanvier ??: Contrôle terminal\nJuin ??: Deuxième chance\n\nCliquer ici pour le calendrier universitaire de Université Paris Cité.\nCliquer ici pour l’emploi du temps de la Licence MIASHS",
-    "crumbs": [
-      "Course information",
-      "Syllabus"
+      "Annales"
     ]
   },
   {
