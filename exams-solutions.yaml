@@ -1,0 +1,53 @@
+- title: "CC 1 2023-24"
+  author: "Licence MIASHS UParis Cité"
+  date: "2023-10-27"
+  path: "exams/cc1-2023-10-27.html"
+  categories: [Requêtes, world]
+- title: "CC 2 2023-24"
+  author: "Licence MIASHS UParis Cité"
+  date: "2023-11-24"
+  path: "exams/cc2-2023-11-24.html"
+  categories: [Aggrégation, Fenêtres, world]
+- title: "CC 3 2023-24"
+  author: "Licence MIASHS UParis Cité"
+  date: "2023-12-08"
+  path: "exams/cc2-2023-12-08.html"
+  categories: [Modélisation, Aggrégation, Fenêtres, French-Towns]
+- title: "CT 1 2023-24"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-01-08"
+  path: "exams/ct-2024-01-08.html"
+  categories: [Modélisation, Normalisation, Requêtes Aggrégation, Fenêtres, nycflights]
+- title: "CT 2 2023-24"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-06-19"
+  path: "exams/ct-2024-06-19.html"
+  categories: [Requêtes Aggrégation, Fenêtres, nycflights]
+- title: "CC 2 2022-23"
+  author: "Licence MIASHS UParis Cité"
+  date: "2022-11-25"
+  path: "exams/cc2-2022-11-25.html"
+  categories: [Aggrégation, Fenêtres, nycflights, babynames]
+- title: "CC 3-1 2022-23"
+  author: "Licence MIASHS UParis Cité"
+  date: "2022-10-14"
+  path: "exams/cc3-2022-10-14.html"
+  categories: [Aggrégation, Fenêtres, world]
+- title: "CC 3-2 2022-23"
+  author: "Licence MIASHS UParis Cité"
+  date: "2022-10-21"
+  path: "exams/cc3-2022-10-21.html"
+  categories: [Aggrégation, Fenêtres, babynames]
+- title: "CC 3-3 2022-23"
+  author: "Licence MIASHS UParis Cité"
+  date: "2022-11-03"
+  path: "exams/cc3-2022-11-03.html"
+  categories: [Aggrégation, Fenêtres, nycflights]
+- title: "CC 3-4 2022-23"
+  author: "Licence MIASHS UParis Cité"
+  date: "2022-11-13"
+  path: "exams/cc3-2022-11-13.html"
+  categories: [Aggrégation, Fenêtres, nycflights]
+
+
+

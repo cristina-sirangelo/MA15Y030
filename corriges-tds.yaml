@@ -1,0 +1,58 @@
+- title: "TD 1 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-09-20"
+  path: "/solutions/td1.html"
+  categories: [Requêtes, SQL]
+- title: "TD 2 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-09-27"
+  path: "/solutions/td2.html"
+  categories: [Requêtes, SQL]
+- title: "TD 3 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-10-04"
+  path: "/solutions/td3.html"
+  categories: [Requêtes, SQL]
+- title: "TD 4 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-10-11"
+  path: "/solutions/td4.html"
+  categories: [Requêtes, Aggrégation, Fenêtres]
+- title: "TD 5 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-10-18"
+  path: "/solutions/td5.html"
+  categories: [Requêtes Aggrégation, Fenêtres]
+- title: "TD 6 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-10-25"
+  path: "/solutions/td6.html"
+  categories: [Contraintes]
+- title: "TD 7  2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-11-08"
+  path: "/solutions/td7.html"
+  categories: [Contraintes]
+- title: "TD 8 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-11-15"
+  path: "/solutions/td8.html"
+  categories: [Modélisation]
+- title: "TD 9 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-11-22"
+  path: "/solutions/td9.html"
+  categories: [Modélisation]
+- title: "TD 10 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-11-29"
+  path: "/solutions/td10.html"
+  categories: [Normalisation]
+- title: "TD 11 2024-25"
+  author: "Licence MIASHS UParis Cité"
+  date: "2024-12-06"
+  path: "/solutions/td11.html"
+  categories: [Normalisation]
+
+
+

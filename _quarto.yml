@@ -76,6 +76,10 @@ website:
         text: Diapositives
       - href: td-listings.qmd
         text: Exercices
+      - href: corriges-tds.qmd
+        text: Corrections  
+      - href: exams-listings.qmd
+        text: Annales
       - section: "Journal"
         contents:
           - href: weeks/week-1.qmd

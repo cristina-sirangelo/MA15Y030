@@ -1,0 +1,15 @@
+---
+title: "Annales"
+listing:
+  id: "Annales"
+  contents: 
+    - exams-solutions.yaml
+  type: table  
+  table-striped: true
+  table-hover: true
+  sort: "date desc"
+  fields: [date, title, categories] 
+  field-display-names: 
+    title: "Titre"
+    categories: "Description"
+---

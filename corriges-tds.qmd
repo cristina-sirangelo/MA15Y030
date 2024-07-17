@@ -1,0 +1,16 @@
+---
+title: "Corrigés"
+subtitle: "Correction des Exercices"
+listing:
+  id: "Corriges"
+  contents: 
+    - corriges-tds.yaml
+  type: table  
+  table-striped: true
+  table-hover: true
+  sort: "date"
+  fields: [date, title, categories] 
+  field-display-names: 
+    title: "Titre"
+    categories: "Description"
+---
