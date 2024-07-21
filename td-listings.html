@@ -74,7 +74,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-Exercices .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -87,7 +87,7 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-Exercices'] = new List('listing-Exercices', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -196,7 +196,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Course information</span></a>
+ <span class="menu-text">Informations générales</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,7 +204,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cours-apercu.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Aperçu</span></a>
   </div>
 </li>
@@ -216,32 +216,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cours-support.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Support</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./cours-equipe.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Équipe</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Agenda</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./cours-liens.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Liens</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./cours-faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FAQ</span></a>
   </div>
 </li>
       </ul>
@@ -265,12 +241,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./computing-dbeaver.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Client dbeaver</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dépannage</span></a>
   </div>
 </li>
       </ul>
@@ -418,15 +388,24 @@ window.Quarto = {
 </header>
 
 
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les feuilles d’exercice forment le matériau de base des TDS et TPS. Vous êtes invités à les lire avant la séance et à réfléchir par vous-même. Ne vous précipitez pas sur les propositions de corrections qui sont disponibles <a href="./corriges-tds.html">sur ce site</a></p>
+</div>
+</div>
+<div id="listing-Exercices" class="quarto-listing quarto-listing-container-table">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+     <select id="listing-Exercices-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-Exercices'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
          <option value="listing-date-sort" data-direction="asc">
@@ -484,7 +463,7 @@ Description
 <span class="listing-subtitle">SQL Interrogation de données</span>
 </td>
 </tr>
-<tr data-index="2" data-listing-date-sort="1727992800000" data-listing-file-modified-sort="1720445184356" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="16" data-listing-word-count-sort="3187" data-listing-title-sort="TD 3: SQL" data-listing-filename-sort="td3.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="2" data-listing-date-sort="1727992800000" data-listing-file-modified-sort="1721464950378" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="15" data-listing-word-count-sort="2985" data-listing-title-sort="TD 3: SQL" data-listing-filename-sort="td3.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
 <span class="listing-date">Oct 4, 2024</span>
@@ -532,7 +511,7 @@ Description
 <span class="listing-subtitle">Définition de données Contraintes</span>
 </td>
 </tr>
-<tr data-index="6" data-listing-date-sort="1731020400000" data-listing-file-modified-sort="1720449108276" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="27" data-listing-title-sort="TD 7 : Contraintes (suite)" data-listing-filename-sort="td7.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="6" data-listing-date-sort="1731020400000" data-listing-file-modified-sort="1721463165176" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="25" data-listing-title-sort="TD 7 : Contraintes (suite)" data-listing-filename-sort="td7.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
 <span class="listing-date">Nov 8, 2024</span>
@@ -604,60 +583,30 @@ Description
 <span class="listing-subtitle">TD révision générale</span>
 </td>
 </tr>
-<tr data-index="12" data-listing-date-sort="1738278000000" data-listing-file-modified-sort="1720449523612" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="4" data-listing-word-count-sort="782" data-listing-title-sort="TD Administration" data-listing-filename-sort="td1-admin.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">Jan 31, 2025</span>
-</td>
-<td>
-<a href="./workshops/td-admin.html" class="title listing-title">TD Administration</a>
-</td>
-<td>
-<span class="listing-subtitle">Administration PostGres</span>
-</td>
-</tr>
-<tr data-index="13" data-listing-date-sort="1740697200000" data-listing-file-modified-sort="1720449584636" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="5" data-listing-word-count-sort="890" data-listing-title-sort="TD Fonctions I : Langage `plpgsql`" data-listing-filename-sort="td-fonction1.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">Feb 28, 2025</span>
-</td>
-<td>
-<a href="./workshops/td-fonction1.html" class="title listing-title">TD Fonctions I : Langage <code>plpgsql</code></a>
-</td>
-<td>
-<span class="listing-subtitle">Fonctions PL/PGSQL sur pagila</span>
-</td>
-</tr>
-<tr data-index="14" data-listing-date-sort="1743372000000" data-listing-file-modified-sort="1720449644868" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="3" data-listing-word-count-sort="442" data-listing-title-sort="TD Fonctions II (Fonctions PL/PgSQL)" data-listing-filename-sort="td-fonction3.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">Mar 31, 2025</span>
-</td>
-<td>
-<a href="./workshops/td-fonction3.html" class="title listing-title">TD Fonctions II (Fonctions PL/PgSQL)</a>
-</td>
-<td>
-<span class="listing-subtitle">Fontions PL/PgSQL (suite)</span>
-</td>
-</tr>
-<tr data-index="15" data-listing-file-modified-sort="1719519142752" data-listing-reading-time-sort="1" data-listing-word-count-sort="153" data-listing-title-sort="Dépendances fonctionnelles" data-listing-filename-sort="nycflights_layout_wrapper.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">&nbsp;</span>
-</td>
-<td>
-<a href="./workshops/nycflights-schema.html" class="title listing-title">Dépendances fonctionnelles</a>
-</td>
-<td>
-<span class="listing-subtitle">&nbsp;</span>
-</td>
-</tr>
 </tbody>
 </table>
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div></main> <!-- /main -->
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Conseil
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Avant de travailler sur un exercice, assurez vous que vous maîtrisez/comprenez le schéma relationnel concerné.</p>
+</div>
+</div>
+
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

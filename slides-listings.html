@@ -30,7 +30,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./td-listings.html" rel="next">
-<link href="./computing-troubleshooting.html" rel="prev">
+<link href="./computing-dbeaver.html" rel="prev">
 <script src="site_libs/quarto-listing/list.min.js"></script>
 <script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -44,6 +44,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -132,6 +134,7 @@ window.Quarto = {
 </script>
 
 <meta property="og:title" content="Diapositives – MA15Y030 - Automne 2024">
+<meta property="og:description" content="Page maison pour MA15Y030 - Bases de données, Licence MIASHS Automne 2024.">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
 </head>
 
@@ -196,7 +199,7 @@ window.Quarto = {
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false">
- <span class="menu-text">Course information</span></a>
+ <span class="menu-text">Informations générales</span></a>
           <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="false" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -204,7 +207,7 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 ">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cours-apercu.html" class="sidebar-item-text sidebar-link">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Aperçu</span></a>
   </div>
 </li>
@@ -216,32 +219,8 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./cours-support.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Support</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
   <a href="./cours-equipe.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Équipe</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Agenda</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./cours-liens.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Liens</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./cours-faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FAQ</span></a>
   </div>
 </li>
       </ul>
@@ -265,12 +244,6 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="./computing-dbeaver.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Client dbeaver</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="./computing-troubleshooting.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Dépannage</span></a>
   </div>
 </li>
       </ul>
@@ -418,6 +391,24 @@ window.Quarto = {
 </header>
 
 
+<p>Les diapositives fournissent le canevas du cours. Vous pouvez les utiliser pour vous familiariser avec le matériel du prochain cours, pour revoir les cours passés et, pour réviser.</p>
+<p>Les diapositives marquées par l’image <i class="fa-solid fa-person-chalkboard" aria-label="person-chalkboard"></i> renvoient à des développements effectués en classes.</p>
+<div id="sample-listings">
+
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mode d’emploi
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les diapositives utilisent la bibliothèque <a href="https://revealjs.com"><code>revealjs</code></a> de <i class="fa-brands fa-js" aria-label="js"></i>. Elles s’affichent dans votre navigateur. Vous pouvez accéder au mode d’emploi en tappant <i class="fa-solid fa-question" aria-label="question"></i></p>
+</div>
+</div>
 
 
 
@@ -1253,8 +1244,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./computing-troubleshooting.html" class="pagination-link" aria-label="Dépannage">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Dépannage</span>
+      <a href="./computing-dbeaver.html" class="pagination-link" aria-label="Client dbeaver">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Client dbeaver</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
