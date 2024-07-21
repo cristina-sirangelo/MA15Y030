@@ -3,9 +3,6 @@ title: "Pipelines"
 editor: visual
 ---
 
+# Interroger une base de données avec `R` (via ODBC)
 
-
-# Interroger une base de données avec  `R` (via ODBC)
-
-
-# Interroger une base de données avec  `Python` (via ODBC)
+# Interroger une base de données avec `Python` (via ODBC)

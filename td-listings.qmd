@@ -1,6 +1,7 @@
 ---
 title: "Feuilles d'exercices"
 listing:
+  id: "Exercices"
   contents: 
     - "workshops/*.qmd"
   fields: [date, title, subtitle] 
@@ -13,3 +14,25 @@ listing:
   sort: date
 
 ---
+
+
+::: {.callout-note}
+
+Les feuilles d'exercice forment le matériau de base des TDS et TPS. Vous êtes invités à les lire avant la séance et 
+à réfléchir par vous-même. Ne vous précipitez pas sur les propositions de corrections qui sont disponibles [sur ce site](/corriges-tds.html)
+
+:::
+
+
+
+::: {#Exercices}
+:::
+
+
+::: {.callout-tip}
+
+### Conseil 
+
+Avant de travailler sur un exercice, assurez vous que vous maîtrisez/comprenez  le schéma relationnel concerné. 
+
+:::

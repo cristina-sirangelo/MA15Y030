@@ -14,3 +14,24 @@ listing:
     title: "Titre"
     categories: "Description"
 ---
+
+
+::: {.callout-note}
+
+{{< fa triangle-exclamation >}} Ne vous précipitez pas sur les propositions de corrections avant d'avoir tenté par vous-même  de réaliser les exercices.
+
+:::
+
+
+::: {#Corriges}
+
+:::
+
+::: {.callout-note}
+
+{{< fa triangle-exclamation >}} Les corrigés ne sont que des propositions. Il est très possible que vous ayez en tête des solutions différentes des propositions et que vos propositions soient correctes. 
+
+{{< fa hand-point-right >}} Pour lever les doutes, comparer les résultats de vos requêtes et de celles proposées dans les solutions. Avec `... EXCEPT ...` vous devriez y voir clair.   
+
+
+:::

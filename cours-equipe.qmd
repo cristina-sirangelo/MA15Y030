@@ -2,20 +2,20 @@
 title: "Équipe enseignante"
 ---
 
-## Cours 
+## {{< fa chalkboard-teacher >}} Cours 
 
-![](images/team/ritratto.jpg){style="float:right;padding: 0 0 0 10px;" fig-alt="Headshot of S. Boucheron" width="100"}
+![](images/team/avatar.jpg){style="float:right;padding: 0 0 0 10px;" fig-alt="Headshot of S. Boucheron" width="100"}
 
-[**S. Boucheron**](http://stephane-v-boucheron.fr/)  Professeur de Mathématiques à l'Université Paris Cité/Laboratoire de Probabilités, Statistiques et Modélisatiion LPSM.
+[**S. Boucheron**](http://stephane-v-boucheron.fr/)  Professeur de Mathématiques à l'Université Paris Cité/[Laboratoire de Probabilités, Statistiques et Modélisatiion LPSM](https://www.lpsm.paris).
 
 
 
-## Travaux dirigés
 
-|                    | Nom                    | Horaire             | Salle                                    |
-|:-------------------|:-----------------------|:-------------------:|:----------------------------------------:|
-| ![foo](images/team/ritratto.jpg) | Stéphane Boucheron | Vendredi  14h45 - 17h15  |  2004 Sophie Germain        |
-| ![foo](images/team/ritratto.png) | Sylvain Schmitz    | Vendredi  14h45 - 17h15  |  2005 Sophie Germain        |
-| ![foo](images/team/ritratto.png) | xxx     xxx        | Vendredi  14h45 - 17h15  |  2006 Sophie Germain        |
+## {{< fa laptop-code >}} Travaux dirigés
+
+| Nom                | Horaire                  | Salle                       |          
+|:-------------------|:-------------------------|:---------------------------:|
+| [Stéphane Boucheron](http://stephane-v-boucheron.fr/) | Vendredi  15h45 - 18h15  |  2004/5 Sophie Germain      |
+| [Sylvain Schmitz](https://www.irif.fr/en/users/schmitz/index)    | Vendredi  15h45 - 18h15  |  2006   Sophie Germain      |
 
 

@@ -1,1 +1,0 @@
-../workshops/td-fonction1.qmd

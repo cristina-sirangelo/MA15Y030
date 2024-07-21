@@ -12,3 +12,22 @@ listing:
     title: "Titre"
     subtitle: "Description"
 ---
+
+Les diapositives fournissent le canevas du cours. Vous pouvez les utiliser pour vous familiariser avec le matériel du prochain cours, pour revoir les cours passés et, pour réviser.
+
+Les diapositives marquées par l'image {{< fa person-chalkboard >}} renvoient à des développements effectués en classes.
+
+
+
+
+::: {#sample-listings}
+:::
+
+
+::: {.callout-note}
+### Mode d'emploi
+
+Les diapositives utilisent la bibliothèque [`revealjs`](https://revealjs.com) de {{< fa brands js >}}. Elles s'affichent dans votre navigateur. 
+Vous pouvez accéder au mode d'emploi en tappant {{< fa question >}}
+
+:::

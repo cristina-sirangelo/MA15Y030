@@ -23,12 +23,11 @@ params:
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
     moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+
+engine: knitr
 ---
 
 
-```{r}
-#| include: false
-```
 
 ::: {.content-visible when-profile='solution'} 
 
@@ -46,7 +45,6 @@ params:
 
 ::: {#first-column}
 
-{{< meta title >>}}
 
 - **`r stringr::str_glue('{params$curriculum}')`**
 - **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
@@ -57,7 +55,7 @@ params:
 ::: 
 
 ::: {#second-column}
-![](../images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+![](/images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
 :::
 
 :::
@@ -98,10 +96,11 @@ On utilisera essentiellement les opérateurs suivants: `IN, EXISTS, ALL, ANY`.
 ```{.sql}
 SELECT DISTINCT region 
 FROM world.country
-WHERE region NOT IN (SELECT region
-                      FROM world.country
-                      WHERE governmentform like '%Monarchy%'
-                     );
+WHERE region NOT IN (
+  SELECT region
+  FROM world.country
+  WHERE governmentform like '%Monarchy%'
+);
 ```
 
 Pour connaître les régions qui ont au moins une langue officielle, on pourra écrire:
@@ -110,11 +109,12 @@ Pour connaître les régions qui ont au moins une langue officielle, on pourra �
 ```{.sql}
 SELECT DISTINCT region 
 FROM world.country AS co
-WHERE EXISTS (SELECT *
-              FROM world.countrylanguage as cl
-              WHERE co.countrycode = cl.countrycode
-                    and cl.isofficial
-             );
+WHERE EXISTS (
+  SELECT *
+  FROM world.countrylanguage AS cl
+  WHERE co.countrycode = cl.countrycode AND 
+    cl.isofficial
+);
 ```
 
 Remarquez que dans ce dernier exemple, la sous-requête fait intervenir des attributs de la requête principale, c'est pourquoi on parle de requêtes imbriquées.
@@ -124,7 +124,9 @@ Remarquez que dans ce dernier exemple, la sous-requête fait intervenir des attr
 ```{.sql}
 SELECT * 
 FROM table 
-WHERE col < ALL(requete)
+WHERE col < ALL(
+  requete
+)
 ```
 
 sélectionnera les lignes de `table` telles que la valeur de `col` est plus petite que toutes les valeurs retournées par la requête `requete`. Ainsi, la requête
@@ -143,14 +145,14 @@ retournera la liste des pays les plus peuplés.
 ```{.sql}
 SELECT * 
 FROM table 
-WHERE col < ANY(requete)
+WHERE col < ANY(
+  requete
+)
 ```
 
 sélectionnera les lignes de `table` telles que la valeur de `col` est strictement plus petite qu'au moins une des valeurs retournées par la requête `requete`.
 
 Pour connaître les régions où l'on ne trouve qu'une seule forme de gouvernement, on pourra écrire:
-
-
 
 ```{.sql}
 SELECT DISTINCT region 
@@ -158,8 +160,12 @@ FROM world.country as c1
 WHERE c1.governmentform = ALL(
   SELECT c2.governmentform 
   FROM world.country as c2
-  WHERE c2.countrycode!=c1.countrycode AND c2.region=c1.region);
+  WHERE c2.countrycode!=c1.countrycode AND 
+    c2.region=c1.region
+);
 ```
+
+::: {.callout-note}
 
 On remarque que dans `EXISTS` ou `IN` on peut utiliser des attributs de notre requête globale, ce qui les rend plus *puissants* que 
 
@@ -169,6 +175,7 @@ WITH ... AS (
 )
 ```
 
+:::
 
 
 ## Jointure externe
@@ -182,8 +189,8 @@ On utilisera `LEFT JOIN` et `RIGHT JOIN`. Par exemple, la requête suivante renv
 ```{.sql}
 SELECT * 
 FROM world.country AS p LEFT JOIN 
-     world.countrylanguage AS l ON 
-     p.countrycode = l.countrycode;
+  world.countrylanguage AS l ON 
+  p.countrycode = l.countrycode;
 ```
 
 On peut utiliser cette requête pour trouver les pays qui n'ont pas de langue officielle par exemple:
@@ -192,8 +199,8 @@ On peut utiliser cette requête pour trouver les pays qui n'ont pas de langue of
 ```{.sql}
 SELECT * 
 FROM world.country as p LEFT JOIN 
-     world.countrylanguage AS l ON 
-     p.countrycode = l.countrycode AND l.isofficial
+  world.countrylanguage AS l ON 
+  p.countrycode = l.countrycode AND l.isofficial
 WHERE l.countrycode IS NULL;
 ```
 
@@ -206,28 +213,37 @@ Quels sont les langues qui ne sont officielles dans aucun pays ? (355 lignes)
 Écrivez une version avec `EXCEPT`, une avec `NOT IN` et une autre avec `LEFT JOIN`.
 
 
+::::: {.content-visible when-profile="solution"}
 
-
-::: {.content-visible when-profile="solution"}
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
-SELECT DISTINCT language 
-FROM  world.countrylanguage
+(
+  SELECT DISTINCT language 
+  FROM  world.countrylanguage
+)
+
 EXCEPT 
-(SELECT language 
- FROM world.countrylanguage 
- WHERE isofficial);
+
+(
+  SELECT language 
+  FROM world.countrylanguage 
+  WHERE isofficial
+);
 ```
 
 :::
-:::
+
+:::::
 
 
 ::: {.content-visible when-profile="solution"}
-::: {.callout-tip title="Solution"}
 
 Première  version
+
+::: {.callout-tip title="Solution"}
+
+
 
 
 ```{.sql}
@@ -239,9 +255,11 @@ WHERE language NOT IN
        WHERE isofficial);
 ```
 
+:::
+
 Deuxième version:
 
-::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
@@ -251,34 +269,41 @@ FROM world.countrylanguage AS l1
      ON (l1.language = l.language AND l.isofficial)
 WHERE l.language IS NULL;
 ```
-:::
+
 :::
 
-::: {.content-visible when-profile="solution"}
-::: {.callout-tip title="Solution"}
+
 Troisième version:
+
+::: {.callout-tip title="Solution"}
 
 
 ```{.sql}
 SELECT DISTINCT cl.language 
 FROM world.countrylanguage cl
-WHERE  NOT EXISTS
-      (SELECT cl1.language 
-       FROM world.countrylanguage cl1
-       WHERE cl1.language=cl.language AND
-             cl1.isofficial);
+WHERE  NOT EXISTS (
+  SELECT cl1.language 
+  FROM world.countrylanguage cl1
+  WHERE cl1.language=cl.language AND
+  cl1.isofficial
+);
 ```
-:::
+
 :::
 
 ::: {.callout-note}
 
 En calcul relationnel
+
+
 \begin{align*}
 \Big\{l.\texttt{language} :  & \texttt{countrylanguage}(l) \wedge \\
 & \neg \big( \exists t \quad \texttt{countrylanguage}(t)  \wedge\\
 &\phantom{\neg\big(}l.\texttt{language}=t.\texttt{language}\wedge t.\texttt{isofficial}\big)\Big\}
 \end{align*}
+
+
+:::
 
 :::
 
@@ -286,6 +311,7 @@ Quelles sont les régions où au moins deux pays ont la même forme de gouvernem
 
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
@@ -297,10 +323,13 @@ WHERE c1.governmentform = ANY(
   WHERE c2.countrycode!=c1.countrycode AND c2.region=c1.region
 );
 ```
+
 :::
+
 :::
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
@@ -310,7 +339,9 @@ FROM world.country AS c1 JOIN world.country AS c2
     c1.countrycode!=c2.countrycode AND 
     c1.governmentform=c2.governmentform;
 ```
+
 :::
+
 :::
 
 
@@ -319,7 +350,8 @@ Quels sont les films qui n'ont jamais été loués ? (42 lignes)
 
 
 
-::: {.content-visible when-profile="solution"}
+::::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 
@@ -354,16 +386,20 @@ SELECT title,film_id FROM pagila.film
 ```
 
 :::
-:::
+
+:::::
 
 ::: {.callout-note }
+
 En calcul relationnel
+
 
 \begin{align*}
 \Big\{ f.\texttt{title} : & \texttt{film}(f) \wedge \\
 & \neg \big( \exists t, t_1  \quad \texttt{inventory}(t)  \wedge  \exists t_1  \quad \texttt{rental}(t_1)  \wedge\\
 &\phantom{\neg\big(} f.\texttt{film\_id}=t.\texttt{film\_id}\wedge t.\texttt{inventory\_id}=t_1.\texttt{inventory\_id}\big)\Big\}
 \end{align*}
+
 
 :::
 
@@ -375,7 +411,8 @@ qui possèdent la propriété dans la base.
 
 Quels sont les acteurs qui ont joué dans toutes les catégories de film ? (11 lignes)
 
-::: {.content-visible when-profile="solution"}
+::::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
@@ -390,7 +427,8 @@ SELECT first_name,last_name FROM pagila.actor NATURAL JOIN ActId  ;
 ```
 
 :::
-:::
+
+:::::
 
 
 ::: {.callout-important}
@@ -398,13 +436,18 @@ SELECT first_name,last_name FROM pagila.actor NATURAL JOIN ActId  ;
 Cette requête réalise une opération sophistiquée de l'algèbre relationnelle la *division* ou  $\div$.
 Il ne s'agit pas d'une opération primitive comme  $\sigma,\pi, \times$.
 
+
 $$\pi_{\texttt{actor\_id},\texttt{category\_id}} \left(\texttt{film\_actor} \bowtie \texttt{film\_category}\right)  \div \pi_{\texttt{category}} (\texttt{film\_category})$$
+
+:::
+
+::: {.content-visible when-profile="solution"}
+
+::: {.callout-tip title="Solution"}
 
 La version suivante  calcule le même résultat,  et
 suit fidèlement le plan d'exécution le plus élémentaire pour réaliser la division.
 
-::: {.content-visible when-profile="solution"}
-::: {.callout-tip title="Solution"}
 
 ```{.sql}
 WITH 
@@ -435,12 +478,14 @@ FROM pagila.actor NATURAL JOIN ActId  ;
 En comptant le nombre $n$ de catégories de films dans une première requête, on peut aussi sélectionner les acteurs qui apparaissent dans au moins $n$ catégories de film.
 
 :::
+
 :::
 
 Existe-t-il des acteurs qui ne jouent avec aucun autre acteur ? (3 lignes ????)
 
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
@@ -468,6 +513,7 @@ WHERE NOT EXISTS (
 ```
 
 :::
+
 :::
 
 Nom, prénom  des clients  installés dans des villes sans magasin ? (599 lignes)
@@ -475,6 +521,7 @@ Nom, prénom  des clients  installés dans des villes sans magasin ? (599 lignes
 
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
@@ -490,12 +537,14 @@ WHERE city_id NOT IN (SELECT * FROM StoreCity);
 ```
 
 :::
+
 :::
 
 
  Lister les pays pour lesquels toutes les villes ont au moins un magasin. (1 ligne)
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
@@ -512,28 +561,33 @@ WHERE NOT EXISTS (
 ```
 
 :::
+
 :::
 
 Déterminer la liste des films disponibles dans toutes les langues.
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 *Comme pour les acteurs "toutes catégories"*, il s'agit d'une *division*. Dans la base installée, le
 résultat est vide.  
 
 :::
+
 :::
 
 Un même *dvd* (`inventory_id`) peut bien sûr être loué plusieurs fois, mais pas simultanément. Proposer une requête qui  vérifie que les dates de location d'un *dvd* donné sont compatibles.
 
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 `SQL` en général et `PostGres` en particulier proposent beaucoup de types et d'opérations sophistiquées pour représenter et manipuler les données temporelles.
 
 :::
+
 :::
 
 
@@ -600,10 +654,6 @@ AS
 :::
 
 
-### Requêtes supplémentaires
-
-Au besoin en utilisant des vues, écrire des requêtes pour répondre aux questions suivantes:
-
 
 
 ## Fonctions SQL
@@ -642,6 +692,7 @@ Quels sont les acteurs qui ont déjà joué dans un film d'horreur (catégorie '
 
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 Les solutions sont données en utilisant la fonction suivante
@@ -657,12 +708,14 @@ $$ ;
 ```
 
 :::
+
 :::
 
 
 
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
@@ -675,13 +728,17 @@ SELECT DISTINCT ac.* FROM pagila.actor ac
 ```
 
 :::
+
 :::
+
+
+::: {.content-visible when-profile="solution"}
 
 ou
 
-::: {.content-visible when-profile="solution"}
-::: {.callout-tip title="Solution"}
 
+::: {.callout-tip title="Solution"}
+ 
 ```{.sql}
 SELECT DISTINCT ac.*
 FROM pagila.actor ac JOIN
@@ -691,6 +748,7 @@ FROM pagila.actor ac JOIN
 (156 tuples renvoyés).
 
 :::
+
 :::
 
 Quels sont les acteurs qui n'ont jamais joué dans une comédie (`Comedy`) ? (53 lignes)
@@ -715,6 +773,7 @@ Elle répond à la question : *Quels sont les acteurs qui ont  joué dans un fil
 
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 Une réponse correcte est
@@ -728,12 +787,14 @@ FROM pagila.actor A1
 ```
 
 :::
+
 :::
 
 ::: {.content-visible when-profile="solution"}
-::: {.callout-tip title="Solution"}
 
 ou encore
+
+::: {.callout-tip title="Solution"}
 
 ```{.sql}
 SELECT DISTINCT ac.last_name, ac_first_name
@@ -745,13 +806,16 @@ WHERE NOT EXISTS
       AND fa.actor_id = ac.actor_id
      )  ;
 ```
+
 :::
+
 :::
 
 ::: {.callout-note}
 
 En calcul relationnel, en considérant  `film_id_cat('Comedy')` comme une relation (ce qui
 est cohérent avec la définition de la fonction) cette requête s'exprime
+
 
 \begin{align*}
   \left\{ a.\texttt{last\_name,}  \right. & a.\texttt{first\_name}
@@ -762,7 +826,8 @@ est cohérent avec la définition de la fonction) cette requête s'exprime
 & \left. \left.   \wedge \texttt{film\_id\_cat}(\mathrm{'Comedy'})(\mathrm{fa}.\texttt{film\_id}) \right) \right\}
 \end{align*}
 
-Le calcul relationnel traduit presque littéralement la démarche que nous suivons lorsqu'il faut construire le résultat à la main : pour trouver les \texttt{actor\_id} des acteurs qui n'ont jamais joué dans une comédie,
+
+Le calcul relationnel traduit presque littéralement la démarche que nous suivons lorsqu'il faut construire le résultat à la main : pour trouver les `actor_id` des acteurs qui n'ont jamais joué dans une comédie,
 nous examinons toutes les  valeurs $a$ de `actor_id` présentes dans la table `actor` (ou `film_actor`), et pour chacune de ces valeurs, nous verifions qu'il n'existe pas de tuple de la table `film_actor` où  l'attribut `actor_id` soit égal à $a$ et où l'attribut `film_id` désigne un film qui apparaît dans le résultat de `film_id_cat('Comedy')`.
 
 Nous *décrivons/explicitons* ainsi les propriétés du résultat de la requête *Quels sont les acteurs qui n'ont jamais joué dans une comédie ('Comedy') ?*.
@@ -772,11 +837,8 @@ Nous *décrivons/explicitons* ainsi les propriétés du résultat de la requête
 Si maintenant nous cherchons à *1* ce résultat, nous pouvons d'abord calculer la liste des
 `actor_id`  des acteurs qui ont joué dans une comédie, calculer la liste de tous les
 `actor_id`  connus dans le schema et faire la différence, en algèbre relationnelle, cela se résume à 
-$$
-	\pi_{\texttt{actor\_id}}\left(\texttt{film\_actor}\right) \setminus
-	\pi_{\texttt{actor\_id}} \left( \texttt{film\_actor} \bowtie
-	                             \texttt{film\_id\_cat}(\texttt{'Comedy'}) \right)
-$$
+
+$$\pi_{\texttt{actor\_id}}\left(\texttt{film\_actor}\right) \setminus \pi_{\texttt{actor\_id}} \left( \texttt{film\_actor} \bowtie\texttt{film\_id\_cat}(\texttt{'Comedy'}) \right)$$
 
 :::
 
@@ -791,11 +853,14 @@ Ici l'erreur la plus fréquente consiste à  écrire
 SELECT actor_id 
 FROM pagila.film_actor AS fa
 WHERE fa.film_id IN (
-    SELECT * 
-    FROM entid.film_id_cat('Children')) AND
-    fa.film_id IN (SELECT * 
-                   FROM entid.film_id_cat('Horror')) ;
+  SELECT * 
+  FROM entid.film_id_cat('Children')
+) AND fa.film_id IN (
+  SELECT * 
+  FROM entid.film_id_cat('Horror')
+);
 ```
+
 Le résultat est vide et la requête ne correspond pas à la question posée. Elle calcule les
 `actor_id` des acteurs qui ont dans au moins un film qui relève simultanément
 des catégories `Horror` et `Children` (ce genre de film est assez rare).
@@ -804,6 +869,7 @@ Pour calculer un résultat correct, il faut pour chaque valeur $a$  de `actor_id
 rechercher deux tuples (pas nécessairement distincts) de  `film_actor` où
 l'attribut `actor_id` vaut $a$ et ou  dans un cas `film_id`  désigne
 un film pour enfants et dans l'autre un film d'horreur. En calcul relationnel, cela donne
+
 
 \begin{align*}
   \left\{ a.\texttt{last\_name,}  \right. & a.\texttt{first\_name}
@@ -816,7 +882,9 @@ un film pour enfants et dans l'autre un film d'horreur. En calcul relationnel, c
 & \left. \left.   \wedge \texttt{film\_id\_cat}(\mathrm{'Horror'})(\mathrm{fa}.\texttt{film\_id}) \right)\right\}
 \end{align*}
 
+
 En algèbre relationnelle 
+
 
 \begin{align*}
 \pi_{\texttt{last\_name,}\texttt{first\_name}} \bigg( &  \texttt{actor} \bowtie  \\
@@ -827,9 +895,11 @@ En algèbre relationnelle
 	                             \bigg)
 \end{align*}
 
+
 :::
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="Solution"}
 
 En SQL, cela peut donner
@@ -850,6 +920,7 @@ WHERE EXISTS (SELECT film_id
 qui renvoie 129 tuples.
 
 :::
+
 :::
 
 

@@ -48,30 +48,20 @@ website:
     search: true
     collapse-level: 1
     contents:
-      - section: "Course information"
+      - section: "Informations générales"
         contents:
-          - href: cours-apercu.qmd
+          - href: index.qmd
             text: Aperçu
           - href: cours-syllabus.qmd
             text: Syllabus
-          - href: cours-support.qmd
-            text: Support
           - href: cours-equipe.qmd
             text: Équipe
-          - href: index.qmd
-            text: Agenda
-          - href: cours-liens.qmd
-            text: Liens
-          - href: cours-faq.qmd
-            text: FAQ
       - section: "Support"
         contents:
           - href: computing-access.qmd
             text: "Accès Informatique"
           - href: computing-dbeaver.qmd
             text: "Client dbeaver"
-          - href: computing-troubleshooting.qmd
-            text: Dépannage
       - href: slides-listings.qmd
         text: Diapositives
       - href: td-listings.qmd
@@ -122,5 +112,6 @@ format:
 
 execute:
   freeze: auto
+  cache: true
 
 editor: source

@@ -13,3 +13,28 @@ listing:
     title: "Titre"
     categories: "Description"
 ---
+
+::: {.callout-note}
+
+Les annales recueillent les sujets de contrôle continu (CC) et de contrôle terminal (CT) des années universitaires 2022-23 et 2023-24. 
+
+Les sujets sont *partiellement* corrigés.
+
+:::
+
+
+
+::: {#Annales}
+:::
+
+
+::: {.callout-caution}
+
+Le contrôle continu 3 (CC3) de l'année 2022-23 est formé d'une suite de devoirs à réaliser à la maison entre deux séances de TD. 
+
+Les contrôles continus 1 et 2 (CC1 et CC2)  de l'année 2022-23 se déroulaient en salle de TP sur machines. 
+
+Tous les autres contrôles consistaient en épreuves sur table de 1 heure, 1 heure 30 ou 2 heures. 
+
+
+:::
