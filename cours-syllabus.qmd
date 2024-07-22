@@ -102,7 +102,9 @@ Les énoncés des exercices sont [disponibles sous différents formats](/td-list
 Les corrections (partielles) des exercices sont [disponibles sous différents formats](/corriges-tds.qmd) (html et pdf)
 
 Assiduité. La présence en cours et en TDs n'est pas obligatoire. Aucun certificat d'assiduité ne sera délivré.
- 
+
+Évitez si possible les courriels à propos du contenu du cours. Le courriel devrait être réservé aux questions personnelles.
+
 :::
 
 ::: {.callout-important}
