@@ -6,8 +6,368 @@ date: "2024-11-15"
 format: 
   revealjs:
     header: "Modélisation Entités/Associations/Cardinalités/Contraintes"
-
-
 ---
+
+
+# Introduction  {background-color="#1c191c"}
+
+## Pourquoi ?
+
+## Comment ?
+
+## Modèle Entité-Association (EA/ER)
+
+Chen 
+
+# Entités  {background-color="#1c191c"}
+
+## Definition
+
+::: {.callout-note}
+
+### Définition
+
+Une *entité* est un ensemble d'objets apparentés. Les éléments d'une entite sont appelées *instances*.
+
+:::
+
+Tout ensemble d'objets n'est pas nécessairement considéré comme une entité. C'est la décision de l'équipe de modélisation qui constitue les entités.
+
+## Exemple d'entités (`world`)
+
+Pour la constitution de la base de données de géographie politique `world`, la modélisation choisirait les entités :
+
+- `country`: les pays/territoires 
+- `city`: les villes de population urbaine supérieure à un seuil donné lors de la constitution de la base
+- `language`: les langues parlées lors de la constitution de la base   
+
+## Exemple d'entités (`nycflights`)
+
+- `airports`: les aéroports (civils, sur le sol des États-Unis)
+- `airlines`: les compagnies aériennes
+- `planes` : les avions (aéronefs)
+
+## Les noms 
+
+Les entités sont généralement associées à des noms (substantifs). 
+
+## Instances et Entités
+
+Une instance est un élément d'une entité. 
+
+Dans `word`, le pays `Luxemburg` est une instance de `country`. 
+
+Les instances d'une entité sont *discernables* (pas d'éléments dupliqués)
+
+## Attributs
+
+::: {.callout-note}
+
+### Définition
+
+Un *attribut* est une fonction qui envoie une *entité* dans un domaine (ensemble de valeurs, type)
+
+:::
+
+. . .
+
+Dans `world`, l'attribut `name` envoie `country` vers l'ensemble des chaînes de caractères. Dans l'égalité `name(Luxemburg) = "Luxemburg"`, à gauche `Luxemburg` désigne le  pays, à droite, `"Luxemburg"` est une chaîne de caractères 
+
+L'attribut `population` envoie `country` vers les entiers (positifs)
+
+## Attributs (notation graphique)
+
+```{dot}
+//| label: er1
+//| eval: true
+//| echo: false
+graph ER {
+	fontname="Helvetica,Arial,sans-serif"
+	node [fontname="Helvetica,Arial,sans-serif"]
+	edge [fontname="Helvetica,Arial,sans-serif"]
+	layout=neato
+	node [shape=box]; country; city; language;
+	node [shape=ellipse]; {node [label="name"] name0; name1; name2;}
+		population; governmentForm; headOfState;
+
+	name0 -- country;
+	population -- country;
+  governmentForm -- country; 
+  headOfState -- country;
+	city -- name1;
+	language -- name2;
+//	label = "\n\nEntity Relation Diagram\ndrawn by NEATO";
+//	fontsize=20;
+}
+```
+
+## Identifiant
+
+::: {.callout-note}
+
+### Définition
+
+Pour une entité,  un *identifiant* est un attribut qui envoie deux instances distinctes vers deux valeurs distinctes du domaine. 
+
+:::
+
+::: {.callout-tip}
+
+Un identifiant est un attribut (une fonction) *injective*
+
+Dans un schéma EA, on choisit un attribut injectif et on le désigne comme identifiant
+
+{{< fa skull-bones >}} L'identifiant d'une entité n'est pas le nom de  l'entité
+
+:::
+
+## Identifiant (exemple)
+
+La norme ISO-3166 associe à chaque pays un code en deux lettres (alpha-2). Pour le Luxemburg, il s'agit de `LU`
+
+La norme ISO-3166 associe à chaque pays un code en trois lettres (alpha-3). Pour le Luxemburg, il s'agit de `LUX`
+
+
+## Identifiant (représentation)
+
+```{dot}
+//| label: er1
+//| eval: true
+//| echo: false
+graph ER {
+	fontname="Helvetica,Arial,sans-serif"
+	node [fontname="Helvetica,Arial,sans-serif"]
+	edge [fontname="Helvetica,Arial,sans-serif"]
+	layout=neato
+	node [shape=box]; country; city; language;
+	node [shape=ellipse]; {node [label="name"] name0; name1; name2;}
+		population; governmentForm; headOfState; {node [label=<<u>iso3</u>>] iso;};
+
+	name0 -- country;
+	population -- country;
+  governmentForm -- country; 
+  headOfState -- country;
+	city -- name1;
+	language -- name2;
+  country -- iso
+}
+```
+
+::: {.callout-note}
+
+On singularise les identifiants en les soulignant. 
+
+:::
+
+# Associations  {background-color="#1c191c"}
+
+## 
+
+::: {.callout-note}
+
+### Définition
+
+Une association $\mathcal{A}$ $entre les entités $E_1,E_2, \ldots, E_k$, 
+est un sous-ensemble de $E_1 \times E_2 \times \ldots \times E_k$
+
+Les éléments de l'association sont appelés *instance*
+
+:::
+
+::: {.callout-tip}
+
+Une association porte un nom
+
+Une association peut posséder des attributs qui sont des fonctions de l'association vers un domaine/type.
+
+:::
+
+## Association (exemple)
+
+Dans `world`, on peut définir une association `is-in` entre les entités 
+`city` et `country`. 
+
+## Graphique
+
+```{dot}
+//| label: er3
+//| eval: true
+//| echo: false
+graph ER {
+	fontname="Helvetica,Arial,sans-serif"
+	node [fontname="Helvetica,Arial,sans-serif"]
+	edge [fontname="Helvetica,Arial,sans-serif"]
+	layout=fdp
+	node [shape=box]; country; city; language;
+	node [shape=ellipse]; {node [label="name"] name0; name1; name2;}
+		population; governmentForm; headOfState; {node [label=<<u>iso3</u>>] iso;};
+    {node [label=<<u>id</u>>] id;}; {node [label=<<u>iso</u>>] isol;}
+  node [shape=diamond];  "is-in" ; "is-spoken-in" ; "is-capital"
+  
+	name0 -- country;
+	population -- country;
+  governmentForm -- country; 
+  headOfState -- country;
+	city -- name1;
+	language -- name2;
+  country -- iso ;
+  city -- id ;
+  language -- isol ;
+  city -- "is-in" ;
+  "is-in" -- country ;
+  city -- "is-capital" ;
+  "is-capital" -- country ;
+  language -- "is-spoken-in" ;
+  "is-spoken-in" -- country ; 
+}
+```
+
+## 
+
+::: {.callout-note}
+
+Une association est représentée par un losange, elle est nommée. 
+
+Le losange est relié aux dfférentes entités participantes par une arête
+
+Le nom d'une association reflète en principe la signification de cette association. 
+
+Le nom d'une association renvoie souvent à un verbe, pas forcémment d'action
+
+:::
+
+::: {.callout-warning}
+
+Il n'est pas toujours évident de lire sur le graphique le rôle joué par les différentes entités participantes dans une association. Bien nommer aide. 
+
+:::
+
+
+## Instances et Associations
+
+
+
+
+## Attributs
+
+
+
+## Arité
+
+::: {.callout-note}
+
+### Définition
+
+L'*arité* d'une association est le nombre d'entités participantes. 
+
+:::
+
+::: {.callout-note}
+
+Dans le modèle `world`, nous n'avons (pour le moment) que des associations d'arité `2`, c'est-à-dire des associations binaires. 
+
+:::
+
+
+# Cardinalités    {background-color="#1c191c"}
+
+
+## Cas des relations binaires (2 entités)
+
+## Exemples `1:n`
+
+Dans le modèle `world`, 
+
+- une instance de `city` apparaît `1` et `1` seule fois dans l'association  `is-in`. On dira que `is-in`  est de cardinalité `1:1` du côté de `city`.
+- une instance de `country` peut apparaître une nombre arbitraire de fois dans 
+l'association 'is-in'. On dira  que `is-in`  est de cardinalité `0:n` du côté de `city`.
+
+
+## Exemples `n:n`
+
+Dans le modèle `world`, 
+
+- une instance de `language` peut apparaître une nombre arbitraire de fois dans l'association  `is-spoken-in`. On dira que `is-spoken-in`  est de cardinalité `0:n` du côté de `language`.
+- une instance de `country` peut apparaître une nombre arbitraire de fois dans 
+l'association 'is-spoken-in'. On dira  que `is-spoken-in`  est de cardinalité `0:n` du côté de `country`.
+
+## Représentation graphique des cardinalités
+
+
+```{dot}
+//| label: er3
+//| eval: true
+//| echo: false
+graph ER {
+	fontname="Helvetica,Arial,sans-serif"
+	node [fontname="Helvetica,Arial,sans-serif"]
+	edge [fontname="Helvetica,Arial,sans-serif"]
+	layout=fdp
+	node [shape=box]; country; city; language;
+	node [shape=ellipse]; {node [label="name"] name0; name1; name2;}
+		population; governmentForm; headOfState; {node [label=<<u>iso3</u>>] iso;};
+    {node [label=<<u>id</u>>] id;}; {node [label=<<u>iso</u>>] isol;}
+  node [shape=diamond];  "is-in" ; "is-spoken-in" ; "is-capital"
+  
+	name0 -- country;
+	population -- country;
+  governmentForm -- country; 
+  headOfState -- country;
+	city -- name1;
+	language -- name2;
+  country -- iso ;
+  city -- id ;
+  language -- isol ;
+  city -- "is-in"  [label="1:1",len=1.00]; 
+  "is-in" -- country [label="0:n",len=1.00] ;
+  city -- "is-capital"  [label="0:1",len=1.00] ;
+  "is-capital" -- country   [label="0:1",len=1.00] ;
+  language -- "is-spoken-in"  [label="0:n",len=1.00] ;
+  "is-spoken-in" -- country  [label="0:n",len=1.00] ; 
+}
+```
+
+# Entités faibles   {background-color="#1c191c"}
+
+
+## Définition
+
+## Exemples
+
+# Associations faibles   {background-color="#1c191c"}
+
+
+## Définition
+
+## Exemples
+
+# Tansformations   {background-color="#1c191c"}
+
+
+## Association d'arité quelconque en associations binaires
+
+
+# Associations *est-un*   {background-color="#1c191c"}
+
+## Définition
+
+## Exemples 
+
+# Références {background-color="#1c191c"}
+
+## Sites
+
+
+## Livres
+
+
+
+# Fin  {background-color="#1c191c"}
+
+
+
+
+
+
 
 

@@ -1,6 +1,7 @@
 ---
 title: "TD 4: SQL"
 subtitle: "Aggrégations, Partitions, Fenêtres"
+categories: [world, SQL, Aggregation, Fenêtres]
 date: "2024-10-11"
 
 format:
@@ -20,7 +21,7 @@ params:
     year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
-    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    homepage: "https://s-v-b.github.io/MA15Y030/"
     moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
 ---
 

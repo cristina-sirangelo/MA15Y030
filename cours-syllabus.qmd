@@ -83,11 +83,13 @@ Vous pouvez installer l'un de ces clients ou plusieurs sur votre machine personn
 
 - [Database Systems: The Complete Book (DS:CB), by Hector Garcia-Molina, Jeff Ullman, and Jennifer Widom]()
 - [Foundations of databases. Abiteboul, Hull et Vianu](https://wiki.epfl.ch/provenance2011/documents/foundations+of+databases-abiteboul-1995.pdf)
+- [Alice](http://webdam.inria.fr/Alice/)
 - [Documentation PostGres](https://www.postgresql.org/docs/current/)
 - [Next Generation Databases NoSQLand Big Data, Guy Harrison ](https://link.springer.com/book/10.1007/978-1-4842-1329-2)
 - [Guy Harrison Blog](https://www.guyharrison.net)
 - [Databases trends and applications](https://www.dbta.com)
-
+- [Upcoming book “Principles of Databases”, by Marcelo Arenas, Pablo Barcelo, Leonid Libkin, Wim Martens, and Andreas Pieris.](https://github.com/pdm-book/community)
+- 
 :::
 
 

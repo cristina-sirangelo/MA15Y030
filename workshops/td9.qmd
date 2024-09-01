@@ -1,6 +1,7 @@
 ---
 title: "TD 9: Normalisation et dépendances"
 subtitle: "Dépendances fonctionnelles"
+categories: [Normalisation, Dépendances fonctionnelles, BCNF, Fermeture, Poursuite, Décomposition, Perte Information]
 date: "2024-11-22"
 
 
@@ -21,7 +22,7 @@ params:
     year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
-    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    homepage: "https://s-v-b.github.io/MA15Y030/"
     moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
 ---
 

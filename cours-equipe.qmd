@@ -16,6 +16,10 @@ title: "Équipe enseignante"
 | Nom                | Horaire                  | Salle                       |          
 |:-------------------|:-------------------------|:---------------------------:|
 | [Stéphane Boucheron](http://stephane-v-boucheron.fr/) | Vendredi  15h45 - 18h15  |  2004/5 Sophie Germain      |
-| [Sylvain Schmitz](https://www.irif.fr/en/users/schmitz/index)    | Vendredi  15h45 - 18h15  |  2006   Sophie Germain      |
+|[Cristina Sirangelo]()| Vendredi  15h45 - 18h15 | 2006 Sophie Germain|
+| [Sylvain Schmitz](https://www.irif.fr/en/users/schmitz/index)    |   |    |
+| [Amélie Gheerbrant](https://www.irif.fr/~amelie/) | | |
+| [Anatole Dahan]()| | |
+
 
 

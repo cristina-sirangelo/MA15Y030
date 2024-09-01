@@ -1,6 +1,7 @@
 ---
 title: "TD 2: SQL"
 subtitle: "SQL Interrogation de données"
+categories: [Algèbre relationnelle, world, psql, pgcli, WITH, SQL]
 date: "2024-09-27"
 
 
@@ -22,7 +23,7 @@ params:
     year: 2024 
     curriculum: "L3 MIASHS/Ingémath"
     university: "Université Paris Cité"
-    homepage: "https://stephane-v-boucheron.fr/courses/bdd"
+    homepage: "https://s-v-b.github.io/MA15Y030/"
     moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
 ---
 

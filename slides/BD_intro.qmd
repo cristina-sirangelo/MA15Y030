@@ -40,12 +40,16 @@ Comment les conserver ? les éditer ?
 
 ## Sources
 
-*Data humanities with R.* Arnold and Tilton 
+[*Data humanities with R.* Arnold and Tilton](https://humanitiesdata.org) 
 
-*Quantitative tour at social sciences* Gelman and ?
+![](/images/arnoldtiltoncover.jpg)
+
+[*Quantitative tour at social sciences* edited by Gelman and Cortina, 2009](
+https://doi.org/10.1017/CBO9780511818851)
 
 Humanités numériques 
  
+{{< fa brands slideshare >}} [Relational databses on slideshare](https://www.slideshare.net/search?searchfrom=header&q=relational+databases)
 
 - Constitution
 
