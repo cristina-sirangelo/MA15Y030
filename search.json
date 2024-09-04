@@ -74,7 +74,7 @@
     "href": "workshops/td-recap-sql.html#schéma-pagila",
     "title": "TD Récapitulatif SQL",
     "section": "Schéma pagila",
-    "text": "Schéma pagila\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est l’acteur (actor_id) présent sur le plus de DVD (inventory_id) ?\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le prix moyen d’une location de DVD ?\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le DVD qui a rapporté le plus d’argent ? Le film (film_id)?\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les employés (staff_id) qui travaillent dans une autre ville que celle dans laquelle ils vivent ? (4 lignes)"
+    "text": "Schéma pagila\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est l’acteur (actor_id) présent sur le plus de DVD (inventory_id) ?\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le prix moyen d’une location de DVD ?\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le DVD qui a rapporté le plus d’argent ? Le film (film_id)?\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les employés (staff_id) qui travaillent dans une autre ville que celle dans laquelle ils vivent ? (4 lignes)"
   },
   {
     "objectID": "workshops/td7.html",
@@ -501,7 +501,7 @@
     "href": "td-listings.html",
     "title": "Feuilles d’exercices",
     "section": "",
-    "text": "Note\n\n\n\nLes feuilles d’exercice forment le matériau de base des TDS et TPS. Vous êtes invités à les lire avant la séance et à réfléchir par vous-même. Ne vous précipitez pas sur les propositions de corrections qui sont disponibles sur ce site\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Titre\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitre\n\n\nDescription\n\n\n\n\n\n\nSep 20, 2024\n\n\nTD 1: Algèbre relationnelle\n\n\nLogistique et Algèbre relationnelle\n\n\n\n\nSep 27, 2024\n\n\nTD 2: SQL\n\n\nSQL Interrogation de données\n\n\n\n\nOct 4, 2024\n\n\nTD 3: SQL\n\n\nSQL Interrogation de données, requêtes complexes\n\n\n\n\nOct 11, 2024\n\n\nTD 4: SQL\n\n\nAggrégations, Partitions, Fenêtres\n\n\n\n\nOct 18, 2024\n\n\nTD 5: SQL\n\n\nFenêtres et fonctions SQL\n\n\n\n\nOct 25, 2024\n\n\nTD 6 : Contraintes\n\n\nDéfinition de données Contraintes\n\n\n\n\nNov 8, 2024\n\n\nTD 7 : Contraintes (suite)\n\n\nDéfinition de données et Contraintes \n\n\n\n\nNov 15, 2024\n\n\nTD 8 : Modélisation\n\n\nModélisation\n\n\n\n\nNov 22, 2024\n\n\nTD 9: Normalisation et dépendances\n\n\nDépendances fonctionnelles\n\n\n\n\nNov 29, 2024\n\n\nTD 10: Normalisation\n\n\nFenêtres et fonctions SQL\n\n\n\n\nDec 6, 2024\n\n\nTD 11: Normalisation et dépendances\n\n\nNormalisation et dépendances\n\n\n\n\nDec 13, 2024\n\n\nTD Récapitulatif SQL\n\n\nTD révision générale\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\nConseil\n\n\n\nAvant de travailler sur un exercice, assurez vous que vous maîtrisez/comprenez le schéma relationnel concerné.",
+    "text": "Note\n\n\n\nLes feuilles d’exercice forment le matériau de base des TDS et TPS. Vous êtes invités à les lire avant la séance et à réfléchir par vous-même. Ne vous précipitez pas sur les propositions de corrections qui sont disponibles sur ce site\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Titre\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitre\n\n\nDescription\n\n\n\n\n\n\nSep 20, 2024\n\n\nTD 1: Algèbre relationnelle\n\n\nLogistique et Algèbre relationnelle\n\n\n\n\nSep 27, 2024\n\n\nTD 2: SQL\n\n\nSQL Interrogation de données\n\n\n\n\nOct 4, 2024\n\n\nTD 3: SQL\n\n\nSQL Interrogation de données, requêtes complexes\n\n\n\n\nOct 11, 2024\n\n\nTD 4: SQL\n\n\nAggrégations, Partitions, Fenêtres\n\n\n\n\nOct 18, 2024\n\n\nTD 5: SQL\n\n\nFenêtres et fonctions SQL\n\n\n\n\nOct 25, 2024\n\n\nTD 6 : Contraintes\n\n\nDéfinition de données Contraintes\n\n\n\n\nNov 8, 2024\n\n\nTD 7 : Contraintes (suite)\n\n\nDéfinition de données et Contraintes\n\n\n\n\nNov 15, 2024\n\n\nTD 8 : Modélisation\n\n\nModélisation\n\n\n\n\nNov 22, 2024\n\n\nTD 9: Normalisation et dépendances\n\n\nDépendances fonctionnelles\n\n\n\n\n\nNov 29, 2024\n\n\n\nTD 10: Normalisation\n\n\n\nNormalisation, Perte de DF, Perte d'Information, FNBC, FN3\n\n\n\n\n\n\nDec 6, 2024\n\n\n\nTD 11: Normalisation et dépendances\n\n\n\nNormalisation et dépendances\n\n\n\n\n\nDec 13, 2024\n\n\nTD Récapitulatif SQL\n\n\nTD révision générale\n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\nConseil\n\n\n\nAvant de travailler sur un exercice, assurez vous que vous maîtrisez/comprenez le schéma relationnel concerné.",
     "crumbs": [
       "Exercices"
     ]
@@ -579,7 +579,7 @@
     "href": "cours-equipe.html#travaux-dirigés",
     "title": "Équipe enseignante",
     "section": " Travaux dirigés",
-    "text": "Travaux dirigés\n\n\n\nNom\nHoraire\nSalle\n\n\n\n\nStéphane Boucheron\nVendredi 15h45 - 18h15\n2004/5 Sophie Germain\n\n\nSylvain Schmitz\nVendredi 15h45 - 18h15\n2006 Sophie Germain",
+    "text": "Travaux dirigés\n\n\n\nNom\nHoraire\nSalle\n\n\n\n\nStéphane Boucheron\nVendredi 15h45 - 18h15\n2004/5 Sophie Germain\n\n\nCristina Sirangelo\nVendredi 15h45 - 18h15\n2006 Sophie Germain\n\n\nSylvain Schmitz\n\n\n\n\nAmélie Gheerbrant\n\n\n\n\nAnatole Dahan",
     "crumbs": [
       "Informations générales",
       "Équipe"
@@ -4251,5 +4251,530 @@
     "title": "BD II: SQL LDD",
     "section": "DELETE FROM <table> USING <t> WHERE ...",
     "text": "DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...\n\n\n\n\n\n\nAstuce\n\n\nSouvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat USING\n\n\n\n\nDELETE FROM chaprot.city \nUSING chaprot.country AS co\nWHERE city.countrycode = co.countrycode AND \n  co.region= 'Eastern Europe' AND \n  co.indepyear = 1991 ;"
+  },
+  {
+    "objectID": "solutions/td1.html",
+    "href": "solutions/td1.html",
+    "title": "TD 1: Algèbre relationnelle",
+    "section": "",
+    "text": "Avec solutions"
+  },
+  {
+    "objectID": "solutions/td1.html#schémas",
+    "href": "solutions/td1.html#schémas",
+    "title": "TD 1: Algèbre relationnelle",
+    "section": "Schémas",
+    "text": "Schémas\nLes schémas sont une abstraction spécifique à PostgreSQL. Les schémas permettent de faire cohabiter sur une même base de données (ou catalogue dans le jargon PostgreSQL) plusieurs ensembles d’informations de nature différentes. On peut indiquer à pgcli, psql ou un autre client (dbeaver ou autre) quels schémas on veut utiliser par défaut.\nDans ce TP, nous allons nous concentrer sur le schéma world qui contient des informations concernant des villes et des pays/territoires du monde entier. Au cours de ce semestre, nous serons amenés à utiliser d’autres schémas : pagila qui contient des informations concernant des films, …\nPour lister et modifier les schémas de votre environnement de travail:\nbd_2023-24&gt; SHOW search_path ;                  -- lister\nbd_2023-24&gt; SET search_path TO world, public ;  -- modifier\nbd_2023-24&gt; SHOW search_path ;       -- visualiser \nLister les schémas du catalogue bd_2023-24.\n\\dn\nPour lister les tables des schemas inscrits sur votre search_path.\nbd_2023-24&gt; \\d\n+----------+---------------------+--------+----------+\n| Schema   | Name                | Type   | Owner    |\n|----------+---------------------+--------+----------|\n| world    | city                | table  | postgres |\n| world    | country             | table  | postgres |\n| world    | countrylanguage     | table  | postgres |\n+----------+---------------------+--------+----------+\nVue d’ensemble du schéma world"
+  },
+  {
+    "objectID": "solutions/td1.html#suggestion",
+    "href": "solutions/td1.html#suggestion",
+    "title": "TD 1: Algèbre relationnelle",
+    "section": "Suggestion",
+    "text": "Suggestion\nSi vous travaillez avec pgcli/psql, utilisez en local votre éditeur préféré (emacs, vi, sublime text, visual studio code, …), transférez votre script sql grâce à scp, et chargez le script dans votre session psql/pgcli à l’aide de \\\\i."
+  },
+  {
+    "objectID": "solutions/td1.html#tables",
+    "href": "solutions/td1.html#tables",
+    "title": "TD 1: Algèbre relationnelle",
+    "section": "Tables",
+    "text": "Tables\nPour voir la définition (c’est-à-dire les différentes colonnes) d’une table:\nbd_2023-24&gt; \\d world.country\n\n+--------------------+---------------+-------------+\n| Column             | Type          | Modifiers   |\n|--------------------+---------------+-------------|\n| countrycode        | character(3)  |  not null   |\n| name_country       | text          |  not null   |\n| continent          | text          |  not null   |\n| region             | text          |  not null   |\n| surfacearea        | real          |  not null   |\n| indepyear          | smallint      |             |\n| population_country | integer       |  not null   |\n| lifeexpectancy     | real          |             |\n| gnp                | numeric(10,2) |             |\n| gnpold             | numeric(10,2) |             |\n| localname          | text          |  not null   |\n| governmentform     | text          |  not null   |\n| headofstate        | text          |             |\n| capital            | integer       |             |\n| code2              | character(2)  |  not null   |\n+--------------------+---------------+-------------+"
+  },
+  {
+    "objectID": "solutions/td1.html#explorer-les-possibilités-de-psql-ou-de-pgcli",
+    "href": "solutions/td1.html#explorer-les-possibilités-de-psql-ou-de-pgcli",
+    "title": "TD 1: Algèbre relationnelle",
+    "section": "Explorer les possibilités de psql ou de pgcli",
+    "text": "Explorer les possibilités de psql ou de pgcli\nbd_2023-24&gt; \\?\nDans la deuxième partie du TP, on s’intéresse aux requêtes, c’est-à-dire, les moyens d’extraire une information pertinente d’une base de données."
+  },
+  {
+    "objectID": "solutions/td2.html",
+    "href": "solutions/td2.html",
+    "title": "TD 2: SQL",
+    "section": "",
+    "text": "Avec solutions"
+  },
+  {
+    "objectID": "solutions/td2.html#schéma-world-rappel",
+    "href": "solutions/td2.html#schéma-world-rappel",
+    "title": "TD 2: SQL",
+    "section": "Schéma world (rappel)",
+    "text": "Schéma world (rappel)\nUtiliser les commandes suivantes pour retrouver les schémas de tables country, countrylanguage et city.\nbd_2023&gt; \\d world.\"nom de table\"\nVue d’ensemble du schéma world"
+  },
+  {
+    "objectID": "solutions/td2.html#écriture-de-requêtes",
+    "href": "solutions/td2.html#écriture-de-requêtes",
+    "title": "TD 2: SQL",
+    "section": "Écriture de requêtes",
+    "text": "Écriture de requêtes\nPour extraire des informations d’une base de données, on utilise l’algèbre relationnelle (pour la théorie) et le langage SQL (pour la pratique).\n\n\n\n\n\n\n\n\nOpération\nAlgèbre rel.\nSQL\n\n\n\n\nProjection\n\\(\\Pi_{\\text{liste d'attributs}}(R)\\)\nSELECT attributs FROM  R\n\n\nSélection\n\\({\\Large \\sigma}_{\\text{condition}}{R}\\)\nSELECT * FROM R WHERE condition\n\n\nRenommage\n\\(\\rho_{\\text{nom1} \\rightarrow \\text{nom2}}(R)\\)\nSELECT nom1 AS nom2 FROM table1 AS table2\n\n\nUnion\n\\(R \\cup S\\)\n(SELECT * FROM R) UNION (SELECT * FROM S)\n\n\nDifférence\n\\(R - S\\)\n(SELECT * FROM R) EXCEPT (SELECT * FROM S)\n\n\nProduit\n\\(R \\times S\\)\nSELECT * FROM R,S\n\n\nIntersection\n\\(R \\cap S\\)\n(SELECT * FROM R) INTERSECT (SELECT * FROM S)"
+  },
+  {
+    "objectID": "solutions/td2.html#opérations-avancées",
+    "href": "solutions/td2.html#opérations-avancées",
+    "title": "TD 2: SQL",
+    "section": "Opérations avancées",
+    "text": "Opérations avancées\n\nJointures\nLa jointure est une opération qui permet de recoller deux relations ensemble. On la note avec le signe \\(\\bowtie_C\\) où \\(C\\) est une condition. Formellement, ce n’est qu’une sélection selon la condition \\(C\\) d’un produit cartésien, c’est-à-dire, par définition : \\[R {\\Large \\bowtie}_C S = {\\Large \\sigma}_{C}{(R \\times S)}.\\]\nCette opération est très courante dans les requêtes. Cela vient du fait que les bases de données sont conçues pour ne pas avoir d’information redondante.\nPrenons l’exemple du schéma world et des tables world.country et world.city. La table world.country possède une colonne capital qui contient le numéro d’identification d’une ville de la table world.city. Par exemple, pour la France, la colonne capital vaut 2974 et la ville numéro 2974 est Paris:\nbd_2023-24&gt; SELECT capital \nFROM world.country \nWHERE countrycode='FRA';\nbd_2023-24&gt; SELECT name \nFROM world.city \nWHERE id = 2974;\nPour lister les noms des capitales mondiales, on va avoir besoin de recoller les deux tables en prenant soin de respecter la condition d’égalité entre la capitale et le numéro d’identification de la ville. Cela peut s’écrire en SQL comme suit:\nSELECT name\nFROM world.city AS V JOIN \n     world.country AS P ON \n     V.id = P.capital;\nParfois, on veut recoller deux tables avec la condition que les colonnes qui ont le même nom doivent être égales. Cela arrive souvent si la base de données a bien été conçue. On appelle cette jointure une jointure naturelle, qu’on peut écrire avec NATURAL JOIN. La requête\nSELECT name \nFROM world.city NATURAL JOIN world.country\nWHERE continent = 'Oceania';\nrenvoie la liste des villes d’Océanie. La jointure est faite implicitement sur la condition\nworld.city.countrycode = world.country.countrycode\nla table résultante n’aura qu’une seule colonne countrycode. Si l’on souhaite ne faire la jointure naturelle que sur un sous-ensemble a1,...,ak des attributs communs, on peut utiliser JOIN ... USING (a1,...,ak).\n\n\nRequêtes nommées : utilisation de WITH\nLorsque les requêtes se compliquent, il est parfois commode de la découper en plusieurs requêtes qu’on manipulera par la suite. Par exemple, trouver le nom des capitales européennes ayant plus d’un million d’habitants peut se découper ainsi: on résout la requête CAP qui contient le nom, le continent et la population des capitales. Puis on résout la requête finale en filtrant CAP. Cela peut s’écrire avec l’opérateur WITH:\nWITH CAP AS (\n  SELECT name, continent, population\n  FROM world.city AS V JOIN \n    world.country AS P ON  V.id=P.capital\n)\n\nSELECT name\nFROM CAP\nWHERE continent = 'Europe' AND population &gt; 1000000;"
+  },
+  {
+    "objectID": "solutions/td2.html#requêtes",
+    "href": "solutions/td2.html#requêtes",
+    "title": "TD 2: SQL",
+    "section": "Requêtes",
+    "text": "Requêtes\n\nQuels sont les noms des capitales Sud-Américaines ? (14 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT name\nFROM world.city JOIN \n  world.country ON capital=id\nWHERE continent = 'South America';\n\n\n\nQuels sont les noms des pays où le français est langue officielle ? (18 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT name_country\nFROM world.country NATURAL JOIN world.countrylanguage\nWHERE isofficial AND language='French';\n\n\n\nQuels sont les pays dont le gouvernement est monarchique (constitutionnelle ou pas) ? (43 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT name_country \nFROM world.country \nWHERE governmentform LIKE '%Monarchy%';\n\n\n\nQuelles sont les monarchies d’Europe dont la capitale compte moins d’un million d’habitants ? (8 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH T1 AS (\n  SELECT *\n  FROM world.country\n  WHERE governmentform LIKE '%Monarchy%' AND continent='Europe' )\n\nSELECT name_country\nFROM T1 JOIN world.city ON capital=id\nWHERE population &lt; 1000000;\n\n\n\nQuelles sont les régions où on ne trouve pas de monarchie ? (9 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH monarchy AS (\n  SELECT region\n  FROM world.country\n  WHERE governmentform LIKE '%Monarchy%')\n\n(SELECT region \n FROM world.country) \nEXCEPT \n(SELECT * \n FROM monarchy);\n\n\n\nQuelles sont les langues qui ne sont langues officielles dans aucun pays ? (355 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH R AS (\n  SELECT language \n  FROM world.countrylanguage \n  WHERE isofficial\n)\n\n(SELECT DISTINCT language \nFROM world.countrylanguage) \nEXCEPT \n(SELECT * \nFROM R);\n\n\n\nQuels sont les pays qui n’ont pas de langue officielle ? (49 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH R AS (\n  SELECT countrycode \n  FROM world.countrylanguage\n  WHERE isofficial\n),\nS AS (\n  SELECT countrycode \n  FROM world.country\n  EXCEPT \n  SELECT * FROM R\n)\n\nSELECT name_country \nFROM world.country NATURAL JOIN S;\n\n\n\nQuels sont les pays dont la seule langue officielle est le français ? (9 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH R AS(\n  SELECT DISTINCT T1.countrycode \n  FROM world.countrylanguage as T1 JOIN\n      world.countrylanguage as T2 ON \n      T1.countrycode = T2.countrycode\n  WHERE T1.language &lt;&gt; T2.language AND\n      T1.isofficial AND\n      T2.isofficial),\nS AS (\n  SELECT countrycode \n  FROM world.countrylanguage\n  WHERE language='French' AND isofficial\n  EXCEPT \n  (SELECT * FROM R)\n)\n\nSELECT name_country \nFROM world.country NATURAL JOIN S;\nEn utilisant EXCEPT :\nWITH OnlyFrench AS (\n  (SELECT countrycode\n  FROM countrylanguage\n  WHERE isofficial AND language = 'French')\n  EXCEPT\n  (SELECT countrycode\n  FROM countrylanguage\n  WHERE isofficial AND language &lt;&gt; 'French')\n)\n\nSELECT name_country \nFROM world.country NATURAL JOIN OnlyFrench;\n\n\n\nLes noms des pays où le français n’est pas la seule langue officielle. (9 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH R AS (\nSELECT DISTINCT T1.countrycode FROM world.countrylanguage as T1\n                     JOIN world.countrylanguage as T2\n                     ON T1.countrycode = T2.countrycode\nWHERE T1.language &lt;&gt; T2.language AND\n     T1.language = 'French' AND\n     T1.isofficial AND\n     T2.isofficial)\n\nSELECT name_country FROM R NATURAL JOIN world.country;\nEn utilisant INTERSECT :\nWITH AlsoFrench AS (\n  (SELECT countrycode\n  FROM world.countrylanguage\n  WHERE isofficial AND language = 'French')\n  INTERSECT\n  (SELECT countrycode\n  FROM world.countrylanguage\n  WHERE isofficial AND language &lt;&gt; 'French')\n)\n\nSELECT name_country \nFROM world.country NATURAL JOIN \n     AlsoFrench;\n\n\n\nQuelles sont les régions qui ne comportent qu’une seule forme de gouvernement ? (3 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH R AS (\n  SELECT T1.region \n  FROM world.country AS T1 JOIN \n       world.country AS T2 ON \n       T1.region = T2.region\n  WHERE T1.governmentform &lt;&gt; T2.governmentform)\n\nSELECT region \nFROM world.country \nEXCEPT \nSELECT * \nFROM R;\n\n\n\nQuelles sont les langues officielles des pays dont la capitale compte plus de 5 000 000 d’habitants ? (12 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT DISTINCT language\nFROM world.countrylanguage NATURAL JOIN \n     world.city JOIN world.country ON capital=id\nWHERE population &gt; 5000000 and isofficial;\n\n\n\nQuels sont les pays où au moins trois langues sont parlées chacune par strictement plus de \\(10\\%\\) de la population ? (35 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH R AS (\n  SELECT T1.countrycode \n  FROM  world.countrylanguage AS T1 JOIN \n        world.countrylanguage AS T2 ON T1.countrycode = T2.countrycode JOIN \n        world.countrylanguage AS T3 ON T1.countrycode = T3.countrycode\n  WHERE T1.language &lt;&gt; T2.language AND\n        T2.language &lt;&gt; T3.language AND\n        T1.language &lt;&gt; T3.language AND\n        T1.percentage &gt; 10 AND\n        T2.percentage &gt; 10 AND\n        T3.percentage &gt; 10\n)\n\nSELECT DISTINCT name_country \nFROM world.country NATURAL JOIN R;\nou\nWITH tpc AS (\n  SELECT *\n  FROM world.countrylanguage\n  WHERE percentage &gt; 10), \nthree AS (\n    SELECT DISTINCT t1.countrycode\n    FROM tpc AS t1 JOIN \n         tpc AS t2 ON (t1.countrycode=t2.countrycode AND t1.language &lt; t2.language) JOIN\n         tpc AS t3 ON (t1.countrycode=t3.countrycode AND t3.language &gt; t2.language)\n)\n\nSELECT co.*\nFROM world.country co NATURAL JOIN three ;\n\n\n\nQuelles sont les régions où il existe deux pays dont les espérances de vie diffèrent par au moins \\(10\\) ans ? (16 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT DISTINCT T1.region\nFROM world.country AS T1 JOIN \n     world.country AS T2 ON T1.region = T2.region\nWHERE T1.countrycode &lt;&gt; T2.countrycode AND \n      (T1.lifeexpectancy - T2.lifeexpectancy &gt;= 10 OR \n       T2.lifeexpectancy - T1.lifeexpectancy &gt;= 10);\n\n\n\nQuels sont les pays où l’anglais et le français sont des langues officielles ? (3 lignes)\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH R AS (\n  SELECT T1.countrycode\n  FROM world.countrylanguage AS T1 JOIN \n       world.countrylanguage AS T2 USING (countrycode)\n  WHERE T1.language='French' AND \n        T2.language='English' AND \n        T1.isofficial AND \n        T2.isofficial)\n      \nSELECT name_country \nFROM R NATURAL JOIN \n     world.country;\n\n\n\nMontrer comment calculer l’intersection de deux tables avec une jointure (sous certaines conditions).\n\n\n\n\n\n\n\nSolution\n\n\n\nSi R et S sont deux tables de même schéma, une jointure naturelle des deux tables devrait (en première approximation) calculer l’intersection des deux tables.\nPourtant\n(SELECT * FROM R)\nINTERSECT\n(SELECT * FROM S)   ;\nne donne pas toujours le même résultat que\nSELECT *\nFROM    R NATURAL JOIN S ;\nEssayez par exemple pour l’intersection de la table country avec elle-même :\n(SELECT * FROM country) \nINTERSECT \n(SELECT * FROM country);\nretourne la table country, soit 239 lignes.\nLa jointure naturelle\nSELECT * \nFROM country AS c1 NATURAL JOIN \n     country AS c2;\nne donne que 167 lignes. On peut réconcilier les deux résultats en ne conservant que les lignes pour lesquelles aucune colonne ne prend la valeur NULL.\nEn vérifiant quels attributs peuvent prendre la valeur NULL dans le schéma, on peut tester cela par la requête\nSELECT * \nFROM world.country\nWHERE indepyear IS NOT NULL AND \n      lifeexpectancy IS NOT NUL AND \n      gnp IS NOT NULL AND \n      gnpold IS NOT NULL AND \n      headofstate IS NOT NULL AND \n      capital IS NOT NULL;\nqui retourne bien 167 lignes."
+  },
+  {
+    "objectID": "solutions/td-recap-sql.html",
+    "href": "solutions/td-recap-sql.html",
+    "title": "TD Récapitulatif SQL",
+    "section": "",
+    "text": "Avec solutions"
+  },
+  {
+    "objectID": "solutions/td-recap-sql.html#schéma-world",
+    "href": "solutions/td-recap-sql.html#schéma-world",
+    "title": "TD Récapitulatif SQL",
+    "section": "Schéma world",
+    "text": "Schéma world\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le pays qui a le plus de villes recensées dans la table world.city? Combien de villes ? (363 villes)\n\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH country_city AS\n    (SELECT name_country , COUNT(name_city) nbrcity\n    FROM world.country NATURAL JOIN world.city\n    GROUP BY name_country)\n\nSELECT name_country, nbrcity\nFROM country_city\nWHERE nbrcity = (SELECT MAX(nbrcity) \n                 FROM country_city) ;\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les pays qui ont \\(3\\) ou plus langues officielles ? (8 lignes)\n\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT name_country\nFROM world.country NATURAL JOIN world.countrylanguage\nWHERE isofficial\nGROUP BY name_country HAVING COUNT(*) &gt; 2 ;\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les pays dont plus de \\(1.000.000\\) d’habitants parlent une langue non officielle ? (72 lignes)\n\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT DISTINCT name_country\nFROM world.country NATURAL JOIN world.countrylanguage\nWHERE (NOT isofficial) AND \n      (percentage / 100) * population_country &gt;= 1000000 ;\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuelles sont les langues qui sont officielles dans tous les continents où au moins une langue est parlée ? (1 ligne)\n\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH R AS\n    (SELECT count(DISTINCT continent)\n    FROM world.country NATURAL JOIN world.countrylanguage)\nSELECT language, count(DISTINCT continent) as nbcon\nFROM world.country NATURAL JOIN world.countrylanguage WHERE isofficial\nGROUP BY language\n    HAVING count(DISTINCT continent) in (SELECT * FROM R)\nORDER BY nbcon DESC ;\n\n\nou\n\n\n\n\n\n\nSolution\n\n\n\nWITH continent_language AS\n    (SELECT DISTINCT language , continent\n    FROM country NATURAL JOIN countrylanguage\n    WHERE isofficial),\nall_continent_language AS\n    (SELECT DISTINCT l.language , c.continent\n    FROM countrylanguage l , continent_language c),\nnot_continent_language AS\n    ((SELECT * FROM all_continent_language)\n    EXCEPT\n    (SELECT * FROM continent_language))\nSELECT DISTINCT language\nFROM countrylanguage\nWHERE language NOT IN (SELECT language FROM not_continent_language) ;\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les pays pour lesquels une langue non officielle est parlée par strictement plus de monde (dans le pays) qu’il n’y a d’habitants dans la capitale ? (118 lignes)\n\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT DISTINCT name_country\nFROM (country c JOIN city ON id = capital)\n    JOIN countrylanguage l ON c.countrycode = l.countrycode\nWHERE NOT isofficial\nAND percentage / 100 * population_country &gt; population_city ;\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels est le nombre de villes par region ?\n\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT region , COUNT(id) AS nbr_city\nFROM country NATURAL JOIN city\nGROUP BY region ;"
+  },
+  {
+    "objectID": "solutions/td-recap-sql.html#schéma-pagila",
+    "href": "solutions/td-recap-sql.html#schéma-pagila",
+    "title": "TD Récapitulatif SQL",
+    "section": "Schéma pagila",
+    "text": "Schéma pagila\n\n\n\nPattes de corbeau\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est l’acteur (actor_id) présent sur le plus de DVD (inventory_id) ?\n\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH actor_dvd AS\n    (SELECT actor_id , count(inventory_id) nbrdvd\n    FROM actor NATURAL JOIN film_actor NATURAL JOIN inventory\n    GROUP BY actor_id)\nSELECT first_name , last_name\nFROM actor NATURAL JOIN actor_dvd\nWHERE nbrdvd = (SELECT MAX(nbrdvd) FROM actor_dvd) ;\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le prix moyen d’une location de DVD ?\n\n\n\n\n\n\n\n\nSolution\n\n\n\nSELECT AVG(amount) \nFROM payment ;\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuel est le DVD qui a rapporté le plus d’argent ? Le film (film_id)?\n\n\n\n\n\n\n\n\nSolution\n\n\n\nPour le DVD:\nWITH inventory_amount AS\n    (SELECT inventory_id , SUM(amount) AS dollar\n    FROM inventory NATURAL JOIN rental NATURAL JOIN payment\n    GROUP BY inventory_id)\nSELECT inventory_id , dollar\nFROM  inventory_amount\nWHERE dollar &gt;= ALL (SELECT dollar FROM inventory_amount) ;\n\n\n\n\n\n\n\n\nSolution\n\n\n\nEt pour le film:\nWITH film_amount AS\n    (SELECT film_id , SUM(amount) AS dollar\n    FROM inventory NATURAL JOIN rental NATURAL JOIN payment\n    GROUP BY film_id)\nSELECT film_id , dollar\nFROM  inventory_amount\nWHERE dollar &gt;= ALL (SELECT dollar FROM film_amount) ;\n\n\n\n\n\n\n\n\nQuestion\n\n\n\nQuels sont les employés (staff_id) qui travaillent dans une autre ville que celle dans laquelle ils vivent ? (4 lignes)\n\n\n\n\n\n\n\n\nSolution\n\n\n\nWITH staff_maison AS\n    (SELECT staff_id , city_id\n    FROM (staff NATURAL JOIN address)),\nstaff_travail AS\n    (SELECT staff_id , city_id\n    FROM (staff p JOIN store s ON p.store_id = s.store_id) , address a\n    WHERE a.address_id = s.address_id)\nSELECT staff_id FROM staff_travail NATURAL JOIN staff_maison ;"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#pourquoi",
+    "href": "slides/Modelisation_1.html#pourquoi",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Pourquoi ?",
+    "text": "Pourquoi ?\nPour construire/concevoir des bases de données utiles, il n’est pas facile d’utiliser immédiatement le Langage de Définition de Données (partie de SQL)\n\nIl est plus raisonnable de s’appuyer sur\n\n\n\nUn formalisme pour décrire les informations à intégrer dqns une base\nUn formalisme pour décrire les liens entre ses informations\nUn formalisme lisible par les humains\nUn formalisme traduisible dans un Langage de Définition de Données, c’est-à-dire dans un langage où tout doit se décrire à l’aide de tables et de contraintes"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#comment",
+    "href": "slides/Modelisation_1.html#comment",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Comment ?",
+    "text": "Comment ?\nDepuis les temps originels des Bases de Données, on a multiplié les formalismes, les méthodes de conception\nLes différents formalismes sont presque toujours des variations autour du modèle dit Entité-Association proposé par Chen en 1976"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#modèle-entité-association-eaer",
+    "href": "slides/Modelisation_1.html#modèle-entité-association-eaer",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Modèle Entité-Association (EA/ER)",
+    "text": "Modèle Entité-Association (EA/ER)\nPeter Chen, the father of ER modeling écrivait dans le texte fondateur:\n\nThe entity-relationship model adopts the more natural view that the real world consists of entities and relationships. It incorporates some of the important semantic information about the real world.\n\nDans l’article de 1976, Chen distingue explicitement les diagrammes entité–associations des techniques de modélisation par record:\n\nThe data structure diagram is a representation of the organization of records and is not an exact representation of entities and relationships.\n\n\n\nVoir La Sémantique selon wikipedia"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#definition",
+    "href": "slides/Modelisation_1.html#definition",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Definition",
+    "text": "Definition\n\n\n\n\n\n\nDéfinition\n\n\nUne entité est un ensemble d’objets apparentés. Les éléments d’une entite sont appelées instances.\n\n\n\n\n\n\n\n\n\nNote\n\n\nTout ensemble d’objets n’est pas nécessairement considéré comme une entité.\nC’est la décision de l’équipe de modélisation qui constitue les entités."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemple-dentités-world",
+    "href": "slides/Modelisation_1.html#exemple-dentités-world",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemple d’entités (world)",
+    "text": "Exemple d’entités (world)\nPour la constitution de la base de données de géographie politique world, la modélisation choisirait les entités :\n\ncountry: les pays/territoires\ncity: les villes de population urbaine supérieure à un seuil donné lors de la constitution de la base\nlanguage: les langues parlées lors de la constitution de la base"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemple-dentités-nycflights",
+    "href": "slides/Modelisation_1.html#exemple-dentités-nycflights",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemple d’entités (nycflights)",
+    "text": "Exemple d’entités (nycflights)\nPour la modélisation du traffic aérien civil aux États-Unis, on peut considérer les entités suivantes\n\nairports: les aéroports (civils, sur le sol des États-Unis)\nairlines: les compagnies aériennes\nplanes : les avions (aéronefs)"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#les-noms",
+    "href": "slides/Modelisation_1.html#les-noms",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Les noms",
+    "text": "Les noms\nLes entités sont généralement associées à des noms (substantifs)."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#instances-et-entités",
+    "href": "slides/Modelisation_1.html#instances-et-entités",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Instances et Entités",
+    "text": "Instances et Entités\n\n\n\n\n\n\nDéfinition\n\n\nUne instance est un élément d’une entité.\n\n\n\n\nDans word, le pays Luxemburg est une instance de country.\nLes instances d’une entité sont discernables (pas d’éléments dupliqués)\n\n\n\nLe jargon de la modélisation EA nomme des notions qui sont déjà présentes dans la théorie naïve des ensembles (le langage des mathématiciens)"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#attributs",
+    "href": "slides/Modelisation_1.html#attributs",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Attributs",
+    "text": "Attributs\n\n\n\n\n\n\nDéfinition\n\n\nUn attribut est une fonction qui envoie une entité dans un domaine (ensemble de valeurs, type)\n\n\n\n\nDans world, l’attribut name envoie country vers l’ensemble des chaînes de caractères. Dans l’égalité name(Luxemburg) = \"Luxemburg\", à gauche Luxemburg désigne le pays, à droite, \"Luxemburg\" est une chaîne de caractères\nL’attribut population envoie country vers les entiers (positifs)\n\n\nDans les diagrammes EA, les attributs sont représentés par des ellipses. Le nom de l’attribut est placé au centre de l’ellipse\nUn arête relie l’ellipse attribut au rectangle entité."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#attributs-notation",
+    "href": "slides/Modelisation_1.html#attributs-notation",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Attributs (notation)",
+    "text": "Attributs (notation)\n\n\n\n\n\n\n\nER\n\nEntity Relation Diagram\ndrawn by NEATO\n\n\ncountry\n\ncountry\n\n\n\ncity\n\ncity\n\n\n\nname1\n\nname\n\n\n\ncity--name1\n\n\n\n\nlanguage\n\nlanguage\n\n\n\nname2\n\nname\n\n\n\nlanguage--name2\n\n\n\n\nname0\n\nname\n\n\n\nname0--country\n\n\n\n\npopulation\n\npopulation\n\n\n\npopulation--country\n\n\n\n\ngovernmentForm\n\ngovernmentForm\n\n\n\ngovernmentForm--country\n\n\n\n\nheadOfState\n\nheadOfState\n\n\n\nheadOfState--country"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#identifiant",
+    "href": "slides/Modelisation_1.html#identifiant",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Identifiant",
+    "text": "Identifiant\n\n\n\n\n\n\nDéfinition\n\n\nPour une entité, un identifiant est un attribut qui envoie deux instances distinctes vers deux valeurs distinctes du domaine.\n\n\n\n\n\n\n\n\n\nAstuce\n\n\nUn identifiant est un attribut (une fonction) injectif(ve)\nDans un schéma EA, on choisit un attribut injectif et on le désigne comme identifiant en soulignant le nom de l’attribut.\n L’identifiant d’une entité n’est pas le nom de l’entité"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#les-verbes",
+    "href": "slides/Modelisation_1.html#les-verbes",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Les verbes",
+    "text": "Les verbes"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#instances-et-associations",
+    "href": "slides/Modelisation_1.html#instances-et-associations",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Instances et Associations",
+    "text": "Instances et Associations"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#attributs-1",
+    "href": "slides/Modelisation_1.html#attributs-1",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Attributs",
+    "text": "Attributs"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#arités",
+    "href": "slides/Modelisation_1.html#arités",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Arités",
+    "text": "Arités"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#cas-des-relations-binaires-2-entités",
+    "href": "slides/Modelisation_1.html#cas-des-relations-binaires-2-entités",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Cas des relations binaires (2 entités)",
+    "text": "Cas des relations binaires (2 entités)"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemples-1n",
+    "href": "slides/Modelisation_1.html#exemples-1n",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemples 1:n",
+    "text": "Exemples 1:n\nDans le modèle world,\n\nune instance de country peut apparaître une nombre arbitraire de fois dans l’association ‘is-in’. On dira que is-in est de cardinalité 0:n du côté de city. Un territoire peut ne comporter aucune ville de population supérieure à un seuil. Il n’y a pas de borne a priori sur le nombre de grandes villes situées sur un territoire"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemples-nn",
+    "href": "slides/Modelisation_1.html#exemples-nn",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemples n:n",
+    "text": "Exemples n:n\nDans le modèle world,\n\nune instance de language peut apparaître une nombre arbitraire de fois dans l’association is-spoken-in. On dira que is-spoken-in est de cardinalité 0:n du côté de language.\nune instance de country peut apparaître une nombre arbitraire de fois dans l’association ‘is-spoken-in’. On dira que is-spoken-in est de cardinalité 0:n du côté de country."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemples-11",
+    "href": "slides/Modelisation_1.html#exemples-11",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemples 1:1",
+    "text": "Exemples 1:1\nDans le modèle world,\n\nune instance de city apparaît 1 et 1 seule fois dans l’association is-in. On dira que is-in est de cardinalité 1:1 du côté de city. Une ville se situe sur le territoire d’un pays (et d’un seul)"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#définition-3",
+    "href": "slides/Modelisation_1.html#définition-3",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Définition",
+    "text": "Définition"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemples",
+    "href": "slides/Modelisation_1.html#exemples",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemples",
+    "text": "Exemples"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#définition-4",
+    "href": "slides/Modelisation_1.html#définition-4",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Définition",
+    "text": "Définition"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemples-1",
+    "href": "slides/Modelisation_1.html#exemples-1",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemples",
+    "text": "Exemples\nUn médecin peut exercer en mode libéral, au sein d’un cabinet, ou dans une clinique (ou les deux) ou exercer en milieu hospitalier.\nIl est aussi possible qu’un médecin partage son temps entre une activité hospitalière et une activité libérale.\nOn peut définir une entité générale médecin et deux entités spécialisées hospitalier et libéral. Les entités spécialisées sont reliées à l’entité générale par une association est-un.\n Une association est-un nous indique qu’une entité (un emsemble) est incluse dans une autre entité (un au ensemble)\nTout attribut (fonction) défini sur l’entité générale est défini sur les entités spécialisées\nCertains attributs peuvent être définis sur une entité spécialisée sans être définis sur toute l’entité générale\nPar exemple, on peut définir un attribut hôpital pour l’entité hospitalier, et un attribut cabinet pour l’entité libéral."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#association-darité-quelconque-en-associations-binaires",
+    "href": "slides/Modelisation_1.html#association-darité-quelconque-en-associations-binaires",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Association d’arité quelconque en associations binaires",
+    "text": "Association d’arité quelconque en associations binaires\nOn définit une entité faible de même nom que l’association.\nPour chaque entité participant à l’association, on définit une association faible entre l’entité participante et la nouvelle entité faible.\nSi une entité participe plusieurs fois à l’association, on définit autant d’associations faibles qu’on nomme à l’aide des rôles\nL’entité faible participe aux associations faibles avec une cardinalité 1:1\nLes entités participantes sont reliées aux associations faibles avec les cardinalités de leur participation à l’associatoin \\(n\\)-aire."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#définition-5",
+    "href": "slides/Modelisation_1.html#définition-5",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Définition",
+    "text": "Définition\nUne entité faible \\(E\\) est définie relativement à une entité \\(A\\). C’est une collection d’objets apparentés (comme une entité), mais chaque instance de \\(E\\) est liée (est partie de) à une et une seule instance de \\(A\\)."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemples-2",
+    "href": "slides/Modelisation_1.html#exemples-2",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemples",
+    "text": "Exemples"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#sites",
+    "href": "slides/Modelisation_1.html#sites",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Sites",
+    "text": "Sites"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#livres",
+    "href": "slides/Modelisation_1.html#livres",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Livres",
+    "text": "Livres\n\nDatabase Complete Book. Chapter 2: The Entity-Relationship Data Model. Ullman, Garcia-Molina, Widom."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#attributs-notation-graphique",
+    "href": "slides/Modelisation_1.html#attributs-notation-graphique",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Attributs (notation graphique)",
+    "text": "Attributs (notation graphique)\n\n\n\n\n\n\nER\n\n\n\ncountry\n\ncountry\n\n\n\ncity\n\ncity\n\n\n\nname1\n\nname\n\n\n\ncity--name1\n\n\n\n\nlanguage\n\nlanguage\n\n\n\nname2\n\nname\n\n\n\nlanguage--name2\n\n\n\n\nname0\n\nname\n\n\n\nname0--country\n\n\n\n\npopulation\n\npopulation\n\n\n\npopulation--country\n\n\n\n\ngovernmentForm\n\ngovernmentForm\n\n\n\ngovernmentForm--country\n\n\n\n\nheadOfState\n\nheadOfState\n\n\n\nheadOfState--country"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#identifiant-exemple",
+    "href": "slides/Modelisation_1.html#identifiant-exemple",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Identifiant (exemple)",
+    "text": "Identifiant (exemple)\nLa norme ISO-3166 associe à chaque pays un code en deux lettres (alpha-2). Pour le Luxemburg, il s’agit de LU\nLa norme ISO-3166 associe à chaque pays un code en trois lettres (alpha-3). Pour le Luxemburg, il s’agit de LUX\n\n\nNorme ISO 3166 selon Wikipedia"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#identifiant-représentation",
+    "href": "slides/Modelisation_1.html#identifiant-représentation",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Identifiant (représentation)",
+    "text": "Identifiant (représentation)\n\n\n\n\n\n\nER\n\n\n\ncountry\n\ncountry\n\n\n\niso\n\niso3\n\n\n\ncountry--iso\n\n\n\n\ncity\n\ncity\n\n\n\nname1\n\nname\n\n\n\ncity--name1\n\n\n\n\nlanguage\n\nlanguage\n\n\n\nname2\n\nname\n\n\n\nlanguage--name2\n\n\n\n\nname0\n\nname\n\n\n\nname0--country\n\n\n\n\npopulation\n\npopulation\n\n\n\npopulation--country\n\n\n\n\ngovernmentForm\n\ngovernmentForm\n\n\n\ngovernmentForm--country\n\n\n\n\nheadOfState\n\nheadOfState\n\n\n\nheadOfState--country\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nOn singularise les identifiants en les soulignant."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#section",
+    "href": "slides/Modelisation_1.html#section",
+    "title": "Modélisation I : Entité/Association",
+    "section": "",
+    "text": "Définition\n\n\nUne association \\(\\mathcal{A}\\) $entre les entités \\(E_1,E_2, \\ldots, E_k\\), est un sous-ensemble de \\(E_1 \\times E_2 \\times \\ldots \\times E_k\\)\nLes éléments de l’association sont appelés instance\n\n\n\n\n\n\n\n\n\nAstuce\n\n\nUne association porte un nom\nUne association peut posséder des attributs qui sont des fonctions de l’association vers un domaine/type."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#association-exemple",
+    "href": "slides/Modelisation_1.html#association-exemple",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Association (exemple)",
+    "text": "Association (exemple)\nDans world, on peut définir une association is-in entre les entités city et country."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#graphique",
+    "href": "slides/Modelisation_1.html#graphique",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Graphique",
+    "text": "Graphique\n\n\n\n\n\n\nER\n\n\n\ncountry\n\ncountry\n\n\n\niso\n\niso3\n\n\n\ncountry--iso\n\n\n\n\ncity\n\ncity\n\n\n\nname1\n\nname\n\n\n\ncity--name1\n\n\n\n\nid\n\nid\n\n\n\ncity--id\n\n\n\n\nis-in\n\nis-in\n\n\n\ncity--is-in\n\n\n\n\nis-capital\n\nis-capital\n\n\n\ncity--is-capital\n\n\n\n\nlanguage\n\nlanguage\n\n\n\nname2\n\nname\n\n\n\nlanguage--name2\n\n\n\n\nisol\n\niso\n\n\n\nlanguage--isol\n\n\n\n\nis-spoken-in\n\nis-spoken-in\n\n\n\nlanguage--is-spoken-in\n\n\n\n\nname0\n\nname\n\n\n\nname0--country\n\n\n\n\npopulation\n\npopulation\n\n\n\npopulation--country\n\n\n\n\ngovernmentForm\n\ngovernmentForm\n\n\n\ngovernmentForm--country\n\n\n\n\nheadOfState\n\nheadOfState\n\n\n\nheadOfState--country\n\n\n\n\nis-in--country\n\n\n\n\nis-spoken-in--country\n\n\n\n\nis-capital--country"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#définition-6",
+    "href": "slides/Modelisation_1.html#définition-6",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Définition",
+    "text": "Définition\n\n\n\n\n\n\nNote\n\n\nUne entité faible \\(E\\) est définie relativement à une entité \\(A\\). C’est une collection d’objets apparentés (comme une entité), mais chaque instance de \\(E\\) est liée (est partie de) à une et une seule instance de \\(A\\)."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#section-1",
+    "href": "slides/Modelisation_1.html#section-1",
+    "title": "Modélisation I : Entité/Association",
+    "section": "",
+    "text": "Note\n\n\nUne association est représentée par un losange, elle est nommée.\nLe losange est relié aux dfférentes entités participantes par une arête\nLe nom d’une association reflète en principe la signification de cette association.\nLe nom d’une association renvoie souvent à un verbe, pas forcémment d’action\n\n\n\n\n\n\n\n\n\nAvertissement\n\n\nIl n’est pas toujours évident de lire sur le graphique le rôle joué par les différentes entités participantes dans une association. Bien nommer aide."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#arité",
+    "href": "slides/Modelisation_1.html#arité",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Arité",
+    "text": "Arité\n\n\n\n\n\n\nDéfinition\n\n\nL’arité d’une association est le nombre d’entités participantes.\n\n\n\n\n\n\n\n\n\nNote\n\n\nDans le modèle world, nous n’avons (pour le moment) que des associations d’arité 2, c’est-à-dire des associations binaires."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#définition-7",
+    "href": "slides/Modelisation_1.html#définition-7",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Définition",
+    "text": "Définition"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#représentation-graphique-des-cardinalités",
+    "href": "slides/Modelisation_1.html#représentation-graphique-des-cardinalités",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Représentation graphique des cardinalités",
+    "text": "Représentation graphique des cardinalités\n\n\n\n\n\n\nER\n\n\n\ncountry\n\ncountry\n\n\n\niso\n\niso3\n\n\n\ncountry--iso\n\n\n\n\ncity\n\ncity\n\n\n\nname1\n\nname\n\n\n\ncity--name1\n\n\n\n\nid\n\nid\n\n\n\ncity--id\n\n\n\n\nis-in\n\nis-in\n\n\n\ncity--is-in\n\n1:1\n\n\n\nis-capital\n\nis-capital\n\n\n\ncity--is-capital\n\n0:1\n\n\n\nlanguage\n\nlanguage\n\n\n\nname2\n\nname\n\n\n\nlanguage--name2\n\n\n\n\nisol\n\niso\n\n\n\nlanguage--isol\n\n\n\n\nis-spoken-in\n\nis-spoken-in\n\n\n\nlanguage--is-spoken-in\n\n0:n\n\n\n\nname0\n\nname\n\n\n\nname0--country\n\n\n\n\npopulation\n\npopulation\n\n\n\npopulation--country\n\n\n\n\ngovernmentForm\n\ngovernmentForm\n\n\n\ngovernmentForm--country\n\n\n\n\nheadOfState\n\nheadOfState\n\n\n\nheadOfState--country\n\n\n\n\nis-in--country\n\n0:n\n\n\n\nis-spoken-in--country\n\n0:n\n\n\n\nis-capital--country\n\n0:1"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#principe-et-objet",
+    "href": "slides/Modelisation_1.html#principe-et-objet",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Principe et objet",
+    "text": "Principe et objet\nDans une association entre plusieurs entités, les instances d’une entité peuvent participer a priori 0, 1, ou un nombre illimité de fois aux instances de l’association\nPour traduire les associations dans le langage des tables et des contraintes (LDD), il est très utile d’encadrer le plus précisément possible le nombre de participations d’une instance d’une entité aux instances d’une associations\nLes cardinalités sont des décorations sur les arêtes qui relient entités et associations"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemples-0n",
+    "href": "slides/Modelisation_1.html#exemples-0n",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemples 0:n",
+    "text": "Exemples 0:n\nDans le modèle world,\n\nune instance de language peut apparaître une nombre arbitraire de fois dans l’association is-spoken-in. On dira que is-spoken-in est de cardinalité 0:n du côté de language.\nune instance de country peut apparaître une nombre arbitraire de fois dans l’association ‘is-spoken-in’. On dira que is-spoken-in est de cardinalité 0:n du côté de country."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#diagrammes",
+    "href": "slides/Modelisation_1.html#diagrammes",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Diagrammes",
+    "text": "Diagrammes\nUne indication de cardinalité comporte une borne inférieure (0 ou 1) et une borne supérieure (1 ou \\(n\\))\nOn décore le lien entité-association avec l’indication de cardinalité"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemple",
+    "href": "slides/Modelisation_1.html#exemple",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemple",
+    "text": "Exemple\nDans world, on peut considérer que les instances de country sont des unités territoriales de niveau 0. Ces unités territoriales de niveau 1 sont parfois découpées en unités territoriales de niveau 1 : les régions en France, en Italie, les Länder en Allemagne, …\nChaque unité territoriale de niveau 1 est située dans une et une seule unité territoriale de niveau 0, elle fait partie de l’unité territoriale de niveau 0.\nUnités territoriales\n\nNous allons ajouter à notre modèle EA Géographie une entité faible appelée nut1 (pour Nouvelle Unité Territoriale de niveau 1)\nL’entité faible nut1 est liée à l’entité forte country par une association faible is-in."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#diagrammes-pour-les-entités-faibles",
+    "href": "slides/Modelisation_1.html#diagrammes-pour-les-entités-faibles",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Diagrammes pour les entités faibles",
+    "text": "Diagrammes pour les entités faibles\n\n\n\n\n\n\nER\n\n\n\ncountry\n\ncountry\n\n\n\niso\n\niso3\n\n\n\ncountry--iso\n\n\n\n\ncity\n\ncity\n\n\n\nname1\n\nname\n\n\n\ncity--name1\n\n\n\n\nid\n\nid\n\n\n\ncity--id\n\n\n\n\nis-in\n\nis-in\n\n\n\ncity--is-in\n\n1:1\n\n\n\nis-capital\n\nis-capital\n\n\n\ncity--is-capital\n\n0:1\n\n\n\nlanguage\n\nlanguage\n\n\n\nname2\n\nname\n\n\n\nlanguage--name2\n\n\n\n\nisol\n\niso\n\n\n\nlanguage--isol\n\n\n\n\nis-spoken-in\n\nis-spoken-in\n\n\n\nlanguage--is-spoken-in\n\n0:n\n\n\n\nname0\n\nname\n\n\n\nname0--country\n\n\n\n\npopulation\n\npopulation\n\n\n\npopulation--country\n\n\n\n\ngovernmentForm\n\ngovernmentForm\n\n\n\ngovernmentForm--country\n\n\n\n\nheadOfState\n\nheadOfState\n\n\n\nheadOfState--country\n\n\n\n\nis-in--country\n\n0:n\n\n\n\nis-spoken-in--country\n\n0:n\n\n\n\nis-capital--country\n\n0:1\n\n\n\nnut1\n\n\nnut1\n\n\n\nis-in2\n\n\nis-in\n\n\n\nnut1--is-in2\n\n1:1\n\n\n\nis-in2--country\n\n0:n"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#identifiant-pour-les-entités-faibles",
+    "href": "slides/Modelisation_1.html#identifiant-pour-les-entités-faibles",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Identifiant pour les entités faibles",
+    "text": "Identifiant pour les entités faibles\nPour identifier une instance d’une entité faible, on utilise l’identifiant de l’instance associée de l’entité faible et on le complète à l’aide d’un identifiant relatif.\n Deux instances distinctes d’une identité faible peuvent porter le même identifiant relatif (si elles sont parties de deux instances différentes de l’entité forte).\n\nNous ajoutons à notre modèle EA un identifiant relatif/faible id pour l’entité faible nut1\nPour identifier une instance de nut1, il faut disposer de son identifiant relatif id et de l’identifiant iso3 de l’instance associée dans l’entité forte.\nOn dit que l’association faible is-in est identifiante"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#section-2",
+    "href": "slides/Modelisation_1.html#section-2",
+    "title": "Modélisation I : Entité/Association",
+    "section": "",
+    "text": "Définition\n\n\nUne association \\(\\mathcal{A}\\) $entre les entités \\(E_1,E_2, \\ldots, E_k\\), est un sous-ensemble de \\(E_1 \\times E_2 \\times \\ldots \\times E_k\\)\nLes entités \\(E_1,E_2, \\ldots, E_k\\) participent à l’association \\(A\\).\nLes éléments de l’association sont (aussi) appelés instance\nDans un diagramme EA, une association est représentée par un losange. Le nom de l’association est inscrit au centre du losange. Les rectangles des entités participantes sont reliés au losange de l’association par des arêtes.\n\n\n\n\n\n\n\n\n\nRemarque\n\n\nUne association porte un nom\nUne association peut posséder des attributs qui sont des fonctions de l’association vers un domaine/type."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#attributs-dassociation",
+    "href": "slides/Modelisation_1.html#attributs-dassociation",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Attributs d’association",
+    "text": "Attributs d’association\nUne association peut posséder des attributs.\nGraphiquement, les attributs d’association sont représentés comme les attributs d’entité, par des ellipses. Les ellipses sont reliées au losange de l’association par une arête\n\nDans world, l’association is-spoken-in peut être munie d’un attribut official qui précise si une langue donnée est officielle dans un territoire donné."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#une-association-darité-supérireure-à-2",
+    "href": "slides/Modelisation_1.html#une-association-darité-supérireure-à-2",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Une association d’arité supérireure à 2",
+    "text": "Une association d’arité supérireure à 2\nPour construire un modèle des vols aériens (comme dans nycflights13), on définit des entités airline plane, airport et une association quaternaire flight\n\nL’association flight est quaternaire: une instance de flight associe un aéroport d’origine à un aéroport de destination (2 arêtes entre airport et flight), elle associe aussi une instance de plane et une instance de airline\n\n\nOn distingue les deux participations de airport à flight par des rôles"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#représentation-graphique-des-cardinalités-suite",
+    "href": "slides/Modelisation_1.html#représentation-graphique-des-cardinalités-suite",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Représentation graphique des cardinalités (suite)",
+    "text": "Représentation graphique des cardinalités (suite)\nOn peut utilement préciser les cardinalités dans notre schéma des vols.\n\n\n\n\n\n\nER\n\n\n\nairport\n\nairport\n\n\n\nflight\n\nflight\n\n\n\nairport--flight\n\norig\n0:n\n\n\n\nplane\n\nplane\n\n\n\nairline\n\nairline\n\n\n\nflight--airport\n\ndest\n0:n\n\n\n\nflight--plane\n\n0:n\n\n\n\nflight--airline\n\n0:n"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#transformation-du-diagramme-des-vols",
+    "href": "slides/Modelisation_1.html#transformation-du-diagramme-des-vols",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Transformation du diagramme des vols",
+    "text": "Transformation du diagramme des vols\nOn définit donc\n\nune entité faible flight\nquatre associations faibles dest, orig, operates, uses\n\n\nLes quatre associations faibles sont identifiantes\nPour identifier une instance de l’entité faible flight, il faut disposer des identifiants des instances des entités fortes associées (une par entité forte, compte tenu des cardinalités)"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#propriété",
+    "href": "slides/Modelisation_1.html#propriété",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Propriété",
+    "text": "Propriété\nPour les associations est-un, il n’est pas nécessaire de préciser les cardinalités.\n\n\n\n\n\n\nCardinalités des associations est-un\n\n\n\n1:1 du côté de l’entité spécialisée\n0:1 du côté de l’entité générale\n\n\n\n\n\n\n\n\n\n\nNote\n\n\nL’association est identifiante : une instance de l’entité spécialisée hérite de l’identifiant de l’entité générale"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#diagramme",
+    "href": "slides/Modelisation_1.html#diagramme",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Diagramme",
+    "text": "Diagramme\n\n\n\n\n\n\nER\n\n\n\nmédecin\n\nmédecin\n\n\n\nmatricule\n\nmatricule\n\n\n\nmédecin--matricule\n\n\n\n\nhospitalier\n\nhospitalier\n\n\n\nis-a-1\n\nest-un\n\n\n\nhospitalier--is-a-1\n\n\n\n\nlibéral\n\nlibéral\n\n\n\nis-a-2\n\nest-un\n\n\n\nlibéral--is-a-2\n\n\n\n\nis-a-1--médecin\n\n\n\n\nis-a-2--médecin\n\n\n\n\nhôpital\n\nhôpital\n\n\n\nhôpital--hospitalier\n\n\n\n\ncabinet\n\ncabinet\n\n\n\ncabinet--libéral"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#compléter-le-schéma",
+    "href": "slides/Modelisation_1.html#compléter-le-schéma",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Compléter le schéma",
+    "text": "Compléter le schéma"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#types-de-contraintes",
+    "href": "slides/Modelisation_1.html#types-de-contraintes",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Types de contraintes",
+    "text": "Types de contraintes"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#rapport-des-contraintes",
+    "href": "slides/Modelisation_1.html#rapport-des-contraintes",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Rapport des contraintes",
+    "text": "Rapport des contraintes"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemple-1",
+    "href": "slides/Modelisation_1.html#exemple-1",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemple",
+    "text": "Exemple\nUn médecin peut exercer en mode libéral, au sein d’un cabinet, ou dans une clinique (ou les deux) ou exercer en milieu hospitalier.\nIl est aussi possible qu’un médecin partage son temps entre une activité hospitalière et une activité libérale.\nOn peut définir une entité générale médecin et deux entités spécialisées hospitalier et libéral. Les entités spécialisées sont reliées à l’entité générale par une association est-un.\n Une association est-un nous indique qu’une entité (un emsemble) est incluse dans une autre entité (un au ensemble)\nTout attribut (fonction) défini sur l’entité générale est défini sur les entités spécialisées\nCertains attributs peuvent être définis sur une entité spécialisée sans être définis sur toute l’entité générale\nPar exemple, on peut définir un attribut hôpital pour l’entité hospitalier, et un attribut cabinet pour l’entité libéral."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#sites-et-livres",
+    "href": "slides/Modelisation_1.html#sites-et-livres",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Sites et Livres",
+    "text": "Sites et Livres\n\nGarcia-Molina, H., Ullman, J. D., & Widom, J. (2002). Database systems-the complete book (International Ed.). Prenctice Hall, Upper Saddle River.\nChen, P. P. S. (1976). The entity-relationship model—toward a unified view of data. ACM transactions on database systems (TODS), 1(1), 9-36.\nSilberschatz, A., Korth, H. F., & Sudarshan, S. (2011). Database system concepts."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#les-noms-et-les-notations-graphiques",
+    "href": "slides/Modelisation_1.html#les-noms-et-les-notations-graphiques",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Les noms et les notations graphiques",
+    "text": "Les noms et les notations graphiques\nLes entités sont généralement associées à des noms (substantifs). Une entité est en effet une collection d’objets apparentés (avec des caractériques communes)\n\nDans les diagrammes EA, les entités sont représentées par des rectangles. Le nom de l’entité est inscrit au centre du rectangle."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#remarques-suite",
+    "href": "slides/Modelisation_1.html#remarques-suite",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Remarques (suite)",
+    "text": "Remarques (suite)\n\n\n\n\n\n\nNote\n\n\nUne association est représentée par un losange, elle est nommée.\nLe losange est relié aux dfférentes entités participantes par une arête\nLe nom d’une association reflète (en principe) la signification de cette association.\nLe nom d’une association renvoie souvent à un verbe, pas forcémment d’action\n\n\n\n\n\n\n\n\n\nAvertissement\n\n\nIl n’est pas toujours évident de lire sur le graphique le rôle joué par les différentes entités participantes dans une association. Bien nommer aide."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#définition-8",
+    "href": "slides/Modelisation_1.html#définition-8",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Définition",
+    "text": "Définition\n\n\n\n\n\n\nDéfinition\n\n\nUne association est-un entre une entité A et une entité B indique que toute instance (élément) de A est aussi instance (élément) de B (autrement dit en langage ensembliste que A ⊆ B)\nOn note graphiquement les associations est-un avec un symbole spécial : un triangle (A ◃ B)\n\n\n\n\n\n\n\n\n\n\nRemarques\n\n\n\nUne association est-un est binaire\nUne entité peut participer à plusieurs associations est-un\nSi A ◃ B on dit (souvent) que A est une spécialisation de B"
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#partipations-multiples-à-une-association",
+    "href": "slides/Modelisation_1.html#partipations-multiples-à-une-association",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Partipations multiples à une association",
+    "text": "Partipations multiples à une association\n Une même entité peut participer plusieurs fois à une même association\nOn distingue ces participations grâce à des rôles qui étiquettent les arêtes qui relient le rectangle entité au losange association."
+  },
+  {
+    "objectID": "slides/Modelisation_1.html#exemples-de-rôle-dans-une-association-réflexive",
+    "href": "slides/Modelisation_1.html#exemples-de-rôle-dans-une-association-réflexive",
+    "title": "Modélisation I : Entité/Association",
+    "section": "Exemples de rôle dans une association réflexive",
+    "text": "Exemples de rôle dans une association réflexive\nDans une base de donnée généalogique, on part d’une entité individu. On définit une auto-association mère qui relie l’entité individu avec elle-même.\n\nCette auto-association n’est pas symétrique: quand on écrit qu’Elizabeth est mère de Charles, Elisabeth et Charles ne jouent pas le même rôle.\n\n\nDans une instance \\((x,y)\\) de l’association mère \\(x\\) joue le rôle de la génitrice, \\(y\\) de l’enfant.\n\n\nOn peut rendre compte de ces rôles en marquant les arêtes qui lient l’entité individu à l’association mère (pour est-maman-de)"
   }
 ]

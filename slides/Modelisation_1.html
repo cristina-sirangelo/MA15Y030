@@ -12,8 +12,10 @@
 <link href="../site_libs/quarto-contrib/reveal-header-1.0.0/add_header.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/grid-htext-1.0.0/grid_htext.css" rel="stylesheet">
 <script src="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
-<link href="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.47">
+<link href="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.55">
 
   <meta name="author" content="Équipe BD">
   <meta name="dcterms.date" content="2024-11-15">
@@ -369,9 +371,2226 @@
 </div>
 
   <p class="date">2024-11-15</p>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Plan</h2>
+<ul>
+<li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
+<li><a href="#/entités" id="/toc-entités">Entités</a></li>
+<li><a href="#/associations" id="/toc-associations">Associations</a></li>
+<li><a href="#/rôles" id="/toc-rôles">Rôles</a></li>
+<li><a href="#/arité" id="/toc-arité">Arité</a></li>
+<li><a href="#/cardinalités" id="/toc-cardinalités">Cardinalités</a></li>
+<li><a href="#/entités-faibles" id="/toc-entités-faibles">Entités faibles</a></li>
+<li><a href="#/associations-faibles" id="/toc-associations-faibles">Associations faibles</a></li>
+<li><a href="#/transformations" id="/toc-transformations">Transformations</a></li>
+<li><a href="#/associations-est-un" id="/toc-associations-est-un">Associations <em>est-un</em></a></li>
+<li><a href="#/contraintes" id="/toc-contraintes">Contraintes</a></li>
+<li><a href="#/références" id="/toc-références">Références</a></li>
+<li><a href="#/fin" id="/toc-fin">Fin</a></li>
+</ul>
+</nav>
+</section>
+<section>
+<section id="introduction" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Introduction</h1>
+
+</section>
+<section id="pourquoi" class="slide level2 center">
+<h2>Pourquoi ?</h2>
+<p>Pour construire/concevoir des bases de données utiles, il n’est pas facile d’utiliser immédiatement le Langage de Définition de Données (partie de SQL)</p>
+<div class="fragment">
+<p>Il est plus raisonnable de s’appuyer sur</p>
+</div>
+<div class="fragment">
+<ul>
+<li>Un formalisme pour décrire les <em>informations</em> à intégrer dqns une base</li>
+<li>Un formalisme pour décrire les liens entre ses informations</li>
+<li>Un formalisme lisible par les humains</li>
+<li>Un formalisme traduisible dans un <em>Langage de Définition de Données</em>, c’est-à-dire dans un langage où tout doit se décrire à l’aide de tables et de contraintes</li>
+</ul>
+</div>
+</section>
+<section id="comment" class="slide level2 center">
+<h2>Comment ?</h2>
+<p>Depuis les temps originels des Bases de Données, on a multiplié les formalismes, les méthodes de conception</p>
+<p>Les différents formalismes sont presque toujours des variations autour du modèle dit Entité-Association proposé par Chen en 1976</p>
+</section>
+<section id="modèle-entité-association-eaer" class="slide level2 center">
+<h2>Modèle Entité-Association (EA/ER)</h2>
+<p><a href="https://en.wikipedia.org/wiki/Peter_Chen">Peter Chen, the father of ER modeling</a> écrivait dans le texte fondateur:</p>
+<blockquote>
+<p>The entity-relationship model adopts the more natural view that the real world consists of entities and relationships. It incorporates some of the important semantic information about the real world.</p>
+</blockquote>
+<p>Dans l’article de 1976, Chen distingue explicitement les diagrammes entité–associations des techniques de modélisation par <em>record</em>:</p>
+<blockquote>
+<p>The data structure diagram is a representation of the organization of records and is not an exact representation of entities and relationships.</p>
+</blockquote>
+
+<aside><div>
+<p>Voir <a href="https://fr.wikipedia.org/wiki/Sémantique">La Sémantique selon wikipedia</a></p>
+</div></aside></section></section>
+<section>
+<section id="entités" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Entités</h1>
+
+</section>
+<section id="definition" class="slide level2 center">
+<h2>Definition</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>Une <em>entité</em> est un ensemble d’objets apparentés. Les éléments d’une entite sont appelées <em>instances</em>.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Tout ensemble d’objets n’est pas nécessairement considéré comme une entité.</p>
+<p>C’est la décision de l’équipe de modélisation qui constitue les entités.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="exemple-dentités-world" class="slide level2 center">
+<h2>Exemple d’entités (<code>world</code>)</h2>
+<p>Pour la constitution de la base de données de géographie politique <code>world</code>, la modélisation choisirait les entités :</p>
+<ul>
+<li><code>country</code>: les pays/territoires</li>
+<li><code>city</code>: les villes de population urbaine supérieure à un seuil donné lors de la constitution de la base</li>
+<li><code>language</code>: les langues parlées lors de la constitution de la base</li>
+</ul>
+</section>
+<section id="exemple-dentités-nycflights" class="slide level2 center">
+<h2>Exemple d’entités (<code>nycflights</code>)</h2>
+<p>Pour la modélisation du traffic aérien civil aux États-Unis, on peut considérer les entités suivantes</p>
+<ul>
+<li><code>airports</code>: les aéroports (civils, sur le sol des États-Unis)</li>
+<li><code>airlines</code>: les compagnies aériennes</li>
+<li><code>planes</code> : les avions (aéronefs)</li>
+</ul>
+</section>
+<section id="les-noms-et-les-notations-graphiques" class="slide level2 center">
+<h2>Les noms et les notations graphiques</h2>
+<p>Les entités sont généralement associées à des noms (substantifs). Une entité est en effet une collection d’objets apparentés (avec des caractériques communes)</p>
+<div class="fragment">
+<p>Dans les diagrammes EA, les entités sont représentées par des rectangles. Le nom de l’entité est inscrit au centre du rectangle.</p>
+</div>
+</section>
+<section id="instances-et-entités" class="slide level2 center">
+<h2>Instances et Entités</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>Une <em>instance</em> est un élément d’une entité.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Dans <code>word</code>, le pays <code>Luxemburg</code> est une instance de <code>country</code>.</p>
+<p>Les instances d’une entité sont <em>discernables</em> (pas d’éléments dupliqués)</p>
+
+</div>
+<aside><div>
+<p>Le jargon de la modélisation EA nomme des notions qui sont déjà présentes dans la théorie naïve des ensembles (le langage des mathématiciens)</p>
+</div></aside></section>
+<section id="attributs" class="slide level2 center">
+<h2>Attributs</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>Un <em>attribut</em> est une fonction qui envoie une <em>entité</em> dans un <em>domaine</em> (ensemble de valeurs, type)</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<p>Dans <code>world</code>, l’attribut <code>name</code> envoie <code>country</code> vers l’ensemble des chaînes de caractères. Dans l’égalité <code>name(Luxemburg) = "Luxemburg"</code>, à gauche <code>Luxemburg</code> désigne le pays, à droite, <code>"Luxemburg"</code> est une chaîne de caractères</p>
+<p>L’attribut <code>population</code> envoie <code>country</code> vers les entiers (positifs)</p>
+</div>
+<div class="fragment">
+<p>Dans les diagrammes EA, les attributs sont représentés par des ellipses. Le nom de l’attribut est placé au centre de l’ellipse</p>
+<p>Un arête relie l’ellipse attribut au rectangle entité.</p>
+</div>
+</section>
+<section id="attributs-notation-graphique" class="slide level2 center">
+<h2>Attributs (notation graphique)</h2>
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="er1">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 362.16 262.64" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 258.64)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-258.64 358.16,-258.64 358.16,4 -4,4"></polygon>
+<!-- country -->
+<g id="node1" class="node">
+<title>country</title>
+<polygon fill="none" stroke="black" points="173.57,-102.66 115.04,-102.66 115.04,-66.66 173.57,-66.66 173.57,-102.66"></polygon>
+<text text-anchor="middle" x="144.31" y="-80.46" font-family="Helvetica,Arial,sans-serif" font-size="14.00">country</text>
+</g>
+<!-- city -->
+<g id="node2" class="node">
+<title>city</title>
+<polygon fill="none" stroke="black" points="278,-238.64 224,-238.64 224,-202.64 278,-202.64 278,-238.64"></polygon>
+<text text-anchor="middle" x="251" y="-216.44" font-family="Helvetica,Arial,sans-serif" font-size="14.00">city</text>
+</g>
+<!-- name1 -->
+<g id="node5" class="node">
+<title>name1</title>
+<ellipse fill="none" stroke="black" cx="322.21" cy="-210" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="322.21" y="-205.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- city&#45;&#45;name1 -->
+<g id="edge5" class="edge">
+<title>city--name1</title>
+<path fill="none" stroke="black" d="M278.33,-216.56C282.56,-215.92 286.97,-215.27 291.27,-214.62"></path>
+</g>
+<!-- language -->
+<g id="node3" class="node">
+<title>language</title>
+<polygon fill="none" stroke="black" points="130.3,-254.64 64.23,-254.64 64.23,-218.64 130.3,-218.64 130.3,-254.64"></polygon>
+<text text-anchor="middle" x="97.27" y="-232.44" font-family="Helvetica,Arial,sans-serif" font-size="14.00">language</text>
+</g>
+<!-- name2 -->
+<g id="node6" class="node">
+<title>name2</title>
+<ellipse fill="none" stroke="black" cx="168.48" cy="-226" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="168.48" y="-221.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- language&#45;&#45;name2 -->
+<g id="edge6" class="edge">
+<title>language--name2</title>
+<path fill="none" stroke="black" d="M130.37,-231.69C132.69,-231.35 135.03,-231 137.35,-230.65"></path>
+</g>
+<!-- name0 -->
+<g id="node4" class="node">
+<title>name0</title>
+<ellipse fill="none" stroke="black" cx="210.99" cy="-41.42" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="210.99" y="-37.22" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- name0&#45;&#45;country -->
+<g id="edge1" class="edge">
+<title>name0--country</title>
+<path fill="none" stroke="black" d="M189.89,-55.1C184.25,-58.76 178.05,-62.78 172.11,-66.63"></path>
+</g>
+<!-- population -->
+<g id="node7" class="node">
+<title>population</title>
+<ellipse fill="none" stroke="black" cx="101.15" cy="-18" rx="52.19" ry="18"></ellipse>
+<text text-anchor="middle" x="101.15" y="-13.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">population</text>
+</g>
+<!-- population&#45;&#45;country -->
+<g id="edge2" class="edge">
+<title>population--country</title>
+<path fill="none" stroke="black" d="M112.71,-35.86C118.8,-45.27 126.27,-56.79 132.41,-66.28"></path>
+</g>
+<!-- governmentForm -->
+<g id="node8" class="node">
+<title>governmentForm</title>
+<ellipse fill="none" stroke="black" cx="78.09" cy="-128.51" rx="78.18" ry="18"></ellipse>
+<text text-anchor="middle" x="78.09" y="-124.31" font-family="Helvetica,Arial,sans-serif" font-size="14.00">governmentForm</text>
+</g>
+<!-- governmentForm&#45;&#45;country -->
+<g id="edge3" class="edge">
+<title>governmentForm--country</title>
+<path fill="none" stroke="black" d="M103.88,-111.43C108.09,-108.64 112.47,-105.74 116.72,-102.92"></path>
+</g>
+<!-- headOfState -->
+<g id="node9" class="node">
+<title>headOfState</title>
+<ellipse fill="none" stroke="black" cx="188.15" cy="-150.97" rx="58.53" ry="18"></ellipse>
+<text text-anchor="middle" x="188.15" y="-146.77" font-family="Helvetica,Arial,sans-serif" font-size="14.00">headOfState</text>
+</g>
+<!-- headOfState&#45;&#45;country -->
+<g id="edge4" class="edge">
+<title>headOfState--country</title>
+<path fill="none" stroke="black" d="M176.4,-133.2C170.21,-123.84 162.63,-112.37 156.39,-102.94"></path>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="identifiant" class="slide level2 center">
+<h2>Identifiant</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>Pour une entité, un <em>identifiant</em> est un attribut qui envoie deux instances distinctes vers deux valeurs distinctes du domaine.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Astuce</strong></p>
+</div>
+<div class="callout-content">
+<p>Un identifiant est un attribut (une fonction) <em>injectif(ve)</em></p>
+<p>Dans un schéma EA, on choisit un attribut injectif et on le désigne comme identifiant en soulignant le nom de l’attribut.</p>
+<p><i class="fa-solid fa-skull-bones" aria-label="skull-bones"></i> L’identifiant d’une entité n’est pas le nom de l’entité</p>
+</div>
+</div>
+</div>
+</section>
+<section id="identifiant-exemple" class="slide level2 center">
+<h2>Identifiant (exemple)</h2>
+<p>La norme ISO-3166 associe à chaque pays un code en deux lettres (alpha-2). Pour le Luxemburg, il s’agit de <code>LU</code></p>
+<p>La norme ISO-3166 associe à chaque pays un code en trois lettres (alpha-3). Pour le Luxemburg, il s’agit de <code>LUX</code></p>
+
+<aside><div>
+<p><a href="https://fr.wikipedia.org/wiki/ISO_3166">Norme ISO 3166 selon Wikipedia</a></p>
+</div></aside></section>
+<section id="identifiant-représentation" class="slide level2 center">
+<h2>Identifiant (représentation)</h2>
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="er2-identifiants">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 414.42 216.64" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 212.64)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-212.64 410.42,-212.64 410.42,4 -4,4"></polygon>
+<!-- country -->
+<g id="node1" class="node">
+<title>country</title>
+<polygon fill="none" stroke="black" points="185.69,-104.38 127.16,-104.38 127.16,-68.38 185.69,-68.38 185.69,-104.38"></polygon>
+<text text-anchor="middle" x="156.43" y="-82.18" font-family="Helvetica,Arial,sans-serif" font-size="14.00">country</text>
+</g>
+<!-- iso -->
+<g id="node10" class="node">
+<title>iso</title>
+<ellipse fill="none" stroke="black" cx="152.6" cy="-167.56" rx="27.27" ry="18"></ellipse>
+<text text-anchor="start" x="140.93" y="-164.36" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso3</text>
+</g>
+<!-- country&#45;&#45;iso -->
+<g id="edge7" class="edge">
+<title>country--iso</title>
+<path fill="none" stroke="black" d="M155.58,-104.4C154.95,-117.76 154.09,-135.9 153.46,-149.32"></path>
+</g>
+<!-- city -->
+<g id="node2" class="node">
+<title>city</title>
+<polygon fill="none" stroke="black" points="270,-208.64 216,-208.64 216,-172.64 270,-172.64 270,-208.64"></polygon>
+<text text-anchor="middle" x="243" y="-186.44" font-family="Helvetica,Arial,sans-serif" font-size="14.00">city</text>
+</g>
+<!-- name1 -->
+<g id="node5" class="node">
+<title>name1</title>
+<ellipse fill="none" stroke="black" cx="314.21" cy="-180" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="314.21" y="-175.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- city&#45;&#45;name1 -->
+<g id="edge5" class="edge">
+<title>city--name1</title>
+<path fill="none" stroke="black" d="M270.33,-186.56C274.56,-185.92 278.97,-185.27 283.27,-184.62"></path>
+</g>
+<!-- language -->
+<g id="node3" class="node">
+<title>language</title>
+<polygon fill="none" stroke="black" points="336.3,-46.64 270.23,-46.64 270.23,-10.64 336.3,-10.64 336.3,-46.64"></polygon>
+<text text-anchor="middle" x="303.27" y="-24.44" font-family="Helvetica,Arial,sans-serif" font-size="14.00">language</text>
+</g>
+<!-- name2 -->
+<g id="node6" class="node">
+<title>name2</title>
+<ellipse fill="none" stroke="black" cx="374.48" cy="-18" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="374.48" y="-13.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- language&#45;&#45;name2 -->
+<g id="edge6" class="edge">
+<title>language--name2</title>
+<path fill="none" stroke="black" d="M336.37,-23.69C338.69,-23.35 341.03,-23 343.35,-22.65"></path>
+</g>
+<!-- name0 -->
+<g id="node4" class="node">
+<title>name0</title>
+<ellipse fill="none" stroke="black" cx="208.29" cy="-23.83" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="208.29" y="-19.63" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- name0&#45;&#45;country -->
+<g id="edge1" class="edge">
+<title>name0--country</title>
+<path fill="none" stroke="black" d="M194.66,-40.27C187.58,-48.81 178.9,-59.27 171.61,-68.07"></path>
+</g>
+<!-- population -->
+<g id="node7" class="node">
+<title>population</title>
+<ellipse fill="none" stroke="black" cx="112.67" cy="-18" rx="52.19" ry="18"></ellipse>
+<text text-anchor="middle" x="112.67" y="-13.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">population</text>
+</g>
+<!-- population&#45;&#45;country -->
+<g id="edge2" class="edge">
+<title>population--country</title>
+<path fill="none" stroke="black" d="M123.94,-35.61C130.32,-45.58 138.29,-58.04 144.74,-68.11"></path>
+</g>
+<!-- governmentForm -->
+<g id="node8" class="node">
+<title>governmentForm</title>
+<ellipse fill="none" stroke="black" cx="78.09" cy="-107.72" rx="78.18" ry="18"></ellipse>
+<text text-anchor="middle" x="78.09" y="-103.52" font-family="Helvetica,Arial,sans-serif" font-size="14.00">governmentForm</text>
+</g>
+<!-- governmentForm&#45;&#45;country -->
+<g id="edge3" class="edge">
+<title>governmentForm--country</title>
+<path fill="none" stroke="black" d="M128.59,-93.96C128.71,-93.93 128.82,-93.9 128.94,-93.87"></path>
+</g>
+<!-- headOfState -->
+<g id="node9" class="node">
+<title>headOfState</title>
+<ellipse fill="none" stroke="black" cx="232.22" cy="-115.84" rx="58.53" ry="18"></ellipse>
+<text text-anchor="middle" x="232.22" y="-111.64" font-family="Helvetica,Arial,sans-serif" font-size="14.00">headOfState</text>
+</g>
+<!-- headOfState&#45;&#45;country -->
+<g id="edge4" class="edge">
+<title>headOfState--country</title>
+<path fill="none" stroke="black" d="M195.65,-101.63C192.32,-100.33 188.98,-99.03 185.72,-97.77"></path>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>On singularise les identifiants en les soulignant.</p>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="associations" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Associations</h1>
+
+</section>
+<section id="section-2" class="slide level2 center">
+<h2></h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>Une association <span class="math inline">\(\mathcal{A}\)</span> $entre les entités <span class="math inline">\(E_1,E_2, \ldots, E_k\)</span>, est un sous-ensemble de <span class="math inline">\(E_1 \times E_2 \times \ldots \times E_k\)</span></p>
+<p>Les entités <span class="math inline">\(E_1,E_2, \ldots, E_k\)</span> <em>participent</em> à l’association <span class="math inline">\(A\)</span>.</p>
+<p>Les éléments de l’association sont (aussi) appelés <em>instance</em></p>
+<p>Dans un diagramme EA, une association est représentée par un losange. Le nom de l’association est inscrit au centre du losange. Les rectangles des entités participantes sont reliés au losange de l’association par des arêtes.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-tip callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Remarque</strong></p>
+</div>
+<div class="callout-content">
+<p>Une association porte un nom</p>
+<p>Une association peut posséder des attributs qui sont des fonctions de l’association vers un domaine/type.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="association-exemple" class="slide level2 center">
+<h2>Association (exemple)</h2>
+<p>Dans <code>world</code>, on peut définir une association <code>is-in</code> entre les entités <code>city</code> et <code>country</code>.</p>
+</section>
+<section id="graphique" class="slide level2 center">
+<h2>Graphique</h2>
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="er3-assoc">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 545.00 337.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 333)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-333 541,-333 541,4 -4,4"></polygon>
+<!-- country -->
+<g id="node1" class="node">
+<title>country</title>
+<polygon fill="none" stroke="black" points="225.78,-140.53 167.25,-140.53 167.25,-104.53 225.78,-104.53 225.78,-140.53"></polygon>
+<text text-anchor="middle" x="196.52" y="-118.33" font-family="Helvetica,Arial,sans-serif" font-size="14.00">country</text>
+</g>
+<!-- iso -->
+<g id="node10" class="node">
+<title>iso</title>
+<ellipse fill="none" stroke="black" cx="187.51" cy="-23.59" rx="27.27" ry="18"></ellipse>
+<text text-anchor="start" x="175.84" y="-20.39" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso3</text>
+</g>
+<!-- country&#45;&#45;iso -->
+<g id="edge7" class="edge">
+<title>country--iso</title>
+<path fill="none" stroke="black" d="M194.86,-104.38C193.24,-86.53 190.77,-59.43 189.15,-41.62"></path>
+</g>
+<!-- city -->
+<g id="node2" class="node">
+<title>city</title>
+<polygon fill="none" stroke="black" points="442.43,-223.99 388.43,-223.99 388.43,-187.99 442.43,-187.99 442.43,-223.99"></polygon>
+<text text-anchor="middle" x="415.43" y="-201.79" font-family="Helvetica,Arial,sans-serif" font-size="14.00">city</text>
+</g>
+<!-- name1 -->
+<g id="node5" class="node">
+<title>name1</title>
+<ellipse fill="none" stroke="black" cx="425.97" cy="-257.49" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="425.97" y="-253.29" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- city&#45;&#45;name1 -->
+<g id="edge5" class="edge">
+<title>city--name1</title>
+<path fill="none" stroke="black" d="M419.12,-224C420.14,-228.99 421.25,-234.41 422.27,-239.4"></path>
+</g>
+<!-- id -->
+<g id="node11" class="node">
+<title>id</title>
+<ellipse fill="none" stroke="black" cx="510.11" cy="-239.07" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="504.66" y="-235.87" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">id</text>
+</g>
+<!-- city&#45;&#45;id -->
+<g id="edge8" class="edge">
+<title>city--id</title>
+<path fill="none" stroke="black" d="M442.56,-215.47C456.22,-220.24 472.65,-225.98 485.88,-230.61"></path>
+</g>
+<!-- is&#45;in -->
+<g id="node13" class="node">
+<title>is-in</title>
+<polygon fill="none" stroke="black" points="322.93,-159.25 283.15,-141.25 322.93,-123.25 362.7,-141.25 322.93,-159.25"></polygon>
+<text text-anchor="middle" x="322.93" y="-137.05" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-in</text>
+</g>
+<!-- city&#45;&#45;is&#45;in -->
+<g id="edge10" class="edge">
+<title>city--is-in</title>
+<path fill="none" stroke="black" d="M389.66,-187.96C373.31,-176.51 352.66,-162.06 338.7,-152.29"></path>
+</g>
+<!-- is&#45;capital -->
+<g id="node15" class="node">
+<title>is-capital</title>
+<polygon fill="none" stroke="black" points="311.99,-212.01 246.16,-194.01 311.99,-176.01 377.81,-194.01 311.99,-212.01"></polygon>
+<text text-anchor="middle" x="311.99" y="-189.81" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-capital</text>
+</g>
+<!-- city&#45;&#45;is&#45;capital -->
+<g id="edge12" class="edge">
+<title>city--is-capital</title>
+<path fill="none" stroke="black" d="M388.25,-202.84C379.15,-201.79 368.74,-200.58 358.58,-199.4"></path>
+</g>
+<!-- language -->
+<g id="node3" class="node">
+<title>language</title>
+<polygon fill="none" stroke="black" points="159.77,-230.3 93.71,-230.3 93.71,-194.3 159.77,-194.3 159.77,-230.3"></polygon>
+<text text-anchor="middle" x="126.74" y="-208.1" font-family="Helvetica,Arial,sans-serif" font-size="14.00">language</text>
+</g>
+<!-- name2 -->
+<g id="node6" class="node">
+<title>name2</title>
+<ellipse fill="none" stroke="black" cx="31.59" cy="-257.52" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="31.59" y="-253.32" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- language&#45;&#45;name2 -->
+<g id="edge6" class="edge">
+<title>language--name2</title>
+<path fill="none" stroke="black" d="M93.46,-228.11C81.25,-233.92 67.64,-240.39 56.31,-245.77"></path>
+</g>
+<!-- isol -->
+<g id="node12" class="node">
+<title>isol</title>
+<ellipse fill="none" stroke="black" cx="104.83" cy="-310.62" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="96.66" y="-307.42" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso</text>
+</g>
+<!-- language&#45;&#45;isol -->
+<g id="edge9" class="edge">
+<title>language--isol</title>
+<path fill="none" stroke="black" d="M122.72,-230.33C118.77,-248.07 112.77,-275 108.82,-292.7"></path>
+</g>
+<!-- is&#45;spoken&#45;in -->
+<g id="node14" class="node">
+<title>is-spoken-in</title>
+<polygon fill="none" stroke="black" points="153.43,-184.77 70.18,-166.77 153.43,-148.77 236.68,-166.77 153.43,-184.77"></polygon>
+<text text-anchor="middle" x="153.43" y="-162.57" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-spoken-in</text>
+</g>
+<!-- language&#45;&#45;is&#45;spoken&#45;in -->
+<g id="edge14" class="edge">
+<title>language--is-spoken-in</title>
+<path fill="none" stroke="black" d="M137.44,-194.04C139.59,-190.38 141.83,-186.56 143.93,-182.97"></path>
+</g>
+<!-- name0 -->
+<g id="node4" class="node">
+<title>name0</title>
+<ellipse fill="none" stroke="black" cx="206.12" cy="-225.54" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="206.12" y="-221.34" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- name0&#45;&#45;country -->
+<g id="edge1" class="edge">
+<title>name0--country</title>
+<path fill="none" stroke="black" d="M204.4,-207.13C202.66,-188.38 199.96,-159.48 198.22,-140.79"></path>
+</g>
+<!-- population -->
+<g id="node7" class="node">
+<title>population</title>
+<ellipse fill="none" stroke="black" cx="98.26" cy="-40.18" rx="52.19" ry="18"></ellipse>
+<text text-anchor="middle" x="98.26" y="-35.98" font-family="Helvetica,Arial,sans-serif" font-size="14.00">population</text>
+</g>
+<!-- population&#45;&#45;country -->
+<g id="edge2" class="edge">
+<title>population--country</title>
+<path fill="none" stroke="black" d="M118.14,-56.85C134.63,-70.66 158.03,-90.27 174.96,-104.46"></path>
+</g>
+<!-- governmentForm -->
+<g id="node8" class="node">
+<title>governmentForm</title>
+<ellipse fill="none" stroke="black" cx="308.97" cy="-18.06" rx="78.18" ry="18"></ellipse>
+<text text-anchor="middle" x="308.97" y="-13.86" font-family="Helvetica,Arial,sans-serif" font-size="14.00">governmentForm</text>
+</g>
+<!-- governmentForm&#45;&#45;country -->
+<g id="edge3" class="edge">
+<title>governmentForm--country</title>
+<path fill="none" stroke="black" d="M290.15,-35.55C269.64,-54.6 236.98,-84.94 216.16,-104.28"></path>
+</g>
+<!-- headOfState -->
+<g id="node9" class="node">
+<title>headOfState</title>
+<ellipse fill="none" stroke="black" cx="66.74" cy="-98.3" rx="58.53" ry="18"></ellipse>
+<text text-anchor="middle" x="66.74" y="-94.1" font-family="Helvetica,Arial,sans-serif" font-size="14.00">headOfState</text>
+</g>
+<!-- headOfState&#45;&#45;country -->
+<g id="edge4" class="edge">
+<title>headOfState--country</title>
+<path fill="none" stroke="black" d="M117.28,-107.74C134.08,-110.87 152.23,-114.26 166.91,-117"></path>
+</g>
+<!-- is&#45;in&#45;&#45;country -->
+<g id="edge11" class="edge">
+<title>is-in--country</title>
+<path fill="none" stroke="black" d="M292.65,-136.77C272.49,-133.78 246.13,-129.88 226.11,-126.91"></path>
+</g>
+<!-- is&#45;spoken&#45;in&#45;&#45;country -->
+<g id="edge15" class="edge">
+<title>is-spoken-in--country</title>
+<path fill="none" stroke="black" d="M168.02,-151.79C171.53,-148.18 175.33,-144.29 178.96,-140.56"></path>
+</g>
+<!-- is&#45;capital&#45;&#45;country -->
+<g id="edge13" class="edge">
+<title>is-capital--country</title>
+<path fill="none" stroke="black" d="M291.61,-181.39C273.35,-170.09 246.36,-153.38 225.79,-140.65"></path>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="remarques-suite" class="slide level2 center">
+<h2>Remarques (suite)</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Une association est représentée par un losange, elle est nommée.</p>
+<p>Le losange est relié aux dfférentes entités participantes par une arête</p>
+<p>Le nom d’une association reflète (en principe) la signification de cette association.</p>
+<p>Le nom d’une association renvoie souvent à un verbe, pas forcémment d’action</p>
+</div>
+</div>
+</div>
+<div class="callout callout-warning callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Avertissement</strong></p>
+</div>
+<div class="callout-content">
+<p>Il n’est pas toujours évident de lire sur le graphique le rôle joué par les différentes entités participantes dans une association. Bien nommer aide.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="attributs-dassociation" class="slide level2 center">
+<h2>Attributs d’association</h2>
+<p>Une association peut posséder des attributs.</p>
+<p>Graphiquement, les attributs d’association sont représentés comme les attributs d’entité, par des ellipses. Les ellipses sont reliées au losange de l’association par une arête</p>
+<div class="fragment">
+<p>Dans <code>world</code>, l’association <code>is-spoken-in</code> peut être munie d’un attribut <code>official</code> qui précise si une langue donnée est officielle dans un territoire donné.</p>
+</div>
 </section>
 <section class="slide level2 center">
 
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="er3-assoc">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 790.00 357.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 353)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-353 786,-353 786,4 -4,4"></polygon>
+<!-- country -->
+<g id="node1" class="node">
+<title>country</title>
+<polygon fill="none" stroke="black" points="355.27,-192 296.73,-192 296.73,-156 355.27,-156 355.27,-192"></polygon>
+<text text-anchor="middle" x="326" y="-169.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">country</text>
+</g>
+<!-- iso -->
+<g id="node11" class="node">
+<title>iso</title>
+<ellipse fill="none" stroke="black" cx="326.8" cy="-32.81" rx="27.27" ry="18"></ellipse>
+<text text-anchor="start" x="315.13" y="-29.61" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso3</text>
+</g>
+<!-- country&#45;&#45;iso -->
+<g id="edge7" class="edge">
+<title>country--iso</title>
+<path fill="none" stroke="black" d="M326.1,-155.83C326.26,-128.72 326.54,-77.98 326.7,-50.91"></path>
+</g>
+<!-- city -->
+<g id="node2" class="node">
+<title>city</title>
+<polygon fill="none" stroke="black" points="641,-192 587,-192 587,-156 641,-156 641,-192"></polygon>
+<text text-anchor="middle" x="614" y="-169.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">city</text>
+</g>
+<!-- name1 -->
+<g id="node6" class="node">
+<title>name1</title>
+<ellipse fill="none" stroke="black" cx="749.59" cy="-114.27" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="749.59" y="-110.07" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- city&#45;&#45;name1 -->
+<g id="edge5" class="edge">
+<title>city--name1</title>
+<path fill="none" stroke="black" d="M641.11,-162.06C665.38,-151.37 700.68,-135.82 724.36,-125.39"></path>
+</g>
+<!-- id -->
+<g id="node12" class="node">
+<title>id</title>
+<ellipse fill="none" stroke="black" cx="745.51" cy="-230.57" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="740.07" y="-227.37" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">id</text>
+</g>
+<!-- city&#45;&#45;id -->
+<g id="edge8" class="edge">
+<title>city--id</title>
+<path fill="none" stroke="black" d="M641.25,-185.72C665.33,-196.08 700.03,-211.01 722.68,-220.75"></path>
+</g>
+<!-- is&#45;in -->
+<g id="node14" class="node">
+<title>is-in</title>
+<polygon fill="none" stroke="black" points="482.44,-166.64 442.66,-148.64 482.44,-130.64 522.21,-148.64 482.44,-166.64"></polygon>
+<text text-anchor="middle" x="482.44" y="-144.44" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-in</text>
+</g>
+<!-- city&#45;&#45;is&#45;in -->
+<g id="edge10" class="edge">
+<title>city--is-in</title>
+<path fill="none" stroke="black" d="M586.74,-168.75C564.46,-164.45 533.08,-158.4 510.57,-154.06"></path>
+</g>
+<!-- is&#45;capital -->
+<g id="node16" class="node">
+<title>is-capital</title>
+<polygon fill="none" stroke="black" points="524.47,-277.72 458.65,-259.72 524.47,-241.72 590.3,-259.72 524.47,-277.72"></polygon>
+<text text-anchor="middle" x="524.47" y="-255.52" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-capital</text>
+</g>
+<!-- city&#45;&#45;is&#45;capital -->
+<g id="edge12" class="edge">
+<title>city--is-capital</title>
+<path fill="none" stroke="black" d="M595.01,-192.18C578.38,-208.1 554.55,-230.92 539.3,-245.53"></path>
+</g>
+<!-- language -->
+<g id="node3" class="node">
+<title>language</title>
+<polygon fill="none" stroke="black" points="215.03,-192 148.97,-192 148.97,-156 215.03,-156 215.03,-192"></polygon>
+<text text-anchor="middle" x="182" y="-169.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">language</text>
+</g>
+<!-- name2 -->
+<g id="node7" class="node">
+<title>name2</title>
+<ellipse fill="none" stroke="black" cx="31.56" cy="-230.98" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="31.56" y="-226.78" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- language&#45;&#45;name2 -->
+<g id="edge6" class="edge">
+<title>language--name2</title>
+<path fill="none" stroke="black" d="M148.61,-186.65C121.43,-196.94 83.56,-211.28 58.34,-220.83"></path>
+</g>
+<!-- isol -->
+<g id="node13" class="node">
+<title>isol</title>
+<ellipse fill="none" stroke="black" cx="40.43" cy="-113.04" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="32.26" y="-109.84" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso</text>
+</g>
+<!-- language&#45;&#45;isol -->
+<g id="edge9" class="edge">
+<title>language--isol</title>
+<path fill="none" stroke="black" d="M148.81,-159.71C122.49,-148.38 86.41,-132.84 63.25,-122.87"></path>
+</g>
+<!-- is&#45;spoken&#45;in -->
+<g id="node15" class="node">
+<title>is-spoken-in</title>
+<polygon fill="none" stroke="black" points="220.36,-243.22 137.11,-225.22 220.36,-207.22 303.62,-225.22 220.36,-243.22"></polygon>
+<text text-anchor="middle" x="220.36" y="-221.02" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-spoken-in</text>
+</g>
+<!-- language&#45;&#45;is&#45;spoken&#45;in -->
+<g id="edge14" class="edge">
+<title>language--is-spoken-in</title>
+<path fill="none" stroke="black" d="M195.63,-192.2C199.85,-197.84 204.47,-204 208.55,-209.46"></path>
+</g>
+<!-- official -->
+<g id="node4" class="node">
+<title>official</title>
+<ellipse fill="none" stroke="black" cx="161.45" cy="-281.57" rx="38.84" ry="18"></ellipse>
+<text text-anchor="middle" x="161.45" y="-277.37" font-family="Helvetica,Arial,sans-serif" font-size="14.00">official</text>
+</g>
+<!-- name0 -->
+<g id="node5" class="node">
+<title>name0</title>
+<ellipse fill="none" stroke="black" cx="321.68" cy="-331.18" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="321.68" y="-326.98" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- name0&#45;&#45;country -->
+<g id="edge1" class="edge">
+<title>name0--country</title>
+<path fill="none" stroke="black" d="M322.17,-313.15C323,-282.99 324.66,-222.64 325.5,-192.3"></path>
+</g>
+<!-- population -->
+<g id="node8" class="node">
+<title>population</title>
+<ellipse fill="none" stroke="black" cx="233.16" cy="-22.77" rx="52.19" ry="18"></ellipse>
+<text text-anchor="middle" x="233.16" y="-18.57" font-family="Helvetica,Arial,sans-serif" font-size="14.00">population</text>
+</g>
+<!-- population&#45;&#45;country -->
+<g id="edge2" class="edge">
+<title>population--country</title>
+<path fill="none" stroke="black" d="M243.99,-40.42C261.79,-69.4 297.01,-126.78 314.95,-156"></path>
+</g>
+<!-- governmentForm -->
+<g id="node9" class="node">
+<title>governmentForm</title>
+<ellipse fill="none" stroke="black" cx="367.81" cy="-270.67" rx="78.18" ry="18"></ellipse>
+<text text-anchor="middle" x="367.81" y="-266.47" font-family="Helvetica,Arial,sans-serif" font-size="14.00">governmentForm</text>
+</g>
+<!-- governmentForm&#45;&#45;country -->
+<g id="edge3" class="edge">
+<title>governmentForm--country</title>
+<path fill="none" stroke="black" d="M359.95,-252.49C352.47,-235.21 341.29,-209.36 333.83,-192.1"></path>
+</g>
+<!-- headOfState -->
+<g id="node10" class="node">
+<title>headOfState</title>
+<ellipse fill="none" stroke="black" cx="420.86" cy="-17.63" rx="58.53" ry="18"></ellipse>
+<text text-anchor="middle" x="420.86" y="-13.43" font-family="Helvetica,Arial,sans-serif" font-size="14.00">headOfState</text>
+</g>
+<!-- headOfState&#45;&#45;country -->
+<g id="edge4" class="edge">
+<title>headOfState--country</title>
+<path fill="none" stroke="black" d="M409.98,-35.57C391.78,-65.57 355.36,-125.61 337.05,-155.79"></path>
+</g>
+<!-- is&#45;in&#45;&#45;country -->
+<g id="edge11" class="edge">
+<title>is-in--country</title>
+<path fill="none" stroke="black" d="M453.01,-153.41C425.05,-157.94 383.22,-164.72 355.29,-169.25"></path>
+</g>
+<!-- is&#45;spoken&#45;in&#45;&#45;country -->
+<g id="edge15" class="edge">
+<title>is-spoken-in--country</title>
+<path fill="none" stroke="black" d="M246.21,-212.69C261.48,-205.29 280.86,-195.89 296.7,-188.21"></path>
+</g>
+<!-- is&#45;spoken&#45;in&#45;&#45;official -->
+<g id="edge16" class="edge">
+<title>is-spoken-in--official</title>
+<path fill="none" stroke="black" d="M204.89,-240.03C196.84,-247.72 186.98,-257.15 178.7,-265.08"></path>
+</g>
+<!-- is&#45;capital&#45;&#45;country -->
+<g id="edge13" class="edge">
+<title>is-capital--country</title>
+<path fill="none" stroke="black" d="M498.93,-248.69C462.08,-232.77 394.16,-203.44 355.31,-186.66"></path>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="rôles" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Rôles</h1>
+
+</section>
+<section id="partipations-multiples-à-une-association" class="slide level2 center">
+<h2>Partipations multiples à une association</h2>
+<p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Une même entité peut participer <em>plusieurs fois</em> à une même association</p>
+<p>On distingue ces participations grâce à des <em>rôles</em> qui étiquettent les arêtes qui relient le rectangle entité au losange association.</p>
+</section>
+<section id="exemples-de-rôle-dans-une-association-réflexive" class="slide level2 center">
+<h2>Exemples de rôle dans une association réflexive</h2>
+<p>Dans une base de donnée généalogique, on part d’une entité <code>individu</code>. On définit une auto-association <code>mère</code> qui relie l’entité <code>individu</code> avec elle-même.</p>
+<div class="fragment">
+<p>Cette auto-association n’est pas symétrique: quand on écrit qu’<em>Elizabeth</em> est mère de <em>Charles</em>, <em>Elisabeth</em> et <em>Charles</em> ne jouent pas le même rôle.</p>
+</div>
+<div class="fragment">
+<p>Dans une instance <span class="math inline">\((x,y)\)</span> de l’association <code>mère</code> <span class="math inline">\(x\)</span> joue le rôle de la génitrice, <span class="math inline">\(y\)</span> de l’enfant.</p>
+</div>
+<div class="fragment">
+<p>On peut rendre compte de ces rôles en marquant les arêtes qui lient l’entité <code>individu</code> à l’association <code>mère</code> (pour <code>est-maman-de</code>)</p>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="er6-roles">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 358.21 55.10" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 51.1)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-51.1 354.21,-51.1 354.21,4 -4,4"></polygon>
+<!-- individu -->
+<g id="node1" class="node">
+<title>individu</title>
+<polygon fill="none" stroke="black" points="62.5,-41.55 0.16,-41.55 0.16,-5.55 62.5,-5.55 62.5,-41.55"></polygon>
+<text text-anchor="middle" x="31.33" y="-19.35" font-family="Helvetica,Arial,sans-serif" font-size="14.00">individu</text>
+</g>
+<!-- mère -->
+<g id="node2" class="node">
+<title>mère</title>
+<ellipse fill="none" stroke="black" cx="319.33" cy="-23.55" rx="30.76" ry="18"></ellipse>
+<text text-anchor="middle" x="319.33" y="-19.35" font-family="Helvetica,Arial,sans-serif" font-size="14.00">mère</text>
+</g>
+<!-- individu&#45;&#45;mère -->
+<g id="edge1" class="edge">
+<title>individu--mère</title>
+<path fill="none" stroke="black" d="M62.7,-27.95C118.54,-31.11 234.44,-31.08 289.3,-27.87"></path>
+<text text-anchor="start" x="126.61" y="-34.5" font-family="Helvetica,Arial,sans-serif" font-size="14.00">génitrice</text>
+<text text-anchor="start" x="62.7" y="-32.15" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- mère&#45;&#45;individu -->
+<g id="edge2" class="edge">
+<title>mère--individu</title>
+<path fill="none" stroke="black" d="M289.33,-19.23C234.44,-16.01 118.38,-15.99 62.58,-19.16"></path>
+<text text-anchor="start" x="141.31" y="-4.2" font-family="Helvetica,Arial,sans-serif" font-size="14.00">enfant</text>
+<text text-anchor="start" x="62.58" y="-6.56" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:1</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="arité" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Arité</h1>
+
+</section>
+<section class="slide level2 center">
+
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>L’<em>arité</em> d’une association est le nombre d’entités participantes.</p>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Dans le modèle <code>world</code>, nous n’avons (pour le moment) que des associations d’arité <code>2</code>, c’est-à-dire des associations binaires.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="une-association-darité-supérireure-à-2" class="slide level2 center">
+<h2>Une association d’arité supérireure à 2</h2>
+<p>Pour construire un modèle des vols aériens (comme dans <code>nycflights13</code>), on définit des entités <code>airline</code> <code>plane</code>, <code>airport</code> et une association quaternaire <code>flight</code></p>
+<div class="fragment">
+<p>L’association <code>flight</code> est quaternaire: une instance de <code>flight</code> associe un aéroport d’origine à un aéroport de destination (2 arêtes entre <code>airport</code> et <code>flight</code>), elle associe aussi une instance de <code>plane</code> et une instance de <code>airline</code></p>
+</div>
+<div class="fragment">
+<p>On distingue les deux participations de <code>airport</code> à <code>flight</code> par des rôles</p>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="nyc-quaternaire-un">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 494.00 332.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 328)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-328 490,-328 490,4 -4,4"></polygon>
+<!-- airport -->
+<g id="node1" class="node">
+<title>airport</title>
+<polygon fill="none" stroke="black" points="54,-180 0,-180 0,-144 54,-144 54,-180"></polygon>
+<text text-anchor="middle" x="27" y="-157.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">airport</text>
+</g>
+<!-- flight -->
+<g id="node4" class="node">
+<title>flight</title>
+<polygon fill="none" stroke="black" points="315,-180 269.61,-162 315,-144 360.39,-162 315,-180"></polygon>
+<text text-anchor="middle" x="315" y="-157.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">flight</text>
+</g>
+<!-- airport&#45;&#45;flight -->
+<g id="edge1" class="edge">
+<title>airport--flight</title>
+<path fill="none" stroke="black" d="M54.09,-166.15C106.74,-169.47 222.77,-169.61 280.7,-166.56"></path>
+<text text-anchor="middle" x="156.12" y="-170.55" font-family="Helvetica,Arial,sans-serif" font-size="14.00">orig</text>
+</g>
+<!-- plane -->
+<g id="node2" class="node">
+<title>plane</title>
+<polygon fill="none" stroke="black" points="486,-36 432,-36 432,0 486,0 486,-36"></polygon>
+<text text-anchor="middle" x="459" y="-13.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">plane</text>
+</g>
+<!-- airline -->
+<g id="node3" class="node">
+<title>airline</title>
+<polygon fill="none" stroke="black" points="486,-324 432,-324 432,-288 486,-288 486,-324"></polygon>
+<text text-anchor="middle" x="459" y="-301.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">airline</text>
+</g>
+<!-- flight&#45;&#45;airport -->
+<g id="edge2" class="edge">
+<title>flight--airport</title>
+<path fill="none" stroke="black" d="M280.83,-157.45C223.02,-154.39 107.06,-154.52 54.28,-157.84"></path>
+<text text-anchor="middle" x="156.28" y="-145.04" font-family="Helvetica,Arial,sans-serif" font-size="14.00">dest</text>
+</g>
+<!-- flight&#45;&#45;plane -->
+<g id="edge4" class="edge">
+<title>flight--plane</title>
+<path fill="none" stroke="black" d="M328.03,-148.97C353.79,-123.21 411.25,-65.75 440.76,-36.24"></path>
+</g>
+<!-- flight&#45;&#45;airline -->
+<g id="edge3" class="edge">
+<title>flight--airline</title>
+<path fill="none" stroke="black" d="M328.03,-175.03C353.79,-200.79 411.25,-258.25 440.76,-287.76"></path>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="cardinalités" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Cardinalités</h1>
+
+</section>
+<section id="principe-et-objet" class="slide level2 center">
+<h2>Principe et objet</h2>
+<p>Dans une association entre plusieurs entités, les instances d’une entité peuvent participer a priori 0, 1, ou un nombre illimité de fois aux instances de l’association</p>
+<p>Pour traduire les associations dans le langage des tables et des contraintes (LDD), il est très utile d’encadrer le plus précisément possible le nombre de participations d’une instance d’une entité aux instances d’une associations</p>
+<p>Les <em>cardinalités</em> sont des décorations sur les arêtes qui relient entités et associations</p>
+</section>
+<section id="cas-des-relations-binaires-2-entités" class="slide level2 center">
+<h2>Cas des relations binaires (2 entités)</h2>
+</section>
+<section id="exemples-11" class="slide level2 center">
+<h2>Exemples <code>1:1</code></h2>
+<p>Dans le modèle <code>world</code>,</p>
+<ul>
+<li>une instance de <code>city</code> apparaît <code>1</code> et <code>1</code> seule fois dans l’association <code>is-in</code>. On dira que <code>is-in</code> est de cardinalité <code>1:1</code> du côté de <code>city</code>. Une ville se situe sur le territoire d’un pays (et d’un seul)</li>
+</ul>
+</section>
+<section id="exemples-1n" class="slide level2 center">
+<h2>Exemples <code>1:n</code></h2>
+<p>Dans le modèle <code>world</code>,</p>
+<ul>
+<li>une instance de <code>country</code> peut apparaître une nombre arbitraire de fois dans l’association ‘is-in’. On dira que <code>is-in</code> est de cardinalité <code>0:n</code> du côté de <code>city</code>. Un territoire peut ne comporter aucune ville de population supérieure à un seuil. Il n’y a pas de borne a priori sur le nombre de grandes villes situées sur un territoire</li>
+</ul>
+</section>
+<section id="exemples-0n" class="slide level2 center">
+<h2>Exemples <code>0:n</code></h2>
+<p>Dans le modèle <code>world</code>,</p>
+<ul>
+<li>une instance de <code>language</code> peut apparaître une nombre arbitraire de fois dans l’association <code>is-spoken-in</code>. On dira que <code>is-spoken-in</code> est de cardinalité <code>0:n</code> du côté de <code>language</code>.</li>
+<li>une instance de <code>country</code> peut apparaître une nombre arbitraire de fois dans l’association ‘is-spoken-in’. On dira que <code>is-spoken-in</code> est de cardinalité <code>0:n</code> du côté de <code>country</code>.</li>
+</ul>
+</section>
+<section id="diagrammes" class="slide level2 center">
+<h2>Diagrammes</h2>
+<p>Une indication de cardinalité comporte une borne inférieure (0 ou 1) et une borne supérieure (1 ou <span class="math inline">\(n\)</span>)</p>
+<p>On décore le lien entité-association avec l’indication de cardinalité</p>
+</section>
+<section id="représentation-graphique-des-cardinalités" class="slide level2 center">
+<h2>Représentation graphique des cardinalités</h2>
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="er4-cardi">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 697.00 342.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 338)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-338 693,-338 693,4 -4,4"></polygon>
+<!-- country -->
+<g id="node1" class="node">
+<title>country</title>
+<polygon fill="none" stroke="black" points="393.08,-136.13 334.55,-136.13 334.55,-100.13 393.08,-100.13 393.08,-136.13"></polygon>
+<text text-anchor="middle" x="363.82" y="-113.93" font-family="Helvetica,Arial,sans-serif" font-size="14.00">country</text>
+</g>
+<!-- iso -->
+<g id="node10" class="node">
+<title>iso</title>
+<ellipse fill="none" stroke="black" cx="356.57" cy="-18.05" rx="27.27" ry="18"></ellipse>
+<text text-anchor="start" x="344.9" y="-14.85" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso3</text>
+</g>
+<!-- country&#45;&#45;iso -->
+<g id="edge7" class="edge">
+<title>country--iso</title>
+<path fill="none" stroke="black" d="M362.49,-99.77C361.18,-81.72 359.2,-54.31 357.89,-36.29"></path>
+</g>
+<!-- city -->
+<g id="node2" class="node">
+<title>city</title>
+<polygon fill="none" stroke="black" points="596.39,-246.97 542.39,-246.97 542.39,-210.97 596.39,-210.97 596.39,-246.97"></polygon>
+<text text-anchor="middle" x="569.39" y="-224.77" font-family="Helvetica,Arial,sans-serif" font-size="14.00">city</text>
+</g>
+<!-- name1 -->
+<g id="node5" class="node">
+<title>name1</title>
+<ellipse fill="none" stroke="black" cx="581.57" cy="-278.74" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="581.57" y="-274.54" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- city&#45;&#45;name1 -->
+<g id="edge5" class="edge">
+<title>city--name1</title>
+<path fill="none" stroke="black" d="M573.86,-247.22C574.94,-251.66 576.11,-256.4 577.19,-260.82"></path>
+</g>
+<!-- id -->
+<g id="node11" class="node">
+<title>id</title>
+<ellipse fill="none" stroke="black" cx="662.3" cy="-207.49" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="656.85" y="-204.29" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">id</text>
+</g>
+<!-- city&#45;&#45;id -->
+<g id="edge8" class="edge">
+<title>city--id</title>
+<path fill="none" stroke="black" d="M596.76,-222.64C609.4,-219.72 624.31,-216.27 636.71,-213.41"></path>
+</g>
+<!-- is&#45;in -->
+<g id="node13" class="node">
+<title>is-in</title>
+<polygon fill="none" stroke="black" points="482.75,-174.15 442.97,-156.15 482.75,-138.15 522.52,-156.15 482.75,-174.15"></polygon>
+<text text-anchor="middle" x="482.75" y="-151.95" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-in</text>
+</g>
+<!-- city&#45;&#45;is&#45;in -->
+<g id="edge10" class="edge">
+<title>city--is-in</title>
+<path fill="none" stroke="black" d="M547.53,-210.59C531.59,-197.2 510.46,-179.44 496.73,-167.91"></path>
+<text text-anchor="middle" x="513.19" y="-193.45" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1:1</text>
+</g>
+<!-- is&#45;capital -->
+<g id="node15" class="node">
+<title>is-capital</title>
+<polygon fill="none" stroke="black" points="440.99,-254.96 375.17,-236.96 440.99,-218.96 506.82,-236.96 440.99,-254.96"></polygon>
+<text text-anchor="middle" x="440.99" y="-232.76" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-capital</text>
+</g>
+<!-- city&#45;&#45;is&#45;capital -->
+<g id="edge12" class="edge">
+<title>city--is-capital</title>
+<path fill="none" stroke="black" d="M542.16,-230.66C528.32,-231.52 511.01,-232.6 494.63,-233.62"></path>
+<text text-anchor="middle" x="527.34" y="-236.34" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:1</text>
+</g>
+<!-- language -->
+<g id="node3" class="node">
+<title>language</title>
+<polygon fill="none" stroke="black" points="121.08,-248.89 55.01,-248.89 55.01,-212.89 121.08,-212.89 121.08,-248.89"></polygon>
+<text text-anchor="middle" x="88.04" y="-226.69" font-family="Helvetica,Arial,sans-serif" font-size="14.00">language</text>
+</g>
+<!-- name2 -->
+<g id="node6" class="node">
+<title>name2</title>
+<ellipse fill="none" stroke="black" cx="31.56" cy="-315.5" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="31.56" y="-311.3" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- language&#45;&#45;name2 -->
+<g id="edge6" class="edge">
+<title>language--name2</title>
+<path fill="none" stroke="black" d="M75.79,-249.25C65.99,-263.93 52.36,-284.34 42.83,-298.62"></path>
+</g>
+<!-- isol -->
+<g id="node12" class="node">
+<title>isol</title>
+<ellipse fill="none" stroke="black" cx="29.79" cy="-151.25" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="21.62" y="-148.05" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso</text>
+</g>
+<!-- language&#45;&#45;isol -->
+<g id="edge9" class="edge">
+<title>language--isol</title>
+<path fill="none" stroke="black" d="M74.82,-212.82C64.89,-199.23 51.39,-180.78 41.76,-167.62"></path>
+</g>
+<!-- is&#45;spoken&#45;in -->
+<g id="node14" class="node">
+<title>is-spoken-in</title>
+<polygon fill="none" stroke="black" points="246.98,-243.96 163.73,-225.96 246.98,-207.96 330.24,-225.96 246.98,-243.96"></polygon>
+<text text-anchor="middle" x="246.98" y="-221.76" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-spoken-in</text>
+</g>
+<!-- language&#45;&#45;is&#45;spoken&#45;in -->
+<g id="edge14" class="edge">
+<title>language--is-spoken-in</title>
+<path fill="none" stroke="black" d="M121.36,-229.86C136.75,-229.38 155.66,-228.79 174.1,-228.22"></path>
+<text text-anchor="middle" x="138.79" y="-233.24" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- name0 -->
+<g id="node4" class="node">
+<title>name0</title>
+<ellipse fill="none" stroke="black" cx="272.43" cy="-144.58" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="272.43" y="-140.38" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- name0&#45;&#45;country -->
+<g id="edge1" class="edge">
+<title>name0--country</title>
+<path fill="none" stroke="black" d="M301.34,-136.21C311.91,-133.15 323.86,-129.69 334.46,-126.63"></path>
+</g>
+<!-- population -->
+<g id="node7" class="node">
+<title>population</title>
+<ellipse fill="none" stroke="black" cx="261.83" cy="-54.75" rx="52.19" ry="18"></ellipse>
+<text text-anchor="middle" x="261.83" y="-50.55" font-family="Helvetica,Arial,sans-serif" font-size="14.00">population</text>
+</g>
+<!-- population&#45;&#45;country -->
+<g id="edge2" class="edge">
+<title>population--country</title>
+<path fill="none" stroke="black" d="M287.3,-70.58C301.7,-79.53 319.75,-90.74 334.7,-100.04"></path>
+</g>
+<!-- governmentForm -->
+<g id="node8" class="node">
+<title>governmentForm</title>
+<ellipse fill="none" stroke="black" cx="402.8" cy="-72.3" rx="78.18" ry="18"></ellipse>
+<text text-anchor="middle" x="402.8" y="-68.1" font-family="Helvetica,Arial,sans-serif" font-size="14.00">governmentForm</text>
+</g>
+<!-- governmentForm&#45;&#45;country -->
+<g id="edge3" class="edge">
+<title>governmentForm--country</title>
+<path fill="none" stroke="black" d="M387.62,-90.15C384.88,-93.36 382.03,-96.72 379.28,-99.95"></path>
+</g>
+<!-- headOfState -->
+<g id="node9" class="node">
+<title>headOfState</title>
+<ellipse fill="none" stroke="black" cx="374.9" cy="-169.24" rx="58.53" ry="18"></ellipse>
+<text text-anchor="middle" x="374.9" y="-165.04" font-family="Helvetica,Arial,sans-serif" font-size="14.00">headOfState</text>
+</g>
+<!-- headOfState&#45;&#45;country -->
+<g id="edge4" class="edge">
+<title>headOfState--country</title>
+<path fill="none" stroke="black" d="M370.96,-151.07C369.91,-146.25 368.79,-141.05 367.74,-136.23"></path>
+</g>
+<!-- is&#45;in&#45;&#45;country -->
+<g id="edge11" class="edge">
+<title>is-in--country</title>
+<path fill="none" stroke="black" d="M459.25,-148.64C440.3,-142.58 413.53,-134.02 393.17,-127.51"></path>
+<text text-anchor="middle" x="417.26" y="-125.48" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- is&#45;spoken&#45;in&#45;&#45;country -->
+<g id="edge15" class="edge">
+<title>is-spoken-in--country</title>
+<path fill="none" stroke="black" d="M263.23,-210.97C284.42,-191.41 321.47,-157.21 344.2,-136.23"></path>
+<text text-anchor="middle" x="294.77" y="-177.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- is&#45;capital&#45;&#45;country -->
+<g id="edge13" class="edge">
+<title>is-capital--country</title>
+<path fill="none" stroke="black" d="M430.9,-221.42C416.69,-199.53 390.8,-159.68 375.68,-136.39"></path>
+<text text-anchor="middle" x="394.35" y="-183.11" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:1</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="représentation-graphique-des-cardinalités-suite" class="slide level2 center">
+<h2>Représentation graphique des cardinalités (suite)</h2>
+<p>On peut utilement préciser les cardinalités dans notre schéma des vols.</p>
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="nyc-quaternaire">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 494.00 332.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 328)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-328 490,-328 490,4 -4,4"></polygon>
+<!-- airport -->
+<g id="node1" class="node">
+<title>airport</title>
+<polygon fill="none" stroke="black" points="54,-180 0,-180 0,-144 54,-144 54,-180"></polygon>
+<text text-anchor="middle" x="27" y="-157.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">airport</text>
+</g>
+<!-- flight -->
+<g id="node4" class="node">
+<title>flight</title>
+<polygon fill="none" stroke="black" points="315,-180 269.61,-162 315,-144 360.39,-162 315,-180"></polygon>
+<text text-anchor="middle" x="315" y="-157.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">flight</text>
+</g>
+<!-- airport&#45;&#45;flight -->
+<g id="edge1" class="edge">
+<title>airport--flight</title>
+<path fill="none" stroke="black" d="M54.09,-166.15C106.74,-169.47 222.77,-169.61 280.7,-166.56"></path>
+<text text-anchor="middle" x="156.12" y="-170.55" font-family="Helvetica,Arial,sans-serif" font-size="14.00">orig</text>
+<text text-anchor="middle" x="63.04" y="-170.35" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- plane -->
+<g id="node2" class="node">
+<title>plane</title>
+<polygon fill="none" stroke="black" points="486,-36 432,-36 432,0 486,0 486,-36"></polygon>
+<text text-anchor="middle" x="459" y="-13.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">plane</text>
+</g>
+<!-- airline -->
+<g id="node3" class="node">
+<title>airline</title>
+<polygon fill="none" stroke="black" points="486,-324 432,-324 432,-288 486,-288 486,-324"></polygon>
+<text text-anchor="middle" x="459" y="-301.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">airline</text>
+</g>
+<!-- flight&#45;&#45;airport -->
+<g id="edge2" class="edge">
+<title>flight--airport</title>
+<path fill="none" stroke="black" d="M280.83,-157.45C223.02,-154.39 107.06,-154.52 54.28,-157.84"></path>
+<text text-anchor="middle" x="156.28" y="-145.04" font-family="Helvetica,Arial,sans-serif" font-size="14.00">dest</text>
+<text text-anchor="middle" x="63.23" y="-145.24" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- flight&#45;&#45;plane -->
+<g id="edge4" class="edge">
+<title>flight--plane</title>
+<path fill="none" stroke="black" d="M328.03,-148.97C353.79,-123.21 411.25,-65.75 440.76,-36.24"></path>
+<text text-anchor="middle" x="431.81" y="-40.44" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- flight&#45;&#45;airline -->
+<g id="edge3" class="edge">
+<title>flight--airline</title>
+<path fill="none" stroke="black" d="M328.03,-175.03C353.79,-200.79 411.25,-258.25 440.76,-287.76"></path>
+<text text-anchor="middle" x="431.81" y="-275.16" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="entités-faibles" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Entités faibles</h1>
+
+</section>
+<section id="définition-6" class="slide level2 center">
+<h2>Définition</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>Une entité faible <span class="math inline">\(E\)</span> est définie relativement à une entité <span class="math inline">\(A\)</span>. C’est une collection d’objets apparentés (comme une entité), mais chaque instance de <span class="math inline">\(E\)</span> est liée (est <em>partie de</em>) à une et une seule instance de <span class="math inline">\(A\)</span>.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="exemple" class="slide level2 center">
+<h2>Exemple</h2>
+<p>Dans <code>world</code>, on peut considérer que les instances de <code>country</code> sont des unités territoriales de niveau <code>0</code>. Ces unités territoriales de niveau <code>1</code> sont parfois découpées en unités territoriales de niveau <code>1</code> : les <em>régions</em> en France, en Italie, les <em>Länder</em> en Allemagne, …</p>
+<p>Chaque unité territoriale de niveau <code>1</code> est située dans une et une seule unité territoriale de niveau <code>0</code>, elle fait partie de l’unité territoriale de niveau <code>0</code>.</p>
+<p><a href="https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics">Unités territoriales</a></p>
+<div class="fragment">
+<p>Nous allons ajouter à notre modèle EA Géographie une entité faible appelée <code>nut1</code> (pour <em>Nouvelle Unité Territoriale</em> de niveau 1)</p>
+<p>L’entité faible <code>nut1</code> est liée à l’entité forte <code>country</code> par une association faible <code>is-in</code>.</p>
+</div>
+</section>
+<section id="diagrammes-pour-les-entités-faibles" class="slide level2 center">
+<h2>Diagrammes pour les entités faibles</h2>
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="er5-weak">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 1018.00 342.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 338)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-338 1014,-338 1014,4 -4,4"></polygon>
+<!-- country -->
+<g id="node1" class="node">
+<title>country</title>
+<polygon fill="none" stroke="black" points="536.27,-184 477.73,-184 477.73,-148 536.27,-148 536.27,-184"></polygon>
+<text text-anchor="middle" x="507" y="-161.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">country</text>
+</g>
+<!-- iso -->
+<g id="node10" class="node">
+<title>iso</title>
+<ellipse fill="none" stroke="black" cx="407.75" cy="-103.26" rx="27.27" ry="18"></ellipse>
+<text text-anchor="start" x="396.08" y="-100.06" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso3</text>
+</g>
+<!-- country&#45;&#45;iso -->
+<g id="edge7" class="edge">
+<title>country--iso</title>
+<path fill="none" stroke="black" d="M478.29,-147.85C462.03,-137.57 442.11,-124.98 427.58,-115.8"></path>
+</g>
+<!-- city -->
+<g id="node2" class="node">
+<title>city</title>
+<polygon fill="none" stroke="black" points="894,-184 840,-184 840,-148 894,-148 894,-184"></polygon>
+<text text-anchor="middle" x="867" y="-161.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">city</text>
+</g>
+<!-- name1 -->
+<g id="node5" class="node">
+<title>name1</title>
+<ellipse fill="none" stroke="black" cx="978.19" cy="-117.31" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="978.19" y="-113.11" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- city&#45;&#45;name1 -->
+<g id="edge5" class="edge">
+<title>city--name1</title>
+<path fill="none" stroke="black" d="M894.2,-154.09C912.07,-146.26 935.3,-136.09 952.79,-128.43"></path>
+</g>
+<!-- id -->
+<g id="node11" class="node">
+<title>id</title>
+<ellipse fill="none" stroke="black" cx="970.03" cy="-220.22" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="964.58" y="-217.02" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">id</text>
+</g>
+<!-- city&#45;&#45;id -->
+<g id="edge8" class="edge">
+<title>city--id</title>
+<path fill="none" stroke="black" d="M894.07,-180.24C911.12,-189.22 932.82,-200.64 948.66,-208.97"></path>
+</g>
+<!-- is&#45;in -->
+<g id="node13" class="node">
+<title>is-in</title>
+<polygon fill="none" stroke="black" points="688.68,-201.01 648.9,-183.01 688.68,-165.01 728.45,-183.01 688.68,-201.01"></polygon>
+<text text-anchor="middle" x="688.68" y="-178.81" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-in</text>
+</g>
+<!-- city&#45;&#45;is&#45;in -->
+<g id="edge10" class="edge">
+<title>city--is-in</title>
+<path fill="none" stroke="black" d="M839.92,-168.58C808.25,-171.61 755.85,-176.61 721.79,-179.86"></path>
+<text text-anchor="middle" x="771.91" y="-178.42" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1:1</text>
+</g>
+<!-- is&#45;capital -->
+<g id="node15" class="node">
+<title>is-capital</title>
+<polygon fill="none" stroke="black" points="692.18,-153.21 626.36,-135.21 692.18,-117.21 758,-135.21 692.18,-153.21"></polygon>
+<text text-anchor="middle" x="692.18" y="-131.01" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-capital</text>
+</g>
+<!-- city&#45;&#45;is&#45;capital -->
+<g id="edge12" class="edge">
+<title>city--is-capital</title>
+<path fill="none" stroke="black" d="M839.68,-161.19C810.88,-156.11 765.19,-148.07 732.29,-142.27"></path>
+<text text-anchor="middle" x="777.04" y="-155.93" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:1</text>
+</g>
+<!-- language -->
+<g id="node3" class="node">
+<title>language</title>
+<polygon fill="none" stroke="black" points="180.03,-184 113.97,-184 113.97,-148 180.03,-148 180.03,-184"></polygon>
+<text text-anchor="middle" x="147" y="-161.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">language</text>
+</g>
+<!-- name2 -->
+<g id="node6" class="node">
+<title>name2</title>
+<ellipse fill="none" stroke="black" cx="32.41" cy="-113.04" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="32.41" y="-108.84" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- language&#45;&#45;name2 -->
+<g id="edge6" class="edge">
+<title>language--name2</title>
+<path fill="none" stroke="black" d="M113.86,-150.68C95.88,-142.37 74.02,-132.27 57.47,-124.62"></path>
+</g>
+<!-- isol -->
+<g id="node12" class="node">
+<title>isol</title>
+<ellipse fill="none" stroke="black" cx="38.91" cy="-221.1" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="30.74" y="-217.9" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso</text>
+</g>
+<!-- language&#45;&#45;isol -->
+<g id="edge9" class="edge">
+<title>language--isol</title>
+<path fill="none" stroke="black" d="M113.69,-182.98C96.44,-191.77 75.88,-202.25 60.68,-210"></path>
+</g>
+<!-- is&#45;spoken&#45;in -->
+<g id="node14" class="node">
+<title>is-spoken-in</title>
+<polygon fill="none" stroke="black" points="318.08,-187.19 234.83,-169.19 318.08,-151.19 401.34,-169.19 318.08,-187.19"></polygon>
+<text text-anchor="middle" x="318.08" y="-164.99" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-spoken-in</text>
+</g>
+<!-- language&#45;&#45;is&#45;spoken&#45;in -->
+<g id="edge14" class="edge">
+<title>language--is-spoken-in</title>
+<path fill="none" stroke="black" d="M180.39,-166.62C197.8,-166.95 219.86,-167.36 241.2,-167.75"></path>
+<text text-anchor="middle" x="201.85" y="-171.39" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- name0 -->
+<g id="node4" class="node">
+<title>name0</title>
+<ellipse fill="none" stroke="black" cx="423.3" cy="-258.3" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="423.3" y="-254.1" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- name0&#45;&#45;country -->
+<g id="edge1" class="edge">
+<title>name0--country</title>
+<path fill="none" stroke="black" d="M437.88,-242.22C452.58,-226 475.25,-201.01 490.58,-184.1"></path>
+</g>
+<!-- population -->
+<g id="node7" class="node">
+<title>population</title>
+<ellipse fill="none" stroke="black" cx="515.16" cy="-315.94" rx="52.19" ry="18"></ellipse>
+<text text-anchor="middle" x="515.16" y="-311.74" font-family="Helvetica,Arial,sans-serif" font-size="14.00">population</text>
+</g>
+<!-- population&#45;&#45;country -->
+<g id="edge2" class="edge">
+<title>population--country</title>
+<path fill="none" stroke="black" d="M514.17,-297.86C512.6,-269.04 509.56,-213.01 507.99,-184.15"></path>
+</g>
+<!-- governmentForm -->
+<g id="node8" class="node">
+<title>governmentForm</title>
+<ellipse fill="none" stroke="black" cx="531.43" cy="-117.75" rx="78.18" ry="18"></ellipse>
+<text text-anchor="middle" x="531.43" y="-113.55" font-family="Helvetica,Arial,sans-serif" font-size="14.00">governmentForm</text>
+</g>
+<!-- governmentForm&#45;&#45;country -->
+<g id="edge3" class="edge">
+<title>governmentForm--country</title>
+<path fill="none" stroke="black" d="M522.33,-135.72C520.32,-139.68 518.2,-143.89 516.18,-147.86"></path>
+</g>
+<!-- headOfState -->
+<g id="node9" class="node">
+<title>headOfState</title>
+<ellipse fill="none" stroke="black" cx="529.23" cy="-211.88" rx="58.53" ry="18"></ellipse>
+<text text-anchor="middle" x="529.23" y="-207.68" font-family="Helvetica,Arial,sans-serif" font-size="14.00">headOfState</text>
+</g>
+<!-- headOfState&#45;&#45;country -->
+<g id="edge4" class="edge">
+<title>headOfState--country</title>
+<path fill="none" stroke="black" d="M520.57,-194.01C519.01,-190.79 517.38,-187.43 515.82,-184.2"></path>
+</g>
+<!-- is&#45;in&#45;&#45;country -->
+<g id="edge11" class="edge">
+<title>is-in--country</title>
+<path fill="none" stroke="black" d="M655.35,-179.89C621.34,-176.71 569.06,-171.81 536.51,-168.76"></path>
+<text text-anchor="middle" x="586.98" y="-178.53" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- is&#45;spoken&#45;in&#45;&#45;country -->
+<g id="edge15" class="edge">
+<title>is-spoken-in--country</title>
+<path fill="none" stroke="black" d="M395.47,-167.88C424.41,-167.39 455.56,-166.87 477.56,-166.5"></path>
+<text text-anchor="middle" x="427.57" y="-171.39" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- is&#45;capital&#45;&#45;country -->
+<g id="edge13" class="edge">
+<title>is-capital--country</title>
+<path fill="none" stroke="black" d="M651.08,-142.04C616.35,-147.82 567.43,-155.95 536.48,-161.1"></path>
+<text text-anchor="middle" x="584.84" y="-155.77" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:1</text>
+</g>
+<!-- nut1 -->
+<g id="node16" class="node">
+<title>nut1</title>
+<polygon fill="none" stroke="black" points="534,-40 480,-40 480,-4 534,-4 534,-40"></polygon>
+<polygon fill="none" stroke="black" points="538,-44 476,-44 476,0 538,0 538,-44"></polygon>
+<text text-anchor="middle" x="507" y="-17.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">nut1</text>
+</g>
+<!-- is&#45;in2 -->
+<g id="node17" class="node">
+<title>is-in2</title>
+<polygon fill="none" stroke="black" points="596.74,-68.7 556.77,-50.79 596.74,-32.88 636.72,-50.79 596.74,-68.7"></polygon>
+<polygon fill="none" stroke="black" points="596.74,-73.06 547.02,-50.79 596.74,-28.51 646.47,-50.79 596.74,-73.06"></polygon>
+<text text-anchor="middle" x="596.74" y="-46.59" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-in</text>
+</g>
+<!-- nut1&#45;&#45;is&#45;in2 -->
+<g id="edge16" class="edge">
+<title>nut1--is-in2</title>
+<path fill="none" stroke="black" d="M538.14,-31.99C547.65,-35.04 558.08,-38.39 567.47,-41.4"></path>
+<text text-anchor="middle" x="548.33" y="-24.09" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1:1</text>
+</g>
+<!-- is&#45;in2&#45;&#45;country -->
+<g id="edge17" class="edge">
+<title>is-in2--country</title>
+<path fill="none" stroke="black" d="M583.5,-67.79C566.83,-89.19 538.29,-125.82 521.19,-147.79"></path>
+<text text-anchor="middle" x="543.4" y="-95.19" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="identifiant-pour-les-entités-faibles" class="slide level2 center">
+<h2>Identifiant pour les entités faibles</h2>
+<p>Pour identifier une instance d’une entité faible, on utilise l’identifiant de l’instance associée de l’entité faible et on le complète à l’aide d’un <em>identifiant relatif</em>.</p>
+<p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Deux instances distinctes d’une identité faible peuvent porter le même identifiant relatif (si elles sont parties de deux instances différentes de l’entité forte).</p>
+<div class="fragment">
+<p>Nous ajoutons à notre modèle EA un identifiant relatif/faible <code>id</code> pour l’entité faible <code>nut1</code></p>
+<p>Pour identifier une instance de <code>nut1</code>, il faut disposer de son identifiant relatif <code>id</code> et de l’identifiant <code>iso3</code> de l’instance associée dans l’entité forte.</p>
+<p>On dit que l’association faible <code>is-in</code> est <em>identifiante</em></p>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="er5-weak-ident">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 990.00 389.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 385)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-385 986,-385 986,4 -4,4"></polygon>
+<!-- country -->
+<g id="node1" class="node">
+<title>country</title>
+<polygon fill="none" stroke="black" points="519.27,-278 460.73,-278 460.73,-242 519.27,-242 519.27,-278"></polygon>
+<text text-anchor="middle" x="490" y="-255.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">country</text>
+</g>
+<!-- iso -->
+<g id="node11" class="node">
+<title>iso</title>
+<ellipse fill="none" stroke="black" cx="576.79" cy="-234" rx="27.27" ry="18"></ellipse>
+<text text-anchor="start" x="565.12" y="-230.8" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso3</text>
+</g>
+<!-- country&#45;&#45;iso -->
+<g id="edge9" class="edge">
+<title>country--iso</title>
+<path fill="none" stroke="black" d="M519.54,-260.48C538.72,-260.19 546.97,-257.57 559.7,-248"></path>
+</g>
+<!-- city -->
+<g id="node2" class="node">
+<title>city</title>
+<polygon fill="none" stroke="black" points="877,-278 823,-278 823,-242 877,-242 877,-278"></polygon>
+<text text-anchor="middle" x="850" y="-255.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">city</text>
+</g>
+<!-- name1 -->
+<g id="node5" class="node">
+<title>name1</title>
+<ellipse fill="none" stroke="black" cx="949.72" cy="-260.58" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="949.72" y="-256.38" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- city&#45;&#45;name1 -->
+<g id="edge7" class="edge">
+<title>city--name1</title>
+<path fill="none" stroke="black" d="M877.28,-261.41C897.07,-262.41 908.57,-262.86 917.72,-262.8"></path>
+</g>
+<!-- id -->
+<g id="node12" class="node">
+<title>id</title>
+<ellipse fill="none" stroke="black" cx="900.22" cy="-181.73" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="894.78" y="-178.53" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">id</text>
+</g>
+<!-- city&#45;&#45;id -->
+<g id="edge10" class="edge">
+<title>city--id</title>
+<path fill="none" stroke="black" d="M870.62,-241.96C888.89,-225.38 893.45,-217.94 897.13,-199.62"></path>
+</g>
+<!-- is&#45;in -->
+<g id="node15" class="node">
+<title>is-in</title>
+<polygon fill="none" stroke="black" points="671.64,-257.12 631.86,-239.12 671.64,-221.12 711.41,-239.12 671.64,-257.12"></polygon>
+<text text-anchor="middle" x="671.64" y="-234.92" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-in</text>
+</g>
+<!-- city&#45;&#45;is&#45;in -->
+<g id="edge12" class="edge">
+<title>city--is-in</title>
+<path fill="none" stroke="black" d="M822.7,-258.51C794.5,-256.74 775.71,-254.26 702.04,-243.55"></path>
+<text text-anchor="middle" x="770.48" y="-258.59" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1:1</text>
+</g>
+<!-- is&#45;capital -->
+<g id="node17" class="node">
+<title>is-capital</title>
+<polygon fill="none" stroke="black" points="672.67,-306.07 606.85,-288.07 672.67,-270.07 738.5,-288.07 672.67,-306.07"></polygon>
+<text text-anchor="middle" x="672.67" y="-283.87" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-capital</text>
+</g>
+<!-- city&#45;&#45;is&#45;capital -->
+<g id="edge13" class="edge">
+<title>city--is-capital</title>
+<path fill="none" stroke="black" d="M822.58,-272.01C798.53,-281.66 781.45,-284.32 732.02,-286.24"></path>
+<text text-anchor="middle" x="777.87" y="-286.22" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:1</text>
+</g>
+<!-- language -->
+<g id="node3" class="node">
+<title>language</title>
+<polygon fill="none" stroke="black" points="163.03,-278 96.97,-278 96.97,-242 163.03,-242 163.03,-278"></polygon>
+<text text-anchor="middle" x="130" y="-255.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">language</text>
+</g>
+<!-- name2 -->
+<g id="node6" class="node">
+<title>name2</title>
+<ellipse fill="none" stroke="black" cx="32.42" cy="-222.42" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="32.42" y="-218.22" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- language&#45;&#45;name2 -->
+<g id="edge8" class="edge">
+<title>language--name2</title>
+<path fill="none" stroke="black" d="M96.75,-252.14C73.12,-246.34 62.69,-242.88 52.49,-236.75"></path>
+</g>
+<!-- isol -->
+<g id="node14" class="node">
+<title>isol</title>
+<ellipse fill="none" stroke="black" cx="68.95" cy="-338.3" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="60.78" y="-335.1" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">iso</text>
+</g>
+<!-- language&#45;&#45;isol -->
+<g id="edge11" class="edge">
+<title>language--isol</title>
+<path fill="none" stroke="black" d="M109.71,-278.26C87.47,-298.56 81.04,-306.2 75.19,-320.74"></path>
+</g>
+<!-- is&#45;spoken&#45;in -->
+<g id="node16" class="node">
+<title>is-spoken-in</title>
+<polygon fill="none" stroke="black" points="309.42,-280.24 226.16,-262.24 309.42,-244.24 392.67,-262.24 309.42,-280.24"></polygon>
+<text text-anchor="middle" x="309.42" y="-258.04" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-spoken-in</text>
+</g>
+<!-- language&#45;&#45;is&#45;spoken&#45;in -->
+<g id="edge15" class="edge">
+<title>language--is-spoken-in</title>
+<path fill="none" stroke="black" d="M163.28,-265.69C184.12,-268.54 201.84,-268.61 244.28,-266.25"></path>
+<text text-anchor="middle" x="186.73" y="-272.12" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- name0 -->
+<g id="node4" class="node">
+<title>name0</title>
+<ellipse fill="none" stroke="black" cx="483.22" cy="-363.47" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="483.22" y="-359.27" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- name0&#45;&#45;country -->
+<g id="edge3" class="edge">
+<title>name0--country</title>
+<path fill="none" stroke="black" d="M484.73,-345.45C485.93,-330.5 486.65,-318.63 488.97,-278.1"></path>
+</g>
+<!-- name3 -->
+<g id="node7" class="node">
+<title>name3</title>
+<ellipse fill="none" stroke="black" cx="432.13" cy="-26.41" rx="31.9" ry="18"></ellipse>
+<text text-anchor="middle" x="432.13" y="-22.21" font-family="Helvetica,Arial,sans-serif" font-size="14.00">name</text>
+</g>
+<!-- population -->
+<g id="node8" class="node">
+<title>population</title>
+<ellipse fill="none" stroke="black" cx="575.94" cy="-349.33" rx="52.19" ry="18"></ellipse>
+<text text-anchor="middle" x="575.94" y="-345.13" font-family="Helvetica,Arial,sans-serif" font-size="14.00">population</text>
+</g>
+<!-- population&#45;&#45;country -->
+<g id="edge4" class="edge">
+<title>population--country</title>
+<path fill="none" stroke="black" d="M551.63,-333.2C538.83,-323.25 528.97,-311.23 503.72,-278.06"></path>
+</g>
+<!-- governmentForm -->
+<g id="node9" class="node">
+<title>governmentForm</title>
+<ellipse fill="none" stroke="black" cx="359.11" cy="-339.13" rx="78.18" ry="18"></ellipse>
+<text text-anchor="middle" x="359.11" y="-334.93" font-family="Helvetica,Arial,sans-serif" font-size="14.00">governmentForm</text>
+</g>
+<!-- governmentForm&#45;&#45;country -->
+<g id="edge5" class="edge">
+<title>governmentForm--country</title>
+<path fill="none" stroke="black" d="M403.37,-324.28C418.64,-316.64 434.68,-304.5 467.36,-278.25"></path>
+</g>
+<!-- headOfState -->
+<g id="node10" class="node">
+<title>headOfState</title>
+<ellipse fill="none" stroke="black" cx="377.91" cy="-206.63" rx="58.53" ry="18"></ellipse>
+<text text-anchor="middle" x="377.91" y="-202.43" font-family="Helvetica,Arial,sans-serif" font-size="14.00">headOfState</text>
+</g>
+<!-- headOfState&#45;&#45;country -->
+<g id="edge6" class="edge">
+<title>headOfState--country</title>
+<path fill="none" stroke="black" d="M393.61,-224.32C412.17,-244.2 422.64,-248.88 460.67,-255.33"></path>
+</g>
+<!-- nut1_id -->
+<g id="node13" class="node">
+<title>nut1_id</title>
+<ellipse fill="none" stroke="black" cx="520.96" cy="-18.42" rx="27" ry="18"></ellipse>
+<text text-anchor="start" x="515.52" y="-15.22" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">id</text>
+</g>
+<!-- is&#45;in&#45;&#45;country -->
+<g id="edge18" class="edge">
+<title>is-in--country</title>
+<path fill="none" stroke="black" d="M652.64,-248.63C613.98,-267.44 599.95,-268.5 519.33,-262.31"></path>
+<text text-anchor="middle" x="592.78" y="-269.05" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- is&#45;spoken&#45;in&#45;&#45;country -->
+<g id="edge16" class="edge">
+<title>is-spoken-in--country</title>
+<path fill="none" stroke="black" d="M343.21,-273.04C373.04,-281.05 392.48,-278.84 460.72,-265.7"></path>
+<text text-anchor="middle" x="396.51" y="-281.5" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- is&#45;capital&#45;&#45;country -->
+<g id="edge14" class="edge">
+<title>is-capital--country</title>
+<path fill="none" stroke="black" d="M629.18,-294.18C602.69,-295.72 580.92,-289.84 519.46,-269.71"></path>
+<text text-anchor="middle" x="578.49" y="-294.27" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:1</text>
+</g>
+<!-- nut1 -->
+<g id="node18" class="node">
+<title>nut1</title>
+<polygon fill="none" stroke="black" points="517,-134 463,-134 463,-98 517,-98 517,-134"></polygon>
+<polygon fill="none" stroke="black" points="521,-138 459,-138 459,-94 521,-94 521,-138"></polygon>
+<text text-anchor="middle" x="490" y="-111.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">nut1</text>
+</g>
+<!-- nut1&#45;&#45;name3 -->
+<g id="edge2" class="edge">
+<title>nut1--name3</title>
+<path fill="none" stroke="black" d="M478.38,-93.75C462.64,-63.75 456.46,-53.1 447.41,-42.55"></path>
+</g>
+<!-- nut1&#45;&#45;nut1_id -->
+<g id="edge1" class="edge">
+<title>nut1--nut1_id</title>
+<path fill="none" stroke="black" d="M495.76,-93.76C504.6,-59.76 507.81,-48.64 513.19,-35.78"></path>
+</g>
+<!-- is&#45;in2 -->
+<g id="node19" class="node">
+<title>is-in2</title>
+<polygon fill="none" stroke="black" points="517.85,-192.34 477.87,-174.43 517.85,-156.51 557.83,-174.43 517.85,-192.34"></polygon>
+<polygon fill="none" stroke="black" points="517.85,-196.7 468.13,-174.43 517.85,-152.15 567.58,-174.43 517.85,-196.7"></polygon>
+<text text-anchor="middle" x="517.85" y="-170.23" font-family="Helvetica,Arial,sans-serif" font-size="14.00">is-in</text>
+</g>
+<!-- nut1&#45;&#45;is&#45;in2 -->
+<g id="edge17" class="edge">
+<title>nut1--is-in2</title>
+<path fill="none" stroke="black" d="M507.55,-138.02C509.28,-142.13 510.86,-147.25 512.77,-154.4"></path>
+<text text-anchor="middle" x="519.03" y="-132.47" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1:1</text>
+</g>
+<!-- is&#45;in2&#45;&#45;country -->
+<g id="edge19" class="edge">
+<title>is-in2--country</title>
+<path fill="none" stroke="black" d="M515.6,-195.79C512.74,-221.41 510.63,-231.25 503.87,-241.9"></path>
+<text text-anchor="middle" x="502.25" y="-228.66" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="slide level2 center">
+
+<p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> entia non sunt multiplicanda praeter necessitatem</p>
+</section></section>
+<section>
+<section id="associations-faibles" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Associations faibles</h1>
+
+</section>
+<section id="définition-7" class="slide level2 center">
+<h2>Définition</h2>
+</section>
+<section id="exemples" class="slide level2 center">
+<h2>Exemples</h2>
+</section></section>
+<section>
+<section id="transformations" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Transformations</h1>
+
+</section>
+<section id="association-darité-quelconque-en-associations-binaires" class="slide level2 center">
+<h2>Association d’arité quelconque en associations binaires</h2>
+<p>On définit une entité faible de même nom que l’association.</p>
+<p>Pour chaque entité participant à l’association, on définit une association faible entre l’entité participante et la nouvelle entité faible.</p>
+<p>Si une entité participe plusieurs fois à l’association, on définit autant d’associations faibles qu’on nomme à l’aide des rôles</p>
+<p>L’entité faible participe aux associations faibles avec une cardinalité <code>1:1</code></p>
+<p>Les entités participantes sont reliées aux associations faibles avec les cardinalités de leur participation à l’associatoin <span class="math inline">\(n\)</span>-aire.</p>
+</section>
+<section id="transformation-du-diagramme-des-vols" class="slide level2 center">
+<h2>Transformation du diagramme des vols</h2>
+<p>On définit donc</p>
+<ul>
+<li>une entité faible <code>flight</code></li>
+<li>quatre associations faibles <code>dest</code>, <code>orig</code>, <code>operates</code>, <code>uses</code></li>
+</ul>
+<div class="fragment">
+<p>Les quatre associations faibles sont <em>identifiantes</em></p>
+<p>Pour identifier une instance de l’entité faible <code>flight</code>, il faut disposer des identifiants des instances des entités fortes associées (une par entité forte, compte tenu des cardinalités)</p>
+</div>
+</section>
+<section class="slide level2 center">
+
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="nyc-quaternaire">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 494.00 332.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 328)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-328 490,-328 490,4 -4,4"></polygon>
+<!-- airport -->
+<g id="node1" class="node">
+<title>airport</title>
+<polygon fill="none" stroke="black" points="54,-180 0,-180 0,-144 54,-144 54,-180"></polygon>
+<text text-anchor="middle" x="27" y="-157.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">airport</text>
+</g>
+<!-- orig -->
+<g id="node5" class="node">
+<title>orig</title>
+<polygon fill="none" stroke="black" points="165.59,-211.7 128.09,-193.75 165.59,-175.8 203.1,-193.75 165.59,-211.7"></polygon>
+<polygon fill="none" stroke="black" points="165.59,-216.12 118.85,-193.75 165.59,-171.38 212.34,-193.75 165.59,-216.12"></polygon>
+<text text-anchor="middle" x="165.59" y="-189.55" font-family="Helvetica,Arial,sans-serif" font-size="14.00">orig</text>
+</g>
+<!-- airport&#45;&#45;orig -->
+<g id="edge1" class="edge">
+<title>airport--orig</title>
+<path fill="none" stroke="black" d="M54.05,-168.2C76.9,-173.43 109.65,-180.93 133.75,-186.45"></path>
+<text text-anchor="middle" x="63" y="-172.4" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- dest -->
+<g id="node6" class="node">
+<title>dest</title>
+<polygon fill="none" stroke="black" points="165.73,-149.73 128.22,-131.78 165.73,-113.83 203.23,-131.78 165.73,-149.73"></polygon>
+<polygon fill="none" stroke="black" points="165.73,-154.15 118.98,-131.78 165.73,-109.41 212.47,-131.78 165.73,-154.15"></polygon>
+<text text-anchor="middle" x="165.73" y="-127.58" font-family="Helvetica,Arial,sans-serif" font-size="14.00">dest</text>
+</g>
+<!-- airport&#45;&#45;dest -->
+<g id="edge2" class="edge">
+<title>airport--dest</title>
+<path fill="none" stroke="black" d="M54.08,-156.1C76.79,-151.16 109.27,-144.08 133.36,-138.83"></path>
+<text text-anchor="middle" x="63.02" y="-143.5" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- plane -->
+<g id="node2" class="node">
+<title>plane</title>
+<polygon fill="none" stroke="black" points="486,-36 432,-36 432,0 486,0 486,-36"></polygon>
+<text text-anchor="middle" x="459" y="-13.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">plane</text>
+</g>
+<!-- airline -->
+<g id="node3" class="node">
+<title>airline</title>
+<polygon fill="none" stroke="black" points="486,-324 432,-324 432,-288 486,-288 486,-324"></polygon>
+<text text-anchor="middle" x="459" y="-301.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">airline</text>
+</g>
+<!-- flight -->
+<g id="node4" class="node">
+<title>flight</title>
+<polygon fill="none" stroke="black" points="342,-180 288,-180 288,-144 342,-144 342,-180"></polygon>
+<polygon fill="none" stroke="black" points="346,-184 284,-184 284,-140 346,-140 346,-184"></polygon>
+<text text-anchor="middle" x="315" y="-157.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">flight</text>
+</g>
+<!-- operates -->
+<g id="node7" class="node">
+<title>operates</title>
+<polygon fill="none" stroke="black" points="393.77,-260.72 332.86,-242.58 393.77,-224.44 454.69,-242.58 393.77,-260.72"></polygon>
+<polygon fill="none" stroke="black" points="393.77,-264.92 318.74,-242.58 393.77,-220.24 468.8,-242.58 393.77,-264.92"></polygon>
+<text text-anchor="middle" x="393.77" y="-238.38" font-family="Helvetica,Arial,sans-serif" font-size="14.00">operates</text>
+</g>
+<!-- flight&#45;&#45;operates -->
+<g id="edge5" class="edge">
+<title>flight--operates</title>
+<path fill="none" stroke="black" d="M336.52,-184.02C349.19,-196.97 364.98,-213.12 376.76,-225.18"></path>
+<text text-anchor="middle" x="327.58" y="-188.22" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1:1</text>
+</g>
+<!-- uses -->
+<g id="node8" class="node">
+<title>uses</title>
+<polygon fill="none" stroke="black" points="389.97,-102.99 350.68,-85.07 389.97,-67.15 429.26,-85.07 389.97,-102.99"></polygon>
+<polygon fill="none" stroke="black" points="389.97,-107.38 341.07,-85.07 389.97,-62.77 438.87,-85.07 389.97,-107.38"></polygon>
+<text text-anchor="middle" x="389.97" y="-80.87" font-family="Helvetica,Arial,sans-serif" font-size="14.00">uses</text>
+</g>
+<!-- flight&#45;&#45;uses -->
+<g id="edge6" class="edge">
+<title>flight--uses</title>
+<path fill="none" stroke="black" d="M336.68,-139.75C348.79,-127.32 363.59,-112.14 374.52,-100.92"></path>
+<text text-anchor="middle" x="327.74" y="-127.15" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1:1</text>
+</g>
+<!-- orig&#45;&#45;flight -->
+<g id="edge3" class="edge">
+<title>orig--flight</title>
+<path fill="none" stroke="black" d="M198.01,-186.86C223.5,-181.44 258.78,-173.95 283.92,-168.6"></path>
+<text text-anchor="middle" x="274.98" y="-172.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1:1</text>
+</g>
+<!-- dest&#45;&#45;flight -->
+<g id="edge4" class="edge">
+<title>dest--flight</title>
+<path fill="none" stroke="black" d="M198.86,-138.49C224.19,-143.62 258.89,-150.64 283.75,-155.67"></path>
+<text text-anchor="middle" x="274.81" y="-143.07" font-family="Helvetica,Arial,sans-serif" font-size="14.00">1:1</text>
+</g>
+<!-- operates&#45;&#45;airline -->
+<g id="edge7" class="edge">
+<title>operates--airline</title>
+<path fill="none" stroke="black" d="M411.59,-259.91C420.5,-268.56 431.26,-279.03 440.29,-287.8"></path>
+<text text-anchor="middle" x="431.34" y="-275.2" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+<!-- uses&#45;&#45;plane -->
+<g id="edge8" class="edge">
+<title>uses--plane</title>
+<path fill="none" stroke="black" d="M405.63,-69.85C415.98,-59.8 429.58,-46.59 440.46,-36.02"></path>
+<text text-anchor="middle" x="431.51" y="-40.22" font-family="Helvetica,Arial,sans-serif" font-size="14.00">0:n</text>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="associations-est-un" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Associations <em>est-un</em></h1>
+
+</section>
+<section id="définition-8" class="slide level2 center">
+<h2>Définition</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Définition</strong></p>
+</div>
+<div class="callout-content">
+<p>Une association <em>est-un</em> entre une entité <code>A</code> et une entité <code>B</code> indique que toute instance (élément) de <code>A</code> est aussi instance (élément) de <code>B</code> (autrement dit en langage ensembliste que <code>A ⊆ B</code>)</p>
+<p>On note graphiquement les associations <em>est-un</em> avec un symbole spécial : un triangle (<code>A ◃ B</code>)</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Remarques</strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li>Une association <em>est-un</em> est binaire</li>
+<li>Une entité peut participer à plusieurs associations <em>est-un</em></li>
+<li>Si <code>A ◃ B</code> on dit (souvent) que <code>A</code> est une spécialisation de <code>B</code></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="propriété" class="slide level2 center">
+<h2>Propriété</h2>
+<p>Pour les associations <em>est-un</em>, il n’est pas nécessaire de préciser les cardinalités.</p>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Cardinalités des associations <em>est-un</em></strong></p>
+</div>
+<div class="callout-content">
+<ul>
+<li><code>1:1</code> du côté de l’entité spécialisée</li>
+<li><code>0:1</code> du côté de l’entité générale</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
+<p>L’association est <em>identifiante</em> : une instance de l’entité spécialisée hérite de l’identifiant de l’entité générale</p>
+</div>
+</div>
+</div>
+</section>
+<section id="exemple-1" class="slide level2 center">
+<h2>Exemple</h2>
+<p>Un médecin peut exercer en mode libéral, au sein d’un cabinet, ou dans une clinique (ou les deux) ou exercer en milieu hospitalier.</p>
+<p>Il est aussi possible qu’un médecin partage son temps entre une activité hospitalière et une activité libérale.</p>
+<p>On peut définir une entité générale <code>médecin</code> et deux entités spécialisées <code>hospitalier</code> et <code>libéral</code>. Les entités spécialisées sont reliées à l’entité générale par une association <code>est-un</code>.</p>
+<p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Une association <code>est-un</code> nous indique qu’une entité (un emsemble) est incluse dans une autre entité (un au ensemble)</p>
+<p>Tout attribut (fonction) défini sur l’entité générale est défini sur les entités spécialisées</p>
+<p>Certains attributs peuvent être définis sur une entité spécialisée sans être définis sur toute l’entité générale</p>
+<p>Par exemple, on peut définir un attribut <code>hôpital</code> pour l’entité <code>hospitalier</code>, et un attribut <code>cabinet</code> pour l’entité <code>libéral</code>.</p>
+</section>
+<section id="diagramme" class="slide level2 center">
+<h2>Diagramme</h2>
+<div class="cell" data-eval="true" data-layout-align="default">
+<div class="cell-output-display">
+<div id="taxo">
+<div>
+<svg width="960" height="480" viewbox="0.00 0.00 381.00 260.00" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" style="; max-width: none; max-height: none; display: block; margin: auto auto auto auto">
+<g id="graph0" class="graph" transform="scale(1 1) rotate(0) translate(4 256)">
+<title>ER</title>
+<polygon fill="white" stroke="transparent" points="-4,4 -4,-256 377,-256 377,4 -4,4"></polygon>
+<!-- médecin -->
+<g id="node1" class="node">
+<title>médecin</title>
+<polygon fill="none" stroke="black" points="214.21,-36 149.79,-36 149.79,0 214.21,0 214.21,-36"></polygon>
+<text text-anchor="middle" x="182" y="-13.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">médecin</text>
+</g>
+<!-- matricule -->
+<g id="node8" class="node">
+<title>matricule</title>
+<ellipse fill="none" stroke="black" cx="326" cy="-18" rx="47.5" ry="18"></ellipse>
+<text text-anchor="start" x="299.57" y="-14.8" font-family="Helvetica,Arial,sans-serif" text-decoration="underline" font-size="14.00">matricule</text>
+</g>
+<!-- médecin&#45;&#45;matricule -->
+<g id="edge7" class="edge">
+<title>médecin--matricule</title>
+<path fill="none" stroke="black" d="M214.32,-18C233.22,-18 257.44,-18 278.48,-18"></path>
+</g>
+<!-- hospitalier -->
+<g id="node2" class="node">
+<title>hospitalier</title>
+<polygon fill="none" stroke="black" points="75.6,-180 0.4,-180 0.4,-144 75.6,-144 75.6,-180"></polygon>
+<text text-anchor="middle" x="38" y="-157.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">hospitalier</text>
+</g>
+<!-- is&#45;a&#45;1 -->
+<g id="node4" class="node">
+<title>is-a-1</title>
+<polygon fill="none" stroke="black" points="107.86,-116.74 38.82,-79.84 176.91,-79.84 107.86,-116.74"></polygon>
+<text text-anchor="middle" x="107.86" y="-87.94" font-family="Helvetica,Arial,sans-serif" font-size="14.00">est-un</text>
+</g>
+<!-- hospitalier&#45;&#45;is&#45;a&#45;1 -->
+<g id="edge1" class="edge">
+<title>hospitalier--is-a-1</title>
+<path fill="none" stroke="black" d="M56.36,-143.64C67.35,-132.65 81.2,-118.8 91.77,-108.23"></path>
+</g>
+<!-- libéral -->
+<g id="node3" class="node">
+<title>libéral</title>
+<polygon fill="none" stroke="black" points="353,-180 299,-180 299,-144 353,-144 353,-180"></polygon>
+<text text-anchor="middle" x="326" y="-157.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">libéral</text>
+</g>
+<!-- is&#45;a&#45;2 -->
+<g id="node5" class="node">
+<title>is-a-2</title>
+<polygon fill="none" stroke="black" points="255.27,-115.87 186.22,-78.97 324.31,-78.97 255.27,-115.87"></polygon>
+<text text-anchor="middle" x="255.27" y="-87.07" font-family="Helvetica,Arial,sans-serif" font-size="14.00">est-un</text>
+</g>
+<!-- libéral&#45;&#45;is&#45;a&#45;2 -->
+<g id="edge3" class="edge">
+<title>libéral--is-a-2</title>
+<path fill="none" stroke="black" d="M307.78,-143.78C296.65,-132.65 282.52,-118.52 271.73,-107.73"></path>
+</g>
+<!-- is&#45;a&#45;1&#45;&#45;médecin -->
+<g id="edge2" class="edge">
+<title>is-a-1--médecin</title>
+<path fill="none" stroke="black" d="M120.44,-79.56C132.34,-67.66 150.33,-49.67 163.79,-36.21"></path>
+</g>
+<!-- is&#45;a&#45;2&#45;&#45;médecin -->
+<g id="edge4" class="edge">
+<title>is-a-2--médecin</title>
+<path fill="none" stroke="black" d="M242.84,-78.84C231.16,-67.16 213.55,-49.55 200.27,-36.27"></path>
+</g>
+<!-- hôpital -->
+<g id="node6" class="node">
+<title>hôpital</title>
+<ellipse fill="none" stroke="black" cx="38" cy="-234" rx="37.71" ry="18"></ellipse>
+<text text-anchor="middle" x="38" y="-229.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">hôpital</text>
+</g>
+<!-- hôpital&#45;&#45;hospitalier -->
+<g id="edge6" class="edge">
+<title>hôpital--hospitalier</title>
+<path fill="none" stroke="black" d="M38,-215.83C38,-205 38,-191.29 38,-180.41"></path>
+</g>
+<!-- cabinet -->
+<g id="node7" class="node">
+<title>cabinet</title>
+<ellipse fill="none" stroke="black" cx="326" cy="-234" rx="38.84" ry="18"></ellipse>
+<text text-anchor="middle" x="326" y="-229.8" font-family="Helvetica,Arial,sans-serif" font-size="14.00">cabinet</text>
+</g>
+<!-- cabinet&#45;&#45;libéral -->
+<g id="edge5" class="edge">
+<title>cabinet--libéral</title>
+<path fill="none" stroke="black" d="M326,-215.83C326,-205 326,-191.29 326,-180.41"></path>
+</g>
+</g>
+</svg>
+</div>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="contraintes" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Contraintes</h1>
+
+</section>
+<section id="compléter-le-schéma" class="slide level2 center">
+<h2>Compléter le schéma</h2>
+</section>
+<section id="types-de-contraintes" class="slide level2 center">
+<h2>Types de contraintes</h2>
+</section>
+<section id="rapport-des-contraintes" class="slide level2 center">
+<h2>Rapport des contraintes</h2>
+</section></section>
+<section>
+<section id="références" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Références</h1>
+
+</section>
+<section id="sites-et-livres" class="slide level2 center">
+<h2>Sites et Livres</h2>
+<ul>
+<li>Garcia-Molina, H., Ullman, J. D., &amp; Widom, J. (2002). Database systems-the complete book (International Ed.). Prenctice Hall, Upper Saddle River.</li>
+<li>Chen, P. P. S. (1976). The entity-relationship model—toward a unified view of data. ACM transactions on database systems (TODS), 1(1), 9-36.</li>
+<li>Silberschatz, A., Korth, H. F., &amp; Sudarshan, S. (2011). Database system concepts.</li>
+</ul>
+</section></section>
+<section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
