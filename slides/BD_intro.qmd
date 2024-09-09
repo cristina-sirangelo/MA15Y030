@@ -15,49 +15,113 @@ format:
 
 # Données ? {background-color="#1c191c"}
 
+## Situation du cours Bases de Données (MA15Y030) dans la [Licence MIASHS](https://licence.math.u-paris.fr/formations/miashs/)
+
+- Troisième cours tourné vers l'informatique 
+  - *Initiation* (L1, S1)
+  - *Algorithmes et Programmation* (L2, S3)
+  
+- Un cours tourné vers les données avant *Science des Données* (L3, S6)
+  
+
+## Le déluge des données : une mode ?
+
+```{=html}
+<iframe width="780" height="500" src="https://www.economist.com/leaders/2010/02/25/the-data-deluge" title="The Data Deluge"></iframe>
+```
+
+## Rien de neuf sous le soleil ...
+
+::: {.aside}
+
+> Je croyais que le goût de la statistique était particulier aux administrateurs de nos jours ; mais je me trompais. Vers la fin de l’ancien régime, on envoie souvent à l’intendant de petits tableaux tout imprimés qu’il n’a plus qu’à faire remplir par ses subdélégués et par les syndics des paroisses. Le contrôleur-général se fait faire des rapports sur la nature des terres, sur leur culture, l’espèce et la quantité des produits, le nombre des bestiaux, l’industrie et les mœurs des habitants. Les renseignements ainsi obtenus ne sont guère moins circonstanciés ni plus certains que ceux que fournissent en pareils cas de nos jours les sous-préfets et les maires. Le jugement que les subdélégués portent, à cette occasion, sur le caractère de leurs administrés, est en général peu favorable. Ils reviennent souvent sur cette opinion que « le paysan est naturellement paresseux, et ne travaillerait pas s’il n’y était obligé pour vivre. »
+
+> C’est là une doctrine économique qui paraît fort répandue chez ces administrateurs.
+
+:::
+
+{{< fa brain >}} De qui sont ces lignes ? Quand furent-elles écrites ? 
+
+## Les données intéressent
+
+- les sciences
+
+- les administrations
+
+- les entreprises
+
+- les citoyennes (et les citoyens)
+
+- ...
 
 
 ## Les données en Sciences Sociales 
 
-Pourquoi ?
+::: {.columns}
+
+::: {.column}
+
+- Pourquoi ?
+
+- De quoi sont faites les données ?
+
+- Comment les *accumuler* ?
+
+- Comment les *interroger* ?
+
+- Comment les *conserver* ? les *éditer* ?
+
+:::
+
+::: {.column}
+
+![BN Salle ovale](/images/SalleOvale-BnF.png)
+
+:::
+
+::: 
 
 
-De quoi sont faites les données ?
 
 
 
-Comment les accumuler ?
+## Sources et usages des données 
+
+::: {.columns}
 
 
+::: {.column}
 
-Comment les interroger ?
+### Quelques références
 
-
-
-Comment les conserver ? les éditer ?
-
-
-
-## Sources
-
-[*Data humanities with R.* Arnold and Tilton](https://humanitiesdata.org) 
-
-![](/images/arnoldtiltoncover.jpg)
+![[*Data humanities with R.* Arnold and Tilton](https://humanitiesdata.org)](/images/arnoldtiltoncover.jpg){height="300px"}
 
 [*Quantitative tour at social sciences* edited by Gelman and Cortina, 2009](
 https://doi.org/10.1017/CBO9780511818851)
-
-Humanités numériques 
  
 {{< fa brands slideshare >}} [Relational databses on slideshare](https://www.slideshare.net/search?searchfrom=header&q=relational+databases)
 
-- Constitution
 
-- Acquisition
+:::
+
+::: {.column}
+
+### Quelques problèmes 
+
+- Constitution (archivage, etc)
+
+- Acquisition/organisation 
 
 - Usage(s)
 
 - Maintenance 
+
+:::
+
+::: 
+
+
+
 
 
 ## Les données de l'entreprise/des administrations
@@ -77,7 +141,7 @@ Humanités numériques
 
 ::: {.column}
 
-TODO
+![](/images/pexels-shkrabaanthony-5816299.jpg){height="400px"}
 
 :::
 ::::::
@@ -85,23 +149,30 @@ TODO
 
 
 
+## La vie des données (en résumé)
 
+::: {.columns}
+::: {.column}
 
-## La vie des données 
+- {{< fa keyboard >}} Saisie/Alimentation
 
-- Saisie
+- {{< fa server >}} Traitement(s)
 
-- Traitement(s)
+- {{< fa circle-question >}} Usage(s)
 
-- Usage(s)
+- {{< fa database >}} Archivage 
 
-- Archivage 
+- {{< fa screwdriver-wrench >}} Maintenance
 
-- Maintenance
+:::
 
+::: {.column}
 
+![pipelines](/images/pexels-manelandsean-12573579.jpg){heigth="80%"}
 
-## Les enjeux 
+:::
+
+::: 
 
 
 
@@ -109,7 +180,8 @@ TODO
 ## Avant-hier
 
 :::::: {.columns}
-::: {.column}
+
+::: {.column width="30%"}
 
 
   
@@ -122,11 +194,12 @@ la maintenance)
 
 
 :::
-::: {.column}
 
 
+::: {.column width="70%"}
 
-![](/images//pexels-mike-1181772.jpg)
+![From https://www.ibm.com/history/punched-card](/images/image-ibm-punchcard.jpeg)
+
 
 
 
@@ -141,81 +214,143 @@ la maintenance)
 
 ## Aujourd'hui
 
+::: {.columns}
+::: {.column width="30%"}
 
-Explosion des volumes 
+- Explosion des volumes 
 
-Besoins **mixtes**
+- Explosion des débits
+
+- Usages (très) divers
+
+:::
+
+::: {.column width="70%"}
+
+![](/images/pexels-artunchained-9101888.jpg)
+
+
+:::
+::: 
+
+
 
   
 
 # Systèmes d'information  {background-color="#1c191c"}
 
 
+## Systèmes d'information 
+
+> Un *système d'information (SI)* est un ensemble de composants qui fonctionnent ensemble pour collecter, traiter, stocker et diffuser des informations. 
+ 
+. . .
+
+> Les systèmes d'information ont des objectifs (très) divers. 
+
+> Par exemple : les *systèmes de traitement des transactions (TPS)*, les *systèmes d'information de gestion (MIS)*, les *systèmes d'aide à la décision (DSS)* et les *systèmes de planification des ressources de l'entreprise (ERP)*.
+
+
+## Décomposition des SI 
+
+Un système d'information comprend en général les éléments suivants:
+
+::: {.incremental}
+
+1. *Matériel informatique (ou pas)* : dispositifs physiques utilisés pour collecter, stocker et traiter l'information (ordinateurs, serveurs, stockage, réseau, ...).
+   
+2. *Logiciels* : Les programmes exécutés sur le matériel pour gérer les données et effectuer des tâches spécifiques (OS, SGBD, Logiciels applicatifs).
+   
+3. *Données*  
+    
+4. *Personnes* : Les usagers du système d'information
+   
+5. *Processus* : Les flux de travail et les règles régissant la manière dont les données sont collectées, traitées et distribuées, conformément aux objectifs.
+
+:::
+
 
 
 
 ## Systèmes d'information (SI) et Bases de Données (BD, SGBD, SGBDR)
 
-
-Au coeur des systèmes d'information (modernes) on trouve les **bases de données**
-
+Au coeur des systèmes d'information (modernes) on trouve (presque toujours) les **bases de données**
 
 
+::: {.callout-caution}
 
+Toutes les bases de données ne sont pas relationnelles
 
+:::
 
 
 ## Des propriétés désirables (ACID)
 
-Quelle que soit la forme, on souhaite avoir :
+::: {.callout-note}
+
+### Atomicité
+
+Chaque ajout/modification d'information doit former un tout cohérent
+
+Si tout se passe correctement, les actions de la *transaction* sont toutes validées, sinon
+on retourne à l'état initial
+
+:::
+
+. . .
+
+::: {.callout-note}
+
+### Cohérence 
+
+Le contenu de la base de données doit rester
+  conforme à des *contraintes* définies lors de la
+  *conception* 
+:::
+
+. . .
+
+::: {.callout-note}
+
+### Isolation
+
+La bases de données doit pouvoir être utilisée concurremment par plusieurs usagers
 
 
-- **A**tomicité : chaque ajout/modification d'information doit
-  former un tout cohérent.
-Si tout se passe correctement, les actions de la transaction sont toutes validées, sinon
-on retourne à l'état initial.
-L'unité de travail est indivisible. Une transaction ne peut être partiellement effectuée.
+:::
 
--   **C**ohérence : le contenu de la base de données doit rester
-  conforme à des *contraintes* qui ont été définies lors de la
-  *conception* de la base
+. . .
 
--   **I**solation : la bases de données doit pouvoir être utilisée
-  concurremment par plusieurs usagers
+::: {.callout-note}
 
--   **D**urabilité : la vie d'une base de données s'étale sur
-  plusieurs dizaines d'années
+### Durabilité 
 
+La vie d'une base de données s'étale sur  plusieurs dizaines d'années
 
+:::
 
-  
 
 # Bases de données et (autres) logiciels {background-color="#1c191c"}
 
 
+## {{< fa database >}} Bases de **données**  
 
 
-## Bases de **données**  
+- Qu'est-ce que c'est (plus précisément) ?
 
-<!-- {{< fa database >}} -->
-
-<!-- {{< fa question >}}  -->
-
-Qu'est-ce que c'est ?
+. . .
 
 Ce sont des logiciels intermédiaires (*middleware*) entre :
 
-- Systèmes de gestion de fichiers/Systèmes d'exploitation
+- Systèmes de gestion de fichiers/Systèmes d'exploitation  {{< fa brands windows >}} {{< fa brands linux >}} ... 
 
-- Applications (CRM, ERP, CMS, ...)
-
-
+- Applications (CRM, ERP, CMS, ...) {{< fa brands salesforce >}} {{< fa brands wordpress >}} {{< fa brands facebook-f >}}  ...
+  
+. . . 
 
 Les bases de données ne sont pas (simplement) un *langage* (comme `JAVA`, 
-<!-- {{< fa r-project >}}, {{< fa python >}})  -->
-ou un
-environnement de calcul 
-<!-- (comme {{< fa r-project >}}, {{< fa python >}}) -->
+{{< fa brands r-project >}}, {{< fa brands python >}}) 
+
 
 
 
@@ -224,24 +359,33 @@ environnement de calcul
 # Bases de données (relationnelles)  {background-color="#1c191c"}
 
 
+---
 
-Toutes les bases de données ne sont pas relationnelles
+::: {.callout-caution}
 
-Les **Bases de données relationnelles** forment un sous-ensemble important (et même prépondérant) des systèmes de
-gestion des bases de données en entreprise
+Toutes les bases de données informatiques ne sont pas relationnelles
+
+:::
+
+. . .
 
 
 
+Les **Bases de données relationnelles** forment un sous-ensemble important (et même prépondérant) des systèmes de gestion des bases de données en entreprise
+
+. . .
+
+Les bases de données relationnelles ont été conçues pour traiter les données tabulaires (oragnisées en tables)
 
 
-
-## Collection de tables/`data frame`s
+## {{< fa table-cells >}} Collection de tables/`data frame`s
 
 Caricaturalement :
 
 
 > Une base de données relationnelle est une collection de *tables*
 
+. . .
 
 Les tables s'incarnent de plusieurs façons en informatique
 
@@ -250,10 +394,11 @@ Les tables s'incarnent de plusieurs façons en informatique
 
 
 
+## {{< fa brands r-project >}} Data frame 
 
-## Data frame 
+<!-- () -->
 
-<!-- ({{< fa r-project >}}) -->
+::: {.incremental}
 
 - Un `dataframe` est une *liste* de *vecteurs* (colonnes)
 
@@ -263,15 +408,15 @@ Les tables s'incarnent de plusieurs façons en informatique
 
 - Chaque vecteur a un nom et son propre type
 
-
+:::
 
 ## Autres environments (`Excel`, `JAVA`, `Python`)
 
 <!-- {{< fa python >}} -->
 
-- Les `spreadsheet` des tableurs
+- Les `spreadsheet` des tableurs  {{< fa file-excel >}}
 
-- Les `Dataframes`  de `Pandas` 
+- Les `Dataframes`  de `Pandas`   {{< fa brands python >}}
 <!-- ({{< fa python >}}) -->
 
 - Les tableaux d'objets en `JAVA`
@@ -320,7 +465,7 @@ voire par une grande quantité d' utilisateurs.
 
 ## Usages
 
-- Sites web dynamiques
+- Sites web dynamiques   {{< fa brands wordpress >}}  {{< fa brands facebook-f >}}
 
 
 -  Logiciels personnels
@@ -329,7 +474,7 @@ Derrière certaines applications (gestion de photos, de carnet
 d'adresses, ...), on trouve des bases de données légères
 (`SQLITE`)
 
-- Partout
+- Partout 
 
     - smartphones, tablettes, ...
 
@@ -351,7 +496,6 @@ d'adresses, ...), on trouve des bases de données légères
 
 
 
-
 ## L'idée clé (Codd, 1970)
 
 Organiser les informations en **tables** ou **relations**
@@ -359,7 +503,7 @@ Organiser les informations en **tables** ou **relations**
 
 
 Développer et formaliser un langage de manipulation de
-tables : l'algèbre relationnelle} (langage SQL, Structured Query Language)
+tables : l'*algèbre relationnelle* (langage `SQL`, Structured Query Language)
 
 -  L'usager peut définir l'organisation des données
 
@@ -392,17 +536,17 @@ tables : l'algèbre relationnelle} (langage SQL, Structured Query Language)
 
 **Serveurs**
 
-- [ORACLE (commercial)]()
+- [ORACLE (commercial)](https://www.oracle.com)
 
-- [DB2 (IBM commercial)]()
+- [DB2 (IBM commercial)](https://www.ibm.com/db2)
 
-- [SQLSERVER (Microsoft commercial)]()
+- [SQLSERVER (Microsoft commercial)](https://www.microsoft.com/fr-fr/sql-server/sql-server-2022)
 
-- [MySQL (open source)]()
+- [MySQL (open source)](https://www.mysql.com)
 
 - [**PostGres** (open source)](https://www.postgresql.org)
 
-- [Hana (commercial)]()
+- [Hana (commercial)](https://www.sap.com/france/products/technology-platform/hana/what-is-sap-hana.html)
 
 
 :::
@@ -411,13 +555,13 @@ tables : l'algèbre relationnelle} (langage SQL, Structured Query Language)
 
 **Clients**
 
-- [`psql`]()
+- [`psql`](https://www.postgresql.org/docs/current/app-psql.html)
 
-- [`pgcli`]()
+- [`pgcli`](https://www.pgcli.com)
 
-- [`dbeaver`]()
+- [`dbeaver`](https://dbeaver.io)
 
-- [`PgAdmin4`]()
+- [`PgAdmin`](https://www.pgadmin.org/)
 
 - ...
 
@@ -467,9 +611,11 @@ part de la population d'un état/territoire (désigné par `countrycode`) qui pa
 
 ![Image World](/images//world.png)
 
+::: {.aside}
+
 Un schéma de table : la donnée des noms des colonnes et des types des colonnes
 
-
+:::
 
 
 
@@ -484,6 +630,7 @@ Un schéma de table : la donnée des noms des colonnes et des types des colonnes
     -  Faire en sorte que chaque ville soit identifiée par un numéro unique
     -  Ne pas proposer de données sur des villes/territoires/états qui n'existent pas
 
+. . .
 
 -  Propager l'information
 
@@ -529,8 +676,6 @@ Un schéma de table : la donnée des noms des colonnes et des types des colonnes
 
 
 
-  
-
 # Autour des bases de données  {background-color="#1c191c"}
 
 
@@ -564,11 +709,21 @@ Le concept de Data Lake a été évoqué pour la première fois, en 2010, par Ja
 ## Au delà du relationnel: No SQL
 
 
-> Ce sont les grandes entreprises du web amenées à traiter des volumes de données très importants qui ont été les premières confrontées aux limitations intrinsèques des SGBD relationnels traditionnels. Ces systèmes fondés sur une application stricte des propriétés ACID et généralement conçus pour fonctionner sur des ordinateurs uniques ont rapidement posé des problèmes d'extensibilité.
+> Ce sont les grandes entreprises du web qui ont été les premières confrontées aux limitations intrinsèques des SGBD relationnels traditionnels. Ces systèmes fondés sur une application stricte des propriétés ACID et généralement conçus pour fonctionner sur des ordinateurs uniques ont rapidement posé des problèmes d'extensibilité.
 
-> Afin de répondre à ces limites, ces entreprises ont commencé à développer leurs propres systèmes de gestion de bases de données pouvant fonctionner sur des architectures matérielles distribuées et permettant de traiter des volumes de données importants. Les systèmes propriétaires qui en ont résulté, Google (BigTable), Amazon (Dynamo (en)), LinkedIn (Voldemort), Facebook (Cassandra puis HBase), SourceForge.net (MongoDB), Ubuntu One (CouchDB), Baidu (Hypertable) ont été les précurseurs du modèle NoSQL.
+. . .
 
-> Les performances restent bonnes avec la montée en charge en multipliant simplement le nombre de serveurs, solution raisonnable avec la baisse des coûts, en particulier si les revenus croissent en même temps que l'activité5. Les systèmes géants sont les premiers concernés : énormes quantités de données6, structuration relationnelle faible (ou de moindre importance que la capacité d'accès très rapide, quitte à multiplier les serveurs).
+> Afin de répondre à ces limites, ces entreprises ont commencé à développer leurs propres systèmes de gestion de bases de données pouvant fonctionner sur des architectures matérielles distribuées et permettant de traiter des volumes de données importants. 
+
+. . .
+
+> Les systèmes propriétaires qui en ont résulté, Google (BigTable), Amazon (Dynamo (en)), LinkedIn (Voldemort), Facebook (Cassandra puis HBase), SourceForge.net (MongoDB), Ubuntu One (CouchDB), Baidu (Hypertable) ont été les précurseurs du modèle NoSQL.
+
+---
+
+> Les performances restent bonnes avec la montée en charge en multipliant simplement le nombre de serveurs, solution raisonnable avec la baisse des coûts, en particulier si les revenus croissent en même temps que l'activité. Les systèmes géants sont les premiers concernés : énormes quantités de données, structuration relationnelle faible (ou de moindre importance que la capacité d'accès très rapide, quitte à multiplier les serveurs).
+
+. . .
 
 > Un modèle typique en NoSQL est le système clé-valeur, avec une base de données pouvant se résumer topologiquement à un simple tableau associatif unidimensionnel avec des millions — voire des milliards — d'entrées. Parmi les applications typiques, on retrouve des analyses temps-réel, statistiques, du stockage de logs (journaux), etc.
 
@@ -576,10 +731,11 @@ Le concept de Data Lake a été évoqué pour la première fois, en 2010, par Ja
 
 
 <!-- {{< fa hand-point-right >}}  -->
+::: {.aside}
 
 [NoSQL](https://fr.wikipedia.org/wiki/NoSQL)
-
-
+ 
+:::
 
 
 ## Lire plus 
