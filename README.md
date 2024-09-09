@@ -7,7 +7,7 @@ Pour construire le site, dans cet ordre
 ```{.bash}
 $ quarto render [--to html]
 $ quarto render slides --profile slides --no-clean
-$ quarto render solutions  [--to html] --profile solution --no-clean
+$ quarto render labs-solutions  [--to html] --profile solution --no-clean
 $ quarto render exams [--to html] --profile solution --no-clean
 ```
 
