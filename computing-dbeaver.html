@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.47">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -314,8 +314,14 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#installer" id="toc-installer" class="nav-link active" data-scroll-target="#installer">Installer</a></li>
   <li><a href="#survol" id="toc-survol" class="nav-link" data-scroll-target="#survol">Survol</a></li>
   <li><a href="#utiliser-une-connexion" id="toc-utiliser-une-connexion" class="nav-link" data-scroll-target="#utiliser-une-connexion">Utiliser une connexion</a></li>
-  <li><a href="#définir-et-utiliser-un-projet" id="toc-définir-et-utiliser-un-projet" class="nav-link" data-scroll-target="#définir-et-utiliser-un-projet">Définir et utiliser un projet</a></li>
-  <li><a href="#éditeur-sql" id="toc-éditeur-sql" class="nav-link" data-scroll-target="#éditeur-sql">Éditeur SQL</a></li>
+  <li><a href="#définir-et-utiliser-un-projet" id="toc-définir-et-utiliser-un-projet" class="nav-link" data-scroll-target="#définir-et-utiliser-un-projet">Définir et utiliser un <em>projet</em></a>
+  <ul class="collapse">
+  <li><a href="#connections" id="toc-connections" class="nav-link" data-scroll-target="#connections">Connections</a></li>
+  <li><a href="#bookmarkssignets" id="toc-bookmarkssignets" class="nav-link" data-scroll-target="#bookmarkssignets">Bookmarks/Signets</a></li>
+  <li><a href="#diagrammes-er" id="toc-diagrammes-er" class="nav-link" data-scroll-target="#diagrammes-er">Diagrammes ER</a></li>
+  <li><a href="#scripts" id="toc-scripts" class="nav-link" data-scroll-target="#scripts">Scripts</a></li>
+  </ul></li>
+  <li><a href="#renseignements-utiles" id="toc-renseignements-utiles" class="nav-link" data-scroll-target="#renseignements-utiles">Renseignements utiles</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/computing-dbeaver.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -343,6 +349,8 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="installer" class="level1">
 <h1>Installer</h1>
+<p>À partir de <a href="https://dbeaver.io/download/">Dbeaver community edition</a></p>
+<iframe width="780" height="500" src="https://dbeaver.io/download/" title="Dbeaver CE"></iframe>
 </section>
 <section id="survol" class="level1">
 <h1>Survol</h1>
@@ -400,22 +408,64 @@ Configurer une connexion
 </section>
 <section id="utiliser-une-connexion" class="level1">
 <h1>Utiliser une connexion</h1>
+<p>Double cliquer et saisir les mots de passe demandés.</p>
 </section>
 <section id="définir-et-utiliser-un-projet" class="level1">
-<h1>Définir et utiliser un projet</h1>
+<h1>Définir et utiliser un <em>projet</em></h1>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Warning
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Durant le semestre, un <code>projet</code> unique devrait suffire à vos besoins.</p>
+<p>Utiliser un <code>projet</code> doit vous aider à organiser votre travail, en particulier à retrouver facilement les travaux des semaines précédentes.</p>
+</div>
+</div>
+<section id="connections" class="level2">
+<h2 class="anchored" data-anchor-id="connections">Connections</h2>
+<p>Vous devrez créer une connection avec le serveur au sein de votre projet. Vous pouvez en créer d’autres avec d’autres serveurs, possiblement un serveur PostGres hébergé sur votre propre machine.</p>
+</section>
+<section id="bookmarkssignets" class="level2">
+<h2 class="anchored" data-anchor-id="bookmarkssignets">Bookmarks/Signets</h2>
+<p><a href="https://github.com/dbeaver/dbeaver/wiki/Bookmarks">Documentation sur les signets</a></p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tip
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Vous pouvez créer des signets pour retrouver facilement les schémas sur lesquels vous travaillez, ou avez travaillé.</p>
+</div>
+</div>
+<!-- ## Dashboards/Tableaux de bord -->
+</section>
+<section id="diagrammes-er" class="level2">
+<h2 class="anchored" data-anchor-id="diagrammes-er">Diagrammes ER</h2>
+<p><code>dbeaver</code> permet de faire un peu de rétro-ingénieurie et de visualiser (partiellement) un schéma. Outil utile quand on veut retoucher un schéma ou simplement le comprendre.</p>
+</section>
+<section id="scripts" class="level2">
+<h2 class="anchored" data-anchor-id="scripts">Scripts</h2>
 <ul>
-<li>Connections</li>
-<li>Bookmarks</li>
-<li>Dashboards</li>
-<li>Diagrams</li>
-<li>Scripts</li>
+<li>Un script pour chaque séance de TD/TP</li>
+<li>Nommer le script de façon utile (avec <code>rename</code>)</li>
+<li>Commenter le script</li>
+<li>Séparer les requêtes par des lignes blanches et une ligne de commentaire blanche <code>--</code></li>
+<li>Utiliser le reformattage pour rendre votre code plus lisible</li>
 </ul>
 </section>
-<section id="éditeur-sql" class="level1">
-<h1>Éditeur SQL</h1>
-<ul>
-<li></li>
-</ul>
+</section>
+<section id="renseignements-utiles" class="level1">
+<h1>Renseignements utiles</h1>
+<p><a href="https://github.com/dbeaver/dbeaver/wiki">wiki</a></p>
 
 
 </section>

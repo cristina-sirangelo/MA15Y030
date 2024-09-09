@@ -486,7 +486,7 @@
 <span id="cb1-5"><a></a><span class="kw">WHERE</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>traduit l’expression</p>
 <p><span class="math inline">\(\Pi_{\text{&lt;liste attribut&gt;}}(\sigma_{\text{&lt;condition&gt;}}(\text{&lt;table&gt;}))\)</span></p>
-<p>Ou <code>\sigma(R, Condition) | \Pi(&lt;liste attribut&gt;)</code></p>
+<p>Ou <code>σ(R, Condition) |&gt; Π(&lt;liste attribut&gt;)</code></p>
 </div></div>
 </section><section class="slide level2 center"><p>On peut faire autrement : dans les extensions du langage <code>R</code>, notamment celles qui relèvent de <code>tidyverse</code>, on associe des fonctions à chaque opérateur de l’algèbre relationnelle. Pour opérateurs qui portent sur une seule table, le premier argument de chaque fonction est toujours la table sur laquelle on opère. Les autres arguments sont soit les attributs de projection, soit la spécification d’une condition de sélection, soit …</p>
 <p>L’usage d’un opérateur <code>pipe</code> (comme dans Unix) permet de composer de facon lisible les opérations.</p>
@@ -551,27 +551,28 @@
 </section><section id="structure-de-base" class="slide level2 center"><h2>Structure de base</h2>
 <p>La structure de base d’une requête s’appuie sur les trois mots clés suivants :</p>
 <ul>
-<li><p>.red[<code>SELECT</code>] correspond à l’opérateur de projection sur la liste d’attributs demandée, il peut aussi être suivi de fonctions d’attributs</p></li>
-<li><p>.red[<code>FROM</code>] indique la ou les relations concernées</p></li>
-<li><p>.red[<code>WHERE</code>] précise une condition et correspond à l’opération de restriction/sélection en algèbre relationnelle.</p></li>
+<li><p><code>SELECT</code> correspond à l’opérateur de projection sur la liste d’attributs demandée, il peut aussi être suivi de fonctions d’attributs</p></li>
+<li><p><code>FROM</code> indique la ou les relations concernées</p></li>
+<li><p><code>WHERE</code> précise une condition et correspond à l’opération de restriction/sélection en algèbre relationnelle.</p></li>
 </ul></section><section id="syntaxe-de-la-condition-de-filtrage-where-..." class="slide level2 center"><h2>Syntaxe de la condition de filtrage (<code>WHERE ...</code>)</h2>
 <p>Une condition se construit à l’aide des opérations suivantes :</p>
 <ul>
 <li>
-<em>Comparaison</em> avec opérateurs : .red[<code>=, &lt;&gt;, &gt;,&lt;, &gt;=, &lt;=</code>]</li>
+<em>Comparaison</em> avec opérateurs : <code>=, &lt;&gt;, &gt;,&lt;, &gt;=, &lt;=</code>
+</li>
 </ul>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb10-2"><a></a></span>
 <span id="cb10-3"><a></a><span class="kw">FROM</span> Employe</span>
 <span id="cb10-4"><a></a></span>
-<span id="cb10-5"><a></a><span class="kw">WHERE</span> NomE <span class="op">&lt;&gt;</span><span class="st">'Durand'</span>  ;  #<span class="op">&lt;&lt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb10-5"><a></a><span class="kw">WHERE</span> NomE <span class="op">&lt;&gt;</span><span class="st">'Durand'</span>  ;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="syntaxe-de-la-condition-de-filtrage-where-...-1" class="slide level2 center"><h2>Syntaxe de la condition de filtrage (<code>WHERE ...</code>)</h2>
-<p><em>Combinaison</em> de conditions à l’aide des opérateurs logiques: .red[<code>AND</code>, <code>OR</code>, <code>NOT</code>]</p>
+<p><em>Combinaison</em> de conditions à l’aide des opérateurs logiques: <code>AND</code>, <code>OR</code>, <code>NOT</code></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> NomF</span>
 <span id="cb11-2"><a></a></span>
 <span id="cb11-3"><a></a><span class="kw">FROM</span> Fournisseur</span>
 <span id="cb11-4"><a></a></span>
-<span id="cb11-5"><a></a><span class="kw">WHERE</span> (Ville<span class="op">=</span><span class="st">'Londres'</span>) <span class="kw">OR</span> (Ville<span class="op">=</span><span class="st">'Paris'</span>);  #<span class="op">&lt;&lt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-5"><a></a><span class="kw">WHERE</span> (Ville<span class="op">=</span><span class="st">'Londres'</span>) <span class="kw">OR</span> (Ville<span class="op">=</span><span class="st">'Paris'</span>);  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Attention aux priorités dans l’évaluation des expressions logiques</p>
 <p><i class="fa-solid fa-skull" aria-label="skull"></i> Attention aux valeurs manquantes</p>
 </section><section id="syntaxe-de-la-condition-where-...-suite" class="slide level2 center"><h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
@@ -580,27 +581,27 @@
 <span id="cb12-2"><a></a></span>
 <span id="cb12-3"><a></a><span class="kw">FROM</span> Employe</span>
 <span id="cb12-4"><a></a></span>
-<span id="cb12-5"><a></a><span class="kw">WHERE</span> Annee <span class="kw">BETWEEN</span> <span class="st">'22/06/03'</span> <span class="kw">AND</span> <span class="st">'25/09/03'</span>;   #<span class="op">&lt;&lt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-5"><a></a><span class="kw">WHERE</span> Annee <span class="kw">BETWEEN</span> <span class="st">'22/06/03'</span> <span class="kw">AND</span> <span class="st">'25/09/03'</span>;   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Éviter de manipuler les dates et heures comme des chaînes de caractères</p>
 </section><section id="syntaxe-de-la-condition-where-...-suite-1" class="slide level2 center"><h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
 <ul>
-<li>Test à .red[<code>NULL</code>] signifiant que la valeur est égale à <code>NULL</code> (c-à-d est inconnue)</li>
+<li>Test à <code>NULL</code> signifiant que la valeur est égale à <code>NULL</code> (c-à-d est inconnue)</li>
 </ul>
 <div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb13-2"><a></a></span>
 <span id="cb13-3"><a></a><span class="kw">FROM</span> Employe</span>
 <span id="cb13-4"><a></a></span>
-<span id="cb13-5"><a></a><span class="kw">WHERE</span> Tel <span class="kw">IS</span> <span class="kw">NULL</span>;    #<span class="op">&lt;&lt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-5"><a></a><span class="kw">WHERE</span> Tel <span class="kw">IS</span> <span class="kw">NULL</span>;    </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-skull" aria-label="skull"></i> Attention aux valeurs manquantes</p>
 </section><section id="syntaxe-de-la-condition-where-...-suite-2" class="slide level2 center"><h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
-<p>Test d’<em>appartenance</em> .red[<code>IN</code>] qui permet de vérifier si la valeur d’un attribut appartient à une liste de constantes,</p>
+<p>Test d’<em>appartenance</em> <code>IN</code> qui permet de vérifier si la valeur d’un attribut appartient à une liste de constantes,</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb14-2"><a></a></span>
 <span id="cb14-3"><a></a><span class="kw">FROM</span> Fournisseur</span>
 <span id="cb14-4"><a></a></span>
-<span id="cb14-5"><a></a><span class="kw">WHERE</span> Ville <span class="kw">IN</span> (<span class="st">'Paris'</span>, <span class="st">'Londres'</span>);   #<span class="op">&lt;&lt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-5"><a></a><span class="kw">WHERE</span> Ville <span class="kw">IN</span> (<span class="st">'Paris'</span>, <span class="st">'Londres'</span>);   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="syntaxe-de-la-condition-where-...-suite-3" class="slide level2 center"><h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
-<p>Test .red[<code>LIKE</code>] permettant de vérifier si un attribut de type chaîne de caractères contient une ou plusieurs sous-chaînes</p>
+<p>Test <code>LIKE</code> permettant de vérifier si un attribut de type chaîne de caractères contient une ou plusieurs sous-chaînes</p>
 <p><span class="math inline">\(\_\)</span> : remplace n’importe quel caractère</p>
 <p><span class="math inline">\(\%\)</span> : remplace n’importe quelle chaîne de caractères.</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">SELECT</span> Ville</span>
@@ -621,7 +622,7 @@
 <p>Images et tables créées grâce à <a href="https://dbschema.com">DbSchema</a></p>
 </section><section id="diagramme-en-pattes-de-corbeau" class="slide level2 center"><h2>Diagramme en pattes de corbeau</h2>
 
-<img data-src="../images/~LayoutwithSampleTools.svg" class="r-stretch quarto-figure-center"><p class="caption">img</p></section><section id="table-world.city" class="slide level2 center"><h2>Table world.city</h2>
+<img data-src="../images/world.png" class="r-stretch quarto-figure-center"><p class="caption">img</p></section><section id="table-world.city" class="slide level2 center"><h2>Table world.city</h2>
 <table class="caption-top"><tbody>
 <tr class="odd">
 <td>* 🔑 ⬋</td>
@@ -776,30 +777,28 @@
 <div class="fragment">
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">SELECT</span> name_country</span>
 <span id="cb16-2"><a></a></span>
-<span id="cb16-3"><a></a><span class="kw">FROM</span> country, city   #<span class="op">&lt;&lt;</span> </span>
+<span id="cb16-3"><a></a><span class="kw">FROM</span> country, city    </span>
 <span id="cb16-4"><a></a></span>
 <span id="cb16-5"><a></a><span class="kw">WHERE</span> capital<span class="op">=</span><span class="kw">id</span> <span class="kw">AND</span> name_country<span class="op">=</span>name_city;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p>qui correspond à</p>
-<p><span class="math display">\[\pi_{\text{name_country}}\Bigl(
-\sigma_{\text{capital}=\text{id} \wedge \text{name_country}=\text{name_city}}(\text{country }\times \text{city}) \Bigr)\]</span></p>
-<p>autrement dit</p>
-<p><span class="math display">\[\pi_{\text{name_country}}\Bigl(
-\text{country} \bowtie_{\text{capital}=\text{id} \wedge  \text{name_country}=\text{name_city}} \text{city})
-\Bigr)\]</span></p>
 </div>
-</section><section id="syntaxe-normalisée-pour-les-jointures-join-et-on" class="slide level2 center"><h2>Syntaxe normalisée pour les jointures~: <em>JOIN</em> et <em>ON</em>
+<div class="fragment">
+<p>qui correspond à</p>
+<p><span class="math display">\[\pi_{\text{name\_country}}(\sigma_{\text{capital}=\text{id} \wedge \text{name\_country}=\text{name\_city}}(\text{country}\times \text{city}))\]</span></p>
+<p>autrement dit à</p>
+<p><span class="math display">\[\pi_{\text{name\_country}}(\text{country} \bowtie_{\text{capital}=\text{id} \wedge  \text{name\_country}=\text{name\_city}} \text{city}))\]</span></p>
+</div>
+</section><section id="syntaxe-normalisée-pour-les-jointures-join-et-on" class="slide level2 center"><h2>Syntaxe normalisée pour les jointures : <em>JOIN</em> et <em>ON</em>
 </h2>
 <p>Quels sont les pays qui portent le même nom que leur capitale ?</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">SELECT</span> name_country</span>
 <span id="cb17-2"><a></a></span>
-<span id="cb17-3"><a></a><span class="kw">FROM</span> country <span class="kw">JOIN</span> city   #<span class="op">&lt;&lt;</span></span>
+<span id="cb17-3"><a></a><span class="kw">FROM</span> country <span class="kw">JOIN</span> city   </span>
 <span id="cb17-4"><a></a></span>
-<span id="cb17-5"><a></a><span class="kw">ON</span> capital<span class="op">=</span><span class="kw">id</span>    #<span class="op">&lt;&lt;</span></span>
+<span id="cb17-5"><a></a><span class="kw">ON</span> capital<span class="op">=</span><span class="kw">id</span>    </span>
 <span id="cb17-6"><a></a></span>
 <span id="cb17-7"><a></a><span class="kw">WHERE</span> name_country<span class="op">=</span>name_city;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>qui correspond à</p>
-<p><span class="math display">\[\pi_{\text{name_country}}\Bigl(
-\sigma_{\text{capital}=id \wedge  \text{name_country}=\text{name_city}}(\text{country} \times \text{city}) \Bigr)\]</span></p>
+<p><span class="math display">\[\pi_{\text{name\_country}}(\sigma_{\text{capital}=id \wedge  \text{name\_country}=\text{name\_city}}(\text{country} \times \text{city}))\]</span></p>
 </section><section id="renommage" class="slide level2 center"><h2>Renommage</h2>
 <p>Si on veut faire une jointure d’une table avec elle-même, on utilise <em>AS</em> pour obtenir deux tables de noms différents</p>
 <ul>
@@ -807,9 +806,9 @@
 </ul>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> c1.name_city, c1.countrycode, c2.countrycode</span>
 <span id="cb18-2"><a></a></span>
-<span id="cb18-3"><a></a><span class="kw">FROM</span> city <span class="kw">AS</span> c1 <span class="kw">JOIN</span> city <span class="kw">AS</span> c2   #<span class="op">&lt;&lt;</span></span>
+<span id="cb18-3"><a></a><span class="kw">FROM</span> city <span class="kw">AS</span> c1 <span class="kw">JOIN</span> city <span class="kw">AS</span> c2   </span>
 <span id="cb18-4"><a></a></span>
-<span id="cb18-5"><a></a>  <span class="kw">ON</span> c1.countrycode<span class="op">!=</span>c2.countrycode <span class="kw">AND</span> c1.name_city<span class="op">=</span>c2.name_city  #<span class="op">&lt;&lt;</span></span>
+<span id="cb18-5"><a></a>  <span class="kw">ON</span> c1.countrycode<span class="op">!=</span>c2.countrycode <span class="kw">AND</span> c1.name_city<span class="op">=</span>c2.name_city  </span>
 <span id="cb18-6"><a></a></span>
 <span id="cb18-7"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> c1.name_city;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="jointure-naturelle" class="slide level2 center"><h2>Jointure naturelle</h2>
@@ -823,20 +822,20 @@
 <p>Syntaxe normalisée pour la jointure naturelle~: <em>NATURAL JOIN</em></p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">SELECT</span> name_country</span>
 <span id="cb20-2"><a></a></span>
-<span id="cb20-3"><a></a><span class="kw">FROM</span> country <span class="kw">NATURAL</span> <span class="kw">JOIN</span> countrylanguage   #<span class="op">&lt;&lt;</span> </span>
+<span id="cb20-3"><a></a><span class="kw">FROM</span> country <span class="kw">NATURAL</span> <span class="kw">JOIN</span> countrylanguage    </span>
 <span id="cb20-4"><a></a></span>
 <span id="cb20-5"><a></a><span class="kw">WHERE</span> language<span class="op">=</span><span class="st">'French'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="jointure-naturelle-suite" class="slide level2 center"><h2>Jointure naturelle (suite)</h2>
 <p>Quels sont les pays dont une ville a le même nom qu’une langue parlée dans ce pays~?</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> name_country, name_city, language</span>
 <span id="cb21-2"><a></a></span>
-<span id="cb21-3"><a></a><span class="kw">FROM</span> country <span class="kw">NATURAL</span> <span class="kw">JOIN</span>  #<span class="op">&lt;&lt;</span></span>
-<span id="cb21-4"><a></a>     city <span class="kw">natural</span> <span class="kw">JOIN</span>     #<span class="op">&lt;&lt;</span></span>
-<span id="cb21-5"><a></a>     countrylanguage       #<span class="op">&lt;&lt;</span></span>
+<span id="cb21-3"><a></a><span class="kw">FROM</span> country <span class="kw">NATURAL</span> <span class="kw">JOIN</span>  </span>
+<span id="cb21-4"><a></a>     city <span class="kw">natural</span> <span class="kw">JOIN</span>     </span>
+<span id="cb21-5"><a></a>     countrylanguage       </span>
 <span id="cb21-6"><a></a></span>
 <span id="cb21-7"><a></a><span class="kw">WHERE</span> language<span class="op">=</span>name_city;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center">
-<img data-src="../images/LayoutwithSampleTools.png" class="r-stretch"></section><section id="jointure-externe" class="slide level2 center"><h2>Jointure externe</h2>
+<img data-src="../images/world.png" class="r-stretch"></section><section id="jointure-externe" class="slide level2 center"><h2>Jointure externe</h2>
 <ul>
 <li><p><em>LEFT OUTER JOIN</em> (resp. <em>RIGHT OUTER JOIN</em>) : on garde les tuples de la table de gauche (resp. droite) qui n’ont pas de complément dans l’autre table, la condition étant spécifiée dans la clause <em>ON</em></p></li>
 <li><p><em>FULL OUTER JOIN</em> : on garde les tuples de chacune des tables qui n’ont pas de complément.</p></li>
@@ -856,10 +855,10 @@
 </ul>
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a><span class="kw">SELECT</span> name_country, name_city</span>
 <span id="cb23-2"><a></a></span>
-<span id="cb23-3"><a></a><span class="kw">FROM</span> country <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> city   #<span class="op">&lt;&lt;</span></span>
-<span id="cb23-4"><a></a>     <span class="kw">ON</span> capital<span class="op">=</span><span class="kw">id</span>                  #<span class="op">&lt;&lt;</span></span>
+<span id="cb23-3"><a></a><span class="kw">FROM</span> country <span class="kw">LEFT</span> <span class="kw">OUTER</span> <span class="kw">JOIN</span> city   </span>
+<span id="cb23-4"><a></a>     <span class="kw">ON</span> capital<span class="op">=</span><span class="kw">id</span>                  </span>
 <span id="cb23-5"><a></a></span>
-<span id="cb23-6"><a></a><span class="kw">WHERE</span> name_city <span class="kw">IS</span> <span class="kw">NULL</span> <span class="kw">OR</span> name_country<span class="op">=</span>name_city ;  #<span class="op">&lt;&lt;</span> </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-6"><a></a><span class="kw">WHERE</span> name_city <span class="kw">IS</span> <span class="kw">NULL</span> <span class="kw">OR</span> name_country<span class="op">=</span>name_city ;   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">

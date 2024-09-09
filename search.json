@@ -615,7 +615,7 @@
     "href": "computing-dbeaver.html",
     "title": "Client dbeaver",
     "section": "",
-    "text": "Installer\n\n\nSurvol\n Explorer les possibilités du client\n\n\n\n\n\n\nConfigurer une connexion\n\n\n\n\n\n\n\nOnglet Main\n\nConnect by Host,\n\nHost: localhost,\nPort: 5434 (ou un autre nombre exotique)\nDatabase: bd_2023-24\nDécocher `Show all databases\n\nAuthentification: Database Native\n\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save password\n\n\n\nOnglet PostgreSQL\nOnglet SSH\n\nCocher Use SSH Tunnel\nSettings\n\nHost/IP: localhost\nPort 22\nUsername: username (ENT)\nPassword: xxxxxxx (ENT)\nCocher Save credentials\n\nJump servers\n\nJump #1 etu-pgsql.math.univ-paris-diderot.fr username Password\nTarget localhost:22 username Password\n\n\n\n\n\nUtiliser une connexion\n\n\nDéfinir et utiliser un projet\n\nConnections\nBookmarks\nDashboards\nDiagrams\nScripts\n\n\n\nÉditeur SQL",
+    "text": "À partir de Dbeaver community edition",
     "crumbs": [
       "Support",
       "Client dbeaver"
@@ -1229,7 +1229,7 @@
     "href": "cours-syllabus.html",
     "title": "MA15Y030 Syllabus",
     "section": "",
-    "text": "Organisation des enseignements\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJour\nHoraire\nLieu\nDébut\n\n\n\n\nCours\nVendredi\n14:00 - 15:30\nOlympe de Gouges Amphi I\n2024-09-13\n\n\nTD/TP 1\nVendredi\n15:45 - 18:15\nSophie Germain 2004-2005\n2024-09-20\n\n\nTD/TP 2\nVendredi\n15:45 - 18:15\nSophie Germain 2006\n2024-09-20\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObjectifs\n\n\n\nAprès avoir suivi ce cours, vous serez capable :\n\nd’interroger une base de données relationnelle\nde lire un schéma de base de données\nde concevoir une base de données\nd’améliorer une base de données\n\n\n\n\n\n\n\n\n\nUniversité Paris Cité\n\n\n\nQuelques rubriques utiles:\n\nCharte Université Paris Cité\nDémarches et accessibilité\nCentre de contact\nRelais handicap\n\n\n\n\n\n\n\n\n\nCommunication \n\n\n\nLes supports matériels du cours sont accessible à partir de s-v-b.github.io/MA15Y030\nLes annonces sont diffusées via Moodle\nInscrivez-vous au portail Moodle pour être toujours informé\n\n\n\n\n\n\n\n\nSupport informatique \n\n\n\n Côté serveur, vous utiliserez le serveur PostGres de l’UFR de Mathématiques. Pour disposer d’un identifiant ENT et d’un mot de passe  consultez la procédure sur Moodle\n Côté client, vous pourrez utiliser le logiciel qui vous convient. En salle machine, vous trouverez\n\npsql\npgcli\ndbeaver\n\nVous pouvez installer l’un de ces clients ou plusieurs sur votre machine personnelle.\n\n\n\n\n\n\n\n\nRéférences \n\n\n\n\nDatabase Systems: The Complete Book (DS:CB), by Hector Garcia-Molina, Jeff Ullman, and Jennifer Widom\nFoundations of databases. Abiteboul, Hull et Vianu\nDocumentation PostGres\nNext Generation Databases NoSQLand Big Data, Guy Harrison\nGuy Harrison Blog\nDatabases trends and applications\n\n\n\n\n\n\n\n\n\nCours magistraux et Travaux dirigés \n\n\n\nLe canevas des cours magistraux est résumé par les diapositives\nLes énoncés des exercices sont disponibles sous différents formats (html et pdf)\nLes corrections (partielles) des exercices sont disponibles sous différents formats (html et pdf)\nAssiduité. La présence en cours et en TDs n’est pas obligatoire. Aucun certificat d’assiduité ne sera délivré.\n\n\n\n\n\n\n\n\nContrôle des connaissances \n\n\n\n\nContrôle continu en trois épreuves sur table :\n\n\\(\\textsf{CC}_1\\) (1 heure)\n\\(\\textsf{CC}_2\\) (1 heure)\n\\(\\textsf{CC}_3\\) (1 heure)\n\nExamen\n\n\\(\\textsf{CT}\\) (2 heures)\n\nNotation\n\nLa note finale de session I est calculée selon la formule :\n\\[\\frac{1}{6}\\left\\{\\max( \\textsf{CC}_1,\\textsf{CT}) + \\max(\\textsf{CC}_2,\\textsf{CT}) + \\max(\\textsf{CC}_3,\\textsf{CT}) \\right\\} + \\frac{1}{2} \\textsf{CT}\\]\nLa note de session II (seconde chance) est égale à la note obtenue à l’épreuve sur table de seconde chance.\n\n\n\n\n\n\n\n\nTrucs\n\n\n\n\nSurvolez les diapositives avant le cours\nRéfléchissz sur les exercices avant de consulter les corrections\nVérifiez la compatibilité de vos solutions avec les corrections\nUtilisez les aides en ligne (StackOverflow, ChatGPT, copilot, …)\nDécryptez les messages d’erreur\nPosez des questions, , cela aide tout le monde (bis)\n\n\n\n\n\n\n\n\n\nIntégrité universitaire\n\n\n\nTL;DR: Pas de triche!\n\n\n\n\n\n\n\n\nSauvez les dates ! \n\n\n\n\nSeptembre 13: Début du cours\nSeptembre 20: Début des TD/TP\nOctobre 25: Contrôle continu I\nOctobre 26-Novembre 3: Pause de la Toussaint\nNovembre 8 : Reprise des cours et TD\nNovembre 15: Contrôle continu II\nDécembre 6: Fin du cours magistral\nDécembre 13: Contrôle continu III\nJanvier ??: Contrôle terminal\nJuin ??: Deuxième chance\n\nCliquer ici pour le calendrier universitaire de Université Paris Cité.\nCliquer ici pour l’emploi du temps de la Licence MIASHS",
+    "text": "Organisation des enseignements\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nJour\nHoraire\nLieu\nDébut\n\n\n\n\nCours\nVendredi\n14:00 - 15:30\nOlympe de Gouges Amphi II\n2024-09-13\n\n\nTD/TP 1\nVendredi\n15:45 - 18:15\nSophie Germain 2004-2005\n2024-09-20\n\n\nTD/TP 2\nVendredi\n15:45 - 18:15\nSophie Germain 2006\n2024-09-20\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nObjectifs\n\n\n\nAprès avoir suivi ce cours, vous serez capable :\n\nd’interroger une base de données relationnelle\nde lire un schéma de base de données\nde concevoir une base de données\nd’améliorer une base de données\n\n\n\n\n\n\n\n\n\nUniversité Paris Cité\n\n\n\nQuelques rubriques utiles:\n\nCharte Université Paris Cité\nDémarches et accessibilité\nCentre de contact\nRelais handicap\n\n\n\n\n\n\n\n\n\nCommunication \n\n\n\nLes supports matériels du cours sont accessible à partir de s-v-b.github.io/MA15Y030\nLes annonces sont diffusées via Moodle\nInscrivez-vous au portail Moodle pour être toujours informé\n\n\n\n\n\n\n\n\nSupport informatique \n\n\n\n Côté serveur, vous utiliserez le serveur PostGres de l’UFR de Mathématiques. Pour disposer d’un identifiant ENT et d’un mot de passe  consultez la procédure sur Moodle\n Côté client, vous pourrez utiliser le logiciel qui vous convient. En salle machine, vous trouverez\n\npsql\npgcli\ndbeaver\n\nVous pouvez installer l’un de ces clients ou plusieurs sur votre machine personnelle.\n\n\n\n\n\n\n\n\nRéférences \n\n\n\n\nDatabase Systems: The Complete Book (DS:CB), by Hector Garcia-Molina, Jeff Ullman, and Jennifer Widom\nFoundations of databases. Abiteboul, Hull et Vianu\nAlice\nDocumentation PostGres\nNext Generation Databases NoSQLand Big Data, Guy Harrison\nGuy Harrison Blog\nDatabases trends and applications\nUpcoming book “Principles of Databases”, by Marcelo Arenas, Pablo Barcelo, Leonid Libkin, Wim Martens, and Andreas Pieris.\n\n\n\n\n\n\n\n\n\n\nCours magistraux et Travaux dirigés \n\n\n\nLe canevas des cours magistraux est résumé par les diapositives\nLes énoncés des exercices sont disponibles sous différents formats (html et pdf)\nLes corrections (partielles) des exercices sont disponibles sous différents formats (html et pdf)\nAssiduité. La présence en cours et en TDs n’est pas obligatoire. Aucun certificat d’assiduité ne sera délivré.\nÉvitez si possible les courriels à propos du contenu du cours. Le courriel devrait être réservé aux questions personnelles.\n\n\n\n\n\n\n\n\nContrôle des connaissances \n\n\n\n\nContrôle continu en trois épreuves sur table :\n\n\\(\\textsf{CC}_1\\) (1 heure)\n\\(\\textsf{CC}_2\\) (1 heure)\n\\(\\textsf{CC}_3\\) (1 heure)\n\nExamen\n\n\\(\\textsf{CT}\\) (2 heures)\n\nNotation\n\nLa note finale de session I est calculée selon la formule :\n\\[\\frac{1}{6}\\left\\{\\max( \\textsf{CC}_1,\\textsf{CT}) + \\max(\\textsf{CC}_2,\\textsf{CT}) + \\max(\\textsf{CC}_3,\\textsf{CT}) \\right\\} + \\frac{1}{2} \\textsf{CT}\\]\nLa note de session II (seconde chance) est égale à la note obtenue à l’épreuve sur table de seconde chance.\n\n\n\n\n\n\n\n\n Trucs\n\n\n\n\nSurvolez les diapositives avant le cours\nRéfléchissz sur les exercices avant de consulter les corrections\nVérifiez la compatibilité de vos solutions avec les corrections\nUtilisez les aides en ligne (StackOverflow, ChatGPT, copilot, …)\nDécryptez les messages d’erreur\nPosez des questions, , cela aide tout le monde (bis)\n\n\n\n\n\n\n\n\n\nIntégrité universitaire\n\n\n\nTL;DR: Pas de triche!\n\n\n\n\n\n\n\n\nSauvez les dates ! \n\n\n\n\nSeptembre 13: Début du cours\nSeptembre 20: Début des TD/TP\nOctobre 25: Contrôle continu I\nOctobre 26-Novembre 3: Pause de la Toussaint\nNovembre 8 : Reprise des cours et TD\nNovembre 15: Contrôle continu II\nDécembre 6: Fin du cours magistral\nDécembre 13: Contrôle continu III\nJanvier ??: Contrôle terminal\nJuin ??: Deuxième chance\n\nCliquer ici pour le calendrier universitaire de Université Paris Cité.\nCliquer ici pour l’emploi du temps de la Licence MIASHS",
     "crumbs": [
       "Informations générales",
       "Syllabus"
@@ -2325,28 +2325,28 @@
     "href": "slides/BD_intro.html#les-données-en-sciences-sociales",
     "title": "BD I: Introduction aux SGBD",
     "section": "Les données en Sciences Sociales",
-    "text": "Les données en Sciences Sociales\nPourquoi ?\nDe quoi sont faites les données ?\nComment les accumuler ?\nComment les interroger ?\nComment les conserver ? les éditer ?"
+    "text": "Les données en Sciences Sociales\n\n\n\nPourquoi ?\nDe quoi sont faites les données ?\nComment les accumuler ?\nComment les interroger ?\nComment les conserver ? les éditer ?\n\n\n\n\nBN Salle ovale"
   },
   {
     "objectID": "slides/BD_intro.html#sources",
     "href": "slides/BD_intro.html#sources",
     "title": "BD I: Introduction aux SGBD",
     "section": "Sources",
-    "text": "Sources\nData humanities with R. Arnold and Tilton\nQuantitative tour at social sciences Gelman and ?\nHumanités numériques\n\nConstitution\nAcquisition\nUsage(s)\nMaintenance"
+    "text": "Sources\n\nData humanities with R. Arnold and TiltonQuantitative tour at social sciences edited by Gelman and Cortina, 2009\n Relational databses on slideshare"
   },
   {
     "objectID": "slides/BD_intro.html#les-données-de-lentreprisedes-administrations",
     "href": "slides/BD_intro.html#les-données-de-lentreprisedes-administrations",
     "title": "BD I: Introduction aux SGBD",
     "section": "Les données de l’entreprise/des administrations",
-    "text": "Les données de l’entreprise/des administrations\n\n\n\nLa comptabilité\nLes stocks (ERP)\nLa clientèle (CRM)\n…\n\n\nTODO"
+    "text": "Les données de l’entreprise/des administrations\n\n\n\nLa comptabilité\nLes stocks (ERP)\nLa clientèle (CRM)\n…"
   },
   {
     "objectID": "slides/BD_intro.html#la-vie-des-données",
     "href": "slides/BD_intro.html#la-vie-des-données",
     "title": "BD I: Introduction aux SGBD",
     "section": "La vie des données",
-    "text": "La vie des données\n\nSaisie\nTraitement(s)\nUsage(s)\nArchivage\nMaintenance"
+    "text": "La vie des données\n\n Saisie\n Traitement(s)\n Usage(s)\n Archivage\n Maintenance"
   },
   {
     "objectID": "slides/BD_intro.html#les-enjeux",
@@ -2360,56 +2360,56 @@
     "href": "slides/BD_intro.html#avant-hier",
     "title": "BD I: Introduction aux SGBD",
     "section": "Avant-hier",
-    "text": "Avant-hier\n\n\nLes entreprises et les administrations ont toujours cultivé une mémoire sous forme de fichiers plus ou moins mécanisés et formattés.\nCes collections de fichiers mécanisées répondaient à des exigences de fiabilité, de convenance (facilité de la recherche, de la maintenance)"
+    "text": "Avant-hier\n\n\nLes entreprises et les administrations ont toujours cultivé une mémoire sous forme de fichiers plus ou moins mécanisés et formattés.\nCes collections de fichiers mécanisées répondaient à des exigences de fiabilité, de convenance (facilité de la recherche, de la maintenance)\n\n\n\nFrom https://www.ibm.com/history/punched-card"
   },
   {
     "objectID": "slides/BD_intro.html#aujourdhui",
     "href": "slides/BD_intro.html#aujourdhui",
     "title": "BD I: Introduction aux SGBD",
     "section": "Aujourd’hui",
-    "text": "Aujourd’hui\nExplosion des volumes\nBesoins mixtes"
+    "text": "Aujourd’hui\n\n\n\nExplosion des volumes\nExplosion des débits\nUsages (très) divers"
   },
   {
     "objectID": "slides/BD_intro.html#systèmes-dinformation-si-et-bases-de-données-bd-sgbd-sgbdr",
     "href": "slides/BD_intro.html#systèmes-dinformation-si-et-bases-de-données-bd-sgbd-sgbdr",
     "title": "BD I: Introduction aux SGBD",
     "section": "Systèmes d’information (SI) et Bases de Données (BD, SGBD, SGBDR)",
-    "text": "Systèmes d’information (SI) et Bases de Données (BD, SGBD, SGBDR)\nAu coeur des systèmes d’information (modernes) on trouve les bases de données"
+    "text": "Systèmes d’information (SI) et Bases de Données (BD, SGBD, SGBDR)\nAu coeur des systèmes d’information (modernes) on trouve (presque toujours) les bases de données\n\n\n\n\n\n\nMise en garde\n\n\nToutes les bases de données ne sont pas relationnelles"
   },
   {
     "objectID": "slides/BD_intro.html#des-propriétés-désirables-acid",
     "href": "slides/BD_intro.html#des-propriétés-désirables-acid",
     "title": "BD I: Introduction aux SGBD",
     "section": "Des propriétés désirables (ACID)",
-    "text": "Des propriétés désirables (ACID)\nQuelle que soit la forme, on souhaite avoir :\n\nAtomicité : chaque ajout/modification d’information doit former un tout cohérent. Si tout se passe correctement, les actions de la transaction sont toutes validées, sinon on retourne à l’état initial. L’unité de travail est indivisible. Une transaction ne peut être partiellement effectuée.\nCohérence : le contenu de la base de données doit rester conforme à des contraintes qui ont été définies lors de la conception de la base\nIsolation : la bases de données doit pouvoir être utilisée concurremment par plusieurs usagers\nDurabilité : la vie d’une base de données s’étale sur plusieurs dizaines d’années"
+    "text": "Des propriétés désirables (ACID)\n\n\n\n\n\n\nAtomicité\n\n\nChaque ajout/modification d’information doit former un tout cohérent\nSi tout se passe correctement, les actions de la transaction sont toutes validées, sinon on retourne à l’état initial\n\n\n\n\n\n\n\n\n\n\nCohérence\n\n\nLe contenu de la base de données doit rester conforme à des contraintes définies lors de la conception\n\n\n\n\n\n\n\n\n\n\n\nIsolation\n\n\nLa bases de données doit pouvoir être utilisée concurremment par plusieurs usagers\n\n\n\n\n\n\n\n\n\n\n\nDurabilité\n\n\nLa vie d’une base de données s’étale sur plusieurs dizaines d’années"
   },
   {
     "objectID": "slides/BD_intro.html#bases-de-données",
     "href": "slides/BD_intro.html#bases-de-données",
     "title": "BD I: Introduction aux SGBD",
-    "section": "Bases de données\n",
-    "text": "Bases de données\n\n\n\nQu’est-ce que c’est ?\nCe sont des logiciels intermédiaires (middleware) entre :\n\nSystèmes de gestion de fichiers/Systèmes d’exploitation\nApplications (CRM, ERP, CMS, …)\n\nLes bases de données ne sont pas (simplement) un langage (comme JAVA,  ou un environnement de calcul"
+    "section": "\n Bases de données\n",
+    "text": "Bases de données\n\n\nQu’est-ce que c’est (plus précisément) ?\n\n\nCe sont des logiciels intermédiaires (middleware) entre :\n\nSystèmes de gestion de fichiers/Systèmes d’exploitation   …\nApplications (CRM, ERP, CMS, …)    …\n\n\n\nLes bases de données ne sont pas (simplement) un langage (comme JAVA, , )"
   },
   {
     "objectID": "slides/BD_intro.html#collection-de-tablesdata-frames",
     "href": "slides/BD_intro.html#collection-de-tablesdata-frames",
     "title": "BD I: Introduction aux SGBD",
-    "section": "Collection de tables/data frames",
-    "text": "Collection de tables/data frames\nCaricaturalement :\n\nUne base de données relationnelle est une collection de tables\n\nLes tables s’incarnent de plusieurs façons en informatique\nR, Pandas, les tableurs (Excel …), offrent un environnement interactif de manipulation de données et un environnement de définition de données"
+    "section": "\n Collection de tables/data frames",
+    "text": "Collection de tables/data frames\nCaricaturalement :\n\nUne base de données relationnelle est une collection de tables\n\n\nLes tables s’incarnent de plusieurs façons en informatique\nR, Pandas, les tableurs (Excel …), offrent un environnement interactif de manipulation de données et un environnement de définition de données"
   },
   {
     "objectID": "slides/BD_intro.html#data-frame",
     "href": "slides/BD_intro.html#data-frame",
     "title": "BD I: Introduction aux SGBD",
-    "section": "Data frame",
-    "text": "Data frame\n\n\nUn dataframe est une liste de vecteurs (colonnes)\nLes vecteurs (colonnes) d’un dataframe sont tous de même longueur\nLes éléments d’un vecteur sont d’un même type de base\nChaque vecteur a un nom et son propre type"
+    "section": "\n Data frame",
+    "text": "Data frame\n\n\n\nUn dataframe est une liste de vecteurs (colonnes)\nLes vecteurs (colonnes) d’un dataframe sont tous de même longueur\nLes éléments d’un vecteur sont d’un même type de base\nChaque vecteur a un nom et son propre type"
   },
   {
     "objectID": "slides/BD_intro.html#autres-environments-excel-java-python",
     "href": "slides/BD_intro.html#autres-environments-excel-java-python",
     "title": "BD I: Introduction aux SGBD",
     "section": "Autres environments (Excel, JAVA, Python)",
-    "text": "Autres environments (Excel, JAVA, Python)\n\n\nLes spreadsheet des tableurs\nLes Dataframes de Pandas \nLes tableaux d’objets en JAVA\n\npermettent de représenter ce que les dataframes représentent en R"
+    "text": "Autres environments (Excel, JAVA, Python)\n\n\nLes spreadsheet des tableurs \nLes Dataframes de Pandas  \nLes tableaux d’objets en JAVA\n\npermettent de représenter ce que les dataframes représentent en R"
   },
   {
     "objectID": "slides/BD_intro.html#les-sgbd-vont-au-delà",
@@ -2423,21 +2423,21 @@
     "href": "slides/BD_intro.html#usages",
     "title": "BD I: Introduction aux SGBD",
     "section": "Usages",
-    "text": "Usages\n\nSites web dynamiques\nLogiciels personnels\n\nDerrière certaines applications (gestion de photos, de carnet d’adresses, …), on trouve des bases de données légères (SQLITE)\n\n\nPartout\n\nsmartphones, tablettes, …\nweb, réseaux sociaux\nadministrations (APOGEE, …)\nentreprises (Stocks Supply Chain, Customer Relationship Management, …)\nNSA"
+    "text": "Usages\n\nSites web dynamiques  \nLogiciels personnels\n\nDerrière certaines applications (gestion de photos, de carnet d’adresses, …), on trouve des bases de données légères (SQLITE)\n\n\nPartout\n\nsmartphones, tablettes, …\nweb, réseaux sociaux\nadministrations (APOGEE, …)\nentreprises (Stocks Supply Chain, Customer Relationship Management, …)\nNSA"
   },
   {
     "objectID": "slides/BD_intro.html#lidée-clé-codd-1970",
     "href": "slides/BD_intro.html#lidée-clé-codd-1970",
     "title": "BD I: Introduction aux SGBD",
     "section": "L’idée clé (Codd, 1970)",
-    "text": "L’idée clé (Codd, 1970)\nOrganiser les informations en tables ou relations\nDévelopper et formaliser un langage de manipulation de tables : l’algèbre relationnelle} (langage SQL, Structured Query Language)\n\nL’usager peut définir l’organisation des données\nIl peut interroger celles-ci (par des requêtes)\n\nLe langage est déclaratif :\n\nOn décrit ce que l’on veut obtenir (quoi mais pas comment)\nLe système fait le reste…\n\n\nL’évaluation de toutes les requêtes s’arrête (au moins en théorie : si on y met les moyens…)\nL’algèbre relationnelle/SQL n’est pas un langage complet (différence avec JAVA, C, Python, etc)"
+    "text": "L’idée clé (Codd, 1970)\nOrganiser les informations en tables ou relations\nDévelopper et formaliser un langage de manipulation de tables : l’algèbre relationnelle (langage SQL, Structured Query Language)\n\nL’usager peut définir l’organisation des données\nIl peut interroger celles-ci (par des requêtes)\n\nLe langage est déclaratif :\n\nOn décrit ce que l’on veut obtenir (quoi mais pas comment)\nLe système fait le reste…\n\n\nL’évaluation de toutes les requêtes s’arrête (au moins en théorie : si on y met les moyens…)\nL’algèbre relationnelle/SQL n’est pas un langage complet (différence avec JAVA, C, Python, etc)"
   },
   {
     "objectID": "slides/BD_intro.html#quelques-acteurs",
     "href": "slides/BD_intro.html#quelques-acteurs",
     "title": "BD I: Introduction aux SGBD",
     "section": "Quelques acteurs",
-    "text": "Quelques acteurs\n\n\nServeurs\n\nORACLE (commercial)\nDB2 (IBM commercial)\nSQLSERVER (Microsoft commercial)\nMySQL (open source)\nPostGres (open source)\nHana (commercial)\n\n\nClients\n\npsql\npgcli\ndbeaver\nPgAdmin4\n…"
+    "text": "Quelques acteurs\n\n\nServeurs\n\nORACLE (commercial)\nDB2 (IBM commercial)\nSQLSERVER (Microsoft commercial)\nMySQL (open source)\nPostGres (open source)\nHana (commercial)\n\n\nClients\n\npsql\npgcli\ndbeaver\nPgAdmin\n…"
   },
   {
     "objectID": "slides/BD_intro.html#postgres-postgresql",
@@ -2458,14 +2458,14 @@
     "href": "slides/BD_intro.html#détails-du-schema-world",
     "title": "BD I: Introduction aux SGBD",
     "section": "Détails du schema world\n",
-    "text": "Détails du schema world\n\n\nImage WorldUn schéma de table : la donnée des noms des colonnes et des types des colonnes"
+    "text": "Détails du schema world\n\n\n\nImage World\n\n\n\nUn schéma de table : la donnée des noms des colonnes et des types des colonnes"
   },
   {
     "objectID": "slides/BD_intro.html#quelques-questions-et-propriétés-typiques",
     "href": "slides/BD_intro.html#quelques-questions-et-propriétés-typiques",
     "title": "BD I: Introduction aux SGBD",
     "section": "Quelques questions et propriétés typiques",
-    "text": "Quelques questions et propriétés typiques\n\nExtraire de l’information\n\nAssurer de la cohérence après modification\n\nFaire en sorte que chaque état/territoire soit identifié par un numéro unique\nFaire en sorte que chaque ville soit identifiée par un numéro unique\nNe pas proposer de données sur des villes/territoires/états qui n’existent pas\n\n\n\nPropager l’information\n\nHistoriciser le schéma"
+    "text": "Quelques questions et propriétés typiques\n\nExtraire de l’information\n\nAssurer de la cohérence après modification\n\nFaire en sorte que chaque état/territoire soit identifié par un numéro unique\nFaire en sorte que chaque ville soit identifiée par un numéro unique\nNe pas proposer de données sur des villes/territoires/états qui n’existent pas\n\n\n\n\n\n\nPropager l’information\n\nHistoriciser le schéma"
   },
   {
     "objectID": "slides/BD_intro.html#objectifs-du-cours",
@@ -2500,7 +2500,7 @@
     "href": "slides/BD_intro.html#au-delà-du-relationnel-no-sql",
     "title": "BD I: Introduction aux SGBD",
     "section": "Au delà du relationnel: No SQL",
-    "text": "Au delà du relationnel: No SQL\n\nCe sont les grandes entreprises du web amenées à traiter des volumes de données très importants qui ont été les premières confrontées aux limitations intrinsèques des SGBD relationnels traditionnels. Ces systèmes fondés sur une application stricte des propriétés ACID et généralement conçus pour fonctionner sur des ordinateurs uniques ont rapidement posé des problèmes d’extensibilité.\n\n\nAfin de répondre à ces limites, ces entreprises ont commencé à développer leurs propres systèmes de gestion de bases de données pouvant fonctionner sur des architectures matérielles distribuées et permettant de traiter des volumes de données importants. Les systèmes propriétaires qui en ont résulté, Google (BigTable), Amazon (Dynamo (en)), LinkedIn (Voldemort), Facebook (Cassandra puis HBase), SourceForge.net (MongoDB), Ubuntu One (CouchDB), Baidu (Hypertable) ont été les précurseurs du modèle NoSQL.\n\n\nLes performances restent bonnes avec la montée en charge en multipliant simplement le nombre de serveurs, solution raisonnable avec la baisse des coûts, en particulier si les revenus croissent en même temps que l’activité5. Les systèmes géants sont les premiers concernés : énormes quantités de données6, structuration relationnelle faible (ou de moindre importance que la capacité d’accès très rapide, quitte à multiplier les serveurs).\n\n\nUn modèle typique en NoSQL est le système clé-valeur, avec une base de données pouvant se résumer topologiquement à un simple tableau associatif unidimensionnel avec des millions — voire des milliards — d’entrées. Parmi les applications typiques, on retrouve des analyses temps-réel, statistiques, du stockage de logs (journaux), etc.\n\n\nNoSQL"
+    "text": "Au delà du relationnel: No SQL\n\nCe sont les grandes entreprises du web qui ont été les premières confrontées aux limitations intrinsèques des SGBD relationnels traditionnels. Ces systèmes fondés sur une application stricte des propriétés ACID et généralement conçus pour fonctionner sur des ordinateurs uniques ont rapidement posé des problèmes d’extensibilité.\n\n\n\nAfin de répondre à ces limites, ces entreprises ont commencé à développer leurs propres systèmes de gestion de bases de données pouvant fonctionner sur des architectures matérielles distribuées et permettant de traiter des volumes de données importants.\n\n\n\n\nLes systèmes propriétaires qui en ont résulté, Google (BigTable), Amazon (Dynamo (en)), LinkedIn (Voldemort), Facebook (Cassandra puis HBase), SourceForge.net (MongoDB), Ubuntu One (CouchDB), Baidu (Hypertable) ont été les précurseurs du modèle NoSQL."
   },
   {
     "objectID": "slides/BD_intro.html#lire-plus",
@@ -2801,7 +2801,7 @@
     "href": "slides/SQL_0.html#remarque",
     "title": "BD I: Algèbre Relationnelle",
     "section": "Remarque",
-    "text": "Remarque\n\nUn domaine peut se définir :\n\nen extension (en donnant la liste de toutes les valeurs possibles) ou\nen intention (en donnant une propriété caractéristique)."
+    "text": "Remarque\n\n\nUn domaine peut se définir :\n\nen extension (en donnant la liste de toutes les valeurs possibles) ou\nen intention (en donnant une propriété caractéristique)."
   },
   {
     "objectID": "slides/SQL_0.html#produit-cartésien",
@@ -2815,7 +2815,7 @@
     "href": "slides/SQL_0.html#exemple",
     "title": "BD I: Algèbre Relationnelle",
     "section": "Exemple",
-    "text": "Exemple\n\n\nDeux domaines\n\\[D_1=\\left\\{1,2,5\\right\\} \\quad\\text{et}\\quad D_2=\\left\\{2,4\\right\\}\\]\nUn produit cartésien\n\\[D_1 \\times D_2 = \\left\\{(1,2),(1,4),(2,2),(2,4),(5,2),(5,4)\\right\\}\\]\nUne relation\n\\[R =\\left\\{(1,2),(1,4),(5,2),(5,4)\\right\\}\\]\nUne relation est un (sous-) ensemble (d’un produit cartésien)\n\nOn peut représenter \\(R\\) par le tableau :\n\n\n\n\n\\(X_1\\)\n\\(X_2\\)\n\n\n\n\n1\n2\n\n\n1\n4\n\n\n5\n2\n\n\n5\n4\n\n\n\n\nChaque ligne de la table correspond à un élément de la relation \\(R\\)"
+    "text": "Exemple\n\n\nDeux domaines\n\\[D_1=\\left\\{1,2,5\\right\\} \\quad\\text{et}\\quad D_2=\\left\\{2,4\\right\\}\\]\nUn produit cartésien\n\\[D_1 \\times D_2 = \\left\\{(1,2),(1,4),(2,2),(2,4),(5,2),(5,4)\\right\\}\\]\nUne relation\n\\[R =\\left\\{(1,2),(1,4),(5,2),(5,4)\\right\\}\\]\nUne relation est un (sous-) ensemble (d’un produit cartésien)\n\nOn peut représenter \\(R\\) par le tableau :\n\n\n\n\\(X_1\\)\n\\(X_2\\)\n\n\n\n1\n2\n\n\n1\n4\n\n\n5\n2\n\n\n5\n4\n\n\n\n\nChaque ligne de la table correspond à un élément de la relation \\(R\\)"
   },
   {
     "objectID": "slides/SQL_0.html#relations-classiques",
@@ -2842,8 +2842,8 @@
     "objectID": "slides/SQL_0.html#exemple-de-schéma-table-bebes-dans-babynames",
     "href": "slides/SQL_0.html#exemple-de-schéma-table-bebes-dans-babynames",
     "title": "BD I: Algèbre Relationnelle",
-    "section": "Exemple de schéma : table bebes dans babynames",
-    "text": "Exemple de schéma : table bebes dans babynames\n\n\nbd_2023-24&gt; \\dt\n+-----------+-------+-------+-----------+\n| Schema    | Name  | Type  | Owner     |\n|-----------+-------+-------+-----------|\n| babynames | bebes | table | boucheron |\n+-----------+-------+-------+-----------+\n\nbd_2023-24&gt; \\d bebes\n+--------+------------------------+-----------+\n| Column | Type                   | Modifiers |\n|--------+------------------------+-----------|\n| sexe   | integer                |           |\n| prenom | character varying(500) |           |\n| annee  | integer                |           |\n| nombre | integer                |           |\n+--------+------------------------+-----------+\n\\[\\left((\\textsf{sexe}, \\mathbb{Z}), (\\textsf{prenom}, \\texttt{char}), (\\texttt{annee}, \\mathbb{Z}), (\\texttt{nombre}, \\mathbb{Z})\\right)\\]\n\nDonnées INSEE. Une ligne de la table bébés nous informe qu’en France (héxagone?), pendant une annee, le nombre de naissances de sexe sexe, ayant reçu le prénom prenom est donnée par la colonne nombre.\nbd_2023-24&gt; SELECT * \nFROM bebes \nWHERE sexe=1 AND annee=2000 AND prenom='THÉO' ;\n\n+------+--------+-------+--------+\n| sexe | prenom | annee | nombre |\n|------+--------+-------+--------|\n| 1    | THÉO   | 2000  | 7961   |\n+------+--------+-------+--------+\nL’arité de bebes est \\(4\\), sa cardinalité est \\(648 614\\)."
+    "section": "Exemple de schéma : table bebes dans babynames\n",
+    "text": "Exemple de schéma : table bebes dans babynames\n\n\n\nbd_2023-24&gt; \\dt\n+-----------+-------+-------+-----------+\n| Schema    | Name  | Type  | Owner     |\n|-----------+-------+-------+-----------|\n| babynames | bebes | table | boucheron |\n+-----------+-------+-------+-----------+\n\nbd_2023-24&gt; \\d bebes\n+--------+------------------------+-----------+\n| Column | Type                   | Modifiers |\n|--------+------------------------+-----------|\n| sexe   | integer                |           |\n| prenom | character varying(500) |           |\n| annee  | integer                |           |\n| nombre | integer                |           |\n+--------+------------------------+-----------+\n\\[\\left((\\textsf{sexe}, \\mathbb{Z}), (\\textsf{prenom}, \\texttt{char}), (\\texttt{annee}, \\mathbb{Z}), (\\texttt{nombre}, \\mathbb{Z})\\right)\\]\n\nDonnées INSEE. Une ligne de la table bébés nous informe qu’en France (héxagone?), pendant une annee, le nombre de naissances de sexe sexe, ayant reçu le prénom prenom est donnée par la colonne nombre.\nbd_2023-24&gt; SELECT * \nFROM bebes \nWHERE sexe=1 AND annee=2000 AND prenom='THÉO' ;\n\n+------+--------+-------+--------+\n| sexe | prenom | annee | nombre |\n|------+--------+-------+--------|\n| 1    | THÉO   | 2000  | 7961   |\n+------+--------+-------+--------+\nL’arité de bebes est \\(4\\), sa cardinalité est \\(648 614\\)."
   },
   {
     "objectID": "slides/SQL_0.html#formalisation-alternative",
@@ -2884,8 +2884,8 @@
     "objectID": "slides/SQL_0.html#union-cup-et-intersection-cap",
     "href": "slides/SQL_0.html#union-cup-et-intersection-cap",
     "title": "BD I: Algèbre Relationnelle",
-    "section": "Union \\(\\cup\\) et intersection \\(\\cap\\)",
-    "text": "Union \\(\\cup\\) et intersection \\(\\cap\\)\n\n\n\n\n\n\nDéfinition\n\n\n\nL’union et l’intersection sont des opérations portant sur deux relations \\(R_1\\) et \\(R_2\\) de même schéma\n\\(T=R_1\\cup R_2\\) est constituée des tuples appartenant à \\(R_1\\) ou à \\(R_2\\).\n\\(T=R_1\\cap R_2\\) est constituée des tuples appartenant à \\(R_1\\) et à \\(R_2\\).\nLes Schémas de \\(R_1\\cup R_2\\), \\(R_1\\cap R_2\\) sont les mêmes que ceux de \\(R_1\\) et \\(R_2\\)"
+    "section": "Union \\(\\cup\\) et intersection \\(\\cap\\)\n",
+    "text": "Union \\(\\cup\\) et intersection \\(\\cap\\)\n\n\n\n\n\n\n\nDéfinition\n\n\n\nL’union et l’intersection sont des opérations portant sur deux relations \\(R_1\\) et \\(R_2\\) de même schéma\n\\(T=R_1\\cup R_2\\) est constituée des tuples appartenant à \\(R_1\\) ou à \\(R_2\\).\n\\(T=R_1\\cap R_2\\) est constituée des tuples appartenant à \\(R_1\\) et à \\(R_2\\).\nLes Schémas de \\(R_1\\cup R_2\\), \\(R_1\\cap R_2\\) sont les mêmes que ceux de \\(R_1\\) et \\(R_2\\)"
   },
   {
     "objectID": "slides/SQL_0.html#union-exemple",
@@ -2920,7 +2920,7 @@
     "href": "slides/SQL_0.html#produit-cartésien-1",
     "title": "BD I: Algèbre Relationnelle",
     "section": "Produit Cartésien",
-    "text": "Produit Cartésien\n\n\n\n\n\n\nDéfinition\n\n\n\nSoient:\n\n\\(R_1\\) de schéma \\(R_1(A_1,A_2,...,A_k)\\)\n\\(R_2\\) de schéma \\(R_2(B_1,B_2,...,B_\\ell)\\)\navec \\(A_i\\neq B_j\\), pour tout \\(i=1,...,k\\), \\(j=1,..,\\ell\\)\n\nDans le contexte “classique” : \\(R_1 \\times R_2= \\{(e_1,e_2): e_1\\in R_1, e_2\\in R_2\\}\\)\n\\(R=R_1 \\times R_2\\) de schéma \\(R(A_1,A_2,...,A_k,B_1,B_2,...,B_\\ell)\\). Le schéma de \\(R\\) est l’union des schémas de \\(R_1\\) et \\(R_2\\)\n\n\n\n\n\n\n\n\n\n\nAttention\n\n\nEn algèbre relationnelle, cette opération est commutative ( \\(R_1\\times R_2 = R_2\\times R_1\\) ) et associative"
+    "text": "Produit Cartésien\n\n\n\n\n\n\nDéfinition\n\n\n\n\nSoient:\n\n\n\\(R_1\\) de schéma \\(R_1(A_1,A_2,...,A_k)\\)\n\n\n\\(R_2\\) de schéma \\(R_2(B_1,B_2,...,B_\\ell)\\)\n\navec \\(A_i\\neq B_j\\), pour tout \\(i=1,...,k\\), \\(j=1,..,\\ell\\)\n\n\n\nDans le contexte “classique” : \\(R_1 \\times R_2= \\{(e_1,e_2): e_1\\in R_1, e_2\\in R_2\\}\\)\n\\(R=R_1 \\times R_2\\) de schéma \\(R(A_1,A_2,...,A_k,B_1,B_2,...,B_\\ell)\\). Le schéma de \\(R\\) est l’union des schémas de \\(R_1\\) et \\(R_2\\)\n\n\n\n\n\n\n\n\n\n\nAttention\n\n\nEn algèbre relationnelle, cette opération est commutative ( \\(R_1\\times R_2 = R_2\\times R_1\\) ) et associative"
   },
   {
     "objectID": "slides/SQL_0.html#produit-cartésien-2",
@@ -2941,7 +2941,7 @@
     "href": "slides/SQL_0.html#projection-largepi",
     "title": "BD I: Algèbre Relationnelle",
     "section": "Projection ( \\(\\Large{\\pi}\\) )",
-    "text": "Projection ( \\(\\Large{\\pi}\\) )\n\n\n\n\n\n\nDéfinition\n\n\n\nLa projection d’une relation \\(R\\) de schéma \\(R(A_1,\\dots, A_k)\\) sur les attributs \\(A_{i_1}, \\dots, A_{i_p}\\), \\(i_1,..., i_p\\in \\{1,...,k\\}\\), est la relation \\(S\\)\n\nde schéma \\(S(A_{i_1}, \\dots,A_{i_p})\\)\ndont les tuples sont obtenus par élimination des attributs non mentionnés dans \\(A_{i_1}, \\dots, A_{i_p}\\) (et par élimination des doublons).\nOn note \\(S = \\pi_{A_{i_1}, \\dots, A_{i_p}} (R)\\).\n\nDéfinition formelle :\n\n\\[s\\in S\\quad  \\iff \\quad \\exists t\\in R, \\forall n\\in\\left\\{1,\\dots,p\\right\\}\\qquad s.A_{i_n}=t.A_{i_n}\\]\n\n\n\n\n\n\n\n\n\nRemarque\n\n\nImplicitement, on a élimination des doublons car une projection peut produire plusieurs fois le même tuple."
+    "text": "Projection ( \\(\\Large{\\pi}\\) )\n\n\n\n\n\n\nDéfinition\n\n\n\nLa projection d’une relation \\(R\\) de schéma \\(R(A_1,\\dots, A_k)\\) sur les attributs \\(A_{i_1}, \\dots, A_{i_p}\\), \\(i_1,..., i_p\\in \\{1,...,k\\}\\), est la relation \\(S\\)\n\nde schéma \\(S(A_{i_1}, \\dots,A_{i_p})\\)\n\ndont les tuples sont obtenus par élimination des attributs non mentionnés dans \\(A_{i_1}, \\dots, A_{i_p}\\) (et par élimination des doublons).\nOn note \\(S = \\pi_{A_{i_1}, \\dots, A_{i_p}} (R)\\).\n\n\nDéfinition formelle :\n\n\\[s\\in S\\quad  \\iff \\quad \\exists t\\in R, \\forall n\\in\\left\\{1,\\dots,p\\right\\}\\qquad s.A_{i_n}=t.A_{i_n}\\]\n\n\n\n\n\n\n\n\n\nRemarque\n\n\nImplicitement, on a élimination des doublons car une projection peut produire plusieurs fois le même tuple."
   },
   {
     "objectID": "slides/SQL_0.html#projection-exemple",
@@ -2955,7 +2955,7 @@
     "href": "slides/SQL_0.html#sélection-largesigma",
     "title": "BD I: Algèbre Relationnelle",
     "section": "Sélection ( \\(\\Large{\\sigma}\\) )",
-    "text": "Sélection ( \\(\\Large{\\sigma}\\) )\n\n\n\n\n\n\nDéfinition\n\n\n\nLa sélection d’une relation \\(R\\) par une condition \\(C\\) est une relation \\(S\\)\n\nde même schéma que \\(R\\)\ndont les tuples sont ceux de \\(R\\) qui satisfont la condition \\(C\\).\n\nOn note \\(S = \\sigma_C (R)\\).\nLa condition \\(C\\)\n\ns’exprime à l’aide des noms d’attributs de la relation ou de constantes (pour les opérandes)\non peut utiliser des opérateurs arithmétiques de comparaison ( \\(=, \\neq, \\leq, \\geq, &lt;, &gt;\\) ) ainsi que des connecteurs logiques ( \\(\\lnot, \\land, \\lor\\) ).."
+    "text": "Sélection ( \\(\\Large{\\sigma}\\) )\n\n\n\n\n\n\nDéfinition\n\n\n\n\nLa sélection d’une relation \\(R\\) par une condition \\(C\\) est une relation \\(S\\)\n\nde même schéma que \\(R\\)\ndont les tuples sont ceux de \\(R\\) qui satisfont la condition \\(C\\).\n\n\nOn note \\(S = \\sigma_C (R)\\).\n\nLa condition \\(C\\)\n\ns’exprime à l’aide des noms d’attributs de la relation ou de constantes (pour les opérandes)\non peut utiliser des opérateurs arithmétiques de comparaison ( \\(=, \\neq, \\leq, \\geq, &lt;, &gt;\\) ) ainsi que des connecteurs logiques ( \\(\\lnot, \\land, \\lor\\) ).."
   },
   {
     "objectID": "slides/SQL_0.html#sélection-exemple",
@@ -2969,7 +2969,7 @@
     "href": "slides/SQL_0.html#renommage",
     "title": "BD I: Algèbre Relationnelle",
     "section": "Renommage",
-    "text": "Renommage\n\n\n\n\n\n\nDéfinition\n\n\n\nSoit \\(R\\) de schéma \\(R(A_1,\\dots, A_k)\\), le renommage d’un attribut \\(A_i\\), \\(i\\leq k\\), en \\(B\\) est une relation \\(S\\) :\n\nde même contenu (mêmes lignes)\nde schéma \\(S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)\\)\nOn le note \\(S=\\rho_{A_i\\mapsto B}(R)\\)"
+    "text": "Renommage\n\n\n\n\n\n\nDéfinition\n\n\n\nSoit \\(R\\) de schéma \\(R(A_1,\\dots, A_k)\\), le renommage d’un attribut \\(A_i\\), \\(i\\leq k\\), en \\(B\\) est une relation \\(S\\) :\n\nde même contenu (mêmes lignes)\nde schéma \\(S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)\\)\n\nOn le note \\(S=\\rho_{A_i\\mapsto B}(R)\\)"
   },
   {
     "objectID": "slides/SQL_0.html#renommage-exemple",
@@ -3024,8 +3024,8 @@
     "objectID": "slides/SQL_0.html#exemple-sur-le-schéma-world",
     "href": "slides/SQL_0.html#exemple-sur-le-schéma-world",
     "title": "BD I: Algèbre Relationnelle",
-    "section": "Exemple sur le schéma world",
-    "text": "Exemple sur le schéma world\n\nLier les pays (les lignes de country) à leur capitale, c’est à dire les couples de lignes de country et de city qui satisfont capital = id"
+    "section": "Exemple sur le schéma world\n",
+    "text": "Exemple sur le schéma world\n\n\nLier les pays (les lignes de country) à leur capitale, c’est à dire les couples de lignes de country et de city qui satisfont capital = id"
   },
   {
     "objectID": "slides/SQL_0.html#exemple-sur-le-schéma-world-suite",
@@ -3067,7 +3067,7 @@
     "href": "slides/SQL_0.html#jointure-naturelle-formalisation",
     "title": "BD I: Algèbre Relationnelle",
     "section": "Jointure naturelle (formalisation)",
-    "text": "Jointure naturelle (formalisation)\nConsidérons \\(S\\) d’attributs \\(A_1',..,A_k',B_{h+1},...,B_l\\) définie par :\n\\[S=\\rho_{A_1\\mapsto A_1'}(\\rho_{A_2\\mapsto A_2'}(\\cdots (\\rho_{A_k\\mapsto A_k'}(R_2)\\cdots ))\\]\nLa jointure naturelle sur deux relations \\(R_1\\) et \\(R_2\\) est la relation\n\nd’attributs \\(A_1,..,A_k,B_1,...,B_h, B_{h+1},...,B_\\ell\\)\ndéfinie par : \\[\\pi_{A_1,..,A_k,B_1,...,B_h, B_{h+1},...,B_\\ell}(R_1\\bowtie_{C} S)\\] où \\(C\\) est \\((A_1=A_1') \\wedge (A_2=A'_2) \\wedge \\ldots \\wedge (A_k=A_k')\\)\n\n\n\n\n\n on réalise une équi-jointure sur tous les attributs communs et on ne garde qu’un seul “exemplaire” de ces attributs communs par projection. On note cette opération : \\(R_1 \\bowtie R_2\\).\n Pour éviter le renommage, on peut décider de préfixer les noms des attributs par ceux de la relation. La condition \\(C\\) devient :\n\\[(R_1.A_1=R_2.A_1) \\wedge \\ldots \\wedge (R_1.A_k=R_2.A_k)\\]"
+    "text": "Jointure naturelle (formalisation)\nConsidérons \\(S\\) d’attributs \\(A_1',..,A_k',B_{h+1},...,B_l\\) définie par :\n\\[S=\\rho_{A_1\\mapsto A_1'}(\\rho_{A_2\\mapsto A_2'}(\\cdots (\\rho_{A_k\\mapsto A_k'}(R_2)\\cdots ))\\]\nLa jointure naturelle sur deux relations \\(R_1\\) et \\(R_2\\) est la relation\n\nd’attributs \\(A_1,..,A_k,B_1,...,B_h, B_{h+1},...,B_\\ell\\)\n\ndéfinie par : \\[\\pi_{A_1,..,A_k,B_1,...,B_h, B_{h+1},...,B_\\ell}(R_1\\bowtie_{C} S)\\] où \\(C\\) est \\((A_1=A_1') \\wedge (A_2=A'_2) \\wedge \\ldots \\wedge (A_k=A_k')\\)\n\n\n\n\n\n\n on réalise une équi-jointure sur tous les attributs communs et on ne garde qu’un seul “exemplaire” de ces attributs communs par projection. On note cette opération : \\(R_1 \\bowtie R_2\\).\n Pour éviter le renommage, on peut décider de préfixer les noms des attributs par ceux de la relation. La condition \\(C\\) devient :\n\\[(R_1.A_1=R_2.A_1) \\wedge \\ldots \\wedge (R_1.A_k=R_2.A_k)\\]"
   },
   {
     "objectID": "slides/SQL_0.html#exemple-de-jointure-naturelle",
@@ -3319,7 +3319,7 @@
     "href": "slides/SQL_1.html#sql",
     "title": "BD II: SQL I",
     "section": "SQL",
-    "text": "SQL\n\n\nUne instruction SQL permet de combiner :\n\nrestriction/filtrage (sélection) \\(\\sigma\\)\nprojection \\(\\pi\\)\nrenommage \\(\\rho\\)\n…\n\n. . .\n\nL’instruction\nSELECT &lt;liste attribut&gt;\n\nFROM &lt;table&gt;\n\nWHERE &lt;condition&gt; ;\ntraduit l’expression\n\\(\\Pi_{\\text{&lt;liste attribut&gt;}}(\\sigma_{\\text{&lt;condition&gt;}}(\\text{&lt;table&gt;}))\\)\nOu \\sigma(R, Condition) | \\Pi(&lt;liste attribut&gt;)"
+    "text": "SQL\n\n\nUne instruction SQL permet de combiner :\n\nrestriction/filtrage (sélection) \\(\\sigma\\)\nprojection \\(\\pi\\)\nrenommage \\(\\rho\\)\n…\n\n. . .\n\nL’instruction\nSELECT &lt;liste attribut&gt;\n\nFROM &lt;table&gt;\n\nWHERE &lt;condition&gt; ;\ntraduit l’expression\n\\(\\Pi_{\\text{&lt;liste attribut&gt;}}(\\sigma_{\\text{&lt;condition&gt;}}(\\text{&lt;table&gt;}))\\)\nOu σ(R, Condition) |&gt; Π(&lt;liste attribut&gt;)"
   },
   {
     "objectID": "slides/SQL_1.html#syntaxe---requêtes-simples",
@@ -3340,49 +3340,49 @@
     "href": "slides/SQL_1.html#structure-de-base",
     "title": "BD II: SQL I",
     "section": "Structure de base",
-    "text": "Structure de base\nLa structure de base d’une requête s’appuie sur les trois mots clés suivants :\n\n.red[SELECT] correspond à l’opérateur de projection sur la liste d’attributs demandée, il peut aussi être suivi de fonctions d’attributs\n.red[FROM] indique la ou les relations concernées\n.red[WHERE] précise une condition et correspond à l’opération de restriction/sélection en algèbre relationnelle."
+    "text": "Structure de base\nLa structure de base d’une requête s’appuie sur les trois mots clés suivants :\n\nSELECT correspond à l’opérateur de projection sur la liste d’attributs demandée, il peut aussi être suivi de fonctions d’attributs\nFROM indique la ou les relations concernées\nWHERE précise une condition et correspond à l’opération de restriction/sélection en algèbre relationnelle."
   },
   {
     "objectID": "slides/SQL_1.html#syntaxe-de-la-condition-de-filtrage-where-...",
     "href": "slides/SQL_1.html#syntaxe-de-la-condition-de-filtrage-where-...",
     "title": "BD II: SQL I",
     "section": "Syntaxe de la condition de filtrage (WHERE ...)",
-    "text": "Syntaxe de la condition de filtrage (WHERE ...)\nUne condition se construit à l’aide des opérations suivantes :\n\n\nComparaison avec opérateurs : .red[=, &lt;&gt;, &gt;,&lt;, &gt;=, &lt;=]\n\nSELECT *\n\nFROM Employe\n\nWHERE NomE &lt;&gt;'Durand'  ;  #&lt;&lt;"
+    "text": "Syntaxe de la condition de filtrage (WHERE ...)\nUne condition se construit à l’aide des opérations suivantes :\n\n\nComparaison avec opérateurs : =, &lt;&gt;, &gt;,&lt;, &gt;=, &lt;=\n\n\nSELECT *\n\nFROM Employe\n\nWHERE NomE &lt;&gt;'Durand'  ;"
   },
   {
     "objectID": "slides/SQL_1.html#syntaxe-de-la-condition-de-filtrage-where-...-1",
     "href": "slides/SQL_1.html#syntaxe-de-la-condition-de-filtrage-where-...-1",
     "title": "BD II: SQL I",
     "section": "Syntaxe de la condition de filtrage (WHERE ...)",
-    "text": "Syntaxe de la condition de filtrage (WHERE ...)\nCombinaison de conditions à l’aide des opérateurs logiques: .red[AND, OR, NOT]\nSELECT DISTINCT NomF\n\nFROM Fournisseur\n\nWHERE (Ville='Londres') OR (Ville='Paris');  #&lt;&lt;\n Attention aux priorités dans l’évaluation des expressions logiques\n Attention aux valeurs manquantes"
+    "text": "Syntaxe de la condition de filtrage (WHERE ...)\nCombinaison de conditions à l’aide des opérateurs logiques: AND, OR, NOT\nSELECT DISTINCT NomF\n\nFROM Fournisseur\n\nWHERE (Ville='Londres') OR (Ville='Paris');  \n Attention aux priorités dans l’évaluation des expressions logiques\n Attention aux valeurs manquantes"
   },
   {
     "objectID": "slides/SQL_1.html#syntaxe-de-la-condition-where-...-suite",
     "href": "slides/SQL_1.html#syntaxe-de-la-condition-where-...-suite",
     "title": "BD II: SQL I",
     "section": "Syntaxe de la condition WHERE ... (suite)",
-    "text": "Syntaxe de la condition WHERE ... (suite)\nTest BETWEEN permettant de vérifier si la valeur d’un attribut est comprise entre deux constantes\nSELECT NomE\n\nFROM Employe\n\nWHERE Annee BETWEEN '22/06/03' AND '25/09/03';   #&lt;&lt;\n Éviter de manipuler les dates et heures comme des chaînes de caractères"
+    "text": "Syntaxe de la condition WHERE ... (suite)\nTest BETWEEN permettant de vérifier si la valeur d’un attribut est comprise entre deux constantes\nSELECT NomE\n\nFROM Employe\n\nWHERE Annee BETWEEN '22/06/03' AND '25/09/03';   \n Éviter de manipuler les dates et heures comme des chaînes de caractères"
   },
   {
     "objectID": "slides/SQL_1.html#syntaxe-de-la-condition-where-...-suite-1",
     "href": "slides/SQL_1.html#syntaxe-de-la-condition-where-...-suite-1",
     "title": "BD II: SQL I",
     "section": "Syntaxe de la condition WHERE ... (suite)",
-    "text": "Syntaxe de la condition WHERE ... (suite)\n\nTest à .red[NULL] signifiant que la valeur est égale à NULL (c-à-d est inconnue)\n\nSELECT *\n\nFROM Employe\n\nWHERE Tel IS NULL;    #&lt;&lt;\n Attention aux valeurs manquantes"
+    "text": "Syntaxe de la condition WHERE ... (suite)\n\nTest à NULL signifiant que la valeur est égale à NULL (c-à-d est inconnue)\n\nSELECT *\n\nFROM Employe\n\nWHERE Tel IS NULL;    \n Attention aux valeurs manquantes"
   },
   {
     "objectID": "slides/SQL_1.html#syntaxe-de-la-condition-where-...-suite-2",
     "href": "slides/SQL_1.html#syntaxe-de-la-condition-where-...-suite-2",
     "title": "BD II: SQL I",
     "section": "Syntaxe de la condition WHERE ... (suite)",
-    "text": "Syntaxe de la condition WHERE ... (suite)\nTest d’appartenance .red[IN] qui permet de vérifier si la valeur d’un attribut appartient à une liste de constantes,\nSELECT *\n\nFROM Fournisseur\n\nWHERE Ville IN ('Paris', 'Londres');   #&lt;&lt;"
+    "text": "Syntaxe de la condition WHERE ... (suite)\nTest d’appartenance IN qui permet de vérifier si la valeur d’un attribut appartient à une liste de constantes,\nSELECT *\n\nFROM Fournisseur\n\nWHERE Ville IN ('Paris', 'Londres');"
   },
   {
     "objectID": "slides/SQL_1.html#syntaxe-de-la-condition-where-...-suite-3",
     "href": "slides/SQL_1.html#syntaxe-de-la-condition-where-...-suite-3",
     "title": "BD II: SQL I",
     "section": "Syntaxe de la condition WHERE ... (suite)",
-    "text": "Syntaxe de la condition WHERE ... (suite)\nTest .red[LIKE] permettant de vérifier si un attribut de type chaîne de caractères contient une ou plusieurs sous-chaînes\n\\(\\_\\) : remplace n’importe quel caractère\n\\(\\%\\) : remplace n’importe quelle chaîne de caractères.\nSELECT Ville\n\nFROM Fournisseur\n\nWHERE Ville LIKE 'Saint%';"
+    "text": "Syntaxe de la condition WHERE ... (suite)\nTest LIKE permettant de vérifier si un attribut de type chaîne de caractères contient une ou plusieurs sous-chaînes\n\\(\\_\\) : remplace n’importe quel caractère\n\\(\\%\\) : remplace n’importe quelle chaîne de caractères.\nSELECT Ville\n\nFROM Fournisseur\n\nWHERE Ville LIKE 'Saint%';"
   },
   {
     "objectID": "slides/SQL_1.html#requêtes-multi-relations-1",
@@ -3438,35 +3438,35 @@
     "href": "slides/SQL_1.html#première-jointure-sur-schéma-world",
     "title": "BD II: SQL I",
     "section": "Première jointure sur schéma world\n",
-    "text": "Première jointure sur schéma world\n\nQuels sont les pays qui portent le même nom que leur capitale ?\n\nSELECT name_country\n\nFROM country, city   #&lt;&lt; \n\nWHERE capital=id AND name_country=name_city;\nqui correspond à\n\\[\\pi_{\\text{name_country}}\\Bigl(\n\\sigma_{\\text{capital}=\\text{id} \\wedge \\text{name_country}=\\text{name_city}}(\\text{country }\\times \\text{city}) \\Bigr)\\]\nautrement dit\n\\[\\pi_{\\text{name_country}}\\Bigl(\n\\text{country} \\bowtie_{\\text{capital}=\\text{id} \\wedge  \\text{name_country}=\\text{name_city}} \\text{city})\n\\Bigr)\\]"
+    "text": "Première jointure sur schéma world\n\nQuels sont les pays qui portent le même nom que leur capitale ?\n\nSELECT name_country\n\nFROM country, city    \n\nWHERE capital=id AND name_country=name_city;\n\n\nqui correspond à\n\\[\\pi_{\\text{name\\_country}}(\\sigma_{\\text{capital}=\\text{id} \\wedge \\text{name\\_country}=\\text{name\\_city}}(\\text{country}\\times \\text{city}))\\]\nautrement dit à\n\\[\\pi_{\\text{name\\_country}}(\\text{country} \\bowtie_{\\text{capital}=\\text{id} \\wedge  \\text{name\\_country}=\\text{name\\_city}} \\text{city}))\\]"
   },
   {
     "objectID": "slides/SQL_1.html#syntaxe-normalisée-pour-les-jointures-join-et-on",
     "href": "slides/SQL_1.html#syntaxe-normalisée-pour-les-jointures-join-et-on",
     "title": "BD II: SQL I",
-    "section": "Syntaxe normalisée pour les jointures~: JOIN et ON\n",
-    "text": "Syntaxe normalisée pour les jointures~: JOIN et ON\n\nQuels sont les pays qui portent le même nom que leur capitale ?\nSELECT name_country\n\nFROM country JOIN city   #&lt;&lt;\n\nON capital=id    #&lt;&lt;\n\nWHERE name_country=name_city;\nqui correspond à\n\\[\\pi_{\\text{name_country}}\\Bigl(\n\\sigma_{\\text{capital}=id \\wedge  \\text{name_country}=\\text{name_city}}(\\text{country} \\times \\text{city}) \\Bigr)\\]"
+    "section": "Syntaxe normalisée pour les jointures : JOIN et ON\n",
+    "text": "Syntaxe normalisée pour les jointures : JOIN et ON\n\nQuels sont les pays qui portent le même nom que leur capitale ?\nSELECT name_country\n\nFROM country JOIN city   \n\nON capital=id    \n\nWHERE name_country=name_city;\nqui correspond à\n\\[\\pi_{\\text{name\\_country}}(\\sigma_{\\text{capital}=id \\wedge  \\text{name\\_country}=\\text{name\\_city}}(\\text{country} \\times \\text{city}))\\]"
   },
   {
     "objectID": "slides/SQL_1.html#renommage",
     "href": "slides/SQL_1.html#renommage",
     "title": "BD II: SQL I",
     "section": "Renommage",
-    "text": "Renommage\nSi on veut faire une jointure d’une table avec elle-même, on utilise AS pour obtenir deux tables de noms différents\n\nQuels sont les noms de ville qui apparaissent dans deux pays différents~?\n\nSELECT DISTINCT c1.name_city, c1.countrycode, c2.countrycode\n\nFROM city AS c1 JOIN city AS c2   #&lt;&lt;\n\n  ON c1.countrycode!=c2.countrycode AND c1.name_city=c2.name_city  #&lt;&lt;\n\nORDER BY c1.name_city;"
+    "text": "Renommage\nSi on veut faire une jointure d’une table avec elle-même, on utilise AS pour obtenir deux tables de noms différents\n\nQuels sont les noms de ville qui apparaissent dans deux pays différents~?\n\nSELECT DISTINCT c1.name_city, c1.countrycode, c2.countrycode\n\nFROM city AS c1 JOIN city AS c2   \n\n  ON c1.countrycode!=c2.countrycode AND c1.name_city=c2.name_city  \n\nORDER BY c1.name_city;"
   },
   {
     "objectID": "slides/SQL_1.html#jointure-naturelle",
     "href": "slides/SQL_1.html#jointure-naturelle",
     "title": "BD II: SQL I",
     "section": "Jointure naturelle",
-    "text": "Jointure naturelle\nQuels sont les noms des pays où le français est parlé ?\nSELECT name_country\n\nFROM country, countrylanguage\n\nWHERE country.countrycode=countrylanguage.countrycode\n      AND language='French';\nSyntaxe normalisée pour la jointure naturelle~: NATURAL JOIN\nSELECT name_country\n\nFROM country NATURAL JOIN countrylanguage   #&lt;&lt; \n\nWHERE language='French';"
+    "text": "Jointure naturelle\nQuels sont les noms des pays où le français est parlé ?\nSELECT name_country\n\nFROM country, countrylanguage\n\nWHERE country.countrycode=countrylanguage.countrycode\n      AND language='French';\nSyntaxe normalisée pour la jointure naturelle~: NATURAL JOIN\nSELECT name_country\n\nFROM country NATURAL JOIN countrylanguage    \n\nWHERE language='French';"
   },
   {
     "objectID": "slides/SQL_1.html#jointure-naturelle-suite",
     "href": "slides/SQL_1.html#jointure-naturelle-suite",
     "title": "BD II: SQL I",
     "section": "Jointure naturelle (suite)",
-    "text": "Jointure naturelle (suite)\nQuels sont les pays dont une ville a le même nom qu’une langue parlée dans ce pays~?\nSELECT DISTINCT name_country, name_city, language\n\nFROM country NATURAL JOIN  #&lt;&lt;\n     city natural JOIN     #&lt;&lt;\n     countrylanguage       #&lt;&lt;\n\nWHERE language=name_city;"
+    "text": "Jointure naturelle (suite)\nQuels sont les pays dont une ville a le même nom qu’une langue parlée dans ce pays~?\nSELECT DISTINCT name_country, name_city, language\n\nFROM country NATURAL JOIN  \n     city natural JOIN     \n     countrylanguage       \n\nWHERE language=name_city;"
   },
   {
     "objectID": "slides/SQL_1.html#jointure-externe",
@@ -3480,7 +3480,7 @@
     "href": "slides/SQL_1.html#exemple-de-jointure-externe",
     "title": "BD II: SQL I",
     "section": "Exemple de jointure externe",
-    "text": "Exemple de jointure externe\n\nCertains pays n’ont pas de capitale : la requête\n\nSELECT name_country\n\nFROM country\n\nWHERE capital IS NULL;\nrenvoie 8 lignes.\n\nQuels sont les pays qui n’ont pas de capitale ou portent le même nom que leur capitale~?\n\nSELECT name_country, name_city\n\nFROM country LEFT OUTER JOIN city   #&lt;&lt;\n     ON capital=id                  #&lt;&lt;\n\nWHERE name_city IS NULL OR name_country=name_city ;  #&lt;&lt;"
+    "text": "Exemple de jointure externe\n\nCertains pays n’ont pas de capitale : la requête\n\nSELECT name_country\n\nFROM country\n\nWHERE capital IS NULL;\nrenvoie 8 lignes.\n\nQuels sont les pays qui n’ont pas de capitale ou portent le même nom que leur capitale~?\n\nSELECT name_country, name_city\n\nFROM country LEFT OUTER JOIN city   \n     ON capital=id                  \n\nWHERE name_city IS NULL OR name_country=name_city ;"
   },
   {
     "objectID": "slides/SQL_7.html#table-babynames",
@@ -4776,5 +4776,130 @@
     "title": "Modélisation I : Entité/Association",
     "section": "Exemples de rôle dans une association réflexive",
     "text": "Exemples de rôle dans une association réflexive\nDans une base de donnée généalogique, on part d’une entité individu. On définit une auto-association mère qui relie l’entité individu avec elle-même.\n\nCette auto-association n’est pas symétrique: quand on écrit qu’Elizabeth est mère de Charles, Elisabeth et Charles ne jouent pas le même rôle.\n\n\nDans une instance \\((x,y)\\) de l’association mère \\(x\\) joue le rôle de la génitrice, \\(y\\) de l’enfant.\n\n\nOn peut rendre compte de ces rôles en marquant les arêtes qui lient l’entité individu à l’association mère (pour est-maman-de)"
+  },
+  {
+    "objectID": "slides/BD_intro.html#le-déluge",
+    "href": "slides/BD_intro.html#le-déluge",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "Le déluge",
+    "text": "Le déluge"
+  },
+  {
+    "objectID": "slides/BD_intro.html#rien-de-neuf-sous-le-soleil",
+    "href": "slides/BD_intro.html#rien-de-neuf-sous-le-soleil",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "Rien de neuf sous le soleil …",
+    "text": "Rien de neuf sous le soleil …\n\n De qui sont ces lignes ? Quand furent-elles écrites ?\n\n\nJe croyais que le goût de la statistique était particulier aux administrateurs de nos jours ; mais je me trompais. Vers la fin de l’ancien régime, on envoie souvent à l’intendant de petits tableaux tout imprimés qu’il n’a plus qu’à faire remplir par ses subdélégués et par les syndics des paroisses. Le contrôleur-général se fait faire des rapports sur la nature des terres, sur leur culture, l’espèce et la quantité des produits, le nombre des bestiaux, l’industrie et les mœurs des habitants. Les renseignements ainsi obtenus ne sont guère moins circonstanciés ni plus certains que ceux que fournissent en pareils cas de nos jours les sous-préfets et les maires. Le jugement que les subdélégués portent, à cette occasion, sur le caractère de leurs administrés, est en général peu favorable. Ils reviennent souvent sur cette opinion que « le paysan est naturellement paresseux, et ne travaillerait pas s’il n’y était obligé pour vivre. »\n\n\nC’est là une doctrine économique qui paraît fort répandue chez ces administrateurs."
+  },
+  {
+    "objectID": "slides/BD_intro.html#le-déluge-des-données-une-mode",
+    "href": "slides/BD_intro.html#le-déluge-des-données-une-mode",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "Le déluge des données : une mode ?",
+    "text": "Le déluge des données : une mode ?"
+  },
+  {
+    "objectID": "slides/BD_intro.html#les-données-intéressent",
+    "href": "slides/BD_intro.html#les-données-intéressent",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "Les données intéressent",
+    "text": "Les données intéressent\n\nles sciences\nles administrations\nles entreprises\nles citoyennes (et les citoyens)\n…"
+  },
+  {
+    "objectID": "computing-dbeaver.html#connections",
+    "href": "computing-dbeaver.html#connections",
+    "title": "Client dbeaver",
+    "section": "Connections",
+    "text": "Connections\nVous devrez créer une connection avec le serveur au sein de votre projet. Vous pouvez en créer d’autres avec d’autres serveurs, possiblement un serveur PostGres hébergé sur votre propre machine.",
+    "crumbs": [
+      "Support",
+      "Client dbeaver"
+    ]
+  },
+  {
+    "objectID": "computing-dbeaver.html#bookmarkssignets",
+    "href": "computing-dbeaver.html#bookmarkssignets",
+    "title": "Client dbeaver",
+    "section": "Bookmarks/Signets",
+    "text": "Bookmarks/Signets\nDocumentation sur les signets\n\n\n\n\n\n\nTip\n\n\n\nVous pouvez créer des signets pour retrouver facilement les schémas sur lesquels vous travaillez, ou avez travaillé.",
+    "crumbs": [
+      "Support",
+      "Client dbeaver"
+    ]
+  },
+  {
+    "objectID": "computing-dbeaver.html#dashboardstableaux-de-bord",
+    "href": "computing-dbeaver.html#dashboardstableaux-de-bord",
+    "title": "Client dbeaver",
+    "section": "Dashboards/Tableaux de bord",
+    "text": "Dashboards/Tableaux de bord",
+    "crumbs": [
+      "Support",
+      "Client dbeaver"
+    ]
+  },
+  {
+    "objectID": "computing-dbeaver.html#diagrammes-er",
+    "href": "computing-dbeaver.html#diagrammes-er",
+    "title": "Client dbeaver",
+    "section": "Diagrammes ER",
+    "text": "Diagrammes ER\ndbeaver permet de faire un peu de rétro-ingénieurie et de visualiser (partiellement) un schéma. Outil utile quand on veut retoucher un schéma ou simplement le comprendre.",
+    "crumbs": [
+      "Support",
+      "Client dbeaver"
+    ]
+  },
+  {
+    "objectID": "computing-dbeaver.html#scripts",
+    "href": "computing-dbeaver.html#scripts",
+    "title": "Client dbeaver",
+    "section": "Scripts",
+    "text": "Scripts\n\nUn script pour chaque séance de TD/TP\nNommer le script de façon utile (avec rename)\nCommenter le script\nSéparer les requêtes par des lignes blanches et une ligne de commentaire blanche --\nUtiliser le reformattage pour rendre votre code plus lisible",
+    "crumbs": [
+      "Support",
+      "Client dbeaver"
+    ]
+  },
+  {
+    "objectID": "slides/BD_intro.html#systèmes-dinformation-1",
+    "href": "slides/BD_intro.html#systèmes-dinformation-1",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "Systèmes d’information",
+    "text": "Systèmes d’information\n\nUn système d’information (SI) est un ensemble de composants qui fonctionnent ensemble pour collecter, traiter, stocker et diffuser des informations.\n\n\n\nLes systèmes d’information ont des objectifs (très) divers.\n\n\nPar exemple : les systèmes de traitement des transactions (TPS), les systèmes d’information de gestion (MIS), les systèmes d’aide à la décision (DSS) et les systèmes de planification des ressources de l’entreprise (ERP)."
+  },
+  {
+    "objectID": "slides/BD_intro.html#décomposition-des-si",
+    "href": "slides/BD_intro.html#décomposition-des-si",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "Décomposition des SI",
+    "text": "Décomposition des SI\nUn système d’information comprend en général les éléments suivants:\n\n\nMatériel informatique (ou pas) : dispositifs physiques utilisés pour collecter, stocker et traiter l’information (ordinateurs, serveurs, stockage, réseau, …).\nLogiciels : Les programmes exécutés sur le matériel pour gérer les données et effectuer des tâches spécifiques (OS, SGBD, Logiciels applicatifs).\nDonnées\nPersonnes : Les usagers du système d’information\nProcessus : Les flux de travail et les règles régissant la manière dont les données sont collectées, traitées et distribuées, conformément aux objectifs."
+  },
+  {
+    "objectID": "slides/BD_intro.html#sources-et-préservation",
+    "href": "slides/BD_intro.html#sources-et-préservation",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "Sources et préservation",
+    "text": "Sources et préservation\n\n\n\n\nData humanities with R. Arnold and Tilton\n\nQuantitative tour at social sciences edited by Gelman and Cortina, 2009\n Relational databses on slideshare\n\n\nConstitution\nAcquisition\nUsage(s)\nMaintenance"
+  },
+  {
+    "objectID": "slides/BD_intro.html#sources-et-usages-des-données",
+    "href": "slides/BD_intro.html#sources-et-usages-des-données",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "Sources et usages des données",
+    "text": "Sources et usages des données\n\n\nQuelques références\n\n\nData humanities with R. Arnold and Tilton\n\nQuantitative tour at social sciences edited by Gelman and Cortina, 2009\n Relational databses on slideshare\n\nQuelques problèmes\n\nConstitution (archivage, etc)\nAcquisition/organisation\nUsage(s)\nMaintenance"
+  },
+  {
+    "objectID": "slides/BD_intro.html#la-vie-des-données-en-résumé",
+    "href": "slides/BD_intro.html#la-vie-des-données-en-résumé",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "La vie des données (en résumé)",
+    "text": "La vie des données (en résumé)\n\n\n\n Saisie/Alimentation\n Traitement(s)\n Usage(s)\n Archivage\n Maintenance\n\n\n\n\npipelines"
+  },
+  {
+    "objectID": "slides/BD_intro.html#situation-du-cours-bases-de-données-ma15y030-dans-la-licence-miashs",
+    "href": "slides/BD_intro.html#situation-du-cours-bases-de-données-ma15y030-dans-la-licence-miashs",
+    "title": "BD I: Introduction aux SGBD",
+    "section": "Situation du cours Bases de Données (MA15Y030) dans la Licence MIASHS\n",
+    "text": "Situation du cours Bases de Données (MA15Y030) dans la Licence MIASHS\n\n\nTroisième cours tourné vers l’informatique\n\n\nInitiation (L1, S1)\n\nAlgorithmes et Programmation (L2, S3)\n\n\nUn cours tourné vers les données avant Science des Données (L3, S6)"
   }
 ]

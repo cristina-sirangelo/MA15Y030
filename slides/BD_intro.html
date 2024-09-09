@@ -16,7 +16,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.47">
+<meta name="generator" content="quarto-1.5.55">
 <meta name="author" content="Équipe BD">
 <meta name="dcterms.date" content="2024-09-13">
 <title>MA15Y030 - Automne 2024 – BD I: Introduction aux SGBD</title>
@@ -380,22 +380,73 @@
 <li><a href="#/the-end" id="/toc-the-end">The End</a></li>
 </ul></nav></section><section><section id="données" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Données ?</h1>
 
-</section><section id="les-données-en-sciences-sociales" class="slide level2 center"><h2>Les données en Sciences Sociales</h2>
-<p>Pourquoi ?</p>
-<p>De quoi sont faites les données ?</p>
-<p>Comment les accumuler ?</p>
-<p>Comment les interroger ?</p>
-<p>Comment les conserver ? les éditer ?</p>
-</section><section id="sources" class="slide level2 center"><h2>Sources</h2>
-<p><em>Data humanities with R.</em> Arnold and Tilton</p>
-<p><em>Quantitative tour at social sciences</em> Gelman and ?</p>
-<p>Humanités numériques</p>
+</section><section id="situation-du-cours-bases-de-données-ma15y030-dans-la-licence-miashs" class="slide level2 center"><h2>Situation du cours Bases de Données (MA15Y030) dans la <a href="https://licence.math.u-paris.fr/formations/miashs/">Licence MIASHS</a>
+</h2>
 <ul>
-<li><p>Constitution</p></li>
-<li><p>Acquisition</p></li>
+<li>Troisième cours tourné vers l’informatique
+<ul>
+<li>
+<em>Initiation</em> (L1, S1)</li>
+<li>
+<em>Algorithmes et Programmation</em> (L2, S3)</li>
+</ul>
+</li>
+<li>Un cours tourné vers les données avant <em>Science des Données</em> (L3, S6)</li>
+</ul></section><section id="le-déluge-des-données-une-mode" class="slide level2 center"><h2>Le déluge des données : une mode ?</h2>
+<iframe width="780" height="500" src="https://www.economist.com/leaders/2010/02/25/the-data-deluge" title="The Data Deluge"></iframe>
+</section><section id="rien-de-neuf-sous-le-soleil" class="slide level2 center"><h2>Rien de neuf sous le soleil …</h2>
+
+<p><i class="fa-solid fa-brain" aria-label="brain"></i> De qui sont ces lignes ? Quand furent-elles écrites ?</p>
+<aside><div>
+<blockquote>
+<p>Je croyais que le goût de la statistique était particulier aux administrateurs de nos jours&nbsp;; mais je me trompais. Vers la fin de l’ancien régime, on envoie souvent à l’intendant de petits tableaux tout imprimés qu’il n’a plus qu’à faire remplir par ses subdélégués et par les syndics des paroisses. Le contrôleur-général se fait faire des rapports sur la nature des terres, sur leur culture, l’espèce et la quantité des produits, le nombre des bestiaux, l’industrie et les mœurs des habitants. Les renseignements ainsi obtenus ne sont guère moins circonstanciés ni plus certains que ceux que fournissent en pareils cas de nos jours les sous-préfets et les maires. Le jugement que les subdélégués portent, à cette occasion, sur le caractère de leurs administrés, est en général peu favorable. Ils reviennent souvent sur cette opinion que «&nbsp;le paysan est naturellement paresseux, et ne travaillerait pas s’il n’y était obligé pour vivre.&nbsp;»</p>
+</blockquote>
+<blockquote>
+<p>C’est là une doctrine économique qui paraît fort répandue chez ces administrateurs.</p>
+</blockquote>
+</div></aside></section><section id="les-données-intéressent" class="slide level2 center"><h2>Les données intéressent</h2>
+<ul>
+<li><p>les sciences</p></li>
+<li><p>les administrations</p></li>
+<li><p>les entreprises</p></li>
+<li><p>les citoyennes (et les citoyens)</p></li>
+<li><p>…</p></li>
+</ul></section><section id="les-données-en-sciences-sociales" class="slide level2 center"><h2>Les données en Sciences Sociales</h2>
+<div class="columns">
+<div class="column">
+<ul>
+<li><p>Pourquoi ?</p></li>
+<li><p>De quoi sont faites les données ?</p></li>
+<li><p>Comment les <em>accumuler</em> ?</p></li>
+<li><p>Comment les <em>interroger</em> ?</p></li>
+<li><p>Comment les <em>conserver</em> ? les <em>éditer</em> ?</p></li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="../images/SalleOvale-BnF.png"></p>
+<figcaption>BN Salle ovale</figcaption></figure>
+</div>
+</div></div>
+</section><section id="sources-et-usages-des-données" class="slide level2 center"><h2>Sources et usages des données</h2>
+<div class="columns">
+<div class="column">
+<h3 id="quelques-références">Quelques références</h3>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="../images/arnoldtiltoncover.jpg" height="300"></p>
+<figcaption><a href="https://humanitiesdata.org"><em>Data humanities with R.</em> Arnold and Tilton</a></figcaption></figure>
+</div>
+<p><a href="https://doi.org/10.1017/CBO9780511818851"><em>Quantitative tour at social sciences</em> edited by Gelman and Cortina, 2009</a></p>
+<p><i class="fa-brands fa-slideshare" aria-label="slideshare"></i> <a href="https://www.slideshare.net/search?searchfrom=header&amp;q=relational+databases">Relational databses on slideshare</a></p>
+</div><div class="column">
+<h3 id="quelques-problèmes">Quelques problèmes</h3>
+<ul>
+<li><p>Constitution (archivage, etc)</p></li>
+<li><p>Acquisition/organisation</p></li>
 <li><p>Usage(s)</p></li>
 <li><p>Maintenance</p></li>
-</ul></section><section id="les-données-de-lentreprisedes-administrations" class="slide level2 center"><h2>Les données de l’entreprise/des administrations</h2>
+</ul>
+</div></div>
+</section><section id="les-données-de-lentreprisedes-administrations" class="slide level2 center"><h2>Les données de l’entreprise/des administrations</h2>
 <div class="columns">
 <div class="column">
 <ul>
@@ -405,73 +456,211 @@
 <li><p>…</p></li>
 </ul>
 </div><div class="column">
-<p>TODO</p>
+<p><img data-src="../images/pexels-shkrabaanthony-5816299.jpg" height="400"></p>
 </div></div>
-</section><section id="la-vie-des-données" class="slide level2 center"><h2>La vie des données</h2>
-<ul>
-<li><p>Saisie</p></li>
-<li><p>Traitement(s)</p></li>
-<li><p>Usage(s)</p></li>
-<li><p>Archivage</p></li>
-<li><p>Maintenance</p></li>
-</ul></section><section id="les-enjeux" class="slide level2 center"><h2>Les enjeux</h2>
-</section><section id="avant-hier" class="slide level2 center"><h2>Avant-hier</h2>
+</section><section id="la-vie-des-données-en-résumé" class="slide level2 center"><h2>La vie des données (en résumé)</h2>
 <div class="columns">
 <div class="column">
+<ul>
+<li><p><i class="fa-solid fa-keyboard" aria-label="keyboard"></i> Saisie/Alimentation</p></li>
+<li><p><i class="fa-solid fa-server" aria-label="server"></i> Traitement(s)</p></li>
+<li><p><i class="fa-solid fa-circle-question" aria-label="circle-question"></i> Usage(s)</p></li>
+<li><p><i class="fa-solid fa-database" aria-label="database"></i> Archivage</p></li>
+<li><p><i class="fa-solid fa-screwdriver-wrench" aria-label="screwdriver-wrench"></i> Maintenance</p></li>
+</ul>
+</div><div class="column">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="../images/pexels-manelandsean-12573579.jpg" data-heigth="80%"></p>
+<figcaption>pipelines</figcaption></figure>
+</div>
+</div></div>
+</section><section id="avant-hier" class="slide level2 center"><h2>Avant-hier</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
 <p>Les entreprises et les administrations ont toujours cultivé une mémoire sous forme de <em>fichiers</em> plus ou moins mécanisés et formattés.</p>
 <p>Ces collections de fichiers mécanisées répondaient à des exigences de <em>fiabilité</em>, de <em>convenance</em> (facilité de la recherche, de la maintenance)</p>
-</div><div class="column">
-<p><img data-src="../images//pexels-mike-1181772.jpg"></p>
+</div><div class="column" style="width:70%;">
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="../images/image-ibm-punchcard.jpeg"></p>
+<figcaption>From https://www.ibm.com/history/punched-card</figcaption></figure>
+</div>
 </div></div>
 </section><section id="aujourdhui" class="slide level2 center"><h2>Aujourd’hui</h2>
-<p>Explosion des volumes</p>
-<p>Besoins <strong>mixtes</strong></p>
+<div class="columns">
+<div class="column" style="width:30%;">
+<ul>
+<li><p>Explosion des volumes</p></li>
+<li><p>Explosion des débits</p></li>
+<li><p>Usages (très) divers</p></li>
+</ul>
+</div><div class="column" style="width:70%;">
+<p><img data-src="../images/pexels-artunchained-9101888.jpg"></p>
+</div></div>
 </section></section><section><section id="systèmes-dinformation" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Systèmes d’information</h1>
 
+</section><section id="systèmes-dinformation-1" class="slide level2 center"><h2>Systèmes d’information</h2>
+<blockquote>
+<p>Un <em>système d’information (SI)</em> est un ensemble de composants qui fonctionnent ensemble pour collecter, traiter, stocker et diffuser des informations.</p>
+</blockquote>
+<div class="fragment">
+<blockquote>
+<p>Les systèmes d’information ont des objectifs (très) divers.</p>
+</blockquote>
+<blockquote>
+<p>Par exemple : les <em>systèmes de traitement des transactions (TPS)</em>, les <em>systèmes d’information de gestion (MIS)</em>, les <em>systèmes d’aide à la décision (DSS)</em> et les <em>systèmes de planification des ressources de l’entreprise (ERP)</em>.</p>
+</blockquote>
+</div>
+</section><section id="décomposition-des-si" class="slide level2 center scrollable"><h2>Décomposition des SI</h2>
+<p>Un système d’information comprend en général les éléments suivants:</p>
+<div>
+<ol type="1">
+<li class="fragment"><p><em>Matériel informatique (ou pas)</em> : dispositifs physiques utilisés pour collecter, stocker et traiter l’information (ordinateurs, serveurs, stockage, réseau, …).</p></li>
+<li class="fragment"><p><em>Logiciels</em> : Les programmes exécutés sur le matériel pour gérer les données et effectuer des tâches spécifiques (OS, SGBD, Logiciels applicatifs).</p></li>
+<li class="fragment"><p><em>Données</em></p></li>
+<li class="fragment"><p><em>Personnes</em> : Les usagers du système d’information</p></li>
+<li class="fragment"><p><em>Processus</em> : Les flux de travail et les règles régissant la manière dont les données sont collectées, traitées et distribuées, conformément aux objectifs.</p></li>
+</ol>
+</div>
 </section><section id="systèmes-dinformation-si-et-bases-de-données-bd-sgbd-sgbdr" class="slide level2 center"><h2>Systèmes d’information (SI) et Bases de Données (BD, SGBD, SGBDR)</h2>
-<p>Au coeur des systèmes d’information (modernes) on trouve les <strong>bases de données</strong></p>
+<p>Au coeur des systèmes d’information (modernes) on trouve (presque toujours) les <strong>bases de données</strong></p>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Mise en garde</strong></p>
+</div>
+<div class="callout-content">
+<p>Toutes les bases de données ne sont pas relationnelles</p>
+</div>
+</div>
+</div>
 </section><section id="des-propriétés-désirables-acid" class="slide level2 center"><h2>Des propriétés désirables (ACID)</h2>
-<p>Quelle que soit la forme, on souhaite avoir :</p>
-<ul>
-<li><p><strong>A</strong>tomicité : chaque ajout/modification d’information doit former un tout cohérent. Si tout se passe correctement, les actions de la transaction sont toutes validées, sinon on retourne à l’état initial. L’unité de travail est indivisible. Une transaction ne peut être partiellement effectuée.</p></li>
-<li><p><strong>C</strong>ohérence : le contenu de la base de données doit rester conforme à des <em>contraintes</em> qui ont été définies lors de la <em>conception</em> de la base</p></li>
-<li><p><strong>I</strong>solation : la bases de données doit pouvoir être utilisée concurremment par plusieurs usagers</p></li>
-<li><p><strong>D</strong>urabilité : la vie d’une base de données s’étale sur plusieurs dizaines d’années</p></li>
-</ul></section></section><section><section id="bases-de-données-et-autres-logiciels" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Bases de données et (autres) logiciels</h1>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Atomicité</strong></p>
+</div>
+<div class="callout-content">
+<p>Chaque ajout/modification d’information doit former un tout cohérent</p>
+<p>Si tout se passe correctement, les actions de la <em>transaction</em> sont toutes validées, sinon on retourne à l’état initial</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Cohérence</strong></p>
+</div>
+<div class="callout-content">
+<p>Le contenu de la base de données doit rester conforme à des <em>contraintes</em> définies lors de la <em>conception</em></p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Isolation</strong></p>
+</div>
+<div class="callout-content">
+<p>La bases de données doit pouvoir être utilisée concurremment par plusieurs usagers</p>
+</div>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Durabilité</strong></p>
+</div>
+<div class="callout-content">
+<p>La vie d’une base de données s’étale sur plusieurs dizaines d’années</p>
+</div>
+</div>
+</div>
+</div>
+</section></section><section><section id="bases-de-données-et-autres-logiciels" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Bases de données et (autres) logiciels</h1>
 
-</section><section id="bases-de-données" class="slide level2 center"><h2>Bases de <strong>données</strong>
+</section><section id="bases-de-données" class="slide level2 center"><h2>
+<i class="fa-solid fa-database" aria-label="database"></i> Bases de <strong>données</strong>
 </h2>
-<!--  -->
-<!--   -->
-<p>Qu’est-ce que c’est ?</p>
+<ul>
+<li>Qu’est-ce que c’est (plus précisément) ?</li>
+</ul>
+<div class="fragment">
 <p>Ce sont des logiciels intermédiaires (<em>middleware</em>) entre :</p>
 <ul>
-<li><p>Systèmes de gestion de fichiers/Systèmes d’exploitation</p></li>
-<li><p>Applications (CRM, ERP, CMS, …)</p></li>
+<li><p>Systèmes de gestion de fichiers/Systèmes d’exploitation <i class="fa-brands fa-windows" aria-label="windows"></i> <i class="fa-brands fa-linux" aria-label="linux"></i> …</p></li>
+<li><p>Applications (CRM, ERP, CMS, …) <i class="fa-brands fa-salesforce" aria-label="salesforce"></i> <i class="fa-brands fa-wordpress" aria-label="wordpress"></i> <i class="fa-brands fa-facebook-f" aria-label="facebook-f"></i> …</p></li>
 </ul>
-<p>Les bases de données ne sont pas (simplement) un <em>langage</em> (comme <code>JAVA</code>, <!-- , )  --> ou un environnement de calcul <!-- (comme , ) --></p>
+</div>
+<div class="fragment">
+<p>Les bases de données ne sont pas (simplement) un <em>langage</em> (comme <code>JAVA</code>, <i class="fa-brands fa-r-project" aria-label="r-project"></i>, <i class="fa-brands fa-python" aria-label="python"></i>)</p>
+</div>
 </section></section><section><section id="bases-de-données-relationnelles" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Bases de données (relationnelles)</h1>
-<p>Toutes les bases de données ne sont pas relationnelles</p>
+
+</section><section class="slide level2 center"><div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Mise en garde</strong></p>
+</div>
+<div class="callout-content">
+<p>Toutes les bases de données informatiques ne sont pas relationnelles</p>
+</div>
+</div>
+</div>
+<div class="fragment">
 <p>Les <strong>Bases de données relationnelles</strong> forment un sous-ensemble important (et même prépondérant) des systèmes de gestion des bases de données en entreprise</p>
-</section><section id="collection-de-tablesdata-frames" class="slide level2 center"><h2>Collection de tables/<code>data frame</code>s</h2>
+</div>
+<div class="fragment">
+<p>Les bases de données relationnelles ont été conçues pour traiter les données tabulaires (oragnisées en tables)</p>
+</div>
+</section><section id="collection-de-tablesdata-frames" class="slide level2 center"><h2>
+<i class="fa-solid fa-table-cells" aria-label="table-cells"></i> Collection de tables/<code>data frame</code>s</h2>
 <p>Caricaturalement :</p>
 <blockquote>
 <p>Une base de données relationnelle est une collection de <em>tables</em></p>
 </blockquote>
+<div class="fragment">
 <p>Les tables s’incarnent de plusieurs façons en informatique</p>
 <p><code>R</code>, <code>Pandas</code>, les tableurs (<code>Excel</code> …), offrent un environnement interactif de manipulation de données et un environnement de définition de données</p>
-</section><section id="data-frame" class="slide level2 center"><h2>Data frame</h2>
+</div>
+</section><section id="data-frame" class="slide level2 center"><h2>
+<i class="fa-brands fa-r-project" aria-label="r-project"></i> Data frame</h2>
 <!-- () -->
+<div>
 <ul>
-<li><p>Un <code>dataframe</code> est une <em>liste</em> de <em>vecteurs</em> (colonnes)</p></li>
-<li><p>Les vecteurs (colonnes) d’un <code>dataframe</code> sont tous de même longueur</p></li>
-<li><p>Les éléments d’un vecteur sont d’un même type de base</p></li>
-<li><p>Chaque vecteur a un nom et son propre type</p></li>
-</ul></section><section id="autres-environments-excel-java-python" class="slide level2 center"><h2>Autres environments (<code>Excel</code>, <code>JAVA</code>, <code>Python</code>)</h2>
+<li class="fragment"><p>Un <code>dataframe</code> est une <em>liste</em> de <em>vecteurs</em> (colonnes)</p></li>
+<li class="fragment"><p>Les vecteurs (colonnes) d’un <code>dataframe</code> sont tous de même longueur</p></li>
+<li class="fragment"><p>Les éléments d’un vecteur sont d’un même type de base</p></li>
+<li class="fragment"><p>Chaque vecteur a un nom et son propre type</p></li>
+</ul>
+</div>
+</section><section id="autres-environments-excel-java-python" class="slide level2 center"><h2>Autres environments (<code>Excel</code>, <code>JAVA</code>, <code>Python</code>)</h2>
 <!--  -->
 <ul>
-<li><p>Les <code>spreadsheet</code> des tableurs</p></li>
-<li><p>Les <code>Dataframes</code> de <code>Pandas</code> <!-- () --></p></li>
+<li><p>Les <code>spreadsheet</code> des tableurs <i class="fa-solid fa-file-excel" aria-label="file-excel"></i></p></li>
+<li><p>Les <code>Dataframes</code> de <code>Pandas</code> <i class="fa-brands fa-python" aria-label="python"></i> <!-- () --></p></li>
 <li><p>Les tableaux d’objets en <code>JAVA</code></p></li>
 </ul>
 <p>permettent de représenter ce que les <code>dataframes</code> représentent en <code>R</code> <!--  --></p>
@@ -522,7 +711,7 @@
 </div>
 </section><section id="usages" class="slide level2 center"><h2>Usages</h2>
 <ul>
-<li><p>Sites web dynamiques</p></li>
+<li><p>Sites web dynamiques <i class="fa-brands fa-wordpress" aria-label="wordpress"></i> <i class="fa-brands fa-facebook-f" aria-label="facebook-f"></i></p></li>
 <li><p>Logiciels personnels</p></li>
 </ul>
 <p>Derrière certaines applications (gestion de photos, de carnet d’adresses, …), on trouve des bases de données légères (<code>SQLITE</code>)</p>
@@ -541,7 +730,7 @@
 
 </section><section id="lidée-clé-codd-1970" class="slide level2 center"><h2>L’idée clé (Codd, 1970)</h2>
 <p>Organiser les informations en <strong>tables</strong> ou <strong>relations</strong></p>
-<p>Développer et formaliser un langage de manipulation de tables : l’algèbre relationnelle} (langage SQL, Structured Query Language)</p>
+<p>Développer et formaliser un langage de manipulation de tables : l’<em>algèbre relationnelle</em> (langage <code>SQL</code>, Structured Query Language)</p>
 <ul>
 <li><p>L’usager peut définir l’organisation des données</p></li>
 <li><p>Il peut interroger celles-ci (par des requêtes)</p></li>
@@ -589,20 +778,20 @@
 <div class="column">
 <p><strong>Serveurs</strong></p>
 <ul>
-<li><p><a href="">ORACLE (commercial)</a></p></li>
-<li><p><a href="">DB2 (IBM commercial)</a></p></li>
-<li><p><a href="">SQLSERVER (Microsoft commercial)</a></p></li>
-<li><p><a href="">MySQL (open source)</a></p></li>
+<li><p><a href="https://www.oracle.com">ORACLE (commercial)</a></p></li>
+<li><p><a href="https://www.ibm.com/db2">DB2 (IBM commercial)</a></p></li>
+<li><p><a href="https://www.microsoft.com/fr-fr/sql-server/sql-server-2022">SQLSERVER (Microsoft commercial)</a></p></li>
+<li><p><a href="https://www.mysql.com">MySQL (open source)</a></p></li>
 <li><p><a href="https://www.postgresql.org"><strong>PostGres</strong> (open source)</a></p></li>
-<li><p><a href="">Hana (commercial)</a></p></li>
+<li><p><a href="https://www.sap.com/france/products/technology-platform/hana/what-is-sap-hana.html">Hana (commercial)</a></p></li>
 </ul>
 </div><div class="column">
 <p><strong>Clients</strong></p>
 <ul>
-<li><p><a href=""><code>psql</code></a></p></li>
-<li><p><a href=""><code>pgcli</code></a></p></li>
-<li><p><a href=""><code>dbeaver</code></a></p></li>
-<li><p><a href=""><code>PgAdmin4</code></a></p></li>
+<li><p><a href="https://www.postgresql.org/docs/current/app-psql.html"><code>psql</code></a></p></li>
+<li><p><a href="https://www.pgcli.com"><code>pgcli</code></a></p></li>
+<li><p><a href="https://dbeaver.io"><code>dbeaver</code></a></p></li>
+<li><p><a href="https://www.pgadmin.org/"><code>PgAdmin</code></a></p></li>
 <li><p>…</p></li>
 </ul>
 </div></div>
@@ -622,9 +811,14 @@
 <li><p><code>countrylanguage</code> : chaque tuple indique la part de la population d’un état/territoire (désigné par <code>countrycode</code>) qui parle/connaît une langue (désignée par <code>language</code>) et précise si la langue est officielle dans cet état/territoire.</p></li>
 </ul></section><section id="détails-du-schema-world" class="slide level2 center"><h2>Détails du schema <code>world</code>
 </h2>
+<div class="quarto-figure quarto-figure-center">
+<figure><p><img data-src="../images//world.png"></p>
+<figcaption>Image World</figcaption></figure>
+</div>
 
-<img data-src="../images//world.png" class="r-stretch quarto-figure-center"><p class="caption">Image World</p><p>Un schéma de table : la donnée des noms des colonnes et des types des colonnes</p>
-</section><section id="quelques-questions-et-propriétés-typiques" class="slide level2 center"><h2>Quelques questions et propriétés typiques</h2>
+<aside><div>
+<p>Un schéma de table : la donnée des noms des colonnes et des types des colonnes</p>
+</div></aside></section><section id="quelques-questions-et-propriétés-typiques" class="slide level2 center"><h2>Quelques questions et propriétés typiques</h2>
 <ul>
 <li><p>Extraire de l’information</p></li>
 <li>
@@ -635,13 +829,18 @@
 <li>Ne pas proposer de données sur des villes/territoires/états qui n’existent pas</li>
 </ul>
 </li>
+</ul>
+<div class="fragment">
+<ul>
 <li>
 <p>Propager l’information</p>
 <ul>
 <li>Historiciser le schéma</li>
 </ul>
 </li>
-</ul></section><section id="objectifs-du-cours" class="slide level2 center"><h2>Objectifs du cours</h2>
+</ul>
+</div>
+</section><section id="objectifs-du-cours" class="slide level2 center"><h2>Objectifs du cours</h2>
 <ul>
 <li><p>Compétences d’un usager de BD relationnelles</p></li>
 <li><p>Exprimer des requêtes en algèbre relationnelle et en SQL</p></li>
@@ -693,20 +892,31 @@
 </div>
 </section><section id="au-delà-du-relationnel-no-sql" class="slide level2 center"><h2>Au delà du relationnel: No SQL</h2>
 <blockquote>
-<p>Ce sont les grandes entreprises du web amenées à traiter des volumes de données très importants qui ont été les premières confrontées aux limitations intrinsèques des SGBD relationnels traditionnels. Ces systèmes fondés sur une application stricte des propriétés ACID et généralement conçus pour fonctionner sur des ordinateurs uniques ont rapidement posé des problèmes d’extensibilité.</p>
+<p>Ce sont les grandes entreprises du web qui ont été les premières confrontées aux limitations intrinsèques des SGBD relationnels traditionnels. Ces systèmes fondés sur une application stricte des propriétés ACID et généralement conçus pour fonctionner sur des ordinateurs uniques ont rapidement posé des problèmes d’extensibilité.</p>
 </blockquote>
+<div class="fragment">
 <blockquote>
-<p>Afin de répondre à ces limites, ces entreprises ont commencé à développer leurs propres systèmes de gestion de bases de données pouvant fonctionner sur des architectures matérielles distribuées et permettant de traiter des volumes de données importants. Les systèmes propriétaires qui en ont résulté, Google (BigTable), Amazon (Dynamo (en)), LinkedIn (Voldemort), Facebook (Cassandra puis HBase), SourceForge.net (MongoDB), Ubuntu One (CouchDB), Baidu (Hypertable) ont été les précurseurs du modèle NoSQL.</p>
+<p>Afin de répondre à ces limites, ces entreprises ont commencé à développer leurs propres systèmes de gestion de bases de données pouvant fonctionner sur des architectures matérielles distribuées et permettant de traiter des volumes de données importants.</p>
 </blockquote>
+</div>
+<div class="fragment">
 <blockquote>
-<p>Les performances restent bonnes avec la montée en charge en multipliant simplement le nombre de serveurs, solution raisonnable avec la baisse des coûts, en particulier si les revenus croissent en même temps que l’activité5. Les systèmes géants sont les premiers concernés : énormes quantités de données6, structuration relationnelle faible (ou de moindre importance que la capacité d’accès très rapide, quitte à multiplier les serveurs).</p>
+<p>Les systèmes propriétaires qui en ont résulté, Google (BigTable), Amazon (Dynamo (en)), LinkedIn (Voldemort), Facebook (Cassandra puis HBase), SourceForge.net (MongoDB), Ubuntu One (CouchDB), Baidu (Hypertable) ont été les précurseurs du modèle NoSQL.</p>
 </blockquote>
+</div>
+</section><section class="slide level2 center"><blockquote>
+<p>Les performances restent bonnes avec la montée en charge en multipliant simplement le nombre de serveurs, solution raisonnable avec la baisse des coûts, en particulier si les revenus croissent en même temps que l’activité. Les systèmes géants sont les premiers concernés : énormes quantités de données, structuration relationnelle faible (ou de moindre importance que la capacité d’accès très rapide, quitte à multiplier les serveurs).</p>
+</blockquote>
+<div class="fragment">
 <blockquote>
 <p>Un modèle typique en NoSQL est le système clé-valeur, avec une base de données pouvant se résumer topologiquement à un simple tableau associatif unidimensionnel avec des millions — voire des milliards — d’entrées. Parmi les applications typiques, on retrouve des analyses temps-réel, statistiques, du stockage de logs (journaux), etc.</p>
 </blockquote>
 <!--   -->
+
+</div>
+<aside><div>
 <p><a href="https://fr.wikipedia.org/wiki/NoSQL">NoSQL</a></p>
-</section><section id="lire-plus" class="slide level2 center"><h2>Lire plus</h2>
+</div></aside></section><section id="lire-plus" class="slide level2 center"><h2>Lire plus</h2>
 <p><a href="https://scholar.google.com/scholar?hl=fr&amp;as_sdt=0%2C5&amp;q=harrison+next+generation+databases&amp;oq=harrison+next+">Guy Harrison. Next Generation Databases. NoSQL, NewSQL, Big Data</a></p>
 <!-- {{< embed http://guyharrison.squarespace.com/blog/tag/nosql >}} -->
 </section></section><section id="the-end" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>The End</h1>
