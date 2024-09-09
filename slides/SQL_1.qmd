@@ -277,7 +277,7 @@ SELECT *
 
 FROM Employe
 
-WHERE NomE <>'Durand'  ;  #<<
+WHERE NomE <>'Durand'  ;  
 ```
 
 
@@ -291,7 +291,7 @@ SELECT DISTINCT NomF
 
 FROM Fournisseur
 
-WHERE (Ville='Londres') OR (Ville='Paris');  #<<
+WHERE (Ville='Londres') OR (Ville='Paris');  
 ```
 
 
@@ -313,7 +313,7 @@ SELECT NomE
 
 FROM Employe
 
-WHERE Annee BETWEEN '22/06/03' AND '25/09/03';   #<<
+WHERE Annee BETWEEN '22/06/03' AND '25/09/03';   
 ```
 
 
@@ -330,10 +330,12 @@ SELECT *
 
 FROM Employe
 
-WHERE Tel IS NULL;    #<<
+WHERE Tel IS NULL;    
 ```
 
 {{< fa skull >}} Attention aux valeurs manquantes
+
+
 ---
 
 ## Syntaxe de la condition `WHERE ...` (suite)
@@ -346,7 +348,7 @@ SELECT *
 
 FROM Fournisseur
 
-WHERE Ville IN ('Paris', 'Londres');   #<<
+WHERE Ville IN ('Paris', 'Londres');   
 ```
 
 ---
@@ -405,7 +407,7 @@ Images et tables créées grâce à [DbSchema](https://dbschema.com)
 
 ## Diagramme en pattes de corbeau
 
-![img](/images/~LayoutwithSampleTools.svg)
+![img](/images/world.png)
 
 
 
@@ -487,42 +489,40 @@ Quels sont les pays qui portent le même nom que leur capitale ?
 ```{.sql}
 SELECT name_country
 
-FROM country, city   #<< 
+FROM country, city    
 
 WHERE capital=id AND name_country=name_city;
 ```
 
+. . .
+
 qui correspond à
 
-$$\pi_{\text{name_country}}\Bigl(
-\sigma_{\text{capital}=\text{id} \wedge \text{name_country}=\text{name_city}}(\text{country }\times \text{city}) \Bigr)$$
+$$\pi_{\text{name\_country}}(\sigma_{\text{capital}=\text{id} \wedge \text{name\_country}=\text{name\_city}}(\text{country}\times \text{city}))$$
 
-autrement dit
+autrement dit à
 
-$$\pi_{\text{name_country}}\Bigl(
-\text{country} \bowtie_{\text{capital}=\text{id} \wedge  \text{name_country}=\text{name_city}} \text{city})
- \Bigr)$$
+$$\pi_{\text{name\_country}}(\text{country} \bowtie_{\text{capital}=\text{id} \wedge  \text{name\_country}=\text{name\_city}} \text{city}))$$
 
 
 
-## Syntaxe normalisée pour les jointures~: *JOIN* et *ON*
+## Syntaxe normalisée pour les jointures : *JOIN* et *ON*
 
 Quels sont les pays qui portent le même nom que leur capitale ?
 
 ```{.sql}
 SELECT name_country
 
-FROM country JOIN city   #<<
+FROM country JOIN city   
 
-ON capital=id    #<<
+ON capital=id    
 
 WHERE name_country=name_city;
 ```
 
 qui correspond à
 
-$$\pi_{\text{name_country}}\Bigl(
-\sigma_{\text{capital}=id \wedge  \text{name_country}=\text{name_city}}(\text{country} \times \text{city}) \Bigr)$$
+$$\pi_{\text{name\_country}}(\sigma_{\text{capital}=id \wedge  \text{name\_country}=\text{name\_city}}(\text{country} \times \text{city}))$$
 
 
 
@@ -538,9 +538,9 @@ pour obtenir deux tables de noms différents
 ```{.sql}
 SELECT DISTINCT c1.name_city, c1.countrycode, c2.countrycode
 
-FROM city AS c1 JOIN city AS c2   #<<
+FROM city AS c1 JOIN city AS c2   
 
-  ON c1.countrycode!=c2.countrycode AND c1.name_city=c2.name_city  #<<
+  ON c1.countrycode!=c2.countrycode AND c1.name_city=c2.name_city  
 
 ORDER BY c1.name_city;
 ```
@@ -567,7 +567,7 @@ Syntaxe normalisée pour la jointure naturelle~: *NATURAL JOIN*
 ```{.sql}
 SELECT name_country
 
-FROM country NATURAL JOIN countrylanguage   #<< 
+FROM country NATURAL JOIN countrylanguage    
 
 WHERE language='French';
 ```
@@ -581,9 +581,9 @@ Quels sont les pays dont une ville a le même nom qu'une langue parlée dans ce 
 ```{.sql}
 SELECT DISTINCT name_country, name_city, language
 
-FROM country NATURAL JOIN  #<<
-     city natural JOIN     #<<
-     countrylanguage       #<<
+FROM country NATURAL JOIN  
+     city natural JOIN     
+     countrylanguage       
 
 WHERE language=name_city;
 ```
@@ -591,7 +591,7 @@ WHERE language=name_city;
 
 ---  
 
-![](/images/LayoutwithSampleTools.png)
+![](/images/world.png)
 
 
 
@@ -632,10 +632,10 @@ renvoie 8 lignes.
 ```{.sql}
 SELECT name_country, name_city
 
-FROM country LEFT OUTER JOIN city   #<<
-     ON capital=id                  #<<
+FROM country LEFT OUTER JOIN city   
+     ON capital=id                  
 
-WHERE name_city IS NULL OR name_country=name_city ;  #<< 
+WHERE name_city IS NULL OR name_country=name_city ;   
 ```
 
 
