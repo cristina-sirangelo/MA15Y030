@@ -94,7 +94,7 @@ traduit l'expression
 
 $\Pi_{\text{<liste attribut>}}(\sigma_{\text{<condition>}}(\text{<table>}))$
 
-Ou `\sigma(R, Condition) | \Pi(<liste attribut>)`
+Ou `σ(R, Condition) |> Π(<liste attribut>)`
 
 :::
 
@@ -256,11 +256,11 @@ Equivalent à : $\sigma_{\texttt{Ville}=\texttt{'Paris'}}(\texttt{Fournisseur})$
 La structure de base d'une requête s'appuie sur les trois mots
 clés suivants :
 
-- .red[`SELECT`] correspond à l'opérateur de projection sur la liste d'attributs demandée, il peut aussi être suivi de fonctions d'attributs
+- `SELECT` correspond à l'opérateur de projection sur la liste d'attributs demandée, il peut aussi être suivi de fonctions d'attributs
 
-- .red[`FROM`] indique la ou les relations concernées
+- `FROM` indique la ou les relations concernées
 
-- .red[`WHERE`] précise une condition et correspond à l'opération de restriction/sélection en algèbre relationnelle.
+- `WHERE` précise une condition et correspond à l'opération de restriction/sélection en algèbre relationnelle.
 
 
 ---
@@ -270,7 +270,7 @@ clés suivants :
 
 Une condition se construit à l'aide des opérations suivantes :
 
-- *Comparaison* avec opérateurs : .red[`=, <>, >,<, >=, <=`]
+- *Comparaison* avec opérateurs : `=, <>, >,<, >=, <=`
 
 ```{.sql}
 SELECT *
@@ -284,7 +284,7 @@ WHERE NomE <>'Durand'  ;  #<<
 
 ## Syntaxe de la condition de filtrage (`WHERE ...`)
 
-*Combinaison* de conditions à l'aide des opérateurs logiques:  .red[`AND`, `OR`, `NOT`]
+*Combinaison* de conditions à l'aide des opérateurs logiques:  `AND`, `OR`, `NOT`
 
 ```{.sql}
 SELECT DISTINCT NomF
@@ -323,7 +323,7 @@ WHERE Annee BETWEEN '22/06/03' AND '25/09/03';   #<<
 
 ## Syntaxe de la condition `WHERE ...` (suite)
 
-- Test à .red[`NULL`] signifiant que la valeur est égale à `NULL` (c-à-d est inconnue)
+- Test à `NULL` signifiant que la valeur est égale à `NULL` (c-à-d est inconnue)
 
 ```{.sql}
 SELECT *
@@ -339,7 +339,7 @@ WHERE Tel IS NULL;    #<<
 ## Syntaxe de la condition `WHERE ...` (suite)
 
 
-Test d'*appartenance* .red[`IN`] qui permet de vérifier si la valeur d'un attribut appartient à une liste de constantes,
+Test d'*appartenance* `IN` qui permet de vérifier si la valeur d'un attribut appartient à une liste de constantes,
 
 ```{.sql}
 SELECT *
@@ -353,7 +353,7 @@ WHERE Ville IN ('Paris', 'Londres');   #<<
 
 ## Syntaxe de la condition `WHERE ...` (suite)
 
-Test .red[`LIKE`] permettant de vérifier si un attribut de type chaîne de
+Test `LIKE` permettant de vérifier si un attribut de type chaîne de
 caractères contient une ou plusieurs sous-chaînes
 
 $\_$ : remplace n'importe quel caractère

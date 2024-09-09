@@ -11,7 +11,7 @@ title: "MA15Y030 Syllabus"
 
 |           | Jour       | Horaire              | Lieu                       |  Début |
 |:---------:|:-----------:|:-------------------:|:--------------------------------|:--------|
-| Cours     | Vendredi  | 14:00  - 15:30  | Olympe de Gouges Amphi I      | 2024-09-13 |
+| Cours     | Vendredi  | 14:00  - 15:30  | Olympe de Gouges Amphi II      | 2024-09-13 |
 | TD/TP 1   | Vendredi  | 15:45  - 18:15  | Sophie Germain 2004-2005           | 2024-09-20 |
 | TD/TP 2   | Vendredi  | 15:45  - 18:15  | Sophie Germain 2006          | 2024-09-20 |
 <!-- | TD/TP 3   | Vendredi  | 15:45  - 18:15  | Sophie Germain 2006            | 2024-09-20 | -->
@@ -137,7 +137,7 @@ La note de session II (seconde chance) est égale à la note obtenue à l'épreu
 
 ::: {.callout-tip}
 
-### {{< fa wizard >}}Trucs 
+### {{< fa wizard >}} Trucs 
 
 - Survolez les diapositives avant le cours
 - Réfléchissz sur les exercices avant de consulter les corrections
@@ -163,7 +163,6 @@ La note de session II (seconde chance) est égale à la note obtenue à l'épreu
 
 ::: {.callout-important}
 
-
 ### Sauvez les  dates !  {{< fa calendar >}}
 
 -   **Septembre 13:** Début du cours
@@ -178,7 +177,7 @@ La note de session II (seconde chance) est égale à la note obtenue à l'épreu
 -   **Juin ??**: Deuxième chance
    
 
-Cliquer [ici]() pour le calendrier universitaire de Université Paris Cité.
+Cliquer [ici](https://u-paris.fr/calendrier-universitaire/) pour le calendrier universitaire de Université Paris Cité.
 
 Cliquer [ici](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3) pour l'emploi du temps de la Licence MIASHS 
 

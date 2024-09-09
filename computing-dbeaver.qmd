@@ -9,6 +9,14 @@ format:
 
 # Installer 
 
+À partir de [Dbeaver community edition](https://dbeaver.io/download/)
+
+
+
+```{=html}
+<iframe width="780" height="500" src="https://dbeaver.io/download/" title="Dbeaver CE"></iframe>
+```
+
 # Survol
 
 
@@ -48,21 +56,56 @@ format:
   
 # Utiliser une connexion
 
-
+Double cliquer et saisir les mots de passe demandés.
 
 # Définir et utiliser un *projet*
 
-- Connections
-- Bookmarks
-- Dashboards
-- Diagrams
-- Scripts 
+
+::: {.callout-warning}
+
+Durant le semestre, un `projet` unique devrait suffire à vos besoins.
+
+Utiliser un `projet` doit vous aider à organiser votre travail, en particulier à retrouver facilement les travaux des semaines précédentes. 
+
+:::
 
 
-# Éditeur SQL
+## Connections
+
+Vous devrez créer une connection avec le serveur au sein de votre projet. 
+Vous pouvez en créer d'autres avec d'autres serveurs, possiblement un serveur PostGres 
+hébergé sur votre propre machine. 
+
+## Bookmarks/Signets
+
+[Documentation sur les signets](https://github.com/dbeaver/dbeaver/wiki/Bookmarks)
+
+::: {.callout-tip}
+
+Vous pouvez créer des signets pour retrouver facilement les schémas sur lesquels vous travaillez, ou avez travaillé. 
+
+:::
+
+<!-- ## Dashboards/Tableaux de bord -->
+
+## Diagrammes ER
+
+`dbeaver` permet de faire un peu de rétro-ingénieurie et de visualiser (partiellement) un schéma. Outil utile quand on veut retoucher un schéma ou 
+simplement le comprendre.
+
+## Scripts 
+
+- Un script pour chaque séance de TD/TP
+- Nommer le script de façon utile (avec `rename`)
+- Commenter le script
+- Séparer les requêtes par des lignes blanches et une ligne de commentaire blanche `--    `
+- Utiliser le reformattage pour rendre votre code plus lisible
 
 
 
-- 
 
+# Renseignements utiles
+
+
+[wiki](https://github.com/dbeaver/dbeaver/wiki)
 
