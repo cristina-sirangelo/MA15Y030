@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.47">
+<meta name="generator" content="quarto-1.5.55">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -141,7 +141,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <div class="sidebar-tools-main tools-wide">
     <a href="https://github.com/s-v-b/MA15Y030" title="GitHub organization" class="quarto-navigation-tool px-1" aria-label="GitHub organization"><i class="bi bi-github"></i></a>
     <div class="dropdown">
-      <a href="" title="Moodle" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Moodle"><i class="bi bi-person-fill"></i></a>
+      <a href="https://moodle.u-paris.fr/course/view.php?id=2313" title="Moodle" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label="Moodle"><i class="bi bi-person-fill"></i></a>
       <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item sidebar-tools-main-item" href="https://moodle.u-paris.fr/course/view.php?id=2313">
@@ -218,6 +218,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="./computing-dbeaver.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Client dbeaver</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computing-pgcli.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Client pgcli</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./computing-psql.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Client psql</span></a>
   </div>
 </li>
       </ul>
@@ -387,12 +399,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="clients" class="level1">
 <h1>Clients</h1>
+<p>En salle TP, vous pourrez choisir entre trois <em>clients</em></p>
 <ul>
 <li><code>psql</code></li>
 <li><code>pgcli</code></li>
 <li><code>dbeaver</code></li>
-<li><code>vs code</code> avec greffon</li>
 </ul>
+<p><code>psql</code> et <code>pgcli</code> sont très proches. Ce sont des applications qui fonctionnent en mode ligne de commande. <code>pgcli</code> est un peu plus conviviale que <code>psql</code> avec un système de complétion plus performant. L’ensemble des commandes spéciales proposées par <code>pgcli</code> est un peu moins vaste que celui proposé par <code>psql</code></p>
+<p><code>dbeaver</code> est un client graphique qui ne tombe pas dans le <em>cliquodrome</em>. <code>dbeaver</code> permet d’attaquer une grande famille de SGBDs.</p>
+<p>Tous ces clients doivent utiliser des connexions sécurisées <code>ssh</code>.</p>
 </section>
 <section id="connexions-ssh-linuxmacos" class="level1">
 <h1>Connexions <code>ssh</code> (Linux/MacOS)</h1>
@@ -408,7 +423,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="ex">[username@etu-pgsql</span> ~]$ ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Attention : pas d’écho lorsque vous saisissez votre mot de passe.</p>
 <p>On peut maintenant se connecter au serveur Postgres, toujours avec son identifiant et son mot de passe <code>ENT</code></p>
-<p>Ici, nous proposons d’utiliser le <em>client</em> <code>pgcli</code> :</p>
+<p>Ici, nous proposons d’utiliser le <em>client</em> <code>pgcli</code> exécuté sur <code>etu-pgsql.math.univ-paris-diderot.fr</code> :</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">[username@etu-pgsql</span> ~]$ pgcli <span class="at">-d</span> bd_2023-24 </span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Password</span> for username: </span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Server:</span> PostgreSQL 13.8</span>
@@ -448,6 +463,19 @@ Pourquoi préciser <code>-d bd_2023-24</code> ?
 <span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="ex">SELECT</span> 3</span>
 <span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="ex">Time:</span> 0.011s</span>
 <span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="ex">username@/tmp:bd_2023-24</span><span class="op">&gt;</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Plus pratique
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Pour <code>pgcli</code> et <code>psql</code>, il est plus pratique d’exécuter <code>psql</code> et/ou <code>pgcli</code> sur votre machine et de communiquer avec le serveur Postgres via un tunnel <code>ssh</code>. Voir <a href="./computing-pgcli.html">détails pour <code>pgcli</code></a> et <a href="./computing-psql.html">détails pour <code>psql</code></a>.</p>
+</div>
+</div>
 </section>
 <section id="connexions-ssh-sous-windows" class="level1">
 <h1>Connexions <code>ssh</code> sous <code>windows</code></h1>

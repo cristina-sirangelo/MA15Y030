@@ -16,7 +16,7 @@
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.47">
+<meta name="generator" content="quarto-1.5.55">
 <meta name="author" content="Équipe BD">
 <meta name="dcterms.date" content="2024-11-22">
 <title>MA15Y030 - Automne 2024 – Normalisation I</title>
@@ -1097,7 +1097,7 @@
 </section><section class="slide level2 center"><p>Soit <span class="math inline">\(\Sigma\)</span> un ensemble de DF sur un schéma <span class="math inline">\(\mathcal{A}\)</span> et <span class="math inline">\(X\subset\mathcal{A}\)</span></p>
 <h3 id="algorithme">Algorithme</h3>
 </section><section id="section-2" class="slide level2 smaller center"><h2></h2>
-<div class="pseudocode-container quarto-float" data-indent-size="1.2em" data-pseudocode-number="1" data-line-number="true" data-comment-delimiter="//" data-line-number-punc=":" data-no-end="false" data-caption-prefix="Algorithme">
+<div class="pseudocode-container quarto-float" data-indent-size="1.2em" data-line-number="true" data-caption-prefix="Algorithme" data-pseudocode-number="1" data-no-end="false" data-comment-delimiter="//" data-line-number-punc=":">
 <div class="pseudocode">
 \begin{algorithm} \caption{Fermeture} \begin{algorithmic} \Procedure{Fermeture}{$X, Σ$} \State $X^c ← X$ \Repeat \State stop ← \True \For{$(Y → Z) ∈ Σ$} \If{$Y ⊆ Z ∧ Z ⊄ X^c$} \State $X^c ← X^c ∪ Z$ \State stop ← \False \EndIf \EndFor \Until{stop} \Return $X^c$ \EndProcedure \end{algorithmic} \end{algorithm}
 </div>
