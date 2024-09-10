@@ -63,6 +63,10 @@ website:
             text: "Accès Informatique"
           - href: computing-dbeaver.qmd
             text: "Client dbeaver"
+          - href: computing-pgcli.qmd
+            text: "Client pgcli"
+          - href: computing-psql.qmd
+            text: "Client psql"  
       - href: slides-listings.qmd
         text: Diapositives
       - href: td-listings.qmd

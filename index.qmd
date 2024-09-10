@@ -41,7 +41,7 @@ Vous trouverez sur ce site information et matériel
 
 - [Un syllabus](/cours-syllabus.qmd)
 - [L'équipe enseignante](/cours-equipe.qmd)
-- [Les clients utilisables](/cours-support.qmd)
+- [Les clients utilisables](/computing-access.qmd)
 - [Les diapositives du cours magistral](/slides-listings.qmd)
 - [Les feuilles d'exercices](/td-listings.qmd)
 - [Les corrigés](/corriges-tds.qmd)
