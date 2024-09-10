@@ -35,6 +35,7 @@ website:
         href: https://github.com/s-v-b/MA15Y030
         text: "GitHub organization"
       - icon: person-fill
+        href: htps://https://moodle.u-paris.fr/course/view.php?id=2313
         text: "Moodle"
         menu:
           - text: Discussion forum
