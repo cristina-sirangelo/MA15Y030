@@ -7,9 +7,9 @@ about:
   image-width: 10em
   image-shape: round
   links:
-    - icon: twitter
-      text: twitter
-      href: https://twitter.com
+    - icon: person-fill
+      text: moodle
+      href: htps://https://moodle.u-paris.fr/course/view.php?id=2313
     - icon: github
       text: Github
       href: https://github.com
