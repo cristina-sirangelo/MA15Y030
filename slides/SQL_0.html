@@ -805,7 +805,6 @@ t_1.\text{nombre} &amp; = 4
 
 
 
-
 ::: {.cell}
 
 ```{.sql .cell-code}
@@ -816,18 +815,17 @@ SET search_path TO babynames ;
 SELECT * 
 FROM bebes AS b
 WHERE b.sexe=1 AND
-  b.prenom ILIKE 'THEO%' AND
+  b.prenom ILIKE 'TH_O%' AND
   b.annee = 2000 ;
 
 
 SELECT * 
 FROM bebes AS b
 WHERE b.sexe=1 AND
-  b.prenom ILIKE 'THEO%' AND
+  b.prenom ILIKE 'TH_O%' AND
   b.annee = 1900 ;
 ```
 :::
-
 
 
  -->
@@ -848,38 +846,46 @@ WHERE b.sexe=1 AND
 <span id="cb5-13"><a></a></span>
 <span id="cb5-14"><a></a><span class="co">-- THEO_2000</span></span>
 <span id="cb5-15"><a></a></span>
-<span id="cb5-16"><a></a>|<span class="co">------+-----------+-------+--------|</span></span>
-<span id="cb5-17"><a></a>| <span class="dv">1</span>    | THEO      | <span class="dv">2000</span>  | <span class="dv">6</span>      |</span>
-<span id="cb5-18"><a></a>| <span class="dv">1</span>    | THEODOR   | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
-<span id="cb5-19"><a></a>| <span class="dv">1</span>    | THEOPHILE | <span class="dv">2000</span>  | <span class="dv">336</span>    |</span>
-<span id="cb5-20"><a></a>| <span class="dv">1</span>    | THEODORE  | <span class="dv">2000</span>  | <span class="dv">149</span>    |</span>
-<span id="cb5-21"><a></a>| <span class="dv">1</span>    | THEOPHANE | <span class="dv">2000</span>  | <span class="dv">47</span>     |</span>
-<span id="cb5-22"><a></a>| <span class="dv">1</span>    | THEOPHYLE | <span class="dv">2000</span>  | <span class="dv">4</span>      |</span>
-<span id="cb5-23"><a></a>| <span class="dv">1</span>    | THEOTIME  | <span class="dv">2000</span>  | <span class="dv">73</span>     |</span>
-<span id="cb5-24"><a></a>| <span class="dv">1</span>    | THEOS     | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
-<span id="cb5-25"><a></a>| <span class="dv">1</span>    | THEOTIM   | <span class="dv">2000</span>  | <span class="dv">4</span>      |</span>
-<span id="cb5-26"><a></a><span class="op">+</span><span class="co">------+-----------+-------+--------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb5-16"><a></a><span class="op">+</span><span class="co">------+-----------+-------+--------+</span></span>
+<span id="cb5-17"><a></a>| sexe | prenom    | annee | nombre |</span>
+<span id="cb5-18"><a></a>|<span class="co">------+-----------+-------+--------|</span></span>
+<span id="cb5-19"><a></a>| <span class="dv">1</span>    | THEO      | <span class="dv">2000</span>  | <span class="dv">6</span>      |</span>
+<span id="cb5-20"><a></a>| <span class="dv">1</span>    | THAO      | <span class="dv">2000</span>  | <span class="dv">4</span>      |</span>
+<span id="cb5-21"><a></a>| <span class="dv">1</span>    | THÉO      | <span class="dv">2000</span>  | <span class="dv">7961</span>   |</span>
+<span id="cb5-22"><a></a>| <span class="dv">1</span>    | THÉO<span class="op">-</span>PAUL | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
+<span id="cb5-23"><a></a>| <span class="dv">1</span>    | THEODOR   | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
+<span id="cb5-24"><a></a>| <span class="dv">1</span>    | THEOPHANE | <span class="dv">2000</span>  | <span class="dv">47</span>     |</span>
+<span id="cb5-25"><a></a>| <span class="dv">1</span>    | THEODORE  | <span class="dv">2000</span>  | <span class="dv">149</span>    |</span>
+<span id="cb5-26"><a></a>| <span class="dv">1</span>    | THEOPHILE | <span class="dv">2000</span>  | <span class="dv">336</span>    |</span>
+<span id="cb5-27"><a></a>| <span class="dv">1</span>    | THEOPHYLE | <span class="dv">2000</span>  | <span class="dv">4</span>      |</span>
+<span id="cb5-28"><a></a>| <span class="dv">1</span>    | THEOS     | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
+<span id="cb5-29"><a></a>| <span class="dv">1</span>    | THEOTIM   | <span class="dv">2000</span>  | <span class="dv">4</span>       |</span>
+<span id="cb5-30"><a></a>| <span class="dv">1</span>    | THEOTIME  | <span class="dv">2000</span>  | <span class="dv">73</span>     |</span>
+<span id="cb5-31"><a></a><span class="op">+</span><span class="co">------+-----------+-------+--------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
 <p><code>THEO_1900</code> ∪ <code>THEO_2000</code></p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="op">+</span><span class="co">------+-----------+-------+--------+</span></span>
 <span id="cb6-2"><a></a>| sexe | prenom    | annee | nombre |</span>
 <span id="cb6-3"><a></a>|<span class="co">------+-----------+-------+--------|</span></span>
-<span id="cb6-4"><a></a>| <span class="dv">1</span>    | THEO      | <span class="dv">2000</span>  | <span class="dv">6</span>      |</span>
-<span id="cb6-5"><a></a>| <span class="dv">1</span>    | THEOBALD  | <span class="dv">1900</span>  | <span class="dv">6</span>      |</span>
-<span id="cb6-6"><a></a>| <span class="dv">1</span>    | THEODOR   | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
-<span id="cb6-7"><a></a>| <span class="dv">1</span>    | THEOPHANE | <span class="dv">2000</span>  | <span class="dv">47</span>     |</span>
-<span id="cb6-8"><a></a>| <span class="dv">1</span>    | THEODORE  | <span class="dv">1900</span>  | <span class="dv">227</span>    |</span>
-<span id="cb6-9"><a></a>| <span class="dv">1</span>    | THEODORE  | <span class="dv">2000</span>  | <span class="dv">149</span>    |</span>
-<span id="cb6-10"><a></a>| <span class="dv">1</span>    | THEODOSE  | <span class="dv">1900</span>  | <span class="dv">3</span>      |</span>
-<span id="cb6-11"><a></a>| <span class="dv">1</span>    | THEODULE  | <span class="dv">1900</span>  | <span class="dv">39</span>     |</span>
-<span id="cb6-12"><a></a>| <span class="dv">1</span>    | THEOPHANE | <span class="dv">1900</span>  | <span class="dv">3</span>      |</span>
-<span id="cb6-13"><a></a>| <span class="dv">1</span>    | THEOPHILE | <span class="dv">1900</span>  | <span class="dv">309</span>    |</span>
-<span id="cb6-14"><a></a>| <span class="dv">1</span>    | THEOTIME  | <span class="dv">2000</span>  | <span class="dv">73</span>     |</span>
-<span id="cb6-15"><a></a>| <span class="dv">1</span>    | THEOPHILE | <span class="dv">2000</span>  | <span class="dv">336</span>    |</span>
-<span id="cb6-16"><a></a>| <span class="dv">1</span>    | THEOPHYLE | <span class="dv">2000</span>  | <span class="dv">4</span>      |</span>
-<span id="cb6-17"><a></a>| <span class="dv">1</span>    | THEOS     | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
-<span id="cb6-18"><a></a>| <span class="dv">1</span>    | THEOTIM   | <span class="dv">2000</span>  | <span class="dv">4</span>      |</span>
-<span id="cb6-19"><a></a><span class="op">+</span><span class="co">------+-----------+-------+--------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb6-4"><a></a>| <span class="dv">1</span>    | THEODOR   | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
+<span id="cb6-5"><a></a>| <span class="dv">1</span>    | THAO      | <span class="dv">2000</span>  | <span class="dv">4</span>      |</span>
+<span id="cb6-6"><a></a>| <span class="dv">1</span>    | THÉO      | <span class="dv">2000</span>  | <span class="dv">7961</span>   |</span>
+<span id="cb6-7"><a></a>| <span class="dv">1</span>    | THÉO<span class="op">-</span>PAUL | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
+<span id="cb6-8"><a></a>| <span class="dv">1</span>    | THEOBALD  | <span class="dv">1900</span>  | <span class="dv">6</span>      |</span>
+<span id="cb6-9"><a></a>| <span class="dv">1</span>    | THEO      | <span class="dv">2000</span>  | <span class="dv">6</span>      |</span>
+<span id="cb6-10"><a></a>| <span class="dv">1</span>    | THEODORE  | <span class="dv">1900</span>  | <span class="dv">227</span>    |</span>
+<span id="cb6-11"><a></a>| <span class="dv">1</span>    | THEODOSE  | <span class="dv">1900</span>  | <span class="dv">3</span>      |</span>
+<span id="cb6-12"><a></a>| <span class="dv">1</span>    | THEODULE  | <span class="dv">1900</span>  | <span class="dv">39</span>     |</span>
+<span id="cb6-13"><a></a>| <span class="dv">1</span>    | THEODORE  | <span class="dv">2000</span>  | <span class="dv">149</span>    |</span>
+<span id="cb6-14"><a></a>| <span class="dv">1</span>    | THEOPHANE | <span class="dv">1900</span>  | <span class="dv">3</span>      |</span>
+<span id="cb6-15"><a></a>| <span class="dv">1</span>    | THEOPHANE | <span class="dv">2000</span>  | <span class="dv">47</span>     |</span>
+<span id="cb6-16"><a></a>| <span class="dv">1</span>    | THEOPHILE | <span class="dv">1900</span>  | <span class="dv">309</span>    |</span>
+<span id="cb6-17"><a></a>| <span class="dv">1</span>    | THEOTIME  | <span class="dv">2000</span>  | <span class="dv">73</span>     |</span>
+<span id="cb6-18"><a></a>| <span class="dv">1</span>    | THEOPHILE | <span class="dv">2000</span>  | <span class="dv">336</span>    |</span>
+<span id="cb6-19"><a></a>| <span class="dv">1</span>    | THEOPHYLE | <span class="dv">2000</span>  | <span class="dv">4</span>      |</span>
+<span id="cb6-20"><a></a>| <span class="dv">1</span>    | THEOS     | <span class="dv">2000</span>  | <span class="dv">3</span>      |</span>
+<span id="cb6-21"><a></a>| <span class="dv">1</span>    | THEOTIM   | <span class="dv">2000</span>  | <span class="dv">4</span>      |</span>
+<span id="cb6-22"><a></a><span class="op">+</span><span class="co">------+-----------+-------+--------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section><section id="intersection-exemple" class="slide level2 smaller center"><h2>Intersection : exemple</h2>
 <div class="columns">
@@ -1110,7 +1116,7 @@ WHERE b.sexe=1 AND
 </div>
 </div>
 </section><section id="projection-exemple" class="slide level2 center"><h2>Projection : Exemple</h2>
-<p>Π(<code>THEO_1900</code>, <code>prenom</code>, <code>nombre</code>)</p>
+<p>Π(<code>THEOD_1900</code>, <code>prenom</code>, <code>nombre</code>)</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="op">+</span><span class="co">-----------+---------+</span></span>
 <span id="cb11-2"><a></a>| prenom    |  nombre |</span>
 <span id="cb11-3"><a></a>|<span class="co">-----------+---------+</span></span>
@@ -1169,7 +1175,7 @@ WHERE b.sexe=1 AND
 </div>
 </div>
 </section><section id="sélection-exemple" class="slide level2 center"><h2>Sélection : Exemple</h2>
-<p>σ(<code>THEO_1900</code>, <code>prenom</code> <code>LIKE</code> ‘THEOD%’)</p>
+<p>σ(<code>THEO_1900</code>, ¬ <code>prenom</code> <code>LIKE</code> ‘THEOD%’)</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="op">+</span><span class="co">------+-----------+-------+--------+</span></span>
 <span id="cb12-2"><a></a>| sexe | prenom    | annee | nombre |</span>
 <span id="cb12-3"><a></a>|<span class="co">------+-----------+-------+--------|</span></span>
@@ -1254,24 +1260,24 @@ WHERE b.sexe=1 AND
 <div class="fragment">
 <p>ρ(π(σ(<code>THEO_1900</code>, <code>prenom</code> <code>LIKE</code> ‘THEOD%’), <code>prenom</code>, <code>nombre</code>), <code>prenom→name</code>, <code>nombre→count</code>)</p>
 </div>
-</section><section id="de-la-composition-aux-tuyeaux-pipelines" class="slide level2 center"><h2>De la composition aux tuyeaux (pipelines)</h2>
-<p>On peut rendre la composition de fonctions plus lisible (pour l’humain) en reprenant un mécanisme d’<code>Unix</code> : le <em>pipe</em> (tuyeau) <code>|</code></p>
-<p>Plutôt qu’écrire <span class="math inline">\(g(f(x,y), z, t)\)</span>, on convient d’écrire <code>f(x,y) | g(z, t)</code> voire <code>x | f(y) | g(z,t)</code></p>
+</section><section id="de-la-composition-aux-tuyaux-pipelines" class="slide level2 center"><h2>De la composition aux tuyaux (pipelines)</h2>
+<p>On peut rendre la composition de fonctions plus lisible (pour l’humain) en reprenant un mécanisme d’<code>Unix</code> : le <em>pipe</em> (tuyau) <code>|&gt;</code> (notation de <i class="fa-brands fa-r-project" aria-label="r-project"></i>)</p>
+<p>Plutôt qu’écrire <span class="math inline">\(g(f(x,y), z, t)\)</span>, on convient d’écrire <code>f(x,y) |&gt; g(z, t)</code> voire <code>x |&gt; f(y) |&gt; g(z,t)</code></p>
 <p>Et pour rendre l’expression encore plus lisible on peut écrire</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a>x | </span>
-<span id="cb15-2"><a></a>  f(y) | </span>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a>x |<span class="op">&gt;</span> </span>
+<span id="cb15-2"><a></a>  f(y) |<span class="op">&gt;</span> </span>
 <span id="cb15-3"><a></a>  g(z,t)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="de-la-composition-aux-tuyeaux-suite" class="slide level2 center"><h2>De la composition aux tuyeaux (suite)</h2>
+</section><section id="de-la-composition-aux-tuyaux-suite" class="slide level2 center"><h2>De la composition aux tuyaux (suite)</h2>
 <p>On peut ainsi réécrire</p>
 <p>ρ(π(σ(<code>THEO_1900</code>, <code>prenom</code> <code>LIKE</code> ‘THEOD%’), <code>prenom</code>, <code>nombre</code>), <code>prenom→name</code>, <code>nombre→count</code>)</p>
 <p>en</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a>THEO_1900  |</span>
-<span id="cb16-2"><a></a>  σ(`prenom` `LIKE` <span class="st">'THEOD%'</span>) |</span>
-<span id="cb16-3"><a></a>  π(`prenom`, `nombre`) |</span>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a>THEO_1900  |<span class="op">&gt;</span></span>
+<span id="cb16-2"><a></a>  σ(`prenom` `LIKE` <span class="st">'THEOD%'</span>) |<span class="op">&gt;</span></span>
+<span id="cb16-3"><a></a>  π(`prenom`, `nombre`) |<span class="op">&gt;</span></span>
 <span id="cb16-4"><a></a>  ρ(`prenom→name`, `nombre→count`)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 <aside><div>
-<p>Dans le langage <code>R</code> (&gt; 4.x), le pipe s’écrit <code>|&gt;</code></p>
+<p>Dans le langage <i class="fa-brands fa-r-project" aria-label="r-project"></i> (&gt; 4.x), le pipe s’écrit <code>|&gt;</code></p>
 </div></aside></section></section><section><section id="opérations-complémentaires-les-jointures" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Opérations complémentaires : les jointures</h1>
 
 </section><section id="les-jointures" class="slide level2 center"><h2>Les jointures</h2>
@@ -1335,8 +1341,8 @@ WHERE b.sexe=1 AND
 
 <img data-src="../images/layout_world.png" class="r-stretch"><p>Lier les pays (les lignes de <code>country</code>) à leur capitale, c’est à dire les couples de lignes de <code>country</code> et de <code>city</code> qui satisfont <code>capital = id</code></p>
 </section><section id="exemple-sur-le-schéma-world-suite" class="slide level2 center"><h2>Exemple sur le schéma <code>world</code> (suite)</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a>`country` |</span>
-<span id="cb17-2"><a></a>  ⋈(`city`, `capital<span class="op">=</span>id`) |</span>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a>`country` |<span class="op">&gt;</span></span>
+<span id="cb17-2"><a></a>  ⋈(`city`, `capital<span class="op">=</span>id`) |<span class="op">&gt;</span></span>
 <span id="cb17-3"><a></a>  π(`name_country`, `name`)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a></span>
 <span id="cb18-2"><a></a><span class="op">+</span><span class="co">----------------------+------------------+</span></span>
@@ -1470,8 +1476,8 @@ WHERE b.sexe=1 AND
 </div><div class="column">
 <h3 id="jointure-naturelle-1">Jointure naturelle</h3>
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a>country |</span>
-<span id="cb23-2"><a></a>  ⋈(countrylanguage) |</span>
-<span id="cb23-3"><a></a>  σ(country<span class="op">=</span><span class="st">'France'</span>) |</span>
+<span id="cb23-2"><a></a>  ⋈(countrylanguage) |<span class="op">&gt;</span></span>
+<span id="cb23-3"><a></a>  σ(country<span class="op">=</span><span class="st">'France'</span>) |<span class="op">&gt;</span></span>
 <span id="cb23-4"><a></a>  π(name_country, language)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="op">+</span><span class="co">--------------+------------+</span></span>
 <span id="cb24-2"><a></a>| name_country | language   |</span>
@@ -1486,24 +1492,24 @@ WHERE b.sexe=1 AND
 </div></div>
 </section><section class="slide level2 center"><p>On aurait pu décrire de façon plus explicite la jointure en précisant sur quels attributs s’effectue la jointure</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a>country |</span>
-<span id="cb25-2"><a></a>  ⋈(countrylanguage, countrycode) |</span>
-<span id="cb25-3"><a></a>  σ(country<span class="op">=</span><span class="st">'France'</span>) |</span>
+<span id="cb25-2"><a></a>  ⋈(countrylanguage, countrycode) |<span class="op">&gt;</span></span>
+<span id="cb25-3"><a></a>  σ(country<span class="op">=</span><span class="st">'France'</span>) |<span class="op">&gt;</span></span>
 <span id="cb25-4"><a></a>  π(name_country, language)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="exemples-de-requêtes" class="slide level2 center"><h2>Exemples de requêtes</h2>
 <ul>
 <li>déterminer les noms des capitales des pays situés en Asie (<code>Asia</code>)</li>
 </ul>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a>country |</span>
-<span id="cb26-2"><a></a>  σ(continent<span class="op">=</span><span class="st">'Asia'</span>) |</span>
-<span id="cb26-3"><a></a>  ⋈(city, capital<span class="op">=</span><span class="kw">id</span>) |</span>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a>country |<span class="op">&gt;</span></span>
+<span id="cb26-2"><a></a>  σ(continent<span class="op">=</span><span class="st">'Asia'</span>) |<span class="op">&gt;</span></span>
+<span id="cb26-3"><a></a>  ⋈(city, capital<span class="op">=</span><span class="kw">id</span>) |<span class="op">&gt;</span></span>
 <span id="cb26-4"><a></a>  π(name)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <ul>
 <li>déterminer les langues parlées dans les pays d’Asie</li>
 </ul>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a>country |</span>
-<span id="cb27-2"><a></a>  σ(continent<span class="op">=</span><span class="st">'Asia'</span>) |</span>
-<span id="cb27-3"><a></a>  ⋈(countrylanguage) |</span>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a>country |<span class="op">&gt;</span></span>
+<span id="cb27-2"><a></a>  σ(continent<span class="op">=</span><span class="st">'Asia'</span>) |<span class="op">&gt;</span></span>
+<span id="cb27-3"><a></a>  ⋈(countrylanguage) |<span class="op">&gt;</span></span>
 <span id="cb27-4"><a></a>  π(language)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section></section><section><section id="encore-des-opérations" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Encore des opérations…</h1>
@@ -1575,13 +1581,13 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Lister les langues parlées sur tous les continents</p>
 <p>On aimerait écrire une expression qui renvoie un résultat correct quelque soit les conventions adoptées sur la définition de <em>continent</em> (les Amériques forment-elles un ou deux continents, etc)</p>
 </div><div class="column">
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a>CL ← ⋈(country, countrylanguage) |</span>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a>CL ← ⋈(country, countrylanguage) |<span class="op">&gt;</span></span>
 <span id="cb28-2"><a></a>  π(continent, language)</span>
 <span id="cb28-3"><a></a></span>
 <span id="cb28-4"><a></a>C ← π(CL, continent)</span>
 <span id="cb28-5"><a></a>L ← π(CL, language)</span>
 <span id="cb28-6"><a></a></span>
-<span id="cb28-7"><a></a>LPPTC ← (C × L  ∖  CL ) |</span>
+<span id="cb28-7"><a></a>LPPTC ← (C × L  ∖  CL ) |<span class="op">&gt;</span></span>
 <span id="cb28-8"><a></a>  π(language)</span>
 <span id="cb28-9"><a></a></span>
 <span id="cb28-10"><a></a>L  ∖  LPPTC</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
