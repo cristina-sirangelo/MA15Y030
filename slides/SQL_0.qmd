@@ -479,14 +479,14 @@ SET search_path TO babynames ;
 SELECT * 
 FROM bebes AS b
 WHERE b.sexe=1 AND
-  b.prenom ILIKE 'THEO%' AND
+  b.prenom ILIKE 'TH_O%' AND
   b.annee = 2000 ;
 
 
 SELECT * 
 FROM bebes AS b
 WHERE b.sexe=1 AND
-  b.prenom ILIKE 'THEO%' AND
+  b.prenom ILIKE 'TH_O%' AND
   b.annee = 1900 ;
 ```
  -->
@@ -511,17 +511,23 @@ WHERE b.sexe=1 AND
 
 -- THEO_2000
 
++------+-----------+-------+--------+
+| sexe | prenom    | annee | nombre |
 |------+-----------+-------+--------|
 | 1    | THEO      | 2000  | 6      |
+| 1    | THAO      | 2000  | 4      |
+| 1    | THÉO      | 2000  | 7961   |
+| 1    | THÉO-PAUL | 2000  | 3      |
 | 1    | THEODOR   | 2000  | 3      |
-| 1    | THEOPHILE | 2000  | 336    |
-| 1    | THEODORE  | 2000  | 149    |
 | 1    | THEOPHANE | 2000  | 47     |
+| 1    | THEODORE  | 2000  | 149    |
+| 1    | THEOPHILE | 2000  | 336    |
 | 1    | THEOPHYLE | 2000  | 4      |
-| 1    | THEOTIME  | 2000  | 73     |
 | 1    | THEOS     | 2000  | 3      |
-| 1    | THEOTIM   | 2000  | 4      |
+| 1    | THEOTIM   | 2000  | 4       |
+| 1    | THEOTIME  | 2000  | 73     |
 +------+-----------+-------+--------+
+
 ```
 
 :::
@@ -534,15 +540,18 @@ WHERE b.sexe=1 AND
 +------+-----------+-------+--------+
 | sexe | prenom    | annee | nombre |
 |------+-----------+-------+--------|
-| 1    | THEO      | 2000  | 6      |
-| 1    | THEOBALD  | 1900  | 6      |
 | 1    | THEODOR   | 2000  | 3      |
-| 1    | THEOPHANE | 2000  | 47     |
+| 1    | THAO      | 2000  | 4      |
+| 1    | THÉO      | 2000  | 7961   |
+| 1    | THÉO-PAUL | 2000  | 3      |
+| 1    | THEOBALD  | 1900  | 6      |
+| 1    | THEO      | 2000  | 6      |
 | 1    | THEODORE  | 1900  | 227    |
-| 1    | THEODORE  | 2000  | 149    |
 | 1    | THEODOSE  | 1900  | 3      |
 | 1    | THEODULE  | 1900  | 39     |
+| 1    | THEODORE  | 2000  | 149    |
 | 1    | THEOPHANE | 1900  | 3      |
+| 1    | THEOPHANE | 2000  | 47     |
 | 1    | THEOPHILE | 1900  | 309    |
 | 1    | THEOTIME  | 2000  | 73     |
 | 1    | THEOPHILE | 2000  | 336    |
@@ -550,7 +559,6 @@ WHERE b.sexe=1 AND
 | 1    | THEOS     | 2000  | 3      |
 | 1    | THEOTIM   | 2000  | 4      |
 +------+-----------+-------+--------+
-
 ```
 
 :::
@@ -810,7 +818,7 @@ Dans la suite, nous utiliserons cette possibilité.
 ## Projection : Exemple
 
 
-Π(`THEO_1900`, `prenom`, `nombre`)
+Π(`THEOD_1900`, `prenom`, `nombre`)
 
 ```{.sql}
 +-----------+---------+
@@ -882,7 +890,7 @@ En langage `R`, on dispose d'un type *expression*, la notation proposée ici est
 ## Sélection : Exemple
 
 
-σ(`THEO_1900`, `prenom` `LIKE` 'THEOD%')
+σ(`THEO_1900`, ¬ `prenom` `LIKE` 'THEOD%')
 
 
 ```{.sql}
@@ -992,22 +1000,22 @@ Pour interroger une BD, on *compose* ces opérateurs :
 ρ(π(σ(`THEO_1900`, `prenom` `LIKE` 'THEOD%'), `prenom`, `nombre`), `prenom→name`, `nombre→count`)
 
 
-## De la composition aux tuyeaux (pipelines)
+## De la composition aux tuyaux (pipelines)
 
 
-On peut  rendre la composition de fonctions plus lisible (pour l'humain) en reprenant un mécanisme d'`Unix` : le *pipe* (tuyeau) `|`
+On peut  rendre la composition de fonctions plus lisible (pour l'humain) en reprenant un mécanisme d'`Unix` : le *pipe* (tuyau) `|>` (notation de {{< fa brands r-project >}})
 
-Plutôt qu'écrire $g(f(x,y), z, t)$, on convient d'écrire  `f(x,y) | g(z, t)` voire `x | f(y) | g(z,t)`
+Plutôt qu'écrire $g(f(x,y), z, t)$, on convient d'écrire  `f(x,y) |> g(z, t)` voire `x |> f(y) |> g(z,t)`
 
 Et pour rendre l'expression encore plus lisible on peut écrire 
 
 ```{.sql}
-x | 
-  f(y) | 
+x |> 
+  f(y) |> 
   g(z,t)
 ```
 
-## De la composition aux tuyeaux (suite)
+## De la composition aux tuyaux (suite)
 
 On peut ainsi réécrire 
 
@@ -1016,15 +1024,15 @@ On peut ainsi réécrire
 en 
 
 ```{.sql}
-THEO_1900  |
-  σ(`prenom` `LIKE` 'THEOD%') |
-  π(`prenom`, `nombre`) |
+THEO_1900  |>
+  σ(`prenom` `LIKE` 'THEOD%') |>
+  π(`prenom`, `nombre`) |>
   ρ(`prenom→name`, `nombre→count`)
 ```
 
 ::: {.aside}
 
-Dans le langage `R` (> 4.x), le pipe s'écrit `|>`
+Dans le langage {{< fa brands r-project >}} (> 4.x), le pipe s'écrit `|>`
 
 :::
 
@@ -1110,8 +1118,8 @@ qui satisfont  `capital = id`
 ## Exemple  sur le schéma `world` (suite)
 
 ```{.sql}
-`country` |
-  ⋈(`city`, `capital=id`) |
+`country` |>
+  ⋈(`city`, `capital=id`) |>
   π(`name_country`, `name`)
 
 ```
@@ -1299,8 +1307,8 @@ bd_2023-24> \d countrylanguage
 
 ```{.sql}
 country |
-  ⋈(countrylanguage) |
-  σ(country='France') |
+  ⋈(countrylanguage) |>
+  σ(country='France') |>
   π(name_country, language)
 
 ```
@@ -1329,8 +1337,8 @@ On aurait pu décrire de façon plus explicite la jointure en précisant sur que
 
 ```{.sql}
 country |
-  ⋈(countrylanguage, countrycode) |
-  σ(country='France') |
+  ⋈(countrylanguage, countrycode) |>
+  σ(country='France') |>
   π(name_country, language)
 
 ```
@@ -1341,9 +1349,9 @@ country |
 - déterminer les noms des capitales des pays situés en Asie (`Asia`)
 
 ```{.sql}
-country |
-  σ(continent='Asia') |
-  ⋈(city, capital=id) |
+country |>
+  σ(continent='Asia') |>
+  ⋈(city, capital=id) |>
   π(name)
 ```
 
@@ -1352,9 +1360,9 @@ country |
 - déterminer les langues parlées dans les pays d'Asie
 
 ```{.sql}
-country |
-  σ(continent='Asia') |
-  ⋈(countrylanguage) |
+country |>
+  σ(continent='Asia') |>
+  ⋈(countrylanguage) |>
   π(language)
 ```
 
@@ -1461,13 +1469,13 @@ On aimerait écrire une expression qui renvoie un résultat correct quelque soit
 ::: {.column}
 
 ```{.sql}
-CL ← ⋈(country, countrylanguage) |
+CL ← ⋈(country, countrylanguage) |>
   π(continent, language)
 
 C ← π(CL, continent)
 L ← π(CL, language)
 
-LPPTC ← (C × L  ∖  CL ) |
+LPPTC ← (C × L  ∖  CL ) |>
   π(language)
 
 L  ∖  LPPTC

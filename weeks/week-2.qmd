@@ -18,21 +18,27 @@ Requêtes du TD 1 [TD 1](/workshops/td1.html)
 
 ## Cours magistral : diapositives
 
+Nous reprenons 
+
 [Introduction à l'algèbre relationnelle](/slides/SQL_0.html)
+
+au {{< fa hand-point-right >}} [renommage](/slides/SQL_0.html#/renommage){target="_blank"}
+
+Puis nous aborderons le langage de requêtes SQL dans 
 
 [SQL requêtes élémentaires](/slides/SQL_1.html)
 
 
 ## Exercices : TD 1
 
+Nous abordons avec les outils de l'algèbre relationnelle et de SQL les questions posées dans le `td1` :
+
 [html](/workshops/td1.html)  [pdf](/workshops/td1.pdf)
 
-<!-- ## Solutions du  TD 1  (Semaine 1)
 
-[html](/solutions/td1.html)  [pdf](/solutions/td1.pdf) -->
+## Travail personnel (optionnel)
 
-
-## Travail personnel
+Vous pouvez vous entrainer sur annales :
 
 [CC 1 2023-24](/exams/cc1-2023-10-27.html)
 
