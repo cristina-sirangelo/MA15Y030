@@ -1,0 +1,46 @@
+---
+title: "Schemas"
+listing:
+  - id: "schemas"
+    contents: 
+      - schemas-listings.yaml
+    fields: [date, title, categories] 
+    field-display-names: 
+      title: "Schéma"
+      categories: "Tags"
+    type: table  
+    table-striped: true
+    table-hover: true
+    sort: date
+  # - id: "dir-content"
+  #   contents: "schemas/*qmd"
+  #   type: table
+  #   fields: [title, categories]
+  #   sort: title
+  #   table-striped: true
+  #   table-hover: true
+  
+---
+
+
+::: {.callout-note}
+
+### Avertissement
+
+Pour écrire des requêtes correctes, il est néecessaire de maîtriser le schéma sur lequel on travaille.
+
+:::
+
+
+
+::: {#schemas}
+
+:::
+
+
+<!-- ::: {.callout-tip}
+
+### Truc 
+
+
+::: -->

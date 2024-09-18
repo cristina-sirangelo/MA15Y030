@@ -72,7 +72,7 @@ Objectifs de la séance:
 
 En plus du schéma `world`, nous allons utiliser le schéma `pagila` qui contient des informations utilisées par un magasin de location de DVD.
 
-Le schéma est visible sur [ici](./_layout-pagila-film.html).
+Le schéma est visible sur [ici](/schemas/schema-pagila.qmd).
 
 Sous `psql` ou `pgli`, vous pouvez aussi inspecter les tables comme d'habitude avec
 

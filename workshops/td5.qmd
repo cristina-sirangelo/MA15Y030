@@ -289,8 +289,6 @@ mis au monde durant l'année `annee` en France.
 - Pour chaque année, chaque sexe, donner les dix prénoms les plus populaires et leur rang  de popularité. 
 
 ```{.sql}
-#| unilur-solution: true
-
 WITH R AS (
   SELECT annee, sexe, prenom, RANK() OVER(PARTITION BY (annee, sexe)
                                           ORDER BY nombre DESC) AS rnk

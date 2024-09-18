@@ -1,0 +1,282 @@
+---
+title: "Schéma : world"
+categories: [world, crowfoot, DDL]
+subtitle: "world, relationnel, pattes de corbeau, crowfoot"
+date: "2024-09-20"
+
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: false
+    code-fold: false
+    toc: false
+    output-file: schema-world.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données \\\\ Schema world}}"
+  html:
+    embed-resources: true
+    code-fold: true
+    output-file: schema-world.html
+params:
+    year: 2024 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://s-v-b.github.io/MA15Y030/"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+
+engine: knitr
+---
+
+
+::: {.callout-warning}
+
+Présentation du schéma `world`, pour l'entrainement à PostGres. 
+
+-
+
+::: 
+
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](../images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+
+
+Créé avec  [DbSchema](https://dbschema.com)
+
+
+## Contexte
+
+`world` est un schéma formé par trois tables `country`, `city` et `countrylanguage`. Les instances de ce schéma sont censées fournir des données de géographie politique : un état du monde à une date donnée. 
+
+La table `country` nous renseigne sur les états reconnus (à l'ONU) et sur des territoires jugés plus ou moins autonomes [Dépendances](https://fr.wikipedia.org/wiki/Liste_des_dépendances_et_territoires_à_souveraineté_spéciale), [Territoires non autonomes](https://fr.wikipedia.org/wiki/Liste_des_territoires_non_autonomes_selon_l%27Organisation_des_Nations_unies)
+ 
+
+La table `city`  nous renseigne sur les villes les plus importantes de chaque territoire.
+
+Latable `countrylanguage` nous indique quelles langues sont parlées dans quels pas.
+
+L'instance du schéma utilisée donne une idée du monde au début des années 2000. 
+
+## Diagrammme en pattes de corbeau (crowfoot)
+
+Un diagramme en pattes de corbeau est formé par les tables (pour chaque colonne/attribut, nom et domaine)
+et des arcs qui décrivent des *contraintes référentielles*.
+
+![Schéma world en pattes de corbeau](/images/schema-world.png)
+
+
+
+## Table world.country 
+
+
+::: {.smaller}
+
+|Idx |Name |Data Type |Description |
+|---|---|---|---|
+| * &#128273;  &#11019; | countrycode| char(3)  |  Code ISO à 3 symboles |
+| * | name\_country| text  | Nom du territoire en Anglais |
+| * | continent| text  |  |
+| * | region| text  |  |
+| * | surfacearea| real  | Surface en Km2 |
+|  | indepyear| smallint  | Année de fondation/indépendance |
+| * | population\_country| integer  | Nombre d'habitants |
+|  | lifeexpectancy| real  |  Espérance de vie à naissance|
+|  | gnp| numeric(10,2)  |  PIB  (en Millions de USD?) |
+|  | gnpold| numeric(10,2)  |  |
+| * | localname| text  | Nom du territoire dans les langues officielles |
+| * | governmentform| text  | Type de régime |
+|  | headofstate| text  | Chef de l'état  |
+| &#11016; | capital| integer  | Identifiant (`id`) de la capitale dans `city`  |
+| * | code2| char(2)  | Code ISO à 2 symboles |
+
+
+`gnp` est formé par les initiales de `Gross National Product` ([Produit National Brut](https://fr.wikipedia.org/wiki/Produit_national_brut)), un indicateur de revenu défini par les économistes.
+
+`lifeexpectancy` (espérance de vie à la naissance) est un indicateur de santé publique construit par les démographes. Ce n'est pas l'âge moyen au décès.
+
+:::
+
+Chaque ligne de `country` est identifiée par la valeur de `countrycode`. Cet attribut ne peut pas être `NULL`. Deux lignes distinctes de `country` ne peuvent coïncider sur l'attribut `countrycode`.
+
+L'attribut `countrycode` peut être utilisé pour désigner une ligne de la table `country`. Cette possibilité est utilisée dans les tables `city` et `countrylanguage`
+
+En jargon, l'attribut `countrycode` sert de *clé primaire* à la table `country`
+
+
+Un extrait de la table concernant les pays de région `Western Europe` permet de comprendre au moins une partie de la signification et des usages des colonnes
+
+
+::: {.smaller}
+
+{{< include _western_europe.md >}}
+
+:::
+
+
+
+### Foreign Keys (clée étrangères)
+
+La colonne `capital` ne contient pas les noms de capitale (il existe des territoires sans capitale), 
+elle contient des entiers (ou `NULL`) qui renvoient à des lignes dans la table `city`.
+
+
+::: {.smaller}
+
+
+|Type |Name |On |
+|---|---|---|
+|  | country_capital_fkey | ( capital ) ref [world.city](#city) (id) |
+
+:::
+
+
+### Constraints
+
+Le domaine de la colonne (de l'atttribut) `continent` est un type énuméré (défini en extension). 
+
+|Name |Definition |
+|---|---|
+| country_continent_check | ((continent = 'Asia'::text) OR (continent = 'Europe'::text) OR (continent = 'North America'::text) OR (continent = 'Africa'::text) OR (continent = 'Oceania'::text) OR (continent = 'Antarctica'::text) OR (continent = 'South America'::text)) |
+
+
+## Table world.city 
+
+
+::: {.smaller} 
+
+
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | id| integer  |
+| * | name| text  |
+| * &#11016; | countrycode| char(3)  |
+| * | district| text  |
+| * | population| integer  |
+
+:::
+
+
+Chaque ligne de `city` est identifiée par la valeur de `is`. Cet attribut ne peut pas être `NULL`. Deux lignes distinctes de `city` ne peuvent coïncider sur l'attribut `id`. 
+
+
+
+
+### Foreign Keys
+
+
+La colonne `countrycode` ne contient pas les noms des pays, mais le code à 3 symboles du territoire 
+où se situe la ville
+
+
+::: {.smaller}
+
+|Type |Name |On |
+|---|---|---|
+|  | city_country_fk | ( countrycode ) ref [world.country](#country) (countrycode) |
+
+:::
+
+
+L'extrait suivant correspond au villes du pays nommé `France`.
+
+{{< include _france_cities.md >}}
+
+
+::: {.callout-note}
+
+{{< fa hand-point-right >}} La description des tables `country` et `city` n'impose pas que la capitale d'un pays soit une ville située dans ce pays. 
+
+Est-ce que cette contrainte devrait être mise en place ?
+
+:::
+
+
+## Table world.countrylanguage 
+
+La table `countrylanguage` nous renseigne sur les langues parlées dans les différents pays.
+
+
+::: {.smaller}
+
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11016; | countrycode| char(3)  |
+| * &#128273;  | language| text  |
+| * | isofficial| boolean  |
+| * | percentage| real  |
+
+:::
+
+
+Un extrait correspondant au pays `FRA` (France) aide à comprendre
+
+::: {.smaller}
+
+| countrycode |  language  | isofficial | percentage |
+|:------------|:-----------|:----------:|-----------:|
+| FRA         | French     | t          |       93.6 |
+| FRA         | Arabic     | f          |        2.5 |
+| FRA         | Portuguese | f          |        1.2 |
+| FRA         | Italian    | f          |        0.4 |
+| FRA         | Spanish    | f          |        0.4 |
+| FRA         | Turkish    | f          |        0.4 |
+
+:::
+
+
+Les lignes nous renseignent sur 6 langues. Une documentation complète 
+serait nécessaire pour vérifier si le `percentage` correspond à la proportion
+d'individus qui déclarent  telle ou telle langue comme langue maternelle. 
+On ne sait pas si un individu peut déclarer posséder plusieurs langues. 
+
+::: {.callout-note}
+
+{{< fa hand-point-right >}} La documentation d'une base de données ne se réduit pas toujours à un diagramme.
+
+:::
+   
+D'après l'instance du schéma `world`, la seule langue réputée officielle 
+en France est le français. 
+
+::: {.callout-note}
+
+{{< fa brain >}} Qu'est ce qu'une langue officielle ?
+
+:::
+
+
+Dans la table `countrylanguage`, l'attribut `countrycode`  renvoie à une ligne de `country` grâce à l'attribut de même nom dans la table `country.` 
+
+
+### Foreign Keys
+
+
+|Type |Name |On |
+|---|---|---|
+|  | countrylanguage_countrycode_fkey | ( countrycode ) ref [world.country](#country) (countrycode) |
+
+
+::: {.callout-note}
+
+Dans le schéma `world`, chaque ligne de `countrylanguage`  est identifiée par les valeurs des colonnes `countrycode` et `language`. On parle de *clé primaire* composée.
+
+:::
+
+

@@ -73,6 +73,8 @@ website:
         text: Exercices
       - href: corriges-tds.qmd
         text: Corrections  
+      - href: schemas-listings.qmd
+        htext: Schémas
       - href: exams-listings.qmd
         text: Annales
       - section: "Journal"
