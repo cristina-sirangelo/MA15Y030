@@ -4882,6 +4882,12 @@ vertical-align: -.125em;
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../schemas-listings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Schemas</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../exams-listings.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Annales</span></a>
   </div>
@@ -5224,16 +5230,14 @@ vertical-align: -.125em;
 <ul>
 <li>Pour chaque année, chaque sexe, donner les dix prénoms les plus populaires et leur rang de popularité.</li>
 </ul>
-<div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>#| unilur<span class="op">-</span>solution: <span class="kw">true</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> R <span class="kw">AS</span> (</span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> annee, sexe, prenom, <span class="fu">RANK</span>() <span class="kw">OVER</span>(<span class="kw">PARTITION</span> <span class="kw">BY</span> (annee, sexe)</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                                          <span class="kw">ORDER</span> <span class="kw">BY</span> nombre <span class="kw">DESC</span>) <span class="kw">AS</span> rnk</span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> babynames.bebes</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> annee, sexe, prenom, rnk</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> R</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> rnk <span class="op">&lt;=</span> <span class="dv">10</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">WITH</span> R <span class="kw">AS</span> (</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">SELECT</span> annee, sexe, prenom, <span class="fu">RANK</span>() <span class="kw">OVER</span>(<span class="kw">PARTITION</span> <span class="kw">BY</span> (annee, sexe)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                                          <span class="kw">ORDER</span> <span class="kw">BY</span> nombre <span class="kw">DESC</span>) <span class="kw">AS</span> rnk</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">FROM</span> babynames.bebes</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> annee, sexe, prenom, rnk</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> R</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> rnk <span class="op">&lt;=</span> <span class="dv">10</span> ;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li>Créer dans votre schéma personnel une vue <code>top_10</code> qui, interrogée, renvoie le résultat de la requête précédente</li>
 </ul>
