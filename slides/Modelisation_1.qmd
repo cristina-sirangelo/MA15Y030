@@ -874,6 +874,38 @@ graph ER {
 
 ## Types de contraintes
 
+- Contraintes d'exclusion
+
+Dans `nycflights`, deux instances de l'association `flights` portant sur le même aéronef ne devraient pas se chevaucher dans le temps 
+
+
+- Contraintes de spécialisation
+ 
+
+## Contrainte de spécialisation disjointe
+
+## Contrainte de spécialisation totale
+
+
+## Contrainte de spécialisation disjointe et totale 
+
+## Restructuration des spécialisations
+
+Pourquoi ?
+
+. . .
+
+Plusieurs manières de procéder: 
+
+- Éliminer les entités mères OU 
+
+- Éliminer les entités filles
+
+
+## Restructuration des spécialisations avec des associations
+
+
+
 ## Rapport des contraintes
 
 # Références {background-color="#1c191c"}

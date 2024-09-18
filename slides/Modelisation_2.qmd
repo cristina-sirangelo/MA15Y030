@@ -11,3 +11,32 @@ format:
 ---
 
 
+
+# Introduction  {background-color="#1c191c"}
+
+# Modèle pattes de corbeaux {background-color="#1c191c"}
+
+## Objectifs et origine
+
+## Diagrammes
+
+## Liens non-identifiants
+
+## Liens identifiants
+
+# Traduction d'une association binaire *plusieurs-un* en pattes de corbeau {background-color="#1c191c"}
+
+# Traduction d'une association binaire *plusieurs-plusieurs* en pattes de corbeau {background-color="#1c191c"}
+
+## Transformation à l'aide d'une entité faible
+
+## Table intermédiaire 
+
+# Traduction d'une association $n$-aire ($n>2$) 
+
+# Des pattes de corbeaux au relationnel {background-color="#1c191c"}
+
+# Du relationnel aux pattes de corbeau {background-color="#1c191c"}
+
+
+# Fin  {background-color="#1c191c"}
