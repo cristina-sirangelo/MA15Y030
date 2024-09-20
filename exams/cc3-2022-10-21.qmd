@@ -18,12 +18,11 @@ params:
     university: "Université Paris Cité"
     homepage: "https://stephane-v-boucheron.fr/courses/bdd"
     moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+
+engine: knitr
 ---
 
 
-```{r}
-#| include: false
-```
 
 
 ::: {layout="[80,20]"}
@@ -41,8 +40,11 @@ params:
 ::: 
 
 ::: {#second-column}
+
 ![](/images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
-:::****
+
+:::
+
 
 :::
 
@@ -50,32 +52,203 @@ Sur le serveur, dans votre schéma personnel (celui dont le nom est votre `usern
 
 ## Popularité
 
-Écrire une fonction `SQL` nommée `cc_fonc_6` qui prend en argument une année  `yyyy` et un entier `n` et renvoie une table `(sexe TEXT, prenom TEXT, nombre int4, rang int4)` qui contient, selon la table `babynames.bebes`, les `n` prénoms les plus populaires (attribués) de l'année `yyyy` pour chaque sexe.
+::: {.callout-note}
+
+### Question
+
+Écrire une fonction `SQL` nommée `top_k_names_by_year` qui prend en argument une année  `yyyy` et un entier `n` et renvoie une table `(name TEXT, sex integer, rank integer)` qui contient, selon la table `babynames.bebes`, les `k` prénoms les plus populaires (attribués) de l'année `yyyy` pour chaque sexe.
+
+:::
 
 ::: {.callout-tip  collapse="false"}
 
-Réponse attendue pour `SELECT * FROM cc_fonc_6(1950, 5);` :
+Réponse attendue pour `SELECT * FROM top_k_names_by_year(1950, 5);` :
 
 ```
-+----+---------+------+----+
-|F   |MARIE    | 28093|   1|
-|F   |MARTINE  | 16288|   2|
-|F   |FRANÇOISE| 14735|   3|
-|F   |MONIQUE  | 14647|   4|
-|F   |NICOLE   | 12695|   5|
-|H   |JEAN     | 38353|   1|
-|H   |MICHEL   | 27957|   2|
-|H   |ALAIN    | 24048|   3|
-|H   |GÉRARD   | 18618|   4|
-|H   |BERNARD  | 18355|   5|
++----+---------+----+
+|F   |MARIE    |   1|
+|F   |MARTINE  |   2|
+|F   |FRANÇOISE|   3|
+|F   |MONIQUE  |   4|
+|F   |NICOLE   |   5|
+|H   |JEAN     |   1|
+|H   |MICHEL   |   2|
+|H   |ALAIN    |   3|
+|H   |GÉRARD   |   4|
+|H   |BERNARD  |   5|
 ```
 
 :::
 
 ::: {.content-visible when-profile="solution"}
+
 ::: {.callout-tip title="solution"}
 
-TODO 
+Première question posée au chatbot :
+
+```{verbatim}
+For every year and sex, find the 5 most popular names.
+```
+
+Réponse :
+
+```{verbatim, lang="markdown"}
+To find the 5 most popular names for each year and sex 
+in the babynames.bebes table, you can use `ROW_NUMBER()`. 
+Here's a query that retrieves the top 5 names 
+for each combination of year and sex:
+```
+
+
+```{.sql}
+WITH RankedNames AS (
+    SELECT
+        name, year, sex, count,
+        ROW_NUMBER() OVER (PARTITION BY year, sex ORDER BY count DESC) AS rank
+    FROM
+        babynames.bebes
+)
+
+SELECT
+    name, year, sex, count
+FROM
+    RankedNames
+WHERE
+    rank <= 5
+ORDER BY
+    year, sex, rank;
+```
+
+```{verbatim}
+Explanation:
+
+- The `ROW_NUMBER()` function ranks names 
+within each `year` and `sex` partition,   
+ordered by the `count` of babies in descending order.
+- The `PARTITION BY year, sex` groups the data by each year and sex.
+- The `ORDER BY count DESC` ensures that the most popular names 
+(with the highest counts) are ranked first.
+- In the `WHERE` clause, we filter for the top 5 names (`rank <= 5`) 
+for each year and sex.
+
+This query will return the most popular 5 names 
+for both males and females for each year in the dataset.
+```
+
+
+Pour définir la fonction, on peut demander de l'aide au chatbot:
+
+```{verbatim}
+Design a sql function that takes as input a year y and an integer k, 
+and returns a table wih columns name, sex and rank 
+containing the k most popular names in year y for each sex
+```
+
+La réponse est
+
+```{.sql}
+CREATE OR REPLACE FUNCTION top_k_names_by_year(y INT, k INT)
+RETURNS TABLE(name VARCHAR(500), sex INT, rank INT) AS $$
+BEGIN
+    RETURN QUERY
+    WITH RankedNames AS (
+        SELECT
+            name, sex, count,
+            ROW_NUMBER() OVER (PARTITION BY sex ORDER BY count DESC) AS rank
+        FROM
+            babynames.bebes
+        WHERE
+            year = y
+    )
+    SELECT
+        name, sex, rank
+    FROM
+        RankedNames
+    WHERE
+        rank <= k
+    ORDER BY
+        sex, rank;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+En insistant pour obtenir une fonction `SQL` on obtient:
+
+```{.sql}
+CREATE OR REPLACE FUNCTION top_k_names_by_year(y INT, k INT)
+RETURNS TABLE(name VARCHAR(500), sex INT, rank INT) AS $$
+    WITH RankedNames AS (
+        SELECT
+            name, sex, count,
+            ROW_NUMBER() OVER (PARTITION BY sex ORDER BY count DESC) AS rank
+        FROM
+            babynames.bebes
+        WHERE
+            year = y
+    )
+    SELECT
+        name, sex, rank
+    FROM
+        RankedNames
+    WHERE
+        rank <= k
+    ORDER BY
+        sex, rank;
+$$ LANGUAGE sql;
+```
+
+Sure! If you'd prefer a **pure SQL function** (without using PL/pgSQL), here's how you can implement it. In PostgreSQL, you can create a function using SQL that performs the required query:
+
+```{.sql}
+CREATE OR REPLACE FUNCTION top_k_names_by_year(y INT, k INT)
+RETURNS TABLE(name VARCHAR(500), sex INT, rank INT) AS $$
+    WITH RankedNames AS (
+        SELECT
+            name, sex, count,
+            ROW_NUMBER() OVER (PARTITION BY sex ORDER BY count DESC) AS rank
+        FROM
+            babynames.bebes
+        WHERE
+            year = y
+    )
+    SELECT
+        name, sex, rank
+    FROM
+        RankedNames
+    WHERE
+        rank <= k
+    ORDER BY
+        sex, rank;
+$$ LANGUAGE sql;
+```
+
+```{verbatim, lang="markdown"}
+
+Explanation:
+- **Function Definition:**
+  - The function `top_k_names_by_year` accepts  
+  two parameters: `y` (year) and `k` (number of top names).
+  - It returns a table with three columns:  
+  `name` (name of the baby),  
+  `sex` (gender: 1 for male, 2 for female), and  
+  `rank` (the rank of the name by popularity).
+
+- **WITH Clause:**
+  - The `WITH RankedNames AS` clause ranks names 
+  by the count of babies for each sex 
+  in the specified year (`y`) using the `ROW_NUMBER()` window function. 
+  It partitions by `sex` and orders by `count DESC` to assign ranks 
+  starting from the most popular.
+
+- **WHERE Clause:**
+  - The main query filters for names with a rank less 
+  than or equal to `k` to get only the top `k` names for each sex.
+
+- **Language:**
+  - The function is written in **pure SQL** (as specified by `LANGUAGE sql`).
+
+This SQL function will return the top `k` names for each sex in the specified year (`y`).
+```
 
 :::
 :::
@@ -86,7 +259,13 @@ TODO
 
 Données dans le schéma `babynames`.
 
+::: {.callout-note}
+
+### Question 
+
 Écrire une fonction `SQL` nommée `cc_fonc_7` qui prend en argument une année  `yyyy`  et renvoie le rapport entre le nombre total de naissances féminines et le nombre total de naissances masculines cette année là selon la table `babynames.bebes`.
+
+:::
 
 
 ::: {.callout-tip}
@@ -119,17 +298,22 @@ TODO
 
 Données dans le schéma `babynames`
 
+::: {.callout-note}
+
+### Question
+
 Écrire une vue nommée `cc_vue_8` de schema
 ```
 (sexe text, prenom text, annee integer, rang integer, popularite numeric)
 ```
 qui donne pour chaque prénom, année, sexe, la popularité  relative (nombre sur nombre total de naissance de ce sexe cette année là) et le rang par popularité décroissante.
 
+:::
+
 
 ::: {.callout-tip}
 
 Réponse attendue pour
-
 ```
 SELECT *
 FROM cc_vue_8
@@ -171,6 +355,10 @@ TODO
 
 Données dans le schéma `world`
 
+::: {.callout-note}
+
+### Question
+
 Écrire une vue  nommée `cc_vue_9` de schéma:
 
 ```{.sql}
@@ -181,6 +369,7 @@ Données dans le schéma `world`
 
 où chaque ligne indique pour une région donnée, le minimum du PIB (`gnp`) par habitant, un des pays de la région où ce minimum est réalisé, le maximum du PIB par habitant et un des pays où ce maximum est réalisé.
 
+:::
 
 ::: {.callout-tip}
 
@@ -212,7 +401,13 @@ TODO
 
 Données dans le schéma `babynames`
 
+::: {.callout-note}
+
+### Question
+
 Créer une vue `cc_vue_10` de schéma `(prenom  TEXT, sexe TEXT, annee INTEGER, moy NUMERIC)` qui, pour chaque prénom, sexe et année, donne le nombre moyen d'attributions du prénom aux enfants du sexe en question durant l'intervalle formé par les deux années qui précèdent et les deux années qui suivent l'année courante (incluse).
+
+:::
 
 
 ::: {.callout-tip collapse="true"}
