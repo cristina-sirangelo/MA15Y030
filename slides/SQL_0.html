@@ -1547,9 +1547,14 @@ WHERE b.sexe=1 AND
 </section><section id="jointure-externe-exemple" class="slide level2 center"><h2>Jointure externe (exemple)</h2>
 <div class="columns">
 <div class="column">
-
+<p>On veut une table formée par les codes ISO, les noms des pays et (si possible) les noms des capitales. Les territoires sans capitale doivent apparaître en fin de table, avec une colonne <em>nom de capitale</em> nulle.</p>
+<div class="small">
+<p>Obtenir la première partie de la réponse avec une jointure est facile. Pour trouver les territoires sans capitale, il suffit de faire une sélection dans <code>country</code> sur le critère <code>capital IS NULL</code>. Ensuite, on peut faire une <code>UNION</code> (<code>∪</code>)</p>
+</div>
 </div><div class="column">
-<p><span class="math display">\[\text{TrDep} \bowtie^+ \text{TrArr}\]</span></p>
+<p>Avec une jointure externe on peut obtenir le résultat en une opération</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb28-1"><a></a>⋈^+(city, country, id=capital) |&gt;</span>
+<span id="cb28-2"><a></a>  π(countrycode, name_country, name)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section><section id="division" class="slide level2 center"><h2>Division</h2>
 <div class="callout callout-important callout-titled callout-style-default">
@@ -1581,18 +1586,18 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> Lister les langues parlées sur tous les continents</p>
 <p>On aimerait écrire une expression qui renvoie un résultat correct quelque soit les conventions adoptées sur la définition de <em>continent</em> (les Amériques forment-elles un ou deux continents, etc)</p>
 </div><div class="column">
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a>CL ← ⋈(country, countrylanguage) |<span class="op">&gt;</span></span>
-<span id="cb28-2"><a></a>  π(continent, language)</span>
-<span id="cb28-3"><a></a></span>
-<span id="cb28-4"><a></a>C ← π(CL, continent)</span>
-<span id="cb28-5"><a></a>L ← π(CL, language)</span>
-<span id="cb28-6"><a></a></span>
-<span id="cb28-7"><a></a>LPPTC ← (C × L  ∖  CL ) |<span class="op">&gt;</span></span>
-<span id="cb28-8"><a></a>  π(language)</span>
-<span id="cb28-9"><a></a></span>
-<span id="cb28-10"><a></a>L  ∖  LPPTC</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a>CL ← ⋈(country, countrylanguage) |<span class="op">&gt;</span></span>
+<span id="cb29-2"><a></a>  π(continent, language)</span>
+<span id="cb29-3"><a></a></span>
+<span id="cb29-4"><a></a>C ← π(CL, continent)</span>
+<span id="cb29-5"><a></a>L ← π(CL, language)</span>
+<span id="cb29-6"><a></a></span>
+<span id="cb29-7"><a></a>LPPTC ← (C × L  ∖  CL ) |<span class="op">&gt;</span></span>
+<span id="cb29-8"><a></a>  π(language)</span>
+<span id="cb29-9"><a></a></span>
+<span id="cb29-10"><a></a>L  ∖  LPPTC</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On vient de calculer une division !</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a>CL ÷ C</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a></a>CL ÷ C</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
 </section><section id="interdéfinissabilité-des-opérateurs" class="slide level2 center"><h2>Interdéfinissabilité des opérateurs</h2>
 <ul>
@@ -1615,7 +1620,7 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 <div class="callout-content">
 <p>Soient <span class="math inline">\(R\)</span> de schéma <span class="math inline">\(R(A_1,A_2,\dots,A_k)\)</span>, <span class="math inline">\(S\)</span> de schéma <span class="math inline">\(S(A_{p+1},\dots ,A_k)\)</span></p>
 <p>est la relation <span class="math inline">\(T= R ÷ S\)</span> de schéma <span class="math inline">\(T(A_1, \dots, A_p)\)</span>.</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a></a>T ← Π(R, A) ∖ Π((Π(R, A) × S ∖ R), A)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a></a>T ← Π(R, A) ∖ Π((Π(R, A) × S ∖ R), A)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
