@@ -1097,7 +1097,7 @@
 </section><section class="slide level2 center"><p>Soit <span class="math inline">\(\Sigma\)</span> un ensemble de DF sur un schéma <span class="math inline">\(\mathcal{A}\)</span> et <span class="math inline">\(X\subset\mathcal{A}\)</span></p>
 <h3 id="algorithme">Algorithme</h3>
 </section><section id="section-2" class="slide level2 smaller center"><h2></h2>
-<div class="pseudocode-container quarto-float" data-line-number-punc=":" data-indent-size="1.2em" data-caption-prefix="Algorithme" data-comment-delimiter="//" data-line-number="true" data-pseudocode-number="1" data-no-end="false">
+<div class="pseudocode-container quarto-float" data-line-number-punc=":" data-line-number="true" data-indent-size="1.2em" data-no-end="false" data-comment-delimiter="//" data-pseudocode-number="1" data-caption-prefix="Algorithme">
 <div class="pseudocode">
 \begin{algorithm} \caption{Fermeture} \begin{algorithmic} \Procedure{Fermeture}{$X, Σ$} \State $X^c ← X$ \Repeat \State stop ← \True \For{$(Y → Z) ∈ Σ$} \If{$Y ⊆ Z ∧ Z ⊄ X^c$} \State $X^c ← X^c ∪ Z$ \State stop ← \False \EndIf \EndFor \Until{stop} \Return $X^c$ \EndProcedure \end{algorithmic} \end{algorithm}
 </div>

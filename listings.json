@@ -1,34 +1,5 @@
 [
   {
-    "listing": "/td-listings.html",
-    "items": [
-      "/workshops/td1.html",
-      "/workshops/td2.html",
-      "/workshops/td3.html",
-      "/workshops/td4.html",
-      "/workshops/td5.html",
-      "/workshops/td6.html",
-      "/workshops/td7.html",
-      "/workshops/td8.html",
-      "/workshops/td9.html",
-      "/workshops/td10.html",
-      "/workshops/td11.html",
-      "/workshops/td-recap-sql.html"
-    ]
-  },
-  {
-    "listing": "/schemas-listings.html",
-    "items": []
-  },
-  {
-    "listing": "/exams-listings.html",
-    "items": []
-  },
-  {
-    "listing": "/corriges-tds.html",
-    "items": []
-  },
-  {
     "listing": "/slides-listings.html",
     "items": [
       "/slides/BD_intro.html",
@@ -49,6 +20,35 @@
       "/slides/SQL_7.html",
       "/slides/BD_admin_1.html",
       "/slides/BD_admin_2.html"
+    ]
+  },
+  {
+    "listing": "/corriges-tds.html",
+    "items": []
+  },
+  {
+    "listing": "/exams-listings.html",
+    "items": []
+  },
+  {
+    "listing": "/schemas-listings.html",
+    "items": []
+  },
+  {
+    "listing": "/td-listings.html",
+    "items": [
+      "/workshops/td1.html",
+      "/workshops/td2.html",
+      "/workshops/td3.html",
+      "/workshops/td4.html",
+      "/workshops/td5.html",
+      "/workshops/td6.html",
+      "/workshops/td7.html",
+      "/workshops/td8.html",
+      "/workshops/td9.html",
+      "/workshops/td10.html",
+      "/workshops/td11.html",
+      "/workshops/td-recap-sql.html"
     ]
   }
 ]
