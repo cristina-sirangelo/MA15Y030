@@ -1408,13 +1408,25 @@ $$R \bowtie^+ S$$
 ::::: {.columns}
 ::: {.column}
 
+On veut une table formée par les codes ISO, les noms des pays et (si possible) les noms des capitales. Les territoires sans capitale doivent apparaître en fin de table,  avec une colonne *nom de capitale* nulle. 
+
+
+::: {.small}
+
+Obtenir la première partie de la réponse avec une jointure est facile. Pour trouver les territoires sans capitale, il suffit de faire une sélection dans `country` sur le critère `capital IS NULL`. Ensuite, on peut faire une `UNION`   (`∪`)
 
 :::
+
+:::
+
 ::: {.column}
 
-$$\text{TrDep} \bowtie^+ \text{TrArr}$$
+Avec une jointure externe on peut obtenir le résultat en une opération 
 
-
+```{verbatim}
+⋈^+(city, country, id=capital) |>
+  π(countrycode, name_country, name)
+```
 
 :::
 :::::

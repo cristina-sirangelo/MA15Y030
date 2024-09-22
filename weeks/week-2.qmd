@@ -18,18 +18,17 @@ Requêtes du TD 1 [TD 1](/workshops/td1.html)
 
 ## Cours magistral : diapositives
 
-Nous reprenons 
+Reprise de 
+[Introduction à l'algèbre relationnelle](/slides/SQL_0.html) 
+au {{< fa hand-point-right >}} [renommage](/slides/SQL_0.html#/renommage){target="_blank"} jusqu'à [Exemples de requêtes](/slides/SQL_0.html#/exemples-de-requêtes) (sans aborder les jointures externes)
 
-[Introduction à l'algèbre relationnelle](/slides/SQL_0.html)
-
-au {{< fa hand-point-right >}} [renommage](/slides/SQL_0.html#/renommage){target="_blank"}
 
 Puis nous aborderons le langage de requêtes SQL dans 
-
 [SQL requêtes élémentaires](/slides/SQL_1.html)
+jusqu'à [Syntaxe de la clause `WHERE`](/slides/SQL_1.html#/syntaxe-de-la-condition-where-...-suite-3)
 
+## Exercices : TD/TP 1
 
-## Exercices : TD 1
 
 Nous abordons avec les outils de l'algèbre relationnelle et de SQL les questions posées dans le `td1` :
 
@@ -38,7 +37,13 @@ Nous abordons avec les outils de l'algèbre relationnelle et de SQL les question
 
 ## Travail personnel (optionnel)
 
-Vous pouvez vous entrainer sur annales :
+- Essayer d'installer un [client](/computing-access.qmd) sur votre ordinateur personnel 
+- Essayez d'établir une connexion `ssh`  entre votre ordinateur personnel et `etu-pgsql.math.univ-paris-diderot.fr` et depuis cette machine de vous connecter au serveur PostGres (par exemple via `psql -d bd_2023-24`)
+- Essayez d'établir un tunnel `ssh` entre votre ordinateur personnel et `etu-pgsql.math.univ-paris-diderot.fr`, puis de vous connecter au serveur PostGres depuis le client installé sur votre machine
+
+Essayer de finir le TD 1
+
+Vous pouvez aussi vous entrainer sur annales :
 
 [CC 1 2023-24](/exams/cc1-2023-10-27.html)
 

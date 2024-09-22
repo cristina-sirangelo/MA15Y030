@@ -17,22 +17,25 @@ editor: source
 
 Finir requêtes du TD 1 [TD 1](/workshops/td1.html) 
 
+{{< fa hand-point-right >}} si ce n'est pas déjà fait suivre la procéure indiquée sur moodle pour disposer d'un compte sur les machines de Sophie Germain
+
 ## Cours magistral : diapositives
 
-[Introduction à l'algèbre relationnelle](/slides/SQL_0.html)
+[Introduction à l'algèbre relationnelle](/slides/SQL_0.html)  à terminer
 
-[SQL requêtes élémentaires](/slides/SQL_1.html)
+[SQL requêtes élémentaires](/slides/SQL_1.html)  à terminer
 
 [SQL requêtes imbriqués](/slides/SQL_2.html)
 
-## Exercices : TD 2
+## Exercices : Terminer TD 1 et commencer TD 2
 
 [html](/workshops/td2.html)  [pdf](/workshops/td2.pdf)
+
+[Schéma world](/schemas/schema-world.qmd)
 
 ## Solutions du  TD 1  (Semaine 2)
 
 [html](/solutions/td1.html)  [pdf](/solutions/td1.pdf)
-
 
 ## Travail personnel
 

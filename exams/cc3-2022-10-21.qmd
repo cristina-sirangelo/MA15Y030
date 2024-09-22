@@ -48,7 +48,60 @@ engine: knitr
 
 :::
 
+
+::: {.callout-important}
+
 Sur le serveur, dans votre schéma personnel (celui dont le nom est votre `username`), créer les fonctions `SQL` et vues correspondant aux cinq questions suivantes.
+
+:::
+
+
+
+
+::: {.callout-note}
+
+Certaines  questions portent sur le schéma `babynames` qui ne contient qu'une seule table `bebes`. Le schéma de `bebes` est le suivant :
+
+```{.sql}
+                     Table "babynames.bebes"
+ Column |          Type          |  Nullable | 
+--------+------------------------+-----------+
+ sex    | integer                |  not null | 
+ name   | character varying(500) |  not null | 
+ year   | integer                |  not null | 
+ count  | integer                |           | 
+Indexes:
+    "bebes_pk" PRIMARY KEY, btree (sex, name, year)
+```
+
+- `sex` représente le sexe des bébés avec le codage suivant :
+  - 1 pour un garçon
+  - 2 pour une fille
+
+- `name` représente un prénom donné. C'est une chaîne de caractères de 
+longueur variable mais inférieure à 500.
+
+- `year` représente l'année, c'est de type entier.
+
+- `count` représsente le nombre de bébés de sexe `sex` nés pendant l'année `year`
+auxquels ont été attribués le prénom `name`.
+
+{{< fa hand-point-right >}} Une ligne de `bébés`  est identifiée par les attributs `year`, `sex`, `name`.
+
+D'autres questions portent sur le [schéma `world`](/schemas/schema-world.qmd).
+
+
+:::
+
+::: {.callout-warning}
+
+
+Pour construire les corrections, nous avons développés nos solutions à la main. 
+
+Mais nous avons aussi transmis le schéma  de `babynames` à un chatbot (`chatgpt 3.5`) et nous lui avons demandé de construire les requêtes correspondant à nos questions posées en langue nturelle.
+
+:::
+
 
 ## Popularité
 
@@ -82,7 +135,7 @@ Réponse attendue pour `SELECT * FROM top_k_names_by_year(1950, 5);` :
 
 ::: {.content-visible when-profile="solution"}
 
-::: {.callout-tip title="solution"}
+::: {.callout-tip title="Solution"}
 
 Première question posée au chatbot :
 
@@ -135,6 +188,9 @@ This query will return the most popular 5 names
 for both males and females for each year in the dataset.
 ```
 
+:::
+
+::: {.callout-tip title="Solution (suite)"}
 
 Pour définir la fonction, on peut demander de l'aide au chatbot:
 
@@ -172,8 +228,18 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
+:::
+
+::: {.callout-tip title="Solution (suite)"}
+
 En insistant pour obtenir une fonction `SQL` on obtient:
 
+```{verbatim}
+Sure! If you'd prefer a **pure SQL function** (without using PL/pgSQL), 
+here's how you can implement it. In PostgreSQL, you can create 
+a function using SQL that performs the required query:
+```
+
 ```{.sql}
 CREATE OR REPLACE FUNCTION top_k_names_by_year(y INT, k INT)
 RETURNS TABLE(name VARCHAR(500), sex INT, rank INT) AS $$
@@ -197,30 +263,10 @@ RETURNS TABLE(name VARCHAR(500), sex INT, rank INT) AS $$
 $$ LANGUAGE sql;
 ```
 
-Sure! If you'd prefer a **pure SQL function** (without using PL/pgSQL), here's how you can implement it. In PostgreSQL, you can create a function using SQL that performs the required query:
+:::
 
-```{.sql}
-CREATE OR REPLACE FUNCTION top_k_names_by_year(y INT, k INT)
-RETURNS TABLE(name VARCHAR(500), sex INT, rank INT) AS $$
-    WITH RankedNames AS (
-        SELECT
-            name, sex, count,
-            ROW_NUMBER() OVER (PARTITION BY sex ORDER BY count DESC) AS rank
-        FROM
-            babynames.bebes
-        WHERE
-            year = y
-    )
-    SELECT
-        name, sex, rank
-    FROM
-        RankedNames
-    WHERE
-        rank <= k
-    ORDER BY
-        sex, rank;
-$$ LANGUAGE sql;
-```
+::: {.callout-tip title='Solution (suite)'}
+
 
 ```{verbatim, lang="markdown"}
 
@@ -251,11 +297,12 @@ This SQL function will return the top `k` names for each sex in the specified ye
 ```
 
 :::
+
 :::
 
 
 
-## Nombre de naissances
+## Nombre de naissances/*sex ratio*
 
 Données dans le schéma `babynames`.
 
@@ -263,20 +310,20 @@ Données dans le schéma `babynames`.
 
 ### Question 
 
-Écrire une fonction `SQL` nommée `cc_fonc_7` qui prend en argument une année  `yyyy`  et renvoie le rapport entre le nombre total de naissances féminines et le nombre total de naissances masculines cette année là selon la table `babynames.bebes`.
+Écrire une fonction `SQL` nommée `sex_ratio` qui prend en argument une année  `yyyy`  et renvoie le rapport entre le nombre total de naissances féminines et le nombre total de naissances masculines cette année là selon la table `babynames.bebes`.
 
 :::
 
 
 ::: {.callout-tip}
 
-Réponse attendue pour `SELECT * FRON cc_fonc_7(1922);`
+Réponse attendue pour `SELECT * FRON sex_ratio(1922);`
 
 ```
-+---------+
-|cc_fonc_7|
-+---------+
-|     1.05|
++-----------+
+| sex_ratio |
++-----------+
+|   1.05    |
 ```
 
 NB:  précision demandée : 0.1
@@ -285,9 +332,100 @@ NB:  précision demandée : 0.1
 
 ::: {.content-visible when-profile="solution"}
 
-::: {.callout-tip title="solution"}
+::: {.callout-tip title="Solution"}
 
-TODO 
+
+```{.sql}
+WITH R AS (
+   SELECT year, sex, SUM("count") AS n 
+   FROM bebes
+   GROUP BY year, sex
+)
+ 
+SELECT r1."year", 
+       (r1.n::float/r2.n::float)::decimal(3,2) AS sex_ratio
+FROM R r1 JOIN R r2 ON (
+     r1."year"=r2."year" AND
+     r1.sex < r2.sex
+) ;
+```
+
+Pour calculer une ligne du résultat final, il faut combiner 
+deux lignes concernant la même année mais deux sexes différents de la table intermédiaire `R`.  La jointure réalise en passant une opération de *pivot*.
+
+:::
+
+
+::: {.callout-tip title="Solution (suite)"}
+
+```{.sql}
+create or replace function sex_ratio(p_y INT)
+  returns DECIMAL(3,2) as 
+$$
+with R as (
+  select
+    b.sex,
+    SUM(b."count") as n
+  from
+    babynames.bebes as b
+  where
+    b."year" = p_y
+  group by
+    b.sex
+)
+
+select
+  (r1.n::float / r2.n::float)::decimal(3,1) as sex_ratio
+from
+  R r1
+join R r2 on
+  (r1.sex < r2.sex) ;
+$$ language sql;
+``` 
+
+:::
+
+::: {.callout-tip title="Solution (suite)"}
+
+Question posée au chatbot :
+```{verbatim}
+Can you design a pure SQL function that takes as input a year y 
+and returns the sex ratio for that year ?
+``` 
+
+Réponse:
+
+```{verbatim}
+
+Yes, I can design a pure SQL function to calculate the sex ratio 
+for a given year in the babynames.bebes table. 
+The sex ratio is typically defined as the number of males (sex = 1) 
+per 100 females (sex = 2).
+```
+:::
+
+::: {.callout-tip title="Solution (suite)"}
+
+```{.sql}
+CREATE OR REPLACE FUNCTION get_sex_ratio(y INT)
+RETURNS DECIMAL(3,2) AS $$
+    SELECT 
+        CASE 
+            WHEN SUM(CASE WHEN sex = 2 THEN count ELSE 0 END) = 0 THEN NULL
+            ELSE 
+                ((SUM(CASE WHEN sex = 1 THEN count ELSE 0 END))::float /
+                SUM(CASE WHEN sex = 2 THEN count ELSE 0 END)::float)::decimal(3,2)
+        END AS sex_ratio
+    FROM 
+        babynames.bebes
+    WHERE 
+        year = y;
+$$ LANGUAGE sql;
+```
+
+Cette solution évite un `GROUP BY` et une `JOINTURE`. 
+L'utilisation de `CASE WHEN ... THEN ... ELSE ...` permet de calculer 
+les deux agrégations et de les combiner en une seule passe sur la table filtrée.
 
 :::
 
@@ -302,9 +440,9 @@ Données dans le schéma `babynames`
 
 ### Question
 
-Écrire une vue nommée `cc_vue_8` de schema
+Écrire une vue nommée `popularity` de schema
 ```
-(sexe text, prenom text, annee integer, rang integer, popularite numeric)
+(sex text, name text, year integer, rank integer, popularity numeric)
 ```
 qui donne pour chaque prénom, année, sexe, la popularité  relative (nombre sur nombre total de naissance de ce sexe cette année là) et le rang par popularité décroissante.
 
@@ -314,24 +452,24 @@ qui donne pour chaque prénom, année, sexe, la popularité  relative (nombre su
 ::: {.callout-tip}
 
 Réponse attendue pour
-```
+```{.sql}
 SELECT *
-FROM cc_vue_8
-WHERE prenom='THÉO' AND
-      sexe = 'H' AND
-      annee >1999 AND
-      annee < 2005;
+FROM popularity
+WHERE name='THÉO' AND
+      sex = 1 AND
+      "year" >1999 AND
+      "year" < 2005;
 ```
 
 ```
 +----+------+-----+----+----------+
-|sexe|prenom|annee|rang|popularite|
+|sex |name  | year|rank|popularity|
 +----+------+-----+----+----------+
-|H   |THÉO  | 2000|   6|     0.019|
-|H   |THÉO  | 2001|   6|     0.022|
-|H   |THÉO  | 2002|   5|     0.022|
-|H   |THÉO  | 2003|   5|     0.020|
-|H   |THÉO  | 2004|   7|     0.016|
+|1   |THÉO  | 2000|   6|     0.019|
+|1   |THÉO  | 2001|   6|     0.022|
+|1   |THÉO  | 2002|   5|     0.022|
+|1   |THÉO  | 2003|   5|     0.020|
+|1   |THÉO  | 2004|   7|     0.016|
 ```
 
 
@@ -344,22 +482,73 @@ NB:  précision demandée pour la popularité  0.01
 
 ::: {.callout-tip title="solution"}
 
-TODO 
+Question posée au chatbot :
 
+```{verbatim}
+Can you define a view with schema 
+(sex text, name text, year integer, rank integer, popularity numeric) 
+where popularity is the proportion of babies with given sex 
+who were named by name during year and rank is the rank of the name 
+when ordering by decreasing popularity. 
+```
+
+Réponse du chatbot :
+
+```{.sql}
+CREATE OR REPLACE VIEW name_popularity_view AS
+WITH TotalBySexYear AS (
+    -- Calculate the total number of babies by sex and year
+    SELECT
+        sex,
+        year,
+        SUM(count) AS total_babies
+    FROM
+        babynames.bebes
+    GROUP BY
+        sex, year
+),
+RankedNames AS (
+    -- Calculate the popularity and rank the names by decreasing popularity
+    SELECT
+        CASE 
+            WHEN b.sex = 1 THEN 'Male'
+            WHEN b.sex = 2 THEN 'Female'
+        END AS sex,
+        b.name,
+        b.year,
+        (b.count::numeric / t.total_babies) AS popularity,
+        ROW_NUMBER() OVER (PARTITION BY b.sex, b.year 
+                           ORDER BY b.count DESC) AS rank
+    FROM
+        babynames.bebes b
+    JOIN
+        TotalBySexYear t ON b.sex = t.sex AND b.year = t.year
+)
+-- Final selection for the view
+SELECT
+    sex,
+    name,
+    year,
+    rank,
+    popularity
+FROM
+    RankedNames;
+
+```
 :::
 
 :::
 
 
-## Requête fenêtre
+## Les riches et les pauvres dans `world`
 
-Données dans le schéma `world`
+Données dans le [schéma `world`](/schemas/schema-world.qmd)
 
 ::: {.callout-note}
 
 ### Question
 
-Écrire une vue  nommée `cc_vue_9` de schéma:
+Écrire une vue  nommée `ricchi_e_poveri` de schéma:
 
 ```{.sql}
 (region TEXT,
@@ -375,7 +564,7 @@ où chaque ligne indique pour une région donnée, le minimum du PIB (`gnp`) par
 
 ```{.sql}
 SELECT region, richest_country, poorest_country
-FROM cc_vue_9
+FROM ricchi_e_poveri
 WHERE region='Eastern Asia' ;
 ```
 
@@ -385,19 +574,68 @@ WHERE region='Eastern Asia' ;
 +------------+---------------+---------------+
 |Eastern Asia|Japan          |North Korea    |
 ```
+
 :::
 
 ::: {.content-visible when-profile="solution"}
 
-::: {.callout-tip title="solution"}
+::: {.callout-tip title="Solution"}
 
-TODO 
+Question posée au chatbot:
+```{verbatim}
+In the world schema, can you build a view ricchi_e_poveri 
+with schema (region TEXT,
+min_gnp_cap NUMERIC, poorest_country_name TEXT,
+max_gnp_per_cap NUMERIC, richest_country_name TEXT) 
+which,  for each region, contains the minimum gnp per capita, 
+the name of the country in the region 
+with the minimum gnp per capita (poorest country), 
+the maximum gnp per capita in the region, 
+the name of the country with maximum gnp per capita 
+in the region (richest country). 
+
+Countries with zero or no population should not be considered.  
+```
 
 :::
 
+::: {.callout-tip title="Solution (suite)"}
+
+```{.sql}
+CREATE OR REPLACE VIEW world.ricchi_e_poveri AS
+WITH GnpPerCapita AS (
+    -- Calculate GNP per capita for countries with valid population and GNP
+    SELECT
+        region,
+        name_country,
+        gnp / population_country AS gnp_per_capita
+    FROM
+        world.country
+    WHERE
+        population_country > 0 -- Exclude countries with zero or no population
+        AND gnp IS NOT NULL -- Exclude countries with no GNP data
+)
+SELECT
+    region,
+    MIN(gnp_per_capita) AS min_gnp_cap, -- Minimum GNP per capita for the region
+    (SELECT name_country FROM GnpPerCapita g2 
+     WHERE g2.region = g1.region 
+     ORDER BY gnp_per_capita ASC LIMIT 1) AS poorest_country_name, -- Country with minimum GNP per capita
+    MAX(gnp_per_capita) AS max_gnp_per_cap, -- Maximum GNP per capita for the region
+    (SELECT name_country FROM GnpPerCapita g2 
+    WHERE g2.region = g1.region 
+    ORDER BY gnp_per_capita DESC LIMIT 1) AS richest_country_name -- Country with maximum GNP per capita
+FROM
+    GnpPerCapita g1
+GROUP BY
+    region;
+```
 :::
 
-## Fenêtre glissante
+
+:::
+
+## Fenêtre glissante  sur les bébés
 
 Données dans le schéma `babynames`
 
@@ -405,31 +643,32 @@ Données dans le schéma `babynames`
 
 ### Question
 
-Créer une vue `cc_vue_10` de schéma `(prenom  TEXT, sexe TEXT, annee INTEGER, moy NUMERIC)` qui, pour chaque prénom, sexe et année, donne le nombre moyen d'attributions du prénom aux enfants du sexe en question durant l'intervalle formé par les deux années qui précèdent et les deux années qui suivent l'année courante (incluse).
+Créer une vue `sliding_avg_count` de schéma `(name    TEXT, sex TEXT, year INTEGER, avg_count NUMERIC)` qui, pour chaque prénom (name), sexe (sex) et année (year), donne le nombre moyen (average count, `avg_count`) d'attributions du prénom aux enfants du sexe en question durant l'intervalle formé par les deux années qui précèdent et les deux années qui suivent l'année courante (incluses).
 
 :::
 
+`avg_count` est un exemple de *moyenne mobile* ou *glissante*.
 
 ::: {.callout-tip collapse="true"}
 
 ```{.sql}
 SELECT *
-FROM cc_vue_10
-WHERE prenom='PATRICK' AND
-      annee BETWEEN 1955 AND 1960 ;
+FROM sliding_avg_count
+WHERE "name"  ='PATRICK' AND
+      "year" BETWEEN 1955 AND 1960 ;
 ```
 
 ```
-+-------+----+-----+--------+
-|prenom |sexe|annee|moy     |
-+-------+----+-----+--------+
-|PATRICK|F   | 1959|    3.00|
-|PATRICK|H   | 1955|20381.00|
-|PATRICK|H   | 1956|20673.80|
-|PATRICK|H   | 1957|20532.20|
-|PATRICK|H   | 1958|20173.80|
-|PATRICK|H   | 1959|19443.20|
-|PATRICK|H   | 1960|18479.60|
++-------+----+-----+---------+
+|name   |sex | year|avg_count|     
++-------+----+-----+---------+
+|PATRICK|F   | 1959|     3.00|
+|PATRICK|H   | 1955| 20381.00|
+|PATRICK|H   | 1956| 20673.80|
+|PATRICK|H   | 1957| 20532.20|
+|PATRICK|H   | 1958| 20173.80|
+|PATRICK|H   | 1959| 19443.20|
+|PATRICK|H   | 1960| 18479.60|
 ```
 
 :::
@@ -487,25 +726,71 @@ Si on veut calculer le nombre cumulé  d'attributions d'un prénom depuis l'orig
 
 ```{.sql}
 WITH R AS (
-SELECT prenom, sexe, annee, SUM(nombre)
-      OVER (PARTITION BY prenom, sexe
-            ORDER BY annee
+SELECT "name", sex, "year", SUM("count")
+      OVER (PARTITION BY "name"  , sex
+            ORDER BY "year"
             RANGE BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)
       as cumule
 FROM babynames.bebes
 )
 
 SELECT * FROM R
-WHERE prenom IN ('PATRICK', 'MICHEL') ;  -- pour limiter la taille du résultat
+WHERE "name"   IN ('PATRICK', 'MICHEL') ;  -- pour limiter la taille du résultat
 ```
 
 
 ::: {.content-visible when-profile="solution"}
 
-::: {.callout-tip title="solution"}
+::: {.callout-tip title="Solution"}
 
-TODO 
+Question posée au chatbot
+
+```{verbatim}
+In schema babynames, design a view with schema 
+(name    TEXT, sex TEXT, year INTEGER, avg_count NUMERIC)  
+where `avg_count` represents the moving average of `count` for the given `name` and `sex` where average should be computed from the 2 years preceding and following the current `year`, including the current `year`.
+```
 
 :::
 
+
+::: {.callout-tip title="Solution (suite)"}
+
+Réponse du chatbot :
+
+```{verbatim}
+To design the view with schema 
+`(name TEXT, sex TEXT, year INTEGER, avg_count NUMERIC)`
+that computes a moving average of `count` for the given `name` and `sex`, including the 2 years preceding and following the current `year` (5-year window), the SQL query would look like this:
+
+Steps:
+Define the window: The average should be computed over the 2 years before, the current year, and 2 years after (a total of 5 years).
+Partition by name and sex: This ensures that the moving average is calculated independently for each combination of name and sex.
+Apply a windowing function: Use AVG() with a window frame of 2 rows preceding and 2 rows following.
+
+```
+
+
+
+:::
+
+
+::: {.callout-tip title="Solution (suite)"}
+
+```{.sql}
+CREATE OR REPLACE VIEW name_avg_count AS
+SELECT
+    name,
+    sex,
+    year,
+    AVG(count) OVER (
+        PARTITION BY name, sex 
+        ORDER BY year 
+        ROWS BETWEEN 2 PRECEDING AND 2 FOLLOWING
+    ) AS avg_count
+FROM
+    babynames;
+```
+
+:::
 :::
