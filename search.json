@@ -417,7 +417,7 @@
     "href": "weeks/week-2.html#cours-magistral-diapositives",
     "title": "Semaine 2",
     "section": "Cours magistral : diapositives",
-    "text": "Cours magistral : diapositives\nNous reprenons\nIntroduction à l’algèbre relationnelle\nau  renommage\nPuis nous aborderons le langage de requêtes SQL dans\nSQL requêtes élémentaires",
+    "text": "Cours magistral : diapositives\nReprise de Introduction à l’algèbre relationnelle au  renommage jusqu’à Exemples de requêtes (sans aborder les jointures externes)\nPuis nous aborderons le langage de requêtes SQL dans SQL requêtes élémentaires jusqu’à Syntaxe de la clause WHERE",
     "crumbs": [
       "Journal",
       "Semaine 2"
@@ -439,7 +439,7 @@
     "href": "weeks/week-2.html#travail-personnel-optionnel",
     "title": "Semaine 2",
     "section": "Travail personnel (optionnel)",
-    "text": "Travail personnel (optionnel)\nVous pouvez vous entrainer sur annales :\nCC 1 2023-24\n\n\nretour à Agenda ⏎",
+    "text": "Travail personnel (optionnel)\n\nEssayer d’installer un client sur votre ordinateur personnel\nEssayez d’établir une connexion ssh entre votre ordinateur personnel et etu-pgsql.math.univ-paris-diderot.fr et depuis cette machine de vous connecter au serveur PostGres (par exemple via psql -d bd_2023-24)\nEssayez d’établir un tunnel ssh entre votre ordinateur personnel et etu-pgsql.math.univ-paris-diderot.fr, puis de vous connecter au serveur PostGres depuis le client installé sur votre machine\n\nEssayer de finir le TD 1\nVous pouvez aussi vous entrainer sur annales :\nCC 1 2023-24\n\n\nretour à Agenda ⏎",
     "crumbs": [
       "Journal",
       "Semaine 2"
@@ -1025,7 +1025,7 @@
     "href": "weeks/week-3.html#préparer",
     "title": "Semaine 3",
     "section": "Préparer",
-    "text": "Préparer\nFinir requêtes du TD 1 TD 1",
+    "text": "Préparer\nFinir requêtes du TD 1 TD 1\n si ce n’est pas déjà fait suivre la procéure indiquée sur moodle pour disposer d’un compte sur les machines de Sophie Germain",
     "crumbs": [
       "Journal",
       "Semaine 3"
@@ -1036,7 +1036,7 @@
     "href": "weeks/week-3.html#cours-magistral-diapositives",
     "title": "Semaine 3",
     "section": "Cours magistral : diapositives",
-    "text": "Cours magistral : diapositives\nIntroduction à l’algèbre relationnelle\nSQL requêtes élémentaires\nSQL requêtes imbriqués",
+    "text": "Cours magistral : diapositives\nIntroduction à l’algèbre relationnelle à terminer\nSQL requêtes élémentaires à terminer\nSQL requêtes imbriqués",
     "crumbs": [
       "Journal",
       "Semaine 3"
@@ -5163,5 +5163,27 @@
     "title": "MA15Y030 - Automne 2024",
     "section": "Les riches et les pauvres dans world",
     "text": "Les riches et les pauvres dans world\nDonnées dans le schéma world\n\n\n\n\n\n\nQuestion\n\n\n\nÉcrire une vue nommée ricchi_e_poveri de schéma:\n(region TEXT,\n min_gnp_cap NUMERIC, poorest_country_name TEXT,\n max_gnp_per_cap NUMERIC, richest_country_name TEXT)\noù chaque ligne indique pour une région donnée, le minimum du PIB (gnp) par habitant, un des pays de la région où ce minimum est réalisé, le maximum du PIB par habitant et un des pays où ce maximum est réalisé.\n\n\n\n\n\n\n\n\nSELECT region, richest_country, poorest_country\nFROM ricchi_e_poveri\nWHERE region='Eastern Asia' ;\n+------------+---------------+---------------+\n|region      |richest_country|poorest_country|\n+------------+---------------+---------------+\n|Eastern Asia|Japan          |North Korea    |\n\n\n\n\n\n\n\n\n\nSolution\n\n\n\nQuestion posée au chatbot:\nIn the world schema, can you build a view ricchi_e_poveri \nwith schema (region TEXT,\nmin_gnp_cap NUMERIC, poorest_country_name TEXT,\nmax_gnp_per_cap NUMERIC, richest_country_name TEXT) \nwhich,  for each region, contains the minimum gnp per capita, \nthe name of the country in the region \nwith the minimum gnp per capita (poorest country), \nthe maximum gnp per capita in the region, \nthe name of the country with maximum gnp per capita \nin the region (richest country). \n\nCountries with zero or no population should not be considered.  \n\n\n\n\n\n\n\n\nSolution (suite)\n\n\n\nCREATE OR REPLACE VIEW world.ricchi_e_poveri AS\nWITH GnpPerCapita AS (\n    -- Calculate GNP per capita for countries with valid population and GNP\n    SELECT\n        region,\n        name_country,\n        gnp / population_country AS gnp_per_capita\n    FROM\n        world.country\n    WHERE\n        population_country &gt; 0 -- Exclude countries with zero or no population\n        AND gnp IS NOT NULL -- Exclude countries with no GNP data\n)\nSELECT\n    region,\n    MIN(gnp_per_capita) AS min_gnp_cap, -- Minimum GNP per capita for the region\n    (SELECT name_country FROM GnpPerCapita g2 \n     WHERE g2.region = g1.region \n     ORDER BY gnp_per_capita ASC LIMIT 1) AS poorest_country_name, -- Country with minimum GNP per capita\n    MAX(gnp_per_capita) AS max_gnp_per_cap, -- Maximum GNP per capita for the region\n    (SELECT name_country FROM GnpPerCapita g2 \n    WHERE g2.region = g1.region \n    ORDER BY gnp_per_capita DESC LIMIT 1) AS richest_country_name -- Country with maximum GNP per capita\nFROM\n    GnpPerCapita g1\nGROUP BY\n    region;"
+  },
+  {
+    "objectID": "weeks/week-2.html#exercices-tdtp-1",
+    "href": "weeks/week-2.html#exercices-tdtp-1",
+    "title": "Semaine 2",
+    "section": "Exercices : TD/TP 1",
+    "text": "Exercices : TD/TP 1\nNous abordons avec les outils de l’algèbre relationnelle et de SQL les questions posées dans le td1 :\nhtml pdf",
+    "crumbs": [
+      "Journal",
+      "Semaine 2"
+    ]
+  },
+  {
+    "objectID": "weeks/week-3.html#exercices-terminer-td-1-et-commencer-td-2",
+    "href": "weeks/week-3.html#exercices-terminer-td-1-et-commencer-td-2",
+    "title": "Semaine 3",
+    "section": "Exercices : Terminer TD 1 et commencer TD 2",
+    "text": "Exercices : Terminer TD 1 et commencer TD 2\nhtml pdf\nSchéma world",
+    "crumbs": [
+      "Journal",
+      "Semaine 3"
+    ]
   }
 ]
