@@ -12,9 +12,10 @@ title: "MA15Y030 Syllabus"
 |           | Jour       | Horaire              | Lieu                       |  Début |
 |:---------:|:-----------:|:-------------------:|:--------------------------------|:--------|
 | Cours     | Vendredi  | 14:00  - 15:30  | Olympe de Gouges Amphi II      | 2024-09-13 |
-| TD/TP 1   | Vendredi  | 15:45  - 18:15  | Sophie Germain 2004-2005           | 2024-09-20 |
-| TD/TP 2   | Vendredi  | 15:45  - 18:15  | Sophie Germain 2006          | 2024-09-20 |
-<!-- | TD/TP 3   | Vendredi  | 15:45  - 18:15  | Sophie Germain 2006            | 2024-09-20 | -->
+| TD/TP 1  MIASHS | Vendredi  | 15:45  - 18:15  | Sophie Germain 2004          | 2024-09-20 |
+| TD/TP 2   MIASHS | Vendredi  | 15:45  - 18:15  | Sophie Germain 2005          | 2024-09-20 |
+| TD/TP 3   MIASHS | Vendredi  | 15:45  - 18:15  | Sophie Germain 2006          | 2024-09-20 |
+| TD/TP IngeMaths/METIS   | Jeudi  | 13:30  - 16:00  | Sophie Germain 2006            | 2024-09-26 | -->
 
 ### [{{< fa cal >}}](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3)
 
