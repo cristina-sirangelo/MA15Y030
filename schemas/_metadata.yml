@@ -1,3 +1,5 @@
+website:
+  page-navigation: true
 
 toc: true
 toc-depth: 2

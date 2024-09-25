@@ -3,3 +3,6 @@ project:
     - solutions/
     - exams/
 
+website:
+  page-navigation: true
+

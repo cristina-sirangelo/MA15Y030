@@ -7,9 +7,12 @@ editor: source
 ::: callout-important
 
 -   Cours magistral en Amphi. 2 Olympe de Gouges 14h-15h30
--   TD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-16h45 {{< fa exclamation-triangle >}}
--   {{< fa cal >}} [Emploi du temps](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3)
+<!-- -   TD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-16h45  -->
+<!-- -   TD/TP Ingémaths/METIS salle 2006 Etage 2 Sophie Germain Jeudi 13h30-16h00 -->
+-   {{< fa exclamation-triangle >}} TD/TP  salles 2004-2005-2006 Étage 2 Sophie Germain Vendredi 15h45-16h45
 -   {{< fa mug-hot >}} **Contrôle continu I** 17h-18h15 Amphi A2 Halle aux Farines
+-   {{< fa cal >}} [Emploi du temps MIASHS](https://edt.math.univ-paris-diderot.fr/#/parcours/miashs/l3)
+-   {{< fa cal >}} [Emploi du temps Ingémaths/METIS](https://edt.math.univ-paris-diderot.fr/#/parcours/ingemath/l3)
 
 
 :::
