@@ -199,7 +199,7 @@
     "href": "weeks/week-9.html",
     "title": "Semaine 9",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps\n  Contrôle continu II 17h-18h15 Salle à déterminer",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges 14h-15h30\n TD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-16h45\n  Contrôle continu II 17h-18h15 Amphi A2 Halle aux Farines\n Emploi du temps\n Emploi du temps",
     "crumbs": [
       "Journal",
       "Semaine 9"
@@ -265,7 +265,7 @@
     "href": "weeks/week-7.html",
     "title": "Semaine 7",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-16h45\n Emploi du temps\n Contrôle continu I 17h-18h15 Salle à déterminer",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi. 2 Olympe de Gouges 14h-15h30  \n TD/TP salles 2004-2005-2006 Étage 2 Sophie Germain Vendredi 15h45-16h45\n Contrôle continu I 17h-18h15 Amphi A2 Halle aux Farines\n Emploi du temps MIASHS\n Emploi du temps Ingémaths/METIS",
     "crumbs": [
       "Journal",
       "Semaine 7"
@@ -331,7 +331,7 @@
     "href": "weeks/week-5.html",
     "title": "Semaine 5",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
     "crumbs": [
       "Journal",
       "Semaine 5"
@@ -397,7 +397,7 @@
     "href": "weeks/week-3.html",
     "title": "Semaine 3",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges Vendredi 14h-15h30\nTD/TP Ingémaths/METIS salle 2006 Etage 2 Sophie Germain Jeudi 13h30-16h00\nTD/TP MIASHS salles 2004-2005-2006 Étage 2 Sophie Germain Vendredi 15h45-18h15\n Emploi du temps MIASHS\n Emploi du temps Ingémaths/METIS",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges Vendredi 14h-15h30\nTD/TP Ingémaths/METIS salle 2006 Etage 2 Sophie Germain Jeudi 13h30-16h00\nTD/TP MIASHS salles 2004-2005-2006 Étage 2 Sophie Germain Vendredi 15h45-18h15\n Emploi du temps MIASHS\n Emploi du temps Ingémaths/METIS",
     "crumbs": [
       "Journal",
       "Semaine 3"
@@ -463,7 +463,7 @@
     "href": "weeks/week-13.html",
     "title": "Semaine 13",
     "section": "",
-    "text": "Important\n\n\n\n\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-16h45\n Emploi du temps\n   Contrôle continu III 17h-18h15 Salle à déterminer",
+    "text": "Important\n\n\n\n\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-16h45\n   Contrôle continu III 17h-18h15 Amphi A2 Halle aux Farines\n Emploi du temps\n Emploi du temps",
     "crumbs": [
       "Journal",
       "Semaine 13"
@@ -518,7 +518,7 @@
     "href": "weeks/week-11.html",
     "title": "Semaine 11",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges 14h-15h30\nTD/TP Ingémaths/METIS salle 2006 Etage 2 Sophie Germain Jeudi 13h30-16h00\nTD/TP MIASHS salles 2004-2005-2006 Étage 2 Sophie Germain Vendredi 15h45-18h15\n Emploi du temps MIASHS\n Emploi du temps Ingémaths/METIS",
     "crumbs": [
       "Journal",
       "Semaine 11"
@@ -875,7 +875,7 @@
     "href": "schemas-listings.html",
     "title": "Schemas",
     "section": "",
-    "text": "Avertissement\n\n\n\nPour écrire des requêtes correctes, il est néecessaire de maîtriser le schéma sur lequel on travaille.\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Schéma\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Tags\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nSchéma\n\n\nTags\n\n\n\n\n\n\nSep 18, 2025\n\n\nWorld\n\n\nworld, crowfoot\n\n\n\n\n\nNo matching items",
+    "text": "Avertissement\n\n\n\nPour écrire des requêtes correctes, il est néecessaire de maîtriser le schéma sur lequel on travaille.\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Schéma\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Tags\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nSchéma\n\n\nTags\n\n\n\n\n\n\nSep 18, 2025\n\n\nWorld\n\n\nworld, crowfoot\n\n\n\n\nSep 18, 2025\n\n\nBabynames\n\n\nbabynames, INSEE, counts, crowfoot\n\n\n\n\nSep 18, 2025\n\n\nNYCflights\n\n\nnycflights13, messy data, roles, datetime, star, crowfoot\n\n\n\n\nSep 22, 2025\n\n\nDell DVD Store\n\n\ndellstore, Dell DVD store, crowfoot\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Schemas"
     ]
@@ -895,7 +895,7 @@
     "href": "weeks/week-10.html",
     "title": "Semaine 10",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges 14h-15h30\nTD/TP Ingémaths/METIS salle 2006 Etage 2 Sophie Germain Jeudi 13h30-16h00\nTD/TP MIASHS salles 2004-2005-2006 Étage 2 Sophie Germain Vendredi 15h45-18h15\n Emploi du temps MIASHS\n Emploi du temps Ingémaths/METIS",
     "crumbs": [
       "Journal",
       "Semaine 10"
@@ -961,7 +961,7 @@
     "href": "weeks/week-12.html",
     "title": "Semaine 12",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges 14h-15h30\nTD/TP Ingémaths/METIS salle 2006 Etage 2 Sophie Germain Jeudi 13h30-16h00\nTD/TP MIASHS salles 2004-2005-2006 Étage 2 Sophie Germain Vendredi 15h45-18h15\n Emploi du temps MIASHS\n Emploi du temps Ingémaths/METIS",
     "crumbs": [
       "Journal",
       "Semaine 12"
@@ -1027,7 +1027,7 @@
     "href": "weeks/week-2.html",
     "title": "Semaine 2",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
     "crumbs": [
       "Journal",
       "Semaine 2"
@@ -1082,7 +1082,7 @@
     "href": "weeks/week-4.html",
     "title": "Semaine 4",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
     "crumbs": [
       "Journal",
       "Semaine 4"
@@ -1148,7 +1148,7 @@
     "href": "weeks/week-6.html",
     "title": "Semaine 5",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges 14h-15h30\nTD/TP Ingémaths/METIS salle 2006 Etage 2 Sophie Germain Jeudi 13h30-16h00\nTD/TP MIASHS salles 2004-2005-2006 Étage 2 Sophie Germain Vendredi 15h45-18h15\n Emploi du temps MIASHS\n Emploi du temps Ingémaths/METIS",
     "crumbs": [
       "Journal",
       "Semaine 6"
@@ -1214,7 +1214,7 @@
     "href": "weeks/week-8.html",
     "title": "Semaine 8",
     "section": "",
-    "text": "Important\n\n\n\n\nCours magistral en Amphi. 1 Olympe de Gouges 14h-15h30\nTD/TP 2004-2005-2006 Étage 2 Sophie Germain 15h45-18h15\n Emploi du temps",
+    "text": "Important\n\n\n\n\nCours magistral en Amphi 2 Olympe de Gouges 14h-15h30\nTD/TP Ingémaths/METIS salle 2006 Etage 2 Sophie Germain Jeudi 13h30-16h00\nTD/TP MIASHS salles 2004-2005-2006 Étage 2 Sophie Germain Vendredi 15h45-18h15\n Emploi du temps MIASHS\n [Emploi du temps Ingémaths/METIS](https://edt.math.univ-paris-diderot.fr/#/parcours/",
     "crumbs": [
       "Journal",
       "Semaine 8"
@@ -4806,5 +4806,152 @@
     "title": "BD II: SQL LDD",
     "section": "DELETE FROM <table> USING <t> WHERE ...",
     "text": "DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...\n\n\n\n\n\n\nAstuce\n\n\nSouvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat USING\n\n\n\n\nDELETE FROM chaprot.city \nUSING chaprot.country AS co\nWHERE city.countrycode = co.countrycode AND \n  co.region= 'Eastern Europe' AND \n  co.indepyear = 1991 ;"
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html",
+    "href": "schemas/schema-dellstore.html",
+    "title": "Schéma : dellstore",
+    "section": "",
+    "text": "Présentation du schéma dellstore, pour l’entrainement à PostGres."
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html#contexte",
+    "href": "schemas/schema-dellstore.html#contexte",
+    "title": "Schéma : dellstore",
+    "section": "Contexte",
+    "text": "Contexte\nLa base de données du magasin de DVD est gérée par six procédures stockées. Les deux premières sont utilisées pendant la phase de connexion.\nSi le client revient, la procédure Login est utilisée pour récupérer les informations du client, en particulier l’identifiant du client (CUSTOMERID). Si le client est un nouveau client, New_customer est utilisée pour créer une nouvelle ligne dans la table Customers avec les données de l’utilisateur. Après la phase de connexion, le client peut rechercher un DVD par catégorie, acteur ou titre, acteur ou titre. Ces critères sont mis en œuvre par Browse_by_category, Browse_by_actor et Browse_by_title, respectivement. Enfin, une fois que l’utilisateur a fait ses choix, la procédure stockée Purchase est appelée pour terminer la transaction.\nLes procédures stockées de l’application DS2 présentent des caractéristiques qui permettent de mieux modéliser les magasins en ligne d’aujourd’hui.\nLors de la connexion, par exemple, la commande précédente de l’utilisateur (jusqu’à dix titres) est signalée, ainsi que les titres recommandés par d’autres clients qui aiment ces titres.\nLa fonction Parcourir_par_catégorie renvoie les titres de la catégorie spécifiée qui sont actuellement en vente.\nEnfin, la procédure stockée Achat vérifie désormais le champ QUAN_IN_STOCK de la table Inventaire pour voir si un titre est disponible. Cette opération est réalisée à l’aide d’une transaction de base de données,\nde sorte que si la quantité est insuffisante pour honorer la commande, les données QUAN_IN_STOCK ne sont pas mises à jour et un nouvel enregistrement n’est pas écrit dans la base de données. ni un nouvel enregistrement dans la table ORDERS.\nLe schéma de la base de données « dellstore » dans PostgreSQL, utilisée à des fins de formation.\n\nTables :\n\ndellstore.categories : Contient les détails des catégories avec des colonnes comme category (clé primaire) et categoryname. (Action, Animation, Children, …, en tout 16 catégories)\ndellstore.cust_hist : Trace l’historique des clients avec des références aux clients , aux commandes (orders)et aux produits (products), en utilisant des clés étrangères (customerid, (*customers*)orderid, et prod_id).\ndellstore.customers : Stocke les informations sur les clients (customers) avec des champs tels que customerid, firstname, lastname, address, city, et creditcard details.\ndellstore.inventory : Gère l’inventaire des produits en suivant prod_id (clé primaire).\n\nClés étrangères :\n\ndellstore.cust_hist a des références de clés étrangères à d’autres tables comme customers, orders, et products.\n\n\nCe schéma décrit les tables clés utilisées pour une application de type commerce électronique, gérant les catégories, les informations sur les clients et les transactions. Vous souhaitez obtenir une description plus détaillée de certaines tables ou de leurs relations ?\nLes sources du schéma sont décrites sur le site de Dell"
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html#table-dellstore.categories",
+    "href": "schemas/schema-dellstore.html#table-dellstore.categories",
+    "title": "Schéma : dellstore",
+    "section": "Table dellstore.categories",
+    "text": "Table dellstore.categories\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncategory\ninteger DEFAULT nextval(‘dellstore.categories_category_seq’::regclass)\n\n\n*\ncategoryname\nvarchar(50)"
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html#table-dellstore.cust_hist",
+    "href": "schemas/schema-dellstore.html#table-dellstore.cust_hist",
+    "title": "Schéma : dellstore",
+    "section": "Table dellstore.cust_hist",
+    "text": "Table dellstore.cust_hist\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔎 ⬈\ncustomerid\ninteger\n\n\n* ⬈\norderid\ninteger\n\n\n* ⬈\nprod_id\ninteger\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nfk_cust_hist_customerid\n( customerid ) ref dellstore.customers (customerid)\n\n\n\nfk_cust_hist_orders\n( orderid ) ref dellstore.orders (orderid)\n\n\n\nfk_cust_hist_products\n( prod_id ) ref dellstore.products (prod_id)\n\n\n\n C’est une table raccourci (redondante) dont le contenu peut être reconstruit à l’aide de customers, orders et orderlines?"
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html#table-dellstore.customers",
+    "href": "schemas/schema-dellstore.html#table-dellstore.customers",
+    "title": "Schéma : dellstore",
+    "section": "Table dellstore.customers",
+    "text": "Table dellstore.customers\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncustomerid\ninteger DEFAULT nextval(‘dellstore.customers_customerid_seq’::regclass)\n\n\n*\nfirstname\nvarchar(50)\n\n\n*\nlastname\nvarchar(50)\n\n\n*\naddress1\nvarchar(50)\n\n\n\naddress2\nvarchar(50)\n\n\n*\ncity\nvarchar(50)\n\n\n\nstate\nvarchar(50)\n\n\n\nzip\ninteger\n\n\n*\ncountry\nvarchar(50)\n\n\n*\nregion\nsmallint\n\n\n\nemail\nvarchar(50)\n\n\n\nphone\nvarchar(50)\n\n\n*\ncreditcardtype\ninteger\n\n\n*\ncreditcard\nvarchar(50)\n\n\n*\ncreditcardexpiration\nvarchar(50)\n\n\n* 🔍\nusername\nvarchar(50)\n\n\n*\npassword\nvarchar(50)\n\n\n\nage\nsmallint\n\n\n\nincome\ninteger\n\n\n\ngender\nvarchar(1)"
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html#table-dellstore.inventory",
+    "href": "schemas/schema-dellstore.html#table-dellstore.inventory",
+    "title": "Schéma : dellstore",
+    "section": "Table dellstore.inventory",
+    "text": "Table dellstore.inventory\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬈\nprod_id\ninteger\n\n\n*\nquan_in_stock\ninteger\n\n\n*\nsales\ninteger\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nfk_inventory_products\n( prod_id ) ref dellstore.products (prod_id)\n\n\n\nCette table nous indique l’état du stock pour chaque produit au catalogue, et combien d’exemplaires du produit ont étés vendus."
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html#table-dellstore.orderlines",
+    "href": "schemas/schema-dellstore.html#table-dellstore.orderlines",
+    "title": "Schéma : dellstore",
+    "section": "Table dellstore.orderlines",
+    "text": "Table dellstore.orderlines\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔍\norderlineid\ninteger\n\n\n* 🔍 ⬈\norderid\ninteger\n\n\n* ⬈\nprod_id\ninteger\n\n\n*\nquantity\nsmallint\n\n\n*\norderdate\ndate\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nfk_orderid\n( orderid ) ref dellstore.orders (orderid)\n\n\n\nfk_orderlines_products\n( prod_id ) ref dellstore.products (prod_id)\n\n\n\nChaque ligne de orderlines nous renseigne sur l’achat d’un produit désigné par prod_id en une certaine quantité , à une certaine date."
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html#table-dellstore.orders",
+    "href": "schemas/schema-dellstore.html#table-dellstore.orders",
+    "title": "Schéma : dellstore",
+    "section": "Table dellstore.orders",
+    "text": "Table dellstore.orders\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\norderid\ninteger DEFAULT nextval(‘dellstore.orders_orderid_seq’::regclass)\n\n\n*\norderdate\ndate\n\n\n🔎 ⬈\ncustomerid\ninteger\n\n\n*\nnetamount\nnumeric(12,2)\n\n\n*\ntax\nnumeric(12,2)\n\n\n*\ntotalamount\nnumeric(12,2)\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nfk_customerid\n( customerid ) ref dellstore.customers (customerid)"
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html#table-dellstore.products",
+    "href": "schemas/schema-dellstore.html#table-dellstore.products",
+    "title": "Schéma : dellstore",
+    "section": "Table dellstore.products",
+    "text": "Table dellstore.products\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nprod_id\ninteger DEFAULT nextval(‘dellstore.products_prod_id_seq’::regclass)\n\n\n* 🔎 ⬈\ncategory\ninteger\n\n\n*\ntitle\nvarchar(50)\n\n\n*\nactor\nvarchar(50)\n\n\n*\nprice\nnumeric(12,2)\n\n\n🔎\nspecial\nsmallint\n\n\n*\ncommon_prod_id\ninteger\n\n\n\nUn petit apperçu de la table aide à comprendre :\n+---------+----------+--------------------+------------------+-------+---------+----------------+\n| prod_id | category | title              | actor            | price | special | common_prod_id |\n|---------+----------+--------------------+------------------+-------+---------+----------------|\n| 1       | 14       | ACADEMY ACADEMY    | PENELOPE GUINESS | 25.99 | 0       | 1976           |\n| 2       | 6        | ACADEMY ACE        | EWAN RICKMAN     | 20.99 | 0       | 6289           |\n| 3       | 6        | ACADEMY ADAPTATION | VIVIEN KAHN      | 28.99 | 0       | 7173           |\n| 4       | 3        | ACADEMY AFFAIR     | ALAN MARX        | 14.99 | 0       | 8042           |\n| 5       | 3        | ACADEMY AFRICAN    | CARRIE HANNAH    | 11.99 | 1       | 2183           |\n| 6       | 9        | ACADEMY AGENT      | LISA SPACEK      | 15.99 | 0       | 5243           |\n| 7       | 8        | ACADEMY AIRPLANE   | FRANCES WINFREY  | 25.99 | 0       | 7700           |\n| 8       | 7        | ACADEMY AIRPORT    | FARRAH TOMEI     | 16.99 | 0       | 9191           |\n| 9       | 2        | ACADEMY ALABAMA    | JULIETTE WEAVER  | 10.99 | 0       | 6633           |\n| 10      | 15       | ACADEMY ALADDIN    | ANNETTE FREEMAN  | 9.99  | 0       | 631            |\n+---------+----------+--------------------+------------------+-------+---------+----------------+\nUne ligne représente un DVD fictif. Un DVD contient un film désigné par un titre. Dans ce film apparaît une actrice ou un acteur. Le DVD est vendu au prix price (USD?). Un film/produi relève d’une seule catégorie. - special vaut 1 pour 104 lignes, 0 pour les autes. - common_prod_id ?\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\nVir\nfk_products_category\n( category ) ref dellstore.categories (category)"
+  },
+  {
+    "objectID": "schemas/schema-dellstore.html#table-dellstore.reorder",
+    "href": "schemas/schema-dellstore.html#table-dellstore.reorder",
+    "title": "Schéma : dellstore",
+    "section": "Table dellstore.reorder",
+    "text": "Table dellstore.reorder\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* ⬈\nprod_id\ninteger\n\n\n*\ndate_low\ndate\n\n\n*\nquan_low\ninteger\n\n\n\ndate_reordered\ndate\n\n\n\nquan_reordered\ninteger\n\n\n\ndate_expected\ndate\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nfk_reorder_products\n( prod_id ) ref dellstore.products (prod_id)\n\n\n\n\n\n\n\n\n\nOn peut se demander quel est l’usage de la table reorder.\n\n\n\nLa table reorder gère (peut-être) les réapprovisionements de produits (lorsque l’inventaire inventory signale la quantité en stock d’un produit est dangereusement basse, on effectue une nouvelle commande).\n\nColonnes :\n\nprod_id : un nombre entier identifiant le produit (clé étrangère liée à la table products).\ndate_low : la date à laquelle le niveau de stock a été détecté comme bas.\nquan_low : La quantité qui a déclenché le processus de réapprovisionnement.\ndate_reordered : La date à laquelle le produit a été commandé à nouveau.\nquan_reordered : La quantité du produit commandé à nouveau.\ndate_expected : la date à laquelle les produits commandés à nouveau sont censés arriver.\n\n** Foreign Key ** :\n\nfk_reorder_products : lie prod_id à la table products.\n\n\n Dans l’instance courante du schéma, cette table est vide."
+  },
+  {
+    "objectID": "schemas/schema-babynames.html",
+    "href": "schemas/schema-babynames.html",
+    "title": "Schéma : babynames",
+    "section": "",
+    "text": "Présentation du schéma babynames, pour l’entrainement à PostGres.\nCe jeu de données est fourni par l’INSEE https://www.insee.fr/fr/statistiques/fichier/2540004/nat2021_csv.zip permet d’étudier l’évolution des prénoms donnés en France entre 1900 et aujourd’hui.\nCe schéma ne comporte qu’une seule table."
+  },
+  {
+    "objectID": "schemas/schema-babynames.html#table-babynames.bebes",
+    "href": "schemas/schema-babynames.html#table-babynames.bebes",
+    "title": "Schéma : babynames",
+    "section": "Table : babynames.bebes",
+    "text": "Table : babynames.bebes\n\nsex (entier)\nDescription : Représente le sexe des bébés. Valeurs :\n\n1 pour Homme\n2 pour Femme\n\n\n\nname (varchar(500))\nDescription : Le prénom des bébés nés en France. Type : Chaîne de caractères variable d’une longueur maximale de 500 caractères.\n\n\nyear (nombre entier) :\nDescription : L’année de naissance des bébés ayant reçu un certain prénom. Type : Entier\n\n\ncount (nombre entier) :\nDescription : Nombre de bébés d’un sexe donné, portant un nom particulier, nés au cours d’une année donnée."
+  },
+  {
+    "objectID": "schemas/schema-babynames.html#exemple-de-données",
+    "href": "schemas/schema-babynames.html#exemple-de-données",
+    "title": "Schéma : babynames",
+    "section": "Exemple de données",
+    "text": "Exemple de données\n+---+------+-----+-----+\n|sex| name | year|count|\n+---+------+-----+-----+\n| 1 |Liam  | 2020| 350 |\n| 2 |Emma  | 2020| 420 |\n| 1 |Noah  | 2019| 340 |\n| 2 |Olivia| 2019| 390 |"
+  },
+  {
+    "objectID": "schemas/schema-babynames.html#usages",
+    "href": "schemas/schema-babynames.html#usages",
+    "title": "Schéma : babynames",
+    "section": "Usages",
+    "text": "Usages\nCet ensemble de données peut être utilisé pour\n\nAnalyser les tendances de popularité : Déterminer les prénoms les plus populaires pour les garçons et les filles au fil du temps.\nSuivre l’évolution des tendances en matière de noms : Comprendre comment certains prénoms gagnent ou perdent en popularité au fil des années.\nAnalyse fondée sur le sexe : Comparer la façon dont certains noms sont spécifiques à un sexe ou partagés par les hommes et les femmes.\nRecherche historique : Explorer les tendances culturelles ou sociétales qui se reflètent dans les conventions de dénomination des bébés."
+  },
+  {
+    "objectID": "schemas/schema-babynames.html#synthèse",
+    "href": "schemas/schema-babynames.html#synthèse",
+    "title": "Schéma : babynames",
+    "section": "Synthèse",
+    "text": "Synthèse\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑\nsex\ninteger\n\n\n* 🔑\nname\nvarchar(500)\n\n\n* 🔑\nyear\ninteger\n\n\n\ncount\ninteger"
+  },
+  {
+    "objectID": "schemas/schema-nycflights.html",
+    "href": "schemas/schema-nycflights.html",
+    "title": "Schéma : nycflights",
+    "section": "",
+    "text": "Présentation du schéma nycflights, pour l’entrainement à PostGres.\nCe jeu de données est construit à partir du package  nycflights13."
+  },
+  {
+    "objectID": "schemas/schema-nycflights.html#table-nycflights.airlines",
+    "href": "schemas/schema-nycflights.html#table-nycflights.airlines",
+    "title": "Schéma : nycflights",
+    "section": "Table nycflights.airlines",
+    "text": "Table nycflights.airlines\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncarrier\ntext\n\n\n🔍\nname\ntext"
+  },
+  {
+    "objectID": "schemas/schema-nycflights.html#table-nycflights.airports",
+    "href": "schemas/schema-nycflights.html#table-nycflights.airports",
+    "title": "Schéma : nycflights",
+    "section": "Table nycflights.airports",
+    "text": "Table nycflights.airports\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nfaa\ntext\n\n\n🔍\nname\ntext\n\n\n🔍\nlat\ndouble precision\n\n\n🔍\nlon\ndouble precision\n\n\n\nalt\ndouble precision\n\n\n\ntz\ndouble precision\n\n\n\ndst\ntext\n\n\n\ntzone\ntext"
+  },
+  {
+    "objectID": "schemas/schema-nycflights.html#table-nycflights.flights",
+    "href": "schemas/schema-nycflights.html#table-nycflights.flights",
+    "title": "Schéma : nycflights",
+    "section": "Table nycflights.flights",
+    "text": "Table nycflights.flights\n\n\n\nIdx\nName\nData Type\n\n\n\n\n\nyear\ninteger\n\n\n\nmonth\ninteger\n\n\n\nday\ninteger\n\n\n\ndep_time\ninteger\n\n\n\nsched_dep_time\ninteger\n\n\n\ndep_delay\ndouble precision\n\n\n\narr_time\ninteger\n\n\n\nsched_arr_time\ninteger\n\n\n\narr_delay\ndouble precision\n\n\n⬈\ncarrier\ntext\n\n\n\nflight\ninteger\n\n\n* 🔑 ⬈\ntailnum\ntext\n\n\n* 🔑 ⬈\norigin\ntext\n\n\n⬈\ndest\ntext\n\n\n\nair_time\ndouble precision\n\n\n\ndistance\ndouble precision\n\n\n\nhour\ndouble precision\n\n\n\nminute\ndouble precision\n\n\n* 🔑\ntime_hour\ntimestamptz\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nflights_fk\n( carrier ) ref nycflights.airlines (carrier)\n\n\n\nflights_fk_planes\n( tailnum ) ref nycflights.planes (tailnum)\n\n\n\nflights_fk_origin\n( origin ) ref nycflights.airports (faa)\n\n\n\nflights_fk_dest\n( dest ) ref nycflights.airports (faa)"
+  },
+  {
+    "objectID": "schemas/schema-nycflights.html#table-nycflights.planes",
+    "href": "schemas/schema-nycflights.html#table-nycflights.planes",
+    "title": "Schéma : nycflights",
+    "section": "Table nycflights.planes",
+    "text": "Table nycflights.planes\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ntailnum\ntext\n\n\n\nyear\ninteger\n\n\n\ntype\ntext\n\n\n\nmanufacturer\ntext\n\n\n\nmodel\ntext\n\n\n\nengines\ninteger\n\n\n\nseats\ninteger\n\n\n\nspeed\ninteger\n\n\n\nengine\ntext"
+  },
+  {
+    "objectID": "schemas/schema-nycflights.html#table-nycflights.weather",
+    "href": "schemas/schema-nycflights.html#table-nycflights.weather",
+    "title": "Schéma : nycflights",
+    "section": "Table nycflights.weather",
+    "text": "Table nycflights.weather\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬈\norigin\ntext\n\n\n\nyear\ninteger\n\n\n\nmonth\ninteger\n\n\n\nday\ninteger\n\n\n\nhour\ninteger\n\n\n\ntemp\ndouble precision\n\n\n\ndewp\ndouble precision\n\n\n\nhumid\ndouble precision\n\n\n\nwind_dir\ndouble precision\n\n\n\nwind_speed\ndouble precision\n\n\n\nwind_gust\ndouble precision\n\n\n\nprecip\ndouble precision\n\n\n\npressure\ndouble precision\n\n\n\nvisib\ndouble precision\n\n\n* 🔑\ntime_hour\ntimestamptz\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nweather_fk\n( origin ) ref nycflights.airports (faa)"
   }
 ]
