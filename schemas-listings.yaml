@@ -2,24 +2,28 @@
   author: "Licence MIASHS UParis Cité"
   date: "2025-09-18"
   path: "schemas/schema-world.html"
-  categories: [world, crowfoot]
-# - title: "Babynames"
-#   author: "Licence MIASHS UParis Cité"
-#   date: "2025-09-18"
-#   path: "schemas/schema-babynames.html"
-#   categories: [babynames, INSEE, counts, crowfoot]
-# - title: "NYCflights"
-#   author: "Licence MIASHS UParis Cité"
-#   date: "2025-09-18"
-#   path: "schemas/schema-nycflights.html"
-#   categories: [nyclights12, messy data, roles, datetime, star, crowfoot]
+  categories: ["`world`", crowfoot]
+- title: "Dell DVD Store"
+  date: "2025-09-22"
+  path: "schemas/schema-dellstore.html"
+  categories: ["`dellstore`",Dell DVD store , crowfoot]
+- title: "Babynames"
+  author: "Licence MIASHS UParis Cité"
+  date: "2025-09-18"
+  path: "schemas/schema-babynames.html"
+  categories: ["`babynames`", INSEE, counts, crowfoot]
+- title: "NYCflights"
+  author: "Licence MIASHS UParis Cité"
+  date: "2025-09-18"
+  path: "schemas/schema-nycflights.html"
+  categories: ["`nycflights13`", messy data, roles, datetime, star, crowfoot]
 # - title: "French towns"
 #   author: "Licence MIASHS UParis Cité"
 #   date: "2025-09-18"
 #   path: "schemas/schema-french-towns.html"
 #   categories: [French towns, Roles]
-# - title: "Pagila"
-#   author: "Licence MIASHS UParis Cité"
-#   date: "2025-09-18"
-#   path: "schemas/schema-pagila.html"
-#   categories: [Pagila, vues, fonctions]
+- title: "Pagila"
+  author: "Licence MIASHS UParis Cité"
+  date: "2025-09-18"
+  path: "schemas/schema-pagila.html"
+  categories: ["`pagila`", vues, fonctions]

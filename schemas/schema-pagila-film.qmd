@@ -1,0 +1,177 @@
+---
+title: "Schéma : pagila (films)"
+categories: [pagila, crowfoot, DDL]
+subtitle: "pagila, film, relationnel, pattes de corbeau, crowfoot"
+date: "2024-09-20"
+
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: false
+    code-fold: false
+    toc: false
+    output-file: schema-pagila-film.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données \\\\ Schema pagila}}"
+  html:
+    embed-resources: true
+    code-fold: true
+    output-file: schema-pagila-film.html
+params:
+    year: 2024 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://s-v-b.github.io/MA15Y030/"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+
+engine: knitr
+---
+
+
+::: {.callout-warning}
+
+Présentation de la partie `film` du schéma `pagila`, pour l'entrainement à PostGres. 
+
+::: 
+
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](../images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+
+
+
+
+![Schema pagila créé par [DbSchema](https://dbschema.com)](../images/schemas-pagila-film.png)
+
+## Contexte
+
+Description de quelques  tables from the `pagila` database, spécifiquement les tables liées au catalogue de filmss (sans considérer les tables liées au fichier client, à la gestion des locations, aux magasins).
+
+[Pagemaison de la base de données  `pagila`](https://github.com/devrimgunduz/pagila). 
+
+[Pagemaison de la base de données  `sakila`](https://dev.mysql.com/doc/sakila/en/)
+
+
+
+
+
+
+
+## Table pagila.actor 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | actor\_id| integer  DEFAULT nextval('pagila.actor_actor_id_seq'::regclass) |
+| * | first\_name| varchar(45)  |
+| * &#128270; | last\_name| varchar(45)  |
+| * | last\_update| timestamp  DEFAULT now() |
+
+`actor_id` sert de clé primaire. Noter le mécanisme de génération de nouvelles clés grâce au comportment par défaut et à l'usage de la fonction `nextval()` opérant sur une séquence associée à la table `actor`. 
+
+La colonne `last_update` sert à dater les mises à jour.  
+
+
+
+## Table pagila.category 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | category\_id| integer  DEFAULT nextval('pagila.category_category_id_seq'::regclass) |
+| * | name| varchar(25)  |
+| * | last\_update| timestamp  DEFAULT now() |
+
+
+
+
+## Table pagila.film 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | film\_id| integer  DEFAULT nextval('pagila.film_film_id_seq'::regclass) |
+| * &#128270; | title| varchar(255)  |
+|  | description| text  |
+|  | release\_year| year  |
+| * &#128270; &#11016; | language\_id| smallint  |
+| &#128270; &#11016; | original\_language\_id| smallint  |
+| * | rental\_duration| smallint  DEFAULT 3 |
+| * | rental\_rate| numeric(4,2)  DEFAULT 4.99 |
+|  | length| smallint  |
+| * | replacement\_cost| numeric(5,2)  DEFAULT 19.99 |
+|  | rating| mpaa\_rating  DEFAULT 'G'::pagila.mpaa_rating |
+| * | last\_update| timestamp  DEFAULT now() |
+|  | special\_features| text[]  |
+
+
+##### Foreign Keys
+|Type |Name |On |
+|---|---|---|
+|  | film_original_language_id_fkey | ( original\_language\_id ) ref [pagila.language](#language) (language\_id) |
+|  | film_language_id_fkey | ( language\_id ) ref [pagila.language](#language) (language\_id) |
+
+Les colonnes `film_id` (clé primaire), `original_language_id` et `language_id` sont utilisées pour réaliser des (équi)-jointures avec les tables `film_actor`, `film_category`, `film_language`
+
+Un film est censé n'avoir qu'une seule langue originale. L'association *film a pour langue orginale la langue xxx* est de un vers plusieurs. On peut la 
+représenter à l'aide d'un attribut dans la table `film`.
+
+## Table pagila.film_actor 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11016; | actor\_id| smallint  |
+| * &#128273;  &#11016; | film\_id| smallint  |
+| * | last\_update| timestamp  DEFAULT now() |
+
+C'est une table intermédiaire qui permet de représenter/traduire l'association plusieurs à plusieurs  *acteur joue dans film*. 
+
+
+##### Foreign Keys
+|Type |Name |On |
+|---|---|---|
+|  | film_actor_film_id_fkey | ( film\_id ) ref [pagila.film](#film) (film\_id) |
+|  | film_actor_actor_id_fkey | ( actor\_id ) ref [pagila.actor](#actor) (actor\_id) |
+
+
+
+
+## Table pagila.film_category 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11016; | film\_id| smallint  |
+| * &#128273;  &#11016; | category\_id| smallint  |
+| * | last\_update| timestamp  DEFAULT now() |
+
+
+##### Foreign Keys
+|Type |Name |On |
+|---|---|---|
+|  | film_category_film_id_fkey | ( film\_id ) ref [pagila.film](#film) (film\_id) |
+|  | film_category_category_id_fkey | ( category\_id ) ref [pagila.category](#category) (category\_id) |
+
+C'est une table intermédiaire qui permet de représenter/traduire l'association plusieurs à plusieurs  *film relève de catégorie*. 
+
+
+
+## Table pagila.language 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | language\_id| integer  DEFAULT nextval('pagila.language_language_id_seq'::regclass) |
+| * | name| char(20)  |
+| * | last\_update| timestamp  DEFAULT now() |
+
+
+
+
+

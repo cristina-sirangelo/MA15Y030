@@ -1,0 +1,181 @@
+---
+title: "Schéma : pagila (films)"
+categories: [pagila, crowfoot, DDL]
+subtitle: "pagila, address, customer, store, relationnel, pattes de corbeau, crowfoot"
+date: "2024-09-20"
+
+format:
+  pdf:
+    code-annotations: below
+    keep-tex: false
+    code-fold: false
+    toc: false
+    output-file: schema-pagila-address.pdf
+    include-in-header:
+      - text: "\\lhead{{\\sf  Base de données \\\\ Schema pagila}}"
+  html:
+    embed-resources: true
+    code-fold: true
+    output-file: schema-pagila-address.html
+params:
+    year: 2024 
+    curriculum: "L3 MIASHS/Ingémath"
+    university: "Université Paris Cité"
+    homepage: "https://s-v-b.github.io/MA15Y030/"
+    moodle: "https://moodle.u-paris.fr/course/view.php?id=2313"
+
+engine: knitr
+---
+
+
+::: {.callout-warning}
+
+Présentation de la partie `address` du schéma `pagila`, pour l'entrainement à PostGres. 
+
+::: 
+
+
+::: {layout="[80,20]"}
+
+::: {#first-column}
+
+
+- **`r stringr::str_glue('{params$curriculum}')`**
+- **`r stringr::str_glue('[{params$university}](https://www.u-paris.fr)')`**
+- `r stringr::str_glue("Année {params$year}-{params$year+1}")`
+- `r stringr::str_glue("[Course Homepage]({params$homepage})")`
+- `r stringr::str_glue("[Moodle]({params$moodle})")`
+
+::: 
+
+::: {#second-column}
+![](../images/UniversiteParis_monogramme_couleur_RVB.png){align="right" style="size:50px;" width=75}
+:::
+
+:::
+
+
+
+
+
+![Schema pagila créé par [DbSchema](https://dbschema.com)](/images/schema-pagila-address.png)
+
+## Contexte
+
+
+## Table pagila.address 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | address\_id| integer  DEFAULT nextval('pagila.address_address_id_seq'::regclass) |
+| * | address| varchar(50)  |
+|  | address2| varchar(50)  |
+| * | district| varchar(20)  |
+| * &#128270; &#11016; | city\_id| smallint  |
+|  | postal\_code| varchar(10)  |
+| * | phone| varchar(20)  |
+| * | last\_update| timestamp  DEFAULT now() |
+
+
+### Foreign Keys
+|Type |Name |On |
+|---|---|---|
+|  | address_city_id_fkey | ( city\_id ) ref [pagila.city](#city) (city\_id) |
+
+
+
+
+## Table pagila.city 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | city\_id| integer  DEFAULT nextval('pagila.city_city_id_seq'::regclass) |
+| * | city| varchar(50)  |
+| * &#128270; &#11016; | country\_id| smallint  |
+| * | last\_update| timestamp  DEFAULT now() |
+
+
+### Foreign Keys
+|Type |Name |On |
+|---|---|---|
+|  | city_country_id_fkey | ( country\_id ) ref [pagila.country](#country) (country\_id) |
+
+
+
+
+## Table pagila.country 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | country\_id| integer  DEFAULT nextval('pagila.country_country_id_seq'::regclass) |
+| * | country| varchar(50)  |
+| * | last\_update| timestamp  DEFAULT now() |
+
+
+
+
+## Table pagila.customer 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | customer\_id| integer  DEFAULT nextval('pagila.customer_customer_id_seq'::regclass) |
+| * &#128270; &#11016; | store\_id| smallint  |
+| * | first\_name| varchar(45)  |
+| * &#128270; | last\_name| varchar(45)  |
+|  | email| varchar(50)  |
+| * &#128270; &#11016; | address\_id| smallint  |
+| * | activebool| boolean  DEFAULT true |
+| * | create\_date| date  DEFAULT ('now'::text)::date |
+|  | last\_update| timestamp  DEFAULT now() |
+|  | active| integer  |
+
+
+### Foreign Keys
+|Type |Name |On |
+|---|---|---|
+|  | customer_store_id_fkey | ( store\_id ) ref [pagila.store](#store) (store\_id) |
+|  | customer_address_id_fkey | ( address\_id ) ref [pagila.address](#address) (address\_id) |
+
+
+
+
+## Table pagila.staff 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | staff\_id| integer  DEFAULT nextval('pagila.staff_staff_id_seq'::regclass) |
+| * | first\_name| varchar(45)  |
+| * | last\_name| varchar(45)  |
+| * &#11016; | address\_id| smallint  |
+|  | email| varchar(50)  |
+| * &#11016; | store\_id| smallint  |
+| * | active| boolean  DEFAULT true |
+| * | username| varchar(16)  |
+|  | password| varchar(40)  |
+| * | last\_update| timestamp  DEFAULT now() |
+|  | picture| bytea  |
+
+
+### Foreign Keys
+|Type |Name |On |
+|---|---|---|
+|  | staff_store_id_fkey | ( store\_id ) ref [pagila.store](#store) (store\_id) |
+|  | staff_address_id_fkey | ( address\_id ) ref [pagila.address](#address) (address\_id) |
+
+
+
+
+## Table pagila.store 
+|Idx |Name |Data Type |
+|---|---|---|
+| * &#128273;  &#11019; | store\_id| integer  DEFAULT nextval('pagila.store_store_id_seq'::regclass) |
+| * &#128269; &#11016; | manager\_staff\_id| smallint  |
+| * &#11016; | address\_id| smallint  |
+| * | last\_update| timestamp  DEFAULT now() |
+
+
+### Foreign Keys
+|Type |Name |On |
+|---|---|---|
+|  | store_manager_staff_id_fkey | ( manager\_staff\_id ) ref [pagila.staff](#staff) (staff\_id) |
+|  | store_address_id_fkey | ( address\_id ) ref [pagila.address](#address) (address\_id) |
+
+
+
+
+
