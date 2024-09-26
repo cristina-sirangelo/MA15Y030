@@ -88,7 +88,7 @@ Ce jeu de données est construit à partir du package {{< fa brands r-project >}
 |Idx |Name |Data Type |
 |---|---|---|
 | * &#128273;  &#11019; | faa| text  |
-| &#128269; | name| text  |
+|       | name| text  |
 | &#128269; | lat| double precision  |
 | &#128269; | lon| double precision  |
 |  | alt| double precision  |
@@ -102,9 +102,9 @@ Ce jeu de données est construit à partir du package {{< fa brands r-project >}
 ## Table nycflights.flights 
 |Idx |Name |Data Type |
 |---|---|---|
-|  | year| integer  |
-|  | month| integer  |
-|  | day| integer  |
+| &#128269; | year| integer  |
+| &#128269; | month| integer  |
+| &#128269; | day| integer  |
 |  | dep\_time| integer  |
 |  | sched\_dep\_time| integer  |
 |  | dep\_delay| double precision  |
@@ -113,14 +113,14 @@ Ce jeu de données est construit à partir du package {{< fa brands r-project >}
 |  | arr\_delay| double precision  |
 | &#11016; | carrier| text  |
 |  | flight| integer  |
-| * &#128273;  &#11016; | tailnum| text  |
-| * &#128273;  &#11016; | origin| text  |
-| &#11016; | dest| text  |
+| &#128269; &#11016; | tailnum| text  |
+| * &#128269; &#11016; | origin| text  |
+| &#128269; &#11016; | dest| text  |
 |  | air\_time| double precision  |
 |  | distance| double precision  |
-|  | hour| double precision  |
-|  | minute| double precision  |
-| * &#128273;  | time\_hour| timestamptz  |
+| &#128269; | hour| double precision  |
+| &#128269; | minute| double precision  |
+| * | time\_hour| timestamptz  |
 
 
 ##### Foreign Keys
