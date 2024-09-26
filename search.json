@@ -4931,14 +4931,14 @@
     "href": "schemas/schema-nycflights.html#table-nycflights.airports",
     "title": "Schéma : nycflights",
     "section": "Table nycflights.airports",
-    "text": "Table nycflights.airports\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nfaa\ntext\n\n\n🔍\nname\ntext\n\n\n🔍\nlat\ndouble precision\n\n\n🔍\nlon\ndouble precision\n\n\n\nalt\ndouble precision\n\n\n\ntz\ndouble precision\n\n\n\ndst\ntext\n\n\n\ntzone\ntext"
+    "text": "Table nycflights.airports\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nfaa\ntext\n\n\n\nname\ntext\n\n\n🔍\nlat\ndouble precision\n\n\n🔍\nlon\ndouble precision\n\n\n\nalt\ndouble precision\n\n\n\ntz\ndouble precision\n\n\n\ndst\ntext\n\n\n\ntzone\ntext"
   },
   {
     "objectID": "schemas/schema-nycflights.html#table-nycflights.flights",
     "href": "schemas/schema-nycflights.html#table-nycflights.flights",
     "title": "Schéma : nycflights",
     "section": "Table nycflights.flights",
-    "text": "Table nycflights.flights\n\n\n\nIdx\nName\nData Type\n\n\n\n\n\nyear\ninteger\n\n\n\nmonth\ninteger\n\n\n\nday\ninteger\n\n\n\ndep_time\ninteger\n\n\n\nsched_dep_time\ninteger\n\n\n\ndep_delay\ndouble precision\n\n\n\narr_time\ninteger\n\n\n\nsched_arr_time\ninteger\n\n\n\narr_delay\ndouble precision\n\n\n⬈\ncarrier\ntext\n\n\n\nflight\ninteger\n\n\n* 🔑 ⬈\ntailnum\ntext\n\n\n* 🔑 ⬈\norigin\ntext\n\n\n⬈\ndest\ntext\n\n\n\nair_time\ndouble precision\n\n\n\ndistance\ndouble precision\n\n\n\nhour\ndouble precision\n\n\n\nminute\ndouble precision\n\n\n* 🔑\ntime_hour\ntimestamptz\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nflights_fk\n( carrier ) ref nycflights.airlines (carrier)\n\n\n\nflights_fk_planes\n( tailnum ) ref nycflights.planes (tailnum)\n\n\n\nflights_fk_origin\n( origin ) ref nycflights.airports (faa)\n\n\n\nflights_fk_dest\n( dest ) ref nycflights.airports (faa)"
+    "text": "Table nycflights.flights\n\n\n\nIdx\nName\nData Type\n\n\n\n\n🔍\nyear\ninteger\n\n\n🔍\nmonth\ninteger\n\n\n🔍\nday\ninteger\n\n\n\ndep_time\ninteger\n\n\n\nsched_dep_time\ninteger\n\n\n\ndep_delay\ndouble precision\n\n\n\narr_time\ninteger\n\n\n\nsched_arr_time\ninteger\n\n\n\narr_delay\ndouble precision\n\n\n⬈\ncarrier\ntext\n\n\n\nflight\ninteger\n\n\n🔍 ⬈\ntailnum\ntext\n\n\n* 🔍 ⬈\norigin\ntext\n\n\n🔍 ⬈\ndest\ntext\n\n\n\nair_time\ndouble precision\n\n\n\ndistance\ndouble precision\n\n\n🔍\nhour\ndouble precision\n\n\n🔍\nminute\ndouble precision\n\n\n*\ntime_hour\ntimestamptz\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nflights_fk\n( carrier ) ref nycflights.airlines (carrier)\n\n\n\nflights_fk_planes\n( tailnum ) ref nycflights.planes (tailnum)\n\n\n\nflights_fk_origin\n( origin ) ref nycflights.airports (faa)\n\n\n\nflights_fk_dest\n( dest ) ref nycflights.airports (faa)"
   },
   {
     "objectID": "schemas/schema-nycflights.html#table-nycflights.planes",
