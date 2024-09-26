@@ -875,7 +875,7 @@
     "href": "schemas-listings.html",
     "title": "Schemas",
     "section": "",
-    "text": "Avertissement\n\n\n\nPour écrire des requêtes correctes, il est néecessaire de maîtriser le schéma sur lequel on travaille.\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Schéma\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Tags\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nSchéma\n\n\nTags\n\n\n\n\n\n\nSep 18, 2025\n\n\nWorld\n\n\nworld, crowfoot\n\n\n\n\nSep 18, 2025\n\n\nBabynames\n\n\nbabynames, INSEE, counts, crowfoot\n\n\n\n\nSep 18, 2025\n\n\nNYCflights\n\n\nnycflights13, messy data, roles, datetime, star, crowfoot\n\n\n\n\nSep 22, 2025\n\n\nDell DVD Store\n\n\ndellstore, Dell DVD store, crowfoot\n\n\n\n\n\nNo matching items",
+    "text": "Avertissement\n\n\n\nPour écrire des requêtes correctes, il est néecessaire de maîtriser le schéma sur lequel on travaille.\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Schéma\n        \n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Tags\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nSchéma\n\n\nTags\n\n\n\n\n\n\nSep 18, 2025\n\n\nWorld\n\n\nworld, crowfoot\n\n\n\n\nSep 18, 2025\n\n\nBabynames\n\n\nbabynames, INSEE, counts, crowfoot\n\n\n\n\nSep 18, 2025\n\n\nNYCflights\n\n\nnycflights13, messy data, roles, datetime, star, crowfoot\n\n\n\n\nSep 18, 2025\n\n\nPagila\n\n\nPagila, vues, fonctions\n\n\n\n\nSep 22, 2025\n\n\nDell DVD Store\n\n\ndellstore, Dell DVD store, crowfoot\n\n\n\n\n\nNo matching items",
     "crumbs": [
       "Schemas"
     ]
@@ -4953,5 +4953,201 @@
     "title": "Schéma : nycflights",
     "section": "Table nycflights.weather",
     "text": "Table nycflights.weather\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬈\norigin\ntext\n\n\n\nyear\ninteger\n\n\n\nmonth\ninteger\n\n\n\nday\ninteger\n\n\n\nhour\ninteger\n\n\n\ntemp\ndouble precision\n\n\n\ndewp\ndouble precision\n\n\n\nhumid\ndouble precision\n\n\n\nwind_dir\ndouble precision\n\n\n\nwind_speed\ndouble precision\n\n\n\nwind_gust\ndouble precision\n\n\n\nprecip\ndouble precision\n\n\n\npressure\ndouble precision\n\n\n\nvisib\ndouble precision\n\n\n* 🔑\ntime_hour\ntimestamptz\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nweather_fk\n( origin ) ref nycflights.airports (faa)"
+  },
+  {
+    "objectID": "schemas/schema-pagila-address.html",
+    "href": "schemas/schema-pagila-address.html",
+    "title": "Schéma : pagila (films)",
+    "section": "",
+    "text": "Présentation de la partie address du schéma pagila, pour l’entrainement à PostGres."
+  },
+  {
+    "objectID": "schemas/schema-pagila-address.html#contexte",
+    "href": "schemas/schema-pagila-address.html#contexte",
+    "title": "Schéma : pagila (films)",
+    "section": "Contexte",
+    "text": "Contexte"
+  },
+  {
+    "objectID": "schemas/schema-pagila-address.html#table-pagila.address",
+    "href": "schemas/schema-pagila-address.html#table-pagila.address",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.address",
+    "text": "Table pagila.address\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\naddress_id\ninteger DEFAULT nextval(‘pagila.address_address_id_seq’::regclass)\n\n\n*\naddress\nvarchar(50)\n\n\n\naddress2\nvarchar(50)\n\n\n*\ndistrict\nvarchar(20)\n\n\n* 🔎 ⬈\ncity_id\nsmallint\n\n\n\npostal_code\nvarchar(10)\n\n\n*\nphone\nvarchar(20)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\naddress_city_id_fkey\n( city_id ) ref pagila.city (city_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila-address.html#table-pagila.city",
+    "href": "schemas/schema-pagila-address.html#table-pagila.city",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.city",
+    "text": "Table pagila.city\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncity_id\ninteger DEFAULT nextval(‘pagila.city_city_id_seq’::regclass)\n\n\n*\ncity\nvarchar(50)\n\n\n* 🔎 ⬈\ncountry_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\ncity_country_id_fkey\n( country_id ) ref pagila.country (country_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila-address.html#table-pagila.country",
+    "href": "schemas/schema-pagila-address.html#table-pagila.country",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.country",
+    "text": "Table pagila.country\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncountry_id\ninteger DEFAULT nextval(‘pagila.country_country_id_seq’::regclass)\n\n\n*\ncountry\nvarchar(50)\n\n\n*\nlast_update\ntimestamp DEFAULT now()"
+  },
+  {
+    "objectID": "schemas/schema-pagila-address.html#table-pagila.customer",
+    "href": "schemas/schema-pagila-address.html#table-pagila.customer",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.customer",
+    "text": "Table pagila.customer\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncustomer_id\ninteger DEFAULT nextval(‘pagila.customer_customer_id_seq’::regclass)\n\n\n* 🔎 ⬈\nstore_id\nsmallint\n\n\n*\nfirst_name\nvarchar(45)\n\n\n* 🔎\nlast_name\nvarchar(45)\n\n\n\nemail\nvarchar(50)\n\n\n* 🔎 ⬈\naddress_id\nsmallint\n\n\n*\nactivebool\nboolean DEFAULT true\n\n\n*\ncreate_date\ndate DEFAULT (‘now’::text)::date\n\n\n\nlast_update\ntimestamp DEFAULT now()\n\n\n\nactive\ninteger\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\ncustomer_store_id_fkey\n( store_id ) ref pagila.store (store_id)\n\n\n\ncustomer_address_id_fkey\n( address_id ) ref pagila.address (address_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila-address.html#table-pagila.staff",
+    "href": "schemas/schema-pagila-address.html#table-pagila.staff",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.staff",
+    "text": "Table pagila.staff\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nstaff_id\ninteger DEFAULT nextval(‘pagila.staff_staff_id_seq’::regclass)\n\n\n*\nfirst_name\nvarchar(45)\n\n\n*\nlast_name\nvarchar(45)\n\n\n* ⬈\naddress_id\nsmallint\n\n\n\nemail\nvarchar(50)\n\n\n* ⬈\nstore_id\nsmallint\n\n\n*\nactive\nboolean DEFAULT true\n\n\n*\nusername\nvarchar(16)\n\n\n\npassword\nvarchar(40)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\npicture\nbytea\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nstaff_store_id_fkey\n( store_id ) ref pagila.store (store_id)\n\n\n\nstaff_address_id_fkey\n( address_id ) ref pagila.address (address_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila-address.html#table-pagila.store",
+    "href": "schemas/schema-pagila-address.html#table-pagila.store",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.store",
+    "text": "Table pagila.store\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nstore_id\ninteger DEFAULT nextval(‘pagila.store_store_id_seq’::regclass)\n\n\n* 🔍 ⬈\nmanager_staff_id\nsmallint\n\n\n* ⬈\naddress_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nstore_manager_staff_id_fkey\n( manager_staff_id ) ref pagila.staff (staff_id)\n\n\n\nstore_address_id_fkey\n( address_id ) ref pagila.address (address_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila-film.html",
+    "href": "schemas/schema-pagila-film.html",
+    "title": "Schéma : pagila (films)",
+    "section": "",
+    "text": "Présentation de la partie film du schéma pagila, pour l’entrainement à PostGres."
+  },
+  {
+    "objectID": "schemas/schema-pagila-film.html#contexte",
+    "href": "schemas/schema-pagila-film.html#contexte",
+    "title": "Schéma : pagila (films)",
+    "section": "Contexte",
+    "text": "Contexte\nDescription de quelques tables from the pagila database, spécifiquement les tables liées au catalogue de filmss (sans considérer les tables liées au fichier client, à la gestion des locations, aux magasins).\nPagemaison de la base de données pagila.\nPagemaison de la base de données sakila"
+  },
+  {
+    "objectID": "schemas/schema-pagila-film.html#table-pagila.actor",
+    "href": "schemas/schema-pagila-film.html#table-pagila.actor",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.actor",
+    "text": "Table pagila.actor\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nactor_id\ninteger DEFAULT nextval(‘pagila.actor_actor_id_seq’::regclass)\n\n\n*\nfirst_name\nvarchar(45)\n\n\n* 🔎\nlast_name\nvarchar(45)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\nactor_id sert de clé primaire. Noter le mécanisme de génération de nouvelles clés grâce au comportment par défaut et à l’usage de la fonction nextval() opérant sur une séquence associée à la table actor.\nLa colonne last_update sert à dater les mises à jour."
+  },
+  {
+    "objectID": "schemas/schema-pagila-film.html#table-pagila.category",
+    "href": "schemas/schema-pagila-film.html#table-pagila.category",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.category",
+    "text": "Table pagila.category\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncategory_id\ninteger DEFAULT nextval(‘pagila.category_category_id_seq’::regclass)\n\n\n*\nname\nvarchar(25)\n\n\n*\nlast_update\ntimestamp DEFAULT now()"
+  },
+  {
+    "objectID": "schemas/schema-pagila-film.html#table-pagila.film",
+    "href": "schemas/schema-pagila-film.html#table-pagila.film",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.film",
+    "text": "Table pagila.film\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nfilm_id\ninteger DEFAULT nextval(‘pagila.film_film_id_seq’::regclass)\n\n\n* 🔎\ntitle\nvarchar(255)\n\n\n\ndescription\ntext\n\n\n\nrelease_year\nyear\n\n\n* 🔎 ⬈\nlanguage_id\nsmallint\n\n\n🔎 ⬈\noriginal_language_id\nsmallint\n\n\n*\nrental_duration\nsmallint DEFAULT 3\n\n\n*\nrental_rate\nnumeric(4,2) DEFAULT 4.99\n\n\n\nlength\nsmallint\n\n\n*\nreplacement_cost\nnumeric(5,2) DEFAULT 19.99\n\n\n\nrating\nmpaa_rating DEFAULT ‘G’::pagila.mpaa_rating\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\nspecial_features\ntext[]\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nfilm_original_language_id_fkey\n( original_language_id ) ref pagila.language (language_id)\n\n\n\nfilm_language_id_fkey\n( language_id ) ref pagila.language (language_id)\n\n\n\nLes colonnes film_id (clé primaire), original_language_id et language_id sont utilisées pour réaliser des (équi)-jointures avec les tables film_actor, film_category, film_language\nUn film est censé n’avoir qu’une seule langue originale. L’association film a pour langue orginale la langue xxx est de un vers plusieurs. On peut la représenter à l’aide d’un attribut dans la table film."
+  },
+  {
+    "objectID": "schemas/schema-pagila-film.html#table-pagila.film_actor",
+    "href": "schemas/schema-pagila-film.html#table-pagila.film_actor",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.film_actor",
+    "text": "Table pagila.film_actor\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬈\nactor_id\nsmallint\n\n\n* 🔑 ⬈\nfilm_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\nC’est une table intermédiaire qui permet de représenter/traduire l’association plusieurs à plusieurs acteur joue dans film.\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nfilm_actor_film_id_fkey\n( film_id ) ref pagila.film (film_id)\n\n\n\nfilm_actor_actor_id_fkey\n( actor_id ) ref pagila.actor (actor_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila-film.html#table-pagila.film_category",
+    "href": "schemas/schema-pagila-film.html#table-pagila.film_category",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.film_category",
+    "text": "Table pagila.film_category\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬈\nfilm_id\nsmallint\n\n\n* 🔑 ⬈\ncategory_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nfilm_category_film_id_fkey\n( film_id ) ref pagila.film (film_id)\n\n\n\nfilm_category_category_id_fkey\n( category_id ) ref pagila.category (category_id)\n\n\n\nC’est une table intermédiaire qui permet de représenter/traduire l’association plusieurs à plusieurs film relève de catégorie."
+  },
+  {
+    "objectID": "schemas/schema-pagila-film.html#table-pagila.language",
+    "href": "schemas/schema-pagila-film.html#table-pagila.language",
+    "title": "Schéma : pagila (films)",
+    "section": "Table pagila.language",
+    "text": "Table pagila.language\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nlanguage_id\ninteger DEFAULT nextval(‘pagila.language_language_id_seq’::regclass)\n\n\n*\nname\nchar(20)\n\n\n*\nlast_update\ntimestamp DEFAULT now()"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html",
+    "href": "schemas/schema-pagila.html",
+    "title": "Schéma : pagila",
+    "section": "",
+    "text": "Présentation de la partie film du schéma pagila, pour l’entrainement à PostGres."
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#contexte",
+    "href": "schemas/schema-pagila.html#contexte",
+    "title": "Schéma : pagila",
+    "section": "Contexte",
+    "text": "Contexte\nDescription de presque toutes les tables de la base pagila ,\n\nPagemaison de la base de données pagila.\nPagemaison de la base de données sakila\nDétails sur les films\nDétails sur les adresses, clients, magasins, paiements"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.address",
+    "href": "schemas/schema-pagila.html#table-pagila.address",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.address",
+    "text": "Table pagila.address\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\naddress_id\ninteger DEFAULT nextval(‘pagila.address_address_id_seq’::regclass)\n\n\n*\naddress\nvarchar(50)\n\n\n\naddress2\nvarchar(50)\n\n\n*\ndistrict\nvarchar(20)\n\n\n* 🔎 ⬈\ncity_id\nsmallint\n\n\n\npostal_code\nvarchar(10)\n\n\n*\nphone\nvarchar(20)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\naddress_city_id_fkey\n( city_id ) ref pagila.city (city_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.city",
+    "href": "schemas/schema-pagila.html#table-pagila.city",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.city",
+    "text": "Table pagila.city\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncity_id\ninteger DEFAULT nextval(‘pagila.city_city_id_seq’::regclass)\n\n\n*\ncity\nvarchar(50)\n\n\n* 🔎 ⬈\ncountry_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\ncity_country_id_fkey\n( country_id ) ref pagila.country (country_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.country",
+    "href": "schemas/schema-pagila.html#table-pagila.country",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.country",
+    "text": "Table pagila.country\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncountry_id\ninteger DEFAULT nextval(‘pagila.country_country_id_seq’::regclass)\n\n\n*\ncountry\nvarchar(50)\n\n\n*\nlast_update\ntimestamp DEFAULT now()"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.customer",
+    "href": "schemas/schema-pagila.html#table-pagila.customer",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.customer",
+    "text": "Table pagila.customer\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ncustomer_id\ninteger DEFAULT nextval(‘pagila.customer_customer_id_seq’::regclass)\n\n\n* 🔎 ⬈\nstore_id\nsmallint\n\n\n*\nfirst_name\nvarchar(45)\n\n\n* 🔎\nlast_name\nvarchar(45)\n\n\n\nemail\nvarchar(50)\n\n\n* 🔎 ⬈\naddress_id\nsmallint\n\n\n*\nactivebool\nboolean DEFAULT true\n\n\n*\ncreate_date\ndate DEFAULT (‘now’::text)::date\n\n\n\nlast_update\ntimestamp DEFAULT now()\n\n\n\nactive\ninteger\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\ncustomer_store_id_fkey\n( store_id ) ref pagila.store (store_id)\n\n\n\ncustomer_address_id_fkey\n( address_id ) ref pagila.address (address_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.film",
+    "href": "schemas/schema-pagila.html#table-pagila.film",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.film",
+    "text": "Table pagila.film\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nfilm_id\ninteger DEFAULT nextval(‘pagila.film_film_id_seq’::regclass)\n\n\n* 🔎\ntitle\nvarchar(255)\n\n\n\ndescription\ntext\n\n\n\nrelease_year\nyear\n\n\n* 🔎 ⬈\nlanguage_id\nsmallint\n\n\n🔎 ⬈\noriginal_language_id\nsmallint\n\n\n*\nrental_duration\nsmallint DEFAULT 3\n\n\n*\nrental_rate\nnumeric(4,2) DEFAULT 4.99\n\n\n\nlength\nsmallint\n\n\n*\nreplacement_cost\nnumeric(5,2) DEFAULT 19.99\n\n\n\nrating\nmpaa_rating DEFAULT ‘G’::pagila.mpaa_rating\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\nspecial_features\ntext[]\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nfilm_original_language_id_fkey\n( original_language_id ) ref pagila.language (language_id)\n\n\n\nfilm_language_id_fkey\n( language_id ) ref pagila.language (language_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.inventory",
+    "href": "schemas/schema-pagila.html#table-pagila.inventory",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.inventory",
+    "text": "Table pagila.inventory\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\ninventory_id\ninteger DEFAULT nextval(‘pagila.inventory_inventory_id_seq’::regclass)\n\n\n* 🔎 ⬈\nfilm_id\nsmallint\n\n\n* 🔎 ⬈\nstore_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\ninventory_store_id_fkey\n( store_id ) ref pagila.store (store_id)\n\n\n\ninventory_film_id_fkey\n( film_id ) ref pagila.film (film_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.payment",
+    "href": "schemas/schema-pagila.html#table-pagila.payment",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.payment",
+    "text": "Table pagila.payment\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑\npayment_id\ninteger DEFAULT nextval(‘pagila.payment_payment_id_seq’::regclass)\n\n\n* 🔎 ⬈\ncustomer_id\nsmallint\n\n\n* 🔎 ⬈\nstaff_id\nsmallint\n\n\n* ⬈\nrental_id\ninteger\n\n\n*\namount\nnumeric(5,2)\n\n\n*\npayment_date\ntimestamp\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\npayment_staff_id_fkey\n( staff_id ) ref pagila.staff (staff_id)\n\n\n\npayment_rental_id_fkey\n( rental_id ) ref pagila.rental (rental_id)\n\n\n\npayment_customer_id_fkey\n( customer_id ) ref pagila.customer (customer_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.rental",
+    "href": "schemas/schema-pagila.html#table-pagila.rental",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.rental",
+    "text": "Table pagila.rental\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nrental_id\ninteger DEFAULT nextval(‘pagila.rental_rental_id_seq’::regclass)\n\n\n* 🔍\nrental_date\ntimestamp\n\n\n* 🔍 ⬈\ninventory_id\ninteger\n\n\n* 🔍 ⬈\ncustomer_id\nsmallint\n\n\n\nreturn_date\ntimestamp\n\n\n* ⬈\nstaff_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nrental_staff_id_fkey\n( staff_id ) ref pagila.staff (staff_id)\n\n\n\nrental_inventory_id_fkey\n( inventory_id ) ref pagila.inventory (inventory_id)\n\n\n\nrental_customer_id_fkey\n( customer_id ) ref pagila.customer (customer_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.staff",
+    "href": "schemas/schema-pagila.html#table-pagila.staff",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.staff",
+    "text": "Table pagila.staff\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nstaff_id\ninteger DEFAULT nextval(‘pagila.staff_staff_id_seq’::regclass)\n\n\n*\nfirst_name\nvarchar(45)\n\n\n*\nlast_name\nvarchar(45)\n\n\n* ⬈\naddress_id\nsmallint\n\n\n\nemail\nvarchar(50)\n\n\n* ⬈\nstore_id\nsmallint\n\n\n*\nactive\nboolean DEFAULT true\n\n\n*\nusername\nvarchar(16)\n\n\n\npassword\nvarchar(40)\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\npicture\nbytea\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nstaff_store_id_fkey\n( store_id ) ref pagila.store (store_id)\n\n\n\nstaff_address_id_fkey\n( address_id ) ref pagila.address (address_id)"
+  },
+  {
+    "objectID": "schemas/schema-pagila.html#table-pagila.store",
+    "href": "schemas/schema-pagila.html#table-pagila.store",
+    "title": "Schéma : pagila",
+    "section": "Table pagila.store",
+    "text": "Table pagila.store\n\n\n\n\n\n\n\n\nIdx\nName\nData Type\n\n\n\n\n* 🔑 ⬋\nstore_id\ninteger DEFAULT nextval(‘pagila.store_store_id_seq’::regclass)\n\n\n* 🔍 ⬈\nmanager_staff_id\nsmallint\n\n\n* ⬈\naddress_id\nsmallint\n\n\n*\nlast_update\ntimestamp DEFAULT now()\n\n\n\n\nForeign Keys\n\n\n\nType\nName\nOn\n\n\n\n\n\nstore_manager_staff_id_fkey\n( manager_staff_id ) ref pagila.staff (staff_id)\n\n\n\nstore_address_id_fkey\n( address_id ) ref pagila.address (address_id)"
   }
 ]

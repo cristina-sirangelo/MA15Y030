@@ -256,4 +256,16 @@
     <loc>https://s-v-b.github.io/MA15Y030/schemas/schema-nycflights.html</loc>
     <lastmod>2024-09-25T05:28:27.107Z</lastmod>
   </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/schemas/schema-pagila-address.html</loc>
+    <lastmod>2024-09-25T19:36:15.729Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/schemas/schema-pagila-film.html</loc>
+    <lastmod>2024-09-25T19:50:58.749Z</lastmod>
+  </url>
+  <url>
+    <loc>https://s-v-b.github.io/MA15Y030/schemas/schema-pagila.html</loc>
+    <lastmod>2024-09-25T19:44:57.252Z</lastmod>
+  </url>
 </urlset>
