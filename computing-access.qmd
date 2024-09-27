@@ -196,16 +196,35 @@ Vous avez pu constater que les connexions `ssh` sous MacOS, Linux et Windows son
 Mais utiliser une connexion `ssh` et un *client base de données* qui s'exécute sur `etu-pgsql.math.univ-paris-diderot.fr`
 n'est pas la manière la plus confortable de travailler. 
 
-Il est plus agréable d'utiliser un *client base de données* qui s'exécute sur sa propre machine et qui 
+Il est plus agréable d'utiliser un *client base de données* qui s'exécute sur sa propre machine (en local) et qui 
 interagit avec le serveur PostGres au travers d'un *tunnel* `ssh`. 
 
-
+La commande suivante établit un tunnel en *tâche de fond* (*background job*) grâce à l'option `-f`
 ```{.bash}
 $ ssh -f username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N
 (username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:
 $ 
 ```
+Une fois le tunnel établi, on peut continuer d'utiliser la fenêtre terminal, par exemple pour lancer `pgcli` ou `psql`. 
 
+La commande suivante établit aussi un tunnel mais en tâche de premier plan. 
+```{.bash}
+$ ssh username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N
+(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:
+$ 
+```
+Une fois le tunnel établi, la fenêtre terminal est bloquée. Si on veut lancer  `pgcli` ou `psql`, il faut disposer d'une autre 
+fenêtre. 
+
+::: {.callout-note}
+
+### Tunnel en tâche de fond ou pas ?
+
+Le lancement du tunnel en tâche de premier plan peut paraître moins pratique que le lancement du tunnel en tâche de fond. 
+
+Il présente un avantage : lorsque le tunnel cesse de fonctionner (en général parce qu'on ne s'en est pas servi depuis quelques minutes), il faut termniner (tuer) le processus qui contrôle le tunnel, pour pouvoir récupérer l'usage du port local ; si le tunnel est contrôlé par une tache de premier plan, c'est trivial (`^C` sous Unix), si le tunnel est contrôlé par une tâche de fond, il faut déterminer le processus contrôleur, puis le terminer explicitement (`$ kill -9 pid`).  
+ 
+:::
 
 ::: {.callout-note}
 
@@ -217,19 +236,13 @@ attend effectivement ses clients sur le port `5432`  de la machine qui l'héberg
 :::
 
 
-::: {.callout-note}
-
-### Pourquoi `-N` ?
-
-:::
-
 On peut maintenant lancer un client sur sa propre machine (`localhost`) en précisant qu'on s'adresse au port *local* 
 `5436` (ou le port que vous choisissez), la requête de conexion au serveur PostGres distant sera transmise par le *tunnel* : elle sera envoyée sur le port *officiel* `5432`  de la machine distante. Une fois la *session* établie,
 tout se passsera comme précédemment (ou presque).
 
 
 ```{.bash}
-$ pgcli -d bd_2023-24 -h localhost -p 5436 -u username
+$ pgcli -d bd_2023-24 -h localhost -p 5436 -u username -W
 Server: PostgreSQL 13.8
 Version: 3.5.0
 Home: http://pgcli.com
@@ -271,7 +284,7 @@ Votre configuration de connexion devrait ressembler à :
 Il faut par ailleurs ouvrir un tunnel `SSH` dans un terminal 
 
 ```{.bash}
-$ ssh -f username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N
+$ ssh  username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N
 (username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:
 $ 
 ```

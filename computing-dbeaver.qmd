@@ -31,7 +31,7 @@ format:
 - Onglet `Main`
   - Connect by `Host`, 
     - Host: `localhost`, 
-    - Port: `5434` (ou un autre nombre exotique)
+    - Port: `5436` (le nom du port local utilisé par votre tunnel ssh)
     - Database: bd_2023-24 
     - Décocher `Show all databases
   - Authentification: `Database Native`
@@ -40,23 +40,18 @@ format:
     - Cocher `Save password` 
   - 
 
-- Onglet `PostgreSQL`
-
-- Onglet `SSH`
-  - Cocher `Use SSH Tunnel`
-  - Settings
-    - Host/IP: localhost
-    - Port 22
-    - Username: `username` (ENT)
-    - Password: xxxxxxx  (ENT) 
-    - Cocher `Save credentials`
-  - Jump servers
-    - Jump #1 etu-pgsql.math.univ-paris-diderot.fr  username Password
-    - Target localhost:22  username Password
   
 # Utiliser une connexion
 
-Double cliquer et saisir les mots de passe demandés.
+Après avoir ouvert un tunnel `ssh` dans une fenêtre terminal:
+
+```{.bash}
+$ ssh username@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N
+(username@etu-pgsql.math.univ-paris-diderot.fr) Password for username@etu-pgsql.math.univ-paris-diderot.fr:
+```
+dans l'IDE `dbeaver`: 
+
+Double cliquer sur la connexion et saisissez le mot  de passe demandé (si nécessaire).
 
 # Définir et utiliser un *projet*
 

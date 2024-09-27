@@ -29,7 +29,7 @@ Remplacer `id_ent` par votre identifiant ENT dans la suite.
 Saisissez votre mot de passe (attention : pas d'écho)
 
 ```{.bash}
-$ ssh -f id_ent@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N
+$ ssh  id_ent@etu-pgsql.math.univ-paris-diderot.fr -L 5436:localhost:5432 -N
 (id_ent@etu-pgsql.math.univ-paris-diderot.fr) Password for id_ent@etu-pgsql.math.univ-paris-diderot.fr:
 $
 ```
@@ -40,7 +40,9 @@ $
 
 ### Connexion au serveur PostGres, demander la liste des commandes disponibles
 
-Utilisez votre tunnel SSH pour accéder au serveur PostGres. Saisissez à nouveau votre mot de passe.
+Utilisez votre tunnel SSH pour accéder au serveur PostGres. 
+
+Dans une autre fenêtre terminal, saisissez à nouveau votre mot de passe.
 
 ```{.bash}
 $ pgcli -p 5436 -U id_ent -W -h localhost -d bd_2023-24
