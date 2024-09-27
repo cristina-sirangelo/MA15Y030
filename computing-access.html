@@ -543,10 +543,31 @@ Pourquoi préciser <code>-d bd_2023-24</code> ?
 <h1>Connexions <code>ssh</code> avec <em>tunnel</em></h1>
 <p>Vous avez pu constater que les connexions <code>ssh</code> sous MacOS, Linux et Windows sont presque identiques.</p>
 <p>Mais utiliser une connexion <code>ssh</code> et un <em>client base de données</em> qui s’exécute sur <code>etu-pgsql.math.univ-paris-diderot.fr</code> n’est pas la manière la plus confortable de travailler.</p>
-<p>Il est plus agréable d’utiliser un <em>client base de données</em> qui s’exécute sur sa propre machine et qui interagit avec le serveur PostGres au travers d’un <em>tunnel</em> <code>ssh</code>.</p>
+<p>Il est plus agréable d’utiliser un <em>client base de données</em> qui s’exécute sur sa propre machine (en local) et qui interagit avec le serveur PostGres au travers d’un <em>tunnel</em> <code>ssh</code>.</p>
+<p>La commande suivante établit un tunnel en <em>tâche de fond</em> (<em>background job</em>) grâce à l’option <code>-f</code></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh <span class="at">-f</span> username@etu-pgsql.math.univ-paris-diderot.fr <span class="at">-L</span> 5436:localhost:5432 <span class="at">-N</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">username@etu-pgsql.math.univ-paris-diderot.fr</span><span class="kw">)</span> <span class="ex">Password</span> for username@etu-pgsql.math.univ-paris-diderot.fr:</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Une fois le tunnel établi, on peut continuer d’utiliser la fenêtre terminal, par exemple pour lancer <code>pgcli</code> ou <code>psql</code>.</p>
+<p>La commande suivante établit aussi un tunnel mais en tâche de premier plan.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh username@etu-pgsql.math.univ-paris-diderot.fr <span class="at">-L</span> 5436:localhost:5432 <span class="at">-N</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">username@etu-pgsql.math.univ-paris-diderot.fr</span><span class="kw">)</span> <span class="ex">Password</span> for username@etu-pgsql.math.univ-paris-diderot.fr:</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Une fois le tunnel établi, la fenêtre terminal est bloquée. Si on veut lancer <code>pgcli</code> ou <code>psql</code>, il faut disposer d’une autre fenêtre.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tunnel en tâche de fond ou pas ?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Le lancement du tunnel en tâche de premier plan peut paraître moins pratique que le lancement du tunnel en tâche de fond.</p>
+<p>Il présente un avantage : lorsque le tunnel cesse de fonctionner (en général parce qu’on ne s’en est pas servi depuis quelques minutes), il faut termniner (tuer) le processus qui contrôle le tunnel, pour pouvoir récupérer l’usage du port local ; si le tunnel est contrôlé par une tache de premier plan, c’est trivial (<code>^C</code> sous Unix), si le tunnel est contrôlé par une tâche de fond, il faut déterminer le processus contrôleur, puis le terminer explicitement (<code>$ kill -9 pid</code>).</p>
+</div>
+</div>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -560,30 +581,17 @@ Renvoi de port <code>-L 5436:localhost:5432</code>
 <p>Un serveur PostGres <em>écoute</em> (attend) d’éventuels clients sur le port <em>officiel</em> <code>5432</code>. Le serveur que nous utiliserons attend effectivement ses clients sur le port <code>5432</code> de la machine qui l’héberge. Notre client local ne va pas s’adresser directement au port 5432 de <code>etu-pgsql.math.univ-paris-diderot.fr</code> (c’est interdit). Notre client local s’adressera au port <code>5436</code> de la machine qui héberge le client et qui est lui-même renvoyé via le tunnel <code>ssh</code> vers le port <code>5432</code> de la machine qui héberge le serveur.</p>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Pourquoi <code>-N</code> ?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-
-</div>
-</div>
 <p>On peut maintenant lancer un client sur sa propre machine (<code>localhost</code>) en précisant qu’on s’adresse au port <em>local</em> <code>5436</code> (ou le port que vous choisissez), la requête de conexion au serveur PostGres distant sera transmise par le <em>tunnel</em> : elle sera envoyée sur le port <em>officiel</em> <code>5432</code> de la machine distante. Une fois la <em>session</em> établie, tout se passsera comme précédemment (ou presque).</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pgcli <span class="at">-d</span> bd_2023-24 <span class="at">-h</span> localhost <span class="at">-p</span> 5436 <span class="at">-u</span> username</span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Server:</span> PostgreSQL 13.8</span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Version:</span> 3.5.0</span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Home:</span> http://pgcli.com</span>
-<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bd_2023-24</span><span class="op">&gt;</span> <span class="dt">\d</span>n</span>
-<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a><span class="ex">+----------------+--------------+</span></span>
-<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">Name</span>           <span class="kw">|</span> <span class="ex">Owner</span>        <span class="kw">|</span></span>
-<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span><span class="ex">----------------+--------------</span><span class="kw">|</span></span>
-<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
-<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> pgcli <span class="at">-d</span> bd_2023-24 <span class="at">-h</span> localhost <span class="at">-p</span> 5436 <span class="at">-u</span> username <span class="at">-W</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Server:</span> PostgreSQL 13.8</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Version:</span> 3.5.0</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Home:</span> http://pgcli.com</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="ex">bd_2023-24</span><span class="op">&gt;</span> <span class="dt">\d</span>n</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="ex">+----------------+--------------+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span> <span class="ex">Name</span>           <span class="kw">|</span> <span class="ex">Owner</span>        <span class="kw">|</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="kw">|</span><span class="ex">----------------+--------------</span><span class="kw">|</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="ex">...</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="client-dbeaver" class="level1">
 <h1>Client <code>dbeaver</code></h1>
@@ -593,20 +601,20 @@ Pourquoi <code>-N</code> ?
 <h1>Client VS Code + extensions <code>SQLTools</code></h1>
 <p>Si vous êtes déjà habitué à l’éditeur Visual Studio Code (VS Code), vous pouvez utiliser l’extension <a href="https://vscode-sqltools.mteixeira.dev/en/home"><code>SQLToos</code></a> et son pilote <a href="https://vscode-sqltools.mteixeira.dev/en/drivers/postgre-sql">‘PostgreSQL/Cockroach’</a>.</p>
 <p>Votre configuration de connexion devrait ressembler à :</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"label"</span><span class="fu">:</span> <span class="st">"etu-pgsql"</span><span class="fu">,</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"host"</span><span class="fu">:</span> <span class="st">"localhost"</span><span class="fu">,</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"user"</span><span class="fu">:</span> <span class="st">"&lt;identifiant ENT&gt;"</span><span class="fu">,</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"port"</span><span class="fu">:</span> <span class="dv">5436</span><span class="fu">,</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"ssl"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"bd_2023-24"</span><span class="fu">,</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"schema"</span><span class="fu">:</span> <span class="st">"world"</span><span class="fu">,</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"password"</span><span class="fu">:</span> <span class="st">"Ask on connect"</span></span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"label"</span><span class="fu">:</span> <span class="st">"etu-pgsql"</span><span class="fu">,</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"host"</span><span class="fu">:</span> <span class="st">"localhost"</span><span class="fu">,</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"user"</span><span class="fu">:</span> <span class="st">"&lt;identifiant ENT&gt;"</span><span class="fu">,</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"port"</span><span class="fu">:</span> <span class="dv">5436</span><span class="fu">,</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"ssl"</span><span class="fu">:</span> <span class="kw">false</span><span class="fu">,</span></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"database"</span><span class="fu">:</span> <span class="st">"bd_2023-24"</span><span class="fu">,</span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"schema"</span><span class="fu">:</span> <span class="st">"world"</span><span class="fu">,</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"password"</span><span class="fu">:</span> <span class="st">"Ask on connect"</span></span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Il faut par ailleurs ouvrir un tunnel <code>SSH</code> dans un terminal</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh <span class="at">-f</span> username@etu-pgsql.math.univ-paris-diderot.fr <span class="at">-L</span> 5436:localhost:5432 <span class="at">-N</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">username@etu-pgsql.math.univ-paris-diderot.fr</span><span class="kw">)</span> <span class="ex">Password</span> for username@etu-pgsql.math.univ-paris-diderot.fr:</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh  username@etu-pgsql.math.univ-paris-diderot.fr <span class="at">-L</span> 5436:localhost:5432 <span class="at">-N</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">username@etu-pgsql.math.univ-paris-diderot.fr</span><span class="kw">)</span> <span class="ex">Password</span> for username@etu-pgsql.math.univ-paris-diderot.fr:</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>en remplaçant <code>username</code> par votre identifiant ENT.</p>
 
 

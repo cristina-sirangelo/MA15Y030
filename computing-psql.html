@@ -426,7 +426,7 @@ Note
 <div class="callout-body-container callout-body">
 <p>Remplacer <code>id_ent</code> par votre identifiant ENT dans la suite.</p>
 <p>Saisissez votre mot de passe (attention : pas d’écho)</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh <span class="at">-f</span> id_ent@etu-pgsql.math.univ-paris-diderot.fr <span class="at">-L</span> 5436:localhost:5432 <span class="at">-N</span></span>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh id_ent@etu-pgsql.math.univ-paris-diderot.fr <span class="at">-L</span> 5436:localhost:5432 <span class="at">-N</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">id_ent@etu-pgsql.math.univ-paris-diderot.fr</span><span class="kw">)</span> <span class="ex">Password</span> for id_ent@etu-pgsql.math.univ-paris-diderot.fr:</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -441,13 +441,11 @@ Connexion au serveur PostGres, demander la liste des commandes disponibles
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Utilisez votre tunnel SSH pour accéder au serveur PostGres. Saisissez à nouveau votre mot de passe.</p>
+<p>Utilisez votre tunnel SSH pour accéder au serveur PostGres. Dans une autre fenêtre terminal, lancer <code>psql</code>, saisissez à nouveau votre mot de passe.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> psql <span class="at">-p</span> 5436 <span class="at">-U</span> id_ent <span class="at">-W</span> <span class="at">-h</span> localhost <span class="at">-d</span> bd_2023-24</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ex">Password</span> for id_ent: </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ex">Server:</span> PostgreSQL 13.8</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">Version:</span> 3.5.0</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ex">Home:</span> http://pgcli.com</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ex">bd_2023-24=#</span> <span class="dt">\?</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="ex">bd_2023-24=#</span> <span class="dt">\?</span>  </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Vous êtes maintenant dans une session sur le serveur PostGres. Vous êtes connecté au catalogue <code>bd_2023-24</code></p>
 <p>Vous pouvez utiliser une grande partie des commandes magiques de <code>psql</code></p>
 </div>

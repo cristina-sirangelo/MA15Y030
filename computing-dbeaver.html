@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -387,12 +421,12 @@ Configurer une connexion
 </div>
 </div>
 <ul>
-<li><p>Onglet <code>Main</code></p>
+<li>Onglet <code>Main</code>
 <ul>
 <li>Connect by <code>Host</code>,
 <ul>
 <li>Host: <code>localhost</code>,</li>
-<li>Port: <code>5434</code> (ou un autre nombre exotique)</li>
+<li>Port: <code>5436</code> (le nom du port local utilisé par votre tunnel ssh)</li>
 <li>Database: bd_2023-24</li>
 <li>Décocher `Show all databases</li>
 </ul></li>
@@ -404,29 +438,15 @@ Configurer une connexion
 </ul></li>
 <li></li>
 </ul></li>
-<li><p>Onglet <code>PostgreSQL</code></p></li>
-<li><p>Onglet <code>SSH</code></p>
-<ul>
-<li>Cocher <code>Use SSH Tunnel</code></li>
-<li>Settings
-<ul>
-<li>Host/IP: localhost</li>
-<li>Port 22</li>
-<li>Username: <code>username</code> (ENT)</li>
-<li>Password: xxxxxxx (ENT)</li>
-<li>Cocher <code>Save credentials</code></li>
-</ul></li>
-<li>Jump servers
-<ul>
-<li>Jump #1 etu-pgsql.math.univ-paris-diderot.fr username Password</li>
-<li>Target localhost:22 username Password</li>
-</ul></li>
-</ul></li>
 </ul>
 </section>
 <section id="utiliser-une-connexion" class="level1">
 <h1>Utiliser une connexion</h1>
-<p>Double cliquer et saisir les mots de passe demandés.</p>
+<p>Après avoir ouvert un tunnel <code>ssh</code> dans une fenêtre terminal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash code-with-copy"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">$</span> ssh username@etu-pgsql.math.univ-paris-diderot.fr <span class="at">-L</span> 5436:localhost:5432 <span class="at">-N</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">(</span><span class="ex">username@etu-pgsql.math.univ-paris-diderot.fr</span><span class="kw">)</span> <span class="ex">Password</span> for username@etu-pgsql.math.univ-paris-diderot.fr:</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>dans l’IDE <code>dbeaver</code>:</p>
+<p>Double cliquer sur la connexion et saisissez le mot de passe demandé (si nécessaire).</p>
 </section>
 <section id="définir-et-utiliser-un-projet" class="level1">
 <h1>Définir et utiliser un <em>projet</em></h1>
