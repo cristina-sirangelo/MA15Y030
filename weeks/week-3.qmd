@@ -13,31 +13,38 @@ editor: source
 -   {{< fa cal >}} [Emploi du temps Ingémaths/METIS](https://edt.math.univ-paris-diderot.fr/#/parcours/ingemath/l3)
 :::
 
-## Préparer
-
-Finir requêtes du TD 1 [TD 1](/workshops/td1.html) 
 
 {{< fa hand-point-right >}} si ce n'est pas déjà fait suivre la procéure indiquée sur moodle pour disposer d'un compte sur les machines de Sophie Germain
 
+::: {.callout-tip}
+
+### Pratique recommandée pour accéder au serveur 
+
+1. Ouvrir un tunnel `ssh`  en tâche de premier plan dans une fenêtre en renvoyant le port local xxxx (par exemple 5436) vers le port officiel postgresql (5432) de la machine distante `etu-pgsql...`  
+2. Lancer un client `psql/pgcli/dbeaver` avec `host` `localhost`,  port xxxx (le port local renvoyé), votre identifiant, votre mot de passe, et la base/catalogue `bd_2023-24`
+
+Voir [Détail connexion](/computing-access.qmd)
+
+:::
+
 ## Cours magistral : diapositives
 
-[Introduction à l'algèbre relationnelle](/slides/SQL_0.html)  à terminer
+- {{< fa square-check >}} [Introduction à l'algèbre relationnelle](/slides/SQL_0.html)  
+- {{< fa square-check >}} [SQL requêtes élémentaires](/slides/SQL_1.html)  
+- [SQL requêtes imbriqués](/slides/SQL_2.html) {{< fa hand-point-right >}} sauf `lateral`
 
-[SQL requêtes élémentaires](/slides/SQL_1.html)  à terminer
-
-[SQL requêtes imbriqués](/slides/SQL_2.html)
 
 ## Exercices : Terminer TD 1 et commencer TD 2
 
-[html](/workshops/td2.html)  [pdf](/workshops/td2.pdf)
-
-[Schéma world](/schemas/schema-world.qmd)
+- Enoncés : [html](/workshops/td2.html)  [pdf](/workshops/td2.pdf)
+- [Schéma world](/schemas/schema-world.qmd)
+- Solutions :[html](/solutions/td2.html)  [pdf](/solutions/td2.pdf)
 
 ## Solutions du  TD 1  (Semaine 2)
 
 [html](/solutions/td1.html)  [pdf](/solutions/td1.pdf)
 
-## Travail personnel
+## Travail personnel optionnel {{< fa dumbbell >}}
 
 [CC 1 2023-24](/exams/cc1-2023-10-27.html)
 
