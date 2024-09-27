@@ -329,11 +329,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#préparer" id="toc-préparer" class="nav-link active" data-scroll-target="#préparer">Préparer</a></li>
-  <li><a href="#cours-magistral-diapositives" id="toc-cours-magistral-diapositives" class="nav-link" data-scroll-target="#cours-magistral-diapositives">Cours magistral : diapositives</a></li>
+  <li><a href="#cours-magistral-diapositives" id="toc-cours-magistral-diapositives" class="nav-link active" data-scroll-target="#cours-magistral-diapositives">Cours magistral : diapositives</a></li>
   <li><a href="#exercices-terminer-td-1-et-commencer-td-2" id="toc-exercices-terminer-td-1-et-commencer-td-2" class="nav-link" data-scroll-target="#exercices-terminer-td-1-et-commencer-td-2">Exercices : Terminer TD 1 et commencer TD 2</a></li>
   <li><a href="#solutions-du-td-1-semaine-2" id="toc-solutions-du-td-1-semaine-2" class="nav-link" data-scroll-target="#solutions-du-td-1-semaine-2">Solutions du TD 1 (Semaine 2)</a></li>
-  <li><a href="#travail-personnel" id="toc-travail-personnel" class="nav-link" data-scroll-target="#travail-personnel">Travail personnel</a></li>
+  <li><a href="#travail-personnel-optionnel" id="toc-travail-personnel-optionnel" class="nav-link" data-scroll-target="#travail-personnel-optionnel">Travail personnel optionnel <i class="fa-solid fa-dumbbell" aria-label="dumbbell"></i></a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/s-v-b/MA15Y030/edit/main/weeks/week-3.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/s-v-b/MA15Y030/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -379,28 +378,49 @@ Important
 </ul>
 </div>
 </div>
-<section id="préparer" class="level2">
-<h2 class="anchored" data-anchor-id="préparer">Préparer</h2>
-<p>Finir requêtes du TD 1 <a href="../workshops/td1.html">TD 1</a></p>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> si ce n’est pas déjà fait suivre la procéure indiquée sur moodle pour disposer d’un compte sur les machines de Sophie Germain</p>
-</section>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Pratique recommandée pour accéder au serveur
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li>Ouvrir un tunnel <code>ssh</code> en tâche de premier plan dans une fenêtre en renvoyant le port local xxxx (par exemple 5436) vers le port officiel postgresql (5432) de la machine distante <code>etu-pgsql...</code><br>
+</li>
+<li>Lancer un client <code>psql/pgcli/dbeaver</code> avec <code>host</code> <code>localhost</code>, port xxxx (le port local renvoyé), votre identifiant, votre mot de passe, et la base/catalogue <code>bd_2023-24</code></li>
+</ol>
+<p>Voir <a href="../computing-access.html">Détail connexion</a></p>
+</div>
+</div>
 <section id="cours-magistral-diapositives" class="level2">
 <h2 class="anchored" data-anchor-id="cours-magistral-diapositives">Cours magistral : diapositives</h2>
-<p><a href="../slides/SQL_0.html">Introduction à l’algèbre relationnelle</a> à terminer</p>
-<p><a href="../slides/SQL_1.html">SQL requêtes élémentaires</a> à terminer</p>
-<p><a href="../slides/SQL_2.html">SQL requêtes imbriqués</a></p>
+<ul>
+<li><i class="fa-solid fa-square-check" aria-label="square-check"></i> <a href="../slides/SQL_0.html">Introduction à l’algèbre relationnelle</a><br>
+</li>
+<li><i class="fa-solid fa-square-check" aria-label="square-check"></i> <a href="../slides/SQL_1.html">SQL requêtes élémentaires</a><br>
+</li>
+<li><a href="../slides/SQL_2.html">SQL requêtes imbriqués</a> <i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> sauf <code>lateral</code></li>
+</ul>
 </section>
 <section id="exercices-terminer-td-1-et-commencer-td-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercices-terminer-td-1-et-commencer-td-2">Exercices : Terminer TD 1 et commencer TD 2</h2>
-<p><a href="../workshops/td2.html">html</a> <a href="../workshops/td2.pdf">pdf</a></p>
-<p><a href="../schemas/schema-world.html">Schéma world</a></p>
+<ul>
+<li>Enoncés : <a href="../workshops/td2.html">html</a> <a href="../workshops/td2.pdf">pdf</a></li>
+<li><a href="../schemas/schema-world.html">Schéma world</a></li>
+<li>Solutions :<a href="../solutions/td2.html">html</a> <a href="../solutions/td2.pdf">pdf</a></li>
+</ul>
 </section>
 <section id="solutions-du-td-1-semaine-2" class="level2">
 <h2 class="anchored" data-anchor-id="solutions-du-td-1-semaine-2">Solutions du TD 1 (Semaine 2)</h2>
 <p><a href="../solutions/td1.html">html</a> <a href="../solutions/td1.pdf">pdf</a></p>
 </section>
-<section id="travail-personnel" class="level2">
-<h2 class="anchored" data-anchor-id="travail-personnel">Travail personnel</h2>
+<section id="travail-personnel-optionnel" class="level2">
+<h2 class="anchored" data-anchor-id="travail-personnel-optionnel">Travail personnel optionnel <i class="fa-solid fa-dumbbell" aria-label="dumbbell"></i></h2>
 <p><a href="../exams/cc1-2023-10-27.html">CC 1 2023-24</a></p>
 <p><br><br></p>
 <div style="font-size: 0.875em;">
