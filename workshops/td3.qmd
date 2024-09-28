@@ -70,7 +70,7 @@ Objectifs de la séance:
 - fonctions SQL
 
 
-En plus du schéma `world`, nous allons utiliser le schéma `pagila` qui contient des informations utilisées par un magasin de location de DVD.
+En plus du schéma [`world`](/schemas/schema-world.qmd), nous allons utiliser le schéma [`pagila`](/schemas/schema-pagila.qmd) qui contient des informations utilisées par un chaîne fictive de magasins de location de DVD.
 
 Le schéma est visible sur [ici](/schemas/schema-pagila.qmd).
 
@@ -81,8 +81,17 @@ bd_2023-24> \d pagila.film
 bd_2023-24> \d pagila.actor
 ```
 
-## Requêtes imbriquées
 
+::: {.callout-tip}
+
+Quand on travaille sur plusieurs schémas (ici `world`, `pagila` et votre schéma personnel), il est bon 
+
+- d'ajuster `search_path` (sous `psql, pgcli`) : `set search_path to world, pagila, ... ;` (remplacer `...`par votre identifiant)
+- de qualifier les noms de table pour indiquer le schéma d'origine : `world.country` versus `pagila.country`
+
+:::
+
+## [Requêtes imbriquées](/slides/SQL_2.html)
 
 Les requêtes imbriquées permettent d'utiliser le résultat d'une requête dans la clause `WHERE`.
 
@@ -179,7 +188,7 @@ WITH ... AS (
 :::
 
 
-## Jointure externe
+## [Jointure externe](/slides/SQL_1.html)
 
 La jointure externe est une jointure un peu particulière. On a vu la semaine dernière que lorsqu'on faisait une jointure, les lignes de la table de droit étaient recollées aux lignes de la table de gauche. Si une ligne a gauche ne pouvaient pas être recollée, elle disparaissait de la jointure. La jointure extérieure permet de garder ces lignes-là malgré tout.
 
@@ -404,10 +413,14 @@ En calcul relationnel
 
 :::
 
+::: {.callout-note}
+
 Cette question est exactement du même type que la précédente. On y répond de la même manière :
 pour trouver *1* les objets d'un certain type  qui ne possèdent pas une propriété, on cherche
 dans la base tous les objets de ce type et on fait la différence avec l'ensemble des objets de ce type
 qui possèdent la propriété dans la base.
+
+:::
 
 
 Quels sont les acteurs qui ont joué dans toutes les catégories de film ? (11 lignes)
@@ -434,7 +447,7 @@ SELECT first_name,last_name FROM pagila.actor NATURAL JOIN ActId  ;
 
 ::: {.callout-important}
 
-Cette requête réalise une opération sophistiquée de l'algèbre relationnelle la *division* ou  $\div$.
+Cette requête réalise une opération sophistiquée de l'algèbre relationnelle [la *division* ou  $\div$](/slides/SQL_0.html#/division).
 Il ne s'agit pas d'une opération primitive comme  $\sigma,\pi, \times$.
 
 
@@ -586,6 +599,7 @@ Un même *dvd* (`inventory_id`) peut bien sûr être loué plusieurs fois, mais 
 ::: {.callout-tip title="Solution"}
 
 `SQL` en général et `PostGres` en particulier proposent beaucoup de types et d'opérations sophistiquées pour représenter et manipuler les données temporelles.
+Plusieurs types de données permettent de représenter les instants (timestamp), les dates, les intervalles de temps, les durées, et de calculer sur le temps (ajouter une durée à une date, extraire une information calendaire d'une date ou d'un instant, ...). Même si l'API varie d'un cadre à l'autre, on retrouve ces types et ces opérations dans tous les environnements de sciences des données : {{< fa brands python >}}, {{< fa brands r-project >}} 
 
 :::
 
@@ -605,16 +619,21 @@ On crée une vue avec `CREATE VIEW nom AS requete`. Étant donné que vous ne po
 ```{.sql}
 CREATE VIEW entid.VillesRepublic AS
   SELECT B.* 
-  FROM world.country as A NATURAL JOIN world.city as B
-  WHERE A.governmentform like '%Republic%';
+  FROM 
+	world.country as A NATURAL JOIN 
+	world.city as B
+  WHERE 
+	A.governmentform like '%Republic%';
 ```
 
 crée une vue dans votre schéma personnel. Désormais, si on veut sélectionner les villes qui sont dans une république et dont la population est supérieure à $1000000$, on pourra simplement écrire :
 
 ```{.sql}
 SELECT * 
-FROM entid.VillesRepublic 
-WHERE population_city>=1000000;
+FROM 
+	entid.VillesRepublic 
+WHERE 
+	population_city>=1000000;
 ```
 
 
@@ -646,8 +665,11 @@ Dans votre schéma personnel (qui porte le nom de votre identifiant ENT), écrir
 CREATE VIEW entid.film_id_horror
 AS
 ( SELECT pagila.film_id 
-  FROM pagila.film_category JOIN pagila.category USING(category_id) 
-  WHERE category.name='Horror'
+  FROM 
+	pagila.film_category JOIN 
+	pagila.category USING(category_id) 
+  WHERE 
+	category.name='Horror'
 ) ;
 ```
 
@@ -678,8 +700,11 @@ et l'usage
 CREATE OR REPLACE FUNCTION entid.film_id_cat(s text)
  RETURNS TABLE(film_id smallint) LANGUAGE sql
 AS $$
-SELECT film_id FROM film_category NATURAL JOIN category
-WHERE category.name=s ;
+	SELECT film_id 
+	FROM 
+		pagila.film_category NATURAL JOIN 
+		pagila.category
+	WHERE category.name=s ;
 $$ ;
 ```
 
@@ -703,7 +728,10 @@ Les solutions sont données en utilisant la fonction suivante
 CREATE OR REPLACE FUNCTION entid.film_id_cat(s text)
  RETURNS TABLE(film_id smallint) LANGUAGE sql
 AS $$
-SELECT film_id FROM film_category NATURAL JOIN category
+SELECT film_id 
+FROM 
+	pagila.film_category NATURAL JOIN 
+	pagila.category
 WHERE category.name=s ;
 $$ ;
 ```
@@ -720,11 +748,14 @@ $$ ;
 ::: {.callout-tip title="Solution"}
 
 ```{.sql}
-SELECT DISTINCT ac.* FROM pagila.actor ac
-     NATURAL JOIN
-        (SELECT * FROM pagila.film_actor
-              WHERE film_id IN
-                (SELECT * FROM entid.film_id_cat('Horror'))
+SELECT DISTINCT ac.* 
+FROM 
+	pagila.actor ac NATURAL JOIN
+        (SELECT * 
+	 FROM pagila.film_actor
+         WHERE film_id IN
+                (SELECT * 
+		 FROM entid.film_id_cat('Horror'))
          ) ;
 ```
 
@@ -742,7 +773,8 @@ ou
  
 ```{.sql}
 SELECT DISTINCT ac.*
-FROM pagila.actor ac JOIN
+FROM 
+     pagila.actor ac JOIN
      pagila.film_actor NATURAL JOIN
      entid.film_id_cat('Horror') ;
 ```
@@ -756,7 +788,7 @@ Quels sont les acteurs qui n'ont jamais joué dans une comédie (`Comedy`) ? (53
 
 ::: {.callout-caution}
 
-### Attention !  Cette requête ne répond pas à la question :
+### {{< fa radiation >}} Attention !  Cette requête ne répond pas à la question :
 
 ```{.sql}
 SELECT DISTINCT ac.*
@@ -783,8 +815,13 @@ Une réponse correcte est
 SELECT DISTINCT last_name, first_name
 FROM pagila.actor A1 
  WHERE NOT EXISTS 
-      (SELECT * FROM pagila.film_actor A2, (pagila.film_category JOIN pagila.category using (category_id)) C WHERE A1.actor_id=A2.actor_id AND 
- name='Comedy' AND A2.film_id=C.film_id); 
+      (SELECT * 
+       FROM pagila.film_actor A2, (pagila.film_category JOIN pagila.category using (category_id)) C 
+       WHERE 
+	 A1.actor_id=A2.actor_id AND 
+ 	name='Comedy' AND 
+	A2.film_id=C.film_id
+); 
 ```
 
 :::
@@ -803,7 +840,7 @@ FROM pagila.actor ac
 WHERE NOT EXISTS
      (SELECT * FROM pagila.film_actor fa
       WHERE film_id IN
-        (SELECT * FROM entid.film_id_cat('Comedy') )
+        (SELECT * FROM entid.film_id_cat('Comedy'))
       AND fa.actor_id = ac.actor_id
      )  ;
 ```
