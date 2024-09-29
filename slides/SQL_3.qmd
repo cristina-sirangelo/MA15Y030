@@ -9,17 +9,6 @@ format:
 ---
 
 
-```{r}
-#| echo: false
-#| eval: false
-library(DBI)
-db <- dbConnect(RSQLite::SQLite(), dbname = "sql.sqlite")
-knitr::opts_chunk$set(connection = "db")
-```
-
-
-
-
 
 # Fonctions d'agrégation en SQL   {background-color="#1c191c"}
 
@@ -77,20 +66,23 @@ impossible de faire des sommes...).
 
 ## Fonctions d'agrégation  : `SUM` et `AVG`
   
-- Le nombre de pièces 'x21' livrées.
+- Somme des populations des villes du pays de code `FRA` (dans le schéma `world`).
 
 ```{.sql}
-SELECT SUM (ALL Quantite)  
-FROM Livraison 
-WHERE NomP = 'x21';
+SELECT SUM (population)  
+FROM city 
+WHERE countrycode = 'FRA';
 ```
 
-- Prix moyen des pièces livrées par la socié  `FastDelivery`
+- GNP moyen par habitant (pas pondéré!) sur le continent `South America`
 
 ```{.sql}
-SELECT AVG (ALL Prix)    
-FROM Livraison L, Piece P 
-WHERE L.NomP=P.NomP AND L.NomF = 'FastDelivery';
+SELECT 
+  AVG(1e6*gnp/population_country)::decimal(8,0) 
+FROM 
+  country 
+WHERE 
+  continent = 'South America'
 ```
 
 
@@ -132,6 +124,7 @@ Attention aux valeurs nulles !
 
 `NULL = MIN(NULL, 3, 100)` ou `3 = MIN(NULL, 3, 100)` ?
 
+{{< fa hand-point-right >}} Essayez `SELECT MIN(gnpold) FROM country;`
 :::
 
 . . .
@@ -139,9 +132,9 @@ Attention aux valeurs nulles !
 Quantité maximale livrée de pièce 'x21' lors d'une commande.
 
 ```{.sql}
-SELECT MAX (Quantite)   
-FROM Livraison 
-WHERE NomP = 'x21';
+SELECT MAX (gnpold), max(gnp)   
+FROM country 
+WHERE region = 'Caribbean';
 ```
 
 
@@ -169,12 +162,12 @@ Nombre de valeurs prises par le résultat
 - `ALL`: avec les doublons
 - `*` : y compris les valeurs nullles/manquantes
 
-Nombre de livraisons de la pièce 'x21
+Nombre de territoires dans la région `Carribean`
 
 ```{.sql}
 SELECT COUNT(*)  
-FROM Livraison
-WHERE NomP = 'x21'; 
+FROM country
+WHERE region = 'Caribbean'; 
 ```
 
 
@@ -185,7 +178,7 @@ WHERE NomP = 'x21';
 
 Exemple de combinaison de quelques opérations et fonctions
 
-Nom des fournisseurs ayant effectué plus de $10$ livraisons.
+Nom des régions comportant plus de $10$ territoires.
 
 . . .
 
@@ -193,13 +186,13 @@ Nom des fournisseurs ayant effectué plus de $10$ livraisons.
 --| eval: false
 --| echo: false
 --| code-line-numbers: "1-2|4-6|"
-SELECT F.NomF 
-FROM Fournisseur F 
+SELECT DISTINCT c.region 
+FROM country c 
 WHERE (
   SELECT Count (*)     
-  FROM Livraison L     
-  WHERE F.NomF = L.NomF
-) >= 10;  
+  FROM country co     
+  WHERE co.region = c.region
+) >= 15;  
 ```
 
 <!-- ![](/images/prod-liv-fourn.png) -->
@@ -292,15 +285,17 @@ Combien de fois calculez vous l'espérance de minimale pour chaque région ?
 
 ## Fonctions de calcul : exemples
 
-Utilisation d'opérateur arithmétique entre les différents attributs d'un même tuple...  
+Utilisation d'opérateurs arithmétique entre les différents attributs d'un même tuple...  
 
-Prix de revient des commandes livrées par le fournisseur `FD`
+<!-- Prix de revient des commandes livrées par le fournisseur `FD` -->
 
 ```{.sql}
-SELECT L.NomP, P.Prix*L.Quantite 
-FROM Livraison F, Piece P 
-WHERE P.NomP=L.NomP AND
-  L.NomF='FD';
+SELECT 
+  AVG(1e6*gnp/population_country)::decimal(8,0) 
+FROM country 
+WHERE 
+  continent LIKE 'South Am%' AND
+  population_country > 0 ;
 ```
 
 
@@ -322,54 +317,71 @@ GROUP BY <nomattribut1>, ..., <nomattributn>
 Exemple d'utilisation : regrouper les livraisons par numéro de fournisseur et prendre la quantité maximum livrée par fournisseur.
 
 
-
 ## Partition de résultats de requêtes   {.smaller}
 
 Schéma général
 
 ```{.sql}
-SELECT .....  
-FROM Livraison 
-GROUP BY NomF    
+SELECT ... 
+FROM country 
+GROUP BY continent    
 ```
 
+## {.smaller}
 
 
-. . .
-
-
-| NomF | NomP | NumLiv |  Quantite |  DateLiv |
-|:-----|:-----|:------:|----------:|:--------:|
-| <td colspan="5"> Sous-relation 1 </td>  |
-|    1 | x21  | 1      |  20       | 15/02/10 |
-|  1   | a32  | 2      | 3         | 16/02/10 | 
-|   1 | x21   | 3      | 5         | 15/01/10 | 
-| <td colspan="5"> Sous-relation 2 </td>  |
-| 2 | b27 | 4 | 8 | 01/02/12|
-|2 | c31 | 5 | 9 | 17/09/11 |
-| <td colspan="5"> Sous-relation 3 </td>  |
-|3 |x 21 |6 |17 |15/03/10 |
+```{.sql}
++-------------+---------------------+---------------+
+| countrycode | name_country        | continent     |
+|-------------+---------------------+---------------|
+| DZA         | Algeria             | Africa        |
+| AGO         | Angola              | Africa        |
+| ...         |                     |               |
+| ATA         | Antarctica          | Antarctica    |
+| BVT         | Bouvet Island       | Antarctica    |
+| ...         |                     |               |
+| AFG         | Afghanistan         | Asia          |
+| ARM         | Armenia             | Asia          |
+| ...         |                     |               |
+| ALB         | Albania             | Europe        |
+| AND         | Andorra             | Europe        |
+| ...         |                     |               |
+| AIA         | Anguilla            | North America |
+| ATG         | Antigua and Barbuda | North America |
+| ...         |                     |               |
+| ASM         | American Samoa      | Oceania       |
+| AUS         | Australia           | Oceania       |
+| ...         |                     |               |
+| ARG         | Argentina           | South America |
+| BOL         | Bolivia             | South America |
++-------------+---------------------+---------------+
+```
 
 
 
 ## Partition de résultats de requêtes
 
-Quantité maximale livrée par chaque fournisseur  
+Population maximale par continent  
 
 ```{.sql}
-SELECT NomF, MAX(Quantite) 
-FROM Livraison 
-GROUP BY NomF;
+SELECT continent, max(population_country) 
+FROM country 
+GROUP BY continent ; 
 ```
 
-Livraison
-
-|NomF |  NomP | NumL | Quantite | DateLiv |
-|:-----|:-----|:--------:|-----:|:----------:|
-|1     | x21 | 1 | 20 | 15/02/10  |
-|1-2   | c31 | 5 | 9   | 17/09/11 | 
-|1     | x21 | 6 | 17 | 15/03/10  | 
-
+```{.sql}
++---------------+------------+
+| continent     | max        |
+|---------------+------------|
+| Asia          | 1277558000 |
+| South America | 170115000  |
+| North America | 278357000  |
+| Oceania       | 18886000   |
+| Antarctica    | 0          |
+| Africa        | 111506000  |
+| Europe        | 146934000  |
++---------------+------------+
+```
 
 Les opérateurs (`MAX`, `SUM`, etc) s'appliquent à chaque groupe de relations.
 
@@ -410,9 +422,12 @@ ORDER BY avg_gnp DESC;
 Quel est le sens de cette requête ?
 
 ```{.sql}
-SELECT NomP, COUNT(*), SUM(Quantite) 
-FROM Livraison 
-GROUP BY NomP;
+SELECT 
+  continent, 
+  COUNT(*) as nombre_pays, 
+  SUM(population_country) as population_totale
+FROM country 
+GROUP BY continent;
 ```
 
 ##
@@ -421,9 +436,9 @@ GROUP BY NomP;
 La requête suivante  requête n'est pas correcte 
 
 ```{.sql}
-SELECT NomF, NomP, MAX(Quantite) 
-FROM Livraison 
-GROUP BY NomF;
+SELECT continent, region, MAX(population_country) 
+FROM country 
+GROUP BY continent;
 ```
 
 . . .
@@ -450,13 +465,13 @@ Les attributs présents dans le `SELECT` sont forcémment présents dans le `GRO
     
 
 
-Liste des fournisseurs qui ont effectué plus de 3 livraisons.
+Liste des continents comportent au moins cinq régions.
 
 ```{.sql}
-SELECT NomF 
-FROM Livraison 
-GROUP BY NomF    
-HAVING COUNT(*) >= 3;  
+SELECT continent 
+FROM country 
+GROUP BY continent    
+HAVING COUNT(DISTINCT region) >= 5;  
 ```
 
 
@@ -472,12 +487,12 @@ HAVING COUNT(*) >= 3;
 - La clause `ORDER BY` permet de trier le résultat de la requête, en fournissant 
 la liste des attributs  sur lesquels effectuer le tri et en spécifiant le sens du tri (ascendan ou descendant)
 
-Liste des salariés triée par ordre décroissant salaire
+Liste des pays  triée par ordre décroissant de population 
 
 ```{.sql}
 SELECT * 
-FROM Employe 
-ORDER BY Salaire DESC;  
+FROM country 
+ORDER BY population_country DESC;  
 ```
 
 
@@ -488,19 +503,19 @@ ORDER BY Salaire DESC;
 Que fait cette requête ?
 
 ```{.sql}
-SELECT Fonction, COUNT(*) 
-FROM Employe 
-WHERE NumDep IN (
-  SELECT NumDep 
-  FROM Departement 
-  WHERE NomDept='Financier'
+SELECT continent, COUNT(*) 
+FROM country 
+WHERE countrycode IN (
+  SELECT countrycode 
+  FROM countrylanguage 
+  WHERE language='English' AND percentage > 10 
 ) 
-GROUP BY Fonction 
-HAVING AVG(Salaire) >= 10000 
-ORDER BY Fonction;
+GROUP BY continent 
+HAVING AVG(1e6*gnpold/population_country) >= 1000 
+ORDER BY continent;
 ```
 
-Sur les relations d'une base `employé` (tables `Departement`,`Employe`, ...)
+<!-- Sur les relations d'une base `employé` (tables `Departement`,`Employe`, ...) -->
 
 
 
