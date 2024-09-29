@@ -71,12 +71,42 @@ Description de presque toutes les  tables de la base `pagila` ,
 - [Détails sur les films](/schemas/schema-pagila-film.qmd)
 - [Détails sur les adresses, clients, magasins, paiements](/schemas/schema-pagila-address.qmd)
 
+`pagila`  est une base d'entrainement pour PostgreSQL. Cette base est une adaptation de la base `sakila` utilisée pour l'entrainement à MySQL. 
+
+La base `pagila` est censée permettre de gérer les prêts et la facturation d'une chaine fictive de magasins de location de DVD (une activité commerciale florissante durant les années 1990 et au début des années 2000). 
+
+Le schéma `pagila`  est formé  de 15 tables. Un groupe de tables concerne les films diponibles au catalogue de la chaîne de magasins: `film`, `actor`, `language`, `category`, `film_actor`, `film_category`. 
+
+Les lignes de la table `film` sont les entrées du catalogue de la chaîne. Une ligne est identifiée par l'attribut `film_id` (noter l'attribution automatique des identifiants grâce au mécanisme des séquences). 
+
+Un film possède une distribution constituée d'actrices et d'acteurs. Comme une actrice peut jouer dans plusieurs films, l'association plusieurs-à-plusieurs entre films et acteurs/actrices est rerésentée par une *table intémédiaire* `film_actor`.       
+
+Un film relève d'une ou plusieurs catégories. Là encore, l'association plusieurs-à-plusieurs entre films et catégories est rerésentée par une *table intémédiaire* `film_category`.
+
+Une entrée au catalogue correspond à un titre de film tourné dans une certaine langue (la langue originale) et à une bande son dans une langue qui peut être différente de la langue originale. 
+
+::: {.callout-note}
+
+Notons ici qu'une entrée de la table `film` ne correspond pas tout à fait à l'idée que nous nous faisons d'un film (entrée dans la base [IMDB](https://www.imdb.com)), mais plutôt à une édition (simplifiée) de film en DVD.
+
+:::
+
+Une film disponible au catalogue correspond à un ou plusieurs DVD (objets physiques) qui sont représentés par des lignes de la table `inventory`. Les conditions de location 
+d'un même titre (ligne de `film`) sont identiques pour les DVDs physiques correspondant au même titre. 
+
+Un ligne de la table `inventory` peut faire l'objet d'une *location* qui correspond à une ligne de `rental`. La table `rental` est encore un cas de *table intermédiaire* entre les tables `inventory`, `customer` (client) et `staff` (employé). Le fait qu'il s'agisse d'une table intermédiaire destinée à représenter une association ternaire plusieurs-à-plusieurs entre élément d'inventaire, client et employé est en partie caché par le fait que `rental` possède un identifiant propre `rental_id`. Un élément de `rental` devrait pouvoir être identifié grâce aux identifiants  des lignes participantes de `inventory`, `customer` et `staff` et  à un identifiant relatif comme `rental_date`. 
+
+Un client est rattaché à un magasin (`store`). Les employés sont eux aussi attachés à un magasin.
+
+Les clients, employés et magasins sont liés à une adresse (`address`) qui relève d'une ville (`city`) qui elle même relève d'un pays (`country`).
+
+Un paiement relie un employé à un client à propos d'une location. 
 
 
 
 ## Table pagila.address 
 |Idx |Name |Data Type |
-|---|---|---|
+|----|-----|----------|
 | * &#128273;  &#11019; | address\_id| integer  DEFAULT nextval('pagila.address_address_id_seq'::regclass) |
 | * | address| varchar(50)  |
 |  | address2| varchar(50)  |

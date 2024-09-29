@@ -72,7 +72,7 @@ Objectifs de la séance:
 
 En plus du schéma [`world`](/schemas/schema-world.qmd), nous allons utiliser le schéma [`pagila`](/schemas/schema-pagila.qmd) qui contient des informations utilisées par un chaîne fictive de magasins de location de DVD.
 
-Le schéma est visible sur [ici](/schemas/schema-pagila.qmd).
+Le schéma `pagila` est visible  [ici](/schemas/schema-pagila.qmd).
 
 Sous `psql` ou `pgli`, vous pouvez aussi inspecter les tables comme d'habitude avec
 
