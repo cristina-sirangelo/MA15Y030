@@ -14,18 +14,18 @@
 <script src="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
-  <meta name="generator" content="quarto-1.5.55">
-
-  <meta name="author" content="Équipe BD">
-  <meta name="dcterms.date" content="2024-09-27">
-  <title>MA15Y030 - Automne 2024 – BD IV: SQL III</title>
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
-  <style>
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.55">
+<meta name="author" content="Équipe BD">
+<meta name="dcterms.date" content="2024-10-04">
+<title>MA15Y030 - Automne 2024 – BD IV: SQL III</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+<style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -103,12 +103,12 @@
     code span.vs { color: #2aa198; } /* VerbatimString */
     code span.wa { color: #cb4b16; } /* Warning */
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
-  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-  <style type="text/css">
+<link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+<link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+<link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+<link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+<link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+<style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -306,7 +306,7 @@
   }
 
   </style>
-  <style type="text/css">
+<style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -394,7 +394,7 @@
       margin-right: 0; 
     }
   </style>
-  <script>
+<script>
   MathJax = {
     loader: {
       load: ['[tex]/boldsymbol']
@@ -410,8 +410,7 @@
       }
     }
   };
-  </script>
-  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <meta property="og:title" content="BD IV: SQL III – MA15Y030 - Automne 2024">
 <meta property="og:description" content="Langage Manipulation de Données 3 : Aggrégation/Fenêtres/Partitions">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
@@ -420,8 +419,7 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
-  <h1 class="title">BD IV: SQL III</h1>
+<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center"><h1 class="title">BD IV: SQL III</h1>
   <p class="subtitle">Langage Manipulation de Données 3 : Aggrégation/Fenêtres/Partitions</p>
 
 <div class="quarto-title-authors">
@@ -435,70 +433,54 @@
     </div>
 </div>
 
-  <p class="date">2024-09-27</p>
-</section><section id="TOC">
-<nav role="doc-toc"> 
-<h2 id="toc-title">Plan</h2>
+  <p class="date">2024-10-04</p>
+</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
 <ul>
-<li><a href="#/fonctions-dagrégation-en-sql" id="/toc-fonctions-dagrégation-en-sql">Fonctions d’agrégation en SQL</a></li>
+<li><a href="#/fonctions-dagr%C3%A9gation-en-sql" id="/toc-fonctions-dagrégation-en-sql">Fonctions d’agrégation en SQL</a></li>
 <li><a href="#/fonctions-max-et-min" id="/toc-fonctions-max-et-min">Fonctions MAX et MIN</a></li>
 <li><a href="#/fonction-count" id="/toc-fonction-count">Fonction COUNT</a></li>
 <li><a href="#/partitions-group-by" id="/toc-partitions-group-by">Partitions, <code>GROUP BY</code></a></li>
-<li><a href="#/tri-des-résultats" id="/toc-tri-des-résultats">Tri des résultats</a></li>
-<li><a href="#/fonctions-fenêtres-window-functions" id="/toc-fonctions-fenêtres-window-functions">Fonctions fenêtres (Window functions)</a></li>
-<li><a href="#/groupements-avancés" id="/toc-groupements-avancés">Groupements avancés</a></li>
-<li><a href="#/résumé" id="/toc-résumé">Résumé</a></li>
-<li><a href="#/références" id="/toc-références">Références</a></li>
+<li><a href="#/tri-des-r%C3%A9sultats" id="/toc-tri-des-résultats">Tri des résultats</a></li>
+<li><a href="#/fonctions-fen%C3%AAtres-window-functions" id="/toc-fonctions-fenêtres-window-functions">Fonctions fenêtres (Window functions)</a></li>
+<li><a href="#/groupements-avanc%C3%A9s" id="/toc-groupements-avancés">Groupements avancés</a></li>
+<li><a href="#/r%C3%A9sum%C3%A9" id="/toc-résumé">Résumé</a></li>
+<li><a href="#/r%C3%A9f%C3%A9rences" id="/toc-références">Références</a></li>
 <li><a href="#/fin" id="/toc-fin">Fin</a></li>
-</ul>
-</nav>
-</section>
-<section>
-<section id="fonctions-dagrégation-en-sql" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Fonctions d’agrégation en SQL</h1>
+</ul></nav></section><section><section id="fonctions-dagrégation-en-sql" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fonctions d’agrégation en SQL</h1>
 
-</section>
-<section class="slide level2 center">
-
-<p>L’algèbre relationnelle pure ne sait pas tout calculer</p>
+</section><section class="slide level2 center"><p>L’algèbre relationnelle pure ne sait pas tout calculer</p>
 <p>Certains problèmes aisément solubles par un langage de programmation complet (<code>Python</code>, <code>C</code>, <code>R</code>, …) ne sont pas solubles dans l’algèbre relationnelle pure ( <span class="math inline">\(\sigma(), \pi(), \bowtie(), ...\)</span> ) :</p>
 <ul>
 <li><p>accessibilité dans un graphe non-orienté (qui puis-je contacter dans un réseau social?)</p></li>
 <li><p>compter : quel est le nombre de lignes d’une table ?</p></li>
-</ul>
-</section>
-<section id="fonctions-dagrégation-en-sql-1" class="slide level2 center">
-<h2><i class="fa-solid fa-binoculars" aria-label="binoculars"></i> Fonctions d’agrégation en SQL</h2>
+</ul></section><section id="fonctions-dagrégation-en-sql-1" class="slide level2 center"><h2>
+<i class="fa-solid fa-binoculars" aria-label="binoculars"></i> Fonctions d’agrégation en SQL</h2>
 <ul>
 <li><p>Possibilité de <em>compter</em>, de <em>faire des moyennes</em>, de trouver un maximum, … en SQL (contrairement à l’algèbre relationnelle “classique”)</p></li>
 <li><p>Possibilité de <em>partitionner</em> les données</p></li>
-</ul>
-</section>
-<section id="usages" class="slide level2 center">
-<h2>Usages</h2>
+</ul></section><section id="usages" class="slide level2 center"><h2>Usages</h2>
 <ul>
 <li><p><a href="https://fr.wikipedia.org/wiki/Business_analytics">Analyse commerciale ou Buisiness Analytics</a>,</p></li>
 <li><p>Statistique et Data Science</p></li>
-</ul>
-</section>
-<section id="dans-la-partie-select" class="slide level2 center">
-<h2>Dans la partie <code>SELECT</code></h2>
+</ul></section><section id="dans-la-partie-select" class="slide level2 center"><h2>Dans la partie <code>SELECT</code>
+</h2>
 <ul>
-<li>Somme des valeurs prises par <code>nomattribut</code></li>
+<li>Somme des valeurs prises par <code>nomattribut</code>
+</li>
 </ul>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a><span class="fu">SUM</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <ul>
-<li>Moyenne des valeurs prises par <code>nomattribut</code></li>
+<li>Moyenne des valeurs prises par <code>nomattribut</code>
+</li>
 </ul>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb2-1"><a></a><span class="fu">AVG</span> (<span class="kw">DISTINCT</span>|<span class="kw">ALL</span> <span class="op">&lt;</span>nom_attribut<span class="op">&gt;</span>) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Le type des attributs doit être un nombre ou un entier (sinon, impossible de faire des sommes…).</p>
 </div>
-</section>
-<section id="fonctions-dagrégation-sum-et-avg" class="slide level2 center">
-<h2>Fonctions d’agrégation : <code>SUM</code> et <code>AVG</code></h2>
+</section><section id="fonctions-dagrégation-sum-et-avg" class="slide level2 center"><h2>Fonctions d’agrégation : <code>SUM</code> et <code>AVG</code>
+</h2>
 <ul>
 <li>Somme des populations des villes du pays de code <code>FRA</code> (dans le schéma <code>world</code>).</li>
 </ul>
@@ -506,7 +488,8 @@
 <span id="cb3-2"><a></a><span class="kw">FROM</span> city </span>
 <span id="cb3-3"><a></a><span class="kw">WHERE</span> countrycode <span class="op">=</span> <span class="st">'FRA'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li>GNP moyen par habitant (pas pondéré!) sur le continent <code>South America</code></li>
+<li>GNP moyen par habitant (pas pondéré!) sur le continent <code>South America</code>
+</li>
 </ul>
 <div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a><span class="kw">SELECT</span> </span>
 <span id="cb4-2"><a></a>  <span class="fu">AVG</span>(<span class="fl">1e6</span><span class="op">*</span>gnp<span class="op">/</span>population_country):<span class="ch">:decimal</span>(<span class="dv">8</span>,<span class="dv">0</span>) </span>
@@ -514,15 +497,10 @@
 <span id="cb4-4"><a></a>  country </span>
 <span id="cb4-5"><a></a><span class="kw">WHERE</span> </span>
 <span id="cb4-6"><a></a>  continent <span class="op">=</span> <span class="st">'South America'</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-</section>
-<section>
-<section id="fonctions-max-et-min" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Fonctions MAX et MIN</h1>
+</section></section><section><section id="fonctions-max-et-min" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fonctions MAX et MIN</h1>
 
-</section>
-<section id="fonctions-de-calcul-max-min" class="slide level2 center">
-<h2>Fonctions de calcul : <code>MAX</code>, <code>MIN</code></h2>
+</section><section id="fonctions-de-calcul-max-min" class="slide level2 center"><h2>Fonctions de calcul : <code>MAX</code>, <code>MIN</code>
+</h2>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="fu">MAX</span> (<span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>)  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>maximum des valeurs prises par <code>&lt;nomattribut&gt;</code></p>
 <div class="fragment">
@@ -551,22 +529,21 @@
 <span id="cb7-3"><a></a><span class="kw">WHERE</span> region <span class="op">=</span> <span class="st">'Caribbean'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- ![](/images/prod-liv-fourn.png) -->
 </div>
-</section></section>
-<section>
-<section id="fonction-count" class="title-slide slide level1 center">
-<h1>Fonction COUNT</h1>
+</section></section><section><section id="fonction-count" class="title-slide slide level1 center"><h1>Fonction COUNT</h1>
 
-</section>
-<section id="fonctions-de-calcul-count" class="slide level2 center">
-<h2>Fonctions de calcul : <code>COUNT</code></h2>
+</section><section id="fonctions-de-calcul-count" class="slide level2 center"><h2>Fonctions de calcul : <code>COUNT</code>
+</h2>
 <p>On peut aussi compter le nombre de tuples dans un résultat</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="fu">COUNT</span>(<span class="op">*</span> |[ <span class="kw">ALL</span> | <span class="kw">DISTINCT</span> <span class="op">&lt;</span>nomattribut<span class="op">&gt;</span>])  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Nombre de valeurs prises par le résultat</p>
 <div class="fragment">
 <ul>
-<li><code>DISTINCT</code> : sans les doublons</li>
-<li><code>ALL</code>: avec les doublons</li>
-<li><code>*</code> : y compris les valeurs nullles/manquantes</li>
+<li>
+<code>DISTINCT</code> : sans les doublons</li>
+<li>
+<code>ALL</code>: avec les doublons</li>
+<li>
+<code>*</code> : y compris les valeurs nullles/manquantes</li>
 </ul>
 <p>Nombre de territoires dans la région <code>Carribean</code></p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a></a><span class="kw">SELECT</span> <span class="fu">COUNT</span>(<span class="op">*</span>)  </span>
@@ -574,43 +551,27 @@
 <span id="cb9-3"><a></a><span class="kw">WHERE</span> region <span class="op">=</span> <span class="st">'Caribbean'</span>; </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- ![](/images/prod-liv-fourn.png) -->
 </div>
-</section>
-<section id="fonctions-de-calcul-exemples" class="slide level2 center">
-<h2>Fonctions de calcul : exemples</h2>
+</section><section id="fonctions-de-calcul-exemples" class="slide level2 center"><h2>Fonctions de calcul : exemples</h2>
 <p>Exemple de combinaison de quelques opérations et fonctions</p>
 <p>Nom des régions comportant plus de <span class="math inline">\(10\)</span> territoires.</p>
 <div class="fragment">
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource {sql} number-lines code-with-copy"><code class="sourceCode"><span id="cb10-1"><a></a>--| eval: false</span>
-<span id="cb10-2"><a></a>--| echo: false</span>
-<span id="cb10-3"><a></a>--| code-line-numbers: "1-2|4-6|"</span>
-<span id="cb10-4"><a></a>SELECT DISTINCT c.region </span>
-<span id="cb10-5"><a></a>FROM country c </span>
-<span id="cb10-6"><a></a>WHERE (</span>
-<span id="cb10-7"><a></a>  SELECT Count (*)     </span>
-<span id="cb10-8"><a></a>  FROM country co     </span>
-<span id="cb10-9"><a></a>  WHERE co.region = c.region</span>
-<span id="cb10-10"><a></a>) &gt;= 15;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- ![](/images/prod-liv-fourn.png) -->
 </div>
-</section>
-<section id="musée-des-horreurs" class="slide level2 smaller center">
-<h2>Musée des horreurs</h2>
+</section><section id="musée-des-horreurs" class="slide level2 smaller center"><h2>Musée des horreurs</h2>
 <p>Trouver les régions où au moins un pays possède une espérance de vie inférieure à <code>50</code></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> continent, region</span>
-<span id="cb11-2"><a></a><span class="kw">FROM</span> country c </span>
-<span id="cb11-3"><a></a><span class="kw">WHERE</span> (</span>
-<span id="cb11-4"><a></a>  <span class="kw">SELECT</span> <span class="fu">MIN</span>(d.lifeexpectancy)     </span>
-<span id="cb11-5"><a></a>  <span class="kw">FROM</span> country d    </span>
-<span id="cb11-6"><a></a>  <span class="kw">WHERE</span> c.region<span class="op">=</span>d.region</span>
-<span id="cb11-7"><a></a>  ) <span class="op">&lt;</span> <span class="dv">50</span>    </span>
-<span id="cb11-8"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> continent, region</span>
+<span id="cb10-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb10-3"><a></a><span class="kw">WHERE</span> (</span>
+<span id="cb10-4"><a></a>  <span class="kw">SELECT</span> <span class="fu">MIN</span>(d.lifeexpectancy)     </span>
+<span id="cb10-5"><a></a>  <span class="kw">FROM</span> country d    </span>
+<span id="cb10-6"><a></a>  <span class="kw">WHERE</span> c.region<span class="op">=</span>d.region</span>
+<span id="cb10-7"><a></a>  ) <span class="op">&lt;</span> <span class="dv">50</span>    </span>
+<span id="cb10-8"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;"><strong>Continent</strong></th>
 <th style="text-align: left;"><strong>Region</strong></th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Africa</td>
@@ -649,21 +610,17 @@
 
 <aside><div>
 <p>Pourquoi cette requête est-elle horrible ?</p>
-</div></aside></section>
-<section id="section-2" class="slide level2 smaller center">
-<h2></h2>
+</div></aside></section><section id="section-2" class="slide level2 smaller center"><h2></h2>
 <p>On peut faire plus simple (et plus efficace) dans le case présent</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> continent, region</span>
-<span id="cb12-2"><a></a><span class="kw">FROM</span> country c </span>
-<span id="cb12-3"><a></a><span class="kw">WHERE</span> c.lifeexpectancy <span class="op">&lt;</span><span class="dv">50</span> </span>
-<span id="cb12-4"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> continent, region</span>
+<span id="cb11-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb11-3"><a></a><span class="kw">WHERE</span> c.lifeexpectancy <span class="op">&lt;</span><span class="dv">50</span> </span>
+<span id="cb11-4"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;"><strong>Continent</strong></th>
 <th style="text-align: left;"><strong>Region</strong></th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Africa</td>
@@ -698,126 +655,106 @@
 <td style="text-align: left;">Caribbean</td>
 </tr>
 </tbody>
-</table>
-</section>
-<section class="slide level2 center">
-
-<p>Mais si on veut lister les régions où tous les pays ont une espèrance de vie supérieure à 50 ?</p>
+</table></section><section class="slide level2 center"><p>Mais si on veut lister les régions où tous les pays ont une espèrance de vie supérieure à 50 ?</p>
 <div class="fragment">
 <p>Pourquoi pas ?</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> continent, region</span>
-<span id="cb13-2"><a></a><span class="kw">FROM</span> country c </span>
-<span id="cb13-3"><a></a><span class="kw">WHERE</span> (</span>
-<span id="cb13-4"><a></a>  <span class="kw">SELECT</span> <span class="fu">MIN</span>(d.lifeexpectancy)     </span>
-<span id="cb13-5"><a></a>  <span class="kw">FROM</span> country d    </span>
-<span id="cb13-6"><a></a>  <span class="kw">WHERE</span> c.region<span class="op">=</span>d.region</span>
-<span id="cb13-7"><a></a>  ) <span class="op">&gt;</span> <span class="dv">50</span>    </span>
-<span id="cb13-8"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> continent, region</span>
+<span id="cb12-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb12-3"><a></a><span class="kw">WHERE</span> (</span>
+<span id="cb12-4"><a></a>  <span class="kw">SELECT</span> <span class="fu">MIN</span>(d.lifeexpectancy)     </span>
+<span id="cb12-5"><a></a>  <span class="kw">FROM</span> country d    </span>
+<span id="cb12-6"><a></a>  <span class="kw">WHERE</span> c.region<span class="op">=</span>d.region</span>
+<span id="cb12-7"><a></a>  ) <span class="op">&gt;</span> <span class="dv">50</span>    </span>
+<span id="cb12-8"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
 <aside><div>
 <p>Combien de fois calculez vous l’espérance de minimale pour chaque région ?</p>
-</div></aside></section>
-<section id="fonctions-de-calcul-exemples-1" class="slide level2 center">
-<h2>Fonctions de calcul : exemples</h2>
+</div></aside></section><section id="fonctions-de-calcul-exemples-1" class="slide level2 center"><h2>Fonctions de calcul : exemples</h2>
 <p>Utilisation d’opérateurs arithmétique entre les différents attributs d’un même tuple…</p>
 <!-- Prix de revient des commandes livrées par le fournisseur `FD` -->
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">SELECT</span> </span>
-<span id="cb14-2"><a></a>  <span class="fu">AVG</span>(<span class="fl">1e6</span><span class="op">*</span>gnp<span class="op">/</span>population_country):<span class="ch">:decimal</span>(<span class="dv">8</span>,<span class="dv">0</span>) </span>
-<span id="cb14-3"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb14-4"><a></a><span class="kw">WHERE</span> </span>
-<span id="cb14-5"><a></a>  continent <span class="kw">LIKE</span> <span class="st">'South Am%'</span> <span class="kw">AND</span></span>
-<span id="cb14-6"><a></a>  population_country <span class="op">&gt;</span> <span class="dv">0</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="partitions-group-by" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Partitions, <code>GROUP BY</code></h1>
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">SELECT</span> </span>
+<span id="cb13-2"><a></a>  <span class="fu">AVG</span>(<span class="fl">1e6</span><span class="op">*</span>gnp<span class="op">/</span>population_country):<span class="ch">:decimal</span>(<span class="dv">8</span>,<span class="dv">0</span>) </span>
+<span id="cb13-3"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb13-4"><a></a><span class="kw">WHERE</span> </span>
+<span id="cb13-5"><a></a>  continent <span class="kw">LIKE</span> <span class="st">'South Am%'</span> <span class="kw">AND</span></span>
+<span id="cb13-6"><a></a>  population_country <span class="op">&gt;</span> <span class="dv">0</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section><section><section id="partitions-group-by" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Partitions, <code>GROUP BY</code>
+</h1>
 
-</section>
-<section id="partition-de-résultats-de-requêtes" class="slide level2 center">
-<h2>Partition de résultats de requêtes</h2>
-<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>nomattribut1<span class="op">&gt;</span>, <span class="op">..</span>., <span class="op">&lt;</span>nomattributn<span class="op">&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="partition-de-résultats-de-requêtes" class="slide level2 center"><h2>Partition de résultats de requêtes</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>nomattribut1<span class="op">&gt;</span>, <span class="op">..</span>., <span class="op">&lt;</span>nomattributn<span class="op">&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
 <li><p><code>GROUP BY</code> permet de regrouper selon la valeur de certains attributs l’ensemble des résults d’une requête</p></li>
 <li><p>Forme des sous-relations auxquelles on peut appliquer des opérateurs (<code>SUM</code>, <code>MAX</code>, …) renvoyant un résultat par sous-relation</p></li>
 </ul>
 <p>Exemple d’utilisation : regrouper les livraisons par numéro de fournisseur et prendre la quantité maximum livrée par fournisseur.</p>
-</section>
-<section id="partition-de-résultats-de-requêtes-1" class="slide level2 smaller center">
-<h2>Partition de résultats de requêtes</h2>
+</section><section id="partition-de-résultats-de-requêtes-1" class="slide level2 smaller center"><h2>Partition de résultats de requêtes</h2>
 <p>Schéma général</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">SELECT</span> <span class="op">..</span>. </span>
-<span id="cb16-2"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb16-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent    </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="section-3" class="slide level2 smaller center">
-<h2></h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="op">+</span><span class="co">-------------+---------------------+---------------+</span></span>
-<span id="cb17-2"><a></a>| countrycode | name_country        | continent     |</span>
-<span id="cb17-3"><a></a>|<span class="co">-------------+---------------------+---------------|</span></span>
-<span id="cb17-4"><a></a>| DZA         | Algeria             | Africa        |</span>
-<span id="cb17-5"><a></a>| AGO         | Angola              | Africa        |</span>
-<span id="cb17-6"><a></a>| <span class="op">..</span>.         |                     |               |</span>
-<span id="cb17-7"><a></a>| ATA         | Antarctica          | Antarctica    |</span>
-<span id="cb17-8"><a></a>| BVT         | Bouvet Island       | Antarctica    |</span>
-<span id="cb17-9"><a></a>| <span class="op">..</span>.         |                     |               |</span>
-<span id="cb17-10"><a></a>| AFG         | Afghanistan         | Asia          |</span>
-<span id="cb17-11"><a></a>| ARM         | Armenia             | Asia          |</span>
-<span id="cb17-12"><a></a>| <span class="op">..</span>.         |                     |               |</span>
-<span id="cb17-13"><a></a>| ALB         | Albania             | Europe        |</span>
-<span id="cb17-14"><a></a>| <span class="kw">AND</span>         | Andorra             | Europe        |</span>
-<span id="cb17-15"><a></a>| <span class="op">..</span>.         |                     |               |</span>
-<span id="cb17-16"><a></a>| AIA         | Anguilla            | North America |</span>
-<span id="cb17-17"><a></a>| ATG         | Antigua <span class="kw">and</span> Barbuda | North America |</span>
-<span id="cb17-18"><a></a>| <span class="op">..</span>.         |                     |               |</span>
-<span id="cb17-19"><a></a>| ASM         | American Samoa      | Oceania       |</span>
-<span id="cb17-20"><a></a>| AUS         | Australia           | Oceania       |</span>
-<span id="cb17-21"><a></a>| <span class="op">..</span>.         |                     |               |</span>
-<span id="cb17-22"><a></a>| ARG         | Argentina           | South America |</span>
-<span id="cb17-23"><a></a>| BOL         | Bolivia             | South America |</span>
-<span id="cb17-24"><a></a><span class="op">+</span><span class="co">-------------+---------------------+---------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="partition-de-résultats-de-requêtes-2" class="slide level2 center">
-<h2>Partition de résultats de requêtes</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">SELECT</span> <span class="op">..</span>. </span>
+<span id="cb15-2"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb15-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent    </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="section-3" class="slide level2 smaller center"><h2></h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="op">+</span><span class="co">-------------+---------------------+---------------+</span></span>
+<span id="cb16-2"><a></a>| countrycode | name_country        | continent     |</span>
+<span id="cb16-3"><a></a>|<span class="co">-------------+---------------------+---------------|</span></span>
+<span id="cb16-4"><a></a>| DZA         | Algeria             | Africa        |</span>
+<span id="cb16-5"><a></a>| AGO         | Angola              | Africa        |</span>
+<span id="cb16-6"><a></a>| <span class="op">..</span>.         |                     |               |</span>
+<span id="cb16-7"><a></a>| ATA         | Antarctica          | Antarctica    |</span>
+<span id="cb16-8"><a></a>| BVT         | Bouvet Island       | Antarctica    |</span>
+<span id="cb16-9"><a></a>| <span class="op">..</span>.         |                     |               |</span>
+<span id="cb16-10"><a></a>| AFG         | Afghanistan         | Asia          |</span>
+<span id="cb16-11"><a></a>| ARM         | Armenia             | Asia          |</span>
+<span id="cb16-12"><a></a>| <span class="op">..</span>.         |                     |               |</span>
+<span id="cb16-13"><a></a>| ALB         | Albania             | Europe        |</span>
+<span id="cb16-14"><a></a>| <span class="kw">AND</span>         | Andorra             | Europe        |</span>
+<span id="cb16-15"><a></a>| <span class="op">..</span>.         |                     |               |</span>
+<span id="cb16-16"><a></a>| AIA         | Anguilla            | North America |</span>
+<span id="cb16-17"><a></a>| ATG         | Antigua <span class="kw">and</span> Barbuda | North America |</span>
+<span id="cb16-18"><a></a>| <span class="op">..</span>.         |                     |               |</span>
+<span id="cb16-19"><a></a>| ASM         | American Samoa      | Oceania       |</span>
+<span id="cb16-20"><a></a>| AUS         | Australia           | Oceania       |</span>
+<span id="cb16-21"><a></a>| <span class="op">..</span>.         |                     |               |</span>
+<span id="cb16-22"><a></a>| ARG         | Argentina           | South America |</span>
+<span id="cb16-23"><a></a>| BOL         | Bolivia             | South America |</span>
+<span id="cb16-24"><a></a><span class="op">+</span><span class="co">-------------+---------------------+---------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="partition-de-résultats-de-requêtes-2" class="slide level2 center"><h2>Partition de résultats de requêtes</h2>
 <p>Population maximale par continent</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="kw">SELECT</span> continent, <span class="fu">max</span>(population_country) </span>
-<span id="cb18-2"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb18-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent ; </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="op">+</span><span class="co">---------------+------------+</span></span>
-<span id="cb19-2"><a></a>| continent     | <span class="fu">max</span>        |</span>
-<span id="cb19-3"><a></a>|<span class="co">---------------+------------|</span></span>
-<span id="cb19-4"><a></a>| Asia          | <span class="dv">1277558000</span> |</span>
-<span id="cb19-5"><a></a>| South America | <span class="dv">170115000</span>  |</span>
-<span id="cb19-6"><a></a>| North America | <span class="dv">278357000</span>  |</span>
-<span id="cb19-7"><a></a>| Oceania       | <span class="dv">18886000</span>   |</span>
-<span id="cb19-8"><a></a>| Antarctica    | <span class="dv">0</span>          |</span>
-<span id="cb19-9"><a></a>| Africa        | <span class="dv">111506000</span>  |</span>
-<span id="cb19-10"><a></a>| Europe        | <span class="dv">146934000</span>  |</span>
-<span id="cb19-11"><a></a><span class="op">+</span><span class="co">---------------+------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">SELECT</span> continent, <span class="fu">max</span>(population_country) </span>
+<span id="cb17-2"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb17-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent ; </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb18-1"><a></a><span class="op">+</span><span class="co">---------------+------------+</span></span>
+<span id="cb18-2"><a></a>| continent     | <span class="fu">max</span>        |</span>
+<span id="cb18-3"><a></a>|<span class="co">---------------+------------|</span></span>
+<span id="cb18-4"><a></a>| Asia          | <span class="dv">1277558000</span> |</span>
+<span id="cb18-5"><a></a>| South America | <span class="dv">170115000</span>  |</span>
+<span id="cb18-6"><a></a>| North America | <span class="dv">278357000</span>  |</span>
+<span id="cb18-7"><a></a>| Oceania       | <span class="dv">18886000</span>   |</span>
+<span id="cb18-8"><a></a>| Antarctica    | <span class="dv">0</span>          |</span>
+<span id="cb18-9"><a></a>| Africa        | <span class="dv">111506000</span>  |</span>
+<span id="cb18-10"><a></a>| Europe        | <span class="dv">146934000</span>  |</span>
+<span id="cb18-11"><a></a><span class="op">+</span><span class="co">---------------+------------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Les opérateurs (<code>MAX</code>, <code>SUM</code>, etc) s’appliquent à chaque groupe de relations.</p>
-</section>
-<section id="exemple" class="slide level2 smaller center">
-<h2>Exemple</h2>
+</section><section id="exemple" class="slide level2 smaller center"><h2>Exemple</h2>
 <p>Dans le schéma <code>world</code>, quel est le <code>gnp</code> moyen par <code>region</code> sur le continent <code>Europe</code> ?</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">SELECT</span> region, </span>
-<span id="cb20-2"><a></a>       <span class="fu">ROUND</span>(<span class="dv">1000</span> <span class="op">*</span> <span class="fu">SUM</span>(gnp)<span class="op">/</span><span class="fu">SUM</span>(population_country),<span class="dv">2</span>) <span class="kw">AS</span> avg_gnp,  </span>
-<span id="cb20-3"><a></a>       <span class="fu">ROUND</span>(<span class="fu">MAX</span>(<span class="dv">1000</span><span class="op">*</span> gnp<span class="op">/</span>population_country),<span class="dv">2</span>) <span class="kw">AS</span> max_gnp, </span>
-<span id="cb20-4"><a></a>       <span class="fu">ROUND</span>(<span class="fu">MIN</span>(<span class="dv">1000</span><span class="op">*</span> gnp<span class="op">/</span>population_country),<span class="dv">2</span>) <span class="kw">AS</span> min_gnp,</span>
-<span id="cb20-5"><a></a>       <span class="fu">MIN</span>(lifeexpectancy) <span class="kw">AS</span> min_life_exp</span>
-<span id="cb20-6"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb20-7"><a></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
-<span id="cb20-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> region </span>
-<span id="cb20-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> avg_gnp <span class="kw">DESC</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">SELECT</span> region, </span>
+<span id="cb19-2"><a></a>       <span class="fu">ROUND</span>(<span class="dv">1000</span> <span class="op">*</span> <span class="fu">SUM</span>(gnp)<span class="op">/</span><span class="fu">SUM</span>(population_country),<span class="dv">2</span>) <span class="kw">AS</span> avg_gnp,  </span>
+<span id="cb19-3"><a></a>       <span class="fu">ROUND</span>(<span class="fu">MAX</span>(<span class="dv">1000</span><span class="op">*</span> gnp<span class="op">/</span>population_country),<span class="dv">2</span>) <span class="kw">AS</span> max_gnp, </span>
+<span id="cb19-4"><a></a>       <span class="fu">ROUND</span>(<span class="fu">MIN</span>(<span class="dv">1000</span><span class="op">*</span> gnp<span class="op">/</span>population_country),<span class="dv">2</span>) <span class="kw">AS</span> min_gnp,</span>
+<span id="cb19-5"><a></a>       <span class="fu">MIN</span>(lifeexpectancy) <span class="kw">AS</span> min_life_exp</span>
+<span id="cb19-6"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb19-7"><a></a><span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
+<span id="cb19-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> region </span>
+<span id="cb19-9"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> avg_gnp <span class="kw">DESC</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;"><strong>region</strong></th>
 <th style="text-align: right;"><strong>avg_gnp</strong></th>
 <th style="text-align: right;"><strong>max_gnp</strong></th>
 <th style="text-align: right;"><strong>min_gnp</strong></th>
 <th style="text-align: right;"><strong>min_life_exp</strong></th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Nordic Countries</td>
@@ -862,24 +799,19 @@
 <td style="text-align: right;">64.5</td>
 </tr>
 </tbody>
-</table>
-</section>
-<section id="partition-de-résultats-de-requêtes-3" class="slide level2 center">
-<h2>Partition de résultats de requêtes</h2>
+</table></section><section id="partition-de-résultats-de-requêtes-3" class="slide level2 center"><h2>Partition de résultats de requêtes</h2>
 <p>Quel est le sens de cette requête ?</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">SELECT</span> </span>
-<span id="cb21-2"><a></a>  continent, </span>
-<span id="cb21-3"><a></a>  <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">as</span> nombre_pays, </span>
-<span id="cb21-4"><a></a>  <span class="fu">SUM</span>(population_country) <span class="kw">as</span> population_totale</span>
-<span id="cb21-5"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb21-6"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="section-4" class="slide level2 center">
-<h2></h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">SELECT</span> </span>
+<span id="cb20-2"><a></a>  continent, </span>
+<span id="cb20-3"><a></a>  <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="kw">as</span> nombre_pays, </span>
+<span id="cb20-4"><a></a>  <span class="fu">SUM</span>(population_country) <span class="kw">as</span> population_totale</span>
+<span id="cb20-5"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb20-6"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="section-4" class="slide level2 center"><h2></h2>
 <p>La requête suivante requête n’est pas correcte</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">MAX</span>(population_country) </span>
-<span id="cb22-2"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb22-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">MAX</span>(population_country) </span>
+<span id="cb21-2"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb21-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -895,65 +827,52 @@
 </div>
 </div>
 </div>
-</section>
-<section id="partition-de-résultats-de-requêtes-4" class="slide level2 center">
-<h2>Partition de résultats de requêtes</h2>
+</section><section id="partition-de-résultats-de-requêtes-4" class="slide level2 center"><h2>Partition de résultats de requêtes</h2>
 <ul>
 <li><p>La clause <code>HAVING</code> permet de poser une condition portant sur chacune des sous-relations générées par le <code>GROUP BY</code></p></li>
 <li><p>Les sous-relations ne vérifiant pas la condition sont écartées du résultat.</p></li>
 </ul>
 <p>Liste des continents comportent au moins cinq régions.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a><span class="kw">SELECT</span> continent </span>
-<span id="cb23-2"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb23-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent    </span>
-<span id="cb23-4"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> region) <span class="op">&gt;=</span> <span class="dv">5</span>;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="tri-des-résultats" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Tri des résultats</h1>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">SELECT</span> continent </span>
+<span id="cb22-2"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb22-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent    </span>
+<span id="cb22-4"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="kw">DISTINCT</span> region) <span class="op">&gt;=</span> <span class="dv">5</span>;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section><section><section id="tri-des-résultats" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Tri des résultats</h1>
 
-</section>
-<section id="présentationtri-de-résultats" class="slide level2 center">
-<h2>Présentation/tri de résultats</h2>
+</section><section id="présentationtri-de-résultats" class="slide level2 center"><h2>Présentation/tri de résultats</h2>
 <ul>
 <li>La clause <code>ORDER BY</code> permet de trier le résultat de la requête, en fournissant la liste des attributs sur lesquels effectuer le tri et en spécifiant le sens du tri (ascendan ou descendant)</li>
 </ul>
 <p>Liste des pays triée par ordre décroissant de population</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb24-2"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb24-3"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> population_country <span class="kw">DESC</span>;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="regroupement-tri-etc-exemple" class="slide level2 center">
-<h2>Regroupement, tri, etc : exemple</h2>
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb23-2"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb23-3"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> population_country <span class="kw">DESC</span>;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="regroupement-tri-etc-exemple" class="slide level2 center"><h2>Regroupement, tri, etc : exemple</h2>
 <p>Que fait cette requête ?</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">SELECT</span> continent, <span class="fu">COUNT</span>(<span class="op">*</span>) </span>
-<span id="cb25-2"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb25-3"><a></a><span class="kw">WHERE</span> countrycode <span class="kw">IN</span> (</span>
-<span id="cb25-4"><a></a>  <span class="kw">SELECT</span> countrycode </span>
-<span id="cb25-5"><a></a>  <span class="kw">FROM</span> countrylanguage </span>
-<span id="cb25-6"><a></a>  <span class="kw">WHERE</span> language<span class="op">=</span><span class="st">'English'</span> <span class="kw">AND</span> percentage <span class="op">&gt;</span> <span class="dv">10</span> </span>
-<span id="cb25-7"><a></a>) </span>
-<span id="cb25-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent </span>
-<span id="cb25-9"><a></a><span class="kw">HAVING</span> <span class="fu">AVG</span>(<span class="fl">1e6</span><span class="op">*</span>gnpold<span class="op">/</span>population_country) <span class="op">&gt;=</span> <span class="dv">1000</span> </span>
-<span id="cb25-10"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">SELECT</span> continent, <span class="fu">COUNT</span>(<span class="op">*</span>) </span>
+<span id="cb24-2"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb24-3"><a></a><span class="kw">WHERE</span> countrycode <span class="kw">IN</span> (</span>
+<span id="cb24-4"><a></a>  <span class="kw">SELECT</span> countrycode </span>
+<span id="cb24-5"><a></a>  <span class="kw">FROM</span> countrylanguage </span>
+<span id="cb24-6"><a></a>  <span class="kw">WHERE</span> language<span class="op">=</span><span class="st">'English'</span> <span class="kw">AND</span> percentage <span class="op">&gt;</span> <span class="dv">10</span> </span>
+<span id="cb24-7"><a></a>) </span>
+<span id="cb24-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent </span>
+<span id="cb24-9"><a></a><span class="kw">HAVING</span> <span class="fu">AVG</span>(<span class="fl">1e6</span><span class="op">*</span>gnpold<span class="op">/</span>population_country) <span class="op">&gt;=</span> <span class="dv">1000</span> </span>
+<span id="cb24-10"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <!-- Sur les relations d'une base `employé` (tables `Departement`,`Employe`, ...) -->
-</section>
-<section id="retour-au-musée-des-horreurs" class="slide level2 smaller center">
-<h2>Retour au musée des horreurs</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">MIN</span>(c.lifeexpectancy)</span>
-<span id="cb26-2"><a></a><span class="kw">FROM</span> country c </span>
-<span id="cb26-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent, region</span>
-<span id="cb26-4"><a></a><span class="kw">HAVING</span> <span class="fu">MIN</span>(c.lifeexpectancy) <span class="op">&lt;</span> <span class="dv">50</span>  </span>
-<span id="cb26-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="retour-au-musée-des-horreurs" class="slide level2 smaller center"><h2>Retour au musée des horreurs</h2>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">MIN</span>(c.lifeexpectancy)</span>
+<span id="cb25-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb25-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> continent, region</span>
+<span id="cb25-4"><a></a><span class="kw">HAVING</span> <span class="fu">MIN</span>(c.lifeexpectancy) <span class="op">&lt;</span> <span class="dv">50</span>  </span>
+<span id="cb25-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;"><strong>Continent</strong></th>
 <th style="text-align: left;"><strong>Region</strong></th>
 <th>max</th>
 <th>min</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Africa</td>
@@ -1004,12 +923,7 @@
 <td>49.2</td>
 </tr>
 </tbody>
-</table>
-</section>
-</section>
-<section>
-<section id="fonctions-fenêtres-window-functions" class="title-slide slide level1 center">
-<h1>Fonctions fenêtres (Window functions)</h1>
+</table></section></section><section><section id="fonctions-fenêtres-window-functions" class="title-slide slide level1 center"><h1>Fonctions fenêtres (Window functions)</h1>
 <p>Une <strong>fonction fenêtre</strong> effectue un calcul sur un (sous)-ensemble de lignes de la table qui sont liées à la ligne courante.</p>
 <div class="fragment">
 <div class="callout callout-note callout-titled callout-style-default">
@@ -1031,30 +945,25 @@
 <p>Au contraire, les lignes conservent leurs identités distinctes.</p>
 <p>En coulisses, la fonction de fenêtre est capable d’accéder à plus que la ligne actuelle du résultat de la requête.</p>
 </div>
-</section>
-<section id="exemple-1" class="slide level2 smaller center">
-<h2>Exemple</h2>
+</section><section id="exemple-1" class="slide level2 smaller center"><h2>Exemple</h2>
 <p>Dans le schéma <code>world</code>, présenter pour chaque pays dont la région comprend le motif <code>Countries</code>, l’espérance de vie, l’espérance de vie maximale et minimale dans la région.</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource {sql} number-lines code-with-copy"><code class="sourceCode"><span id="cb27-1"><a></a>--| eval: false</span>
-<span id="cb27-2"><a></a>--| echo: true</span>
-<span id="cb27-3"><a></a>--| code-line-numbers: "2-3|1-4|"</span>
-<span id="cb27-4"><a></a>SELECT region, name_country, lifeexpectancy, </span>
-<span id="cb27-5"><a></a>       min(lifeexpectancy) OVER (PARTITION BY region),  </span>
-<span id="cb27-6"><a></a>       max(lifeexpectancy) OVER (PARTITION BY region)   </span>
-<span id="cb27-7"><a></a>FROM country </span>
-<span id="cb27-8"><a></a>WHERE region LIKE '%Countries'</span>
-<span id="cb27-9"><a></a>ORDER BY region, lifeexpectancy  </span>
-<span id="cb27-10"><a></a>LIMIT 6 ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26" data-code-line-numbers="2-3|1-4|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">SELECT</span> region, name_country, lifeexpectancy, </span>
+<span id="cb26-2"><a></a>       <span class="fu">min</span>(lifeexpectancy) <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region),  </span>
+<span id="cb26-3"><a></a>       <span class="fu">max</span>(lifeexpectancy) <span class="kw">OVER</span> (<span class="kw">PARTITION</span> <span class="kw">BY</span> region)   </span>
+<span id="cb26-4"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb26-5"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span></span>
+<span id="cb26-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, lifeexpectancy  </span>
+<span id="cb26-7"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <table class="caption-top">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th>Region</th>
 <th>Name of country</th>
 <th>Life expectancy</th>
 <th>min</th>
 <th>max</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td>Baltic Countries</td>
@@ -1099,10 +1008,8 @@
 <td>79.6</td>
 </tr>
 </tbody>
-</table>
-</section>
-<section id="calculer-une-fonction-fenêtre-sans-invoquer-over-..." class="slide level2 smaller center scrollable">
-<h2>Calculer une fonction fenêtre sans invoquer <code>OVER (...)</code></h2>
+</table></section><section id="calculer-une-fonction-fenêtre-sans-invoquer-over-..." class="slide level2 smaller center scrollable"><h2>Calculer une fonction fenêtre sans invoquer <code>OVER (...)</code>
+</h2>
 <p>Pour calculer ce résultat sans fonctions fenêtres,</p>
 <ol type="1">
 <li><p>on effectue une partition selon la <code>region</code>, une aggrégation par groupe pour calculer <code>min(lifeexpectancy)</code> et <code>max(lifeexpectancy)</code>. On obtient une table à trois colonnes.</p></li>
@@ -1110,40 +1017,35 @@
 <li><p>on projette le résultat sur les cinq colonnes pertinentes.</p></li>
 </ol>
 <div class="fragment">
-<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource {sql} number-lines code-with-copy"><code class="sourceCode"><span id="cb28-1"><a></a>--| eval: false</span>
-<span id="cb28-2"><a></a>--| echo: true</span>
-<span id="cb28-3"><a></a></span>
-<span id="cb28-4"><a></a>WITH R AS (</span>
-<span id="cb28-5"><a></a>  SELECT region, min(lifeexpectancy) AS minlex, max(lifeexpectancy) AS maxlex</span>
-<span id="cb28-6"><a></a>  FROM country</span>
-<span id="cb28-7"><a></a>  WHERE region LIKE '%Countries' AND lifeexpectancy IS NOT NULL </span>
-<span id="cb28-8"><a></a>  GROUP BY region</span>
-<span id="cb28-9"><a></a>)</span>
-<span id="cb28-10"><a></a></span>
-<span id="cb28-11"><a></a>SELECT region, name_country, lifeexpectancy, minlex, maxlex</span>
-<span id="cb28-12"><a></a>FROM country co NATURAL JOIN R</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a><span class="kw">WITH</span> R <span class="kw">AS</span> (</span>
+<span id="cb27-2"><a></a>  <span class="kw">SELECT</span> region, <span class="fu">min</span>(lifeexpectancy) <span class="kw">AS</span> minlex, <span class="fu">max</span>(lifeexpectancy) <span class="kw">AS</span> maxlex</span>
+<span id="cb27-3"><a></a>  <span class="kw">FROM</span> country</span>
+<span id="cb27-4"><a></a>  <span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span> <span class="kw">AND</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span> </span>
+<span id="cb27-5"><a></a>  <span class="kw">GROUP</span> <span class="kw">BY</span> region</span>
+<span id="cb27-6"><a></a>)</span>
+<span id="cb27-7"><a></a></span>
+<span id="cb27-8"><a></a><span class="kw">SELECT</span> region, name_country, lifeexpectancy, minlex, maxlex</span>
+<span id="cb27-9"><a></a><span class="kw">FROM</span> country co <span class="kw">NATURAL</span> <span class="kw">JOIN</span> R</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="variations" class="slide level2 smaller center">
-<h2>Variations</h2>
-<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a><span class="kw">SELECT</span> region, name_country, lifeexpectancy, </span>
-<span id="cb29-2"><a></a>    <span class="fu">rank</span>() <span class="kw">OVER</span> (</span>
-<span id="cb29-3"><a></a>    <span class="kw">PARTITION</span> <span class="kw">BY</span> region   </span>
-<span id="cb29-4"><a></a>      <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span></span>
-<span id="cb29-5"><a></a>  )  </span>
-<span id="cb29-6"><a></a><span class="kw">FROM</span> country </span>
-<span id="cb29-7"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span></span>
-<span id="cb29-8"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, lifeexpectancy <span class="kw">DESC</span> </span>
-<span id="cb29-9"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="variations" class="slide level2 smaller center"><h2>Variations</h2>
+<div class="sourceCode" id="cb28"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a><span class="kw">SELECT</span> region, name_country, lifeexpectancy, </span>
+<span id="cb28-2"><a></a>    <span class="fu">rank</span>() <span class="kw">OVER</span> (</span>
+<span id="cb28-3"><a></a>    <span class="kw">PARTITION</span> <span class="kw">BY</span> region   </span>
+<span id="cb28-4"><a></a>      <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span></span>
+<span id="cb28-5"><a></a>  )  </span>
+<span id="cb28-6"><a></a><span class="kw">FROM</span> country </span>
+<span id="cb28-7"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Countries'</span></span>
+<span id="cb28-8"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, lifeexpectancy <span class="kw">DESC</span> </span>
+<span id="cb28-9"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Region</th>
 <th style="text-align: left;">Name of country</th>
 <th style="text-align: right;">life expectancy</th>
 <th style="text-align: center;">rank</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Baltic Countries</td>
@@ -1186,26 +1088,22 @@
 
 <aside><div>
 <p>Que se passe-t-il avec les valeurs nulles ?</p>
-</div></aside></section>
-<section id="sommes-cumulées-par-groupes-selon-un-ordre" class="slide level2 smaller center">
-<h2>Sommes cumulées par groupes selon un ordre</h2>
-<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a></a><span class="kw">SELECT</span> </span>
-<span id="cb30-2"><a></a>    region, name_country, </span>
-<span id="cb30-3"><a></a>    <span class="fu">sum</span>(gnp) <span class="kw">OVER</span> (</span>
-<span id="cb30-4"><a></a>    <span class="kw">PARTITION</span> <span class="kw">BY</span> region  </span>
-<span id="cb30-5"><a></a>        <span class="kw">ORDER</span> <span class="kw">BY</span> gnp</span>
-<span id="cb30-6"><a></a>)     </span>
-<span id="cb30-7"><a></a><span class="kw">FROM</span> country c </span>
-<span id="cb30-8"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Europe'</span> </span>
-<span id="cb30-9"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></aside></section><section id="sommes-cumulées-par-groupes-selon-un-ordre" class="slide level2 smaller center"><h2>Sommes cumulées par groupes selon un ordre</h2>
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb29-1"><a></a><span class="kw">SELECT</span> </span>
+<span id="cb29-2"><a></a>    region, name_country, </span>
+<span id="cb29-3"><a></a>    <span class="fu">sum</span>(gnp) <span class="kw">OVER</span> (</span>
+<span id="cb29-4"><a></a>    <span class="kw">PARTITION</span> <span class="kw">BY</span> region  </span>
+<span id="cb29-5"><a></a>        <span class="kw">ORDER</span> <span class="kw">BY</span> gnp</span>
+<span id="cb29-6"><a></a>)     </span>
+<span id="cb29-7"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb29-8"><a></a><span class="kw">WHERE</span> region <span class="kw">LIKE</span> <span class="st">'%Europe'</span> </span>
+<span id="cb29-9"><a></a><span class="kw">LIMIT</span> <span class="dv">6</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <table class="caption-top">
-<thead>
-<tr class="header">
+<thead><tr class="header">
 <th style="text-align: left;">Region</th>
 <th style="text-align: left;">Name Country</th>
 <th style="text-align: right;">Sum</th>
-</tr>
-</thead>
+</tr></thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Eastern Europe</td>
@@ -1238,11 +1136,7 @@
 <td style="text-align: right;">128391.00</td>
 </tr>
 </tbody>
-</table>
-</section>
-<section class="slide level2 center">
-
-<div class="callout callout-caution callout-titled callout-style-default">
+</table></section><section class="slide level2 center"><div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -1273,306 +1167,264 @@
 </div>
 </div>
 </div>
-</section>
-<section id="exemple-2" class="slide level2 smaller center">
-<h2>Exemple</h2>
+</section><section id="exemple-2" class="slide level2 smaller center"><h2>Exemple</h2>
 <p>Pour chaque continent, afficher les trois pays ayant l’espérance de vie à la naissance la plus élevée</p>
 <div class="fragment">
-<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a></a><span class="kw">SELECT</span> continent, </span>
-<span id="cb31-2"><a></a>  name_country, </span>
-<span id="cb31-3"><a></a>  lifeexpectancy, </span>
-<span id="cb31-4"><a></a>  pos</span>
-<span id="cb31-5"><a></a><span class="kw">FROM</span></span>
-<span id="cb31-6"><a></a>  (<span class="kw">SELECT</span> continent, </span>
-<span id="cb31-7"><a></a>    name_country, </span>
-<span id="cb31-8"><a></a>    lifeexpectancy,</span>
-<span id="cb31-9"><a></a>    <span class="fu">rank</span>() <span class="kw">OVER</span> (</span>
-<span id="cb31-10"><a></a>      <span class="kw">PARTITION</span> <span class="kw">BY</span> continent </span>
-<span id="cb31-11"><a></a>      <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>) <span class="kw">AS</span> pos</span>
-<span id="cb31-12"><a></a>  <span class="kw">FROM</span> country</span>
-<span id="cb31-13"><a></a>  <span class="kw">WHERE</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb31-14"><a></a>  ) <span class="kw">AS</span> ws</span>
-<span id="cb31-15"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb30-1"><a></a><span class="kw">SELECT</span> continent, </span>
+<span id="cb30-2"><a></a>  name_country, </span>
+<span id="cb30-3"><a></a>  lifeexpectancy, </span>
+<span id="cb30-4"><a></a>  pos</span>
+<span id="cb30-5"><a></a><span class="kw">FROM</span></span>
+<span id="cb30-6"><a></a>  (<span class="kw">SELECT</span> continent, </span>
+<span id="cb30-7"><a></a>    name_country, </span>
+<span id="cb30-8"><a></a>    lifeexpectancy,</span>
+<span id="cb30-9"><a></a>    <span class="fu">rank</span>() <span class="kw">OVER</span> (</span>
+<span id="cb30-10"><a></a>      <span class="kw">PARTITION</span> <span class="kw">BY</span> continent </span>
+<span id="cb30-11"><a></a>      <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>) <span class="kw">AS</span> pos</span>
+<span id="cb30-12"><a></a>  <span class="kw">FROM</span> country</span>
+<span id="cb30-13"><a></a>  <span class="kw">WHERE</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb30-14"><a></a>  ) <span class="kw">AS</span> ws</span>
+<span id="cb30-15"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="avec-with-...-et-les-ctes" class="slide level2 smaller center">
-<h2>Avec <code>WITH ...</code> et les CTEs</h2>
-<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a></a><span class="kw">WITH</span> ws <span class="kw">AS</span> (</span>
-<span id="cb32-2"><a></a>  <span class="kw">SELECT</span> continent, </span>
-<span id="cb32-3"><a></a>    name_country, </span>
-<span id="cb32-4"><a></a>    lifeexpectancy,</span>
-<span id="cb32-5"><a></a>    <span class="fu">rank</span>() <span class="kw">OVER</span> (</span>
-<span id="cb32-6"><a></a>      <span class="kw">PARTITION</span> <span class="kw">BY</span> continent </span>
-<span id="cb32-7"><a></a>      <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>) <span class="kw">AS</span> pos</span>
-<span id="cb32-8"><a></a>  <span class="kw">FROM</span> country</span>
-<span id="cb32-9"><a></a>  <span class="kw">WHERE</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
-<span id="cb32-10"><a></a>) </span>
-<span id="cb32-11"><a></a><span class="kw">SELECT</span> continent, </span>
-<span id="cb32-12"><a></a>  name_country, </span>
-<span id="cb32-13"><a></a>  lifeexpectancy, </span>
-<span id="cb32-14"><a></a>  pos</span>
-<span id="cb32-15"><a></a><span class="kw">FROM</span> ws   </span>
-<span id="cb32-16"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="exemple-3" class="slide level2 smaller center">
-<h2>Exemple</h2>
+</section><section id="avec-with-...-et-les-ctes" class="slide level2 smaller center"><h2>Avec <code>WITH ...</code> et les CTEs</h2>
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb31-1"><a></a><span class="kw">WITH</span> ws <span class="kw">AS</span> (</span>
+<span id="cb31-2"><a></a>  <span class="kw">SELECT</span> continent, </span>
+<span id="cb31-3"><a></a>    name_country, </span>
+<span id="cb31-4"><a></a>    lifeexpectancy,</span>
+<span id="cb31-5"><a></a>    <span class="fu">rank</span>() <span class="kw">OVER</span> (</span>
+<span id="cb31-6"><a></a>      <span class="kw">PARTITION</span> <span class="kw">BY</span> continent </span>
+<span id="cb31-7"><a></a>      <span class="kw">ORDER</span> <span class="kw">BY</span> lifeexpectancy <span class="kw">DESC</span>) <span class="kw">AS</span> pos</span>
+<span id="cb31-8"><a></a>  <span class="kw">FROM</span> country</span>
+<span id="cb31-9"><a></a>  <span class="kw">WHERE</span> lifeexpectancy <span class="kw">IS</span> <span class="kw">NOT</span> <span class="kw">NULL</span></span>
+<span id="cb31-10"><a></a>) </span>
+<span id="cb31-11"><a></a><span class="kw">SELECT</span> continent, </span>
+<span id="cb31-12"><a></a>  name_country, </span>
+<span id="cb31-13"><a></a>  lifeexpectancy, </span>
+<span id="cb31-14"><a></a>  pos</span>
+<span id="cb31-15"><a></a><span class="kw">FROM</span> ws   </span>
+<span id="cb31-16"><a></a><span class="kw">WHERE</span> pos <span class="op">&lt;=</span> <span class="dv">3</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="exemple-3" class="slide level2 smaller center"><h2>Exemple</h2>
 <p>Afficher le pays le plus peuplé</p>
 <div class="fragment">
 <div class="columns">
 <div class="column">
-<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a></a><span class="kw">SELECT</span> S.name_country, </span>
-<span id="cb33-2"><a></a>  S.continent, </span>
-<span id="cb33-3"><a></a>  S.population_country</span>
-<span id="cb33-4"><a></a><span class="kw">FROM</span> (</span>
-<span id="cb33-5"><a></a>  <span class="kw">SELECT</span> <span class="fu">max</span>(population_country) <span class="kw">AS</span> mpc </span>
-<span id="cb33-6"><a></a>  <span class="kw">FROM</span> country c</span>
-<span id="cb33-7"><a></a>  ) <span class="kw">AS</span> R </span>
-<span id="cb33-8"><a></a>  <span class="kw">JOIN</span> LATERAL (    </span>
-<span id="cb33-9"><a></a>      <span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb33-10"><a></a>      <span class="kw">FROM</span> country c2 </span>
-<span id="cb33-11"><a></a>      <span class="kw">WHERE</span> c2.population_country <span class="op">&gt;=</span> R.mpc</span>
-<span id="cb33-12"><a></a>    ) <span class="kw">AS</span> S </span>
-<span id="cb33-13"><a></a>  <span class="kw">ON</span> (<span class="kw">TRUE</span>)</span>
-<span id="cb33-14"><a></a>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb32-1"><a></a><span class="kw">SELECT</span> S.name_country, </span>
+<span id="cb32-2"><a></a>  S.continent, </span>
+<span id="cb32-3"><a></a>  S.population_country</span>
+<span id="cb32-4"><a></a><span class="kw">FROM</span> (</span>
+<span id="cb32-5"><a></a>  <span class="kw">SELECT</span> <span class="fu">max</span>(population_country) <span class="kw">AS</span> mpc </span>
+<span id="cb32-6"><a></a>  <span class="kw">FROM</span> country c</span>
+<span id="cb32-7"><a></a>  ) <span class="kw">AS</span> R </span>
+<span id="cb32-8"><a></a>  <span class="kw">JOIN</span> LATERAL (    </span>
+<span id="cb32-9"><a></a>      <span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb32-10"><a></a>      <span class="kw">FROM</span> country c2 </span>
+<span id="cb32-11"><a></a>      <span class="kw">WHERE</span> c2.population_country <span class="op">&gt;=</span> R.mpc</span>
+<span id="cb32-12"><a></a>    ) <span class="kw">AS</span> S </span>
+<span id="cb32-13"><a></a>  <span class="kw">ON</span> (<span class="kw">TRUE</span>)</span>
+<span id="cb32-14"><a></a>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a></a><span class="kw">SELECT</span> c.name_country, </span>
-<span id="cb34-2"><a></a>       c.continent, </span>
-<span id="cb34-3"><a></a>       c.population_country</span>
-<span id="cb34-4"><a></a><span class="kw">FROM</span> (</span>
-<span id="cb34-5"><a></a>    <span class="kw">SELECT</span> <span class="fu">max</span>(population_country) <span class="kw">AS</span> mpc </span>
-<span id="cb34-6"><a></a>    <span class="kw">FROM</span> country c2</span>
-<span id="cb34-7"><a></a>  ) <span class="kw">AS</span> S</span>
-<span id="cb34-8"><a></a>  <span class="kw">JOIN</span> country c </span>
-<span id="cb34-9"><a></a>  <span class="kw">ON</span> (c.population_country <span class="op">&gt;=</span> S.mpc)    </span>
-<span id="cb34-10"><a></a>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb33-1"><a></a><span class="kw">SELECT</span> c.name_country, </span>
+<span id="cb33-2"><a></a>       c.continent, </span>
+<span id="cb33-3"><a></a>       c.population_country</span>
+<span id="cb33-4"><a></a><span class="kw">FROM</span> (</span>
+<span id="cb33-5"><a></a>    <span class="kw">SELECT</span> <span class="fu">max</span>(population_country) <span class="kw">AS</span> mpc </span>
+<span id="cb33-6"><a></a>    <span class="kw">FROM</span> country c2</span>
+<span id="cb33-7"><a></a>  ) <span class="kw">AS</span> S</span>
+<span id="cb33-8"><a></a>  <span class="kw">JOIN</span> country c </span>
+<span id="cb33-9"><a></a>  <span class="kw">ON</span> (c.population_country <span class="op">&gt;=</span> S.mpc)    </span>
+<span id="cb33-10"><a></a>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
-<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a></a>name_country|continent|population_country|</span>
-<span id="cb35-2"><a></a><span class="co">------------+---------+------------------+</span></span>
-<span id="cb35-3"><a></a>China       |Asia     |        <span class="dv">1277558000</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb34-1"><a></a>name_country|continent|population_country|</span>
+<span id="cb34-2"><a></a><span class="co">------------+---------+------------------+</span></span>
+<span id="cb34-3"><a></a>China       |Asia     |        <span class="dv">1277558000</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section>
-<section id="exemple-suite" class="slide level2 smaller center">
-<h2>Exemple (suite)</h2>
+</section><section id="exemple-suite" class="slide level2 smaller center"><h2>Exemple (suite)</h2>
 <p>Afficher le pays le plus peuplé</p>
 <div class="columns">
 <div class="column">
-<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb36-2"><a></a><span class="kw">FROM</span> world.country c  </span>
-<span id="cb36-3"><a></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> <span class="kw">ALL</span>(</span>
-<span id="cb36-4"><a></a>  <span class="kw">SELECT</span> cc.population_country  </span>
-<span id="cb36-5"><a></a>  <span class="kw">FROM</span> world.country  cc</span>
-<span id="cb36-6"><a></a>) ;     </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb35-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb35-2"><a></a><span class="kw">FROM</span> world.country c  </span>
+<span id="cb35-3"><a></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> <span class="kw">ALL</span>(</span>
+<span id="cb35-4"><a></a>  <span class="kw">SELECT</span> cc.population_country  </span>
+<span id="cb35-5"><a></a>  <span class="kw">FROM</span> world.country  cc</span>
+<span id="cb35-6"><a></a>) ;     </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div><div class="column">
-<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a></a><span class="kw">WITH</span> S <span class="kw">AS</span> (        </span>
-<span id="cb37-2"><a></a>    <span class="kw">SELECT</span> c.<span class="op">*</span>, <span class="fu">max</span>(population_country) </span>
-<span id="cb37-3"><a></a>         <span class="kw">OVER</span> () <span class="kw">AS</span> mpc  </span>
-<span id="cb37-4"><a></a>    <span class="kw">FROM</span> world.country c</span>
-<span id="cb37-5"><a></a>)</span>
-<span id="cb37-6"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb37-7"><a></a><span class="kw">FROM</span> S   </span>
-<span id="cb37-8"><a></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> mpc ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb36-1"><a></a><span class="kw">WITH</span> S <span class="kw">AS</span> (        </span>
+<span id="cb36-2"><a></a>    <span class="kw">SELECT</span> c.<span class="op">*</span>, <span class="fu">max</span>(population_country) </span>
+<span id="cb36-3"><a></a>         <span class="kw">OVER</span> () <span class="kw">AS</span> mpc  </span>
+<span id="cb36-4"><a></a>    <span class="kw">FROM</span> world.country c</span>
+<span id="cb36-5"><a></a>)</span>
+<span id="cb36-6"><a></a><span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb36-7"><a></a><span class="kw">FROM</span> S   </span>
+<span id="cb36-8"><a></a><span class="kw">WHERE</span> population_country <span class="op">&gt;=</span> mpc ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
-<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb38-1"><a></a>name_country|continent|population_country|</span>
-<span id="cb38-2"><a></a><span class="co">------------+---------+------------------+</span></span>
-<span id="cb38-3"><a></a>China       |Asia     |        <span class="dv">1277558000</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="exemple-4" class="slide level2 smaller center">
-<h2>Exemple</h2>
+<div class="sourceCode" id="cb37"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb37-1"><a></a>name_country|continent|population_country|</span>
+<span id="cb37-2"><a></a><span class="co">------------+---------+------------------+</span></span>
+<span id="cb37-3"><a></a>China       |Asia     |        <span class="dv">1277558000</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="exemple-4" class="slide level2 smaller center"><h2>Exemple</h2>
 <p>Afficher les 10 pays les plus peuplés</p>
 <div class="fragment">
-<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a></a><span class="kw">WITH</span> S <span class="kw">AS</span> (        </span>
-<span id="cb39-2"><a></a>    <span class="kw">SELECT</span> c.<span class="op">*</span>, <span class="fu">rank</span>() </span>
-<span id="cb39-3"><a></a>    <span class="kw">OVER</span> (<span class="kw">ORDER</span> <span class="kw">BY</span> population_country <span class="kw">DESC</span>) <span class="kw">AS</span> rpc  </span>
-<span id="cb39-4"><a></a>    <span class="kw">FROM</span> world.country c</span>
-<span id="cb39-5"><a></a>)</span>
-<span id="cb39-6"><a></a></span>
-<span id="cb39-7"><a></a><span class="kw">SELECT</span> name_country, continent, population_country</span>
-<span id="cb39-8"><a></a><span class="kw">FROM</span> S   </span>
-<span id="cb39-9"><a></a><span class="kw">WHERE</span> rpc <span class="op">&lt;=</span> <span class="dv">10</span> </span>
-<span id="cb39-10"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> rpc <span class="kw">DESC</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb38-1"><a></a><span class="kw">WITH</span> S <span class="kw">AS</span> (        </span>
+<span id="cb38-2"><a></a>    <span class="kw">SELECT</span> c.<span class="op">*</span>, <span class="fu">rank</span>() </span>
+<span id="cb38-3"><a></a>    <span class="kw">OVER</span> (<span class="kw">ORDER</span> <span class="kw">BY</span> population_country <span class="kw">DESC</span>) <span class="kw">AS</span> rpc  </span>
+<span id="cb38-4"><a></a>    <span class="kw">FROM</span> world.country c</span>
+<span id="cb38-5"><a></a>)</span>
+<span id="cb38-6"><a></a></span>
+<span id="cb38-7"><a></a><span class="kw">SELECT</span> name_country, continent, population_country</span>
+<span id="cb38-8"><a></a><span class="kw">FROM</span> S   </span>
+<span id="cb38-9"><a></a><span class="kw">WHERE</span> rpc <span class="op">&lt;=</span> <span class="dv">10</span> </span>
+<span id="cb38-10"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> rpc <span class="kw">DESC</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="fragment">
-<div class="sourceCode" id="cb40"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a></a>name_country      |continent    |population_country|</span>
-<span id="cb40-2"><a></a><span class="co">------------------+-------------+------------------+</span></span>
-<span id="cb40-3"><a></a>China             |Asia         |        <span class="dv">1277558000</span>|</span>
-<span id="cb40-4"><a></a>India             |Asia         |        <span class="dv">1013662000</span>|</span>
-<span id="cb40-5"><a></a>United States     |North America|         <span class="dv">278357000</span>|</span>
-<span id="cb40-6"><a></a>Indonesia         |Asia         |         <span class="dv">212107000</span>|</span>
-<span id="cb40-7"><a></a>Brazil            |South America|         <span class="dv">170115000</span>|</span>
-<span id="cb40-8"><a></a>Pakistan          |Asia         |         <span class="dv">156483000</span>|</span>
-<span id="cb40-9"><a></a>Russian Federation|Europe       |         <span class="dv">146934000</span>|</span>
-<span id="cb40-10"><a></a>Bangladesh        |Asia         |         <span class="dv">129155000</span>|</span>
-<span id="cb40-11"><a></a>Japan             |Asia         |         <span class="dv">126714000</span>|</span>
-<span id="cb40-12"><a></a>Nigeria           |Africa       |         <span class="dv">111506000</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb39-1"><a></a>name_country      |continent    |population_country|</span>
+<span id="cb39-2"><a></a><span class="co">------------------+-------------+------------------+</span></span>
+<span id="cb39-3"><a></a>China             |Asia         |        <span class="dv">1277558000</span>|</span>
+<span id="cb39-4"><a></a>India             |Asia         |        <span class="dv">1013662000</span>|</span>
+<span id="cb39-5"><a></a>United States     |North America|         <span class="dv">278357000</span>|</span>
+<span id="cb39-6"><a></a>Indonesia         |Asia         |         <span class="dv">212107000</span>|</span>
+<span id="cb39-7"><a></a>Brazil            |South America|         <span class="dv">170115000</span>|</span>
+<span id="cb39-8"><a></a>Pakistan          |Asia         |         <span class="dv">156483000</span>|</span>
+<span id="cb39-9"><a></a>Russian Federation|Europe       |         <span class="dv">146934000</span>|</span>
+<span id="cb39-10"><a></a>Bangladesh        |Asia         |         <span class="dv">129155000</span>|</span>
+<span id="cb39-11"><a></a>Japan             |Asia         |         <span class="dv">126714000</span>|</span>
+<span id="cb39-12"><a></a>Nigeria           |Africa       |         <span class="dv">111506000</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section></section>
-<section>
-<section id="groupements-avancés" class="title-slide slide level1 center">
-<h1>Groupements avancés</h1>
+</section></section><section><section id="groupements-avancés" class="title-slide slide level1 center"><h1>Groupements avancés</h1>
 
-</section>
-<section class="slide level2 center">
-
-<p>Introduits dans SQL avec la mode du <code>Data mining</code> (Fouille de données) dans les années 1990</p>
+</section><section class="slide level2 center"><p>Introduits dans SQL avec la mode du <code>Data mining</code> (Fouille de données) dans les années 1990</p>
 <p>Permet de réaliser de facon apparemment simultanée des aggrégations de régularités emboîtées</p>
 <p>Dans le monde des statistiques, lorsqu’on aggrège des comptages de grains différents, on parle de tables de contingences (<em>contingency tables</em>).</p>
-</section>
-<section id="rollup" class="slide level2 smaller center">
-<h2><code>ROLLUP</code></h2>
-<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource {sql} number-lines code-with-copy"><code class="sourceCode"><span id="cb41-1"><a></a>--| echo: true</span>
-<span id="cb41-2"><a></a>--| eval: false</span>
-<span id="cb41-3"><a></a>--| code-line-numbers: "|4"</span>
-<span id="cb41-4"><a></a>SELECT continent, region, max(lifeexpectancy)</span>
-<span id="cb41-5"><a></a>FROM country c </span>
-<span id="cb41-6"><a></a>WHERE continent LIKE '%America'</span>
-<span id="cb41-7"><a></a>GROUP BY ROLLUP  (continent, region)  </span>
-<span id="cb41-8"><a></a>ORDER BY continent, region ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb42"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb42-1"><a></a>|Continent    |Region         |<span class="fu">max</span> |</span>
-<span id="cb42-2"><a></a>|:<span class="co">------------|:--------------|---:|</span></span>
-<span id="cb42-3"><a></a>|North America|Caribbean      |<span class="fl">78.9</span>|</span>
-<span id="cb42-4"><a></a>|North America|Central America|<span class="fl">75.8</span>|</span>
-<span id="cb42-5"><a></a>|North America|North America  |<span class="fl">79.4</span>|</span>
-<span id="cb42-6"><a></a>|North America|               |<span class="fl">79.4</span>|</span>
-<span id="cb42-7"><a></a>|South America|South America  |<span class="fl">76.1</span>|</span>
-<span id="cb42-8"><a></a>|South America|               |<span class="fl">76.1</span>|</span>
-<span id="cb42-9"><a></a>|             |               |<span class="fl">79.4</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="grouping-sets" class="slide level2 smaller center">
-<h2>GROUPING SETS</h2>
-<div class="sourceCode" id="cb43"><pre class="sourceCode numberSource {sql} number-lines code-with-copy"><code class="sourceCode"><span id="cb43-1"><a></a>--| echo: true</span>
-<span id="cb43-2"><a></a>--| eval: false</span>
-<span id="cb43-3"><a></a>--| code-line-numbers: "|3"</span>
-<span id="cb43-4"><a></a>SELECT c1, c2, aggregate_function(c3)</span>
-<span id="cb43-5"><a></a>FROM table_name</span>
-<span id="cb43-6"><a></a>GROUP BY GROUPING SETS ((c1, c2), (c1), (c2), ());   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="rollup" class="slide level2 smaller center"><h2><code>ROLLUP</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40" data-code-line-numbers="|4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb40-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">max</span>(lifeexpectancy)</span>
+<span id="cb40-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb40-3"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
+<span id="cb40-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">ROLLUP</span>  (continent, region)  </span>
+<span id="cb40-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb41-1"><a></a>|Continent    |Region         |<span class="fu">max</span> |</span>
+<span id="cb41-2"><a></a>|:<span class="co">------------|:--------------|---:|</span></span>
+<span id="cb41-3"><a></a>|North America|Caribbean      |<span class="fl">78.9</span>|</span>
+<span id="cb41-4"><a></a>|North America|Central America|<span class="fl">75.8</span>|</span>
+<span id="cb41-5"><a></a>|North America|North America  |<span class="fl">79.4</span>|</span>
+<span id="cb41-6"><a></a>|North America|               |<span class="fl">79.4</span>|</span>
+<span id="cb41-7"><a></a>|South America|South America  |<span class="fl">76.1</span>|</span>
+<span id="cb41-8"><a></a>|South America|               |<span class="fl">76.1</span>|</span>
+<span id="cb41-9"><a></a>|             |               |<span class="fl">79.4</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="grouping-sets" class="slide level2 smaller center"><h2>GROUPING SETS</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42" data-code-line-numbers="|3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb42-1"><a></a><span class="kw">SELECT</span> c1, c2, aggregate_function(c3)</span>
+<span id="cb42-2"><a></a><span class="kw">FROM</span> table_name</span>
+<span id="cb42-3"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS ((c1, c2), (c1), (c2), ());   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><i class="fa-solid fa-hand-point-right" aria-label="hand-point-right"></i> <code>ROLLUP</code> and <code>CUBE</code> are special cases of <code>GROUPING SETS</code></p>
-</section>
-<section id="grouping-sets-suite" class="slide level2 smaller center">
-<h2><code>GROUPING SETS</code> (suite)</h2>
-<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb44-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">max</span>(lifeexpectancy)</span>
-<span id="cb44-2"><a></a><span class="kw">FROM</span> country c </span>
-<span id="cb44-3"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
-<span id="cb44-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS  ((continent, region), (continent), ())  </span>
-<span id="cb44-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="sourceCode" id="cb45"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb45-1"><a></a>|Continent    |Region         |<span class="fu">max</span> |</span>
-<span id="cb45-2"><a></a>|:<span class="co">------------|:--------------|---:|</span></span>
-<span id="cb45-3"><a></a>|North America|Caribbean      |<span class="fl">78.9</span>|</span>
-<span id="cb45-4"><a></a>|North America|Central America|<span class="fl">75.8</span>|</span>
-<span id="cb45-5"><a></a>|North America|North America  |<span class="fl">79.4</span>|</span>
-<span id="cb45-6"><a></a>|North America|               |<span class="fl">79.4</span>|</span>
-<span id="cb45-7"><a></a>|South America|South America  |<span class="fl">76.1</span>|</span>
-<span id="cb45-8"><a></a>|South America|               |<span class="fl">76.1</span>|</span>
-<span id="cb45-9"><a></a>|             |               |<span class="fl">79.4</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="cube" class="slide level2 center">
-<h2><code>CUBE</code></h2>
-<div class="sourceCode" id="cb46"><pre class="sourceCode numberSource {sql} number-lines code-with-copy"><code class="sourceCode"><span id="cb46-1"><a></a>--| echo: true</span>
-<span id="cb46-2"><a></a>--| eval: false</span>
-<span id="cb46-3"><a></a>--| code-line-numbers: "|4"</span>
-<span id="cb46-4"><a></a>SELECT c1, c2, c3,</span>
-<span id="cb46-5"><a></a>  aggregate (c4) </span>
-<span id="cb46-6"><a></a>FROM table_name</span>
-<span id="cb46-7"><a></a>GROUP BY CUBE (c1, c2, c3);  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section class="slide level2 center">
+</section><section id="grouping-sets-suite" class="slide level2 smaller center"><h2>
+<code>GROUPING SETS</code> (suite)</h2>
+<div class="sourceCode" id="cb43"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb43-1"><a></a><span class="kw">SELECT</span> continent, region, <span class="fu">max</span>(lifeexpectancy)</span>
+<span id="cb43-2"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb43-3"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
+<span id="cb43-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="fu">GROUPING</span> SETS  ((continent, region), (continent), ())  </span>
+<span id="cb43-5"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> continent, region ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb44-1"><a></a>|Continent    |Region         |<span class="fu">max</span> |</span>
+<span id="cb44-2"><a></a>|:<span class="co">------------|:--------------|---:|</span></span>
+<span id="cb44-3"><a></a>|North America|Caribbean      |<span class="fl">78.9</span>|</span>
+<span id="cb44-4"><a></a>|North America|Central America|<span class="fl">75.8</span>|</span>
+<span id="cb44-5"><a></a>|North America|North America  |<span class="fl">79.4</span>|</span>
+<span id="cb44-6"><a></a>|North America|               |<span class="fl">79.4</span>|</span>
+<span id="cb44-7"><a></a>|South America|South America  |<span class="fl">76.1</span>|</span>
+<span id="cb44-8"><a></a>|South America|               |<span class="fl">76.1</span>|</span>
+<span id="cb44-9"><a></a>|             |               |<span class="fl">79.4</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="cube" class="slide level2 center"><h2><code>CUBE</code></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45" data-code-line-numbers="|4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb45-1"><a></a><span class="kw">SELECT</span> c1, c2, c3,</span>
+<span id="cb45-2"><a></a>  aggregate (c4) </span>
+<span id="cb45-3"><a></a><span class="kw">FROM</span> table_name</span>
+<span id="cb45-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span> (c1, c2, c3);  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section class="slide level2 center"><div class="cell">
+<div class="sourceCode cell-code" id="cb46" data-code-line-numbers="|2,3,6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb46-1"><a></a><span class="kw">SELECT</span> continent, region, governmentform, </span>
+<span id="cb46-2"><a></a>       <span class="fu">count</span>(<span class="op">*</span>) <span class="kw">AS</span> cnt, </span>
+<span id="cb46-3"><a></a>       <span class="fu">max</span>(lifeexpectancy)</span>
+<span id="cb46-4"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb46-5"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
+<span id="cb46-6"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span> (continent, region, governmentform)   </span>
+<span id="cb46-7"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">5</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="section-6" class="slide level2 smaller center"><h2></h2>
+<div class="sourceCode" id="cb47"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb47-1"><a></a>|Continent    |Region       |Governmentf   |cnt|<span class="fu">max</span> |</span>
+<span id="cb47-2"><a></a>|:<span class="co">------------|:------------|:-------------|:--|:---|</span></span>
+<span id="cb47-3"><a></a>|             |               |                             | <span class="dv">51</span>|<span class="fl">79.4</span>|</span>
+<span id="cb47-4"><a></a>|South America|South America  |Republic                     |  <span class="dv">9</span>|<span class="fl">75.7</span>|</span>
+<span id="cb47-5"><a></a>|North America|Central America|Republic                     |  <span class="dv">6</span>|<span class="fl">75.8</span>|</span>
+<span id="cb47-6"><a></a>|North America|Caribbean      |Constitutional Monarchy      |  <span class="dv">8</span>|<span class="fl">75.2</span>|</span>
+<span id="cb47-7"><a></a>|North America|Caribbean      |                             | <span class="dv">24</span>|<span class="fl">78.9</span>|</span>
+<span id="cb47-8"><a></a>|South America|South America  |                             | <span class="dv">14</span>|<span class="fl">76.1</span>|</span>
+<span id="cb47-9"><a></a>|North America|Central America|                             |  <span class="dv">8</span>|<span class="fl">75.8</span>|</span>
+<span id="cb47-10"><a></a>|South America|               |                             | <span class="dv">14</span>|<span class="fl">76.1</span>|</span>
+<span id="cb47-11"><a></a>|North America|               |                             | <span class="dv">37</span>|<span class="fl">79.4</span>|</span>
+<span id="cb47-12"><a></a>|             |Caribbean      |Constitutional Monarchy      |  <span class="dv">8</span>|<span class="fl">75.2</span>|</span>
+<span id="cb47-13"><a></a>|             |South America  |Republic                     |  <span class="dv">9</span>|<span class="fl">75.7</span>|</span>
+<span id="cb47-14"><a></a>|             |Central America|Republic                     |  <span class="dv">6</span>|<span class="fl">75.8</span>|</span>
+<span id="cb47-15"><a></a>|             |South America  |                             | <span class="dv">14</span>|<span class="fl">76.1</span>|</span>
+<span id="cb47-16"><a></a>|             |Central America|                             |  <span class="dv">8</span>|<span class="fl">75.8</span>|</span>
+<span id="cb47-17"><a></a>|             |Caribbean      |                             | <span class="dv">24</span>|<span class="fl">78.9</span>|</span>
+<span id="cb47-18"><a></a>|North America|               |Constitutional Monarchy      |  <span class="dv">9</span>|<span class="fl">75.2</span>|</span>
+<span id="cb47-19"><a></a>|North America|               |Republic                     | <span class="dv">10</span>|<span class="fl">75.8</span>|</span>
+<span id="cb47-20"><a></a>|South America|               |Republic                     |  <span class="dv">9</span>|<span class="fl">75.7</span>|</span>
+<span id="cb47-21"><a></a>|North America|               |Dependent Territory <span class="kw">of</span> <span class="kw">the</span> UK|  <span class="dv">6</span>|<span class="fl">78.9</span>|</span>
+<span id="cb47-22"><a></a>|             |               |Republic                     | <span class="dv">19</span>|<span class="fl">75.8</span>|</span>
+<span id="cb47-23"><a></a>|             |               |Constitutional Monarchy      |  <span class="dv">9</span>|<span class="fl">75.2</span>|</span>
+<span id="cb47-24"><a></a>|             |               |Dependent Territory <span class="kw">of</span> <span class="kw">the</span> UK|  <span class="dv">7</span>|<span class="fl">78.9</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="compter-les-formes-de-gouvernement-et-les-région-dans-les-amériques" class="slide level2 smaller center"><h2>Compter les formes de gouvernement et les région dans les Amériques</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48" data-code-line-numbers="|4,5,8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb48-1"><a></a><span class="kw">SELECT</span>  </span>
+<span id="cb48-2"><a></a>       region, </span>
+<span id="cb48-3"><a></a>       governmentform, </span>
+<span id="cb48-4"><a></a>       <span class="fu">count</span>(<span class="op">*</span>) <span class="kw">AS</span> cnt, </span>
+<span id="cb48-5"><a></a>       <span class="fu">max</span>(lifeexpectancy)</span>
+<span id="cb48-6"><a></a><span class="kw">FROM</span> country c </span>
+<span id="cb48-7"><a></a><span class="kw">WHERE</span> continent <span class="kw">LIKE</span> <span class="st">'%America'</span></span>
+<span id="cb48-8"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span> <span class="kw">CUBE</span>   (region, governmentform)   </span>
+<span id="cb48-9"><a></a><span class="kw">HAVING</span> <span class="fu">COUNT</span>(<span class="op">*</span>) <span class="op">&gt;</span> <span class="dv">0</span></span>
+<span id="cb48-10"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> region, cnt <span class="kw">DESC</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section><section id="compter-les-formes-de-gouvernement-et-les-région-dans-les-amériques-1" class="slide level2 smaller center"><h2>Compter les formes de gouvernement et les région dans les Amériques</h2>
+<div class="sourceCode" id="cb49"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb49-1"><a></a>region         |governmentform                              |cnt|<span class="fu">max</span> |</span>
+<span id="cb49-2"><a></a><span class="co">---------------+--------------------------------------------+---+----+</span></span>
+<span id="cb49-3"><a></a>Caribbean      |                                            | <span class="dv">24</span>|<span class="fl">78.9</span>|</span>
+<span id="cb49-4"><a></a>Caribbean      |Constitutional Monarchy                     |  <span class="dv">8</span>|<span class="fl">75.2</span>|</span>
+<span id="cb49-5"><a></a>Caribbean      |Dependent Territory <span class="kw">of</span> <span class="kw">the</span> UK               |  <span class="dv">5</span>|<span class="fl">78.9</span>|</span>
+<span id="cb49-6"><a></a>Caribbean      |Republic                                    |  <span class="dv">4</span>|<span class="fl">73.4</span>|</span>
+<span id="cb49-7"><a></a><span class="op">..</span>.            |                                            |   |    |</span>
+<span id="cb49-8"><a></a>               |Republic                                    | <span class="dv">19</span>|<span class="fl">75.8</span>|</span>
+<span id="cb49-9"><a></a>               |Constitutional Monarchy                     |  <span class="dv">9</span>|<span class="fl">75.2</span>|</span>
+<span id="cb49-10"><a></a>               |Dependent Territory <span class="kw">of</span> <span class="kw">the</span> UK               |  <span class="dv">7</span>|<span class="fl">78.9</span>|</span>
+<span id="cb49-11"><a></a>               |Federal Republic                            |  <span class="dv">5</span>|<span class="fl">77.1</span>|</span>
+<span id="cb49-12"><a></a>               |Overseas Department <span class="kw">of</span> France               |  <span class="dv">3</span>|<span class="fl">78.3</span>|</span>
+<span id="cb49-13"><a></a><span class="op">..</span>.</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section><section><section id="résumé" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Résumé</h1>
 
-<div class="sourceCode" id="cb47"><pre class="sourceCode numberSource {sql} number-lines code-with-copy"><code class="sourceCode"><span id="cb47-1"><a></a>--| echo: true</span>
-<span id="cb47-2"><a></a>--| eval: false</span>
-<span id="cb47-3"><a></a>--| code-line-numbers: "|2,3,6"</span>
-<span id="cb47-4"><a></a>SELECT continent, region, governmentform, </span>
-<span id="cb47-5"><a></a>       count(*) AS cnt, </span>
-<span id="cb47-6"><a></a>       max(lifeexpectancy)</span>
-<span id="cb47-7"><a></a>FROM country c </span>
-<span id="cb47-8"><a></a>WHERE continent LIKE '%America'</span>
-<span id="cb47-9"><a></a>GROUP BY CUBE (continent, region, governmentform)   </span>
-<span id="cb47-10"><a></a>HAVING COUNT(*) &gt; 5;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="section-6" class="slide level2 smaller center">
-<h2></h2>
-<div class="sourceCode" id="cb48"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb48-1"><a></a>|Continent    |Region       |Governmentf   |cnt|<span class="fu">max</span> |</span>
-<span id="cb48-2"><a></a>|:<span class="co">------------|:------------|:-------------|:--|:---|</span></span>
-<span id="cb48-3"><a></a>|             |               |                             | <span class="dv">51</span>|<span class="fl">79.4</span>|</span>
-<span id="cb48-4"><a></a>|South America|South America  |Republic                     |  <span class="dv">9</span>|<span class="fl">75.7</span>|</span>
-<span id="cb48-5"><a></a>|North America|Central America|Republic                     |  <span class="dv">6</span>|<span class="fl">75.8</span>|</span>
-<span id="cb48-6"><a></a>|North America|Caribbean      |Constitutional Monarchy      |  <span class="dv">8</span>|<span class="fl">75.2</span>|</span>
-<span id="cb48-7"><a></a>|North America|Caribbean      |                             | <span class="dv">24</span>|<span class="fl">78.9</span>|</span>
-<span id="cb48-8"><a></a>|South America|South America  |                             | <span class="dv">14</span>|<span class="fl">76.1</span>|</span>
-<span id="cb48-9"><a></a>|North America|Central America|                             |  <span class="dv">8</span>|<span class="fl">75.8</span>|</span>
-<span id="cb48-10"><a></a>|South America|               |                             | <span class="dv">14</span>|<span class="fl">76.1</span>|</span>
-<span id="cb48-11"><a></a>|North America|               |                             | <span class="dv">37</span>|<span class="fl">79.4</span>|</span>
-<span id="cb48-12"><a></a>|             |Caribbean      |Constitutional Monarchy      |  <span class="dv">8</span>|<span class="fl">75.2</span>|</span>
-<span id="cb48-13"><a></a>|             |South America  |Republic                     |  <span class="dv">9</span>|<span class="fl">75.7</span>|</span>
-<span id="cb48-14"><a></a>|             |Central America|Republic                     |  <span class="dv">6</span>|<span class="fl">75.8</span>|</span>
-<span id="cb48-15"><a></a>|             |South America  |                             | <span class="dv">14</span>|<span class="fl">76.1</span>|</span>
-<span id="cb48-16"><a></a>|             |Central America|                             |  <span class="dv">8</span>|<span class="fl">75.8</span>|</span>
-<span id="cb48-17"><a></a>|             |Caribbean      |                             | <span class="dv">24</span>|<span class="fl">78.9</span>|</span>
-<span id="cb48-18"><a></a>|North America|               |Constitutional Monarchy      |  <span class="dv">9</span>|<span class="fl">75.2</span>|</span>
-<span id="cb48-19"><a></a>|North America|               |Republic                     | <span class="dv">10</span>|<span class="fl">75.8</span>|</span>
-<span id="cb48-20"><a></a>|South America|               |Republic                     |  <span class="dv">9</span>|<span class="fl">75.7</span>|</span>
-<span id="cb48-21"><a></a>|North America|               |Dependent Territory <span class="kw">of</span> <span class="kw">the</span> UK|  <span class="dv">6</span>|<span class="fl">78.9</span>|</span>
-<span id="cb48-22"><a></a>|             |               |Republic                     | <span class="dv">19</span>|<span class="fl">75.8</span>|</span>
-<span id="cb48-23"><a></a>|             |               |Constitutional Monarchy      |  <span class="dv">9</span>|<span class="fl">75.2</span>|</span>
-<span id="cb48-24"><a></a>|             |               |Dependent Territory <span class="kw">of</span> <span class="kw">the</span> UK|  <span class="dv">7</span>|<span class="fl">78.9</span>|</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="compter-les-formes-de-gouvernement-et-les-région-dans-les-amériques" class="slide level2 smaller center">
-<h2>Compter les formes de gouvernement et les région dans les Amériques</h2>
-<div class="sourceCode" id="cb49"><pre class="sourceCode numberSource {sql} number-lines code-with-copy"><code class="sourceCode"><span id="cb49-1"><a></a>--| echo: true</span>
-<span id="cb49-2"><a></a>--| eval: false</span>
-<span id="cb49-3"><a></a>--| code-line-numbers: "|4,5,8"</span>
-<span id="cb49-4"><a></a>SELECT  </span>
-<span id="cb49-5"><a></a>       region, </span>
-<span id="cb49-6"><a></a>       governmentform, </span>
-<span id="cb49-7"><a></a>       count(*) AS cnt, </span>
-<span id="cb49-8"><a></a>       max(lifeexpectancy)</span>
-<span id="cb49-9"><a></a>FROM country c </span>
-<span id="cb49-10"><a></a>WHERE continent LIKE '%America'</span>
-<span id="cb49-11"><a></a>GROUP BY CUBE   (region, governmentform)   </span>
-<span id="cb49-12"><a></a>HAVING COUNT(*) &gt; 0</span>
-<span id="cb49-13"><a></a>ORDER BY region, cnt DESC;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="compter-les-formes-de-gouvernement-et-les-région-dans-les-amériques-1" class="slide level2 smaller center">
-<h2>Compter les formes de gouvernement et les région dans les Amériques</h2>
-<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb50-1"><a></a>region         |governmentform                              |cnt|<span class="fu">max</span> |</span>
-<span id="cb50-2"><a></a><span class="co">---------------+--------------------------------------------+---+----+</span></span>
-<span id="cb50-3"><a></a>Caribbean      |                                            | <span class="dv">24</span>|<span class="fl">78.9</span>|</span>
-<span id="cb50-4"><a></a>Caribbean      |Constitutional Monarchy                     |  <span class="dv">8</span>|<span class="fl">75.2</span>|</span>
-<span id="cb50-5"><a></a>Caribbean      |Dependent Territory <span class="kw">of</span> <span class="kw">the</span> UK               |  <span class="dv">5</span>|<span class="fl">78.9</span>|</span>
-<span id="cb50-6"><a></a>Caribbean      |Republic                                    |  <span class="dv">4</span>|<span class="fl">73.4</span>|</span>
-<span id="cb50-7"><a></a><span class="op">..</span>.            |                                            |   |    |</span>
-<span id="cb50-8"><a></a>               |Republic                                    | <span class="dv">19</span>|<span class="fl">75.8</span>|</span>
-<span id="cb50-9"><a></a>               |Constitutional Monarchy                     |  <span class="dv">9</span>|<span class="fl">75.2</span>|</span>
-<span id="cb50-10"><a></a>               |Dependent Territory <span class="kw">of</span> <span class="kw">the</span> UK               |  <span class="dv">7</span>|<span class="fl">78.9</span>|</span>
-<span id="cb50-11"><a></a>               |Federal Republic                            |  <span class="dv">5</span>|<span class="fl">77.1</span>|</span>
-<span id="cb50-12"><a></a>               |Overseas Department <span class="kw">of</span> France               |  <span class="dv">3</span>|<span class="fl">78.3</span>|</span>
-<span id="cb50-13"><a></a><span class="op">..</span>.</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section>
-<section>
-<section id="résumé" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Résumé</h1>
-
-</section>
-<section id="portrait-robot-dune-requête" class="slide level2 center">
-<h2>Portrait robot d’une requête</h2>
-<div class="sourceCode" id="cb51"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb51-1"><a></a><span class="kw">SELECT</span> <span class="op">&lt;</span>attributs<span class="op">&gt;</span>           <span class="co">-- les colonnes de la table résultat</span></span>
-<span id="cb51-2"><a></a></span>
-<span id="cb51-3"><a></a><span class="kw">FROM</span> <span class="op">&lt;</span>relations<span class="op">&gt;</span>             <span class="co">-- la/les table/s qui émettent les données</span></span>
-<span id="cb51-4"><a></a></span>
-<span id="cb51-5"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span> ]         <span class="co">-- filtre</span></span>
-<span id="cb51-6"><a></a></span>
-<span id="cb51-7"><a></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>attributs de partitionnement<span class="op">&gt;</span>   <span class="co">-- découpage en groupes</span></span>
-<span id="cb51-8"><a></a></span>
-<span id="cb51-9"><a></a>[<span class="kw">HAVING</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span>]]      <span class="co">-- filtrage des groupes</span></span>
-<span id="cb51-10"><a></a></span>
-<span id="cb51-11"><a></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="op">&lt;</span>critere<span class="op">&gt;</span>]       <span class="co">-- trier </span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="portrait-robot-dune-requête" class="slide level2 center"><h2>Portrait robot d’une requête</h2>
+<div class="sourceCode" id="cb50"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb50-1"><a></a><span class="kw">SELECT</span> <span class="op">&lt;</span>attributs<span class="op">&gt;</span>           <span class="co">-- les colonnes de la table résultat</span></span>
+<span id="cb50-2"><a></a></span>
+<span id="cb50-3"><a></a><span class="kw">FROM</span> <span class="op">&lt;</span>relations<span class="op">&gt;</span>             <span class="co">-- la/les table/s qui émettent les données</span></span>
+<span id="cb50-4"><a></a></span>
+<span id="cb50-5"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span> ]         <span class="co">-- filtre</span></span>
+<span id="cb50-6"><a></a></span>
+<span id="cb50-7"><a></a>[<span class="kw">GROUP</span> <span class="kw">BY</span> <span class="op">&lt;</span>attributs de partitionnement<span class="op">&gt;</span>   <span class="co">-- découpage en groupes</span></span>
+<span id="cb50-8"><a></a></span>
+<span id="cb50-9"><a></a>[<span class="kw">HAVING</span> <span class="op">&lt;</span>condition<span class="op">&gt;</span>]]      <span class="co">-- filtrage des groupes</span></span>
+<span id="cb50-10"><a></a></span>
+<span id="cb50-11"><a></a>[<span class="kw">ORDER</span> <span class="kw">BY</span> <span class="op">&lt;</span>critere<span class="op">&gt;</span>]       <span class="co">-- trier </span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <ul>
-<li><code>SELECT</code> : attributs du résultat (avec agrégats éventuels)</li>
-<li><code>WHERE</code> : condition de sélection indépendante du <code>GROUP BY</code></li>
-<li><code>HAVING</code> : condition de sélection portant sur les groupes</li>
-</ul>
-</section>
-<section class="slide level2 center">
-
-<div class="callout callout-caution callout-titled callout-style-default">
+<li>
+<code>SELECT</code> : attributs du résultat (avec agrégats éventuels)</li>
+<li>
+<code>WHERE</code> : condition de sélection indépendante du <code>GROUP BY</code>
+</li>
+<li>
+<code>HAVING</code> : condition de sélection portant sur les groupes</li>
+</ul></section><section class="slide level2 center"><div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -1585,15 +1437,13 @@
 </div>
 </div>
 </div>
-<div class="sourceCode" id="cb52"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb52-1"><a></a><span class="kw">SELECT</span>        <span class="co">-- columns to display</span></span>
-<span id="cb52-2"><a></a><span class="kw">FROM</span>          <span class="co">-- table(s) to pull from</span></span>
-<span id="cb52-3"><a></a><span class="kw">WHERE</span>         <span class="co">-- filter</span></span>
-<span id="cb52-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span>      <span class="co">-- split rows into groups</span></span>
-<span id="cb52-5"><a></a><span class="kw">HAVING</span>        <span class="co">-- filter within groups</span></span>
-<span id="cb52-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span>      <span class="co">-- sort</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section>
-<section id="ordre-dexécution-des-éléments-dune-requête" class="slide level2 center scrollable">
-<h2>Ordre d’exécution des éléments d’une requête</h2>
+<div class="sourceCode" id="cb51"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb51-1"><a></a><span class="kw">SELECT</span>        <span class="co">-- columns to display</span></span>
+<span id="cb51-2"><a></a><span class="kw">FROM</span>          <span class="co">-- table(s) to pull from</span></span>
+<span id="cb51-3"><a></a><span class="kw">WHERE</span>         <span class="co">-- filter</span></span>
+<span id="cb51-4"><a></a><span class="kw">GROUP</span> <span class="kw">BY</span>      <span class="co">-- split rows into groups</span></span>
+<span id="cb51-5"><a></a><span class="kw">HAVING</span>        <span class="co">-- filter within groups</span></span>
+<span id="cb51-6"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span>      <span class="co">-- sort</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="ordre-dexécution-des-éléments-dune-requête" class="slide level2 center scrollable"><h2>Ordre d’exécution des éléments d’une requête</h2>
 <ol type="1">
 <li><p>Rassembler les données mentionnées dans la clause <code>FROM</code></p></li>
 <li><p>Filter les lignes selon la clause <code>WHERE</code></p></li>
@@ -1601,26 +1451,14 @@
 <li><p>Filtrer les groupes selon la clause <code>HAVING</code></p></li>
 <li><p>Specifier les colonnes du résultat selon la clause <code>SELECT</code></p></li>
 <li><p>Trier le résultat final selon la clause <code>ORDER BY</code></p></li>
-</ol>
-</section></section>
-<section>
-<section id="références" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Références</h1>
+</ol></section></section><section><section id="références" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Références</h1>
 
-</section>
-<section class="slide level2 center">
-
-<p><a href="https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-select/">Tutoriel <code>SELECT</code> de PostGreSQL</a></p>
+</section><section class="slide level2 center"><p><a href="https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-select/">Tutoriel <code>SELECT</code> de PostGreSQL</a></p>
 <p><a href="https://www.postgresqltutorial.com/postgresql-tutorial/postgresql-joins/">Tutoriel <code>joins</code></a></p>
 <p><a href="https://www.postgresql.org/docs/current/queries.html">Documentation requêtes</a></p>
 <p><a href="https://www.postgresql.org/docs/14/sql-select.html">Documentation <code>SELECT</code></a></p>
 <p><a href="https://www.postgresql.org/docs/14/queries-table-expressions.html#QUERIES-GROUPING-SETS">GROUPING SETS, ROLLUP, CUBE</a></p>
-</section>
-<section class="slide level2 center">
-
-</section></section>
-<section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
-<h1>Fin</h1>
+</section><section class="slide level2 center"></section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -1642,26 +1480,10 @@
 </div>
 </div>
 </section>
-    </div>
+</div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="../site_libs/revealjs/dist/reveal.js"></script>
-  <!-- reveal.js plugins -->
-  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
-  
-
-  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
-  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
-  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
-
-  <script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../site_libs/revealjs/plugin/search/search.js"></script><script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1851,8 +1673,42 @@
           RevealZoom
         ]
       });
-    </script>
-    <script id="quarto-html-after-body" type="application/javascript">
+    </script><script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script><script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -2197,8 +2053,7 @@
         }
       }
     });
-    </script>
-        <script type="text/javascript">
+    </script><script type="text/javascript">
         (function(d) {
           d.querySelectorAll(".pseudocode-container").forEach(function(el) {
             let pseudocodeOptions = {
@@ -2229,7 +2084,6 @@
           });
         })(document);
         </script>
-      
-    
+
 
 </body></html>

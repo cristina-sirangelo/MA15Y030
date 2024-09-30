@@ -1,11 +1,13 @@
 ---
 title: "BD IV: SQL III"
 subtitle: "Langage Manipulation de Données 3 : Aggrégation/Fenêtres/Partitions"
-date: "2024-09-27"
+date: "2024-10-04"
 
 format: 
   revealjs:
     header: "Requêtes SQL : Aggrégation/Fenêtres/Partition"
+
+engine: knitr
 ---
 
 

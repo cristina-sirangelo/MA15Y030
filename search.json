@@ -687,7 +687,7 @@
     "href": "slides-listings.html",
     "title": "Diapositives",
     "section": "",
-    "text": "Les diapositives fournissent le canevas du cours. Vous pouvez les utiliser pour vous familiariser avec le matériel du prochain cours, pour revoir les cours passés et, pour réviser.\nLes diapositives marquées par l’image  renvoient à des développements effectués en classes.\n\n\n\n\n\n\n\n\n\nMode d’emploi\n\n\n\nLes diapositives utilisent la bibliothèque revealjs de . Elles s’affichent dans votre navigateur. Vous pouvez accéder au mode d’emploi en tappant \n\n\n\n\n\n\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Titre\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitre\n\n\nDescription\n\n\n\n\n\n\nSep 13, 2024\n\n\nBD I: Introduction aux SGBD\n\n\nBases de Données Licences MIASHS et Mathématiques\n\n\n\n\nSep 13, 2024\n\n\nBD I: Algèbre Relationnelle\n\n\nCadre formel pour la manipulation de tables\n\n\n\n\nSep 20, 2024\n\n\nBD II: SQL I\n\n\nLangage Manipulation de Données 1\n\n\n\n\nSep 20, 2024\n\n\nBD II: SQL II\n\n\nLangage Manipulation de Données 2 : requêtes imbriquées\n\n\n\n\nSep 27, 2024\n\n\nBD IV: SQL III\n\n\nLangage Manipulation de Données 3 : Aggrégation/Fenêtres/Partitions\n\n\n\n\nOct 4, 2024\n\n\nBD II: SQL LDD\n\n\nDéfinition de données\n\n\n\n\nOct 11, 2024\n\n\nBD : Contraintes\n\n\nDéfinition de données: Contraintes\n\n\n\n\nOct 18, 2024\n\n\nFonctions SQL et Vues\n\n\nFonctions SQL. Vues\n\n\n\n\nOct 25, 2024\n\n\nBD VII: Corriger le schéma World\n\n\nDéfinition de données: Contraintes/Ingénieurie\n\n\n\n\nNov 15, 2024\n\n\nModélisation I : Entité/Association\n\n\nModélisation Entité/Association (ER)\n\n\n\n\nNov 15, 2024\n\n\nModélisation II :\n\n\nTraduction des modèles ER: Pattes de corbeaux, Relationnel\n\n\n\n\nNov 22, 2024\n\n\nNormalisation I\n\n\nDépendances Fonctionnelles. Décomposition FNBC\n\n\n\n\nNov 29, 2024\n\n\nNormalisation II : Décomposition FN3\n\n\nPertes de Dépendances Fonctionnelles. Décomposition FN3\n\n\n\n\nJan 31, 2025\n\n\nBD : Fonctions et extension PlpgSQL de SQL\n\n\n \n\n\n\n\nMar 29, 2025\n\n\nBD : Transactions\n\n\n \n\n\n\n\nMar 31, 2025\n\n\nBD : dplyr une mise oeuvre de l’Algèbre Relationnelle\n\n\nBases de Données Licences MIASHS et Mathématiques\n\n\n\n\n \n\n\nBD V: Administration\n\n\n \n\n\n\n\n \n\n\nBD VII: Administration et Droits\n\n\n \n\n\n\n\n\nNo matching items",
+    "text": "Les diapositives fournissent le canevas du cours. Vous pouvez les utiliser pour vous familiariser avec le matériel du prochain cours, pour revoir les cours passés et, pour réviser.\nLes diapositives marquées par l’image  renvoient à des développements effectués en classes.\n\n\n   \n     \n     \n       Order By\n       Default\n         \n          Date - Oldest\n        \n         \n          Date - Newest\n        \n         \n          Titre\n        \n     \n  \n    \n      \n      \n    \n\n\n\n\n\nDate\n\n\nTitre\n\n\nDescription\n\n\n\n\n\n\nSep 13, 2024\n\n\nBD I: Introduction aux SGBD\n\n\nBases de Données Licences MIASHS et Mathématiques\n\n\n\n\nSep 13, 2024\n\n\nBD I: Algèbre Relationnelle\n\n\nCadre formel pour la manipulation de tables\n\n\n\n\nSep 20, 2024\n\n\nBD II: SQL I\n\n\nLangage Manipulation de Données 1\n\n\n\n\nSep 27, 2024\n\n\nBD II: SQL II\n\n\nLangage Manipulation de Données 2 : requêtes imbriquées\n\n\n\n\nOct 4, 2024\n\n\nBD II: SQL LDD\n\n\nDéfinition de données\n\n\n\n\nOct 4, 2024\n\n\nBD IV: SQL III\n\n\nLangage Manipulation de Données 3 : Aggrégation/Fenêtres/Partitions\n\n\n\n\nOct 11, 2024\n\n\nBD : Contraintes\n\n\nDéfinition de données: Contraintes\n\n\n\n\nOct 18, 2024\n\n\nFonctions SQL et Vues\n\n\nFonctions SQL. Vues\n\n\n\n\nOct 25, 2024\n\n\nBD VII: Corriger le schéma World\n\n\nDéfinition de données: Contraintes/Ingénieurie\n\n\n\n\nNov 15, 2024\n\n\nModélisation I : Entité/Association\n\n\nModélisation Entité/Association (ER)\n\n\n\n\nNov 15, 2024\n\n\nModélisation II :\n\n\nTraduction des modèles ER: Pattes de corbeaux, Relationnel\n\n\n\n\nNov 22, 2024\n\n\nNormalisation I\n\n\nDépendances Fonctionnelles. Décomposition FNBC\n\n\n\n\nNov 29, 2024\n\n\nNormalisation II : Décomposition FN3\n\n\nPertes de Dépendances Fonctionnelles. Décomposition FN3\n\n\n\n\nJan 31, 2025\n\n\nBD : Fonctions et extension PlpgSQL de SQL\n\n\n \n\n\n\n\nMar 29, 2025\n\n\nBD : Transactions\n\n\n \n\n\n\n\nMar 31, 2025\n\n\nBD : dplyr une mise oeuvre de l’Algèbre Relationnelle\n\n\nBases de Données Licences MIASHS et Mathématiques\n\n\n\n\n \n\n\nBD V: Administration\n\n\n \n\n\n\n\n \n\n\nBD VII: Administration et Droits\n\n\n \n\n\n\n\n\nNo matching items\n\n\n\n\n\n\n\n\nMode d’emploi\n\n\n\nLes diapositives utilisent la bibliothèque revealjs de . Elles s’affichent dans votre navigateur. Vous pouvez accéder au mode d’emploi en tappant",
     "crumbs": [
       "Diapositives"
     ]
@@ -2868,7 +2868,7 @@
     "objectID": "slides/SQL_3.html#fonctions-dagrégation-en-sql-1",
     "href": "slides/SQL_3.html#fonctions-dagrégation-en-sql-1",
     "title": "BD IV: SQL III",
-    "section": " Fonctions d’agrégation en SQL",
+    "section": "\n Fonctions d’agrégation en SQL",
     "text": "Fonctions d’agrégation en SQL\n\nPossibilité de compter, de faire des moyennes, de trouver un maximum, … en SQL (contrairement à l’algèbre relationnelle “classique”)\nPossibilité de partitionner les données"
   },
   {
@@ -2882,50 +2882,50 @@
     "objectID": "slides/SQL_3.html#dans-la-partie-select",
     "href": "slides/SQL_3.html#dans-la-partie-select",
     "title": "BD IV: SQL III",
-    "section": "Dans la partie SELECT",
-    "text": "Dans la partie SELECT\n\nSomme des valeurs prises par nomattribut\n\nSUM (DISTINCT|ALL &lt;nomattribut&gt;)  \n\n\nMoyenne des valeurs prises par nomattribut\n\nAVG (DISTINCT|ALL &lt;nom_attribut&gt;) \n\n\n Le type des attributs doit être un nombre ou un entier (sinon, impossible de faire des sommes…)."
+    "section": "Dans la partie SELECT\n",
+    "text": "Dans la partie SELECT\n\n\nSomme des valeurs prises par nomattribut\n\n\nSUM (DISTINCT|ALL &lt;nomattribut&gt;)  \n\n\nMoyenne des valeurs prises par nomattribut\n\n\nAVG (DISTINCT|ALL &lt;nom_attribut&gt;) \n\n\n Le type des attributs doit être un nombre ou un entier (sinon, impossible de faire des sommes…)."
   },
   {
     "objectID": "slides/SQL_3.html#fonctions-dagrégation-sum-et-avg",
     "href": "slides/SQL_3.html#fonctions-dagrégation-sum-et-avg",
     "title": "BD IV: SQL III",
-    "section": "Fonctions d’agrégation : SUM et AVG",
-    "text": "Fonctions d’agrégation : SUM et AVG\n\nSomme des populations des villes du pays de code FRA (dans le schéma world).\n\nSELECT SUM (population)  \nFROM city \nWHERE countrycode = 'FRA';\n\nGNP moyen par habitant (pas pondéré!) sur le continent South America\n\nSELECT \n  AVG(1e6*gnp/population_country)::decimal(8,0) \nFROM \n  country \nWHERE \n  continent = 'South America'"
+    "section": "Fonctions d’agrégation : SUM et AVG\n",
+    "text": "Fonctions d’agrégation : SUM et AVG\n\n\nSomme des populations des villes du pays de code FRA (dans le schéma world).\n\nSELECT SUM (population)  \nFROM city \nWHERE countrycode = 'FRA';\n\nGNP moyen par habitant (pas pondéré!) sur le continent South America\n\n\nSELECT \n  AVG(1e6*gnp/population_country)::decimal(8,0) \nFROM \n  country \nWHERE \n  continent = 'South America'"
   },
   {
     "objectID": "slides/SQL_3.html#fonctions-de-calcul-max-min",
     "href": "slides/SQL_3.html#fonctions-de-calcul-max-min",
     "title": "BD IV: SQL III",
-    "section": "Fonctions de calcul : MAX, MIN",
-    "text": "Fonctions de calcul : MAX, MIN\nMAX (&lt;nomattribut&gt;)  \nmaximum des valeurs prises par &lt;nomattribut&gt;\n\nMIN (&lt;nomattribut&gt;)  \nminimum des valeurs prises par &lt;nomattribut&gt;\n\n\n\n\n\n\nMise en garde\n\n\nAttention aux valeurs nulles !\nNULL = MIN(NULL, 3, 100) ou 3 = MIN(NULL, 3, 100) ?\n Essayez SELECT MIN(gnpold) FROM country;\n\n\n\n\n\nQuantité maximale livrée de pièce ‘x21’ lors d’une commande.\nSELECT MAX (gnpold), max(gnp)   \nFROM country \nWHERE region = 'Caribbean';"
+    "section": "Fonctions de calcul : MAX, MIN\n",
+    "text": "Fonctions de calcul : MAX, MIN\n\nMAX (&lt;nomattribut&gt;)  \nmaximum des valeurs prises par &lt;nomattribut&gt;\n\nMIN (&lt;nomattribut&gt;)  \nminimum des valeurs prises par &lt;nomattribut&gt;\n\n\n\n\n\n\nMise en garde\n\n\nAttention aux valeurs nulles !\nNULL = MIN(NULL, 3, 100) ou 3 = MIN(NULL, 3, 100) ?\n Essayez SELECT MIN(gnpold) FROM country;\n\n\n\n\n\nQuantité maximale livrée de pièce ‘x21’ lors d’une commande.\nSELECT MAX (gnpold), max(gnp)   \nFROM country \nWHERE region = 'Caribbean';"
   },
   {
     "objectID": "slides/SQL_3.html#fonctions-de-calcul-count",
     "href": "slides/SQL_3.html#fonctions-de-calcul-count",
     "title": "BD IV: SQL III",
-    "section": "Fonctions de calcul : COUNT",
-    "text": "Fonctions de calcul : COUNT\nOn peut aussi compter le nombre de tuples dans un résultat\nCOUNT(* |[ ALL | DISTINCT &lt;nomattribut&gt;])  \nNombre de valeurs prises par le résultat\n\n\nDISTINCT : sans les doublons\nALL: avec les doublons\n* : y compris les valeurs nullles/manquantes\n\nNombre de territoires dans la région Carribean\nSELECT COUNT(*)  \nFROM country\nWHERE region = 'Caribbean';"
+    "section": "Fonctions de calcul : COUNT\n",
+    "text": "Fonctions de calcul : COUNT\n\nOn peut aussi compter le nombre de tuples dans un résultat\nCOUNT(* |[ ALL | DISTINCT &lt;nomattribut&gt;])  \nNombre de valeurs prises par le résultat\n\n\n\nDISTINCT : sans les doublons\n\nALL: avec les doublons\n\n* : y compris les valeurs nullles/manquantes\n\nNombre de territoires dans la région Carribean\nSELECT COUNT(*)  \nFROM country\nWHERE region = 'Caribbean';"
   },
   {
     "objectID": "slides/SQL_3.html#fonctions-de-calcul-exemples",
     "href": "slides/SQL_3.html#fonctions-de-calcul-exemples",
     "title": "BD IV: SQL III",
     "section": "Fonctions de calcul : exemples",
-    "text": "Fonctions de calcul : exemples\nExemple de combinaison de quelques opérations et fonctions\nNom des régions comportant plus de \\(10\\) territoires.\n\n--| eval: false\n--| echo: false\n--| code-line-numbers: \"1-2|4-6|\"\nSELECT DISTINCT c.region \nFROM country c \nWHERE (\n  SELECT Count (*)     \n  FROM country co     \n  WHERE co.region = c.region\n) &gt;= 15;"
+    "text": "Fonctions de calcul : exemples\nExemple de combinaison de quelques opérations et fonctions\nNom des régions comportant plus de \\(10\\) territoires."
   },
   {
     "objectID": "slides/SQL_3.html#musée-des-horreurs",
     "href": "slides/SQL_3.html#musée-des-horreurs",
     "title": "BD IV: SQL III",
     "section": "Musée des horreurs",
-    "text": "Musée des horreurs\nTrouver les régions où au moins un pays possède une espérance de vie inférieure à 50\nSELECT DISTINCT continent, region\nFROM country c \nWHERE (\n  SELECT MIN(d.lifeexpectancy)     \n  FROM country d    \n  WHERE c.region=d.region\n  ) &lt; 50    \nORDER BY continent, region;\n\n\n\nContinent\nRegion\n\n\n\n\nAfrica\nCentral Africa\n\n\nAfrica\nEastern Africa\n\n\nAfrica\nNorthern Africa\n\n\nAfrica\nSouthern Africa\n\n\nAfrica\nWestern Africa\n\n\nAsia\nSoutheast Asia\n\n\nAsia\nSouthern and Central Asia\n\n\nNorth America\nCaribbean\n\n\n\n\n\nPourquoi cette requête est-elle horrible ?"
+    "text": "Musée des horreurs\nTrouver les régions où au moins un pays possède une espérance de vie inférieure à 50\nSELECT DISTINCT continent, region\nFROM country c \nWHERE (\n  SELECT MIN(d.lifeexpectancy)     \n  FROM country d    \n  WHERE c.region=d.region\n  ) &lt; 50    \nORDER BY continent, region;\n\n\nContinent\nRegion\n\n\n\nAfrica\nCentral Africa\n\n\nAfrica\nEastern Africa\n\n\nAfrica\nNorthern Africa\n\n\nAfrica\nSouthern Africa\n\n\nAfrica\nWestern Africa\n\n\nAsia\nSoutheast Asia\n\n\nAsia\nSouthern and Central Asia\n\n\nNorth America\nCaribbean\n\n\n\n\n\nPourquoi cette requête est-elle horrible ?"
   },
   {
     "objectID": "slides/SQL_3.html#section-2",
     "href": "slides/SQL_3.html#section-2",
     "title": "BD IV: SQL III",
     "section": "",
-    "text": "On peut faire plus simple (et plus efficace) dans le case présent\nSELECT DISTINCT continent, region\nFROM country c \nWHERE c.lifeexpectancy &lt;50 \nORDER BY continent, region;\n\n\n\nContinent\nRegion\n\n\n\n\nAfrica\nCentral Africa\n\n\nAfrica\nEastern Africa\n\n\nAfrica\nNorthern Africa\n\n\nAfrica\nSouthern Africa\n\n\nAfrica\nWestern Africa\n\n\nAsia\nSoutheast Asia\n\n\nAsia\nSouthern and Central Asia\n\n\nNorth America\nCaribbean"
+    "text": "On peut faire plus simple (et plus efficace) dans le case présent\nSELECT DISTINCT continent, region\nFROM country c \nWHERE c.lifeexpectancy &lt;50 \nORDER BY continent, region;\n\n\nContinent\nRegion\n\n\n\nAfrica\nCentral Africa\n\n\nAfrica\nEastern Africa\n\n\nAfrica\nNorthern Africa\n\n\nAfrica\nSouthern Africa\n\n\nAfrica\nWestern Africa\n\n\nAsia\nSoutheast Asia\n\n\nAsia\nSouthern and Central Asia\n\n\nNorth America\nCaribbean"
   },
   {
     "objectID": "slides/SQL_3.html#fonctions-de-calcul-exemples-1",
@@ -2967,7 +2967,7 @@
     "href": "slides/SQL_3.html#exemple",
     "title": "BD IV: SQL III",
     "section": "Exemple",
-    "text": "Exemple\nDans le schéma world, quel est le gnp moyen par region sur le continent Europe ?\nSELECT region, \n       ROUND(1000 * SUM(gnp)/SUM(population_country),2) AS avg_gnp,  \n       ROUND(MAX(1000* gnp/population_country),2) AS max_gnp, \n       ROUND(MIN(1000* gnp/population_country),2) AS min_gnp,\n       MIN(lifeexpectancy) AS min_life_exp\nFROM country \nWHERE continent = 'Europe' \nGROUP BY region \nORDER BY avg_gnp DESC;\n\n\n\nregion\navg_gnp\nmax_gnp\nmin_gnp\nmin_life_exp\n\n\n\n\nNordic Countries\n28.00\n32.66\n0.00\n76.5\n\n\nWestern Europe\n25.50\n37.46\n22.82\n77.1\n\n\nBritish Islands\n22.94\n23.12\n20.11\n76.8\n\n\nSouthern Europe\n13.91\n20.90\n0.72\n71.5\n\n\nBaltic Countries\n2.96\n3.70\n2.64\n68.4\n\n\nEastern Europe\n2.15\n5.35\n0.36\n64.5"
+    "text": "Exemple\nDans le schéma world, quel est le gnp moyen par region sur le continent Europe ?\nSELECT region, \n       ROUND(1000 * SUM(gnp)/SUM(population_country),2) AS avg_gnp,  \n       ROUND(MAX(1000* gnp/population_country),2) AS max_gnp, \n       ROUND(MIN(1000* gnp/population_country),2) AS min_gnp,\n       MIN(lifeexpectancy) AS min_life_exp\nFROM country \nWHERE continent = 'Europe' \nGROUP BY region \nORDER BY avg_gnp DESC;\n\n\nregion\navg_gnp\nmax_gnp\nmin_gnp\nmin_life_exp\n\n\n\nNordic Countries\n28.00\n32.66\n0.00\n76.5\n\n\nWestern Europe\n25.50\n37.46\n22.82\n77.1\n\n\nBritish Islands\n22.94\n23.12\n20.11\n76.8\n\n\nSouthern Europe\n13.91\n20.90\n0.72\n71.5\n\n\nBaltic Countries\n2.96\n3.70\n2.64\n68.4\n\n\nEastern Europe\n2.15\n5.35\n0.36\n64.5"
   },
   {
     "objectID": "slides/SQL_3.html#partition-de-résultats-de-requêtes-3",
@@ -3009,35 +3009,35 @@
     "href": "slides/SQL_3.html#retour-au-musée-des-horreurs",
     "title": "BD IV: SQL III",
     "section": "Retour au musée des horreurs",
-    "text": "Retour au musée des horreurs\nSELECT continent, region, MIN(c.lifeexpectancy)\nFROM country c \nGROUP BY continent, region\nHAVING MIN(c.lifeexpectancy) &lt; 50  \nORDER BY continent, region ;   \n\n\n\nContinent\nRegion\nmax\nmin\n\n\n\n\nAfrica\nCentral Africa\n65.3\n38.3\n\n\nAfrica\nEastern Africa\n72.7\n37.2\n\n\nAfrica\nNorthern Africa\n75.5\n49.8\n\n\nAfrica\nSouthern Africa\n51.1\n39.3\n\n\nAfrica\nWestern Africa\n76.8\n41.3\n\n\nAsia\nSoutheast Asia\n80.1\n46.0\n\n\nAsia\nSouthern and Central Asia\n71.8\n45.9\n\n\nNorth America\nCaribbean\n78.9\n49.2"
+    "text": "Retour au musée des horreurs\nSELECT continent, region, MIN(c.lifeexpectancy)\nFROM country c \nGROUP BY continent, region\nHAVING MIN(c.lifeexpectancy) &lt; 50  \nORDER BY continent, region ;   \n\n\nContinent\nRegion\nmax\nmin\n\n\n\nAfrica\nCentral Africa\n65.3\n38.3\n\n\nAfrica\nEastern Africa\n72.7\n37.2\n\n\nAfrica\nNorthern Africa\n75.5\n49.8\n\n\nAfrica\nSouthern Africa\n51.1\n39.3\n\n\nAfrica\nWestern Africa\n76.8\n41.3\n\n\nAsia\nSoutheast Asia\n80.1\n46.0\n\n\nAsia\nSouthern and Central Asia\n71.8\n45.9\n\n\nNorth America\nCaribbean\n78.9\n49.2"
   },
   {
     "objectID": "slides/SQL_3.html#exemple-1",
     "href": "slides/SQL_3.html#exemple-1",
     "title": "BD IV: SQL III",
     "section": "Exemple",
-    "text": "Exemple\nDans le schéma world, présenter pour chaque pays dont la région comprend le motif Countries, l’espérance de vie, l’espérance de vie maximale et minimale dans la région.\n--| eval: false\n--| echo: true\n--| code-line-numbers: \"2-3|1-4|\"\nSELECT region, name_country, lifeexpectancy, \n       min(lifeexpectancy) OVER (PARTITION BY region),  \n       max(lifeexpectancy) OVER (PARTITION BY region)   \nFROM country \nWHERE region LIKE '%Countries'\nORDER BY region, lifeexpectancy  \nLIMIT 6 ;\n\n\n\nRegion\nName of country\nLife expectancy\nmin\nmax\n\n\n\n\nBaltic Countries\nLatvia\n68.4\n68.4\n69.5\n\n\nBaltic Countries\nLithuania\n69.1\n68.4\n69.5\n\n\nBaltic Countries\nEstonia\n69.5\n68.4\n69.5\n\n\nNordic Countries\nDenmark\n76.5\n76.5\n79.6\n\n\nNordic Countries\nFinland\n77.4\n76.5\n79.6\n\n\nNordic Countries\nFaroe Islands\n78.4\n76.5\n79.6"
+    "text": "Exemple\nDans le schéma world, présenter pour chaque pays dont la région comprend le motif Countries, l’espérance de vie, l’espérance de vie maximale et minimale dans la région.\n\nSELECT region, name_country, lifeexpectancy, \n       min(lifeexpectancy) OVER (PARTITION BY region),  \n       max(lifeexpectancy) OVER (PARTITION BY region)   \nFROM country \nWHERE region LIKE '%Countries'\nORDER BY region, lifeexpectancy  \nLIMIT 6 ;\n\n\n\nRegion\nName of country\nLife expectancy\nmin\nmax\n\n\n\nBaltic Countries\nLatvia\n68.4\n68.4\n69.5\n\n\nBaltic Countries\nLithuania\n69.1\n68.4\n69.5\n\n\nBaltic Countries\nEstonia\n69.5\n68.4\n69.5\n\n\nNordic Countries\nDenmark\n76.5\n76.5\n79.6\n\n\nNordic Countries\nFinland\n77.4\n76.5\n79.6\n\n\nNordic Countries\nFaroe Islands\n78.4\n76.5\n79.6"
   },
   {
     "objectID": "slides/SQL_3.html#calculer-une-fonction-fenêtre-sans-invoquer-over-...",
     "href": "slides/SQL_3.html#calculer-une-fonction-fenêtre-sans-invoquer-over-...",
     "title": "BD IV: SQL III",
-    "section": "Calculer une fonction fenêtre sans invoquer OVER (...)",
-    "text": "Calculer une fonction fenêtre sans invoquer OVER (...)\nPour calculer ce résultat sans fonctions fenêtres,\n\non effectue une partition selon la region, une aggrégation par groupe pour calculer min(lifeexpectancy) et max(lifeexpectancy). On obtient une table à trois colonnes.\non calcule une (équi)-jointure avec la table country originelle sur la colonne commune region\non projette le résultat sur les cinq colonnes pertinentes.\n\n\n--| eval: false\n--| echo: true\n\nWITH R AS (\n  SELECT region, min(lifeexpectancy) AS minlex, max(lifeexpectancy) AS maxlex\n  FROM country\n  WHERE region LIKE '%Countries' AND lifeexpectancy IS NOT NULL \n  GROUP BY region\n)\n\nSELECT region, name_country, lifeexpectancy, minlex, maxlex\nFROM country co NATURAL JOIN R"
+    "section": "Calculer une fonction fenêtre sans invoquer OVER (...)\n",
+    "text": "Calculer une fonction fenêtre sans invoquer OVER (...)\n\nPour calculer ce résultat sans fonctions fenêtres,\n\non effectue une partition selon la region, une aggrégation par groupe pour calculer min(lifeexpectancy) et max(lifeexpectancy). On obtient une table à trois colonnes.\non calcule une (équi)-jointure avec la table country originelle sur la colonne commune region\non projette le résultat sur les cinq colonnes pertinentes.\n\n\n\nWITH R AS (\n  SELECT region, min(lifeexpectancy) AS minlex, max(lifeexpectancy) AS maxlex\n  FROM country\n  WHERE region LIKE '%Countries' AND lifeexpectancy IS NOT NULL \n  GROUP BY region\n)\n\nSELECT region, name_country, lifeexpectancy, minlex, maxlex\nFROM country co NATURAL JOIN R"
   },
   {
     "objectID": "slides/SQL_3.html#variations",
     "href": "slides/SQL_3.html#variations",
     "title": "BD IV: SQL III",
     "section": "Variations",
-    "text": "Variations\nSELECT region, name_country, lifeexpectancy, \n    rank() OVER (\n    PARTITION BY region   \n      ORDER BY lifeexpectancy DESC\n  )  \nFROM country \nWHERE region LIKE '%Countries'\nORDER BY region, lifeexpectancy DESC \nLIMIT 6 ;\n\n\n\nRegion\nName of country\nlife expectancy\nrank\n\n\n\n\nBaltic Countries\nEstonia\n69.5\n1\n\n\nBaltic Countries\nLithuania\n69.1\n2\n\n\nBaltic Countries\nLatvia\n68.4\n3\n\n\nNordic Countries\nSvalbard and Jan Mayen\n\n1\n\n\nNordic Countries\nSweden\n79.6\n2\n\n\nNordic Countries\nIceland\n79.4\n3\n\n\n\n\n\nQue se passe-t-il avec les valeurs nulles ?"
+    "text": "Variations\nSELECT region, name_country, lifeexpectancy, \n    rank() OVER (\n    PARTITION BY region   \n      ORDER BY lifeexpectancy DESC\n  )  \nFROM country \nWHERE region LIKE '%Countries'\nORDER BY region, lifeexpectancy DESC \nLIMIT 6 ;\n\n\nRegion\nName of country\nlife expectancy\nrank\n\n\n\nBaltic Countries\nEstonia\n69.5\n1\n\n\nBaltic Countries\nLithuania\n69.1\n2\n\n\nBaltic Countries\nLatvia\n68.4\n3\n\n\nNordic Countries\nSvalbard and Jan Mayen\n\n1\n\n\nNordic Countries\nSweden\n79.6\n2\n\n\nNordic Countries\nIceland\n79.4\n3\n\n\n\n\n\nQue se passe-t-il avec les valeurs nulles ?"
   },
   {
     "objectID": "slides/SQL_3.html#sommes-cumulées-par-groupes-selon-un-ordre",
     "href": "slides/SQL_3.html#sommes-cumulées-par-groupes-selon-un-ordre",
     "title": "BD IV: SQL III",
     "section": "Sommes cumulées par groupes selon un ordre",
-    "text": "Sommes cumulées par groupes selon un ordre\nSELECT \n    region, name_country, \n    sum(gnp) OVER (\n    PARTITION BY region  \n        ORDER BY gnp\n)     \nFROM country c \nWHERE region LIKE '%Europe' \nLIMIT 6;\n\n\n\nRegion\nName Country\nSum\n\n\n\n\nEastern Europe\nMoldova\n1579.00\n\n\nEastern Europe\nBulgaria\n13757.00\n\n\nEastern Europe\nBelarus\n27471.00\n\n\nEastern Europe\nSlovakia\n48065.00\n\n\nEastern Europe\nRomania\n86223.00\n\n\nEastern Europe\nUkraine\n128391.00"
+    "text": "Sommes cumulées par groupes selon un ordre\nSELECT \n    region, name_country, \n    sum(gnp) OVER (\n    PARTITION BY region  \n        ORDER BY gnp\n)     \nFROM country c \nWHERE region LIKE '%Europe' \nLIMIT 6;\n\n\nRegion\nName Country\nSum\n\n\n\nEastern Europe\nMoldova\n1579.00\n\n\nEastern Europe\nBulgaria\n13757.00\n\n\nEastern Europe\nBelarus\n27471.00\n\n\nEastern Europe\nSlovakia\n48065.00\n\n\nEastern Europe\nRomania\n86223.00\n\n\nEastern Europe\nUkraine\n128391.00"
   },
   {
     "objectID": "slides/SQL_3.html#exemple-2",
@@ -3079,20 +3079,20 @@
     "href": "slides/SQL_3.html#rollup",
     "title": "BD IV: SQL III",
     "section": "ROLLUP",
-    "text": "ROLLUP\n--| echo: true\n--| eval: false\n--| code-line-numbers: \"|4\"\nSELECT continent, region, max(lifeexpectancy)\nFROM country c \nWHERE continent LIKE '%America'\nGROUP BY ROLLUP  (continent, region)  \nORDER BY continent, region ;\n|Continent    |Region         |max |\n|:------------|:--------------|---:|\n|North America|Caribbean      |78.9|\n|North America|Central America|75.8|\n|North America|North America  |79.4|\n|North America|               |79.4|\n|South America|South America  |76.1|\n|South America|               |76.1|\n|             |               |79.4|"
+    "text": "ROLLUP\n\nSELECT continent, region, max(lifeexpectancy)\nFROM country c \nWHERE continent LIKE '%America'\nGROUP BY ROLLUP  (continent, region)  \nORDER BY continent, region ;\n\n|Continent    |Region         |max |\n|:------------|:--------------|---:|\n|North America|Caribbean      |78.9|\n|North America|Central America|75.8|\n|North America|North America  |79.4|\n|North America|               |79.4|\n|South America|South America  |76.1|\n|South America|               |76.1|\n|             |               |79.4|"
   },
   {
     "objectID": "slides/SQL_3.html#grouping-sets",
     "href": "slides/SQL_3.html#grouping-sets",
     "title": "BD IV: SQL III",
     "section": "GROUPING SETS",
-    "text": "GROUPING SETS\n--| echo: true\n--| eval: false\n--| code-line-numbers: \"|3\"\nSELECT c1, c2, aggregate_function(c3)\nFROM table_name\nGROUP BY GROUPING SETS ((c1, c2), (c1), (c2), ());   \n ROLLUP and CUBE are special cases of GROUPING SETS"
+    "text": "GROUPING SETS\n\nSELECT c1, c2, aggregate_function(c3)\nFROM table_name\nGROUP BY GROUPING SETS ((c1, c2), (c1), (c2), ());   \n\n ROLLUP and CUBE are special cases of GROUPING SETS"
   },
   {
     "objectID": "slides/SQL_3.html#grouping-sets-suite",
     "href": "slides/SQL_3.html#grouping-sets-suite",
     "title": "BD IV: SQL III",
-    "section": "GROUPING SETS (suite)",
+    "section": "\nGROUPING SETS (suite)",
     "text": "GROUPING SETS (suite)\nSELECT continent, region, max(lifeexpectancy)\nFROM country c \nWHERE continent LIKE '%America'\nGROUP BY GROUPING SETS  ((continent, region), (continent), ())  \nORDER BY continent, region ;\n|Continent    |Region         |max |\n|:------------|:--------------|---:|\n|North America|Caribbean      |78.9|\n|North America|Central America|75.8|\n|North America|North America  |79.4|\n|North America|               |79.4|\n|South America|South America  |76.1|\n|South America|               |76.1|\n|             |               |79.4|"
   },
   {
@@ -3100,7 +3100,7 @@
     "href": "slides/SQL_3.html#cube",
     "title": "BD IV: SQL III",
     "section": "CUBE",
-    "text": "CUBE\n--| echo: true\n--| eval: false\n--| code-line-numbers: \"|4\"\nSELECT c1, c2, c3,\n  aggregate (c4) \nFROM table_name\nGROUP BY CUBE (c1, c2, c3);"
+    "text": "CUBE\n\nSELECT c1, c2, c3,\n  aggregate (c4) \nFROM table_name\nGROUP BY CUBE (c1, c2, c3);"
   },
   {
     "objectID": "slides/SQL_3.html#section-6",
@@ -3114,7 +3114,7 @@
     "href": "slides/SQL_3.html#compter-les-formes-de-gouvernement-et-les-région-dans-les-amériques",
     "title": "BD IV: SQL III",
     "section": "Compter les formes de gouvernement et les région dans les Amériques",
-    "text": "Compter les formes de gouvernement et les région dans les Amériques\n--| echo: true\n--| eval: false\n--| code-line-numbers: \"|4,5,8\"\nSELECT  \n       region, \n       governmentform, \n       count(*) AS cnt, \n       max(lifeexpectancy)\nFROM country c \nWHERE continent LIKE '%America'\nGROUP BY CUBE   (region, governmentform)   \nHAVING COUNT(*) &gt; 0\nORDER BY region, cnt DESC;"
+    "text": "Compter les formes de gouvernement et les région dans les Amériques\n\nSELECT  \n       region, \n       governmentform, \n       count(*) AS cnt, \n       max(lifeexpectancy)\nFROM country c \nWHERE continent LIKE '%America'\nGROUP BY CUBE   (region, governmentform)   \nHAVING COUNT(*) &gt; 0\nORDER BY region, cnt DESC;"
   },
   {
     "objectID": "slides/SQL_3.html#compter-les-formes-de-gouvernement-et-les-région-dans-les-amériques-1",
@@ -3128,7 +3128,7 @@
     "href": "slides/SQL_3.html#portrait-robot-dune-requête",
     "title": "BD IV: SQL III",
     "section": "Portrait robot d’une requête",
-    "text": "Portrait robot d’une requête\nSELECT &lt;attributs&gt;           -- les colonnes de la table résultat\n\nFROM &lt;relations&gt;             -- la/les table/s qui émettent les données\n\n[WHERE &lt;condition&gt; ]         -- filtre\n\n[GROUP BY &lt;attributs de partitionnement&gt;   -- découpage en groupes\n\n[HAVING &lt;condition&gt;]]      -- filtrage des groupes\n\n[ORDER BY &lt;critere&gt;]       -- trier \n\nSELECT : attributs du résultat (avec agrégats éventuels)\nWHERE : condition de sélection indépendante du GROUP BY\nHAVING : condition de sélection portant sur les groupes"
+    "text": "Portrait robot d’une requête\nSELECT &lt;attributs&gt;           -- les colonnes de la table résultat\n\nFROM &lt;relations&gt;             -- la/les table/s qui émettent les données\n\n[WHERE &lt;condition&gt; ]         -- filtre\n\n[GROUP BY &lt;attributs de partitionnement&gt;   -- découpage en groupes\n\n[HAVING &lt;condition&gt;]]      -- filtrage des groupes\n\n[ORDER BY &lt;critere&gt;]       -- trier \n\n\nSELECT : attributs du résultat (avec agrégats éventuels)\n\nWHERE : condition de sélection indépendante du GROUP BY\n\n\nHAVING : condition de sélection portant sur les groupes"
   },
   {
     "objectID": "slides/SQL_3.html#ordre-dexécution-des-éléments-dune-requête",

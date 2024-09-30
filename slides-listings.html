@@ -76,7 +76,7 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    const listingTargetEl = window.document.querySelector('#listing-diapos .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
       return; 
@@ -89,7 +89,7 @@ ul.task-list li input[type="checkbox"] {
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+    window['quarto-listings']['listing-diapos'] = new List('listing-diapos', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -411,31 +411,11 @@ window.Quarto = {
 
 <p>Les diapositives fournissent le canevas du cours. Vous pouvez les utiliser pour vous familiariser avec le matériel du prochain cours, pour revoir les cours passés et, pour réviser.</p>
 <p>Les diapositives marquées par l’image <i class="fa-solid fa-person-chalkboard" aria-label="person-chalkboard"></i> renvoient à des développements effectués en classes.</p>
-<div id="sample-listings">
-
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Mode d’emploi
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Les diapositives utilisent la bibliothèque <a href="https://revealjs.com"><code>revealjs</code></a> de <i class="fa-brands fa-js" aria-label="js"></i>. Elles s’affichent dans votre navigateur. Vous pouvez accéder au mode d’emploi en tappant <i class="fa-solid fa-question" aria-label="question"></i></p>
-</div>
-</div>
-
-
-
-
-<div class="quarto-listing quarto-listing-container-table" id="listing-listing">
+<div id="listing-diapos" class="quarto-listing quarto-listing-container-table">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
      <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
+     <select id="listing-diapos-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-diapos'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
        <option value="" disabled="" selected="" hidden="">Order By</option>
        <option value="index" data-direction="asc">Default</option>
          <option value="listing-date-sort" data-direction="asc">
@@ -505,10 +485,10 @@ Description
 <span class="listing-subtitle">Langage Manipulation de Données 1</span>
 </td>
 </tr>
-<tr data-index="3" data-listing-date-sort="1726783200000" data-listing-file-modified-sort="1720592667248" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1762" data-listing-title-sort="BD II: SQL II" data-listing-filename-sort="SQL_2.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="3" data-listing-date-sort="1727388000000" data-listing-file-modified-sort="1727724426748" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="9" data-listing-word-count-sort="1762" data-listing-title-sort="BD II: SQL II" data-listing-filename-sort="SQL_2.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
-<span class="listing-date">Sep 20, 2024</span>
+<span class="listing-date">Sep 27, 2024</span>
 </td>
 <td>
 <a href="./slides/SQL_2.html" class="title listing-title">BD II: SQL II</a>
@@ -517,19 +497,7 @@ Description
 <span class="listing-subtitle">Langage Manipulation de Données 2 : requêtes imbriquées</span>
 </td>
 </tr>
-<tr data-index="4" data-listing-date-sort="1727388000000" data-listing-file-modified-sort="1727434938696" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="31" data-listing-word-count-sort="6089" data-listing-title-sort="BD IV: SQL III" data-listing-filename-sort="SQL_3.qmd" onclick="href = this.querySelector('a').getAttribute('href');
- if (href) { window.location=href ; return false; }">
-<td>
-<span class="listing-date">Sep 27, 2024</span>
-</td>
-<td>
-<a href="./slides/SQL_3.html" class="title listing-title">BD IV: SQL III</a>
-</td>
-<td>
-<span class="listing-subtitle">Langage Manipulation de Données 3 : Aggrégation/Fenêtres/Partitions</span>
-</td>
-</tr>
-<tr data-index="5" data-listing-date-sort="1727992800000" data-listing-file-modified-sort="1720592479523" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1832" data-listing-title-sort="BD II: SQL LDD" data-listing-filename-sort="LDD_0.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+<tr data-index="4" data-listing-date-sort="1727992800000" data-listing-file-modified-sort="1720592479523" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="10" data-listing-word-count-sort="1832" data-listing-title-sort="BD II: SQL LDD" data-listing-filename-sort="LDD_0.qmd" onclick="href = this.querySelector('a').getAttribute('href');
  if (href) { window.location=href ; return false; }">
 <td>
 <span class="listing-date">Oct 4, 2024</span>
@@ -539,6 +507,18 @@ Description
 </td>
 <td>
 <span class="listing-subtitle">Définition de données</span>
+</td>
+</tr>
+<tr data-index="5" data-listing-date-sort="1727992800000" data-listing-file-modified-sort="1727724517077" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="31" data-listing-word-count-sort="6089" data-listing-title-sort="BD IV: SQL III" data-listing-filename-sort="SQL_3.qmd" onclick="href = this.querySelector('a').getAttribute('href');
+ if (href) { window.location=href ; return false; }">
+<td>
+<span class="listing-date">Oct 4, 2024</span>
+</td>
+<td>
+<a href="./slides/SQL_3.html" class="title listing-title">BD IV: SQL III</a>
+</td>
+<td>
+<span class="listing-subtitle">Langage Manipulation de Données 3 : Aggrégation/Fenêtres/Partitions</span>
 </td>
 </tr>
 <tr data-index="6" data-listing-date-sort="1728597600000" data-listing-file-modified-sort="1720592492595" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="13" data-listing-word-count-sort="2470" data-listing-title-sort="BD : Contraintes" data-listing-filename-sort="LDD_1.qmd" onclick="href = this.querySelector('a').getAttribute('href');
@@ -690,7 +670,25 @@ Description
 <div class="listing-no-matching d-none">
 No matching items
 </div>
-</div></main> <!-- /main -->
+</div>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Mode d’emploi
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Les diapositives utilisent la bibliothèque <a href="https://revealjs.com"><code>revealjs</code></a> de <i class="fa-brands fa-js" aria-label="js"></i>. Elles s’affichent dans votre navigateur. Vous pouvez accéder au mode d’emploi en tappant <i class="fa-solid fa-question" aria-label="question"></i></p>
+</div>
+</div>
+
+
+
+
+</main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
