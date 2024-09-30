@@ -1,16 +1,17 @@
 ---
 title: "Diapositives"
 listing:
-  contents: 
-    - "slides/*.qmd"
-  type: table  
-  table-striped: true
-  table-hover: true
-  sort: date
-  fields: [date, title, subtitle] 
-  field-display-names: 
-    title: "Titre"
-    subtitle: "Description"
+  - id: "diapos"
+    contents: 
+      - "slides/*.qmd"
+    type: table  
+    table-striped: true
+    table-hover: true
+    sort: date
+    fields: [date, title, subtitle] 
+    field-display-names: 
+      title: "Titre"
+      subtitle: "Description"
 ---
 
 Les diapositives fournissent le canevas du cours. Vous pouvez les utiliser pour vous familiariser avec le matériel du prochain cours, pour revoir les cours passés et, pour réviser.
@@ -20,7 +21,7 @@ Les diapositives marquées par l'image {{< fa person-chalkboard >}} renvoient à
 
 
 
-::: {#sample-listings}
+::: {#diapos}
 :::
 
 
