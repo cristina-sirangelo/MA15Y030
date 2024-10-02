@@ -11,7 +11,7 @@ project:
 
 website:
   announcement: 
-   icon: emoji-surprise
+    icon: emoji-surprise
     dismissable: true
     content: "**Alerte** - Contrôle Continu I vendredi 25 octobre 17h-18h15 Amphi A2 Halle aux Farines"
     type: primary
