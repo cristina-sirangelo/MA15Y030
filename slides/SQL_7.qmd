@@ -45,6 +45,30 @@ babynames[1:5,] |>
 # LMD : Opérateurs  {background-color="#1c191c"}
 
 
+## Petit rappel sur l'algèbre relationnel
+
+::: {.callout-note}
+
+### Principe
+
+Une opération de l'algèbre relationnelle accepte des opérandes (des relations) et parfois une
+expression.
+
+Une opération de l'algèbre relationnelle retourne une relation/table. 
+
+:::
+
+. . .
+
+::: {.callout-note}
+
+Une relation c'est un schéma (définition des colonnes/attributs) et une instance (une collection de lignes qui obéissent au schéma).
+
+Une opération de l'algèbre relationnelle définit le schéma de la table résultat à partir des schémas des tables opérandes
+
+Une opération de l'algèbre relationnelle définit l'instance du schéma résultat à partir des instances des tables opérandes (et peut-être de l'expression). 
+
+:::
 
 ## Opérateurs de base
 
@@ -63,18 +87,20 @@ L'algèbre relationnelle est d'abord un *Langage de Manipulation de Données& (L
 
 - Différence: $\Large{\backslash}$ 
 
-- Projection:  $\Large{\Pi}$  
+- Projection:  $\Large{\Pi}$  (avec une expression formée par la liste des attributs de projection)
 
-- Sélection: $\Large{\sigma}$ 
+- Sélection: $\Large{\sigma}$ (avec une expression qui définit la condition de filtrage) 
 
 - Produit cartésien:  $\Large{\times}$ 
 
-- Renommage:  $\Large{\rho}$ 
+- Renommage:  $\Large{\rho}$  (avec une expression formée par la liste des renommages)
 
-
-s'appliquent à des relations pour produire d'autres relations (le résultat).
+s'appliquent à des relations (les opérandes) pour produire d'autres relations (le résultat).
 
 :::
+
+
+
 
 
 ## Union $\cup$ et intersection  $\cap$
@@ -91,7 +117,7 @@ $R_2$.
 - $T=R_1\cap R_2$  est  constituée des tuples appartenant à $R_1$ *et* à
 $R_2$.
 
-- Les Schémas de  $R_1\cup R_2$, $R_1\cap R_2$ sont les mêmes que ceux de $R_1$  et  $R_2$
+- Le schémas de  $R_1\cup R_2$, $R_1\cap R_2$ sont les mêmess que ceux de $R_1$  et  $R_2$
 
 :::
 
@@ -220,7 +246,7 @@ R_1 - R_2\neq  R_2 - R_1$ (en général).
 
 ### Attention 
 
-En algèbre relationnelle, cette opération est commutative  ( $R_1\times R_2 = R_2\times R_1$ ) et associative
+En algèbre relationnelle, cette opération est commutative  ( $R_1\times R_2 = R_2\times R_1$ ) et associative (parce que l'on nomme des attributs/colonnes, on ne les désigne pas par une position)
  
 :::
 
@@ -369,7 +395,7 @@ S <- dplyr::rename(R, B=Ai)
 *Utilité* Va permettre d'étendre certains opérateurs pour des relations de schémas non-disjoints
 
 
-# Composer les opérations avec `\>` (pipe)
+# Composer les opérations avec `|>` (pipe)
 
 ## Les opérateurs comme fonctions
 
@@ -378,7 +404,7 @@ $\pi_{Ai1, Aip}\left(\sigma_C(R)\right)$
 se traduit en 
 
 ```{.r}
-dplyr::select(dplyr::filter(R, C), Ai1, ..., Aip)
+select(filter(R, C), Ai1, ..., Aip)
 ```
 
 qui s'avère difficile à lire, surtout si on compose plus d'opérations élémentaires 
@@ -388,15 +414,15 @@ La composition de fonctions se conçoit facilement mais l'expression corresponda
 ## Réécriture de la composition avec `|>`
 
 ```{.r}
-S <- dplyr::select(dplyr::filter(R, C), Ai1, ..., Aip)
+S <- select(filter(R, C), Ai1, ..., Aip)
 ```
 
 peut être réécrite en
 
 ```{.r}
 S <- R |> 
-  dplyr::filter(C) |>
-  dplyr::select(Ai1,.., Aip)
+  filter(C) |>
+  select(Ai1,.., Aip)
 ```
 
 
@@ -699,6 +725,44 @@ $$\text{TrDep} \bowtie^+ \text{TrArr}$$
 :::
 :::::
 
+
+## `inner_join()`
+
+
+## `join_by(...)`
+
+> `join_by()` constructs a specification that describes how to join two tables using a small domain specific language. 
+
+### Arguments 
+
+Expressions specifying the join.
+
+. . . 
+
+Each expression should consist of one of the following:
+
+- Equality condition: ==
+- Inequality conditions: >=, >, <=, or <
+- Rolling helper: closest()
+- Overlap helpers: between(), within(), or overlaps()
+
+::: {.aside}
+
+Other expressions are not supported. If you need to perform a join on a computed variable, e.g. join_by(sales_date - 40 >= promo_date), you'll need to precompute and store it in a separate column.
+
+:::
+
+--- 
+
+> Column names should be specified as quoted or unquoted names. By default, the name on the left-hand side of a join condition refers to the left-hand table, unless overridden by explicitly prefixing the column name with either ⁠x$⁠ or ⁠y$⁠.
+
+> If a single column name is provided without any join conditions, it is interpreted as if that column name was duplicated on each side of ==, i.e. x is interpreted as x == x.
+
+
+
+## `left_join()`
+
+
 ## Division
 
 ::: {.callout-important}
@@ -844,7 +908,75 @@ est la relation $T= R \div S$ de schéma $T(A_1, \dots, A_p)$.
 > Codd's theorem, a result proven in his seminal work on the relational model, equates the expressive power of relational algebra and relational calculus.[14]
 
 
+# Les expressions dans `dplyr` {background-color="#1c191c"}
 
+# La sélection bien tempérée (*tidy selection*) {background-color="#1c191c"}
+
+## 
+
+## 
+
+# Aggrégations et extension de l'algèbre relationnelle {background-color="#1c191c"}
+
+## `summarize(dqta, ... , by=expr)` dans `dplyr()`
+
+## `summarize()` avec sélection bien tempérée avec `across(..., ...)`
+
+# Partitionnement  {background-color="#1c191c"}
+
+## Le problème `GROUP BY`  en `SQL`
+
+## Des tables avec des domaines tabulaires 
+
+## `group_by()` et les `grouped tibbles`
+
+
+## `ungroup()`
+
+## `nest()` et `unnest()`
+
+## `enframe()`
+
+## Références sur les tqbles partitionnées
+
+[`dplyr` sur le groupement](https://dplyr.tidyverse.org/articles/grouping.html)
+
+# Mise à jour de tables {background-color="#1c191c"}
+
+
+## Types de mises à jour de tables en `SQL`
+
+- modification du schéma `ALTER TABLE ...`
+  - ajout de colonnes
+  - suppression de colonnes
+  - modification de domaines 
+
+- modification des lignes 
+  - mises à jour d'attributs sur certaines lignes 
+  - suppression de lignes
+  - insertions de lignes
+
+
+## Point de vue fonctionnel
+
+## `mutate()` 
+
+- ajout de colonnes
+- modification de domaines
+- mises à jour d'attributs sur certaines lignes 
+
+
+## Ajout de lignes 
+
+
+
+## 
+
+# Références
+
+
+- [Page maison `dplyr`](https://dplyr.tidyverse.org/)
+- []()
 
 # Fin  {background-color="#1c191c"}
 
