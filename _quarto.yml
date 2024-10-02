@@ -10,6 +10,12 @@ project:
   output-dir: _site
 
 website:
+  announcement: 
+   icon: emoji-surprise
+    dismissable: true
+    content: "**Alerte** - Contrôle Continu I vendredi 25 octobre 17h-18h15 Amphi A2 Halle aux Farines"
+    type: primary
+    position: above-navbar
   page-navigation: true
   title: "MA15Y030 - Automne 2024"
   description: "Page maison pour MA15Y030 - Bases de données, Licence MIASHS Automne  2024."
