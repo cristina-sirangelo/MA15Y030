@@ -2904,14 +2904,42 @@
     "href": "slides/SQL_3.html#fonctions-de-calcul-count",
     "title": "BD IV: SQL III",
     "section": "Fonctions de calcul : COUNT\n",
-    "text": "Fonctions de calcul : COUNT\n\nOn peut aussi compter le nombre de tuples dans un résultat\nCOUNT(* |[ ALL | DISTINCT &lt;nomattribut&gt;])  \nNombre de valeurs prises par le résultat\n\n\n\nDISTINCT : sans les doublons\n\nALL: avec les doublons\n\n* : y compris les valeurs nullles/manquantes\n\nNombre de territoires dans la région Carribean\nSELECT COUNT(*)  \nFROM country\nWHERE region = 'Caribbean';"
+    "text": "Fonctions de calcul : COUNT\n\nOn peut aussi compter le nombre de tuples dans le résultat d’une requête\nCOUNT(* |[ ALL | DISTINCT &lt;nomattribut&gt;])  \nNombre de valeurs prises par le résultat\n\n\n\nDISTINCT : sans les doublons\n\nALL: avec les doublons\n\n* : y compris les valeurs nullles/manquantes\n\nNombre de territoires dans la région Carribean\nSELECT COUNT(*)  \nFROM country\nWHERE region = 'Caribbean'; \n\n\n\nDans COUNT(* |[ ALL | DISTINCT &lt;nomattribut&gt;]), il faut comprendre qu’on peut écrire COUNT(*) ou COUNT (ALL country) ou COUNT (DISTINCT country). Le symbole | est utilisé pour décrire une alternative"
   },
   {
-    "objectID": "slides/SQL_3.html#fonctions-de-calcul-exemples",
-    "href": "slides/SQL_3.html#fonctions-de-calcul-exemples",
+    "objectID": "slides/SQL_3.html#fonction-de-calcul-sum",
+    "href": "slides/SQL_3.html#fonction-de-calcul-sum",
     "title": "BD IV: SQL III",
-    "section": "Fonctions de calcul : exemples",
-    "text": "Fonctions de calcul : exemples\nExemple de combinaison de quelques opérations et fonctions\nNom des régions comportant plus de \\(10\\) territoires."
+    "section": "Fonction de calcul SUM()\n",
+    "text": "Fonction de calcul SUM()\n\nOn peut sommer les valeurs contenues dans une colonne numérique\n\nSELECT \n  SUM(population) AS urban_pop\nFROM city  ci\nWHERE ci.countrycode = 'GBR' ;\n\n+-----------+\n| urban_pop |\n|-----------|\n| 22436673  |\n+-----------+"
+  },
+  {
+    "objectID": "slides/SQL_3.html#sommation-sur-tableau-vide",
+    "href": "slides/SQL_3.html#sommation-sur-tableau-vide",
+    "title": "BD IV: SQL III",
+    "section": "Sommation sur tableau vide",
+    "text": "Sommation sur tableau vide\n\nSELECT \n  SUM(population) AS urban_pop\nFROM city  ci\nWHERE ci.countrycode = 'zzz' ;\n\nretourne\n+-----------+\n| urban_pop |\n|-----------|\n| &lt;null&gt;    |\n+-----------+\nEst-ce cohérent?"
+  },
+  {
+    "objectID": "slides/SQL_3.html#autre-approche-avec-case-when-...then-...-else-...",
+    "href": "slides/SQL_3.html#autre-approche-avec-case-when-...then-...-else-...",
+    "title": "BD IV: SQL III",
+    "section": "Autre approche avec CASE WHEN ...THEN ... ELSE ...\n",
+    "text": "Autre approche avec CASE WHEN ...THEN ... ELSE ...\n\nSELECT \n  SUM(\n    CASE \n      WHEN countrycode='GBR' THEN population \n      ELSE 0 \n    END) AS urban_pop \n FROM city  ci ;\n\n+-----------+\n| urban_pop |\n|-----------|\n| 22436673  |\n+-----------+"
+  },
+  {
+    "objectID": "slides/SQL_3.html#calculer-les-populations-vivant-sous-diﬀŕents-régimes",
+    "href": "slides/SQL_3.html#calculer-les-populations-vivant-sous-diﬀŕents-régimes",
+    "title": "BD IV: SQL III",
+    "section": "Calculer les populations vivant sous diﬀŕents régimes",
+    "text": "Calculer les populations vivant sous diﬀŕents régimes\nSELECT \n  SUM(CASE \n    WHEN governmentform LIKE '%Monarchy%' THEN population_COUNTRY \n    ELSE 0 \n  END) AS pop_monarch,  \n  SUM(CASE \n    WHEN governmentform LIKE '%Republic%' THEN population_COUNTRY \n    ELSE 0 \n  END) AS pop_repu \nFROM country ;\n+-------------+------------+\n| pop_monarch | pop_repu   |\n|-------------+------------|\n| 519485000   | 5502453700 |\n+-------------+------------+"
+  },
+  {
+    "objectID": "slides/SQL_3.html#combinaison-de-quelques-opérations-et-fonctions",
+    "href": "slides/SQL_3.html#combinaison-de-quelques-opérations-et-fonctions",
+    "title": "BD IV: SQL III",
+    "section": "Combinaison de quelques opérations et fonctions",
+    "text": "Combinaison de quelques opérations et fonctions\nNom des régions comportant plus de \\(10\\) territoires.\n\n--| eval: false\n--| echo: false\n--| code-line-numbers: \"1-2|4-6|\"\nSELECT DISTINCT c.region \nFROM country c \nWHERE (\n  SELECT COUNT (*)     \n  FROM country co     \n  WHERE co.region = c.region\n) &gt;= 15;"
   },
   {
     "objectID": "slides/SQL_3.html#musée-des-horreurs",
@@ -2925,14 +2953,14 @@
     "href": "slides/SQL_3.html#section-2",
     "title": "BD IV: SQL III",
     "section": "",
-    "text": "On peut faire plus simple (et plus efficace) dans le case présent\nSELECT DISTINCT continent, region\nFROM country c \nWHERE c.lifeexpectancy &lt;50 \nORDER BY continent, region;\n\n\nContinent\nRegion\n\n\n\nAfrica\nCentral Africa\n\n\nAfrica\nEastern Africa\n\n\nAfrica\nNorthern Africa\n\n\nAfrica\nSouthern Africa\n\n\nAfrica\nWestern Africa\n\n\nAsia\nSoutheast Asia\n\n\nAsia\nSouthern and Central Asia\n\n\nNorth America\nCaribbean"
+    "text": "On peut faire plus simple (et plus efficace) dans le case présent\nSELECT \n  DISTINCT continent, region\nFROM country c \nWHERE c.lifeexpectancy &lt;50 \nORDER BY continent, region;\n\n\nContinent\nRegion\n\n\n\nAfrica\nCentral Africa\n\n\nAfrica\nEastern Africa\n\n\nAfrica\nNorthern Africa\n\n\nAfrica\nSouthern Africa\n\n\nAfrica\nWestern Africa\n\n\nAsia\nSoutheast Asia\n\n\nAsia\nSouthern and Central Asia\n\n\nNorth America\nCaribbean"
   },
   {
-    "objectID": "slides/SQL_3.html#fonctions-de-calcul-exemples-1",
-    "href": "slides/SQL_3.html#fonctions-de-calcul-exemples-1",
+    "objectID": "slides/SQL_3.html#fonctions-de-calcul-exemples-suite",
+    "href": "slides/SQL_3.html#fonctions-de-calcul-exemples-suite",
     "title": "BD IV: SQL III",
-    "section": "Fonctions de calcul : exemples",
-    "text": "Fonctions de calcul : exemples\nUtilisation d’opérateurs arithmétique entre les différents attributs d’un même tuple…\n\nSELECT \n  AVG(1e6*gnp/population_country)::decimal(8,0) \nFROM country \nWHERE \n  continent LIKE 'South Am%' AND\n  population_country &gt; 0 ;"
+    "section": "Fonctions de calcul : exemples (suite)",
+    "text": "Fonctions de calcul : exemples (suite)\nUtilisation d’opérateurs arithmétique entre les différents attributs d’un même tuple…\n\nSELECT \n  AVG(1e6*gnp/population_country)::decimal(8,0) \nFROM country \nWHERE \n  continent LIKE 'South Am%' AND\n  population_country &gt; 0 ;"
   },
   {
     "objectID": "slides/SQL_3.html#partition-de-résultats-de-requêtes",
@@ -2977,18 +3005,18 @@
     "text": "Partition de résultats de requêtes\nQuel est le sens de cette requête ?\nSELECT \n  continent, \n  COUNT(*) as nombre_pays, \n  SUM(population_country) as population_totale\nFROM country \nGROUP BY continent;"
   },
   {
-    "objectID": "slides/SQL_3.html#section-4",
-    "href": "slides/SQL_3.html#section-4",
-    "title": "BD IV: SQL III",
-    "section": "",
-    "text": "La requête suivante requête n’est pas correcte\nSELECT continent, region, MAX(population_country) \nFROM country \nGROUP BY continent;\n\n\n\n\n\n\n\nImportant\n\n\nLes attributs présents dans le SELECT sont forcémment présents dans le GROUP BY."
-  },
-  {
     "objectID": "slides/SQL_3.html#partition-de-résultats-de-requêtes-4",
     "href": "slides/SQL_3.html#partition-de-résultats-de-requêtes-4",
     "title": "BD IV: SQL III",
     "section": "Partition de résultats de requêtes",
     "text": "Partition de résultats de requêtes\n\nLa clause HAVING permet de poser une condition portant sur chacune des sous-relations générées par le GROUP BY\nLes sous-relations ne vérifiant pas la condition sont écartées du résultat.\n\nListe des continents comportent au moins cinq régions.\nSELECT continent \nFROM country \nGROUP BY continent    \nHAVING COUNT(DISTINCT region) &gt;= 5;"
+  },
+  {
+    "objectID": "slides/SQL_3.html#operation-group-by-et-calcul-sur-les-tables",
+    "href": "slides/SQL_3.html#operation-group-by-et-calcul-sur-les-tables",
+    "title": "BD IV: SQL III",
+    "section": "Operation GROUP BY et calcul sur les tables",
+    "text": "Operation GROUP BY et calcul sur les tables\n\n\n\n\n\n\nNote\n\n\nL’opération GROUP BY ne renvoie pas une table mais (implicitement) une collection de sous-tables indicées/étiquetées par les valeurs des attributs de groupement\nL’opération GROUP BY ne peut pas s’intégrer dans une algèbre relationnelle, même étendue.\n\n\n\n\n\n\n\n\n\nMise en garde\n\n\nSQL n’offre pas de moyen de mémoriser le résultat d’un GROUP BY avant d’effectuer des agrégations ou une projection sur les attributs de groupement.\n\n\n\n\n\nSELECT *  \nFROM country \nGROUP BY continent  ;\ncolumn \"country.countrycode\" must appear in the GROUP BY clause or be used in an aggregate function\nLINE 1: SELECT * FROM country GROUP BY continent"
   },
   {
     "objectID": "slides/SQL_3.html#présentationtri-de-résultats",
@@ -3103,8 +3131,8 @@
     "text": "CUBE\n\nSELECT c1, c2, c3,\n  aggregate (c4) \nFROM table_name\nGROUP BY CUBE (c1, c2, c3);"
   },
   {
-    "objectID": "slides/SQL_3.html#section-6",
-    "href": "slides/SQL_3.html#section-6",
+    "objectID": "slides/SQL_3.html#section-5",
+    "href": "slides/SQL_3.html#section-5",
     "title": "BD IV: SQL III",
     "section": "",
     "text": "|Continent    |Region       |Governmentf   |cnt|max |\n|:------------|:------------|:-------------|:--|:---|\n|             |               |                             | 51|79.4|\n|South America|South America  |Republic                     |  9|75.7|\n|North America|Central America|Republic                     |  6|75.8|\n|North America|Caribbean      |Constitutional Monarchy      |  8|75.2|\n|North America|Caribbean      |                             | 24|78.9|\n|South America|South America  |                             | 14|76.1|\n|North America|Central America|                             |  8|75.8|\n|South America|               |                             | 14|76.1|\n|North America|               |                             | 37|79.4|\n|             |Caribbean      |Constitutional Monarchy      |  8|75.2|\n|             |South America  |Republic                     |  9|75.7|\n|             |Central America|Republic                     |  6|75.8|\n|             |South America  |                             | 14|76.1|\n|             |Central America|                             |  8|75.8|\n|             |Caribbean      |                             | 24|78.9|\n|North America|               |Constitutional Monarchy      |  9|75.2|\n|North America|               |Republic                     | 10|75.8|\n|South America|               |Republic                     |  9|75.7|\n|North America|               |Dependent Territory of the UK|  6|78.9|\n|             |               |Republic                     | 19|75.8|\n|             |               |Constitutional Monarchy      |  9|75.2|\n|             |               |Dependent Territory of the UK|  7|78.9|"
@@ -4342,18 +4370,25 @@
     "text": "Table babynames\n\n\nstopifnot(\n  require(dplyr),\n  require(tibble),\n  require(babynames),\n  require(gt)\n)\n\n\nbabynames |&gt; \n  glimpse()\n\nRows: 1,924,665\nColumns: 5\n$ year &lt;dbl&gt; 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880, 1880,…\n$ sex  &lt;chr&gt; \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", \"F\", …\n$ name &lt;chr&gt; \"Mary\", \"Anna\", \"Emma\", \"Elizabeth\", \"Minnie\", \"Margaret\", \"Ida\",…\n$ n    &lt;int&gt; 7065, 2604, 2003, 1939, 1746, 1578, 1472, 1414, 1320, 1288, 1258,…\n$ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0.016…"
   },
   {
+    "objectID": "slides/SQL_7.html#petit-rappel-sur-lalgèbre-relationnelle",
+    "href": "slides/SQL_7.html#petit-rappel-sur-lalgèbre-relationnelle",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "Petit rappel sur l’algèbre relationnelle",
+    "text": "Petit rappel sur l’algèbre relationnelle\n\n\n\n\n\n\nPrincipe\n\n\nUne opération de l’algèbre relationnelle accepte des opérandes (des relations) et parfois une expression.\nUne opération de l’algèbre relationnelle retourne une relation/table.\n\n\n\n\n\n\n\n\n\n\nEn passant\n\n\nUne relation c’est un schéma (définition des colonnes/attributs) et une instance (une collection de lignes qui obéissent au schéma).\nUne opération de l’algèbre relationnelle définit le schéma de la table résultat à partir des schémas des tables opérandes\nUne opération de l’algèbre relationnelle définit l’instance du schéma résultat à partir des instances des tables opérandes (et peut-être de l’expression)."
+  },
+  {
     "objectID": "slides/SQL_7.html#opérateurs-de-base",
     "href": "slides/SQL_7.html#opérateurs-de-base",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Opérateurs de base",
-    "text": "Opérateurs de base\n\n\n\n\n\n\nListe des opérateurs\n\n\nL’algèbre relationnelle est d’abord un *Langage de Manipulation de Données& (LMD)}.\n\nUnion: \\(\\Large{\\cup}\\)\nIntersection: \\(\\Large{\\cap}\\)\nDifférence: \\(\\Large{\\backslash}\\)\nProjection: \\(\\Large{\\Pi}\\)\nSélection: \\(\\Large{\\sigma}\\)\nProduit cartésien: \\(\\Large{\\times}\\)\nRenommage: \\(\\Large{\\rho}\\)\n\ns’appliquent à des relations pour produire d’autres relations (le résultat)."
+    "text": "Opérateurs de base\n\n\n\n\n\n\nListe des opérateurs\n\n\nL’algèbre relationnelle est d’abord un *Langage de Manipulation de Données& (LMD)}.\n\nUnion: \\(\\Large{\\cup}\\)\nIntersection: \\(\\Large{\\cap}\\)\nDifférence: \\(\\Large{\\backslash}\\)\nProjection: \\(\\Large{\\Pi}\\) (avec une expression formée par la liste des attributs de projection)\nSélection: \\(\\Large{\\sigma}\\) (avec une expression qui définit la condition de filtrage)\nProduit cartésien: \\(\\Large{\\times}\\)\nRenommage: \\(\\Large{\\rho}\\) (avec une expression formée par la liste des renommages)\n\ns’appliquent à des relations (les opérandes) pour produire d’autres relations (le résultat)."
   },
   {
     "objectID": "slides/SQL_7.html#union-cup-et-intersection-cap",
     "href": "slides/SQL_7.html#union-cup-et-intersection-cap",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Union \\(\\cup\\) et intersection \\(\\cap\\)\n",
-    "text": "Union \\(\\cup\\) et intersection \\(\\cap\\)\n\n\n\n\n\n\n\nDéfinition\n\n\n\nL’union et l’intersection sont des opérations portant sur deux relations \\(R_1\\) et \\(R_2\\) de même schéma\n\\(T=R_1\\cup R_2\\) est constituée des tuples appartenant à \\(R_1\\) ou à \\(R_2\\).\n\\(T=R_1\\cap R_2\\) est constituée des tuples appartenant à \\(R_1\\) et à \\(R_2\\).\nLes Schémas de \\(R_1\\cup R_2\\), \\(R_1\\cap R_2\\) sont les mêmes que ceux de \\(R_1\\) et \\(R_2\\)"
+    "text": "Union \\(\\cup\\) et intersection \\(\\cap\\)\n\n\n\n\n\n\n\nDéfinition\n\n\n\nL’union et l’intersection sont des opérations portant sur deux relations \\(R_1\\) et \\(R_2\\) de même schéma\n\\(T=R_1\\cup R_2\\) est constituée des tuples appartenant à \\(R_1\\) ou à \\(R_2\\).\n\\(T=R_1\\cap R_2\\) est constituée des tuples appartenant à \\(R_1\\) et à \\(R_2\\).\nLe schémas de \\(R_1\\cup R_2\\), \\(R_1\\cap R_2\\) sont les mêmess que ceux de \\(R_1\\) et \\(R_2\\)"
   },
   {
     "objectID": "slides/SQL_7.html#union-et-intersection",
@@ -4388,7 +4423,7 @@
     "href": "slides/SQL_7.html#produit-cartésien",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Produit Cartésien",
-    "text": "Produit Cartésien\n\n\n\n\n\n\nDéfinition\n\n\n\n\nSoient:\n\n\n\\(R_1\\) de schéma \\(R_1(A_1,A_2,...,A_k)\\)\n\n\n\\(R_2\\) de schéma \\(R_2(B_1,B_2,...,B_\\ell)\\)\n\navec \\(A_i\\neq B_j\\), pour tout \\(i=1,...,k\\), \\(j=1,..,\\ell\\)\n\n\n\nDans le contexte “classique” : \\(R_1 \\times R_2= \\{(e_1,e_2): e_1\\in R_1, e_2\\in R_2\\}\\)\n\\(R=R_1 \\times R_2\\) de schéma \\(R(A_1,A_2,...,A_k,B_1,B_2,...,B_\\ell)\\). Le schéma de \\(R\\) est l’union des schémas de \\(R_1\\) et \\(R_2\\)\n\n\n\n\n\n\n\n\n\n\nAttention\n\n\nEn algèbre relationnelle, cette opération est commutative ( \\(R_1\\times R_2 = R_2\\times R_1\\) ) et associative"
+    "text": "Produit Cartésien\n\n\n\n\n\n\nDéfinition\n\n\n\n\nSoient:\n\n\n\\(R_1\\) de schéma \\(R_1(A_1,A_2,...,A_k)\\)\n\n\n\\(R_2\\) de schéma \\(R_2(B_1,B_2,...,B_\\ell)\\)\n\navec \\(A_i\\neq B_j\\), pour tout \\(i=1,...,k\\), \\(j=1,..,\\ell\\)\n\n\n\nDans le contexte “classique” : \\(R_1 \\times R_2= \\{(e_1,e_2): e_1\\in R_1, e_2\\in R_2\\}\\)\n\\(R=R_1 \\times R_2\\) de schéma \\(R(A_1,A_2,...,A_k,B_1,B_2,...,B_\\ell)\\). Le schéma de \\(R\\) est l’union des schémas de \\(R_1\\) et \\(R_2\\)\n\n\n\n\n\n\n\n\n\n\nAttention\n\n\nEn algèbre relationnelle, cette opération est commutative ( \\(R_1\\times R_2 = R_2\\times R_1\\) ) et associative (parce que l’on nomme des attributs/colonnes, on ne les désigne pas par une position)"
   },
   {
     "objectID": "slides/SQL_7.html#produit-cartésien-1",
@@ -4430,21 +4465,21 @@
     "href": "slides/SQL_7.html#projection-vitaminée-tidy-selection",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Projection vitaminée (tidy selection)",
-    "text": "Projection vitaminée (tidy selection)"
+    "text": "Projection vitaminée (tidy selection)\nSélection bien tempérée"
   },
   {
-    "objectID": "slides/SQL_7.html#sélection-largesigma",
-    "href": "slides/SQL_7.html#sélection-largesigma",
+    "objectID": "slides/SQL_7.html#sélection-σ",
+    "href": "slides/SQL_7.html#sélection-σ",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
-    "section": "Sélection ( \\(\\Large{\\sigma}\\) )",
-    "text": "Sélection ( \\(\\Large{\\sigma}\\) )\n\n\n\n\n\n\nDéfinition\n\n\n\n\nLa sélection d’une relation \\(R\\) par une condition \\(C\\) est une relation \\(S\\)\n\nde même schéma que \\(R\\)\ndont les tuples sont ceux de \\(R\\) qui satisfont la condition \\(C\\).\n\n\nOn note \\(S = \\sigma_C (R)\\).\n\nLa condition \\(C\\)\n\ns’exprime à l’aide des noms d’attributs de la relation ou de constantes (pour les opérandes)\non peut utiliser des opérateurs arithmétiques de comparaison ( \\(=, \\neq, \\leq, \\geq, &lt;, &gt;\\) ) ainsi que des connecteurs logiques ( \\(\\lnot, \\land, \\lor\\) ).."
+    "section": "Sélection (σ)",
+    "text": "Sélection (σ)\n\n\n\n\n\n\nDéfinition\n\n\n\n\nLa sélection d’une relation \\(R\\) par une condition \\(C\\) est une relation \\(S\\)\n\nde même schéma que \\(R\\)\ndont les tuples sont ceux de \\(R\\) qui satisfont la condition \\(C\\).\n\n\nOn note \\(S = σ(R, C)\\).\n\nLa condition \\(C\\)\n\ns’exprime à l’aide des noms d’attributs de la relation ou de constantes (pour les opérandes)\non peut utiliser des opérateurs arithmétiques de comparaison ( \\(=, \\neq, \\leq, \\geq, &lt;, &gt;\\) ) ainsi que des connecteurs logiques (¬, ∧, ∨)..\ns’évalue pour chaque ligne de \\(R\\)"
   },
   {
     "objectID": "slides/SQL_7.html#sélection-avec-dplyrfilter",
     "href": "slides/SQL_7.html#sélection-avec-dplyrfilter",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Sélection avec dplyr::filter\n",
-    "text": "Sélection avec dplyr::filter\n\n\\(S = \\sigma_C (R)\\) se traduit en\nS &lt;- dplyr::filter(R, C)"
+    "text": "Sélection avec dplyr::filter\n\n\\(S = σ(R, C)\\) se traduit en\nS &lt;- filter(R, C)"
   },
   {
     "objectID": "slides/SQL_7.html#sélection-exemple",
@@ -4458,35 +4493,42 @@
     "href": "slides/SQL_7.html#renommage",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Renommage",
-    "text": "Renommage\n\n\n\n\n\n\nDéfinition\n\n\n\nSoit \\(R\\) de schéma \\(R(A_1,\\dots, A_k)\\), le renommage d’un attribut \\(A_i\\), \\(i\\leq k\\), en \\(B\\) est une relation \\(S\\) :\n\nde même contenu (mêmes lignes)\nde schéma \\(S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)\\)\n\nOn le note \\(S=\\rho_{A_i\\mapsto B}(R)\\)"
+    "text": "Renommage\n\n\n\n\n\n\nDéfinition\n\n\n\nSoit \\(R\\) de schéma \\(R(A_1,\\dots, A_k)\\), le renommage d’un attribut \\(A_i\\), \\(i\\leq k\\), en \\(B\\) est une relation \\(S\\) :\n\nde même contenu (mêmes lignes)\nde schéma \\(S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)\\)\n\nOn le note \\(S=ρ(R, A_i\\mapsto B)\\)"
   },
   {
     "objectID": "slides/SQL_7.html#renommage-avec-dplyrrename",
     "href": "slides/SQL_7.html#renommage-avec-dplyrrename",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Renommage avec dplyr::rename()\n",
-    "text": "Renommage avec dplyr::rename()\n\n\\(S=\\rho_{A_i\\mapsto B}(R)\\) se traduit en\nS &lt;- dplyr::rename(R, B=Ai)"
+    "text": "Renommage avec dplyr::rename()\n\n\\(S=ρ(R, A_i\\mapsto B)\\) se traduit en\nS &lt;- rename(R, B=Ai)"
   },
   {
     "objectID": "slides/SQL_7.html#exemple-1",
     "href": "slides/SQL_7.html#exemple-1",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Exemple",
-    "text": "Exemple\nUtilité Va permettre d’étendre certains opérateurs pour des relations de schémas non-disjoints"
+    "text": "Exemple\nr$&gt; rename(flights, destination=dest) |&gt; \n    select(flight,tailnum, origin, destination, carrier, time_hour) |&gt;\n    head()\n# A tibble: 6 × 6\n  flight tailnum origin destination carrier time_hour          \n   &lt;int&gt; &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;       &lt;chr&gt;   &lt;dttm&gt;             \n1   1545 N14228  EWR    IAH         UA      2013-01-01 05:00:00\n2   1714 N24211  LGA    IAH         UA      2013-01-01 05:00:00\n3   1141 N619AA  JFK    MIA         AA      2013-01-01 05:00:00\n4    725 N804JB  JFK    BQN         B6      2013-01-01 05:00:00\n5    461 N668DN  LGA    ATL         DL      2013-01-01 06:00:00\n6   1696 N39463  EWR    ORD         UA      2013-01-01 05:00:00\nUtilité Va permettre d’étendre certains opérateurs pour des relations de schémas non-disjoints"
   },
   {
     "objectID": "slides/SQL_7.html#les-opérateurs-comme-fonctions",
     "href": "slides/SQL_7.html#les-opérateurs-comme-fonctions",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Les opérateurs comme fonctions",
-    "text": "Les opérateurs comme fonctions\n\\(\\pi_{Ai1, Aip}\\left(\\sigma_C(R)\\right)\\)\nse traduit en\ndplyr::select(dplyr::filter(R, C), Ai1, ..., Aip)\nqui s’avère difficile à lire, surtout si on compose plus d’opérations élémentaires\nLa composition de fonctions se conçoit facilement mais l’expression correspondante est difficile à lire"
+    "text": "Les opérateurs comme fonctions\n\\(\\pi_{Ai1, Aip}\\left(\\sigma_C(R)\\right)\\)\nse traduit en\nselect(filter(R, C), Ai1, ..., Aip)\nqui s’avère difficile à lire, surtout si on compose plus d’opérations élémentaires\nLa composition de fonctions se conçoit facilement mais l’expression correspondante est difficile à lire"
   },
   {
     "objectID": "slides/SQL_7.html#réécriture-de-la-composition-avec",
     "href": "slides/SQL_7.html#réécriture-de-la-composition-avec",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Réécriture de la composition avec |>\n",
-    "text": "Réécriture de la composition avec |&gt;\n\nS &lt;- dplyr::select(dplyr::filter(R, C), Ai1, ..., Aip)\npeut être réécrite en\nS &lt;- R |&gt; \n  dplyr::filter(C) |&gt;\n  dplyr::select(Ai1,.., Aip)"
+    "text": "Réécriture de la composition avec |&gt;\n\nS &lt;- select(filter(R, C), Ai1, ..., Aip)\npeut être réécrite en\nS &lt;- R |&gt; \n  filter(C) |&gt;\n  select(Ai1,.., Aip)"
+  },
+  {
+    "objectID": "slides/SQL_7.html#exemple-2",
+    "href": "slides/SQL_7.html#exemple-2",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "Exemple",
+    "text": "Exemple\nLes origines et destinations des vols avec un retard au départ d’au moins 30 minutes e\n\n\nflights |&gt;\n  filter(dep_delay&gt;30) |&gt;\n  select(origin, dest) |&gt;\n  distinct()\n\nou directement\nflights |&gt;\n  filter(dep_delay&gt;30) |&gt;\n  distinct(origin, dest)"
   },
   {
     "objectID": "slides/SQL_7.html#les-jointures",
@@ -4503,8 +4545,8 @@
     "text": "Jointure\n\n\n\n\n\n\nDéfinition\n\n\nLa jointure \\(T=R_1\\bowtie_C R_2\\) de deux relations \\(R_1\\) et \\(R_2\\) de schémas disjoints sous la condition \\(C\\) est la relation \\(T\\):\n\nde schéma la concaténation des schémas de \\(R_1\\) et \\(R_2\\)\nformée des tuples du produit cartésien \\(R_1  \\times R_2\\) qui satisfont la condition \\(C\\)\n\nRègles de formation de la condition de jointure : comme pour la sélection\n\n\n\n\n\n\n\n\n\nDéfinition formelle\n\n\n\\[R_1 \\bowtie_C R_2 = \\sigma_C(R_1\\times R_2)\\]"
   },
   {
-    "objectID": "slides/SQL_7.html#exemple-2",
-    "href": "slides/SQL_7.html#exemple-2",
+    "objectID": "slides/SQL_7.html#exemple-3",
+    "href": "slides/SQL_7.html#exemple-3",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "Exemple",
     "text": "Exemple\nTrDep\n\n\nhdep\ndest\nnumdep\n\n\n\n13h15\nLyon\n213\n\n\n13h29\nMarseille\n1024\n\n\n\nTrArr\n\n\nharr\nprov\nnumarr\n\n\n\n13h39\nAvignon\n43\n\n\n15h15\nParis\n213\n\n\n\n\\(\\texttt{TrDep} \\bowtie_{\\text{numdep} &gt; \\text{numar}} \\texttt{TrArr}\\)\n\n\n\n\n\n\n\n\n\n\nhdep\ndest\nnumdep\nharr\nprov\nnumarr\n\n\n\n13h15\nLyon\n213\n13h39\nAvignon\n43\n\n\n13h29\nMarseille\n1024\n13h39\nAvignon\n43\n\n\n13h29\nMarseille\n1024\n15h15\nParis\n213"
@@ -4566,6 +4608,27 @@
     "text": "Jointure externe (exemple)\n\n\nTrDep\n\n\nhdep\ndest\nnum\n\n\n\n13h15\nLyon\n213\n\n\n13h29\nMarseille\n1024\n\n\n\nTrArr\n\n\nharr\nprov\nnum\n\n\n\n13h39\nAvignon\n43\n\n\n15h15\nParis\n213\n\n\n\n\n\\[\\text{TrDep} \\bowtie^+ \\text{TrArr}\\]\n\n\n\n\n\n\n\n\n\nhdep\ndest\nnum\nharr\nprov\n\n\n\n13h15\nLyon\n213\n15h15\nParis\n\n\n13h29\nMarseille\n1024\n-\n-\n\n\n-\n-\n43\n13h39\nAvignon"
   },
   {
+    "objectID": "slides/SQL_7.html#inner_join",
+    "href": "slides/SQL_7.html#inner_join",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "inner_join()",
+    "text": "inner_join()"
+  },
+  {
+    "objectID": "slides/SQL_7.html#join_by...",
+    "href": "slides/SQL_7.html#join_by...",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "join_by(...)",
+    "text": "join_by(...)\n\njoin_by() constructs a specification that describes how to join two tables using a small domain specific language.\n\nArguments\nExpressions specifying the join.\n. . .\nEach expression should consist of one of the following:\n\nEquality condition: ==\nInequality conditions: &gt;=, &gt;, &lt;=, or &lt;\nRolling helper: closest()\nOverlap helpers: between(), within(), or overlaps()\n\n\n\nOther expressions are not supported. If you need to perform a join on a computed variable, e.g. join_by(sales_date - 40 &gt;= promo_date), you’ll need to precompute and store it in a separate column."
+  },
+  {
+    "objectID": "slides/SQL_7.html#left_join",
+    "href": "slides/SQL_7.html#left_join",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "left_join()",
+    "text": "left_join()"
+  },
+  {
     "objectID": "slides/SQL_7.html#division",
     "href": "slides/SQL_7.html#division",
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
@@ -4606,6 +4669,97 @@
     "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
     "section": "From Wikipedia {smaller}",
     "text": "From Wikipedia {smaller}\n\nIn the 1960s and 1970s he worked out his theories of data arrangement, issuing his paper “A Relational Model of Data for Large Shared Data Banks”[14] in 1970, after an internal IBM paper one year earlier.[15] To his disappointment, IBM proved slow to exploit his suggestions until commercial rivals started implementing them.[16]\n\n\nInitially, IBM refused to implement the relational model to preserve revenue from IMS/DB.[citation needed] Codd then showed IBM customers the potential of the implementation of its model, and they in turn pressured IBM. Then IBM included in its Future Systems project a System R subproject – but put in charge of it developers who were not thoroughly familiar with Codd’s ideas, and isolated the team from Codd.[citation needed] As a result, they did not use Codd’s own Alpha language but created a non-relational one, SEQUEL. Even so, SEQUEL was so superior to pre-relational systems that it was copied, in 1979, based on pre-launch papers presented at conferences, by Larry Ellison, of Relational Software Inc, in his Oracle Database, which actually reached market before SQL/DS – because of the then-already proprietary status of the original name, SEQUEL had been renamed SQL.\n\n\nCodd continued to develop and extend his relational model, sometimes in collaboration with Christopher J. Date. One of the normalised forms, the Boyce–Codd normal form, is named after him.\n\n\nCodd’s theorem, a result proven in his seminal work on the relational model, equates the expressive power of relational algebra and relational calculus.[14]"
+  },
+  {
+    "objectID": "slides/SQL_7.html#summarizedqta-...-byexpr-dans-dplyr",
+    "href": "slides/SQL_7.html#summarizedqta-...-byexpr-dans-dplyr",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "\nsummarize(dqta, ... , by=expr) dans dplyr()\n",
+    "text": "summarize(dqta, ... , by=expr) dans dplyr()"
+  },
+  {
+    "objectID": "slides/SQL_7.html#summarize-avec-sélection-bien-tempérée-avec-across...-...",
+    "href": "slides/SQL_7.html#summarize-avec-sélection-bien-tempérée-avec-across...-...",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "\nsummarize() avec sélection bien tempérée avec across(..., ...)\n",
+    "text": "summarize() avec sélection bien tempérée avec across(..., ...)"
+  },
+  {
+    "objectID": "slides/SQL_7.html#le-problème-group-by-en-sql",
+    "href": "slides/SQL_7.html#le-problème-group-by-en-sql",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "Le problème GROUP BY en SQL\n",
+    "text": "Le problème GROUP BY en SQL"
+  },
+  {
+    "objectID": "slides/SQL_7.html#des-tables-avec-des-domaines-tabulaires",
+    "href": "slides/SQL_7.html#des-tables-avec-des-domaines-tabulaires",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "Des tables avec des domaines tabulaires",
+    "text": "Des tables avec des domaines tabulaires"
+  },
+  {
+    "objectID": "slides/SQL_7.html#group_by-et-les-grouped-tibbles",
+    "href": "slides/SQL_7.html#group_by-et-les-grouped-tibbles",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "\ngroup_by() et les grouped tibbles\n",
+    "text": "group_by() et les grouped tibbles"
+  },
+  {
+    "objectID": "slides/SQL_7.html#ungroup",
+    "href": "slides/SQL_7.html#ungroup",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "ungroup()",
+    "text": "ungroup()"
+  },
+  {
+    "objectID": "slides/SQL_7.html#nest-et-unnest",
+    "href": "slides/SQL_7.html#nest-et-unnest",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "\nnest() et unnest()\n",
+    "text": "nest() et unnest()"
+  },
+  {
+    "objectID": "slides/SQL_7.html#enframe",
+    "href": "slides/SQL_7.html#enframe",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "enframe()",
+    "text": "enframe()"
+  },
+  {
+    "objectID": "slides/SQL_7.html#références-sur-les-tqbles-partitionnées",
+    "href": "slides/SQL_7.html#références-sur-les-tqbles-partitionnées",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "Références sur les tqbles partitionnées",
+    "text": "Références sur les tqbles partitionnées\ndplyr sur le groupement"
+  },
+  {
+    "objectID": "slides/SQL_7.html#types-de-mises-à-jour-de-tables-en-sql",
+    "href": "slides/SQL_7.html#types-de-mises-à-jour-de-tables-en-sql",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "Types de mises à jour de tables en SQL\n",
+    "text": "Types de mises à jour de tables en SQL\n\n\nmodification du schéma ALTER TABLE ...\n\najout de colonnes\nsuppression de colonnes\nmodification de domaines\n\n\nmodification des lignes\n\nmises à jour d’attributs sur certaines lignes\nsuppression de lignes\ninsertions de lignes"
+  },
+  {
+    "objectID": "slides/SQL_7.html#point-de-vue-fonctionnel",
+    "href": "slides/SQL_7.html#point-de-vue-fonctionnel",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "Point de vue fonctionnel",
+    "text": "Point de vue fonctionnel"
+  },
+  {
+    "objectID": "slides/SQL_7.html#mutate",
+    "href": "slides/SQL_7.html#mutate",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "mutate()",
+    "text": "mutate()\n\najout de colonnes\nmodification de domaines\nmises à jour d’attributs sur certaines lignes"
+  },
+  {
+    "objectID": "slides/SQL_7.html#ajout-de-lignes",
+    "href": "slides/SQL_7.html#ajout-de-lignes",
+    "title": "BD : dplyr une mise oeuvre de l’Algèbre Relationnelle",
+    "section": "Ajout de lignes",
+    "text": "Ajout de lignes"
   },
   {
     "objectID": "slides/LDD_2.html#schema-de-world",

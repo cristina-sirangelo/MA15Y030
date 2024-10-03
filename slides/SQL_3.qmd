@@ -144,13 +144,13 @@ WHERE region = 'Caribbean';
 
 
 
-# Fonction COUNT
+# Fonction COUNT  {background-color="#1c191c"}
 
 
 
 ## Fonctions de calcul : `COUNT`
 
-On peut aussi compter le nombre de tuples dans un résultat  
+On peut aussi compter le nombre de tuples dans le résultat d'une requête  
 
 ```{.sql}
 COUNT(* |[ ALL | DISTINCT <nomattribut>])  
@@ -172,32 +172,152 @@ FROM country
 WHERE region = 'Caribbean'; 
 ```
 
+::: {.aside}
 
-<!-- ![](/images/prod-liv-fourn.png) -->
+Dans `COUNT(* |[ ALL | DISTINCT <nomattribut>])`, il faut comprendre qu'on peut écrire 
+`COUNT(*)` ou `COUNT (ALL country)` ou `COUNT (DISTINCT country)`. Le symbole `|` est utilisé pour décrire une alternative 
+
+:::
+
+# Fonction `SUM` {background-color="#1c191c"}
 
 
-## Fonctions de calcul  : exemples
+## Fonction de calcul `SUM()`
 
-Exemple de combinaison de quelques opérations et fonctions
+On peut sommer les valeurs contenues dans une colonne numérique 
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "2|2-4|"
+SELECT 
+  SUM(population) AS urban_pop
+FROM city  ci
+WHERE ci.countrycode = 'GBR' ;
+```
+
+```{.sql}
++-----------+
+| urban_pop |
+|-----------|
+| 22436673  |
++-----------+
+```
+
+## Sommation sur tableau vide
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "2|2-4|"
+SELECT 
+  SUM(population) AS urban_pop
+FROM city  ci
+WHERE ci.countrycode = 'zzz' ;
+```
+
+
+
+retourne 
+
+```{.sql}
++-----------+
+| urban_pop |
+|-----------|
+| <null>    |
++-----------+
+```
+
+
+Est-ce cohérent?
+
+## Autre approche  avec  `CASE WHEN ...THEN ... ELSE ...`
+
+
+```{.sql}
+SELECT 
+  SUM(
+    CASE 
+      WHEN countrycode='GBR' THEN population 
+      ELSE 0 
+    END) AS urban_pop 
+ FROM city  ci ;
+
++-----------+
+| urban_pop |
+|-----------|
+| 22436673  |
++-----------+
+```
+
+
+
+---
+
+
+```{.sql}
+SELECT 
+  SUM(
+    CASE 
+      WHEN countrycode='xxx' THEN population 
+      ELSE 0 
+    END) AS urban_pop 
+ FROM city  ci ;
++-----------+
+| urban_pop |
+|-----------|
+| 0         |
++-----------+
+```
+
+
+## Calculer les populations vivant sous diﬀŕents régimes 
+
+
+```{.sql}
+SELECT 
+  SUM(CASE 
+    WHEN governmentform LIKE '%Monarchy%' THEN population_COUNTRY 
+    ELSE 0 
+  END) AS pop_monarch,  
+  SUM(CASE 
+    WHEN governmentform LIKE '%Republic%' THEN population_COUNTRY 
+    ELSE 0 
+  END) AS pop_repu 
+FROM country ;
++-------------+------------+
+| pop_monarch | pop_repu   |
+|-------------+------------|
+| 519485000   | 5502453700 |
++-------------+------------+
+```
+
+
+# Fonctions de calcul  : exemples  {background-color="#1c191c"}
+
+
+## Combinaison de quelques opérations et fonctions
 
 Nom des régions comportant plus de $10$ territoires.
 
 . . .
 
-```{sql}
+```{.sql}
 --| eval: false
 --| echo: false
 --| code-line-numbers: "1-2|4-6|"
 SELECT DISTINCT c.region 
 FROM country c 
 WHERE (
-  SELECT Count (*)     
+  SELECT COUNT (*)     
   FROM country co     
   WHERE co.region = c.region
 ) >= 15;  
 ```
 
-<!-- ![](/images/prod-liv-fourn.png) -->
+
+
 
 
 ## Musée des horreurs   {.smaller}
@@ -236,10 +356,11 @@ Pourquoi cette requête est-elle horrible ?
 
 ## {.smaller}
 
-On peut faire plus simple (et plus efficace) dans le case présent
+{{< fa hand-point-right >}} On peut faire plus simple (et plus efficace) dans le case présent
 
 ```{.sql}
-SELECT DISTINCT continent, region
+SELECT 
+  DISTINCT continent, region
 FROM country c 
 WHERE c.lifeexpectancy <50 
 ORDER BY continent, region;
@@ -267,7 +388,8 @@ Mais si on veut lister les régions où tous les pays ont une espèrance de  vie
 Pourquoi pas ?
 
 ```{.sql}
-SELECT DISTINCT continent, region
+SELECT 
+  DISTINCT continent, region
 FROM country c 
 WHERE (
   SELECT MIN(d.lifeexpectancy)     
@@ -285,7 +407,7 @@ Combien de fois calculez vous l'espérance de minimale pour chaque région ?
 
 
 
-## Fonctions de calcul : exemples
+## Fonctions de calcul : exemples (suite)
 
 Utilisation d'opérateurs arithmétique entre les différents attributs d'un même tuple...  
 
@@ -432,7 +554,7 @@ FROM country
 GROUP BY continent;
 ```
 
-##
+---
 
 
 La requête suivante  requête n'est pas correcte 
@@ -477,7 +599,53 @@ HAVING COUNT(DISTINCT region) >= 5;
 ```
 
 
+## Operation `GROUP BY` et calcul sur les tables   {.smaller}
 
+::: {.callout-note}
+
+L'opération `GROUP BY` ne renvoie pas une table mais (implicitement) *une collection de sous-tables* indicées/étiquetées par les valeurs des attributs de groupement
+
+L'opération `GROUP BY` ne peut pas s'intégrer dans une algèbre relationnelle, même étendue.
+
+:::
+
+::: {.callout-caution}
+
+SQL n'offre pas de moyen de mémoriser le résultat d'un `GROUP BY` avant d'effectuer des agrégations ou une projection sur les attributs de groupement.  
+
+:::
+
+. . .
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "4-5|"
+SELECT *  
+FROM country 
+GROUP BY continent  ;
+column "country.countrycode" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT * FROM country GROUP BY continent
+```
+
+---
+
+```{.sql}
+SELECT continent  
+FROM country 
+GROUP BY continent  ;
++---------------+
+| continent     |
+|---------------|
+| Asia          |
+| South America |
+| North America |
+| Oceania       |
+| Antarctica    |
+| Africa        |
+| Europe        |
++---------------+
+```
 
 
 # Tri des résultats  {background-color="#1c191c"}
@@ -624,7 +792,6 @@ pour calculer `min(lifeexpectancy)` et `max(lifeexpectancy)`. On obtient une tab
 ```{sql}
 --| eval: false
 --| echo: true
-
 WITH R AS (
   SELECT region, min(lifeexpectancy) AS minlex, max(lifeexpectancy) AS maxlex
   FROM country

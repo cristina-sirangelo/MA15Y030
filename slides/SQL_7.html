@@ -438,10 +438,17 @@
 <ul>
 <li><a href="#/dplyr" id="/toc-dplyr"><code>dplyr</code></a></li>
 <li><a href="#/lmd-op%C3%A9rateurs" id="/toc-lmd-opérateurs">LMD : Opérateurs</a></li>
-<li><a href="#/composer-les-op%C3%A9rations-avec-pipe" id="/toc-composer-les-opérations-avec-pipe">Composer les opérations avec <code>\&gt;</code> (pipe)</a></li>
+<li><a href="#/composer-les-op%C3%A9rations-avec-pipe" id="/toc-composer-les-opérations-avec-pipe">Composer les opérations avec <code>|&gt;</code> (pipe)</a></li>
 <li><a href="#/op%C3%A9rations-compl%C3%A9mentaires-les-jointures" id="/toc-opérations-complémentaires-les-jointures">Opérations complémentaires : les jointures</a></li>
+<li><a href="#/exemple-nycfights13-jointure-entre-flights-et-weather" id="/toc-exemple-nycfights13-jointure-entre-flights-et-weather">Exemple (<code>nycfights13</code>) jointure entre <code>flights</code> et <code>weather</code></a></li>
 <li><a href="#/encore-des-op%C3%A9rations" id="/toc-encore-des-opérations">Encore des opérations…</a></li>
 <li><a href="#/the-story" id="/toc-the-story">The story</a></li>
+<li><a href="#/les-expressions-dans-dplyr" id="/toc-les-expressions-dans-dplyr">Les expressions dans <code>dplyr</code></a></li>
+<li><a href="#/la-s%C3%A9lection-bien-temp%C3%A9r%C3%A9e-tidy-selection" id="/toc-la-sélection-bien-tempérée-tidy-selection">La sélection bien tempérée (<em>tidy selection</em>)</a></li>
+<li><a href="#/aggr%C3%A9gations-et-extension-de-lalg%C3%A8bre-relationnelle" id="/toc-aggrégations-et-extension-de-lalgèbre-relationnelle">Aggrégations et extension de l’algèbre relationnelle</a></li>
+<li><a href="#/partitionnement" id="/toc-partitionnement">Partitionnement</a></li>
+<li><a href="#/mise-%C3%A0-jour-de-tables" id="/toc-mise-à-jour-de-tables">Mise à jour de tables</a></li>
+<li><a href="#/r%C3%A9f%C3%A9rences" id="/toc-références">Références</a></li>
 <li><a href="#/fin" id="/toc-fin">Fin</a></li>
 </ul></nav></section><section><section id="dplyr" class="title-slide slide level1 center"><h1><code>dplyr</code></h1>
 
@@ -963,6 +970,38 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </section></section><section><section id="lmd-opérateurs" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>LMD : Opérateurs</h1>
 
+</section><section id="petit-rappel-sur-lalgèbre-relationnelle" class="slide level2 center"><h2>Petit rappel sur l’algèbre relationnelle</h2>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Principe</strong></p>
+</div>
+<div class="callout-content">
+<p>Une opération de l’algèbre relationnelle accepte des opérandes (des relations) et parfois une expression.</p>
+<p>Une opération de l’algèbre relationnelle retourne une relation/table.</p>
+</div>
+</div>
+</div>
+<div class="fragment">
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>En passant</strong></p>
+</div>
+<div class="callout-content">
+<p>Une relation c’est un schéma (définition des colonnes/attributs) et une instance (une collection de lignes qui obéissent au schéma).</p>
+<p>Une opération de l’algèbre relationnelle définit le schéma de la table résultat à partir des schémas des tables opérandes</p>
+<p>Une opération de l’algèbre relationnelle définit l’instance du schéma résultat à partir des instances des tables opérandes (et peut-être de l’expression).</p>
+</div>
+</div>
+</div>
+</div>
 </section><section id="opérateurs-de-base" class="slide level2 center"><h2>Opérateurs de base</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -978,12 +1017,12 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <li><p>Union: <span class="math inline">\(\Large{\cup}\)</span></p></li>
 <li><p>Intersection: <span class="math inline">\(\Large{\cap}\)</span></p></li>
 <li><p>Différence: <span class="math inline">\(\Large{\backslash}\)</span></p></li>
-<li><p>Projection: <span class="math inline">\(\Large{\Pi}\)</span></p></li>
-<li><p>Sélection: <span class="math inline">\(\Large{\sigma}\)</span></p></li>
+<li><p>Projection: <span class="math inline">\(\Large{\Pi}\)</span> (avec une expression formée par la liste des attributs de projection)</p></li>
+<li><p>Sélection: <span class="math inline">\(\Large{\sigma}\)</span> (avec une expression qui définit la condition de filtrage)</p></li>
 <li><p>Produit cartésien: <span class="math inline">\(\Large{\times}\)</span></p></li>
-<li><p>Renommage: <span class="math inline">\(\Large{\rho}\)</span></p></li>
+<li><p>Renommage: <span class="math inline">\(\Large{\rho}\)</span> (avec une expression formée par la liste des renommages)</p></li>
 </ul>
-<p>s’appliquent à des relations pour produire d’autres relations (le résultat).</p>
+<p>s’appliquent à des relations (les opérandes) pour produire d’autres relations (le résultat).</p>
 </div>
 </div>
 </div>
@@ -1002,7 +1041,7 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <li><p>L’<em>union</em> et l’<em>intersection</em> sont des opérations portant sur deux relations <span class="math inline">\(R_1\)</span> et <span class="math inline">\(R_2\)</span> de <strong>même schéma</strong></p></li>
 <li><p><span class="math inline">\(T=R_1\cup R_2\)</span> est constituée des tuples appartenant à <span class="math inline">\(R_1\)</span> <em>ou</em> à <span class="math inline">\(R_2\)</span>.</p></li>
 <li><p><span class="math inline">\(T=R_1\cap R_2\)</span> est constituée des tuples appartenant à <span class="math inline">\(R_1\)</span> <em>et</em> à <span class="math inline">\(R_2\)</span>.</p></li>
-<li><p>Les Schémas de <span class="math inline">\(R_1\cup R_2\)</span>, <span class="math inline">\(R_1\cap R_2\)</span> sont les mêmes que ceux de <span class="math inline">\(R_1\)</span> et <span class="math inline">\(R_2\)</span></p></li>
+<li><p>Le schémas de <span class="math inline">\(R_1\cup R_2\)</span>, <span class="math inline">\(R_1\cap R_2\)</span> sont les mêmess que ceux de <span class="math inline">\(R_1\)</span> et <span class="math inline">\(R_2\)</span></p></li>
 </ul>
 </div>
 </div>
@@ -1181,7 +1220,7 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <p><strong>Attention</strong></p>
 </div>
 <div class="callout-content">
-<p>En algèbre relationnelle, cette opération est commutative ( <span class="math inline">\(R_1\times R_2 = R_2\times R_1\)</span> ) et associative</p>
+<p>En algèbre relationnelle, cette opération est commutative ( <span class="math inline">\(R_1\times R_2 = R_2\times R_1\)</span> ) et associative (parce que l’on nomme des attributs/colonnes, on ne les désigne pas par une position)</p>
 </div>
 </div>
 </div>
@@ -1244,7 +1283,8 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>S <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(R, Ai1, Ai2, ..., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="projection-exemples" class="slide level2 center"><h2>Projection : Exemples</h2>
 </section><section id="projection-vitaminée-tidy-selection" class="slide level2 center"><h2>Projection vitaminée (<code>tidy selection</code>)</h2>
-</section><section id="sélection-largesigma" class="slide level2 center"><h2>Sélection ( <span class="math inline">\(\Large{\sigma}\)</span> )</h2>
+<p><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html">Sélection bien tempérée</a></p>
+</section><section id="sélection-σ" class="slide level2 center"><h2>Sélection (σ)</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1262,12 +1302,13 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <li><p>dont les tuples sont ceux de <span class="math inline">\(R\)</span> qui satisfont la condition <span class="math inline">\(C\)</span>.</p></li>
 </ul>
 </li>
-<li><p>On note <span class="math inline">\(S = \sigma_C (R)\)</span>.</p></li>
+<li><p>On note <span class="math inline">\(S = σ(R, C)\)</span>.</p></li>
 <li>
 <p>La condition <span class="math inline">\(C\)</span></p>
 <ul>
 <li><p>s’exprime à l’aide des noms d’attributs de la relation ou de constantes (pour les opérandes)</p></li>
-<li><p>on peut utiliser des opérateurs arithmétiques de comparaison ( <span class="math inline">\(=, \neq, \leq, \geq, &lt;, &gt;\)</span> ) ainsi que des connecteurs logiques ( <span class="math inline">\(\lnot, \land, \lor\)</span> )..</p></li>
+<li><p>on peut utiliser des opérateurs arithmétiques de comparaison ( <span class="math inline">\(=, \neq, \leq, \geq, &lt;, &gt;\)</span> ) ainsi que des connecteurs logiques (¬, ∧, ∨)..</p></li>
+<li><p>s’évalue pour chaque ligne de <span class="math inline">\(R\)</span></p></li>
 </ul>
 </li>
 </ul>
@@ -1276,8 +1317,8 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </section><section id="sélection-avec-dplyrfilter" class="slide level2 center"><h2>Sélection avec <code>dplyr::filter</code>
 </h2>
-<p><span class="math inline">\(S = \sigma_C (R)\)</span> se traduit en</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>S <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(R, C)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="math inline">\(S = σ(R, C)\)</span> se traduit en</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>S <span class="ot">&lt;-</span> <span class="fu">filter</span>(R, C)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="sélection-exemple" class="slide level2 center"><h2>Sélection : Exemple</h2>
 </section><section id="renommage" class="slide level2 center"><h2>Renommage</h2>
 <div class="callout callout-important callout-titled callout-style-default">
@@ -1295,7 +1336,7 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <li>de même contenu (mêmes lignes)</li>
 <li>de schéma <span class="math inline">\(S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)\)</span>
 </li>
-<li>On le note <span class="math inline">\(S=\rho_{A_i\mapsto B}(R)\)</span>
+<li>On le note <span class="math inline">\(S=ρ(R, A_i\mapsto B)\)</span>
 </li>
 </ul>
 </li>
@@ -1305,25 +1346,51 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </section><section id="renommage-avec-dplyrrename" class="slide level2 center"><h2>Renommage avec <code>dplyr::rename()</code>
 </h2>
-<p><span class="math inline">\(S=\rho_{A_i\mapsto B}(R)\)</span> se traduit en</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>S <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">rename</span>(R, <span class="at">B=</span>Ai)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p><span class="math inline">\(S=ρ(R, A_i\mapsto B)\)</span> se traduit en</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>S <span class="ot">&lt;-</span> <span class="fu">rename</span>(R, <span class="at">B=</span>Ai)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="exemple-1" class="slide level2 center"><h2>Exemple</h2>
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>r<span class="sc">$</span><span class="er">&gt;</span> <span class="fu">rename</span>(flights, <span class="at">destination=</span>dest) <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a></a>    <span class="fu">select</span>(flight,tailnum, origin, destination, carrier, time_hour) <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a></a>    <span class="fu">head</span>()</span>
+<span id="cb9-4"><a></a><span class="co"># A tibble: 6 × 6</span></span>
+<span id="cb9-5"><a></a>  flight tailnum origin destination carrier time_hour          </span>
+<span id="cb9-6"><a></a>   <span class="sc">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>chr<span class="sc">&gt;</span>  <span class="er">&lt;</span>chr<span class="sc">&gt;</span>       <span class="er">&lt;</span>chr<span class="sc">&gt;</span>   <span class="er">&lt;</span>dttm<span class="sc">&gt;</span>             </span>
+<span id="cb9-7"><a></a><span class="dv">1</span>   <span class="dv">1545</span> N14228  EWR    IAH         UA      <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb9-8"><a></a><span class="dv">2</span>   <span class="dv">1714</span> N24211  LGA    IAH         UA      <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb9-9"><a></a><span class="dv">3</span>   <span class="dv">1141</span> N619AA  JFK    MIA         AA      <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb9-10"><a></a><span class="dv">4</span>    <span class="dv">725</span> N804JB  JFK    BQN         B6      <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb9-11"><a></a><span class="dv">5</span>    <span class="dv">461</span> N668DN  LGA    ATL         DL      <span class="dv">2013-01-01</span> <span class="dv">06</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
+<span id="cb9-12"><a></a><span class="dv">6</span>   <span class="dv">1696</span> N39463  EWR    ORD         UA      <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Utilité</em> Va permettre d’étendre certains opérateurs pour des relations de schémas non-disjoints</p>
-</section></section><section><section id="composer-les-opérations-avec-pipe" class="title-slide slide level1 center"><h1>Composer les opérations avec <code>\&gt;</code> (pipe)</h1>
+</section></section><section><section id="composer-les-opérations-avec-pipe" class="title-slide slide level1 center"><h1>Composer les opérations avec <code>|&gt;</code> (pipe)</h1>
 
 </section><section id="les-opérateurs-comme-fonctions" class="slide level2 center"><h2>Les opérateurs comme fonctions</h2>
 <p><span class="math inline">\(\pi_{Ai1, Aip}\left(\sigma_C(R)\right)\)</span></p>
 <p>se traduit en</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>dplyr<span class="sc">::</span><span class="fu">select</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(R, C), Ai1, ..., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">select</span>(<span class="fu">filter</span>(R, C), Ai1, ..., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>qui s’avère difficile à lire, surtout si on compose plus d’opérations élémentaires</p>
 <p>La composition de fonctions se conçoit facilement mais l’expression correspondante est difficile à lire</p>
 </section><section id="réécriture-de-la-composition-avec" class="slide level2 center"><h2>Réécriture de la composition avec <code>|&gt;</code>
 </h2>
-<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a>S <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(dplyr<span class="sc">::</span><span class="fu">filter</span>(R, C), Ai1, ..., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>S <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="fu">filter</span>(R, C), Ai1, ..., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>peut être réécrite en</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>S <span class="ot">&lt;-</span> R <span class="sc">|&gt;</span> </span>
-<span id="cb11-2"><a></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(C) <span class="sc">|&gt;</span></span>
-<span id="cb11-3"><a></a>  dplyr<span class="sc">::</span><span class="fu">select</span>(Ai1,.., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>S <span class="ot">&lt;-</span> R <span class="sc">|&gt;</span> </span>
+<span id="cb12-2"><a></a>  <span class="fu">filter</span>(C) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a></a>  <span class="fu">select</span>(Ai1,.., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="exemple-2" class="slide level2 center"><h2>Exemple</h2>
+<p>Les origines et destinations des vols avec un retard au départ d’au moins 30 minutes e</p>
+<div class="columns">
+<div class="column">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a></a>  <span class="fu">filter</span>(dep_delay<span class="sc">&gt;</span><span class="dv">30</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a></a>  <span class="fu">select</span>(origin, dest) <span class="sc">|&gt;</span></span>
+<span id="cb13-4"><a></a>  <span class="fu">distinct</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div><div class="column">
+<p>ou directement</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a></a>  <span class="fu">filter</span>(dep_delay<span class="sc">&gt;</span><span class="dv">30</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a></a>  <span class="fu">distinct</span>(origin, dest) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div></div>
 </section></section><section><section id="opérations-complémentaires-les-jointures" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Opérations complémentaires : les jointures</h1>
 
 </section><section id="les-jointures" class="slide level2 center"><h2>Les jointures</h2>
@@ -1364,7 +1431,7 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 </div>
-</section><section id="exemple-2" class="slide level2 center"><h2>Exemple</h2>
+</section><section id="exemple-3" class="slide level2 center"><h2>Exemple</h2>
 <p><code>TrDep</code></p>
 <table class="caption-top">
 <thead><tr class="header">
@@ -1626,6 +1693,44 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <li>déterminer les références, prix et quantités des produits commandés à plus de 10 exemplaires.</li>
 </ul>
 <p><span class="math display">\[\pi_{\text{pno,prix,qte}} \bigl( \sigma_{\text{qte}&gt;10} (\text{commandes} \bowtie \text{produits})\bigr)\]</span></p>
+</section></section><section><section id="exemple-nycfights13-jointure-entre-flights-et-weather" class="title-slide slide level1 center"><h1>Exemple (<code>nycfights13</code>) jointure entre <code>flights</code> et <code>weather</code>
+</h1>
+<p>Il s’agit d’une équi-jointure sur les colonnes <code>origin</code>, et <code>time_hour</code></p>
+<p>Il ne s’agit pas d’une jointure naturelle (pourquoi?)</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(origin, time_hour)</span>
+<span id="cb15-2"><a></a></span>
+<span id="cb15-3"><a></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a></a>  <span class="fu">inner_join</span>(weather, by) <span class="sc">|&gt;</span></span>
+<span id="cb15-5"><a></a>  <span class="fu">select</span>(<span class="sc">!</span>(<span class="fu">ends_with</span>(<span class="st">"_time"</span>) <span class="sc">|</span></span>
+<span id="cb15-6"><a></a>           <span class="fu">starts_with</span>(<span class="st">"arr_"</span>) <span class="sc">|</span> </span>
+<span id="cb15-7"><a></a>           <span class="fu">starts_with</span>(<span class="st">"dep_"</span>))) <span class="sc">|&gt;</span></span>
+<span id="cb15-8"><a></a>  <span class="fu">select</span>(<span class="sc">-</span>tailnum, <span class="sc">-</span>flight, <span class="sc">-</span>carrier) <span class="sc">|&gt;</span> </span>
+<span id="cb15-9"><a></a>  <span class="fu">head</span>(<span class="dv">3</span>)</span>
+<span id="cb15-10"><a></a><span class="co"># A tibble: 3 × 22</span></span>
+<span id="cb15-11"><a></a>  year.x month.x day.x origin dest  distance hour.x minute time_hour           year.y month.y day.y hour.y  temp  dewp humid wind_dir</span>
+<span id="cb15-12"><a></a>   <span class="sc">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>chr<span class="sc">&gt;</span>  <span class="er">&lt;</span>chr<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>  <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dttm<span class="sc">&gt;</span>               <span class="er">&lt;</span>int<span class="sc">&gt;</span>   <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>int<span class="sc">&gt;</span>  <span class="er">&lt;</span>int<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span> <span class="er">&lt;</span>dbl<span class="sc">&gt;</span>    <span class="er">&lt;</span>dbl<span class="sc">&gt;</span></span>
+<span id="cb15-13"><a></a><span class="dv">1</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span> EWR    IAH       <span class="dv">1400</span>      <span class="dv">5</span>     <span class="dv">15</span> <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span>      <span class="dv">5</span>  <span class="fl">39.0</span>  <span class="fl">28.0</span>  <span class="fl">64.4</span>      <span class="dv">260</span></span>
+<span id="cb15-14"><a></a><span class="dv">2</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span> LGA    IAH       <span class="dv">1416</span>      <span class="dv">5</span>     <span class="dv">29</span> <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span>      <span class="dv">5</span>  <span class="fl">39.9</span>  <span class="fl">25.0</span>  <span class="fl">54.8</span>      <span class="dv">250</span></span>
+<span id="cb15-15"><a></a><span class="dv">3</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span> JFK    MIA       <span class="dv">1089</span>      <span class="dv">5</span>     <span class="dv">40</span> <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span>      <span class="dv">5</span>  <span class="fl">39.0</span>  <span class="fl">27.0</span>  <span class="fl">61.6</span>      <span class="dv">260</span></span>
+<span id="cb15-16"><a></a><span class="co"># ℹ 5 more variables: wind_speed &lt;dbl&gt;, wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section class="slide level2 center"><div class="columns">
+<div class="column">
+<p>On veut/peut se débarasser des colonnes dupliquées</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a></a>  <span class="fu">inner_join</span>(weather, by) <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a></a>  <span class="fu">select</span>(<span class="sc">!</span><span class="fu">ends_with</span>(<span class="st">".y"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a></a>  <span class="fu">rename_with</span>(<span class="at">.fn =</span> \(x) <span class="fu">str_replace</span>(x, <span class="st">".x"</span>, <span class="st">""</span>), </span>
+<span id="cb16-5"><a></a>              <span class="at">.cols =</span> <span class="fu">ends_with</span>(<span class="st">".x"</span>))</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>avec la sélection bien tempérée : les noms des colonnes dupliquées possèdent un suffixe qui indique leur origine</p>
+</div><div class="column">
+<p>Utiliser la jointure naturelle :</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a></a>flights <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a></a>  <span class="fu">inner_join</span>(weather, by)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Le fait que l’équi-jointure sur tous les attributs de même nom dans les deux tables donne le même résultat que l’équi-jointure sur <code>origin</code> et <code>time_hour</code> reflète les redondances du schéma.</p>
+<p>Les dépendances fonctionnelles sont satisfaites dans les deux tables:</p>
+<pre><code>year, month, day, hour → time_hour
+time_hour → year, month, day, hour </code></pre>
+</div></div>
 </section></section><section><section id="encore-des-opérations" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Encore des opérations…</h1>
 
 </section><section id="jointure-externe" class="slide level2 center"><h2>Jointure externe</h2>
@@ -1743,6 +1848,31 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </tbody>
 </table>
 </div></div>
+</section><section id="inner_join" class="slide level2 center"><h2><code>inner_join()</code></h2>
+</section><section id="join_by..." class="slide level2 center"><h2><code>join_by(...)</code></h2>
+<blockquote>
+<p><code>join_by()</code> constructs a specification that describes how to join two tables using a small domain specific language.</p>
+</blockquote>
+<h3 id="arguments">Arguments</h3>
+<p>Expressions specifying the join.</p>
+<p>. . .</p>
+<p>Each expression should consist of one of the following:</p>
+<ul>
+<li>Equality condition: ==</li>
+<li>Inequality conditions: &gt;=, &gt;, &lt;=, or &lt;</li>
+<li>Rolling helper: closest()</li>
+<li>Overlap helpers: between(), within(), or overlaps()</li>
+</ul>
+
+<aside><div>
+<p>Other expressions are not supported. If you need to perform a join on a computed variable, e.g.&nbsp;join_by(sales_date - 40 &gt;= promo_date), you’ll need to precompute and store it in a separate column.</p>
+</div></aside></section><section class="slide level2 center"><blockquote>
+<p>Column names should be specified as quoted or unquoted names. By default, the name on the left-hand side of a join condition refers to the left-hand table, unless overridden by explicitly prefixing the column name with either ⁠x<span class="math inline">\(⁠ or ⁠y\)</span>⁠.</p>
+</blockquote>
+<blockquote>
+<p>If a single column name is provided without any join conditions, it is interpreted as if that column name was duplicated on each side of ==, i.e.&nbsp;x is interpreted as x == x.</p>
+</blockquote>
+</section><section id="left_join" class="slide level2 center"><h2><code>left_join()</code></h2>
 </section><section id="division" class="slide level2 center"><h2>Division</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -1894,7 +2024,68 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 <blockquote>
 <p>Codd’s theorem, a result proven in his seminal work on the relational model, equates the expressive power of relational algebra and relational calculus.[14]</p>
 </blockquote>
-</section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
+</section></section><section id="les-expressions-dans-dplyr" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Les expressions dans <code>dplyr</code>
+</h1>
+
+</section><section><section id="la-sélection-bien-tempérée-tidy-selection" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>La sélection bien tempérée (<em>tidy selection</em>)</h1>
+
+</section><section id="section" class="slide level2 center"><h2></h2>
+</section><section id="section-1" class="slide level2 center"><h2></h2>
+</section></section><section><section id="aggrégations-et-extension-de-lalgèbre-relationnelle" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Aggrégations et extension de l’algèbre relationnelle</h1>
+
+</section><section id="summarizedqta-...-byexpr-dans-dplyr" class="slide level2 center"><h2>
+<code>summarize(dqta, ... , by=expr)</code> dans <code>dplyr()</code>
+</h2>
+</section><section id="summarize-avec-sélection-bien-tempérée-avec-across...-..." class="slide level2 center"><h2>
+<code>summarize()</code> avec sélection bien tempérée avec <code>across(..., ...)</code>
+</h2>
+</section></section><section><section id="partitionnement" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Partitionnement</h1>
+
+</section><section id="le-problème-group-by-en-sql" class="slide level2 center"><h2>Le problème <code>GROUP BY</code> en <code>SQL</code>
+</h2>
+</section><section id="des-tables-avec-des-domaines-tabulaires" class="slide level2 center"><h2>Des tables avec des domaines tabulaires</h2>
+</section><section id="group_by-et-les-grouped-tibbles" class="slide level2 center"><h2>
+<code>group_by()</code> et les <code>grouped tibbles</code>
+</h2>
+</section><section id="ungroup" class="slide level2 center"><h2><code>ungroup()</code></h2>
+</section><section id="nest-et-unnest" class="slide level2 center"><h2>
+<code>nest()</code> et <code>unnest()</code>
+</h2>
+</section><section id="enframe" class="slide level2 center"><h2><code>enframe()</code></h2>
+</section><section id="références-sur-les-tqbles-partitionnées" class="slide level2 center"><h2>Références sur les tqbles partitionnées</h2>
+<p><a href="https://dplyr.tidyverse.org/articles/grouping.html"><code>dplyr</code> sur le groupement</a></p>
+</section></section><section><section id="mise-à-jour-de-tables" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Mise à jour de tables</h1>
+
+</section><section id="types-de-mises-à-jour-de-tables-en-sql" class="slide level2 center"><h2>Types de mises à jour de tables en <code>SQL</code>
+</h2>
+<ul>
+<li>modification du schéma <code>ALTER TABLE ...</code>
+<ul>
+<li>ajout de colonnes</li>
+<li>suppression de colonnes</li>
+<li>modification de domaines</li>
+</ul>
+</li>
+<li>modification des lignes
+<ul>
+<li>mises à jour d’attributs sur certaines lignes</li>
+<li>suppression de lignes</li>
+<li>insertions de lignes</li>
+</ul>
+</li>
+</ul></section><section id="point-de-vue-fonctionnel" class="slide level2 center"><h2>Point de vue fonctionnel</h2>
+</section><section id="mutate" class="slide level2 center"><h2><code>mutate()</code></h2>
+<ul>
+<li>ajout de colonnes</li>
+<li>modification de domaines</li>
+<li>mises à jour d’attributs sur certaines lignes</li>
+</ul></section><section id="ajout-de-lignes" class="slide level2 center"><h2>Ajout de lignes</h2>
+</section><section id="section-2" class="slide level2 center"><h2></h2>
+</section></section><section id="références" class="title-slide slide level1 center"><h1>Références</h1>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/">Page maison <code>dplyr</code></a></li>
+<li><a href=""></a></li>
+</ul></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
