@@ -45,7 +45,7 @@ babynames[1:5,] |>
 # LMD : Opérateurs  {background-color="#1c191c"}
 
 
-## Petit rappel sur l'algèbre relationnel
+## Petit rappel sur l'algèbre relationnelle
 
 ::: {.callout-note}
 
@@ -61,6 +61,8 @@ Une opération de l'algèbre relationnelle retourne une relation/table.
 . . .
 
 ::: {.callout-note}
+
+### En passant
 
 Une relation c'est un schéma (définition des colonnes/attributs) et une instance (une collection de lignes qui obéissent au schéma).
 
@@ -323,39 +325,42 @@ S <- dplyr::select(R, Ai1, Ai2, ..., Aip)
 
 ## Projection vitaminée (`tidy selection`)
 
+[Sélection bien tempérée](https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html)
 
 
-## Sélection  ( $\Large{\sigma}$ ) 
+
+## Sélection  (σ) 
 
 
 ::: {.callout-important}
 
 ### Définition
 
-- La *sélection* d'une relation $R$
-par une condition $C$ est une relation $S$
+- La *sélection* d'une relation $R$ par une condition $C$ est une relation $S$
 
   - de même schéma que $R$ 
 
   - dont les tuples sont ceux de $R$ qui satisfont la condition $C$.
 
-- On note $S = \sigma_C (R)$.
+- On note $S = σ(R, C)$.
 
 - La condition $C$  
 
   - s'exprime à l'aide des noms d'attributs de la relation ou de constantes (pour les opérandes)
 
-  - on peut utiliser des opérateurs arithmétiques de comparaison ( $=, \neq, \leq, \geq, <, >$ ) ainsi que des connecteurs logiques ( $\lnot, \land, \lor$ )..
+  - on peut utiliser des opérateurs arithmétiques de comparaison ( $=, \neq, \leq, \geq, <, >$ ) ainsi que des connecteurs logiques (¬, ∧, ∨)..
+
+  - s'évalue pour chaque ligne de $R$  
 
 :::
 
 ## Sélection avec `dplyr::filter`
 
 
-$S = \sigma_C (R)$  se traduit en
+$S = σ(R, C)$  se traduit en
 
 ```{.r}
-S <- dplyr::filter(R, C)
+S <- filter(R, C)
 ```
 
 
@@ -372,23 +377,36 @@ S <- dplyr::filter(R, C)
 - Soit  $R$ de schéma $R(A_1,\dots, A_k)$, le *renommage* d'un attribut $A_i$, $i\leq k$, en $B$ est une relation $S$ :
   - de même contenu  (mêmes lignes)
   - de schéma $S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)$
-  - On le note $S=\rho_{A_i\mapsto B}(R)$
+  - On le note $S=ρ(R, A_i\mapsto B)$
 
 :::
 
 
 ## Renommage avec `dplyr::rename()`
 
-$S=\rho_{A_i\mapsto B}(R)$  se traduit en 
+$S=ρ(R, A_i\mapsto B)$  se traduit en 
 
 ```{.r}
-S <- dplyr::rename(R, B=Ai)
+S <- rename(R, B=Ai)
 ```
 
 ## Exemple
 
 	
-
+```{.r}
+r$> rename(flights, destination=dest) |> 
+    select(flight,tailnum, origin, destination, carrier, time_hour) |>
+    head()
+# A tibble: 6 × 6
+  flight tailnum origin destination carrier time_hour          
+   <int> <chr>   <chr>  <chr>       <chr>   <dttm>             
+1   1545 N14228  EWR    IAH         UA      2013-01-01 05:00:00
+2   1714 N24211  LGA    IAH         UA      2013-01-01 05:00:00
+3   1141 N619AA  JFK    MIA         AA      2013-01-01 05:00:00
+4    725 N804JB  JFK    BQN         B6      2013-01-01 05:00:00
+5    461 N668DN  LGA    ATL         DL      2013-01-01 06:00:00
+6   1696 N39463  EWR    ORD         UA      2013-01-01 05:00:00
+```
 
 
 
@@ -425,7 +443,33 @@ S <- R |>
   select(Ai1,.., Aip)
 ```
 
+## Exemple 
 
+Les origines et destinations des vols avec un retard au départ d'au moins 30 minutes e
+
+::: {.columns}
+
+::: {.column}
+```{.r}
+flights |>
+  filter(dep_delay>30) |>
+  select(origin, dest) |>
+  distinct()
+```
+
+:::
+
+::: {.column}
+ou directement 
+```{.r}
+flights |>
+  filter(dep_delay>30) |>
+  distinct(origin, dest) 
+```
+
+:::
+
+:::
 
 # Opérations complémentaires : les jointures  {background-color="#1c191c"}
 
@@ -656,12 +700,79 @@ $$\pi_{\text{fno}} \bigl( \sigma_{\text{nom}=\text{'Durand'}} (\text{fournisseur
 $$\pi_{\text{pno,prix,qte}} \bigl( \sigma_{\text{qte}>10} (\text{commandes} \bowtie \text{produits})\bigr)$$
 
 
+# Exemple (`nycfights13`) jointure entre `flights`  et `weather`
+
+Il s'agit d'une équi-jointure sur les colonnes `origin`, et `time_hour`
+
+Il ne s'agit pas d'une jointure naturelle (pourquoi?) 
+
+```{.r}
+by <- join_by(origin, time_hour)
+
+flights |>
+  inner_join(weather, by) |>
+  select(!(ends_with("_time") |
+           starts_with("arr_") | 
+           starts_with("dep_"))) |>
+  select(-tailnum, -flight, -carrier) |> 
+  head(3)
+# A tibble: 3 × 22
+  year.x month.x day.x origin dest  distance hour.x minute time_hour           year.y month.y day.y hour.y  temp  dewp humid wind_dir
+   <int>   <int> <int> <chr>  <chr>    <dbl>  <dbl>  <dbl> <dttm>               <int>   <int> <int>  <int> <dbl> <dbl> <dbl>    <dbl>
+1   2013       1     1 EWR    IAH       1400      5     15 2013-01-01 05:00:00   2013       1     1      5  39.0  28.0  64.4      260
+2   2013       1     1 LGA    IAH       1416      5     29 2013-01-01 05:00:00   2013       1     1      5  39.9  25.0  54.8      250
+3   2013       1     1 JFK    MIA       1089      5     40 2013-01-01 05:00:00   2013       1     1      5  39.0  27.0  61.6      260
+# ℹ 5 more variables: wind_speed <dbl>, wind_gust <dbl>, precip <dbl>, pressure <dbl>, visib <dbl>
+
+```
+
+---
 
 
+::: {.columns}
+
+::: {.column}
+On veut/peut se débarasser des colonnes dupliquées
+
+```{.r}
+flights |>
+  inner_join(weather, by) |>
+  select(!ends_with(".y")) |>
+  rename_with(.fn = \(x) str_replace(x, ".x", ""), 
+              .cols = ends_with(".x"))
+```
+
+avec la sélection bien tempérée : les noms des colonnes dupliquées possèdent 
+un suffixe qui indique leur origine
+
+:::
+
+
+::: {.column}
+
+Utiliser la jointure naturelle :
+
+```{.r}
+flights |>
+  inner_join(weather, by)
+```
+
+Le fait que l'équi-jointure  sur tous les attributs de même nom dans les deux tables 
+donne le même résultat que l'équi-jointure sur `origin` et `time_hour` reflète les redondances du schéma.
+
+Les dépendances fonctionnelles sont satisfaites dans les deux tables:
+
+```
+year, month, day, hour → time_hour
+time_hour → year, month, day, hour 
+```
+
+:::
+
+
+:::
 
 # Encore des opérations...  {background-color="#1c191c"}
-
-
 
 
 ## Jointure externe

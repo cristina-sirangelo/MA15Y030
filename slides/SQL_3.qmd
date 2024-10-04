@@ -17,7 +17,9 @@ engine: knitr
 
 ---
 
-L'algèbre relationnelle pure ne sait pas tout calculer
+## Limite de l'algèbre relationnelle pure 
+
+L'algèbre relationnelle pure (σ, π, ⋈)ne sait pas tout calculer
 
 Certains problèmes aisément solubles par un langage de programmation complet (`Python`, `C`, `R`, ...) ne sont pas solubles dans 
 l'algèbre relationnelle pure ( $\sigma(), \pi(), \bowtie(), ...$ ) :
@@ -27,18 +29,42 @@ l'algèbre relationnelle pure ( $\sigma(), \pi(), \bowtie(), ...$ ) :
 - compter : quel est le nombre de lignes d'une table ?
 
 
+## Extension de l'algèbre relationnelle
+
+::: {.callout-note}
+
+### Idée générale 
+
+Un opérateur `Résume()` qui admet une opérande `T` de type table et comme autres arguments une suite d'expressions susceptibles de calculer des *agrégats* 
+
+`Résume(T, expr1, ..., exprk)` retourne une table `S` à **une** ligne et `k` colonnes 
+
+La colonne `i` de `S` contient l'évaluation de `expri` sur la table `T`
+
+:::
+
+::: {.callout-caution}
+
+Il n'est pas évident de définir ce que peut être une fonction d'agrégation et un agrégat
+
+Nous travaillerons  à partir d'exemples concrets
+
+:::
+
 ## {{< fa binoculars >}} Fonctions d'agrégation en SQL 
 
 - Possibilité de *compter*, de *faire des moyennes*, de trouver un maximum, ... en SQL (contrairement à l'algèbre relationnelle "classique")
 
-- Possibilité de *partitionner* les données
+<!-- - Possibilité de *partitionner* les données -->
 
-
+[Tutorial Aggregation functions PostgreSQL](https://www.postgresql.org/docs/current/tutorial-agg.html)
 
 ## Usages 
 
 - [Analyse commerciale ou Buisiness Analytics](https://fr.wikipedia.org/wiki/Business_analytics), 
 
+- OLAP
+  
 - Statistique et Data Science 
 
 
@@ -47,22 +73,38 @@ l'algèbre relationnelle pure ( $\sigma(), \pi(), \bowtie(), ...$ ) :
 
 - Somme des valeurs prises par `nomattribut`
 
+```
+Résume(T, SOMME(nomattribut))
+```
+
+se traduit en 
+
 ```{.sql}
-SUM (DISTINCT|ALL <nomattribut>)  
+SELECT 
+  SUM (DISTINCT|ALL <nomattribut>)  
+FROM T
 ```
 
 . . . 
  
 - Moyenne des valeurs prises par `nomattribut`
 
+```
+Résume(T, MOYENNE(nomattribut))
+```
+
+se traduit en 
+
 ```{.sql}
-AVG (DISTINCT|ALL <nom_attribut>) 
+SELECT 
+  AVG (DISTINCT|ALL <nom_attribut>) 
+FROM T
 ```
 
 . . .
 
 {{< fa triangle-exclamation >}} Le type des attributs doit être un nombre ou un entier (sinon, 
-impossible de faire des sommes...).
+impossible de faire des sommes, des moyennes...).
 
 
 
@@ -76,6 +118,13 @@ FROM city
 WHERE countrycode = 'FRA';
 ```
 
+Traduction de 
+
+```{sql}
+σ(city, countrycode = 'FRA') |>
+  Résume(SOMME(population))
+```
+
 - GNP moyen par habitant (pas pondéré!) sur le continent `South America`
 
 ```{.sql}
@@ -87,11 +136,12 @@ WHERE
   continent = 'South America'
 ```
 
+Traduction de 
 
-
-##   {visibility="hidden"}
-
-![](/images/prod-liv-fourn.png)
+```{.sql}
+σ(country, continent = 'South America') |>
+  Résume(MOYENNE(1e6*gnp/population_country))
+```
 
 
 
@@ -103,7 +153,9 @@ WHERE
 ## Fonctions de calcul  : `MAX`, `MIN`
   
 ```{.sql}
-MAX (<nomattribut>)  
+SELECT 
+  MAX (<nomattribut>)  
+FROM T ;
 ```
 
 maximum des valeurs prises par `<nomattribut>`
@@ -112,10 +164,12 @@ maximum des valeurs prises par `<nomattribut>`
 
 
 ```{.sql}
-MIN (<nomattribut>)  
+SELECT 
+  MIN (<nomattribut>)  
+FROM T 
 ```
 
-minimum des valeurs prises par  `<nomattribut>` 
+minimum des valeurs prises par  `<nomattribut>` dans `T`
 
 
 ::: {.callout-caution}
@@ -126,34 +180,82 @@ Attention aux valeurs nulles !
 
 `NULL = MIN(NULL, 3, 100)` ou `3 = MIN(NULL, 3, 100)` ?
 
-{{< fa hand-point-right >}} Essayez `SELECT MIN(gnpold) FROM country;`
+{{< fa hand-point-right >}} Essayez `SELECT MIN(gnpold) FROM country;` !
 :::
 
 . . .
-
-Quantité maximale livrée de pièce 'x21' lors d'une commande.
 
 ```{.sql}
 SELECT MAX (gnpold), max(gnp)   
 FROM country 
 WHERE region = 'Caribbean';
+   max    |   max    
+----------+----------
+ 32100.00 | 34100.00
+```
+
+---
+
+::: {.callout-note}
+
+### Que se passe-t-il lorsqu'on calcule un agrégat sur une colonne contenant des données manquantes (`NULL`) ?
+
+Quelles sont les procédés mis en œuvre en statistique ?
+
+Quels sont les procédés mis en œuvre par PostgreSQL ?
+
+:::
+
+```{.sql}
+SELECT name_country, gnpold, gnp
+FROM country
+WHERE continent = 'Europe' AND (gnp IS NULL OR gnpold IS NULL)
+         name_country          | gnpold |   gnp    
+-------------------------------+--------+----------
+ Andorra                       |        |  1630.00
+ Bosnia and Herzegovina        |        |  2841.00
+ Faroe Islands                 |        |     0.00
+ Gibraltar                     |        |   258.00
+ Svalbard and Jan Mayen        |        |     0.00
+ Yugoslavia                    |        | 17000.00
+ Monaco                        |        |   776.00
+ San Marino                    |        |   510.00
+ Belarus                       |        | 13714.00
+ Holy See (Vatican City State) |        |     9.00
+```
+
+. . .
+
+::: {.aside}
+
+Ici, les données manquantes sont *implicitement* ignorées
+
+:::
+
+```{.sql}
+SELECT max(gnpold) AS max_gnpold, max(gnp) AS max_gnp   
+FROM country 
+WHERE continent  = 'Europe';
+  max_gnpold |  max_gnp 
+-------------+------------
+  2102826.00 | 2133367.00
 ```
 
 
-<!-- ![](/images/prod-liv-fourn.png) -->
 
 
-
-# Fonction COUNT
+# Fonction COUNT  {background-color="#1c191c"}
 
 
 
 ## Fonctions de calcul : `COUNT`
 
-On peut aussi compter le nombre de tuples dans un résultat  
+On peut aussi compter le nombre de tuples dans le résultat d'une requête  
 
 ```{.sql}
-COUNT(* |[ ALL | DISTINCT <nomattribut>])  
+SELECT 
+  COUNT(* |[ ALL | DISTINCT <nomattribut>])  
+FROM T
 ```
 
 Nombre de valeurs prises par le résultat
@@ -172,32 +274,165 @@ FROM country
 WHERE region = 'Caribbean'; 
 ```
 
+::: {.aside}
 
-<!-- ![](/images/prod-liv-fourn.png) -->
+Dans `COUNT(* |[ ALL | DISTINCT <nomattribut>])`, il faut comprendre qu'on peut écrire 
+`COUNT(*)` ou `COUNT (ALL country)` ou `COUNT (DISTINCT country)`. Le symbole `|` est utilisé pour décrire une alternative 
+
+:::
+
+# Retour sur fonction `SUM` {background-color="#1c191c"}
 
 
-## Fonctions de calcul  : exemples
+## Fonction de calcul `SUM()`
 
-Exemple de combinaison de quelques opérations et fonctions
+On peut sommer les valeurs contenues dans une colonne numérique 
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "2|2-4|"
+SELECT 
+  SUM(population) AS urban_pop
+FROM city  ci
+WHERE ci.countrycode = 'GBR' ;
+```
+
+```{.sql}
++-----------+
+| urban_pop |
+|-----------|
+| 22436673  |
++-----------+
+```
+
+## Sommation sur tableau vide
+
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "2|2-4|"
+SELECT 
+  SUM(population) AS urban_pop
+FROM city  ci
+WHERE ci.countrycode = 'zzz' ;
++-----------+
+| urban_pop |
+|-----------|
+| <null>    |
++-----------+
+```
+
+Est-ce cohérent?
+
+## Autre approche  avec  `CASE WHEN ...THEN ... ELSE ...`
+
+
+```{.sql}
+SELECT 
+  SUM(
+    CASE 
+      WHEN countrycode='GBR' THEN population 
+      ELSE 0 
+    END) AS urban_pop 
+ FROM city  ci ;
+
++-----------+
+| urban_pop |
+|-----------|
+| 22436673  |
++-----------+
+```
+
+
+
+---
+
+
+```{.sql}
+SELECT 
+  SUM(
+    CASE 
+      WHEN countrycode='xxx' THEN population 
+      ELSE 0 
+    END) AS urban_pop 
+ FROM city  ci ;
++-----------+
+| urban_pop |
+|-----------|
+| 0         |
++-----------+
+```
+
+
+## Calculer les populations vivant sous diﬀérents régimes 
+
+
+```{.sql}
+SELECT 
+  SUM(CASE 
+    WHEN governmentform LIKE '%Monarchy%' THEN population_COUNTRY 
+    ELSE 0 
+  END) AS pop_monarch,  
+  SUM(CASE 
+    WHEN governmentform LIKE '%Republic%' THEN population_COUNTRY 
+    ELSE 0 
+  END) AS pop_repu 
+FROM country ;
++-------------+------------+
+| pop_monarch | pop_repu   |
+|-------------+------------|
+| 519485000   | 5502453700 |
++-------------+------------+
+```
+
+
+## Agrégats sur données filtrées `FILTER (WHERE condition)`
+
+```{.sql}
+SELECT 
+  SUM(population_country) FILTER  
+    (WHERE governmentform LIKE '%Monarchy%') AS pop_monarch,  
+  SUM(population_country) FILTER 
+    (WHERE governmentform LIKE '%Republic%') AS pop_repu 
+FROM country ;
++-------------+------------+
+| pop_monarch | pop_repu   |
+|-------------+------------|
+| 519485000   | 5502453700 |
++-------------+------------+
+```
+
+## Pour en savoir plus ?
+
+[Documentation PostgreSQL](https://www.postgresql.org/docs/current/functions-aggregate.html)
+
+
+# Fonctions de calcul  : exemples  {background-color="#1c191c"}
+
+
+## Combinaison de quelques opérations et fonctions
 
 Nom des régions comportant plus de $10$ territoires.
 
 . . .
 
-```{sql}
+```{.sql}
 --| eval: false
 --| echo: false
 --| code-line-numbers: "1-2|4-6|"
 SELECT DISTINCT c.region 
 FROM country c 
 WHERE (
-  SELECT Count (*)     
+  SELECT COUNT (*)     
   FROM country co     
   WHERE co.region = c.region
 ) >= 15;  
 ```
 
-<!-- ![](/images/prod-liv-fourn.png) -->
+
+
 
 
 ## Musée des horreurs   {.smaller}
@@ -236,10 +471,11 @@ Pourquoi cette requête est-elle horrible ?
 
 ## {.smaller}
 
-On peut faire plus simple (et plus efficace) dans le case présent
+{{< fa hand-point-right >}} On peut faire plus simple (et plus efficace) dans le case présent
 
 ```{.sql}
-SELECT DISTINCT continent, region
+SELECT 
+  DISTINCT continent, region
 FROM country c 
 WHERE c.lifeexpectancy <50 
 ORDER BY continent, region;
@@ -267,7 +503,8 @@ Mais si on veut lister les régions où tous les pays ont une espèrance de  vie
 Pourquoi pas ?
 
 ```{.sql}
-SELECT DISTINCT continent, region
+SELECT 
+  DISTINCT continent, region
 FROM country c 
 WHERE (
   SELECT MIN(d.lifeexpectancy)     
@@ -285,7 +522,7 @@ Combien de fois calculez vous l'espérance de minimale pour chaque région ?
 
 
 
-## Fonctions de calcul : exemples
+## Fonctions de calcul : exemples (suite)
 
 Utilisation d'opérateurs arithmétique entre les différents attributs d'un même tuple...  
 
@@ -432,7 +669,7 @@ FROM country
 GROUP BY continent;
 ```
 
-##
+---
 
 
 La requête suivante  requête n'est pas correcte 
@@ -477,7 +714,53 @@ HAVING COUNT(DISTINCT region) >= 5;
 ```
 
 
+## Operation `GROUP BY` et calcul sur les tables   {.smaller}
 
+::: {.callout-note}
+
+L'opération `GROUP BY` ne renvoie pas une table mais (implicitement) *une collection de sous-tables* indicées/étiquetées par les valeurs des attributs de groupement
+
+L'opération `GROUP BY` ne peut pas s'intégrer dans une algèbre relationnelle, même étendue.
+
+:::
+
+::: {.callout-caution}
+
+SQL n'offre pas de moyen de mémoriser le résultat d'un `GROUP BY` avant d'effectuer des agrégations ou une projection sur les attributs de groupement.  
+
+:::
+
+. . .
+
+```{sql}
+--| eval: false
+--| echo: true
+--| code-line-numbers: "4-5|"
+SELECT *  
+FROM country 
+GROUP BY continent  ;
+column "country.countrycode" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: SELECT * FROM country GROUP BY continent
+```
+
+---
+
+```{.sql}
+SELECT continent  
+FROM country 
+GROUP BY continent  ;
++---------------+
+| continent     |
+|---------------|
+| Asia          |
+| South America |
+| North America |
+| Oceania       |
+| Antarctica    |
+| Africa        |
+| Europe        |
++---------------+
+```
 
 
 # Tri des résultats  {background-color="#1c191c"}
@@ -556,7 +839,9 @@ Dans le schéma `world`,
 
 
 
-# Fonctions fenêtres (Window functions)
+# Fonctions fenêtres (Window functions)  {background-color="#1c191c"}
+
+---
 
 
 Une **fonction fenêtre** effectue un calcul sur un (sous)-ensemble de lignes de la table qui sont liées  à la ligne courante. 
@@ -624,7 +909,6 @@ pour calculer `min(lifeexpectancy)` et `max(lifeexpectancy)`. On obtient une tab
 ```{sql}
 --| eval: false
 --| echo: true
-
 WITH R AS (
   SELECT region, min(lifeexpectancy) AS minlex, max(lifeexpectancy) AS maxlex
   FROM country
@@ -917,7 +1201,7 @@ Nigeria           |Africa       |         111506000|
 ```
 
 
-# Groupements avancés 
+# Groupements avancés   {background-color="#1c191c"}
 
 
 ---

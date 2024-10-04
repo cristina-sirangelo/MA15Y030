@@ -12,9 +12,9 @@ project:
 website:
   announcement: 
     icon: emoji-surprise
-    dismissable: true
+    dismissable: false
     content: "**Alerte** - Contrôle Continu I vendredi 25 octobre 17h-18h15 Amphi A2 Halle aux Farines"
-    type: primary
+    type: warning
     position: above-navbar
   page-navigation: true
   title: "MA15Y030 - Automne 2024"
