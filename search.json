@@ -2865,46 +2865,60 @@
     "text": "Vues matérialisées\nLes vue matérialisées cachent les données récupérées\nCela se produit\n\nlors de la création de la vue et\nlorsque on exécute REFRESH MATERIALIZED VIEW ..."
   },
   {
+    "objectID": "slides/SQL_3.html#limite-de-lalgèbre-relationnelle-pure",
+    "href": "slides/SQL_3.html#limite-de-lalgèbre-relationnelle-pure",
+    "title": "BD IV: SQL III",
+    "section": "Limite de l’algèbre relationnelle pure",
+    "text": "Limite de l’algèbre relationnelle pure\nL’algèbre relationnelle pure (σ, π, ⋈)ne sait pas tout calculer\nCertains problèmes aisément solubles par un langage de programmation complet (Python, C, R, …) ne sont pas solubles dans l’algèbre relationnelle pure ( \\(\\sigma(), \\pi(), \\bowtie(), ...\\) ) :\n\naccessibilité dans un graphe non-orienté (qui puis-je contacter dans un réseau social?)\ncompter : quel est le nombre de lignes d’une table ?"
+  },
+  {
+    "objectID": "slides/SQL_3.html#extension-de-lalgèbre-relationnelle",
+    "href": "slides/SQL_3.html#extension-de-lalgèbre-relationnelle",
+    "title": "BD IV: SQL III",
+    "section": "Extension de l’algèbre relationnelle",
+    "text": "Extension de l’algèbre relationnelle\n\n\n\n\n\n\nIdée générale\n\n\nUn opérateur Résume() qui admet une opérande T de type table et comme autres arguments une suite d’expressions susceptibles de calculer des agrégats\nRésume(T, expr1, ..., exprk) retourne une table S à une ligne et k colonnes\nLa colonne i de S contient l’évaluation de expri sur la table T\n\n\n\n\n\n\n\n\n\nMise en garde\n\n\nIl n’est pas évident de définir ce que peut être une fonction d’agrégation et un agrégat\nNous travaillerons à partir d’exemples concrets"
+  },
+  {
     "objectID": "slides/SQL_3.html#fonctions-dagrégation-en-sql-1",
     "href": "slides/SQL_3.html#fonctions-dagrégation-en-sql-1",
     "title": "BD IV: SQL III",
     "section": "\n Fonctions d’agrégation en SQL",
-    "text": "Fonctions d’agrégation en SQL\n\nPossibilité de compter, de faire des moyennes, de trouver un maximum, … en SQL (contrairement à l’algèbre relationnelle “classique”)\nPossibilité de partitionner les données"
+    "text": "Fonctions d’agrégation en SQL\n\nPossibilité de compter, de faire des moyennes, de trouver un maximum, … en SQL (contrairement à l’algèbre relationnelle “classique”)\n\nTutorial Aggregation functions PostgreSQL"
   },
   {
     "objectID": "slides/SQL_3.html#usages",
     "href": "slides/SQL_3.html#usages",
     "title": "BD IV: SQL III",
     "section": "Usages",
-    "text": "Usages\n\nAnalyse commerciale ou Buisiness Analytics,\nStatistique et Data Science"
+    "text": "Usages\n\nAnalyse commerciale ou Buisiness Analytics,\nOLAP\nStatistique et Data Science"
   },
   {
     "objectID": "slides/SQL_3.html#dans-la-partie-select",
     "href": "slides/SQL_3.html#dans-la-partie-select",
     "title": "BD IV: SQL III",
     "section": "Dans la partie SELECT\n",
-    "text": "Dans la partie SELECT\n\n\nSomme des valeurs prises par nomattribut\n\n\nSUM (DISTINCT|ALL &lt;nomattribut&gt;)  \n\n\nMoyenne des valeurs prises par nomattribut\n\n\nAVG (DISTINCT|ALL &lt;nom_attribut&gt;) \n\n\n Le type des attributs doit être un nombre ou un entier (sinon, impossible de faire des sommes…)."
+    "text": "Dans la partie SELECT\n\n\nSomme des valeurs prises par nomattribut\n\n\nRésume(T, SOMME(nomattribut))\nse traduit en\nSELECT \n  SUM (DISTINCT|ALL &lt;nomattribut&gt;)  \nFROM T\n\n\nMoyenne des valeurs prises par nomattribut\n\n\nRésume(T, MOYENNE(nomattribut))\nse traduit en\nSELECT \n  AVG (DISTINCT|ALL &lt;nom_attribut&gt;) \nFROM T\n\n\n Le type des attributs doit être un nombre ou un entier (sinon, impossible de faire des sommes, des moyennes…)."
   },
   {
     "objectID": "slides/SQL_3.html#fonctions-dagrégation-sum-et-avg",
     "href": "slides/SQL_3.html#fonctions-dagrégation-sum-et-avg",
     "title": "BD IV: SQL III",
     "section": "Fonctions d’agrégation : SUM et AVG\n",
-    "text": "Fonctions d’agrégation : SUM et AVG\n\n\nSomme des populations des villes du pays de code FRA (dans le schéma world).\n\nSELECT SUM (population)  \nFROM city \nWHERE countrycode = 'FRA';\n\nGNP moyen par habitant (pas pondéré!) sur le continent South America\n\n\nSELECT \n  AVG(1e6*gnp/population_country)::decimal(8,0) \nFROM \n  country \nWHERE \n  continent = 'South America'"
+    "text": "Fonctions d’agrégation : SUM et AVG\n\n\nSomme des populations des villes du pays de code FRA (dans le schéma world).\n\nSELECT SUM (population)  \nFROM city \nWHERE countrycode = 'FRA';\nTraduction de\n\nσ(city, countrycode = 'FRA') |&gt;\n  Résume(SOMME(population))\n\n\nGNP moyen par habitant (pas pondéré!) sur le continent South America\n\n\nSELECT \n  AVG(1e6*gnp/population_country)::decimal(8,0) \nFROM \n  country \nWHERE \n  continent = 'South America'\nTraduction de\nσ(country, continent = 'South America') |&gt;\n  Résume(MOYENNE(1e6*gnp/population_country))"
   },
   {
     "objectID": "slides/SQL_3.html#fonctions-de-calcul-max-min",
     "href": "slides/SQL_3.html#fonctions-de-calcul-max-min",
     "title": "BD IV: SQL III",
     "section": "Fonctions de calcul : MAX, MIN\n",
-    "text": "Fonctions de calcul : MAX, MIN\n\nMAX (&lt;nomattribut&gt;)  \nmaximum des valeurs prises par &lt;nomattribut&gt;\n\nMIN (&lt;nomattribut&gt;)  \nminimum des valeurs prises par &lt;nomattribut&gt;\n\n\n\n\n\n\nMise en garde\n\n\nAttention aux valeurs nulles !\nNULL = MIN(NULL, 3, 100) ou 3 = MIN(NULL, 3, 100) ?\n Essayez SELECT MIN(gnpold) FROM country;\n\n\n\n\n\nQuantité maximale livrée de pièce ‘x21’ lors d’une commande.\nSELECT MAX (gnpold), max(gnp)   \nFROM country \nWHERE region = 'Caribbean';"
+    "text": "Fonctions de calcul : MAX, MIN\n\nSELECT \n  MAX (&lt;nomattribut&gt;)  \nFROM T ;\nmaximum des valeurs prises par &lt;nomattribut&gt;\n\nSELECT \n  MIN (&lt;nomattribut&gt;)  \nFROM T \nminimum des valeurs prises par &lt;nomattribut&gt; dans T\n\n\n\n\n\n\nMise en garde\n\n\nAttention aux valeurs nulles !\nNULL = MIN(NULL, 3, 100) ou 3 = MIN(NULL, 3, 100) ?\n Essayez SELECT MIN(gnpold) FROM country; !\n\n\n\n\n\nSELECT MAX (gnpold), max(gnp)   \nFROM country \nWHERE region = 'Caribbean';\n   max    |   max    \n----------+----------\n 32100.00 | 34100.00"
   },
   {
     "objectID": "slides/SQL_3.html#fonctions-de-calcul-count",
     "href": "slides/SQL_3.html#fonctions-de-calcul-count",
     "title": "BD IV: SQL III",
     "section": "Fonctions de calcul : COUNT\n",
-    "text": "Fonctions de calcul : COUNT\n\nOn peut aussi compter le nombre de tuples dans le résultat d’une requête\nCOUNT(* |[ ALL | DISTINCT &lt;nomattribut&gt;])  \nNombre de valeurs prises par le résultat\n\n\n\nDISTINCT : sans les doublons\n\nALL: avec les doublons\n\n* : y compris les valeurs nullles/manquantes\n\nNombre de territoires dans la région Carribean\nSELECT COUNT(*)  \nFROM country\nWHERE region = 'Caribbean'; \n\n\n\nDans COUNT(* |[ ALL | DISTINCT &lt;nomattribut&gt;]), il faut comprendre qu’on peut écrire COUNT(*) ou COUNT (ALL country) ou COUNT (DISTINCT country). Le symbole | est utilisé pour décrire une alternative"
+    "text": "Fonctions de calcul : COUNT\n\nOn peut aussi compter le nombre de tuples dans le résultat d’une requête\nSELECT \n  COUNT(* |[ ALL | DISTINCT &lt;nomattribut&gt;])  \nFROM T\nNombre de valeurs prises par le résultat\n\n\n\nDISTINCT : sans les doublons\n\nALL: avec les doublons\n\n* : y compris les valeurs nullles/manquantes\n\nNombre de territoires dans la région Carribean\nSELECT COUNT(*)  \nFROM country\nWHERE region = 'Caribbean'; \n\n\n\nDans COUNT(* |[ ALL | DISTINCT &lt;nomattribut&gt;]), il faut comprendre qu’on peut écrire COUNT(*) ou COUNT (ALL country) ou COUNT (DISTINCT country). Le symbole | est utilisé pour décrire une alternative"
   },
   {
     "objectID": "slides/SQL_3.html#fonction-de-calcul-sum",
@@ -2918,7 +2932,7 @@
     "href": "slides/SQL_3.html#sommation-sur-tableau-vide",
     "title": "BD IV: SQL III",
     "section": "Sommation sur tableau vide",
-    "text": "Sommation sur tableau vide\n\nSELECT \n  SUM(population) AS urban_pop\nFROM city  ci\nWHERE ci.countrycode = 'zzz' ;\n\nretourne\n+-----------+\n| urban_pop |\n|-----------|\n| &lt;null&gt;    |\n+-----------+\nEst-ce cohérent?"
+    "text": "Sommation sur tableau vide\n\nSELECT \n  SUM(population) AS urban_pop\nFROM city  ci\nWHERE ci.countrycode = 'zzz' ;\n+-----------+\n| urban_pop |\n|-----------|\n| &lt;null&gt;    |\n+-----------+\n\nEst-ce cohérent?"
   },
   {
     "objectID": "slides/SQL_3.html#autre-approche-avec-case-when-...then-...-else-...",
@@ -2928,11 +2942,25 @@
     "text": "Autre approche avec CASE WHEN ...THEN ... ELSE ...\n\nSELECT \n  SUM(\n    CASE \n      WHEN countrycode='GBR' THEN population \n      ELSE 0 \n    END) AS urban_pop \n FROM city  ci ;\n\n+-----------+\n| urban_pop |\n|-----------|\n| 22436673  |\n+-----------+"
   },
   {
-    "objectID": "slides/SQL_3.html#calculer-les-populations-vivant-sous-diﬀŕents-régimes",
-    "href": "slides/SQL_3.html#calculer-les-populations-vivant-sous-diﬀŕents-régimes",
+    "objectID": "slides/SQL_3.html#calculer-les-populations-vivant-sous-diﬀérents-régimes",
+    "href": "slides/SQL_3.html#calculer-les-populations-vivant-sous-diﬀérents-régimes",
     "title": "BD IV: SQL III",
-    "section": "Calculer les populations vivant sous diﬀŕents régimes",
-    "text": "Calculer les populations vivant sous diﬀŕents régimes\nSELECT \n  SUM(CASE \n    WHEN governmentform LIKE '%Monarchy%' THEN population_COUNTRY \n    ELSE 0 \n  END) AS pop_monarch,  \n  SUM(CASE \n    WHEN governmentform LIKE '%Republic%' THEN population_COUNTRY \n    ELSE 0 \n  END) AS pop_repu \nFROM country ;\n+-------------+------------+\n| pop_monarch | pop_repu   |\n|-------------+------------|\n| 519485000   | 5502453700 |\n+-------------+------------+"
+    "section": "Calculer les populations vivant sous diﬀérents régimes",
+    "text": "Calculer les populations vivant sous diﬀérents régimes\nSELECT \n  SUM(CASE \n    WHEN governmentform LIKE '%Monarchy%' THEN population_COUNTRY \n    ELSE 0 \n  END) AS pop_monarch,  \n  SUM(CASE \n    WHEN governmentform LIKE '%Republic%' THEN population_COUNTRY \n    ELSE 0 \n  END) AS pop_repu \nFROM country ;\n+-------------+------------+\n| pop_monarch | pop_repu   |\n|-------------+------------|\n| 519485000   | 5502453700 |\n+-------------+------------+"
+  },
+  {
+    "objectID": "slides/SQL_3.html#agrégats-sur-données-filtrées-filter-where-condition",
+    "href": "slides/SQL_3.html#agrégats-sur-données-filtrées-filter-where-condition",
+    "title": "BD IV: SQL III",
+    "section": "Agrégats sur données filtrées FILTER (WHERE condition)\n",
+    "text": "Agrégats sur données filtrées FILTER (WHERE condition)\n\nSELECT \n  SUM(population_country) FILTER  \n    (WHERE governmentform LIKE '%Monarchy%') AS pop_monarch,  \n  SUM(population_country) FILTER \n    (WHERE governmentform LIKE '%Republic%') AS pop_repu \nFROM country ;\n+-------------+------------+\n| pop_monarch | pop_repu   |\n|-------------+------------|\n| 519485000   | 5502453700 |\n+-------------+------------+"
+  },
+  {
+    "objectID": "slides/SQL_3.html#pour-en-savoir-plus",
+    "href": "slides/SQL_3.html#pour-en-savoir-plus",
+    "title": "BD IV: SQL III",
+    "section": "Pour en savoir plus ?",
+    "text": "Pour en savoir plus ?\nDocumentation PostgreSQL"
   },
   {
     "objectID": "slides/SQL_3.html#combinaison-de-quelques-opérations-et-fonctions",
@@ -2949,8 +2977,8 @@
     "text": "Musée des horreurs\nTrouver les régions où au moins un pays possède une espérance de vie inférieure à 50\nSELECT DISTINCT continent, region\nFROM country c \nWHERE (\n  SELECT MIN(d.lifeexpectancy)     \n  FROM country d    \n  WHERE c.region=d.region\n  ) &lt; 50    \nORDER BY continent, region;\n\n\nContinent\nRegion\n\n\n\nAfrica\nCentral Africa\n\n\nAfrica\nEastern Africa\n\n\nAfrica\nNorthern Africa\n\n\nAfrica\nSouthern Africa\n\n\nAfrica\nWestern Africa\n\n\nAsia\nSoutheast Asia\n\n\nAsia\nSouthern and Central Asia\n\n\nNorth America\nCaribbean\n\n\n\n\n\nPourquoi cette requête est-elle horrible ?"
   },
   {
-    "objectID": "slides/SQL_3.html#section-2",
-    "href": "slides/SQL_3.html#section-2",
+    "objectID": "slides/SQL_3.html#section-1",
+    "href": "slides/SQL_3.html#section-1",
     "title": "BD IV: SQL III",
     "section": "",
     "text": "On peut faire plus simple (et plus efficace) dans le case présent\nSELECT \n  DISTINCT continent, region\nFROM country c \nWHERE c.lifeexpectancy &lt;50 \nORDER BY continent, region;\n\n\nContinent\nRegion\n\n\n\nAfrica\nCentral Africa\n\n\nAfrica\nEastern Africa\n\n\nAfrica\nNorthern Africa\n\n\nAfrica\nSouthern Africa\n\n\nAfrica\nWestern Africa\n\n\nAsia\nSoutheast Asia\n\n\nAsia\nSouthern and Central Asia\n\n\nNorth America\nCaribbean"
@@ -2977,8 +3005,8 @@
     "text": "Partition de résultats de requêtes\nSchéma général\nSELECT ... \nFROM country \nGROUP BY continent"
   },
   {
-    "objectID": "slides/SQL_3.html#section-3",
-    "href": "slides/SQL_3.html#section-3",
+    "objectID": "slides/SQL_3.html#section-2",
+    "href": "slides/SQL_3.html#section-2",
     "title": "BD IV: SQL III",
     "section": "",
     "text": "+-------------+---------------------+---------------+\n| countrycode | name_country        | continent     |\n|-------------+---------------------+---------------|\n| DZA         | Algeria             | Africa        |\n| AGO         | Angola              | Africa        |\n| ...         |                     |               |\n| ATA         | Antarctica          | Antarctica    |\n| BVT         | Bouvet Island       | Antarctica    |\n| ...         |                     |               |\n| AFG         | Afghanistan         | Asia          |\n| ARM         | Armenia             | Asia          |\n| ...         |                     |               |\n| ALB         | Albania             | Europe        |\n| AND         | Andorra             | Europe        |\n| ...         |                     |               |\n| AIA         | Anguilla            | North America |\n| ATG         | Antigua and Barbuda | North America |\n| ...         |                     |               |\n| ASM         | American Samoa      | Oceania       |\n| AUS         | Australia           | Oceania       |\n| ...         |                     |               |\n| ARG         | Argentina           | South America |\n| BOL         | Bolivia             | South America |\n+-------------+---------------------+---------------+"
@@ -3131,8 +3159,8 @@
     "text": "CUBE\n\nSELECT c1, c2, c3,\n  aggregate (c4) \nFROM table_name\nGROUP BY CUBE (c1, c2, c3);"
   },
   {
-    "objectID": "slides/SQL_3.html#section-5",
-    "href": "slides/SQL_3.html#section-5",
+    "objectID": "slides/SQL_3.html#section-4",
+    "href": "slides/SQL_3.html#section-4",
     "title": "BD IV: SQL III",
     "section": "",
     "text": "|Continent    |Region       |Governmentf   |cnt|max |\n|:------------|:------------|:-------------|:--|:---|\n|             |               |                             | 51|79.4|\n|South America|South America  |Republic                     |  9|75.7|\n|North America|Central America|Republic                     |  6|75.8|\n|North America|Caribbean      |Constitutional Monarchy      |  8|75.2|\n|North America|Caribbean      |                             | 24|78.9|\n|South America|South America  |                             | 14|76.1|\n|North America|Central America|                             |  8|75.8|\n|South America|               |                             | 14|76.1|\n|North America|               |                             | 37|79.4|\n|             |Caribbean      |Constitutional Monarchy      |  8|75.2|\n|             |South America  |Republic                     |  9|75.7|\n|             |Central America|Republic                     |  6|75.8|\n|             |South America  |                             | 14|76.1|\n|             |Central America|                             |  8|75.8|\n|             |Caribbean      |                             | 24|78.9|\n|North America|               |Constitutional Monarchy      |  9|75.2|\n|North America|               |Republic                     | 10|75.8|\n|South America|               |Republic                     |  9|75.7|\n|North America|               |Dependent Territory of the UK|  6|78.9|\n|             |               |Republic                     | 19|75.8|\n|             |               |Constitutional Monarchy      |  9|75.2|\n|             |               |Dependent Territory of the UK|  7|78.9|"
@@ -5158,7 +5186,7 @@
     "href": "slides/LDD_0.html#exemple",
     "title": "BD II: SQL LDD",
     "section": "Exemple",
-    "text": "Exemple\nSchéma:\nfournisseur(nomf, villef),\npiece(nomp, prix, couleur),\nlivraison(numliv, nomf, nomp, dateliv, quantite)\nCREATE TABLE fournisseur(\n    nomf VARCHAR(20),\n    villef VARCHAR(20)\n);\n\nCREATE TABLE piece(\n    nomp VARCHAR(20),\n    prix REAL,\n    couleur VARCHAR(15)\n);"
+    "text": "Exemple\nSchéma:\nfournisseur(nomf, villef),\npiece(nomp, prix, couleur),\nlivraison(numliv, nomf, nomp, dateliv, quantite)\n\nCREATE TABLE fournisseur(\n    nomf VARCHAR(20),\n    villef VARCHAR(20)\n);\n\nCREATE TABLE piece(\n    nomp VARCHAR(20),\n    prix REAL,\n    couleur VARCHAR(15)\n);"
   },
   {
     "objectID": "slides/LDD_0.html#exemple-avec-valeurs-par-défaut",
@@ -5203,32 +5231,32 @@
     "text": "Contenu des relations\nOn peut gérer le contenu des tables directement dans le langage SQL.\nOn peut donc :\n\n\nAjouter des tuples à une table : INSERT INTO ...\nMettre à jour des tuples d’une relation : UPDATE ...\nSupprimer des tuples : DELETE FROM ..."
   },
   {
-    "objectID": "slides/LDD_0.html#insertion-de-tuples",
-    "href": "slides/LDD_0.html#insertion-de-tuples",
+    "objectID": "slides/LDD_0.html#insertion-de-tuples-syntaxe",
+    "href": "slides/LDD_0.html#insertion-de-tuples-syntaxe",
     "title": "BD II: SQL LDD",
-    "section": "Insertion de tuples",
-    "text": "Insertion de tuples\n\nINSERT INTO &lt;nom_relation&gt;\n    [(nom_attrib [, nom_attrib]*)]\n    VALUES (valeur [, valeur]*);\n\nExemple\n\nINSERT INTO piece VALUES('x21', 1.51, 'rouge');\n\nINSERT INTO piece (nomp,couleur) VALUES('x22', 'vert');\n\n+--------+--------+-----------+\n| nomp   | prix   | couleur   |\n|--------+--------+-----------|\n| x21    | 1.51   | rouge     |\n| x22    | &lt;null&gt; | vert      |\n+--------+--------+-----------+\n\nAttention\n\nLes valeurs doivent être fournies dans l’ordre de déclaration des attributs\nLes valeurs non spécifiées sont affectées à NULL"
+    "section": "Insertion de tuples : syntaxe",
+    "text": "Insertion de tuples : syntaxe\n\nINSERT INTO &lt;nom_relation&gt;\n    [(nom_attrib [, nom_attrib]*)]\n    VALUES (valeur [, valeur]*);\n\n\n\nINSERT INTO piece VALUES('x21', 1.51, 'rouge');\n\nINSERT INTO piece (nomp,couleur) VALUES('x22', 'vert');\n\n+--------+--------+-----------+\n| nomp   | prix   | couleur   |\n|--------+--------+-----------|\n| x21    | 1.51   | rouge     |\n| x22    | &lt;null&gt; | vert      |\n+--------+--------+-----------+\n\n\n\n\n\n\n\nAttention\n\n\n\nLes valeurs doivent être fournies dans l’ordre de déclaration des attributs\nLes valeurs non spécifiées sont affectées à NULL"
   },
   {
-    "objectID": "slides/LDD_0.html#insertion-exemple",
-    "href": "slides/LDD_0.html#insertion-exemple",
+    "objectID": "slides/LDD_0.html#insertion-exemple-suite",
+    "href": "slides/LDD_0.html#insertion-exemple-suite",
     "title": "BD II: SQL LDD",
-    "section": "Insertion, exemple",
-    "text": "Insertion, exemple\nINSERT INTO world.country\n(countrycode, name_country, continent,\n region, surfacearea, indepyear, population_country,\n lifeexpectancy, gnp, gnpold,\n localname, governmentform, headofstate, capital, code2)\nVALUES(\n    'SYL', 'Syldavia', 'Europe',\n    'Eastern Europe', 200000, 1918, 21345717,\n    81.2, 25213, 24878,\n    'Syldavie', 'Constitutional Monarchy', 'Ottokar II', 0, 'SY'\n);"
+    "section": "Insertion, exemple (suite)",
+    "text": "Insertion, exemple (suite)\nINSERT INTO world.Country\n  (countrycode, name_country, continent,\n   region, surfacearea, indepyear, population_country,\n   lifeexpectancy, gnp, gnpold,\n   localname, governmentform, headofstate, capital, code2)\nVALUES(\n    'SYL', 'Syldavia', 'Europe',\n    'Eastern Europe', 200000, 1918, 21345717, 81.2, 25213, 24878,\n    'Syldavie', 'Constitutional Monarchy', 'Ottokar II', 0, 'SY'\n);"
   },
   {
-    "objectID": "slides/LDD_0.html#section",
-    "href": "slides/LDD_0.html#section",
+    "objectID": "slides/LDD_0.html#remarques",
+    "href": "slides/LDD_0.html#remarques",
     "title": "BD II: SQL LDD",
-    "section": "",
-    "text": "SELECT *\nFROM (\n  VALUES\n    ('robe', 'logged in', '2011-01-10 10:15 AM EST'::timestamptz),\n    ('lhsu', 'logged out', '2011-01-11 10:20 AM EST'::timestamptz)\n) AS l (user_name, description, log_ts);\n\n\n\n\n\n\n\nNote\n\n\nQuand on utilise VALUES pour définir une table virtuelle, il faut spécifier le nom des colonnes.\nPar défaut, les types des colonnes sont inférés. Si l’inférence de type n’est pas possible, il faut effectuer explicitement des conversions de type comme ici avec ::timestamptz.\n\n\n\n\n\nLa dernière partie du constructeur multiligne, qui commence avec VALUES est souvent appelée la liste de valeurs.\n\nUne liste de valeurs peut être définie sans référene à une table existante et définir à la volée une nouvelle table virtuelle/éphémère."
+    "section": "Remarques",
+    "text": "Remarques\nLa dernière partie du constructeur multiligne, qui commence avec VALUES est souvent appelée la liste de valeurs.\n\nUne liste de valeurs peut être définie sans référene à une table existante et définir à la volée une nouvelle table virtuelle/éphémère.\n\n\n\nSELECT *\nFROM (\n  VALUES\n    ('robe', 'logged in', '2011-01-10 10:15 AM EST'::timestamptz),\n    ('lhsu', 'logged out', '2011-01-11 10:20 AM EST'::timestamptz)\n) AS l (user_name, description, log_ts);\n\n\n\n\nQuand on utilise VALUES pour définir une table virtuelle, il faut spécifier le nom des colonnes.\nPar défaut, les types des colonnes sont inférés. Si l’inférence de type n’est pas possible, il faut effectuer explicitement des conversions de type comme ici avec ::timestamptz."
   },
   {
-    "objectID": "slides/LDD_0.html#exemple-insertion-de-tuples",
-    "href": "slides/LDD_0.html#exemple-insertion-de-tuples",
+    "objectID": "slides/LDD_0.html#exemple-insertion-de-tuples-suite",
+    "href": "slides/LDD_0.html#exemple-insertion-de-tuples-suite",
     "title": "BD II: SQL LDD",
-    "section": "Exemple : Insertion de tuples",
-    "text": "Exemple : Insertion de tuples\nINSERT INTO livraison\n    VALUES\n    (1, 'fournisseur1', 'x21', '2019-07-13', 2);\n\n-- Avec des colonnes pas renseignées\n\nINSERT INTO livraison\n   (numliv, dateliv, quantite)\n    VALUES\n   (2, '2018-07-29', 10);\n\n\n+----------+--------------+--------+------------+------------+\n| numliv   | nomf         | nomp   | dateliv    | quantite   |\n|----------+--------------+--------+------------+------------|\n| 1        | fournisseur1 | x21    | 2019-07-13 | 2          |\n| 2        | &lt;null&gt;       | &lt;null&gt; | 2018-07-29 | 10         |\n+----------+--------------+--------+------------+------------+\n\n\n\n\n\n\nRappel\n\n\n\nLes valeurs doivent être fournies dans l’ordre de déclaration des attributs\nLes valeurs non spécifiées sont affectées à NULL."
+    "section": "Exemple : Insertion de tuples (suite)",
+    "text": "Exemple : Insertion de tuples (suite)\nINSERT INTO livraison\n    VALUES\n    (1, 'fournisseur1', 'x21', '2019-07-13', 2);\n\n-- Avec des colonnes pas renseignées\n\nINSERT INTO livraison\n   (numliv, dateliv, quantite)\n    VALUES\n   (2, '2018-07-29', 10);\n\n\n+----------+--------------+--------+------------+------------+\n| numliv   | nomf         | nomp   | dateliv    | quantite   |\n|----------+--------------+--------+------------+------------|\n| 1        | fournisseur1 | x21    | 2019-07-13 | 2          |\n| 2        | &lt;null&gt;       | &lt;null&gt; | 2018-07-29 | 10         |\n+----------+--------------+--------+------------+------------+\n\n\n\n\n\n\nRappel\n\n\n\nLes valeurs doivent être fournies dans l’ordre de déclaration des attributs\nLes valeurs non spécifiées sont affectées à NULL."
   },
   {
     "objectID": "slides/LDD_0.html#insertion-de-tuples-par-requête",
@@ -5238,25 +5266,32 @@
     "text": "Insertion de tuples par requête\n\nOn peut faire une insertion par le biais d’une requête\nLa clause VALUES est remplacée par une requête\nLes résultats de la requête sont insérés comme valeurs dans la table\n\n\n\n\n\n\n\n\nAlimentation d’une nouvelle table à l’aide des données d’une autre\n\n\nINSERT INTO FournisseursParisiens (\n  SELECT *\n  FROM Fournisseur\n  WHERE VilleF='Paris'\n);"
   },
   {
-    "objectID": "slides/LDD_0.html#mise-à-jour",
-    "href": "slides/LDD_0.html#mise-à-jour",
+    "objectID": "slides/LDD_0.html#exemple-1",
+    "href": "slides/LDD_0.html#exemple-1",
     "title": "BD II: SQL LDD",
-    "section": "Mise à jour",
-    "text": "Mise à jour\n\n\nOn peut mettre à jour des tuples existants par le biais d’une requête\n\nSoit tous les tuples de la table,\nSoit l’ensemble des tuples vérifiants une condition donnée\n\n\n\n\nUPDATE nom_relation\nSET nom_attribut = &lt;expression de valeur&gt;\n[ , nom_attribut = &lt;expression de valeur&gt; ]*\n[ WHERE &lt;condition de recherche&gt; ];"
+    "section": "Exemple",
+    "text": "Exemple\nCREATE TABLE chaprot.city () \n  INHERITS (world.city) ;\n\nCREATE TABLE chaprot.country () \n  INHERITS (world.country) ;\n\nINSERT INTO chaprot.country (\n    SELECT * \n    FROM world.country\n    WHERE continent = 'Europe' \n);\n\nINSERT INTO chaprot.city (\n    SELECT ci.*  \n    FROM world.city ci NATURAL JOIN \n      world.country co\n    WHERE co.continent = 'Europe'\n) ;"
   },
   {
-    "objectID": "slides/LDD_0.html#mise-à-jour-de-tuples",
-    "href": "slides/LDD_0.html#mise-à-jour-de-tuples",
+    "objectID": "slides/LDD_0.html#mise-à-jour-de-colonnes-ed-cellules",
+    "href": "slides/LDD_0.html#mise-à-jour-de-colonnes-ed-cellules",
     "title": "BD II: SQL LDD",
-    "section": "Mise à jour de tuples",
-    "text": "Mise à jour de tuples\nLe WHERE permet de sélectionner les tuples à mettre à jour\nUPDATE Fournisseur\n    SET VilleF='St.Petersburg'\n    WHERE VilleF='Leningrad';\nOn peut aussi effectuer des opérations sur les tuples à mettre à jour.\n\n\n\n\n\n\nLa clause &lt;expression de valeur&gt; peut être :\n\n\n\nNULL\nUne constante (explicite ou via une requête)\nUne expression arithmétique sur les attributs de la table à modifier"
+    "section": "Mise à jour de colonnes, ed cellules",
+    "text": "Mise à jour de colonnes, ed cellules\n\n\nOn peut mettre à jour des tuples existants par le biais d’une requête\n\nSoit tous les tuples de la table,\nSoit l’ensemble des tuples vérifiants une condition donnée\n\n\n\n\nUPDATE nom_relation\nSET nom_attribut = &lt;expression de valeur&gt; \n    [ , nom_attribut = &lt;expression de valeur&gt; ]*\n[WHERE &lt;condition de recherche&gt; ];"
+  },
+  {
+    "objectID": "slides/LDD_0.html#mise-à-jour-conditionnelle-de-tuples",
+    "href": "slides/LDD_0.html#mise-à-jour-conditionnelle-de-tuples",
+    "title": "BD II: SQL LDD",
+    "section": "Mise à jour conditionnelle de tuples",
+    "text": "Mise à jour conditionnelle de tuples\nLe WHERE permet de sélectionner les tuples à mettre à jour\nUPDATE Fournisseur\nSET VilleF='St.Petersburg'\nWHERE VilleF='Leningrad';\nOn peut aussi effectuer des opérations sur les tuples à mettre à jour.\n\n\n\n\n\n\nLa clause &lt;expression de valeur&gt; peut être :\n\n\n\nNULL\nUne constante (explicite ou via une requête)\nUne expression arithmétique sur les attributs de la table à modifier"
   },
   {
     "objectID": "slides/LDD_0.html#mise-à-jour-de-tuples-exemple",
     "href": "slides/LDD_0.html#mise-à-jour-de-tuples-exemple",
     "title": "BD II: SQL LDD",
     "section": "Mise à jour de tuples (exemple)",
-    "text": "Mise à jour de tuples (exemple)\nAugmentation du prix d’une pièce\nUPDATE Piece\nSET Prix = Prix * 1.05\n    WHERE NomP = 'x21';"
+    "text": "Mise à jour de tuples (exemple)\nAugmentation du prix d’une pièce\nUPDATE Piece\nSET Prix = Prix * 1.05\nWHERE NomP = 'x21';"
   },
   {
     "objectID": "slides/LDD_0.html#mise-à-jour-par-requête",
@@ -5284,21 +5319,14 @@
     "href": "slides/LDD_0.html#delete-from-table-using-t-where-...",
     "title": "BD II: SQL LDD",
     "section": "DELETE FROM <table> USING <t> WHERE ...",
-    "text": "DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...\n\n\nSouvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données.\nSpécifiez cet ensemble supplémentaire avec le prédicat USING"
-  },
-  {
-    "objectID": "slides/LDD_0.html#section-1",
-    "href": "slides/LDD_0.html#section-1",
-    "title": "BD II: SQL LDD",
-    "section": "",
-    "text": "CREATE TABLE chaprot.city () \n  INHERITS (world.city) ;\n\nCREATE TABLE chaprot.country () \n  INHERITS (world.country) ;\n\nINSERT INTO chaprot.country (\n    SELECT * \n    FROM world.country\n    WHERE continent = 'Europe' \n);\n\nINSERT INTO chaprot.city (\n    SELECT ci.*  \n    FROM world.city ci NATURAL JOIN \n      world.country co\n    WHERE co.continent = 'Europe'\n) ;"
+    "text": "DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...\n\n\n\n\n\n\nNote\n\n\nSouvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données.\nSpécifiez cet ensemble supplémentaire avec le prédicat USING"
   },
   {
     "objectID": "slides/LDD_0.html#delete-from-table-using-t-where-...-1",
     "href": "slides/LDD_0.html#delete-from-table-using-t-where-...-1",
     "title": "BD II: SQL LDD",
     "section": "DELETE FROM <table> USING <t> WHERE ...",
-    "text": "DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...\n\n\n\n\n\n\nAstuce\n\n\nSouvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat USING\n\n\n\n\nDELETE FROM chaprot.city \nUSING chaprot.country AS co\nWHERE city.countrycode = co.countrycode AND \n  co.region= 'Eastern Europe' AND \n  co.indepyear = 1991 ;"
+    "text": "DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...\n\n\n\n\n\n\nAstuce\n\n\nSouvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données.\nSpécifiez cet ensemble supplémentaire avec le prédicat USING\n\n\n\n\nDELETE FROM chaprot.city \nUSING chaprot.country AS co\nWHERE \n  city.countrycode = co.countrycode AND \n  co.region= 'Eastern Europe' AND \n  co.indepyear = 1991 ;"
   },
   {
     "objectID": "solutions/td6.html",

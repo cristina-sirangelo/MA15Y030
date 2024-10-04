@@ -136,15 +136,17 @@ Chaque attribut est défini par un nom d'attribut et un type de données
 
 
 
-## Exemple  {.smaller}
+## Exemple  
 
 Schéma:
 
-```{verbatim}
+```{.sql}
 fournisseur(nomf, villef),
 piece(nomp, prix, couleur),
 livraison(numliv, nomf, nomp, dateliv, quantite)
 ```
+
+. . .
 
 ```{.sql}
 CREATE TABLE fournisseur(
@@ -159,7 +161,7 @@ CREATE TABLE piece(
 );
 ```
 
-## Exemple avec valeurs par défaut {.smaller}
+## Exemple avec valeurs par défaut 
 
 ```{sql}
 --| eval: false
@@ -246,7 +248,7 @@ Une clé peut être composée de plusieurs attributs
 ---
 
 
-![](/images/layout_world.png)
+![](/images/schema-world.png)
 
 
 
@@ -289,10 +291,7 @@ CREATE TABLE world.country (
 ---
 
 
-
 ![](/images/layout_world.png)
-
----
 
 
 ## Suppression d'une table
@@ -310,6 +309,7 @@ DROP TABLE livraison;
 Supprimer une table, c'est supprimer son contenu (vidange) mais aussi son schéma 
 
 :::
+
 
 # Insertion, mise à jour, suppression  {background-color="#1c191c"}
 
@@ -331,8 +331,11 @@ On peut donc :
 
 :::
 
+# Insertion  {background-color="#1c191c"}
 
-## Insertion de tuples
+
+
+## Insertion de tuples : syntaxe
 
 
 ```{sql}
@@ -345,7 +348,8 @@ INSERT INTO <nom_relation>
 ```
 
 
-Exemple
+. . .
+
 
 ```{sql}
 --| eval: false
@@ -364,7 +368,7 @@ INSERT INTO piece (nomp,couleur) VALUES('x22', 'vert');
 ```
 
 
-::: {.callout-attention}
+::: {.callout-caution}
 
 ### Attention
 
@@ -376,19 +380,18 @@ INSERT INTO piece (nomp,couleur) VALUES('x22', 'vert');
 
 
 
-## Insertion, exemple  {.smaller}
+## Insertion, exemple  (suite) 
 
 
 ```{.sql}
-INSERT INTO world.country
-(countrycode, name_country, continent,
- region, surfacearea, indepyear, population_country,
- lifeexpectancy, gnp, gnpold,
- localname, governmentform, headofstate, capital, code2)
+INSERT INTO world.Country
+  (countrycode, name_country, continent,
+   region, surfacearea, indepyear, population_country,
+   lifeexpectancy, gnp, gnpold,
+   localname, governmentform, headofstate, capital, code2)
 VALUES(
     'SYL', 'Syldavia', 'Europe',
-    'Eastern Europe', 200000, 1918, 21345717,
-    81.2, 25213, 24878,
+    'Eastern Europe', 200000, 1918, 21345717, 81.2, 25213, 24878,
     'Syldavie', 'Constitutional Monarchy', 'Ottokar II', 0, 'SY'
 );
 ```
@@ -397,26 +400,21 @@ VALUES(
 ---
 
 
+![](/images/schema-world.png)
 
 
+## Remarques 
 
-![](/images/layout_world.png)
 
-
-## 
-
-::: {.aside}
 
 La dernière partie du constructeur multiligne, qui commence avec  `VALUES`
 est souvent appelée la *liste de valeurs*. 
 
-:::
-
-::: {.aside}
+. . .
 
 Une liste de valeurs peut être définie sans référene à une table existante et 
 définir à la volée une nouvelle table virtuelle/éphémère.
-:::
+
 
 . . .
 
@@ -433,7 +431,7 @@ FROM (
 ) AS l (user_name, description, log_ts);
 ```
 
-::: {.callout-note}
+::: {.aside}
 
 Quand on utilise `VALUES` pour définir une table virtuelle, 
 il faut spécifier le nom des colonnes. 
@@ -445,7 +443,7 @@ Par défaut, les types des colonnes sont inférés. Si l'inférence de type n'es
 
 
 
-## Exemple : Insertion de tuples
+## Exemple : Insertion de tuples  (suite)
 
 ```{.sql}
 INSERT INTO livraison
@@ -454,6 +452,7 @@ INSERT INTO livraison
 ```
 
 . . .
+
 
 ```{.sql}
 -- Avec des colonnes pas renseignées
@@ -465,6 +464,7 @@ INSERT INTO livraison
 ```
 
 . . .
+
 
 ```{.sql}
 +----------+--------------+--------+------------+------------+
@@ -497,6 +497,7 @@ INSERT INTO livraison
 
 . . .
 
+
 ::: {.callout-note}
 
 ### Alimentation d'une nouvelle table à l'aide des données d'une autre
@@ -511,8 +512,35 @@ INSERT INTO FournisseursParisiens (
 
 :::
 
-## Mise à jour
 
+##  Exemple
+
+```{.sql}
+CREATE TABLE chaprot.city () 
+  INHERITS (world.city) ;
+
+CREATE TABLE chaprot.country () 
+  INHERITS (world.country) ;
+
+INSERT INTO chaprot.country (
+	SELECT * 
+    FROM world.country
+	WHERE continent = 'Europe' 
+);
+
+INSERT INTO chaprot.city (
+	SELECT ci.*  
+    FROM world.city ci NATURAL JOIN 
+      world.country co
+	WHERE co.continent = 'Europe'
+) ;
+```
+
+
+# Mise à jour  {background-color="#1c191c"}
+
+
+## Mise à jour de colonnes, ed cellules 
 
 - On peut mettre à jour des tuples existants par le biais d'une requête
 
@@ -521,23 +549,22 @@ INSERT INTO FournisseursParisiens (
 
 . . .
 
+
 ```{.sql}
 UPDATE nom_relation
-SET nom_attribut = <expression de valeur>
-[ , nom_attribut = <expression de valeur> ]*
-[ WHERE <condition de recherche> ];
+SET nom_attribut = <expression de valeur> 
+    [ , nom_attribut = <expression de valeur> ]*
+[WHERE <condition de recherche> ];
 ```
 
-
-
-## Mise à jour de tuples
+## Mise à jour conditionnelle de tuples
 
 Le `WHERE` permet de sélectionner les tuples à mettre à jour
 
 ```{.sql}
 UPDATE Fournisseur
-    SET VilleF='St.Petersburg'
-    WHERE VilleF='Leningrad';
+SET VilleF='St.Petersburg'
+WHERE VilleF='Leningrad';
 ```
 
 On peut aussi effectuer des opérations sur les tuples à mettre à jour.
@@ -564,7 +591,7 @@ Augmentation du prix d'une pièce
 ```{.sql}
 UPDATE Piece
 SET Prix = Prix * 1.05
-    WHERE NomP = 'x21';
+WHERE NomP = 'x21';
 ```
 
 
@@ -581,6 +608,7 @@ SET Prix = (
 WHERE Prix <= 1000;
 ```
 
+# Suppression de tuples {background-color="#1c191c"}
 
 ## Suppression de tuples : syntaxe
 
@@ -615,10 +643,9 @@ WHERE NomP IN (
 ```
 
 
-
 ## `DELETE FROM <table> USING <t> WHERE ... `  
 
-::: {.aside}
+::: {.callout-note}
 
 Souvent, lorsque vous supprimez des données d'une table, 
 vous souhaitez supprimer ces données en fonction de leur présence
@@ -629,28 +656,6 @@ Spécifiez cet ensemble supplémentaire avec le prédicat `USING`
 :::
 
 
-##   {.smaller}
-
-```{.sql}
-CREATE TABLE chaprot.city () 
-  INHERITS (world.city) ;
-
-CREATE TABLE chaprot.country () 
-  INHERITS (world.country) ;
-
-INSERT INTO chaprot.country (
-	SELECT * 
-    FROM world.country
-	WHERE continent = 'Europe' 
-);
-
-INSERT INTO chaprot.city (
-	SELECT ci.*  
-    FROM world.city ci NATURAL JOIN 
-      world.country co
-	WHERE co.continent = 'Europe'
-) ;
-```
 
 
 ## `DELETE FROM <table> USING <t> WHERE ... `   {.smaller}
@@ -659,7 +664,9 @@ INSERT INTO chaprot.city (
 
 Souvent, lorsque vous supprimez des données d'une table, 
 vous souhaitez supprimer ces données en fonction de leur présence
-dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat `USING`
+dans un autre ensemble de données. 
+
+Spécifiez cet ensemble supplémentaire avec le prédicat `USING`
 
 :::
 
@@ -670,7 +677,8 @@ dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec
 --| code-line-numbers: "1|2|3-5"
 DELETE FROM chaprot.city 
 USING chaprot.country AS co
-WHERE city.countrycode = co.countrycode AND 
+WHERE 
+  city.countrycode = co.countrycode AND 
   co.region= 'Eastern Europe' AND 
   co.indepyear = 1991 ;
 ```
@@ -696,7 +704,7 @@ WHERE NomP IN (
 
 . . .
 
-Peut-être
+Peut-être !
 
 . . .
 

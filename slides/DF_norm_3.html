@@ -442,7 +442,7 @@
 <section id="calcul-de-pi_mathcala_1sigma" class="slide level2 center">
 <h2>Calcul de <span class="math inline">\(\pi_{{\mathcal{A}}_1}(\Sigma)\)</span></h2>
 <p>On calcule un ensemble de DF équivalent à <span class="math inline">\(\pi_{\mathcal{A}_1}(\Sigma)\)</span></p>
-<div class="pseudocode-container quarto-float" data-pseudocode-number="1" data-indent-size="1.2em" data-no-end="false" data-line-number-punc=":" data-caption-prefix="Algorithme" data-comment-delimiter="//" data-line-number="true">
+<div class="pseudocode-container quarto-float" data-pseudocode-number="1" data-line-number="true" data-comment-delimiter="//" data-indent-size="1.2em" data-no-end="false" data-caption-prefix="Algorithme" data-line-number-punc=":">
 <div class="pseudocode">
 \begin{algorithm} \caption{Projection de DF} \begin{algorithmic} \Procedure{Projection}{$\mathcal{A}_1, Σ$} \State P ← ∅ \For{$X ⊂ \mathcal{A}_1$, $X ≠ ∅$, $X ≠ \mathcal{A}_1$} \State Y ← $X^+ ∩ \mathcal{A}_1$ \State P ← P ∪ $\{ X → Y\}$ \EndFor \Return P \EndProcedure \end{algorithmic} \end{algorithm}
 </div>
@@ -525,7 +525,7 @@
 </section>
 <section id="section" class="slide level2 smaller center">
 <h2></h2>
-<div class="pseudocode-container quarto-float" data-pseudocode-number="1" data-indent-size="1.2em" data-no-end="false" data-line-number-punc=":" data-caption-prefix="Algorithme" data-comment-delimiter="//" data-line-number="true">
+<div class="pseudocode-container quarto-float" data-pseudocode-number="1" data-line-number="true" data-comment-delimiter="//" data-indent-size="1.2em" data-no-end="false" data-caption-prefix="Algorithme" data-line-number-punc=":">
 <div class="pseudocode">
 \begin{algorithm} \caption{X → Y est-elle impliquée par les dépendances projetées?} \begin{algorithmic} \Procedure{Implique}{$\left\{ \mathcal{A}_1,\dots, \mathcal{A}_k\right\}, Σ, X, Y$} \State Z ← X \State continuer ← \True \While{continuer} \State $W ← Z$ \For{i ∈ 1, ..., k} \State $W ← W ∪ \bigl((W ∩ \mathcal{A}_i)^+ ∩ \mathcal{A}_i\bigr)$ \EndFor \If{W ≠ Z} \State Z ← W \Else \State continuer ← \False \EndIf \EndWhile \If{Y ⊆ Z} \Return \True \Else \Return \False \EndIf \EndProcedure \end{algorithmic} \end{algorithm}
 </div>
@@ -760,7 +760,7 @@
 </section>
 <section id="algorithme" class="slide level2 smaller center">
 <h2>Algorithme</h2>
-<div class="pseudocode-container quarto-float" data-pseudocode-number="1" data-indent-size="1.2em" data-no-end="false" data-line-number-punc=":" data-caption-prefix="Algorithme" data-comment-delimiter="//" data-line-number="true">
+<div class="pseudocode-container quarto-float" data-pseudocode-number="1" data-line-number="true" data-comment-delimiter="//" data-indent-size="1.2em" data-no-end="false" data-caption-prefix="Algorithme" data-line-number-punc=":">
 <div class="pseudocode">
 \begin{algorithm} \caption{Décomposition FN3} \begin{algorithmic} \Procedure{Décomposition_FN3}{$\mathcal{A}, Σ$} \EndProcedure \end{algorithmic} \end{algorithm}
 </div>

@@ -439,6 +439,9 @@
 <li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
 <li><a href="#/cr%C3%A9ation-de-tables" id="/toc-création-de-tables">Création de tables</a></li>
 <li><a href="#/insertion-mise-%C3%A0-jour-suppression" id="/toc-insertion-mise-à-jour-suppression">Insertion, mise à jour, suppression</a></li>
+<li><a href="#/insertion" id="/toc-insertion">Insertion</a></li>
+<li><a href="#/mise-%C3%A0-jour" id="/toc-mise-à-jour">Mise à jour</a></li>
+<li><a href="#/suppression-de-tuples" id="/toc-suppression-de-tuples">Suppression de tuples</a></li>
 <li><a href="#/r%C3%A9sum%C3%A9" id="/toc-résumé">Résumé</a></li>
 <li><a href="#/fin" id="/toc-fin">Fin</a></li>
 </ul></nav></section><section><section id="introduction" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Introduction</h1>
@@ -504,11 +507,12 @@
 </div>
 </div>
 </div>
-</section><section id="exemple" class="slide level2 smaller center"><h2>Exemple</h2>
+</section><section id="exemple" class="slide level2 center"><h2>Exemple</h2>
 <p>Schéma:</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource default number-lines code-with-copy"><code class="sourceCode default"><span id="cb4-1"><a></a>fournisseur(nomf, villef),</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb4-1"><a></a>fournisseur(nomf, villef),</span>
 <span id="cb4-2"><a></a>piece(nomp, prix, couleur),</span>
 <span id="cb4-3"><a></a>livraison(numliv, nomf, nomp, dateliv, quantite)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="fragment">
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> fournisseur(</span>
 <span id="cb5-2"><a></a>    nomf <span class="dt">VARCHAR</span>(<span class="dv">20</span>),</span>
 <span id="cb5-3"><a></a>    villef <span class="dt">VARCHAR</span>(<span class="dv">20</span>)</span>
@@ -519,7 +523,8 @@
 <span id="cb5-8"><a></a>    prix <span class="dt">REAL</span>,</span>
 <span id="cb5-9"><a></a>    couleur <span class="dt">VARCHAR</span>(<span class="dv">15</span>)</span>
 <span id="cb5-10"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="exemple-avec-valeurs-par-défaut" class="slide level2 smaller center"><h2>Exemple avec valeurs par défaut</h2>
+</div>
+</section><section id="exemple-avec-valeurs-par-défaut" class="slide level2 center"><h2>Exemple avec valeurs par défaut</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6" data-code-line-numbers="|5-6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> livraison(</span>
 <span id="cb6-2"><a></a>    numLiv <span class="dt">INT</span>,</span>
@@ -595,7 +600,7 @@
 </div>
 </div>
 </section><section class="slide level2 center">
-<img data-src="../images/layout_world.png" class="r-stretch"></section><section id="exemple-schéma-world-suite" class="slide level2 smaller center"><h2>Exemple: schéma <code>world</code> (suite)</h2>
+<img data-src="../images/schema-world.png" class="r-stretch"></section><section id="exemple-schéma-world-suite" class="slide level2 smaller center"><h2>Exemple: schéma <code>world</code> (suite)</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb10" data-code-line-numbers="|17-24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> world.country (</span>
 <span id="cb10-2"><a></a>    countrycode bpchar(<span class="dv">3</span>) <span class="kw">NOT</span> <span class="kw">NULL</span>,</span>
@@ -654,13 +659,15 @@
 <li class="fragment"><p>Supprimer des tuples : <code>DELETE FROM ...</code></p></li>
 </ul>
 </div>
-</section><section id="insertion-de-tuples" class="slide level2 center"><h2>Insertion de tuples</h2>
+</section></section><section><section id="insertion" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Insertion</h1>
+
+</section><section id="insertion-de-tuples-syntaxe" class="slide level2 center"><h2>Insertion de tuples : syntaxe</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12" data-code-line-numbers="1|2|3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
 <span id="cb12-2"><a></a>    [(nom_attrib [, nom_attrib]<span class="op">*</span>)]</span>
 <span id="cb12-3"><a></a>    <span class="kw">VALUES</span> (valeur [, valeur]<span class="op">*</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Exemple</p>
+<div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13" data-code-line-numbers="1|3|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb13-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> piece <span class="kw">VALUES</span>(<span class="st">'x21'</span>, <span class="fl">1.51</span>, <span class="st">'rouge'</span>);</span>
 <span id="cb13-2"><a></a></span>
@@ -673,27 +680,41 @@
 <span id="cb13-9"><a></a>| x22    | <span class="op">&lt;</span><span class="kw">null</span><span class="op">&gt;</span> | vert      |</span>
 <span id="cb13-10"><a></a><span class="op">+</span><span class="co">--------+--------+-----------+</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<section id="attention-1" class="callout-attention"><h3>Attention</h3>
+<div class="callout callout-caution callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Attention</strong></p>
+</div>
+<div class="callout-content">
 <ul>
 <li>Les valeurs doivent être fournies dans l’ordre de déclaration des attributs</li>
 <li>Les valeurs non spécifiées sont affectées à <code>NULL</code>
 </li>
-</ul></section></section><section id="insertion-exemple" class="slide level2 smaller center"><h2>Insertion, exemple</h2>
-<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> world.country</span>
-<span id="cb14-2"><a></a>(countrycode, name_country, continent,</span>
-<span id="cb14-3"><a></a> region, surfacearea, indepyear, population_country,</span>
-<span id="cb14-4"><a></a> lifeexpectancy, gnp, gnpold,</span>
-<span id="cb14-5"><a></a> localname, governmentform, headofstate, capital, code2)</span>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</section><section id="insertion-exemple-suite" class="slide level2 center"><h2>Insertion, exemple (suite)</h2>
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> world.Country</span>
+<span id="cb14-2"><a></a>  (countrycode, name_country, continent,</span>
+<span id="cb14-3"><a></a>   region, surfacearea, indepyear, population_country,</span>
+<span id="cb14-4"><a></a>   lifeexpectancy, gnp, gnpold,</span>
+<span id="cb14-5"><a></a>   localname, governmentform, headofstate, capital, code2)</span>
 <span id="cb14-6"><a></a><span class="kw">VALUES</span>(</span>
 <span id="cb14-7"><a></a>    <span class="st">'SYL'</span>, <span class="st">'Syldavia'</span>, <span class="st">'Europe'</span>,</span>
-<span id="cb14-8"><a></a>    <span class="st">'Eastern Europe'</span>, <span class="dv">200000</span>, <span class="dv">1918</span>, <span class="dv">21345717</span>,</span>
-<span id="cb14-9"><a></a>    <span class="fl">81.2</span>, <span class="dv">25213</span>, <span class="dv">24878</span>,</span>
-<span id="cb14-10"><a></a>    <span class="st">'Syldavie'</span>, <span class="st">'Constitutional Monarchy'</span>, <span class="st">'Ottokar II'</span>, <span class="dv">0</span>, <span class="st">'SY'</span></span>
-<span id="cb14-11"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb14-8"><a></a>    <span class="st">'Eastern Europe'</span>, <span class="dv">200000</span>, <span class="dv">1918</span>, <span class="dv">21345717</span>, <span class="fl">81.2</span>, <span class="dv">25213</span>, <span class="dv">24878</span>,</span>
+<span id="cb14-9"><a></a>    <span class="st">'Syldavie'</span>, <span class="st">'Constitutional Monarchy'</span>, <span class="st">'Ottokar II'</span>, <span class="dv">0</span>, <span class="st">'SY'</span></span>
+<span id="cb14-10"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section class="slide level2 center">
-<img data-src="../images/layout_world.png" class="r-stretch"></section><section id="section" class="slide level2 center"><h2></h2>
-
-
+<img data-src="../images/schema-world.png" class="r-stretch"></section><section id="remarques" class="slide level2 center"><h2>Remarques</h2>
+<p>La dernière partie du constructeur multiligne, qui commence avec <code>VALUES</code> est souvent appelée la <em>liste de valeurs</em>.</p>
+<div class="fragment">
+<p>Une liste de valeurs peut être définie sans référene à une table existante et définir à la volée une nouvelle table virtuelle/éphémère.</p>
+</div>
 <div class="fragment">
 <div class="cell">
 <div class="sourceCode cell-code" id="cb15" data-code-line-numbers="4-5|6|"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb15-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
@@ -703,26 +724,12 @@
 <span id="cb15-5"><a></a>    (<span class="st">'lhsu'</span>, <span class="st">'logged out'</span>, <span class="st">'2011-01-11 10:20 AM EST'</span>:<span class="ch">:timestamptz</span>)</span>
 <span id="cb15-6"><a></a>) <span class="kw">AS</span> l (user_name, description, log_ts);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="callout callout-note callout-titled callout-style-default">
-<div class="callout-body">
-<div class="callout-title">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<p><strong>Note</strong></p>
-</div>
-<div class="callout-content">
-<p>Quand on utilise <code>VALUES</code> pour définir une table virtuelle, il faut spécifier le nom des colonnes.</p>
-<p>Par défaut, les types des colonnes sont inférés. Si l’inférence de type n’est pas possible, il faut effectuer explicitement des conversions de type comme ici avec <code>::timestamptz</code>.</p>
-</div>
-</div>
-</div>
+
 </div>
 <aside><div>
-<p>La dernière partie du constructeur multiligne, qui commence avec <code>VALUES</code> est souvent appelée la <em>liste de valeurs</em>.</p>
-</div><div>
-<p>Une liste de valeurs peut être définie sans référene à une table existante et définir à la volée une nouvelle table virtuelle/éphémère.</p>
-</div></aside></section><section id="exemple-insertion-de-tuples" class="slide level2 center"><h2>Exemple : Insertion de tuples</h2>
+<p>Quand on utilise <code>VALUES</code> pour définir une table virtuelle, il faut spécifier le nom des colonnes.</p>
+<p>Par défaut, les types des colonnes sont inférés. Si l’inférence de type n’est pas possible, il faut effectuer explicitement des conversions de type comme ici avec <code>::timestamptz</code>.</p>
+</div></aside></section><section id="exemple-insertion-de-tuples-suite" class="slide level2 center"><h2>Exemple : Insertion de tuples (suite)</h2>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> livraison</span>
 <span id="cb16-2"><a></a>    <span class="kw">VALUES</span></span>
 <span id="cb16-3"><a></a>    (<span class="dv">1</span>, <span class="st">'fournisseur1'</span>, <span class="st">'x21'</span>, <span class="st">'2019-07-13'</span>, <span class="dv">2</span>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -783,7 +790,28 @@
 </div>
 </div>
 </div>
-</section><section id="mise-à-jour" class="slide level2 center"><h2>Mise à jour</h2>
+</section><section id="exemple-1" class="slide level2 center"><h2>Exemple</h2>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.city () </span>
+<span id="cb20-2"><a></a>  INHERITS (world.city) ;</span>
+<span id="cb20-3"><a></a></span>
+<span id="cb20-4"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.country () </span>
+<span id="cb20-5"><a></a>  INHERITS (world.country) ;</span>
+<span id="cb20-6"><a></a></span>
+<span id="cb20-7"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.country (</span>
+<span id="cb20-8"><a></a>    <span class="kw">SELECT</span> <span class="op">*</span> </span>
+<span id="cb20-9"><a></a>    <span class="kw">FROM</span> world.country</span>
+<span id="cb20-10"><a></a>    <span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
+<span id="cb20-11"><a></a>);</span>
+<span id="cb20-12"><a></a></span>
+<span id="cb20-13"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.city (</span>
+<span id="cb20-14"><a></a>    <span class="kw">SELECT</span> ci.<span class="op">*</span>  </span>
+<span id="cb20-15"><a></a>    <span class="kw">FROM</span> world.city ci <span class="kw">NATURAL</span> <span class="kw">JOIN</span> </span>
+<span id="cb20-16"><a></a>      world.country co</span>
+<span id="cb20-17"><a></a>    <span class="kw">WHERE</span> co.continent <span class="op">=</span> <span class="st">'Europe'</span></span>
+<span id="cb20-18"><a></a>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section><section><section id="mise-à-jour" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Mise à jour</h1>
+
+</section><section id="mise-à-jour-de-colonnes-ed-cellules" class="slide level2 center"><h2>Mise à jour de colonnes, ed cellules</h2>
 <ul>
 <li>
 <p>On peut mettre à jour des tuples existants par le biais d’une requête</p>
@@ -794,16 +822,16 @@
 </li>
 </ul>
 <div class="fragment">
-<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb20-1"><a></a><span class="kw">UPDATE</span> nom_relation</span>
-<span id="cb20-2"><a></a><span class="kw">SET</span> nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span></span>
-<span id="cb20-3"><a></a>[ , nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span> ]<span class="op">*</span></span>
-<span id="cb20-4"><a></a>[ <span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span> ];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">UPDATE</span> nom_relation</span>
+<span id="cb21-2"><a></a><span class="kw">SET</span> nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span> </span>
+<span id="cb21-3"><a></a>    [ , nom_attribut <span class="op">=</span> <span class="op">&lt;</span>expression de valeur<span class="op">&gt;</span> ]<span class="op">*</span></span>
+<span id="cb21-4"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span> ];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="mise-à-jour-de-tuples" class="slide level2 center"><h2>Mise à jour de tuples</h2>
+</section><section id="mise-à-jour-conditionnelle-de-tuples" class="slide level2 center"><h2>Mise à jour conditionnelle de tuples</h2>
 <p>Le <code>WHERE</code> permet de sélectionner les tuples à mettre à jour</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">UPDATE</span> Fournisseur</span>
-<span id="cb21-2"><a></a>    <span class="kw">SET</span> VilleF<span class="op">=</span><span class="st">'St.Petersburg'</span></span>
-<span id="cb21-3"><a></a>    <span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Leningrad'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">UPDATE</span> Fournisseur</span>
+<span id="cb22-2"><a></a><span class="kw">SET</span> VilleF<span class="op">=</span><span class="st">'St.Petersburg'</span></span>
+<span id="cb22-3"><a></a><span class="kw">WHERE</span> VilleF<span class="op">=</span><span class="st">'Leningrad'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On peut aussi effectuer des opérations sur les tuples à mettre à jour.</p>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -824,57 +852,50 @@
 </div>
 </section><section id="mise-à-jour-de-tuples-exemple" class="slide level2 center"><h2>Mise à jour de tuples (exemple)</h2>
 <p>Augmentation du prix d’une pièce</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb22-1"><a></a><span class="kw">UPDATE</span> Piece</span>
-<span id="cb22-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> Prix <span class="op">*</span> <span class="fl">1.05</span></span>
-<span id="cb22-3"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="mise-à-jour-par-requête" class="slide level2 center"><h2>Mise à jour par requête</h2>
 <div class="sourceCode" id="cb23"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb23-1"><a></a><span class="kw">UPDATE</span> Piece</span>
-<span id="cb23-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> (</span>
-<span id="cb23-3"><a></a>    <span class="kw">SELECT</span> Prix</span>
-<span id="cb23-4"><a></a>    <span class="kw">FROM</span> Piece</span>
-<span id="cb23-5"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span></span>
-<span id="cb23-6"><a></a>)</span>
-<span id="cb23-7"><a></a><span class="kw">WHERE</span> Prix <span class="op">&lt;=</span> <span class="dv">1000</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> Prix <span class="op">*</span> <span class="fl">1.05</span></span>
+<span id="cb23-3"><a></a><span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section><section id="mise-à-jour-par-requête" class="slide level2 center"><h2>Mise à jour par requête</h2>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">UPDATE</span> Piece</span>
+<span id="cb24-2"><a></a><span class="kw">SET</span> Prix <span class="op">=</span> (</span>
+<span id="cb24-3"><a></a>    <span class="kw">SELECT</span> Prix</span>
+<span id="cb24-4"><a></a>    <span class="kw">FROM</span> Piece</span>
+<span id="cb24-5"><a></a>    <span class="kw">WHERE</span> NomP <span class="op">=</span> <span class="st">'x21'</span></span>
+<span id="cb24-6"><a></a>)</span>
+<span id="cb24-7"><a></a><span class="kw">WHERE</span> Prix <span class="op">&lt;=</span> <span class="dv">1000</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</section></section><section><section id="suppression-de-tuples" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Suppression de tuples</h1>
+
 </section><section id="suppression-de-tuples-syntaxe" class="slide level2 center"><h2>Suppression de tuples : syntaxe</h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb24-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
-<span id="cb24-2"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span>];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> <span class="op">&lt;</span>nom_relation<span class="op">&gt;</span></span>
+<span id="cb25-2"><a></a>[<span class="kw">WHERE</span> <span class="op">&lt;</span>condition de recherche<span class="op">&gt;</span>];</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<h3 id="exemple-1">Exemple</h3>
-<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb25-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Fournisseur</span>
-<span id="cb25-2"><a></a><span class="kw">WHERE</span> NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<h3 id="exemple-2">Exemple</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Fournisseur</span>
+<span id="cb26-2"><a></a><span class="kw">WHERE</span> NomF <span class="op">=</span> <span class="st">'FastDelivery'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>On supprime dans <code>Fournisseur</code> les tuples correspondant au fournisseur nommé <code>'FastDelivery'</code></p>
 </div>
 </section><section id="suppression-de-tuples-avec-requête-imbriquée" class="slide level2 center"><h2>Suppression de tuples avec requête imbriquée</h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb26-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Livraison</span>
-<span id="cb26-2"><a></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
-<span id="cb26-3"><a></a>    <span class="kw">SELECT</span> NomP</span>
-<span id="cb26-4"><a></a>    <span class="kw">FROM</span> Piece</span>
-<span id="cb26-5"><a></a>    <span class="kw">WHERE</span> Couleur<span class="op">=</span><span class="st">'Rouge'</span></span>
-<span id="cb26-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> Livraison</span>
+<span id="cb27-2"><a></a><span class="kw">WHERE</span> NomP <span class="kw">IN</span> (</span>
+<span id="cb27-3"><a></a>    <span class="kw">SELECT</span> NomP</span>
+<span id="cb27-4"><a></a>    <span class="kw">FROM</span> Piece</span>
+<span id="cb27-5"><a></a>    <span class="kw">WHERE</span> Couleur<span class="op">=</span><span class="st">'Rouge'</span></span>
+<span id="cb27-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section><section id="delete-from-table-using-t-where-..." class="slide level2 center"><h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code></h2>
-
-<aside><div>
+<div class="callout callout-note callout-titled callout-style-default">
+<div class="callout-body">
+<div class="callout-title">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<p><strong>Note</strong></p>
+</div>
+<div class="callout-content">
 <p>Souvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données.</p>
 <p>Spécifiez cet ensemble supplémentaire avec le prédicat <code>USING</code></p>
-</div></aside></section><section id="section-1" class="slide level2 smaller center"><h2></h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb27-1"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.city () </span>
-<span id="cb27-2"><a></a>  INHERITS (world.city) ;</span>
-<span id="cb27-3"><a></a></span>
-<span id="cb27-4"><a></a><span class="kw">CREATE</span> <span class="kw">TABLE</span> chaprot.country () </span>
-<span id="cb27-5"><a></a>  INHERITS (world.country) ;</span>
-<span id="cb27-6"><a></a></span>
-<span id="cb27-7"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.country (</span>
-<span id="cb27-8"><a></a>    <span class="kw">SELECT</span> <span class="op">*</span> </span>
-<span id="cb27-9"><a></a>    <span class="kw">FROM</span> world.country</span>
-<span id="cb27-10"><a></a>    <span class="kw">WHERE</span> continent <span class="op">=</span> <span class="st">'Europe'</span> </span>
-<span id="cb27-11"><a></a>);</span>
-<span id="cb27-12"><a></a></span>
-<span id="cb27-13"><a></a><span class="kw">INSERT</span> <span class="kw">INTO</span> chaprot.city (</span>
-<span id="cb27-14"><a></a>    <span class="kw">SELECT</span> ci.<span class="op">*</span>  </span>
-<span id="cb27-15"><a></a>    <span class="kw">FROM</span> world.city ci <span class="kw">NATURAL</span> <span class="kw">JOIN</span> </span>
-<span id="cb27-16"><a></a>      world.country co</span>
-<span id="cb27-17"><a></a>    <span class="kw">WHERE</span> co.continent <span class="op">=</span> <span class="st">'Europe'</span></span>
-<span id="cb27-18"><a></a>) ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
 </section><section id="delete-from-table-using-t-where-...-1" class="slide level2 smaller center"><h2><code>DELETE FROM &lt;table&gt; USING &lt;t&gt; WHERE ...</code></h2>
 <div class="callout callout-tip callout-titled callout-style-default">
 <div class="callout-body">
@@ -885,16 +906,18 @@
 <p><strong>Astuce</strong></p>
 </div>
 <div class="callout-content">
-<p>Souvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données. Spécifiez cet ensemble supplémentaire avec le prédicat <code>USING</code></p>
+<p>Souvent, lorsque vous supprimez des données d’une table, vous souhaitez supprimer ces données en fonction de leur présence dans un autre ensemble de données.</p>
+<p>Spécifiez cet ensemble supplémentaire avec le prédicat <code>USING</code></p>
 </div>
 </div>
 </div>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb28" data-code-line-numbers="1|2|3-5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb28-1"><a></a><span class="kw">DELETE</span> <span class="kw">FROM</span> chaprot.city </span>
 <span id="cb28-2"><a></a><span class="kw">USING</span> chaprot.country <span class="kw">AS</span> co</span>
-<span id="cb28-3"><a></a><span class="kw">WHERE</span> city.countrycode <span class="op">=</span> co.countrycode <span class="kw">AND</span> </span>
-<span id="cb28-4"><a></a>  co.region<span class="op">=</span> <span class="st">'Eastern Europe'</span> <span class="kw">AND</span> </span>
-<span id="cb28-5"><a></a>  co.indepyear <span class="op">=</span> <span class="dv">1991</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb28-3"><a></a><span class="kw">WHERE</span> </span>
+<span id="cb28-4"><a></a>  city.countrycode <span class="op">=</span> co.countrycode <span class="kw">AND</span> </span>
+<span id="cb28-5"><a></a>  co.region<span class="op">=</span> <span class="st">'Eastern Europe'</span> <span class="kw">AND</span> </span>
+<span id="cb28-6"><a></a>  co.indepyear <span class="op">=</span> <span class="dv">1991</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section><section class="slide level2 center"><div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
@@ -916,7 +939,7 @@
 <span id="cb29-5"><a></a>  <span class="kw">WHERE</span> Quantite<span class="op">&gt;</span><span class="dv">10</span></span>
 <span id="cb29-6"><a></a>);</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="fragment">
-<p>Peut-être</p>
+<p>Peut-être !</p>
 </div>
 <div class="fragment">
 <p>Cela dépend des contraintes d’intégrité qui pèsent sur la base</p>
