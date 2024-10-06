@@ -16,7 +16,7 @@ editor: source
 
 ## Préparer
 
-Finir requêtes du TD 4 [TD 4](/workshops/td4.html) 
+Finir requêtes du TD 3 [TD 4](/workshops/td4.html) 
 
 ## Cours magistral : diapositives
 
@@ -24,7 +24,7 @@ Finir requêtes du TD 4 [TD 4](/workshops/td4.html)
 
 [Modélisation des contraintes](/slides/LDD_1.html)
 
-[SQL Fonctions SQL et requêtes préparées](/slides/SQL_4.html)
+[Fonctions SQL, Vues et requêtes préparées](/slides/SQL_4.html)
 
 ## Exercices : TD 4
 
