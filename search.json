@@ -412,7 +412,7 @@
     "href": "weeks/week-5.html#préparer",
     "title": "Semaine 5",
     "section": "Préparer",
-    "text": "Préparer\nFinir requêtes du TD 4 TD 4",
+    "text": "Préparer\nFinir requêtes du TD 3 TD 4",
     "crumbs": [
       "Journal",
       "Semaine 5"
@@ -423,7 +423,7 @@
     "href": "weeks/week-5.html#cours-magistral-diapositives",
     "title": "Semaine 5",
     "section": "Cours magistral : diapositives",
-    "text": "Cours magistral : diapositives\nSQL Définition de données\nModélisation des contraintes\nSQL Fonctions SQL et requêtes préparées",
+    "text": "Cours magistral : diapositives\nSQL Définition de données\nModélisation des contraintes\nFonctions SQL, Vues et requêtes préparées",
     "crumbs": [
       "Journal",
       "Semaine 5"
@@ -1401,7 +1401,7 @@
     "href": "weeks/week-4.html#cours-magistral-diapositives",
     "title": "Semaine 4",
     "section": "Cours magistral : diapositives",
-    "text": "Cours magistral : diapositives\n\nSQL Aggrégations/Fenêtres et Partitions\nSQL Manipulation et Définition de données",
+    "text": "Cours magistral : diapositives\nSQL Aggrégations/Fenêtres et Partitions",
     "crumbs": [
       "Journal",
       "Semaine 4"
@@ -1412,7 +1412,7 @@
     "href": "weeks/week-4.html#exercices-td-3",
     "title": "Semaine 4",
     "section": "Exercices : TD 3",
-    "text": "Exercices : TD 3\n\nEnoncés html pdf\nSolutions html pdf",
+    "text": "Exercices : TD 3\nCommencer\n\nEnoncés html pdf\nSolutions html pdf",
     "crumbs": [
       "Journal",
       "Semaine 4"
@@ -1423,7 +1423,7 @@
     "href": "weeks/week-4.html#solutions-du-td-2-semaine-3",
     "title": "Semaine 4",
     "section": "Solutions du TD 2 (Semaine 3)",
-    "text": "Solutions du TD 2 (Semaine 3)\nhtml pdf",
+    "text": "Solutions du TD 2 (Semaine 3)\nhtml pdf\n Construisez de vues à partir de vos requêtes",
     "crumbs": [
       "Journal",
       "Semaine 4"
