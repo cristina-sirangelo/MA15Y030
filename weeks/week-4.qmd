@@ -20,10 +20,11 @@ Finir requêtes du TD 2 [TD 2](/workshops/td2.html)
 
 ## Cours magistral : diapositives
 
-- [SQL Aggrégations/Fenêtres et Partitions](/slides/SQL_3.html)
-- [SQL Manipulation et Définition de données](/slides/LDD_0.html)
+[SQL Aggrégations/Fenêtres et Partitions](/slides/SQL_3.html)
 
 ## Exercices : TD 3
+
+Commencer 
 
 - Enoncés [html](/workshops/td3.html)  [pdf](/workshops/td3.pdf)
 - Solutions [html](/solutions/td3.html)  [pdf](/solutions/td3.pdf)
@@ -32,6 +33,7 @@ Finir requêtes du TD 2 [TD 2](/workshops/td2.html)
 
 [html](/solutions/td2.html)  [pdf](/solutions/td2.pdf)
 
+{{< fa hand-point-right >}} Construisez de *vues* à partir de vos requêtes  
 
 ## Travail personnel  {{< fa dumbbell >}}
 
