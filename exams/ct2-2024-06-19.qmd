@@ -76,7 +76,7 @@ le schéma `nycflights` légèrement nettoyé.
 :::
 
 
-![NYCFlights en relationel à pattes de corbeau](/images/nycflights_layout_crop.png){width="80%"}
+![NYCFlights en relationel à pattes de corbeau](/images/schema-nycflights.png){width="80%"}
 
 {{< pagebreak >}}
 
@@ -134,7 +134,7 @@ Table `flights`
 Le schéma entité-association est une tentative de rétro-ingénieurie du schéma 
 relationnel `nycflights`.
 
-![](../images/nycflight_er.png){width="70%" fig-align="right"}
+![](/images/nycflight_er.png){width="70%" fig-align="right"}
 
 
 :::
