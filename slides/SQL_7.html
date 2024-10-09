@@ -14,18 +14,18 @@
 <script src="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
-<meta name="author" content="Équipe BD">
-<meta name="dcterms.date" content="2025-03-31">
-<title>MA15Y030 - Automne 2024 – BD : dplyr une mise oeuvre de l’Algèbre Relationnelle</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
-<style>
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.55">
+
+  <meta name="author" content="Équipe BD">
+  <meta name="dcterms.date" content="2025-03-31">
+  <title>MA15Y030 - Automne 2024 – BD : dplyr une mise oeuvre de l’Algèbre Relationnelle</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -103,12 +103,12 @@
     code span.vs { color: #2aa198; } /* VerbatimString */
     code span.wa { color: #cb4b16; } /* Warning */
   </style>
-<link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
-<link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -306,7 +306,7 @@
   }
 
   </style>
-<style type="text/css">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -394,7 +394,7 @@
       margin-right: 0; 
     }
   </style>
-<script>
+  <script>
   MathJax = {
     loader: {
       load: ['[tex]/boldsymbol']
@@ -410,7 +410,8 @@
       }
     }
   };
-  </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <meta property="og:title" content="BD : dplyr une mise oeuvre de l’Algèbre Relationnelle – MA15Y030 - Automne 2024">
 <meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
@@ -419,7 +420,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center"><h1 class="title">BD : <code>dplyr</code> une mise oeuvre de l’Algèbre Relationnelle</h1>
+<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
+  <h1 class="title">BD : <code>dplyr</code> une mise oeuvre de l’Algèbre Relationnelle</h1>
   <p class="subtitle">Bases de Données Licences MIASHS et Mathématiques</p>
 
 <div class="quarto-title-authors">
@@ -434,26 +436,34 @@
 </div>
 
   <p class="date">2025-03-31</p>
-</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/dplyr" id="/toc-dplyr"><code>dplyr</code></a></li>
-<li><a href="#/lmd-op%C3%A9rateurs" id="/toc-lmd-opérateurs">LMD : Opérateurs</a></li>
-<li><a href="#/composer-les-op%C3%A9rations-avec-pipe" id="/toc-composer-les-opérations-avec-pipe">Composer les opérations avec <code>|&gt;</code> (pipe)</a></li>
-<li><a href="#/op%C3%A9rations-compl%C3%A9mentaires-les-jointures" id="/toc-opérations-complémentaires-les-jointures">Opérations complémentaires : les jointures</a></li>
+<li><a href="#/lmd-opérateurs" id="/toc-lmd-opérateurs">LMD : Opérateurs</a></li>
+<li><a href="#/composer-les-opérations-avec-pipe" id="/toc-composer-les-opérations-avec-pipe">Composer les opérations avec <code>|&gt;</code> (pipe)</a></li>
+<li><a href="#/opérations-complémentaires-les-jointures" id="/toc-opérations-complémentaires-les-jointures">Opérations complémentaires : les jointures</a></li>
 <li><a href="#/exemple-nycfights13-jointure-entre-flights-et-weather" id="/toc-exemple-nycfights13-jointure-entre-flights-et-weather">Exemple (<code>nycfights13</code>) jointure entre <code>flights</code> et <code>weather</code></a></li>
-<li><a href="#/encore-des-op%C3%A9rations" id="/toc-encore-des-opérations">Encore des opérations…</a></li>
+<li><a href="#/encore-des-opérations" id="/toc-encore-des-opérations">Encore des opérations…</a></li>
 <li><a href="#/the-story" id="/toc-the-story">The story</a></li>
 <li><a href="#/les-expressions-dans-dplyr" id="/toc-les-expressions-dans-dplyr">Les expressions dans <code>dplyr</code></a></li>
-<li><a href="#/la-s%C3%A9lection-bien-temp%C3%A9r%C3%A9e-tidy-selection" id="/toc-la-sélection-bien-tempérée-tidy-selection">La sélection bien tempérée (<em>tidy selection</em>)</a></li>
-<li><a href="#/aggr%C3%A9gations-et-extension-de-lalg%C3%A8bre-relationnelle" id="/toc-aggrégations-et-extension-de-lalgèbre-relationnelle">Aggrégations et extension de l’algèbre relationnelle</a></li>
+<li><a href="#/la-sélection-bien-tempérée-tidy-selection" id="/toc-la-sélection-bien-tempérée-tidy-selection">La sélection bien tempérée (<em>tidy selection</em>)</a></li>
+<li><a href="#/aggrégations-et-extension-de-lalgèbre-relationnelle" id="/toc-aggrégations-et-extension-de-lalgèbre-relationnelle">Aggrégations et extension de l’algèbre relationnelle</a></li>
 <li><a href="#/partitionnement" id="/toc-partitionnement">Partitionnement</a></li>
-<li><a href="#/mise-%C3%A0-jour-de-tables" id="/toc-mise-à-jour-de-tables">Mise à jour de tables</a></li>
-<li><a href="#/r%C3%A9f%C3%A9rences" id="/toc-références">Références</a></li>
+<li><a href="#/mise-à-jour-de-tables" id="/toc-mise-à-jour-de-tables">Mise à jour de tables</a></li>
+<li><a href="#/références" id="/toc-références">Références</a></li>
 <li><a href="#/fin" id="/toc-fin">Fin</a></li>
-</ul></nav></section><section><section id="dplyr" class="title-slide slide level1 center"><h1><code>dplyr</code></h1>
+</ul>
+</nav>
+</section>
+<section>
+<section id="dplyr" class="title-slide slide level1 center">
+<h1><code>dplyr</code></h1>
 
-</section><section id="table-babynames" class="slide level2 center"><h2>Table <code>babynames</code>
-</h2>
+</section>
+<section id="table-babynames" class="slide level2 center">
+<h2>Table <code>babynames</code></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a></a><span class="fu">stopifnot</span>(</span>
 <span id="cb1-2"><a></a>  <span class="fu">require</span>(dplyr),</span>
@@ -475,7 +485,10 @@ $ n    &lt;int&gt; 7065, 2604, 2003, 1939, 1746, 1578, 1472, 1414, 1320, 1288, 1
 $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0.016…</code></pre>
 </div>
 </div>
-</section><section class="slide level2 center"><div class="cell">
+</section>
+<section class="slide level2 center">
+
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a></a>babynames[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,] <span class="sc">|&gt;</span> </span>
 <span id="cb4-2"><a></a>  <span class="fu">gt</span>()</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
@@ -919,14 +932,17 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
   text-indent: 25px;
 }
 </style>
+
 <table class="gt_table caption-top" data-quarto-postprocess="true" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
-<thead><tr class="header gt_col_headings">
+<thead>
+<tr class="header gt_col_headings">
 <th id="year" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">year</th>
 <th id="sex" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">sex</th>
 <th id="name" class="gt_col_heading gt_columns_bottom_border gt_left" data-quarto-table-cell-role="th" scope="col">name</th>
 <th id="n" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">n</th>
 <th id="prop" class="gt_col_heading gt_columns_bottom_border gt_right" data-quarto-table-cell-role="th" scope="col">prop</th>
-</tr></thead>
+</tr>
+</thead>
 <tbody class="gt_table_body">
 <tr class="odd">
 <td class="gt_row gt_right" headers="year">1880</td>
@@ -965,12 +981,18 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-</div>
-</section></section><section><section id="lmd-opérateurs" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>LMD : Opérateurs</h1>
 
-</section><section id="petit-rappel-sur-lalgèbre-relationnelle" class="slide level2 center"><h2>Petit rappel sur l’algèbre relationnelle</h2>
+</div>
+</div>
+</div>
+</section></section>
+<section>
+<section id="lmd-opérateurs" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>LMD : Opérateurs</h1>
+
+</section>
+<section id="petit-rappel-sur-lalgèbre-relationnelle" class="slide level2 center">
+<h2>Petit rappel sur l’algèbre relationnelle</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1002,7 +1024,9 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 </div>
-</section><section id="opérateurs-de-base" class="slide level2 center"><h2>Opérateurs de base</h2>
+</section>
+<section id="opérateurs-de-base" class="slide level2 center">
+<h2>Opérateurs de base</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1026,8 +1050,9 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 </div>
-</section><section id="union-cup-et-intersection-cap" class="slide level2 center"><h2>Union <span class="math inline">\(\cup\)</span> et intersection <span class="math inline">\(\cap\)</span>
-</h2>
+</section>
+<section id="union-cup-et-intersection-cap" class="slide level2 center">
+<h2>Union <span class="math inline">\(\cup\)</span> et intersection <span class="math inline">\(\cap\)</span></h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1046,17 +1071,23 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 </div>
-</section><section id="union-et-intersection" class="slide level2 center"><h2>Union et intersection</h2>
-</section><section id="exemple" class="slide level2 center"><h2>Exemple</h2>
+</section>
+<section id="union-et-intersection" class="slide level2 center">
+<h2>Union et intersection</h2>
+</section>
+<section id="exemple" class="slide level2 center">
+<h2>Exemple</h2>
 <div class="columns">
 <div class="column">
 <p><strong>Train 1</strong></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>h-dep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: left;"><strong>num</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h15</td>
@@ -1077,11 +1108,13 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </table>
 <p><strong>Train 2</strong></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>h-dep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: left;"><strong>num</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h39</td>
@@ -1098,11 +1131,13 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div><div class="column">
 <p><strong>Train 1 <span class="math inline">\(\cup\)</span> Train 2</strong></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>h-dep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: left;"><strong>num</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h15</td>
@@ -1128,19 +1163,25 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </table>
 <p><strong>Train 1 <span class="math inline">\(\cap\)</span> Train 2</strong></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>h-dep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: right;"><strong>num</strong></th>
-</tr></thead>
-<tbody><tr class="odd">
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td style="text-align: center;">14h15</td>
 <td style="text-align: left;">Lyon</td>
 <td style="text-align: right;">214</td>
-</tr></tbody>
+</tr>
+</tbody>
 </table>
 </div></div>
-</section><section id="différence" class="slide level2 center"><h2>Différence</h2>
+</section>
+<section id="différence" class="slide level2 center">
+<h2>Différence</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1174,14 +1215,18 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 </div>
-</section><section id="différence-exemple" class="slide level2 center"><h2>Différence : exemple</h2>
+</section>
+<section id="différence-exemple" class="slide level2 center">
+<h2>Différence : exemple</h2>
 <div class="columns">
 <div class="column">
 
 </div><div class="column">
 
 </div></div>
-</section><section id="produit-cartésien" class="slide level2 center"><h2>Produit Cartésien</h2>
+</section>
+<section id="produit-cartésien" class="slide level2 center">
+<h2>Produit Cartésien</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1192,19 +1237,12 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 <div class="callout-content">
 <ul>
-<li>
-<p>Soient:</p>
+<li><p>Soient:</p>
 <ul>
-<li>
-<span class="math inline">\(R_1\)</span> de schéma <span class="math inline">\(R_1(A_1,A_2,...,A_k)\)</span>
-</li>
-<li>
-<span class="math inline">\(R_2\)</span> de schéma <span class="math inline">\(R_2(B_1,B_2,...,B_\ell)\)</span>
-</li>
-<li>avec <span class="math inline">\(A_i\neq B_j\)</span>, pour tout <span class="math inline">\(i=1,...,k\)</span>, <span class="math inline">\(j=1,..,\ell\)</span>
-</li>
-</ul>
-</li>
+<li><span class="math inline">\(R_1\)</span> de schéma <span class="math inline">\(R_1(A_1,A_2,...,A_k)\)</span></li>
+<li><span class="math inline">\(R_2\)</span> de schéma <span class="math inline">\(R_2(B_1,B_2,...,B_\ell)\)</span></li>
+<li>avec <span class="math inline">\(A_i\neq B_j\)</span>, pour tout <span class="math inline">\(i=1,...,k\)</span>, <span class="math inline">\(j=1,..,\ell\)</span></li>
+</ul></li>
 <li><p>Dans le contexte “classique” : <span class="math inline">\(R_1 \times R_2= \{(e_1,e_2): e_1\in R_1, e_2\in R_2\}\)</span></p></li>
 <li><p><span class="math inline">\(R=R_1 \times R_2\)</span> de schéma <span class="math inline">\(R(A_1,A_2,...,A_k,B_1,B_2,...,B_\ell)\)</span>. Le schéma de <span class="math inline">\(R\)</span> est <em>l’union</em> des schémas de <span class="math inline">\(R_1\)</span> et <span class="math inline">\(R_2\)</span></p></li>
 </ul>
@@ -1224,7 +1262,9 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 </div>
-</section><section id="produit-cartésien-1" class="slide level2 center"><h2>Produit cartésien :</h2>
+</section>
+<section id="produit-cartésien-1" class="slide level2 center">
+<h2>Produit cartésien :</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1247,11 +1287,14 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 </div>
-</section><section id="produit-cartésien-avec-dplyr-dplyrcross_join" class="slide level2 center"><h2>Produit cartésien avec <code>dplyr</code>: <code>dplyr::cross_join()</code>
-</h2>
+</section>
+<section id="produit-cartésien-avec-dplyr-dplyrcross_join" class="slide level2 center">
+<h2>Produit cartésien avec <code>dplyr</code>: <code>dplyr::cross_join()</code></h2>
 <p><span class="math inline">\(R \times S\)</span> se traduit en</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a></a><span class="fu">cross_join</span>(R, S)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="projection-largepi" class="slide level2 center"><h2>Projection ( <span class="math inline">\(\Large{\pi}\)</span> )</h2>
+</section>
+<section id="projection-largepi" class="slide level2 center">
+<h2>Projection ( <span class="math inline">\(\Large{\pi}\)</span> )</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1264,12 +1307,10 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <ul>
 <li>La <em>projection</em> d’une relation <span class="math inline">\(R\)</span> de schéma <span class="math inline">\(R(A_1,\dots, A_k)\)</span> sur les attributs <span class="math inline">\(A_{i_1}, \dots, A_{i_p}\)</span>, <span class="math inline">\(i_1,..., i_p\in \{1,...,k\}\)</span>, est la relation <span class="math inline">\(S\)</span>
 <ul>
-<li>de schéma <span class="math inline">\(S(A_{i_1}, \dots,A_{i_p})\)</span>
-</li>
+<li>de schéma <span class="math inline">\(S(A_{i_1}, \dots,A_{i_p})\)</span></li>
 <li>dont les tuples sont obtenus par élimination des attributs non mentionnés dans <span class="math inline">\(A_{i_1}, \dots, A_{i_p}\)</span> (et par élimination des doublons).</li>
 <li>On note <span class="math inline">\(S = \pi_{A_{i_1}, \dots, A_{i_p}} (R)\)</span>.</li>
-</ul>
-</li>
+</ul></li>
 <li>Définition formelle :</li>
 </ul>
 <p><span class="math display">\[s\in S\quad  \iff \quad \exists t\in R, \forall n\in\left\{1,\dots,p\right\}\qquad s.A_{i_n}=t.A_{i_n}\]</span></p>
@@ -1277,14 +1318,21 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 <p>Implicitement, on a <em>élimination des doublons</em> car une projection peut produire plusieurs fois le même tuple.</p>
-</section><section id="projection-avec-dplyrselect" class="slide level2 center"><h2>Projection avec <code>dplyr::select()</code>
-</h2>
+</section>
+<section id="projection-avec-dplyrselect" class="slide level2 center">
+<h2>Projection avec <code>dplyr::select()</code></h2>
 <p><span class="math inline">\(S = \pi_{A_{i_1}, \dots, A_{i_p}} (R)\)</span> se traduit en</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a></a>S <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">select</span>(R, Ai1, Ai2, ..., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="projection-exemples" class="slide level2 center"><h2>Projection : Exemples</h2>
-</section><section id="projection-vitaminée-tidy-selection" class="slide level2 center"><h2>Projection vitaminée (<code>tidy selection</code>)</h2>
+</section>
+<section id="projection-exemples" class="slide level2 center">
+<h2>Projection : Exemples</h2>
+</section>
+<section id="projection-vitaminée-tidy-selection" class="slide level2 center">
+<h2>Projection vitaminée (<code>tidy selection</code>)</h2>
 <p><a href="https://dplyr.tidyverse.org/reference/dplyr_tidy_select.html">Sélection bien tempérée</a></p>
-</section><section id="sélection-σ" class="slide level2 center"><h2>Sélection (σ)</h2>
+</section>
+<section id="sélection-σ" class="slide level2 center">
+<h2>Sélection (σ)</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1295,32 +1343,33 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 <div class="callout-content">
 <ul>
-<li>
-<p>La <em>sélection</em> d’une relation <span class="math inline">\(R\)</span> par une condition <span class="math inline">\(C\)</span> est une relation <span class="math inline">\(S\)</span></p>
+<li><p>La <em>sélection</em> d’une relation <span class="math inline">\(R\)</span> par une condition <span class="math inline">\(C\)</span> est une relation <span class="math inline">\(S\)</span></p>
 <ul>
 <li><p>de même schéma que <span class="math inline">\(R\)</span></p></li>
 <li><p>dont les tuples sont ceux de <span class="math inline">\(R\)</span> qui satisfont la condition <span class="math inline">\(C\)</span>.</p></li>
-</ul>
-</li>
+</ul></li>
 <li><p>On note <span class="math inline">\(S = σ(R, C)\)</span>.</p></li>
-<li>
-<p>La condition <span class="math inline">\(C\)</span></p>
+<li><p>La condition <span class="math inline">\(C\)</span></p>
 <ul>
 <li><p>s’exprime à l’aide des noms d’attributs de la relation ou de constantes (pour les opérandes)</p></li>
 <li><p>on peut utiliser des opérateurs arithmétiques de comparaison ( <span class="math inline">\(=, \neq, \leq, \geq, &lt;, &gt;\)</span> ) ainsi que des connecteurs logiques (¬, ∧, ∨)..</p></li>
 <li><p>s’évalue pour chaque ligne de <span class="math inline">\(R\)</span></p></li>
+</ul></li>
 </ul>
-</li>
-</ul>
 </div>
 </div>
 </div>
-</section><section id="sélection-avec-dplyrfilter" class="slide level2 center"><h2>Sélection avec <code>dplyr::filter</code>
-</h2>
+</section>
+<section id="sélection-avec-dplyrfilter" class="slide level2 center">
+<h2>Sélection avec <code>dplyr::filter</code></h2>
 <p><span class="math inline">\(S = σ(R, C)\)</span> se traduit en</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a></a>S <span class="ot">&lt;-</span> <span class="fu">filter</span>(R, C)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="sélection-exemple" class="slide level2 center"><h2>Sélection : Exemple</h2>
-</section><section id="renommage" class="slide level2 center"><h2>Renommage</h2>
+</section>
+<section id="sélection-exemple" class="slide level2 center">
+<h2>Sélection : Exemple</h2>
+</section>
+<section id="renommage" class="slide level2 center">
+<h2>Renommage</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1334,21 +1383,21 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <li>Soit <span class="math inline">\(R\)</span> de schéma <span class="math inline">\(R(A_1,\dots, A_k)\)</span>, le <em>renommage</em> d’un attribut <span class="math inline">\(A_i\)</span>, <span class="math inline">\(i\leq k\)</span>, en <span class="math inline">\(B\)</span> est une relation <span class="math inline">\(S\)</span> :
 <ul>
 <li>de même contenu (mêmes lignes)</li>
-<li>de schéma <span class="math inline">\(S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)\)</span>
-</li>
-<li>On le note <span class="math inline">\(S=ρ(R, A_i\mapsto B)\)</span>
-</li>
-</ul>
-</li>
+<li>de schéma <span class="math inline">\(S(A_1,...,A_{i-1},B,A_{i+1},..., A_k)\)</span></li>
+<li>On le note <span class="math inline">\(S=ρ(R, A_i\mapsto B)\)</span></li>
+</ul></li>
 </ul>
 </div>
 </div>
 </div>
-</section><section id="renommage-avec-dplyrrename" class="slide level2 center"><h2>Renommage avec <code>dplyr::rename()</code>
-</h2>
+</section>
+<section id="renommage-avec-dplyrrename" class="slide level2 center">
+<h2>Renommage avec <code>dplyr::rename()</code></h2>
 <p><span class="math inline">\(S=ρ(R, A_i\mapsto B)\)</span> se traduit en</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a></a>S <span class="ot">&lt;-</span> <span class="fu">rename</span>(R, <span class="at">B=</span>Ai)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="exemple-1" class="slide level2 center"><h2>Exemple</h2>
+</section>
+<section id="exemple-1" class="slide level2 center">
+<h2>Exemple</h2>
 <div class="sourceCode" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a></a>r<span class="sc">$</span><span class="er">&gt;</span> <span class="fu">rename</span>(flights, <span class="at">destination=</span>dest) <span class="sc">|&gt;</span> </span>
 <span id="cb9-2"><a></a>    <span class="fu">select</span>(flight,tailnum, origin, destination, carrier, time_hour) <span class="sc">|&gt;</span></span>
 <span id="cb9-3"><a></a>    <span class="fu">head</span>()</span>
@@ -1362,22 +1411,30 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <span id="cb9-11"><a></a><span class="dv">5</span>    <span class="dv">461</span> N668DN  LGA    ATL         DL      <span class="dv">2013-01-01</span> <span class="dv">06</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span>
 <span id="cb9-12"><a></a><span class="dv">6</span>   <span class="dv">1696</span> N39463  EWR    ORD         UA      <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><em>Utilité</em> Va permettre d’étendre certains opérateurs pour des relations de schémas non-disjoints</p>
-</section></section><section><section id="composer-les-opérations-avec-pipe" class="title-slide slide level1 center"><h1>Composer les opérations avec <code>|&gt;</code> (pipe)</h1>
+</section></section>
+<section>
+<section id="composer-les-opérations-avec-pipe" class="title-slide slide level1 center">
+<h1>Composer les opérations avec <code>|&gt;</code> (pipe)</h1>
 
-</section><section id="les-opérateurs-comme-fonctions" class="slide level2 center"><h2>Les opérateurs comme fonctions</h2>
+</section>
+<section id="les-opérateurs-comme-fonctions" class="slide level2 center">
+<h2>Les opérateurs comme fonctions</h2>
 <p><span class="math inline">\(\pi_{Ai1, Aip}\left(\sigma_C(R)\right)\)</span></p>
 <p>se traduit en</p>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a></a><span class="fu">select</span>(<span class="fu">filter</span>(R, C), Ai1, ..., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>qui s’avère difficile à lire, surtout si on compose plus d’opérations élémentaires</p>
 <p>La composition de fonctions se conçoit facilement mais l’expression correspondante est difficile à lire</p>
-</section><section id="réécriture-de-la-composition-avec" class="slide level2 center"><h2>Réécriture de la composition avec <code>|&gt;</code>
-</h2>
+</section>
+<section id="réécriture-de-la-composition-avec" class="slide level2 center">
+<h2>Réécriture de la composition avec <code>|&gt;</code></h2>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a></a>S <span class="ot">&lt;-</span> <span class="fu">select</span>(<span class="fu">filter</span>(R, C), Ai1, ..., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>peut être réécrite en</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a></a>S <span class="ot">&lt;-</span> R <span class="sc">|&gt;</span> </span>
 <span id="cb12-2"><a></a>  <span class="fu">filter</span>(C) <span class="sc">|&gt;</span></span>
 <span id="cb12-3"><a></a>  <span class="fu">select</span>(Ai1,.., Aip)</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="exemple-2" class="slide level2 center"><h2>Exemple</h2>
+</section>
+<section id="exemple-2" class="slide level2 center">
+<h2>Exemple</h2>
 <p>Les origines et destinations des vols avec un retard au départ d’au moins 30 minutes e</p>
 <div class="columns">
 <div class="column">
@@ -1391,15 +1448,23 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <span id="cb14-2"><a></a>  <span class="fu">filter</span>(dep_delay<span class="sc">&gt;</span><span class="dv">30</span>) <span class="sc">|&gt;</span></span>
 <span id="cb14-3"><a></a>  <span class="fu">distinct</span>(origin, dest) </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div>
-</section></section><section><section id="opérations-complémentaires-les-jointures" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Opérations complémentaires : les jointures</h1>
+</section></section>
+<section>
+<section id="opérations-complémentaires-les-jointures" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Opérations complémentaires : les jointures</h1>
 
-</section><section id="les-jointures" class="slide level2 center"><h2>Les jointures</h2>
+</section>
+<section id="les-jointures" class="slide level2 center">
+<h2>Les jointures</h2>
 <p>On va définir des opérations pratiques pour la manipulation de données~: les <em>jointures</em></p>
 <ul>
 <li><p>Jointure</p></li>
 <li><p>Jointure <em>naturelle</em></p></li>
 <li><p><span class="math inline">\(\theta\)</span>-jointure et équi-jointure</p></li>
-</ul></section><section id="jointure" class="slide level2 center"><h2>Jointure</h2>
+</ul>
+</section>
+<section id="jointure" class="slide level2 center">
+<h2>Jointure</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1431,14 +1496,18 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 </div>
-</section><section id="exemple-3" class="slide level2 center"><h2>Exemple</h2>
+</section>
+<section id="exemple-3" class="slide level2 center">
+<h2>Exemple</h2>
 <p><code>TrDep</code></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>hdep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: right;"><strong>numdep</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h15</td>
@@ -1454,11 +1523,13 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </table>
 <p><code>TrArr</code></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>harr</strong></th>
 <th style="text-align: left;"><strong>prov</strong></th>
 <th style="text-align: right;"><strong>numarr</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h39</td>
@@ -1482,14 +1553,16 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <col style="width: 17%">
 <col style="width: 10%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>hdep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: right;"><strong>numdep</strong></th>
 <th style="text-align: center;"><strong>harr</strong></th>
 <th style="text-align: left;"><strong>prov</strong></th>
 <th style="text-align: right;"><strong>numarr</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h15</td>
@@ -1516,7 +1589,10 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <td style="text-align: right;">213</td>
 </tr>
 </tbody>
-</table></section><section id="équi-jointure-theta-jointure" class="slide level2 center"><h2>Équi-jointure, <span class="math inline">\(\theta\)</span>-jointure</h2>
+</table>
+</section>
+<section id="équi-jointure-theta-jointure" class="slide level2 center">
+<h2>Équi-jointure, <span class="math inline">\(\theta\)</span>-jointure</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1540,22 +1616,26 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <col style="width: 17%">
 <col style="width: 10%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>hdep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: right;"><strong>numdep</strong></th>
 <th style="text-align: center;"><strong>harr</strong></th>
 <th style="text-align: left;"><strong>prov</strong></th>
 <th style="text-align: right;"><strong>numarr</strong></th>
-</tr></thead>
-<tbody><tr class="odd">
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td style="text-align: center;">13h15</td>
 <td style="text-align: left;">Lyon</td>
 <td style="text-align: right;">213</td>
 <td style="text-align: center;">15h15</td>
 <td style="text-align: left;">Paris</td>
 <td style="text-align: right;">213</td>
-</tr></tbody>
+</tr>
+</tbody>
 </table>
 <div class="fragment">
 <div class="callout callout-important callout-titled callout-style-default">
@@ -1573,7 +1653,9 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </div>
 </div>
 </div>
-</section><section id="jointure-naturelle" class="slide level2 center"><h2>Jointure naturelle</h2>
+</section>
+<section id="jointure-naturelle" class="slide level2 center">
+<h2>Jointure naturelle</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1594,7 +1676,10 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <li><p><span class="math inline">\(R_2\)</span> d’attributs <span class="math inline">\(A_1,..,A_k,B_{h+1},...,B_\ell\)</span></p></li>
 <li><p><span class="math inline">\(A_1,..., A_k\)</span> : attributs communs et <span class="math inline">\(\{B_1,...,B_h\}\cap \{ B_{h+1},...,B_\ell \}=\emptyset\)</span></p></li>
 <li><p>Soit <span class="math inline">\(A'_1, ...., A'_k\)</span> tels que <span class="math inline">\(\{A_1,..., A_k\}\cap \{ A'_1, ...., A'_k \}=\emptyset\)</span></p></li>
-</ul></section><section id="jointure-naturelle-formalisation" class="slide level2 center"><h2>Jointure naturelle (formalisation)</h2>
+</ul>
+</section>
+<section id="jointure-naturelle-formalisation" class="slide level2 center">
+<h2>Jointure naturelle (formalisation)</h2>
 <p>Considérons <span class="math inline">\(S\)</span> d’attributs <span class="math inline">\(A_1',..,A_k',B_{h+1},...,B_l\)</span> définie par :</p>
 <p><span class="math display">\[S=\rho_{A_1\mapsto A_1'}(\rho_{A_2\mapsto A_2'}(\cdots (\rho_{A_k\mapsto A_k'}(R_2)\cdots ))\]</span></p>
 <p>La <em>jointure naturelle</em> sur deux relations <span class="math inline">\(R_1\)</span> et <span class="math inline">\(R_2\)</span> est la relation</p>
@@ -1610,16 +1695,20 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <p>Pour éviter le renommage, on peut décider de préfixer les noms des attributs par ceux de la relation. La condition <span class="math inline">\(C\)</span> devient :</p>
 <p><span class="math display">\[(R_1.A_1=R_2.A_1) \wedge \ldots \wedge (R_1.A_k=R_2.A_k)\]</span></p>
 </div>
-</section><section id="exemple-de-jointure-naturelle" class="slide level2 center"><h2>Exemple de Jointure naturelle</h2>
+</section>
+<section id="exemple-de-jointure-naturelle" class="slide level2 center">
+<h2>Exemple de Jointure naturelle</h2>
 <div class="columns">
 <div class="column">
 <p><code>TrDep</code></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>hdep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: right;"><strong>num</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h15</td>
@@ -1635,11 +1724,13 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 </table>
 <p><code>TrArr</code></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>harr</strong></th>
 <th style="text-align: left;"><strong>prov</strong></th>
 <th style="text-align: right;"><strong>num</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h39</td>
@@ -1663,28 +1754,36 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <col style="width: 21%">
 <col style="width: 19%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>hdep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: right;"><strong>num</strong></th>
 <th style="text-align: center;"><strong>harr</strong></th>
 <th style="text-align: right;"><strong>prov</strong></th>
-</tr></thead>
-<tbody><tr class="odd">
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
 <td style="text-align: center;">13h15</td>
 <td style="text-align: left;">Lyon</td>
 <td style="text-align: right;">213</td>
 <td style="text-align: center;">15h15</td>
 <td style="text-align: right;">Paris</td>
-</tr></tbody>
+</tr>
+</tbody>
 </table>
 </div></div>
-</section><section id="exemples-de-requêtes" class="slide level2 center"><h2>Exemples de requêtes</h2>
+</section>
+<section id="exemples-de-requêtes" class="slide level2 center">
+<h2>Exemples de requêtes</h2>
 <p>Base constituée des trois tables suivantes:</p>
 <p><code>fournisseurs(fno, nom, adresse, ville)</code></p>
 <p><code>produits(pno, design, prix, poids, couleur)</code></p>
 <p><code>commandes(cno, fno, pno, qte)</code></p>
-</section><section id="exemples-de-requêtes-suite" class="slide level2 center"><h2>Exemples de requêtes (suite)</h2>
+</section>
+<section id="exemples-de-requêtes-suite" class="slide level2 center">
+<h2>Exemples de requêtes (suite)</h2>
 <ul>
 <li>déterminer les numéros des fournisseurs ayant comme nom “Durand”</li>
 </ul>
@@ -1693,8 +1792,10 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <li>déterminer les références, prix et quantités des produits commandés à plus de 10 exemplaires.</li>
 </ul>
 <p><span class="math display">\[\pi_{\text{pno,prix,qte}} \bigl( \sigma_{\text{qte}&gt;10} (\text{commandes} \bowtie \text{produits})\bigr)\]</span></p>
-</section></section><section><section id="exemple-nycfights13-jointure-entre-flights-et-weather" class="title-slide slide level1 center"><h1>Exemple (<code>nycfights13</code>) jointure entre <code>flights</code> et <code>weather</code>
-</h1>
+</section></section>
+<section>
+<section id="exemple-nycfights13-jointure-entre-flights-et-weather" class="title-slide slide level1 center">
+<h1>Exemple (<code>nycfights13</code>) jointure entre <code>flights</code> et <code>weather</code></h1>
 <p>Il s’agit d’une équi-jointure sur les colonnes <code>origin</code>, et <code>time_hour</code></p>
 <p>Il ne s’agit pas d’une jointure naturelle (pourquoi?)</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a></a>by <span class="ot">&lt;-</span> <span class="fu">join_by</span>(origin, time_hour)</span>
@@ -1713,7 +1814,10 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <span id="cb15-14"><a></a><span class="dv">2</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span> LGA    IAH       <span class="dv">1416</span>      <span class="dv">5</span>     <span class="dv">29</span> <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span>      <span class="dv">5</span>  <span class="fl">39.9</span>  <span class="fl">25.0</span>  <span class="fl">54.8</span>      <span class="dv">250</span></span>
 <span id="cb15-15"><a></a><span class="dv">3</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span> JFK    MIA       <span class="dv">1089</span>      <span class="dv">5</span>     <span class="dv">40</span> <span class="dv">2013-01-01</span> <span class="dv">05</span><span class="sc">:</span><span class="dv">00</span><span class="sc">:</span><span class="dv">00</span>   <span class="dv">2013</span>       <span class="dv">1</span>     <span class="dv">1</span>      <span class="dv">5</span>  <span class="fl">39.0</span>  <span class="fl">27.0</span>  <span class="fl">61.6</span>      <span class="dv">260</span></span>
 <span id="cb15-16"><a></a><span class="co"># ℹ 5 more variables: wind_speed &lt;dbl&gt;, wind_gust &lt;dbl&gt;, precip &lt;dbl&gt;, pressure &lt;dbl&gt;, visib &lt;dbl&gt;</span></span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section class="slide level2 center"><div class="columns">
+</section>
+<section class="slide level2 center">
+
+<div class="columns">
 <div class="column">
 <p>On veut/peut se débarasser des colonnes dupliquées</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a></a>flights <span class="sc">|&gt;</span></span>
@@ -1731,9 +1835,14 @@ $ prop &lt;dbl&gt; 0.07238359, 0.02667896, 0.02052149, 0.01986579, 0.01788843, 0
 <pre><code>year, month, day, hour → time_hour
 time_hour → year, month, day, hour </code></pre>
 </div></div>
-</section></section><section><section id="encore-des-opérations" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Encore des opérations…</h1>
+</section></section>
+<section>
+<section id="encore-des-opérations" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Encore des opérations…</h1>
 
-</section><section id="jointure-externe" class="slide level2 center"><h2>Jointure externe</h2>
+</section>
+<section id="jointure-externe" class="slide level2 center">
+<h2>Jointure externe</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1763,16 +1872,20 @@ time_hour → year, month, day, hour </code></pre>
 </div>
 </div>
 </div>
-</section><section id="jointure-externe-exemple" class="slide level2 center"><h2>Jointure externe (exemple)</h2>
+</section>
+<section id="jointure-externe-exemple" class="slide level2 center">
+<h2>Jointure externe (exemple)</h2>
 <div class="columns">
 <div class="column">
 <p><code>TrDep</code></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>hdep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: right;"><strong>num</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h15</td>
@@ -1788,11 +1901,13 @@ time_hour → year, month, day, hour </code></pre>
 </table>
 <p><code>TrArr</code></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>harr</strong></th>
 <th style="text-align: left;"><strong>prov</strong></th>
 <th style="text-align: right;"><strong>num</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h39</td>
@@ -1816,13 +1931,15 @@ time_hour → year, month, day, hour </code></pre>
 <col style="width: 22%">
 <col style="width: 21%">
 </colgroup>
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: center;"><strong>hdep</strong></th>
 <th style="text-align: left;"><strong>dest</strong></th>
 <th style="text-align: right;"><strong>num</strong></th>
 <th style="text-align: center;"><strong>harr</strong></th>
 <th style="text-align: left;"><strong>prov</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: center;">13h15</td>
@@ -1848,8 +1965,12 @@ time_hour → year, month, day, hour </code></pre>
 </tbody>
 </table>
 </div></div>
-</section><section id="inner_join" class="slide level2 center"><h2><code>inner_join()</code></h2>
-</section><section id="join_by..." class="slide level2 center"><h2><code>join_by(...)</code></h2>
+</section>
+<section id="inner_join" class="slide level2 center">
+<h2><code>inner_join()</code></h2>
+</section>
+<section id="join_by..." class="slide level2 center">
+<h2><code>join_by(...)</code></h2>
 <blockquote>
 <p><code>join_by()</code> constructs a specification that describes how to join two tables using a small domain specific language.</p>
 </blockquote>
@@ -1866,14 +1987,21 @@ time_hour → year, month, day, hour </code></pre>
 
 <aside><div>
 <p>Other expressions are not supported. If you need to perform a join on a computed variable, e.g.&nbsp;join_by(sales_date - 40 &gt;= promo_date), you’ll need to precompute and store it in a separate column.</p>
-</div></aside></section><section class="slide level2 center"><blockquote>
+</div></aside></section>
+<section class="slide level2 center">
+
+<blockquote>
 <p>Column names should be specified as quoted or unquoted names. By default, the name on the left-hand side of a join condition refers to the left-hand table, unless overridden by explicitly prefixing the column name with either ⁠x<span class="math inline">\(⁠ or ⁠y\)</span>⁠.</p>
 </blockquote>
 <blockquote>
 <p>If a single column name is provided without any join conditions, it is interpreted as if that column name was duplicated on each side of ==, i.e.&nbsp;x is interpreted as x == x.</p>
 </blockquote>
-</section><section id="left_join" class="slide level2 center"><h2><code>left_join()</code></h2>
-</section><section id="division" class="slide level2 center"><h2>Division</h2>
+</section>
+<section id="left_join" class="slide level2 center">
+<h2><code>left_join()</code></h2>
+</section>
+<section id="division" class="slide level2 center">
+<h2>Division</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -1897,16 +2025,20 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 </div>
 </div>
 </div>
-</section><section id="division-exemple" class="slide level2 center"><h2>Division (exemple)</h2>
+</section>
+<section id="division-exemple" class="slide level2 center">
+<h2>Division (exemple)</h2>
 <div class="columns">
 <div class="column">
 <p><code>Voyage</code> : contient pour chaque numéro de client la ville de départ et d’arrivée des voyages qu’il a effectué</p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: right;"><strong>numclient</strong></th>
 <th style="text-align: left;"><strong>vdep</strong></th>
 <th style="text-align: left;"><strong>varr</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">1</td>
@@ -1953,10 +2085,12 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 </div><div class="column">
 <p><code>Villes</code> contient des couples villes de départ/villes d’arrivée</p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: left;"><strong>vdep</strong></th>
 <th style="text-align: left;"><strong>varr</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Paris</td>
@@ -1969,12 +2103,16 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 </tbody>
 </table>
 </div></div>
-</section><section id="division-exemple-suite" class="slide level2 center"><h2>Division (exemple, suite)</h2>
+</section>
+<section id="division-exemple-suite" class="slide level2 center">
+<h2>Division (exemple, suite)</h2>
 <p><span class="math display">\[\texttt{Voyage} \div \texttt{Villes}\]</span></p>
 <table class="caption-top">
-<thead><tr class="header">
+<thead>
+<tr class="header">
 <th style="text-align: right;"><strong>numclient</strong></th>
-</tr></thead>
+</tr>
+</thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: right;">1</td>
@@ -1985,7 +2123,9 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 </tbody>
 </table>
 <p><em>Résultat</em> : numéros des clients ayant effectué tous les voyages entre les villes de la table <code>Villes</code> (i.e.&nbsp;à la fois un Paris-Marseille et un Paris-Nantes.)</p>
-</section><section id="interdéfinissabilité-des-opérateurs" class="slide level2 center"><h2>Interdéfinissabilité des opérateurs</h2>
+</section>
+<section id="interdéfinissabilité-des-opérateurs" class="slide level2 center">
+<h2>Interdéfinissabilité des opérateurs</h2>
 <ul>
 <li><p>L’union, la différence, le produit cartésien, la sélection et la projection et le renommage sont <em>suffisants</em> pour définir tous les opérateurs que l’on a vu.</p></li>
 <li><p>Mais avoir un panier plus large d’opérateurs simplifie l’écriture des requêtes.</p></li>
@@ -1994,7 +2134,10 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 <ul>
 <li><p>Pour la <em>Jointure</em> : <span class="math inline">\(R \bowtie_C S \equiv \sigma_C (R \times S)\)</span></p></li>
 <li><p>Pour l’<em>intersection</em> : <span class="math inline">\(A \cap B = A \cup B - ((B - A) \cup (A - B))\)</span></p></li>
-</ul></section><section id="définition-de-la-division" class="slide level2 center"><h2>Définition de la division</h2>
+</ul>
+</section>
+<section id="définition-de-la-division" class="slide level2 center">
+<h2>Définition de la division</h2>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -2009,9 +2152,14 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 </div>
 </div>
 </div>
-</section></section><section><section id="the-story" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>The story</h1>
+</section></section>
+<section>
+<section id="the-story" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>The story</h1>
 
-</section><section id="from-wikipedia-smaller" class="slide level2 center"><h2>From Wikipedia {smaller}</h2>
+</section>
+<section id="from-wikipedia-smaller" class="slide level2 center">
+<h2>From Wikipedia {smaller}</h2>
 <blockquote>
 <p>In the 1960s and 1970s he worked out his theories of data arrangement, issuing his paper “A Relational Model of Data for Large Shared Data Banks”[14] in 1970, after an internal IBM paper one year earlier.[15] To his disappointment, IBM proved slow to exploit his suggestions until commercial rivals started implementing them.[16]</p>
 </blockquote>
@@ -2024,68 +2172,110 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 <blockquote>
 <p>Codd’s theorem, a result proven in his seminal work on the relational model, equates the expressive power of relational algebra and relational calculus.[14]</p>
 </blockquote>
-</section></section><section id="les-expressions-dans-dplyr" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Les expressions dans <code>dplyr</code>
-</h1>
+</section></section>
+<section id="les-expressions-dans-dplyr" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Les expressions dans <code>dplyr</code></h1>
 
-</section><section><section id="la-sélection-bien-tempérée-tidy-selection" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>La sélection bien tempérée (<em>tidy selection</em>)</h1>
+</section>
 
-</section><section id="section" class="slide level2 center"><h2></h2>
-</section><section id="section-1" class="slide level2 center"><h2></h2>
-</section></section><section><section id="aggrégations-et-extension-de-lalgèbre-relationnelle" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Aggrégations et extension de l’algèbre relationnelle</h1>
+<section>
+<section id="la-sélection-bien-tempérée-tidy-selection" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>La sélection bien tempérée (<em>tidy selection</em>)</h1>
 
-</section><section id="summarizedqta-...-byexpr-dans-dplyr" class="slide level2 center"><h2>
-<code>summarize(dqta, ... , by=expr)</code> dans <code>dplyr()</code>
-</h2>
-</section><section id="summarize-avec-sélection-bien-tempérée-avec-across...-..." class="slide level2 center"><h2>
-<code>summarize()</code> avec sélection bien tempérée avec <code>across(..., ...)</code>
-</h2>
-</section></section><section><section id="partitionnement" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Partitionnement</h1>
+</section>
+<section id="section" class="slide level2 center">
+<h2></h2>
+</section>
+<section id="section-1" class="slide level2 center">
+<h2></h2>
+</section></section>
+<section>
+<section id="aggrégations-et-extension-de-lalgèbre-relationnelle" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Aggrégations et extension de l’algèbre relationnelle</h1>
 
-</section><section id="le-problème-group-by-en-sql" class="slide level2 center"><h2>Le problème <code>GROUP BY</code> en <code>SQL</code>
-</h2>
-</section><section id="des-tables-avec-des-domaines-tabulaires" class="slide level2 center"><h2>Des tables avec des domaines tabulaires</h2>
-</section><section id="group_by-et-les-grouped-tibbles" class="slide level2 center"><h2>
-<code>group_by()</code> et les <code>grouped tibbles</code>
-</h2>
-</section><section id="ungroup" class="slide level2 center"><h2><code>ungroup()</code></h2>
-</section><section id="nest-et-unnest" class="slide level2 center"><h2>
-<code>nest()</code> et <code>unnest()</code>
-</h2>
-</section><section id="enframe" class="slide level2 center"><h2><code>enframe()</code></h2>
-</section><section id="références-sur-les-tqbles-partitionnées" class="slide level2 center"><h2>Références sur les tqbles partitionnées</h2>
+</section>
+<section id="summarizedqta-...-byexpr-dans-dplyr" class="slide level2 center">
+<h2><code>summarize(dqta, ... , by=expr)</code> dans <code>dplyr()</code></h2>
+</section>
+<section id="summarize-avec-sélection-bien-tempérée-avec-across...-..." class="slide level2 center">
+<h2><code>summarize()</code> avec sélection bien tempérée avec <code>across(..., ...)</code></h2>
+</section></section>
+<section>
+<section id="partitionnement" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Partitionnement</h1>
+
+</section>
+<section id="le-problème-group-by-en-sql" class="slide level2 center">
+<h2>Le problème <code>GROUP BY</code> en <code>SQL</code></h2>
+</section>
+<section id="des-tables-avec-des-domaines-tabulaires" class="slide level2 center">
+<h2>Des tables avec des domaines tabulaires</h2>
+</section>
+<section id="group_by-et-les-grouped-tibbles" class="slide level2 center">
+<h2><code>group_by()</code> et les <code>grouped tibbles</code></h2>
+</section>
+<section id="ungroup" class="slide level2 center">
+<h2><code>ungroup()</code></h2>
+</section>
+<section id="nest-et-unnest" class="slide level2 center">
+<h2><code>nest()</code> et <code>unnest()</code></h2>
+</section>
+<section id="enframe" class="slide level2 center">
+<h2><code>enframe()</code></h2>
+</section>
+<section id="références-sur-les-tqbles-partitionnées" class="slide level2 center">
+<h2>Références sur les tqbles partitionnées</h2>
 <p><a href="https://dplyr.tidyverse.org/articles/grouping.html"><code>dplyr</code> sur le groupement</a></p>
-</section></section><section><section id="mise-à-jour-de-tables" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Mise à jour de tables</h1>
+</section></section>
+<section>
+<section id="mise-à-jour-de-tables" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Mise à jour de tables</h1>
 
-</section><section id="types-de-mises-à-jour-de-tables-en-sql" class="slide level2 center"><h2>Types de mises à jour de tables en <code>SQL</code>
-</h2>
+</section>
+<section id="types-de-mises-à-jour-de-tables-en-sql" class="slide level2 center">
+<h2>Types de mises à jour de tables en <code>SQL</code></h2>
 <ul>
 <li>modification du schéma <code>ALTER TABLE ...</code>
 <ul>
 <li>ajout de colonnes</li>
 <li>suppression de colonnes</li>
 <li>modification de domaines</li>
-</ul>
-</li>
+</ul></li>
 <li>modification des lignes
 <ul>
 <li>mises à jour d’attributs sur certaines lignes</li>
 <li>suppression de lignes</li>
 <li>insertions de lignes</li>
+</ul></li>
 </ul>
-</li>
-</ul></section><section id="point-de-vue-fonctionnel" class="slide level2 center"><h2>Point de vue fonctionnel</h2>
-</section><section id="mutate" class="slide level2 center"><h2><code>mutate()</code></h2>
+</section>
+<section id="point-de-vue-fonctionnel" class="slide level2 center">
+<h2>Point de vue fonctionnel</h2>
+</section>
+<section id="mutate" class="slide level2 center">
+<h2><code>mutate()</code></h2>
 <ul>
 <li>ajout de colonnes</li>
 <li>modification de domaines</li>
 <li>mises à jour d’attributs sur certaines lignes</li>
-</ul></section><section id="ajout-de-lignes" class="slide level2 center"><h2>Ajout de lignes</h2>
-</section><section id="section-2" class="slide level2 center"><h2></h2>
-</section></section><section id="références" class="title-slide slide level1 center"><h1>Références</h1>
+</ul>
+</section>
+<section id="ajout-de-lignes" class="slide level2 center">
+<h2>Ajout de lignes</h2>
+</section>
+<section id="section-2" class="slide level2 center">
+<h2></h2>
+</section></section>
+<section id="références" class="title-slide slide level1 center">
+<h1>Références</h1>
 <ul>
 <li><a href="https://dplyr.tidyverse.org/">Page maison <code>dplyr</code></a></li>
 <li><a href=""></a></li>
-</ul></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
+</ul>
+</section>
+
+<section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -2107,10 +2297,26 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
 </div>
 </div>
 </section>
-</div>
+    </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../site_libs/revealjs/plugin/search/search.js"></script><script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -2300,7 +2506,9 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+    <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -2335,7 +2543,9 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
         }
 
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -2680,7 +2890,8 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
         }
       }
     });
-    </script><script type="text/javascript">
+    </script>
+        <script type="text/javascript">
         (function(d) {
           d.querySelectorAll(".pseudocode-container").forEach(function(el) {
             let pseudocodeOptions = {
@@ -2711,6 +2922,7 @@ t.A_1=r.A_1, \dots, t.A_p=r.A_p\\ s.A_{p+1}=r.A_{p+1},\dots, s.A_{k}=r.A_{k} \en
           });
         })(document);
         </script>
-
+      
+    
 
 </body></html>

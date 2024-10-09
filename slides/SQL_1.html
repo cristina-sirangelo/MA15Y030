@@ -14,18 +14,18 @@
 <script src="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
-<meta name="author" content="Équipe BD">
-<meta name="dcterms.date" content="2024-09-20">
-<title>MA15Y030 - Automne 2024 – BD II: SQL I</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
-<style>
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.55">
+
+  <meta name="author" content="Équipe BD">
+  <meta name="dcterms.date" content="2024-09-20">
+  <title>MA15Y030 - Automne 2024 – BD II: SQL I</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -103,12 +103,12 @@
     code span.vs { color: #2aa198; } /* VerbatimString */
     code span.wa { color: #cb4b16; } /* Warning */
   </style>
-<link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
-<link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -306,7 +306,7 @@
   }
 
   </style>
-<style type="text/css">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -394,7 +394,7 @@
       margin-right: 0; 
     }
   </style>
-<script>
+  <script>
   MathJax = {
     loader: {
       load: ['[tex]/boldsymbol']
@@ -410,7 +410,8 @@
       }
     }
   };
-  </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <meta property="og:title" content="BD II: SQL I – MA15Y030 - Automne 2024">
 <meta property="og:description" content="Langage Manipulation de Données 1">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
@@ -419,7 +420,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center"><h1 class="title">BD II: SQL I</h1>
+<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
+  <h1 class="title">BD II: SQL I</h1>
   <p class="subtitle">Langage Manipulation de Données 1</p>
 
 <div class="quarto-title-authors">
@@ -434,15 +436,24 @@
 </div>
 
   <p class="date">2024-09-20</p>
-</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Plan</h2>
 <ul>
 <li><a href="#/introduction" id="/toc-introduction">Introduction</a></li>
-<li><a href="#/requ%C3%AAtes-mono-relation" id="/toc-requêtes-mono-relation">Requêtes mono-relation</a></li>
-<li><a href="#/requ%C3%AAtes-multi-relations" id="/toc-requêtes-multi-relations">Requêtes multi-relations</a></li>
+<li><a href="#/requêtes-mono-relation" id="/toc-requêtes-mono-relation">Requêtes mono-relation</a></li>
+<li><a href="#/requêtes-multi-relations" id="/toc-requêtes-multi-relations">Requêtes multi-relations</a></li>
 <li><a href="#/fin" id="/toc-fin">Fin</a></li>
-</ul></nav></section><section><section id="introduction" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Introduction</h1>
+</ul>
+</nav>
+</section>
+<section>
+<section id="introduction" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Introduction</h1>
 
-</section><section id="sql-structured-query-language" class="slide level2 center"><h2>SQL : Structured Query Language</h2>
+</section>
+<section id="sql-structured-query-language" class="slide level2 center">
+<h2>SQL : Structured Query Language</h2>
 <p>SQL est langage permettant :</p>
 <ul>
 <li><p><em>interrogation</em> des données (requêtes)</p></li>
@@ -450,7 +461,10 @@
 <li><p><em>manipulation</em> des données (insertion, suppression, mise à jour)</p></li>
 <li><p>définition des <em>vues</em> et des <em>index</em></p></li>
 <li><p><em>administration</em> des bases de données</p></li>
-</ul></section><section id="plusieurs-fois-normalisés-par-liso" class="slide level2 center"><h2>Plusieurs fois normalisés par l’ISO …</h2>
+</ul>
+</section>
+<section id="plusieurs-fois-normalisés-par-liso" class="slide level2 center">
+<h2>Plusieurs fois normalisés par l’ISO …</h2>
 <ul>
 <li>SQL-86,</li>
 <li>SQL-89,</li>
@@ -466,7 +480,9 @@
 <p>Nous utiliserons le dialecte <a href="https://www.postgresql.org"><code>PostgreSQL</code></a></p>
 <p>A standard is reviewed every 5 years (roughly)</p>
 <p><a href="https://www.iso.org/standard/63555.html">ISO/IEC 9075 from www.iso.org</a></p>
-</section><section id="sql" class="slide level2 center"><h2>SQL</h2>
+</section>
+<section id="sql" class="slide level2 center">
+<h2>SQL</h2>
 <div class="columns">
 <div class="column">
 <p>Une instruction SQL permet de <em>combiner</em> :</p>
@@ -476,8 +492,7 @@
 <li><p>renommage <span class="math inline">\(\rho\)</span></p></li>
 <li><p>…</p></li>
 </ul>
-</div><p>. . .</p>
-<div class="column">
+</div><p>. . .</p><div class="column">
 <p>L’instruction</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb1-1"><a></a><span class="kw">SELECT</span> <span class="op">&lt;</span>liste attribut<span class="op">&gt;</span></span>
 <span id="cb1-2"><a></a></span>
@@ -488,13 +503,18 @@
 <p><span class="math inline">\(\Pi_{\text{&lt;liste attribut&gt;}}(\sigma_{\text{&lt;condition&gt;}}(\text{&lt;table&gt;}))\)</span></p>
 <p>Ou <code>σ(R, Condition) |&gt; Π(&lt;liste attribut&gt;)</code></p>
 </div></div>
-</section><section class="slide level2 center"><p>On peut faire autrement : dans les extensions du langage <code>R</code>, notamment celles qui relèvent de <code>tidyverse</code>, on associe des fonctions à chaque opérateur de l’algèbre relationnelle. Pour opérateurs qui portent sur une seule table, le premier argument de chaque fonction est toujours la table sur laquelle on opère. Les autres arguments sont soit les attributs de projection, soit la spécification d’une condition de sélection, soit …</p>
+</section>
+<section class="slide level2 center">
+
+<p>On peut faire autrement : dans les extensions du langage <code>R</code>, notamment celles qui relèvent de <code>tidyverse</code>, on associe des fonctions à chaque opérateur de l’algèbre relationnelle. Pour opérateurs qui portent sur une seule table, le premier argument de chaque fonction est toujours la table sur laquelle on opère. Les autres arguments sont soit les attributs de projection, soit la spécification d’une condition de sélection, soit …</p>
 <p>L’usage d’un opérateur <code>pipe</code> (comme dans Unix) permet de composer de facon lisible les opérations.</p>
 <pre><code>&lt;table&gt; |&gt;
   filter(&lt;condition&gt; ) |&gt;
   select(&lt;liste attribut&gt;) |&gt; 
   ...</code></pre>
-</section><section id="syntaxe---requêtes-simples" class="slide level2 center"><h2>Syntaxe - requêtes simples</h2>
+</section>
+<section id="syntaxe---requêtes-simples" class="slide level2 center">
+<h2>Syntaxe - requêtes simples</h2>
 <div class="columns">
 <div class="column">
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb3-1"><a></a><span class="kw">SELECT</span> [<span class="kw">DISTINCT</span>] <span class="op">*</span> | <span class="op">&lt;</span>liste attribut<span class="op">&gt;</span></span>
@@ -518,7 +538,9 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb5-1"><a></a><span class="kw">SET</span> search_path <span class="kw">TO</span> world ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</section><section id="requêtes-simples-sur-exemple-jouet" class="slide level2 center"><h2>Requêtes simples sur exemple jouet</h2>
+</section>
+<section id="requêtes-simples-sur-exemple-jouet" class="slide level2 center">
+<h2>Requêtes simples sur exemple jouet</h2>
 <div class="columns">
 <div class="column">
 <div class="sourceCode" id="cb6"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb6-1"><a></a>Employe(Nu, NomE, Annee, Tel, Nudept)</span>
@@ -536,7 +558,10 @@
 <p>Equivalent à :</p>
 <p><span class="math display">\[\Pi_{\text{NomF, region}}(\text{country})\]</span></p>
 </div></div>
-</section><section class="slide level2 center"><div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
+</section>
+<section class="slide level2 center">
+
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb8-2"><a></a></span>
 <span id="cb8-3"><a></a><span class="kw">FROM</span> Fournisseur ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Equivalent à : <code>Fournisseur</code></p>
@@ -546,27 +571,35 @@
 <span id="cb9-4"><a></a></span>
 <span id="cb9-5"><a></a><span class="kw">WHERE</span> Ville<span class="op">=</span><span class="st">'Paris'</span> ;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Equivalent à : <span class="math inline">\(\sigma_{\texttt{Ville}=\texttt{'Paris'}}(\texttt{Fournisseur})\)</span></p>
-</section></section><section><section id="requêtes-mono-relation" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Requêtes mono-relation</h1>
+</section></section>
+<section>
+<section id="requêtes-mono-relation" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Requêtes mono-relation</h1>
 
-</section><section id="structure-de-base" class="slide level2 center"><h2>Structure de base</h2>
+</section>
+<section id="structure-de-base" class="slide level2 center">
+<h2>Structure de base</h2>
 <p>La structure de base d’une requête s’appuie sur les trois mots clés suivants :</p>
 <ul>
 <li><p><code>SELECT</code> correspond à l’opérateur de projection sur la liste d’attributs demandée, il peut aussi être suivi de fonctions d’attributs</p></li>
 <li><p><code>FROM</code> indique la ou les relations concernées</p></li>
 <li><p><code>WHERE</code> précise une condition et correspond à l’opération de restriction/sélection en algèbre relationnelle.</p></li>
-</ul></section><section id="syntaxe-de-la-condition-de-filtrage-where-..." class="slide level2 center"><h2>Syntaxe de la condition de filtrage (<code>WHERE ...</code>)</h2>
+</ul>
+</section>
+<section id="syntaxe-de-la-condition-de-filtrage-where-..." class="slide level2 center">
+<h2>Syntaxe de la condition de filtrage (<code>WHERE ...</code>)</h2>
 <p>Une condition se construit à l’aide des opérations suivantes :</p>
 <ul>
-<li>
-<em>Comparaison</em> avec opérateurs : <code>=, &lt;&gt;, &gt;,&lt;, &gt;=, &lt;=</code>
-</li>
+<li><em>Comparaison</em> avec opérateurs : <code>=, &lt;&gt;, &gt;,&lt;, &gt;=, &lt;=</code></li>
 </ul>
 <div class="sourceCode" id="cb10"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb10-2"><a></a></span>
 <span id="cb10-3"><a></a><span class="kw">FROM</span> Employe</span>
 <span id="cb10-4"><a></a></span>
 <span id="cb10-5"><a></a><span class="kw">WHERE</span> NomE <span class="op">&lt;&gt;</span><span class="st">'Durand'</span>  ;  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="syntaxe-de-la-condition-de-filtrage-where-...-1" class="slide level2 center"><h2>Syntaxe de la condition de filtrage (<code>WHERE ...</code>)</h2>
+</section>
+<section id="syntaxe-de-la-condition-de-filtrage-where-...-1" class="slide level2 center">
+<h2>Syntaxe de la condition de filtrage (<code>WHERE ...</code>)</h2>
 <p><em>Combinaison</em> de conditions à l’aide des opérateurs logiques: <code>AND</code>, <code>OR</code>, <code>NOT</code></p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb11-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> NomF</span>
 <span id="cb11-2"><a></a></span>
@@ -575,7 +608,9 @@
 <span id="cb11-5"><a></a><span class="kw">WHERE</span> (Ville<span class="op">=</span><span class="st">'Londres'</span>) <span class="kw">OR</span> (Ville<span class="op">=</span><span class="st">'Paris'</span>);  </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Attention aux priorités dans l’évaluation des expressions logiques</p>
 <p><i class="fa-solid fa-skull" aria-label="skull"></i> Attention aux valeurs manquantes</p>
-</section><section id="syntaxe-de-la-condition-where-...-suite" class="slide level2 center"><h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
+</section>
+<section id="syntaxe-de-la-condition-where-...-suite" class="slide level2 center">
+<h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
 <p>Test <em>BETWEEN</em> permettant de vérifier si la valeur d’un attribut est comprise entre deux constantes</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb12-1"><a></a><span class="kw">SELECT</span> NomE</span>
 <span id="cb12-2"><a></a></span>
@@ -583,7 +618,9 @@
 <span id="cb12-4"><a></a></span>
 <span id="cb12-5"><a></a><span class="kw">WHERE</span> Annee <span class="kw">BETWEEN</span> <span class="st">'22/06/03'</span> <span class="kw">AND</span> <span class="st">'25/09/03'</span>;   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-triangle-exclamation" aria-label="triangle-exclamation"></i> Éviter de manipuler les dates et heures comme des chaînes de caractères</p>
-</section><section id="syntaxe-de-la-condition-where-...-suite-1" class="slide level2 center"><h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
+</section>
+<section id="syntaxe-de-la-condition-where-...-suite-1" class="slide level2 center">
+<h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
 <ul>
 <li>Test à <code>NULL</code> signifiant que la valeur est égale à <code>NULL</code> (c-à-d est inconnue)</li>
 </ul>
@@ -593,14 +630,18 @@
 <span id="cb13-4"><a></a></span>
 <span id="cb13-5"><a></a><span class="kw">WHERE</span> Tel <span class="kw">IS</span> <span class="kw">NULL</span>;    </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p><i class="fa-solid fa-skull" aria-label="skull"></i> Attention aux valeurs manquantes</p>
-</section><section id="syntaxe-de-la-condition-where-...-suite-2" class="slide level2 center"><h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
+</section>
+<section id="syntaxe-de-la-condition-where-...-suite-2" class="slide level2 center">
+<h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
 <p>Test d’<em>appartenance</em> <code>IN</code> qui permet de vérifier si la valeur d’un attribut appartient à une liste de constantes,</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb14-1"><a></a><span class="kw">SELECT</span> <span class="op">*</span></span>
 <span id="cb14-2"><a></a></span>
 <span id="cb14-3"><a></a><span class="kw">FROM</span> Fournisseur</span>
 <span id="cb14-4"><a></a></span>
 <span id="cb14-5"><a></a><span class="kw">WHERE</span> Ville <span class="kw">IN</span> (<span class="st">'Paris'</span>, <span class="st">'Londres'</span>);   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="syntaxe-de-la-condition-where-...-suite-3" class="slide level2 center"><h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
+</section>
+<section id="syntaxe-de-la-condition-where-...-suite-3" class="slide level2 center">
+<h2>Syntaxe de la condition <code>WHERE ...</code> (suite)</h2>
 <p>Test <code>LIKE</code> permettant de vérifier si un attribut de type chaîne de caractères contient une ou plusieurs sous-chaînes</p>
 <p><span class="math inline">\(\_\)</span> : remplace n’importe quel caractère</p>
 <p><span class="math inline">\(\%\)</span> : remplace n’importe quelle chaîne de caractères.</p>
@@ -609,21 +650,35 @@
 <span id="cb15-3"><a></a><span class="kw">FROM</span> Fournisseur</span>
 <span id="cb15-4"><a></a></span>
 <span id="cb15-5"><a></a><span class="kw">WHERE</span> Ville <span class="kw">LIKE</span> <span class="st">'Saint%'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section><section><section id="requêtes-multi-relations" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Requêtes multi-relations</h1>
+</section></section>
+<section>
+<section id="requêtes-multi-relations" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Requêtes multi-relations</h1>
 
-</section><section id="requêtes-multi-relations-1" class="slide level2 center"><h2>Requêtes multi-relations</h2>
+</section>
+<section id="requêtes-multi-relations-1" class="slide level2 center">
+<h2>Requêtes multi-relations</h2>
 <p>Quand l’information est dispersée sur plusieurs tables, on utilise des <em>jointures</em></p>
-</section><section id="on-peut" class="slide level2 center"><h2>On peut :</h2>
+</section>
+<section id="on-peut" class="slide level2 center">
+<h2>On peut :</h2>
 <ul>
 <li><p>utiliser plusieurs tables dans la clause <code>FROM</code></p></li>
 <li><p>faire intervenir des conditions complexes impliquant ces tables dans la clause <code>WHERE</code></p></li>
-</ul></section><section id="détails-du-schema-world" class="slide level2 center"><h2>Détails du schema <code>World</code>
-</h2>
+</ul>
+</section>
+<section id="détails-du-schema-world" class="slide level2 center">
+<h2>Détails du schema <code>World</code></h2>
 <p>Images et tables créées grâce à <a href="https://dbschema.com">DbSchema</a></p>
-</section><section id="diagramme-en-pattes-de-corbeau" class="slide level2 center"><h2>Diagramme en pattes de corbeau</h2>
+</section>
+<section id="diagramme-en-pattes-de-corbeau" class="slide level2 center">
+<h2>Diagramme en pattes de corbeau</h2>
 
-<img data-src="../images/world.png" class="r-stretch quarto-figure-center"><p class="caption">img</p></section><section id="table-world.city" class="slide level2 center"><h2>Table world.city</h2>
-<table class="caption-top"><tbody>
+<img data-src="../images/world.png" class="r-stretch quarto-figure-center"><p class="caption">img</p></section>
+<section id="table-world.city" class="slide level2 center">
+<h2>Table world.city</h2>
+<table class="caption-top">
+<tbody>
 <tr class="odd">
 <td>* 🔑 ⬋</td>
 <td>id</td>
@@ -649,8 +704,13 @@
 <td>population</td>
 <td>integer</td>
 </tr>
-</tbody></table></section><section id="table-world.country" class="slide level2 center"><h2>Table world.country</h2>
-<table class="caption-top"><tbody>
+</tbody>
+</table>
+</section>
+<section id="table-world.country" class="slide level2 center">
+<h2>Table world.country</h2>
+<table class="caption-top">
+<tbody>
 <tr class="odd">
 <td>* 🔑 ⬋</td>
 <td>code</td>
@@ -726,25 +786,36 @@
 <td>code2</td>
 <td>char(2)</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <h3 id="foreign-keys">Foreign Keys</h3>
-<table class="caption-top"><tbody><tr class="odd">
+<table class="caption-top">
+<tbody>
+<tr class="odd">
 <td></td>
 <td>country_capital_fkey</td>
 <td>( capital ) ref <a href="#/city">world.city</a> (id)</td>
-</tr></tbody></table>
+</tr>
+</tbody>
+</table>
 <h3 id="constraints">Constraints</h3>
 <table class="caption-top">
 <colgroup>
 <col style="width: 50%">
 <col style="width: 50%">
 </colgroup>
-<tbody><tr class="odd">
+<tbody>
+<tr class="odd">
 <td>country_continent_check</td>
 <td>((continent = ‘Asia’::text) OR (continent = ‘Europe’::text) OR (continent = ‘North America’::text) OR (continent = ‘Africa’::text) OR (continent = ‘Oceania’::text) OR (continent = ‘Antarctica’::text) OR (continent = ‘South America’::text))</td>
-</tr></tbody>
-</table></section><section id="table-world.countrylanguage" class="slide level2 center"><h2>Table world.countrylanguage</h2>
-<table class="caption-top"><tbody>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="table-world.countrylanguage" class="slide level2 center">
+<h2>Table world.countrylanguage</h2>
+<table class="caption-top">
+<tbody>
 <tr class="odd">
 <td>* 🔑 ⬈</td>
 <td>countrycode</td>
@@ -765,14 +836,21 @@
 <td>percentage</td>
 <td>real</td>
 </tr>
-</tbody></table>
+</tbody>
+</table>
 <h3 id="foreign-keys-1">Foreign Keys</h3>
-<table class="caption-top"><tbody><tr class="odd">
+<table class="caption-top">
+<tbody>
+<tr class="odd">
 <td></td>
 <td>countrylanguage_countrycode_fkey</td>
 <td>( countrycode ) ref <a href="#/country">world.country</a> (code)</td>
-</tr></tbody></table></section><section id="première-jointure-sur-schéma-world" class="slide level2 center"><h2>Première jointure sur schéma <code>world</code>
-</h2>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="première-jointure-sur-schéma-world" class="slide level2 center">
+<h2>Première jointure sur schéma <code>world</code></h2>
 <p>Quels sont les pays qui portent le même nom que leur capitale ?</p>
 <div class="fragment">
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb16-1"><a></a><span class="kw">SELECT</span> name_country</span>
@@ -787,8 +865,9 @@
 <p>autrement dit à</p>
 <p><span class="math display">\[\pi_{\text{name\_country}}(\text{country} \bowtie_{\text{capital}=\text{id} \wedge  \text{name\_country}=\text{name\_city}} \text{city}))\]</span></p>
 </div>
-</section><section id="syntaxe-normalisée-pour-les-jointures-join-et-on" class="slide level2 center"><h2>Syntaxe normalisée pour les jointures : <em>JOIN</em> et <em>ON</em>
-</h2>
+</section>
+<section id="syntaxe-normalisée-pour-les-jointures-join-et-on" class="slide level2 center">
+<h2>Syntaxe normalisée pour les jointures : <em>JOIN</em> et <em>ON</em></h2>
 <p>Quels sont les pays qui portent le même nom que leur capitale ?</p>
 <div class="sourceCode" id="cb17"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb17-1"><a></a><span class="kw">SELECT</span> name_country</span>
 <span id="cb17-2"><a></a></span>
@@ -799,7 +878,9 @@
 <span id="cb17-7"><a></a><span class="kw">WHERE</span> name_country<span class="op">=</span>name_city;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>qui correspond à</p>
 <p><span class="math display">\[\pi_{\text{name\_country}}(\sigma_{\text{capital}=id \wedge  \text{name\_country}=\text{name\_city}}(\text{country} \times \text{city}))\]</span></p>
-</section><section id="renommage" class="slide level2 center"><h2>Renommage</h2>
+</section>
+<section id="renommage" class="slide level2 center">
+<h2>Renommage</h2>
 <p>Si on veut faire une jointure d’une table avec elle-même, on utilise <em>AS</em> pour obtenir deux tables de noms différents</p>
 <ul>
 <li>Quels sont les noms de ville qui apparaissent dans deux pays différents~?</li>
@@ -811,7 +892,9 @@
 <span id="cb18-5"><a></a>  <span class="kw">ON</span> c1.countrycode<span class="op">!=</span>c2.countrycode <span class="kw">AND</span> c1.name_city<span class="op">=</span>c2.name_city  </span>
 <span id="cb18-6"><a></a></span>
 <span id="cb18-7"><a></a><span class="kw">ORDER</span> <span class="kw">BY</span> c1.name_city;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="jointure-naturelle" class="slide level2 center"><h2>Jointure naturelle</h2>
+</section>
+<section id="jointure-naturelle" class="slide level2 center">
+<h2>Jointure naturelle</h2>
 <p>Quels sont les noms des pays où le français est parlé ?</p>
 <div class="sourceCode" id="cb19"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb19-1"><a></a><span class="kw">SELECT</span> name_country</span>
 <span id="cb19-2"><a></a></span>
@@ -825,7 +908,9 @@
 <span id="cb20-3"><a></a><span class="kw">FROM</span> country <span class="kw">NATURAL</span> <span class="kw">JOIN</span> countrylanguage    </span>
 <span id="cb20-4"><a></a></span>
 <span id="cb20-5"><a></a><span class="kw">WHERE</span> language<span class="op">=</span><span class="st">'French'</span>;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section id="jointure-naturelle-suite" class="slide level2 center"><h2>Jointure naturelle (suite)</h2>
+</section>
+<section id="jointure-naturelle-suite" class="slide level2 center">
+<h2>Jointure naturelle (suite)</h2>
 <p>Quels sont les pays dont une ville a le même nom qu’une langue parlée dans ce pays~?</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource sql number-lines code-with-copy"><code class="sourceCode sql"><span id="cb21-1"><a></a><span class="kw">SELECT</span> <span class="kw">DISTINCT</span> name_country, name_city, language</span>
 <span id="cb21-2"><a></a></span>
@@ -834,13 +919,21 @@
 <span id="cb21-5"><a></a>     countrylanguage       </span>
 <span id="cb21-6"><a></a></span>
 <span id="cb21-7"><a></a><span class="kw">WHERE</span> language<span class="op">=</span>name_city;</span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section><section class="slide level2 center">
-<img data-src="../images/world.png" class="r-stretch"></section><section id="jointure-externe" class="slide level2 center"><h2>Jointure externe</h2>
+</section>
+<section class="slide level2 center">
+
+
+<img data-src="../images/world.png" class="r-stretch"></section>
+<section id="jointure-externe" class="slide level2 center">
+<h2>Jointure externe</h2>
 <ul>
 <li><p><em>LEFT OUTER JOIN</em> (resp. <em>RIGHT OUTER JOIN</em>) : on garde les tuples de la table de gauche (resp. droite) qui n’ont pas de complément dans l’autre table, la condition étant spécifiée dans la clause <em>ON</em></p></li>
 <li><p><em>FULL OUTER JOIN</em> : on garde les tuples de chacune des tables qui n’ont pas de complément.</p></li>
 <li><p>On complète les valeurs non renseignées par <em>NULL</em></p></li>
-</ul></section><section id="exemple-de-jointure-externe" class="slide level2 center"><h2>Exemple de jointure externe</h2>
+</ul>
+</section>
+<section id="exemple-de-jointure-externe" class="slide level2 center">
+<h2>Exemple de jointure externe</h2>
 <ul>
 <li>Certains pays n’ont pas de capitale : la requête</li>
 </ul>
@@ -859,7 +952,9 @@
 <span id="cb23-4"><a></a>     <span class="kw">ON</span> capital<span class="op">=</span><span class="kw">id</span>                  </span>
 <span id="cb23-5"><a></a></span>
 <span id="cb23-6"><a></a><span class="kw">WHERE</span> name_city <span class="kw">IS</span> <span class="kw">NULL</span> <span class="kw">OR</span> name_country<span class="op">=</span>name_city ;   </span></code><button title="Copier vers le presse-papier" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</section></section><section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Fin</h1>
+</section></section>
+<section id="fin" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Fin</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -881,10 +976,26 @@
 </div>
 </div>
 </section>
-</div>
+    </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../site_libs/revealjs/plugin/search/search.js"></script><script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1074,7 +1185,9 @@
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+    <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -1109,7 +1222,9 @@
         }
 
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1454,7 +1569,8 @@
         }
       }
     });
-    </script><script type="text/javascript">
+    </script>
+        <script type="text/javascript">
         (function(d) {
           d.querySelectorAll(".pseudocode-container").forEach(function(el) {
             let pseudocodeOptions = {
@@ -1485,6 +1601,7 @@
           });
         })(document);
         </script>
-
+      
+    
 
 </body></html>

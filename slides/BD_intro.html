@@ -14,18 +14,18 @@
 <script src="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.js"></script>
 <link href="../site_libs/quarto-contrib/pseudocode-2.4.1/pseudocode.min.css" rel="stylesheet">
 <link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.55">
-<meta name="author" content="Équipe BD">
-<meta name="dcterms.date" content="2024-09-13">
-<title>MA15Y030 - Automne 2024 – BD I: Introduction aux SGBD</title>
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-<link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
-<link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
-<style>
+<link href="../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.5.55">
+
+  <meta name="author" content="Équipe BD">
+  <meta name="dcterms.date" content="2024-09-13">
+  <title>MA15Y030 - Automne 2024 – BD I: Introduction aux SGBD</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/reveal.css">
+  <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
     div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -38,12 +38,12 @@
       vertical-align: middle;
     }
   </style>
-<link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
-<link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-<link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-<link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-<link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
-<style type="text/css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto.css">
+  <link href="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="../site_libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
 
   .callout {
     margin-top: 1em;
@@ -241,7 +241,7 @@
   }
 
   </style>
-<style type="text/css">
+  <style type="text/css">
     .reveal div.sourceCode {
       margin: 0;
       overflow: auto;
@@ -329,7 +329,7 @@
       margin-right: 0; 
     }
   </style>
-<script>
+  <script>
   MathJax = {
     loader: {
       load: ['[tex]/boldsymbol']
@@ -345,7 +345,8 @@
       }
     }
   };
-  </script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 <meta property="og:title" content="BD I: Introduction aux SGBD – MA15Y030 - Automne 2024">
 <meta property="og:description" content="Bases de Données Licences MIASHS et Mathématiques">
 <meta property="og:site_name" content="MA15Y030 - Automne 2024">
@@ -354,7 +355,8 @@
   <div class="reveal">
     <div class="slides">
 
-<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center"><h1 class="title">BD I: Introduction aux SGBD</h1>
+<section id="title-slide" data-background-color="#1c191c" class="quarto-title-block center">
+  <h1 class="title">BD I: Introduction aux SGBD</h1>
   <p class="subtitle">Bases de Données Licences MIASHS et Mathématiques</p>
 
 <div class="quarto-title-authors">
@@ -369,32 +371,42 @@
 </div>
 
   <p class="date">2024-09-13</p>
-</section><section id="TOC"><nav role="doc-toc"><h2 id="toc-title">Plan</h2>
+</section><section id="TOC">
+<nav role="doc-toc"> 
+<h2 id="toc-title">Plan</h2>
 <ul>
-<li><a href="#/donn%C3%A9es" id="/toc-données">Données ?</a></li>
-<li><a href="#/syst%C3%A8mes-dinformation" id="/toc-systèmes-dinformation">Systèmes d’information</a></li>
-<li><a href="#/bases-de-donn%C3%A9es-et-autres-logiciels" id="/toc-bases-de-données-et-autres-logiciels">Bases de données et (autres) logiciels</a></li>
-<li><a href="#/bases-de-donn%C3%A9es-relationnelles" id="/toc-bases-de-données-relationnelles">Bases de données (relationnelles)</a></li>
-<li><a href="#/lid%C3%A9e-relationnelle" id="/toc-lidée-relationnelle">L’idée relationnelle</a></li>
-<li><a href="#/autour-des-bases-de-donn%C3%A9es" id="/toc-autour-des-bases-de-données">Autour des bases de données</a></li>
+<li><a href="#/données" id="/toc-données">Données ?</a></li>
+<li><a href="#/systèmes-dinformation" id="/toc-systèmes-dinformation">Systèmes d’information</a></li>
+<li><a href="#/bases-de-données-et-autres-logiciels" id="/toc-bases-de-données-et-autres-logiciels">Bases de données et (autres) logiciels</a></li>
+<li><a href="#/bases-de-données-relationnelles" id="/toc-bases-de-données-relationnelles">Bases de données (relationnelles)</a></li>
+<li><a href="#/lidée-relationnelle" id="/toc-lidée-relationnelle">L’idée relationnelle</a></li>
+<li><a href="#/autour-des-bases-de-données" id="/toc-autour-des-bases-de-données">Autour des bases de données</a></li>
 <li><a href="#/the-end" id="/toc-the-end">The End</a></li>
-</ul></nav></section><section><section id="données" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Données ?</h1>
+</ul>
+</nav>
+</section>
+<section>
+<section id="données" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Données ?</h1>
 
-</section><section id="situation-du-cours-bases-de-données-ma15y030-dans-la-licence-miashs" class="slide level2 center"><h2>Situation du cours Bases de Données (MA15Y030) dans la <a href="https://licence.math.u-paris.fr/formations/miashs/">Licence MIASHS</a>
-</h2>
+</section>
+<section id="situation-du-cours-bases-de-données-ma15y030-dans-la-licence-miashs" class="slide level2 center">
+<h2>Situation du cours Bases de Données (MA15Y030) dans la <a href="https://licence.math.u-paris.fr/formations/miashs/">Licence MIASHS</a></h2>
 <ul>
 <li>Troisième cours tourné vers l’informatique
 <ul>
-<li>
-<em>Initiation</em> (L1, S1)</li>
-<li>
-<em>Algorithmes et Programmation</em> (L2, S3)</li>
-</ul>
-</li>
+<li><em>Initiation</em> (L1, S1)</li>
+<li><em>Algorithmes et Programmation</em> (L2, S3)</li>
+</ul></li>
 <li>Un cours tourné vers les données avant <em>Science des Données</em> (L3, S6)</li>
-</ul></section><section id="le-déluge-des-données-une-mode" class="slide level2 center"><h2>Le déluge des données : une mode ?</h2>
+</ul>
+</section>
+<section id="le-déluge-des-données-une-mode" class="slide level2 center">
+<h2>Le déluge des données : une mode ?</h2>
 <iframe width="780" height="500" src="https://www.economist.com/leaders/2010/02/25/the-data-deluge" title="The Data Deluge"></iframe>
-</section><section id="rien-de-neuf-sous-le-soleil" class="slide level2 center"><h2>Rien de neuf sous le soleil …</h2>
+</section>
+<section id="rien-de-neuf-sous-le-soleil" class="slide level2 center">
+<h2>Rien de neuf sous le soleil …</h2>
 
 <p><i class="fa-solid fa-brain" aria-label="brain"></i> De qui sont ces lignes ? Quand furent-elles écrites ?</p>
 <aside><div>
@@ -404,14 +416,19 @@
 <blockquote>
 <p>C’est là une doctrine économique qui paraît fort répandue chez ces administrateurs.</p>
 </blockquote>
-</div></aside></section><section id="les-données-intéressent" class="slide level2 center"><h2>Les données intéressent</h2>
+</div></aside></section>
+<section id="les-données-intéressent" class="slide level2 center">
+<h2>Les données intéressent</h2>
 <ul>
 <li><p>les sciences</p></li>
 <li><p>les administrations</p></li>
 <li><p>les entreprises</p></li>
 <li><p>les citoyennes (et les citoyens)</p></li>
 <li><p>…</p></li>
-</ul></section><section id="les-données-en-sciences-sociales" class="slide level2 center"><h2>Les données en Sciences Sociales</h2>
+</ul>
+</section>
+<section id="les-données-en-sciences-sociales" class="slide level2 center">
+<h2>Les données en Sciences Sociales</h2>
 <div class="columns">
 <div class="column">
 <ul>
@@ -423,17 +440,23 @@
 </ul>
 </div><div class="column">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="../images/SalleOvale-BnF.png"></p>
-<figcaption>BN Salle ovale</figcaption></figure>
+<figure>
+<p><img data-src="../images/SalleOvale-BnF.png"></p>
+<figcaption>BN Salle ovale</figcaption>
+</figure>
 </div>
 </div></div>
-</section><section id="sources-et-usages-des-données" class="slide level2 center"><h2>Sources et usages des données</h2>
+</section>
+<section id="sources-et-usages-des-données" class="slide level2 center">
+<h2>Sources et usages des données</h2>
 <div class="columns">
 <div class="column">
 <h3 id="quelques-références">Quelques références</h3>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="../images/arnoldtiltoncover.jpg" height="300"></p>
-<figcaption><a href="https://humanitiesdata.org"><em>Data humanities with R.</em> Arnold and Tilton</a></figcaption></figure>
+<figure>
+<p><img data-src="../images/arnoldtiltoncover.jpg" height="300"></p>
+<figcaption><a href="https://humanitiesdata.org"><em>Data humanities with R.</em> Arnold and Tilton</a></figcaption>
+</figure>
 </div>
 <p><a href="https://doi.org/10.1017/CBO9780511818851"><em>Quantitative tour at social sciences</em> edited by Gelman and Cortina, 2009</a></p>
 <p><i class="fa-brands fa-slideshare" aria-label="slideshare"></i> <a href="https://www.slideshare.net/search?searchfrom=header&amp;q=relational+databases">Relational databses on slideshare</a></p>
@@ -446,7 +469,9 @@
 <li><p>Maintenance</p></li>
 </ul>
 </div></div>
-</section><section id="les-données-de-lentreprisedes-administrations" class="slide level2 center"><h2>Les données de l’entreprise/des administrations</h2>
+</section>
+<section id="les-données-de-lentreprisedes-administrations" class="slide level2 center">
+<h2>Les données de l’entreprise/des administrations</h2>
 <div class="columns">
 <div class="column">
 <ul>
@@ -458,7 +483,9 @@
 </div><div class="column">
 <p><img data-src="../images/pexels-shkrabaanthony-5816299.jpg" height="400"></p>
 </div></div>
-</section><section id="la-vie-des-données-en-résumé" class="slide level2 center"><h2>La vie des données (en résumé)</h2>
+</section>
+<section id="la-vie-des-données-en-résumé" class="slide level2 center">
+<h2>La vie des données (en résumé)</h2>
 <div class="columns">
 <div class="column">
 <ul>
@@ -470,22 +497,30 @@
 </ul>
 </div><div class="column">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="../images/pexels-manelandsean-12573579.jpg" data-heigth="80%"></p>
-<figcaption>pipelines</figcaption></figure>
+<figure>
+<p><img data-src="../images/pexels-manelandsean-12573579.jpg" data-heigth="80%"></p>
+<figcaption>pipelines</figcaption>
+</figure>
 </div>
 </div></div>
-</section><section id="avant-hier" class="slide level2 center"><h2>Avant-hier</h2>
+</section>
+<section id="avant-hier" class="slide level2 center">
+<h2>Avant-hier</h2>
 <div class="columns">
 <div class="column" style="width:30%;">
 <p>Les entreprises et les administrations ont toujours cultivé une mémoire sous forme de <em>fichiers</em> plus ou moins mécanisés et formattés.</p>
 <p>Ces collections de fichiers mécanisées répondaient à des exigences de <em>fiabilité</em>, de <em>convenance</em> (facilité de la recherche, de la maintenance)</p>
 </div><div class="column" style="width:70%;">
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="../images/image-ibm-punchcard.jpeg"></p>
-<figcaption>From https://www.ibm.com/history/punched-card</figcaption></figure>
+<figure>
+<p><img data-src="../images/image-ibm-punchcard.jpeg"></p>
+<figcaption>From https://www.ibm.com/history/punched-card</figcaption>
+</figure>
 </div>
 </div></div>
-</section><section id="aujourdhui" class="slide level2 center"><h2>Aujourd’hui</h2>
+</section>
+<section id="aujourdhui" class="slide level2 center">
+<h2>Aujourd’hui</h2>
 <div class="columns">
 <div class="column" style="width:30%;">
 <ul>
@@ -496,9 +531,14 @@
 </div><div class="column" style="width:70%;">
 <p><img data-src="../images/pexels-artunchained-9101888.jpg"></p>
 </div></div>
-</section></section><section><section id="systèmes-dinformation" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Systèmes d’information</h1>
+</section></section>
+<section>
+<section id="systèmes-dinformation" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Systèmes d’information</h1>
 
-</section><section id="systèmes-dinformation-1" class="slide level2 center"><h2>Systèmes d’information</h2>
+</section>
+<section id="systèmes-dinformation-1" class="slide level2 center">
+<h2>Systèmes d’information</h2>
 <blockquote>
 <p>Un <em>système d’information (SI)</em> est un ensemble de composants qui fonctionnent ensemble pour collecter, traiter, stocker et diffuser des informations.</p>
 </blockquote>
@@ -510,7 +550,9 @@
 <p>Par exemple : les <em>systèmes de traitement des transactions (TPS)</em>, les <em>systèmes d’information de gestion (MIS)</em>, les <em>systèmes d’aide à la décision (DSS)</em> et les <em>systèmes de planification des ressources de l’entreprise (ERP)</em>.</p>
 </blockquote>
 </div>
-</section><section id="décomposition-des-si" class="slide level2 center scrollable"><h2>Décomposition des SI</h2>
+</section>
+<section id="décomposition-des-si" class="slide level2 center scrollable">
+<h2>Décomposition des SI</h2>
 <p>Un système d’information comprend en général les éléments suivants:</p>
 <div>
 <ol type="1">
@@ -521,7 +563,9 @@
 <li class="fragment"><p><em>Processus</em> : Les flux de travail et les règles régissant la manière dont les données sont collectées, traitées et distribuées, conformément aux objectifs.</p></li>
 </ol>
 </div>
-</section><section id="systèmes-dinformation-si-et-bases-de-données-bd-sgbd-sgbdr" class="slide level2 center"><h2>Systèmes d’information (SI) et Bases de Données (BD, SGBD, SGBDR)</h2>
+</section>
+<section id="systèmes-dinformation-si-et-bases-de-données-bd-sgbd-sgbdr" class="slide level2 center">
+<h2>Systèmes d’information (SI) et Bases de Données (BD, SGBD, SGBDR)</h2>
 <p>Au coeur des systèmes d’information (modernes) on trouve (presque toujours) les <strong>bases de données</strong></p>
 <div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
@@ -536,7 +580,9 @@
 </div>
 </div>
 </div>
-</section><section id="des-propriétés-désirables-acid" class="slide level2 center"><h2>Des propriétés désirables (ACID)</h2>
+</section>
+<section id="des-propriétés-désirables-acid" class="slide level2 center">
+<h2>Des propriétés désirables (ACID)</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -596,11 +642,14 @@
 </div>
 </div>
 </div>
-</section></section><section><section id="bases-de-données-et-autres-logiciels" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Bases de données et (autres) logiciels</h1>
+</section></section>
+<section>
+<section id="bases-de-données-et-autres-logiciels" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Bases de données et (autres) logiciels</h1>
 
-</section><section id="bases-de-données" class="slide level2 center"><h2>
-<i class="fa-solid fa-database" aria-label="database"></i> Bases de <strong>données</strong>
-</h2>
+</section>
+<section id="bases-de-données" class="slide level2 center">
+<h2><i class="fa-solid fa-database" aria-label="database"></i> Bases de <strong>données</strong></h2>
 <ul>
 <li>Qu’est-ce que c’est (plus précisément) ?</li>
 </ul>
@@ -614,9 +663,15 @@
 <div class="fragment">
 <p>Les bases de données ne sont pas (simplement) un <em>langage</em> (comme <code>JAVA</code>, <i class="fa-brands fa-r-project" aria-label="r-project"></i>, <i class="fa-brands fa-python" aria-label="python"></i>)</p>
 </div>
-</section></section><section><section id="bases-de-données-relationnelles" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Bases de données (relationnelles)</h1>
+</section></section>
+<section>
+<section id="bases-de-données-relationnelles" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Bases de données (relationnelles)</h1>
 
-</section><section class="slide level2 center"><div class="callout callout-caution callout-titled callout-style-default">
+</section>
+<section class="slide level2 center">
+
+<div class="callout callout-caution callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -635,8 +690,9 @@
 <div class="fragment">
 <p>Les bases de données relationnelles ont été conçues pour traiter les données tabulaires (oragnisées en tables)</p>
 </div>
-</section><section id="collection-de-tablesdata-frames" class="slide level2 center"><h2>
-<i class="fa-solid fa-table-cells" aria-label="table-cells"></i> Collection de tables/<code>data frame</code>s</h2>
+</section>
+<section id="collection-de-tablesdata-frames" class="slide level2 center">
+<h2><i class="fa-solid fa-table-cells" aria-label="table-cells"></i> Collection de tables/<code>data frame</code>s</h2>
 <p>Caricaturalement :</p>
 <blockquote>
 <p>Une base de données relationnelle est une collection de <em>tables</em></p>
@@ -645,8 +701,9 @@
 <p>Les tables s’incarnent de plusieurs façons en informatique</p>
 <p><code>R</code>, <code>Pandas</code>, les tableurs (<code>Excel</code> …), offrent un environnement interactif de manipulation de données et un environnement de définition de données</p>
 </div>
-</section><section id="data-frame" class="slide level2 center"><h2>
-<i class="fa-brands fa-r-project" aria-label="r-project"></i> Data frame</h2>
+</section>
+<section id="data-frame" class="slide level2 center">
+<h2><i class="fa-brands fa-r-project" aria-label="r-project"></i> Data frame</h2>
 <!-- () -->
 <div>
 <ul>
@@ -656,7 +713,9 @@
 <li class="fragment"><p>Chaque vecteur a un nom et son propre type</p></li>
 </ul>
 </div>
-</section><section id="autres-environments-excel-java-python" class="slide level2 center"><h2>Autres environments (<code>Excel</code>, <code>JAVA</code>, <code>Python</code>)</h2>
+</section>
+<section id="autres-environments-excel-java-python" class="slide level2 center">
+<h2>Autres environments (<code>Excel</code>, <code>JAVA</code>, <code>Python</code>)</h2>
 <!--  -->
 <ul>
 <li><p>Les <code>spreadsheet</code> des tableurs <i class="fa-solid fa-file-excel" aria-label="file-excel"></i></p></li>
@@ -664,7 +723,9 @@
 <li><p>Les tableaux d’objets en <code>JAVA</code></p></li>
 </ul>
 <p>permettent de représenter ce que les <code>dataframes</code> représentent en <code>R</code> <!--  --></p>
-</section><section id="les-sgbd-vont-au-delà" class="slide level2 center"><h2>Les SGBD vont au delà :</h2>
+</section>
+<section id="les-sgbd-vont-au-delà" class="slide level2 center">
+<h2>Les SGBD vont au delà :</h2>
 <p>Ils offrent:</p>
 <div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
@@ -709,41 +770,49 @@
 </div>
 </div>
 </div>
-</section><section id="usages" class="slide level2 center"><h2>Usages</h2>
+</section>
+<section id="usages" class="slide level2 center">
+<h2>Usages</h2>
 <ul>
 <li><p>Sites web dynamiques <i class="fa-brands fa-wordpress" aria-label="wordpress"></i> <i class="fa-brands fa-facebook-f" aria-label="facebook-f"></i></p></li>
 <li><p>Logiciels personnels</p></li>
 </ul>
 <p>Derrière certaines applications (gestion de photos, de carnet d’adresses, …), on trouve des bases de données légères (<code>SQLITE</code>)</p>
 <ul>
-<li>
-<p>Partout</p>
+<li><p>Partout</p>
 <ul>
 <li><p>smartphones, tablettes, …</p></li>
 <li><p>web, réseaux sociaux</p></li>
 <li><p>administrations (APOGEE, …)</p></li>
 <li><p>entreprises (Stocks Supply Chain, Customer Relationship Management, …)</p></li>
 <li><p>NSA</p></li>
+</ul></li>
 </ul>
-</li>
-</ul></section></section><section><section id="lidée-relationnelle" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>L’idée relationnelle</h1>
+</section></section>
+<section>
+<section id="lidée-relationnelle" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>L’idée relationnelle</h1>
 
-</section><section id="lidée-clé-codd-1970" class="slide level2 center"><h2>L’idée clé (Codd, 1970)</h2>
+</section>
+<section id="lidée-clé-codd-1970" class="slide level2 center">
+<h2>L’idée clé (Codd, 1970)</h2>
 <p>Organiser les informations en <strong>tables</strong> ou <strong>relations</strong></p>
 <p>Développer et formaliser un langage de manipulation de tables : l’<em>algèbre relationnelle</em> (langage <code>SQL</code>, Structured Query Language)</p>
 <ul>
 <li><p>L’usager peut définir l’organisation des données</p></li>
 <li><p>Il peut interroger celles-ci (par des requêtes)</p></li>
-<li>
-<p>Le langage est <em>déclaratif</em> :</p>
+<li><p>Le langage est <em>déclaratif</em> :</p>
 <ul>
 <li>On décrit ce que l’on veut obtenir (quoi mais pas comment)</li>
 <li>Le système fait le reste…</li>
-</ul>
-</li>
+</ul></li>
 <li><p>L’évaluation de toutes les requêtes s’arrête (au moins en théorie : si on y met les moyens…)</p></li>
 <li><p>L’algèbre relationnelle/SQL n’est pas un langage complet (différence avec <code>JAVA</code>, <code>C</code>, <code>Python</code>, etc)</p></li>
-</ul></section><section class="slide level2 center scrollable"><div class="callout callout-important callout-titled callout-style-default">
+</ul>
+</section>
+<section class="slide level2 center scrollable">
+
+<div class="callout callout-important callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
 <div class="callout-icon-container">
@@ -753,27 +822,25 @@
 </div>
 <div class="callout-content">
 <ol type="1">
-<li>Information is represented logically in <em>tables</em>
-</li>
+<li>Information is represented logically in <em>tables</em></li>
 <li>Data must be <em>logically accessible</em> by table, primary key, and column.</li>
-<li>
-<em>Null</em> values must be uniformly treated as “missing information,” not as empty strings, blanks, or zeros.</li>
+<li><em>Null</em> values must be uniformly treated as “missing information,” not as empty strings, blanks, or zeros.</li>
 <li>Metadata (data about the database) must be stored in the database just as regular data is</li>
 <li>A single language must be able to define data, views, integrity constraints, <em>authorization</em>, <em>transactions</em>, and data manipulation</li>
-<li>
-<em>Views</em> must show the updates of their <em>base tables</em> and vice versa</li>
+<li><em>Views</em> must show the updates of their <em>base tables</em> and vice versa</li>
 <li>A single operation must be available to do each of the following operations: retrieve data, insert data, update data, or delete data</li>
 <li>Batch and end-user operations are <em>logically separate</em> from physical storage and access methods</li>
 <li>Batch and end-user operations can change the database schema without having to recreate it or the applications built upon it</li>
-<li>
-<em>Integrity</em> constraints must be available and stored in the metadata, not in an application program</li>
+<li><em>Integrity</em> constraints must be available and stored in the metadata, not in an application program</li>
 <li>The data manipulation language of the relational system should not care where or how the physical data is distributed and should not require alteration if the physical data is centralized or distributed</li>
 <li>Any <em>row processing</em> done in the system must obey the same <em>integrity rules</em> and <em>constraints</em> that set-processing operations do</li>
 </ol>
 </div>
 </div>
 </div>
-</section><section id="quelques-acteurs" class="slide level2 center"><h2>Quelques acteurs</h2>
+</section>
+<section id="quelques-acteurs" class="slide level2 center">
+<h2>Quelques acteurs</h2>
 <div class="columns">
 <div class="column">
 <p><strong>Serveurs</strong></p>
@@ -795,13 +862,17 @@
 <li><p>…</p></li>
 </ul>
 </div></div>
-</section><section id="postgres-postgresql" class="slide level2 center"><h2>PostGres (PostgreSQL)</h2>
+</section>
+<section id="postgres-postgresql" class="slide level2 center">
+<h2>PostGres (PostgreSQL)</h2>
 <ul>
 <li><p>Un <strong>serveur</strong> : <code>etu-pgsql</code></p></li>
 <li><p>Un <strong>catalogue</strong> : <code>bd_2023-24</code></p></li>
 <li><p>Des <strong>schémas</strong>: <code>world, pagila, nycflights13, ...</code></p></li>
-</ul></section><section id="un-exemple-de-schéma-world" class="slide level2 center"><h2>Un exemple de schéma <code>world</code>
-</h2>
+</ul>
+</section>
+<section id="un-exemple-de-schéma-world" class="slide level2 center">
+<h2>Un exemple de schéma <code>world</code></h2>
 <p>Un schema</p>
 <p>Des schémas de table</p>
 <ul>
@@ -809,45 +880,52 @@
 <li><p><code>country</code> : chaque tuple porte sur un état/territoire</p></li>
 <li><p><code>city</code> : chaque tuple porte sur une ville (déisgnée par <code>id</code>) qui appartient à un état/territoire désigné par <code>countrycode</code></p></li>
 <li><p><code>countrylanguage</code> : chaque tuple indique la part de la population d’un état/territoire (désigné par <code>countrycode</code>) qui parle/connaît une langue (désignée par <code>language</code>) et précise si la langue est officielle dans cet état/territoire.</p></li>
-</ul></section><section id="détails-du-schema-world" class="slide level2 center"><h2>Détails du schema <code>world</code>
-</h2>
+</ul>
+</section>
+<section id="détails-du-schema-world" class="slide level2 center">
+<h2>Détails du schema <code>world</code></h2>
 <div class="quarto-figure quarto-figure-center">
-<figure><p><img data-src="../images//world.png"></p>
-<figcaption>Image World</figcaption></figure>
+<figure>
+<p><img data-src="../images//world.png"></p>
+<figcaption>Image World</figcaption>
+</figure>
 </div>
 
 <aside><div>
 <p>Un schéma de table : la donnée des noms des colonnes et des types des colonnes</p>
-</div></aside></section><section id="quelques-questions-et-propriétés-typiques" class="slide level2 center"><h2>Quelques questions et propriétés typiques</h2>
+</div></aside></section>
+<section id="quelques-questions-et-propriétés-typiques" class="slide level2 center">
+<h2>Quelques questions et propriétés typiques</h2>
 <ul>
 <li><p>Extraire de l’information</p></li>
-<li>
-<p>Assurer de la cohérence après modification</p>
+<li><p>Assurer de la cohérence après modification</p>
 <ul>
 <li>Faire en sorte que chaque état/territoire soit identifié par un numéro unique</li>
 <li>Faire en sorte que chaque ville soit identifiée par un numéro unique</li>
 <li>Ne pas proposer de données sur des villes/territoires/états qui n’existent pas</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 <div class="fragment">
 <ul>
-<li>
-<p>Propager l’information</p>
+<li><p>Propager l’information</p>
 <ul>
 <li>Historiciser le schéma</li>
-</ul>
-</li>
+</ul></li>
 </ul>
 </div>
-</section><section id="objectifs-du-cours" class="slide level2 center"><h2>Objectifs du cours</h2>
+</section>
+<section id="objectifs-du-cours" class="slide level2 center">
+<h2>Objectifs du cours</h2>
 <ul>
 <li><p>Compétences d’un usager de BD relationnelles</p></li>
 <li><p>Exprimer des requêtes en algèbre relationnelle et en SQL</p></li>
 <li><p>SQL Définition, manipulation et contrôle des données</p></li>
 <li><p>Concevoir un Modèle Conceptuel de Données (Entités/Associations)</p></li>
 <li><p>Déterminer les dépendances fonctionnelles et normaliser une relation</p></li>
-</ul></section><section id="plan-du-cours" class="slide level2 center"><h2>Plan du cours</h2>
+</ul>
+</section>
+<section id="plan-du-cours" class="slide level2 center">
+<h2>Plan du cours</h2>
 <ul>
 <li><p>Algèbre et calcul relationnels</p></li>
 <li><p>SQL (algèbre relationnelle stricte)</p></li>
@@ -856,9 +934,15 @@
 <li><p>SQL requêtes paramétrées</p></li>
 <li><p>Définition de données/Conception</p></li>
 <li><p>Normalisation</p></li>
-</ul></section></section><section><section id="autour-des-bases-de-données" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>Autour des bases de données</h1>
+</ul>
+</section></section>
+<section>
+<section id="autour-des-bases-de-données" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>Autour des bases de données</h1>
 
-</section><section id="entrepôts-de-données-fin-des-années-1980" class="slide level2 center"><h2>Entrepôts de données (Fin des années 1980)</h2>
+</section>
+<section id="entrepôts-de-données-fin-des-années-1980" class="slide level2 center">
+<h2>Entrepôts de données (Fin des années 1980)</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -875,8 +959,10 @@
 </div>
 </div>
 <!--   -->
-<p><a href="https://fr.wikipedia.org/wiki/Entrep%C3%B4t_de_donn%C3%A9es">Entrepôt_de_données sur Wikipedia</a></p>
-</section><section id="lacs-de-données-2010" class="slide level2 center"><h2>Lacs de données (2010)</h2>
+<p><a href="https://fr.wikipedia.org/wiki/Entrepôt_de_données">Entrepôt_de_données sur Wikipedia</a></p>
+</section>
+<section id="lacs-de-données-2010" class="slide level2 center">
+<h2>Lacs de données (2010)</h2>
 <div class="callout callout-note callout-titled callout-style-default">
 <div class="callout-body">
 <div class="callout-title">
@@ -890,7 +976,9 @@
 </div>
 </div>
 </div>
-</section><section id="au-delà-du-relationnel-no-sql" class="slide level2 center"><h2>Au delà du relationnel: No SQL</h2>
+</section>
+<section id="au-delà-du-relationnel-no-sql" class="slide level2 center">
+<h2>Au delà du relationnel: No SQL</h2>
 <blockquote>
 <p>Ce sont les grandes entreprises du web qui ont été les premières confrontées aux limitations intrinsèques des SGBD relationnels traditionnels. Ces systèmes fondés sur une application stricte des propriétés ACID et généralement conçus pour fonctionner sur des ordinateurs uniques ont rapidement posé des problèmes d’extensibilité.</p>
 </blockquote>
@@ -904,7 +992,10 @@
 <p>Les systèmes propriétaires qui en ont résulté, Google (BigTable), Amazon (Dynamo (en)), LinkedIn (Voldemort), Facebook (Cassandra puis HBase), SourceForge.net (MongoDB), Ubuntu One (CouchDB), Baidu (Hypertable) ont été les précurseurs du modèle NoSQL.</p>
 </blockquote>
 </div>
-</section><section class="slide level2 center"><blockquote>
+</section>
+<section class="slide level2 center">
+
+<blockquote>
 <p>Les performances restent bonnes avec la montée en charge en multipliant simplement le nombre de serveurs, solution raisonnable avec la baisse des coûts, en particulier si les revenus croissent en même temps que l’activité. Les systèmes géants sont les premiers concernés : énormes quantités de données, structuration relationnelle faible (ou de moindre importance que la capacité d’accès très rapide, quitte à multiplier les serveurs).</p>
 </blockquote>
 <div class="fragment">
@@ -916,10 +1007,14 @@
 </div>
 <aside><div>
 <p><a href="https://fr.wikipedia.org/wiki/NoSQL">NoSQL</a></p>
-</div></aside></section><section id="lire-plus" class="slide level2 center"><h2>Lire plus</h2>
+</div></aside></section>
+<section id="lire-plus" class="slide level2 center">
+<h2>Lire plus</h2>
 <p><a href="https://scholar.google.com/scholar?hl=fr&amp;as_sdt=0%2C5&amp;q=harrison+next+generation+databases&amp;oq=harrison+next+">Guy Harrison. Next Generation Databases. NoSQL, NewSQL, Big Data</a></p>
 <!-- {{< embed http://guyharrison.squarespace.com/blog/tag/nosql >}} -->
-</section></section><section id="the-end" class="title-slide slide level1 center" data-background-color="#1c191c"><h1>The End</h1>
+</section></section>
+<section id="the-end" class="title-slide slide level1 center" data-background-color="#1c191c">
+<h1>The End</h1>
 
 <div class="quarto-auto-generated-content">
 <div class="footer footer-default">
@@ -941,10 +1036,26 @@
 </div>
 </div>
 </section>
-</div>
+    </div>
   </div>
 
-  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="../site_libs/revealjs/dist/reveal.js"></script><!-- reveal.js plugins --><script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script><script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script><script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script><script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script><script src="../site_libs/revealjs/plugin/notes/notes.js"></script><script src="../site_libs/revealjs/plugin/search/search.js"></script><script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script><script src="../site_libs/revealjs/plugin/math/math.js"></script><script>window.define = window.backupDefine; window.backupDefine = undefined;</script><script>
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="../site_libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="../site_libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="../site_libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="../site_libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="../site_libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="../site_libs/revealjs/plugin/search/search.js"></script>
+  <script src="../site_libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="../site_libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
 
       // Full list of configuration options available at:
       // https://revealjs.com/config/
@@ -1134,7 +1245,9 @@
           RevealZoom
         ]
       });
-    </script><script>
+    </script>
+    
+    <script>
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
       // slide changes (different for each slide format).
@@ -1169,7 +1282,9 @@
         }
 
       })();
-    </script><script id="quarto-html-after-body" type="application/javascript">
+    </script>
+
+    <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
         const mode = bsSheetEl.getAttribute("data-mode");
@@ -1514,7 +1629,8 @@
         }
       }
     });
-    </script><script type="text/javascript">
+    </script>
+        <script type="text/javascript">
         (function(d) {
           d.querySelectorAll(".pseudocode-container").forEach(function(el) {
             let pseudocodeOptions = {
@@ -1545,6 +1661,7 @@
           });
         })(document);
         </script>
-
+      
+    
 
 </body></html>
