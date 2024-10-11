@@ -587,9 +587,23 @@ Déterminer la liste des films disponibles dans toutes les langues.
 *Comme pour les acteurs "toutes catégories"*, il s'agit d'une *division*. Dans la base installée, le
 résultat est vide.  
 
+```{.sql}
+select film_id, title
+from pagila.Film F
+where not exists  (
+	select *
+	from pagila.language L
+	where (F.film_id, L.language_id) not in (
+		select film_id, language_id
+		from pagila.Film 
+	)
+);
+```
+
 :::
 
 :::
+
 
 Un même *dvd* (`inventory_id`) peut bien sûr être loué plusieurs fois, mais pas simultanément. Proposer une requête qui  vérifie que les dates de location d'un *dvd* donné sont compatibles.
 
@@ -597,6 +611,19 @@ Un même *dvd* (`inventory_id`) peut bien sûr être loué plusieurs fois, mais 
 ::: {.content-visible when-profile="solution"}
 
 ::: {.callout-tip title="Solution"}
+
+```{.sql}
+select 1
+from pagila.rental r1, pagila.rental r2
+where r1.rental_id <> r2.rental_id 
+and r1.inventory_id = r2.inventory_id 
+and r2.rental_date >= r1.rental_date
+and (r2.rental_date < r1.return_date or r1.return_date is null);
+```
+
+:::
+
+:::
 
 `SQL` en général et `PostGres` en particulier proposent beaucoup de types et d'opérations sophistiquées pour représenter et manipuler les données temporelles.
 Plusieurs types de données permettent de représenter les instants (timestamp), les dates, les intervalles de temps, les durées, et de calculer sur le temps (ajouter une durée à une date, extraire une information calendaire d'une date ou d'un instant, ...). Même si l'API varie d'un cadre à l'autre, on retrouve ces types et ces opérations dans tous les environnements de sciences des données : {{< fa brands python >}}, {{< fa brands r-project >}} 
